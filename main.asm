@@ -658,6 +658,9 @@ SECTION "European Mail", ROMX
 
 INCLUDE "engine/pokemon/european_mail.asm"
 
+SECTION "Battle Weather Images", ROMX
+
+INCLUDE "gfx/weather_images.asm"
 
 SECTION "Debug Room", ROMX
 
@@ -725,7 +728,6 @@ SECTION "Bank3E Overflow", ROMX
 INCLUDE "engine/link/time_capsule.asm"
 INCLUDE "engine/link/time_capsule_2.asm"
 INCLUDE "engine/events/magikarp.asm"
-
 
 
 SECTION "Stadium 2 Checksums", ROMX[$7DE0], BANK[$7F]
