@@ -55,9 +55,10 @@ POKEGEAR: Now shows the detailed name of map you're currently in (based on Map G
 - Show an icon for the current weather in battles.
 - PokeCentre fast heal after the first visit added.
 - Use unique colours for each thrown Poké Ball.
+- Animate tiles when text boxes are open.
 - Field moves are useable of a Pokémon can learn the TM/HM and is in the respective pocket.
 - Items that act like HMs added (except Fly) to prevent softlocks.
-- Animate tiles when text boxes are open.
+- Third paged added to trainer card for Kanto Badges and all badges colored.
 - Pokémon eggs get laid 100% of the time after 256 steps and all eggs hatch after 1,024 steps.
 - Eggs hatch at level 1.
 - Refusing eggs no longer prevents Pokémon from laying more.
