@@ -335,8 +335,9 @@ PryceRematchAfterText:
 	done
 
 BoarderRonaldSeenText:
-	text "I'll freeze"
-	line "your #MON!"
+	text "I'll frostbite"
+	line "your #MON, so you"
+	cont "can't do a thing!"
 	done
 
 BoarderRonaldBeatenText:
@@ -346,7 +347,7 @@ BoarderRonaldBeatenText:
 
 BoarderRonaldAfterBattleText:
 	text "I think there's a"
-	line "move a frozen"
+	line "move a frostbitten"
 
 	para "#MON can use to"
 	line "cure itself."

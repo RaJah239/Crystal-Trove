@@ -297,7 +297,7 @@ FirePunchDescription:
 
 IcePunchDescription:
 	db   "An icy punch. May"
-	line "cause freezing.@"
+	line "cause frostbite.@"
 
 ThunderpunchDescription:
 	db   "An electric punch."
@@ -497,11 +497,11 @@ SurfDescription:
 
 IceBeamDescription:
 	db   "An attack that may"
-	line "freeze the foe.@"
+	line "cause frostbite.@"
 
 BlizzardDescription:
 	db   "An attack that may"
-	line "freeze the foe.@"
+	line "cause frostbite.@"
 
 PsybeamDescription:
 	db   "An attack that may"
@@ -989,7 +989,7 @@ SpiteDescription:
 
 PowderSnowDescription:
 	db   "An attack that may"
-	line "cause freezing.@"
+	line "cause frostbite.@"
 
 ProtectDescription:
 	db   "Foils attack that"
