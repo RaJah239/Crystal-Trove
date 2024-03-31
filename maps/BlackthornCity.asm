@@ -213,9 +213,11 @@ BlackBeltText_VoicesInMyHead:
 	done
 
 BlackthornCooltrainerF1Text:
-	text "Are you going to"
-	line "make your #MON"
-	cont "forget some moves?"
+	text "The TUTORS' HOUSE"
+	line "is popular with"
+	cont "serious trainers."
+	
+	para "Expensive though…"
 	done
 
 BlackthornYoungsterText:
@@ -290,8 +292,7 @@ BlackthornGymSignText:
 	done
 
 MoveDeletersHouseSignText:
-	text "MOVE DELETER'S"
-	line "HOUSE"
+	text "  TUTORS' HOUSE"
 	done
 
 DragonDensSignText:
