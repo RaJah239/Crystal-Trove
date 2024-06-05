@@ -283,8 +283,6 @@ AbraFrontpic:        INCBIN "gfx/pokemon/abra/front.animated.2bpp.lz"
 HitmontopBackpic:    INCBIN "gfx/pokemon/hitmontop/back.2bpp.lz"
 CloysterBackpic:     INCBIN "gfx/pokemon/cloyster/back.2bpp.lz"
 HoothootFrontpic:    INCBIN "gfx/pokemon/hoothoot/front.animated.2bpp.lz"
-UnownFBackpic:       INCBIN "gfx/pokemon/unown_f/back.2bpp.lz"
-
 
 SECTION "Pics 11", ROMX
 
@@ -644,7 +642,6 @@ JigglypuffBackpic:   INCBIN "gfx/pokemon/jigglypuff/back.2bpp.lz"
 OddishBackpic:       INCBIN "gfx/pokemon/oddish/back.2bpp.lz"
 
 
-
 SECTION "Pics 18", ROMX
 
 SpinarakBackpic:     INCBIN "gfx/pokemon/spinarak/back.2bpp.lz"
@@ -793,6 +790,7 @@ PetrelPic:           INCBIN "gfx/trainers/petrel.2bpp.lz"
 OakPic:              INCBIN "gfx/trainers/oak.2bpp.lz"
 ProtonPic:           INCBIN "gfx/trainers/proton.2bpp.lz"
 GiovanniPic:         INCBIN "gfx/trainers/giovanni.2bpp.lz"
+UnownFBackpic:       INCBIN "gfx/pokemon/unown_f/back.2bpp.lz"
 
 SECTION "Pics 21", ROMX
 
