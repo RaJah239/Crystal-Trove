@@ -85,11 +85,41 @@ GoldenrodGymWhitneyScript:
 	end
 
 .GotAttract:
+    checkevent EVENT_BEAT_RED
+    iftrue .OfferRematch
+; player hasn't beaten RED yet
 	writetext WhitneyGoodCryText
 	waitbutton
 .NoRoomForAttract:
 	closetext
 	end
+
+.OfferRematch:
+    writetext WhitneyRematchText
+    yesorno
+    iftrue .DoRematch
+    ; keep going if false
+	
+.DontDoRematch:
+    writetext WhitneyRematchRefuseText
+    waitbutton
+    closetext
+    end
+
+.DoRematch:
+    writetext WhitneyRematchAcceptText
+    waitbutton
+    closetext
+    winlosstext WhitneyRematchLossText, 0
+    loadtrainer WHITNEY, WHITNEY2
+    startbattle
+    reloadmapafterbattle
+    setevent EVENT_BEAT_WHITNEY
+    opentext
+    writetext WhitneyRematchAfterText
+    waitbutton
+    closetext
+    end
 
 GoldenrodGymActivateRockets:
 	ifequal 7, .RadioTowerRockets
@@ -243,6 +273,10 @@ WhitneyWhatDoYouWantText:
 PlayerReceivedPlainBadgeText:
 	text "<PLAYER> received"
 	line "PLAINBADGE."
+
+	para "TRADED #MON"
+	line "OBEDIENCE & LEVEL"
+	cont "CAP UPDATE: L40"
 	done
 
 WhitneyPlainBadgeText:
@@ -274,6 +308,52 @@ WhitneyGoodCryText:
 
 	para "Come for a visit"
 	line "again! Bye-bye!"
+	done
+
+WhitneyRematchText:
+	text "WHITNEY: Hiya"
+	line "<PLAY_G>!"
+
+	para "Thanks for coming"
+	line "to visit me."
+
+	para "My #MON and I"
+	line "have been training"
+
+	para "to take you down"
+	line "for what happened"
+	cont "last time!"
+
+	para "It's payback time"
+	line "and a shot at the"
+	cont "champion?"
+
+	para "Sounds like a"
+	line "sweet deal, right?"
+
+	para "Let's go!"
+	done
+
+WhitneyRematchAcceptText:
+	text "Good choice!"
+	done 
+
+WhitneyRematchRefuseText:
+	text "What's the matter?"
+	line "Scared of me?"
+	done	
+
+WhitneyRematchLossText:
+	text "Sob… I won't cry"
+	line "this time… Sob…"
+	done
+	
+WhitneyRematchAfterText:
+	text "WHITNEY: You are"
+	line "very strong but,"
+
+	para "I'll not loose next"
+	line "time, you hear me!"
 	done
 
 LassCarrieSeenText:
@@ -356,12 +436,12 @@ BeautySamanthaSeenText:
 	done
 
 BeautySamanthaBeatenText:
-	text "No! Oh, MEOWTH,"
+	text "No! AZUMARILL,"
 	line "I'm so sorry!"
 	done
 
 BeautySamanthaAfterBattleText:
-	text "I taught MEOWTH"
+	text "I taught AZUMARILL"
 	line "moves for taking"
 	cont "on any type…"
 	done

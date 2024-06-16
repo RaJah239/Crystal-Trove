@@ -33,13 +33,43 @@ SeafoamGymBlaineScript:
 	playsound SFX_GET_BADGE
 	waitsfx
 	setflag ENGINE_VOLCANOBADGE
+.FightDone:
+	iftrue .GotBalinesTM
+	writetext BlaineFightDoneText
+	waitbutton
+	verbosegiveitem TM_FIRE_BLAST
+	iffalse .GotBalinesTM
+.GotBalinesTM:
+	checkevent EVENT_BEAT_RED
+	iftrue .OfferRematch
+; player hasn't beaten RED yet
 	writetext BlaineAfterBattleText
 	waitbutton
 	closetext
 	end
 
-.FightDone:
-	writetext BlaineFightDoneText
+.OfferRematch:
+	writetext BlaineRematchText
+	yesorno
+	iftrue .DoRematch
+	; keep going if false
+	
+.DontDoRematch:
+	writetext BlaineRematchRefuseText
+	waitbutton
+	closetext
+	end
+	
+.DoRematch:
+	writetext BlaineRematchAcceptText
+	waitbutton
+	closetext
+	winlosstext BlaineRematchLossText, 0
+	loadtrainer BLAINE, BLAINE2
+	startbattle
+	reloadmapafterbattle
+	opentext
+	writetext BlaineRematchAfterText
 	waitbutton
 	closetext
 	end
@@ -86,7 +116,8 @@ BlaineIntroText:
 	cont "a BADGE."
 
 	para "Ha! You'd better"
-	line "have BURN HEAL!"
+	line "have equipped ICE"
+	cont "BERRY!"
 	done
 
 BlaineWinLossText:
@@ -109,19 +140,52 @@ BlaineAfterBattleText:
 	para "going to win the"
 	line "next time."
 
-	para "When I rebuild my"
-	line "CINNABAR GYM,"
-
-	para "we'll have to have"
-	line "a rematch."
+	para "In the future, we"
+	line "shall have a fiery"
+	cont "rematch!"
 	done
 
 BlaineFightDoneText:
 	text "BLAINE: My fire"
-	line "#MON will be"
+	line "#MON are tough"
 
-	para "even stronger."
-	line "Just you watch!"
+	para "due to this TM,"
+	line "and so will yours!"
+	done
+
+BlaineRematchText:
+	text "BLAINE: Your flame"
+	line "burns brighter"
+	cont "<PLAY_G>!"
+	
+	para "So have ours!"
+	
+	para "Time for that"
+	line "rematch!"
+	done 
+	
+BlaineRematchAcceptText:
+	text "That's what I"
+	line "wanted to hear!"
+	done 
+	
+BlaineRematchRefuseText:
+	text "You didn't come"
+	line "out here to re-"
+	cont "fuse right?"
+	done 
+	
+BlaineRematchLossText:
+	text "My spirit has not"
+	line "been defeated!"
+	done 
+	
+BlaineRematchAfterText:
+	text "I'd like to see"
+	line "your flame again!"
+	
+	para "Challenge me any-"
+	line "time <PLAY_G>."
 	done
 
 SeafoamGymGuideWinText:

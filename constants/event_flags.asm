@@ -442,11 +442,11 @@
 	const EVENT_TULLY_ASKED_FOR_PHONE_NUMBER
 	const EVENT_BURNED_TOWER_BLOCKER
 	const EVENT_BRENT_ASKED_FOR_PHONE_NUMBER
-	const_skip ; unused
+	const_skip ; unused in Crystal
 	const EVENT_TIFFANY_ASKED_FOR_PHONE_NUMBER
-	const_skip ; unused in Crystal
+	const EVENT_SABRINA_TM ; unused in Crystal
 	const EVENT_VANCE_ASKED_FOR_PHONE_NUMBER
-	const_skip ; unused in Crystal
+	const EVENT_MISTY_TMS ; unused in Crystal
 	const EVENT_WILTON_ASKED_FOR_PHONE_NUMBER
 	const_skip ; unused in Crystal
 	const EVENT_KENJI_ASKED_FOR_PHONE_NUMBER

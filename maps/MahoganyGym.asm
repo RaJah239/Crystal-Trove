@@ -47,7 +47,7 @@ MahoganyGymPryceScript:
 	scall MahoganyGymActivateRockets
 .FightDone:
 	checkevent EVENT_GOT_TM16_ICY_WIND
-	iftrue PryceScript_Defeat
+	iftrue .PryceScriptDefeat
 	setevent EVENT_BEAT_SKIER_ROXANNE
 	setevent EVENT_BEAT_SKIER_CLARISSA
 	setevent EVENT_BEAT_BOARDER_RONALD
@@ -56,19 +56,49 @@ MahoganyGymPryceScript:
 	writetext PryceText_GlacierBadgeSpeech
 	promptbutton
 	verbosegiveitem TM_ICY_WIND
-	iffalse MahoganyGym_NoRoomForIcyWind
+	iffalse .MahoganyGym_NoRoomForIcyWind
 	setevent EVENT_GOT_TM16_ICY_WIND
 	writetext PryceText_IcyWindSpeech
 	waitbutton
 	closetext
 	end
 
-PryceScript_Defeat:
+.PryceScriptDefeat:
+    checkevent EVENT_BEAT_RED
+    iftrue .OfferRematch
+; player hasn't beaten RED yet
 	writetext PryceText_CherishYourPokemon
 	waitbutton
-MahoganyGym_NoRoomForIcyWind:
+.MahoganyGym_NoRoomForIcyWind:
 	closetext
 	end
+
+.OfferRematch:
+    writetext PryceRematchText
+    yesorno
+    iftrue .DoRematch
+    ; keep going if false
+	
+.DontDoRematch:
+    writetext PryceRematchRefuseText
+    waitbutton
+    closetext
+    end
+
+.DoRematch:
+    writetext PryceRematchAcceptText
+    waitbutton
+    closetext
+    winlosstext PryceRematchLossText, 0
+    loadtrainer PRYCE, PRYCE2
+    startbattle
+    reloadmapafterbattle
+    setevent EVENT_BEAT_PRYCE
+    opentext
+    writetext PryceRematchAfterText
+    waitbutton
+    closetext
+    end
 
 MahoganyGymActivateRockets:
 	ifequal 7, .RadioTowerRockets
@@ -208,13 +238,18 @@ PryceText_Impressed:
 Text_ReceivedGlacierBadge:
 	text "<PLAYER> received"
 	line "GLACIERBADGE."
+
+	para "TRADED #MON"
+	line "OBEDIENCE & LEVEL"
+	cont "CAP UPDATE: L70"
 	done
 
 PryceText_GlacierBadgeSpeech:
 	text "It lets your"
 	line "#MON use WHIRL-"
-	cont "POOL to get across"
-	cont "real whirlpools."
+
+	para "POOL to get across"
+	line "real whirlpools."
 
 	para "And this… This is"
 	line "a gift from me!"
@@ -247,10 +282,58 @@ PryceText_CherishYourPokemon:
 	line "together!"
 	done
 
+PryceRematchText:
+	text "PRYCE: Ah, it's"
+	line "good to see you"
+	cont "again."
+	
+	para "I've heard of your"
+	line "victories."
+	
+	para "I knew you had"
+	line "potential, but"
+
+	para "for someone this"
+	line "young to become"
+	cont "champion?"
+	
+	para "Experience is what"
+	line "counts, however!"
+
+	para "As your elder,"
+	line "allow me to"
+	cont "demonstrate!"
+	done
+	
+PryceRematchAcceptText:
+	text "No words needed."
+
+	para "Let our battle"
+	line "speak for us."
+	done
+	
+PryceRematchRefuseText:
+	text "Best not to rush"
+	line "into unprepared"
+	cont "ventures."
+	done 
+	
+PryceRematchLossText:
+	text "I concede defeat."
+	done
+	
+PryceRematchAfterText:
+	text "PRYCE: Impressive!"
+	line "Truly impressive!"
+
+	para "As your elder, I,"
+	line "PRYCE, ackowledge"
+	cont "you <PLAY_G>!"
+	done
+
 BoarderRonaldSeenText:
-	text "I'll freeze your"
-	line "#MON, so you"
-	cont "can't do a thing!"
+	text "I'll freeze"
+	line "your #MON!"
 	done
 
 BoarderRonaldBeatenText:
@@ -260,10 +343,10 @@ BoarderRonaldBeatenText:
 
 BoarderRonaldAfterBattleText:
 	text "I think there's a"
-	line "move a #MON"
+	line "move a frozen"
 
-	para "can use while it's"
-	line "frozen."
+	para "#MON can use to"
+	line "cure itself."
 	done
 
 BoarderBradSeenText:

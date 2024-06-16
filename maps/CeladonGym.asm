@@ -54,10 +54,39 @@ CeladonGymErikaScript:
 	iffalse .GotGigaDrain
 	setevent EVENT_GOT_TM19_GIGA_DRAIN
 .GotGigaDrain:
+    checkevent EVENT_BEAT_RED
+    iftrue .OfferRematch
+; player hasn't beaten RED yet
 	writetext ErikaAfterBattleText
 	waitbutton
 	closetext
 	end
+
+.OfferRematch:
+    writetext ErikaRematchText
+    yesorno
+    iftrue .DoRematch
+    ; keep going if false
+	
+.DontDoRematch:
+    writetext ErikaRematchRefuseText
+    waitbutton
+    closetext
+    end
+	
+.DoRematch:
+    writetext ErikaRematchAcceptText
+    waitbutton
+    closetext
+    winlosstext ErikaRematchLossText, 0
+    loadtrainer ERIKA, ERIKA2
+    startbattle
+    reloadmapafterbattle
+    opentext
+    writetext ErikaRematchAfterText
+    waitbutton
+    closetext
+    end
 
 TrainerLassMichelle:
 	trainer LASS, MICHELLE, EVENT_BEAT_LASS_MICHELLE, LassMichelleSeenText, LassMichelleBeatenText, 0, .Script
@@ -125,9 +154,9 @@ CeladonGymStatue:
 ErikaBeforeBattleText:
 	text "ERIKA: Hello…"
 	line "Lovely weather,"
+	cont "isn't it?"
 
-	para "isn't it?"
-	line "It's so pleasant…"
+	para "It's so pleasant…"
 
 	para "…I'm afraid I may"
 	line "doze off…"
@@ -142,7 +171,6 @@ ErikaBeforeBattleText:
 
 	para "Oh. I'm sorry, I"
 	line "didn't realize"
-
 	para "that you wished to"
 	line "challenge me."
 
@@ -197,6 +225,45 @@ ErikaAfterBattleText:
 
 	para "trainers spurs me"
 	line "to do better…"
+	done
+
+ErikaRematchText:
+	text "ERIKA: Hello…"
+	line "KANTO's buzzing"
+
+	para "with your success"
+	line "and exploits."
+	
+	para "I've been train-"
+	line "ing ever so hard"
+
+	para "for a rematch with"
+	line "you. How about it?"
+	done 
+	
+ErikaRematchAcceptText:
+	text "Let us begin…"
+	done 
+	
+ErikaRematchRefuseText:
+	text "Won't you please"
+	line "reconsider…"
+	done 
+
+ErikaRematchLossText:
+	text "I underestimated"
+	line "you… I concede"
+	cont "defeat."
+	done 
+	
+ErikaRematchAfterText:
+	text "Oh my… The buzz"
+	line "was spot on."
+	
+	para "This is a match"
+	line "I won't forget!"
+	
+	para "Drop by again."
 	done
 
 LassMichelleSeenText:

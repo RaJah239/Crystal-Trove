@@ -44,15 +44,45 @@ OlivineGymJasmineScript:
 	end
 
 .LessThan5Badges:
-    writetext PlayerNotReady
-    waitbutton
-    closetext
-    end
+	writetext PlayerNotReady
+	waitbutton
+	closetext
+	end
 
 .GotIronTail:
+	checkevent EVENT_BEAT_RED
+	iftrue .OfferRematch
+; player hasn't beaten RED yet
 	writetext Jasmine_GoodLuck
 	waitbutton
 .NoRoomForIronTail:
+	closetext
+	end
+
+.OfferRematch:
+	writetext JasmineRematchText
+	yesorno
+	iftrue .DoRematch
+	; keep going if false
+	
+.DontDoRematch:
+	writetext JasmineRematchRefuseText
+	waitbutton
+	closetext
+	end
+
+.DoRematch:
+	writetext JasmineRematchAcceptText
+	waitbutton
+	closetext
+	winlosstext JasmineRematchLossText, 0
+	loadtrainer JASMINE, JASMINE2
+	startbattle
+	reloadmapafterbattle
+	setevent EVENT_BEAT_JASMINE
+	opentext
+	writetext JasmineRematchAfterText
+	waitbutton
 	closetext
 	end
 
@@ -112,30 +142,29 @@ Jasmine_SteelTypeIntro:
 	para "allow me to intro-"
 	line "duce myself."
 
-	para "I am JASMINE, a"
+	para "I am JASMINE, the"
 	line "GYM LEADER. I use"
 	cont "the steel-type."
 
-	para "…Do you know about"
-	line "the steel-type?"
+	para "The steel-type is"
+	line "known to have many"
 
-	para "It's a type that"
-	line "was only recently"
-	cont "discovered."
+	para "resistances and"
+	line "few counters."
 
 	para "…Um… May I begin?"
 	done
 
 PlayerNotReady:
-    text "Um… excuse me."
+	text "Um… excuse me."
 
-    para "You need five" 
-    line "badges to"
+	para "You need five" 
+	line "badges to"
 	cont "challenge me."
 
-    para "I'll readily take"
-    line "you on then."
-    done
+	para "I'll readily take"
+	line "you on then."
+	done
 
 Jasmine_BetterTrainer:
 	text "…You are a better"
@@ -154,6 +183,10 @@ Jasmine_BetterTrainer:
 Text_ReceivedMineralBadge:
 	text "<PLAYER> received"
 	line "MINERALBADGE."
+
+	para "TRADED #MON"
+	line "OBEDIENCE & LEVEL"
+	cont "CAP UPDATE: L60"
 	done
 
 Jasmine_BadgeSpeech:
@@ -173,10 +206,44 @@ Jasmine_GoodLuck:
 	cont "but good luck…"
 	done
 
+JasmineRematchText:
+	text "JASMINE: Um… hello"
+	line "again…"
+	
+	para "AMPHY's doing much"
+	line "better now, so we"
+
+	para "had more time to"
+	line "train."
+	
+	para "Want a rematch?"
+	done 
+	
+JasmineRematchAcceptText:
+	text "…Thank you. May"
+	line "we get started?"
+	done 
+	
+JasmineRematchRefuseText:
+    text "Oh… I understand."
+	done 
+	
+JasmineRematchLossText:
+	text "Well done…"
+	done 
+	
+JasmineRematchAfterText:
+	text "JASMINE: True to"
+	line "your reputation…"
+	
+	para "We'll have to try"
+	line "much harder as"
+	cont "well…"
+	done 
+
 OlivineGymGuideText:
 	text "JASMINE uses the"
-	line "newly discovered"
-	cont "steel-type."
+	line "steel-type."
 
 	para "I don't know very"
 	line "much about it."

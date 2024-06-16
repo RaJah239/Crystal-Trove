@@ -25,13 +25,43 @@ ViridianGymBlueScript:
 	playsound SFX_GET_BADGE
 	waitsfx
 	setflag ENGINE_EARTHBADGE
+.FightDone:
+	iftrue .GotBluesTM
 	writetext LeaderBlueAfterText
+	waitbutton
+	verbosegiveitem TM_SANDSTORM
+	iffalse .GotBluesTM
+.GotBluesTM:
+	checkevent EVENT_BEAT_RED
+	iftrue .OfferRematch
+	; player hasn't beaten RED yet
+	writetext LeaderBlueEpilogueText
 	waitbutton
 	closetext
 	end
 
-.FightDone:
-	writetext LeaderBlueEpilogueText
+.OfferRematch:
+	writetext BlueRematchText
+	yesorno
+	iftrue .DoRematch
+	; keep going if false
+	
+.DontDoRematch:
+	writetext BlueRematchRefuseText
+	waitbutton
+	closetext
+	end
+
+.DoRematch:
+	writetext BlueRematchAcceptText
+	waitbutton
+	closetext
+	winlosstext BlueRematchLossText, 0
+	loadtrainer BLUE, BLUE2
+	startbattle
+	reloadmapafterbattle
+	opentext
+	writetext BlueRematchAfterText
 	waitbutton
 	closetext
 	end
@@ -110,6 +140,10 @@ LeaderBlueWinText:
 Text_ReceivedEarthBadge:
 	text "<PLAYER> received"
 	line "EARTHBADGE."
+
+	para "TRADED #MON"
+	line "OBEDIENCE & LEVEL"
+	cont "CAP UPDATE: L100"
 	done
 
 LeaderBlueAfterText:
@@ -121,11 +155,11 @@ LeaderBlueAfterText:
 	para "real deal. You are"
 	line "a good trainer."
 
-	para "But I'm going to"
-	line "beat you someday."
-
-	para "Don't you forget"
-	line "it!"
+	para "As a GYM LEADER I"
+	line "must confer a TM"
+	cont "to you as well."
+	
+	para "Take this."
 	done
 
 LeaderBlueEpilogueText:
@@ -134,6 +168,56 @@ LeaderBlueEpilogueText:
 	para "You'd better not"
 	line "lose until I beat"
 	cont "you. Got it?"
+	done
+
+BlueRematchText:
+ 	text "BLUE: So you've"
+	line "gone and beaten"
+	cont "RED too!"
+
+	para "You're no joke!"
+
+	para "<PLAY_G>, I now"
+	line "consider you a"
+	cont "rival of mine!"
+	
+	para "I've become a lot"
+	line "stronger compared"
+
+	para "to our previous"
+	line "battle."
+
+	para "And I'll prove it"
+	line "right now."
+
+	para "How about it,"
+	line "CHAMP?"
+	done 
+	
+BlueRematchAcceptText:
+	text "I'm gonna use"
+	line "everything against"
+	cont "you <PLAY_G>!"
+ 	
+	para "Prepare to be"
+	line "knocked down!"
+	done 
+
+BlueRematchRefuseText:
+	text "Tch. Whatever. You"
+	line "sound busy anyway."
+	done 
+
+BlueRematchLossText:
+	text "You're tough, I'll"
+	line "give you that."
+	done
+
+BlueRematchAfterText:
+	text "As I expected!"
+
+	para "No wonder you're"
+	line "the CHAMP."
 	done
 
 ViridianGymGuideText:

@@ -74,11 +74,41 @@ EcruteakGymMortyScript:
 	end
 
 .GotShadowBall:
+    checkevent EVENT_BEAT_RED
+    iftrue .OfferRematch
+; player hasn't beaten RED yet
 	writetext MortyFightDoneText
 	waitbutton
 .NoRoomForShadowBall:
 	closetext
 	end
+
+.OfferRematch:
+    writetext MortyRematchText
+    yesorno
+    iftrue .DoRematch
+    ; keep going if false
+	
+.DontDoRematch:
+    writetext MortyRematchRefuseText
+    waitbutton
+    closetext
+    end
+
+.DoRematch:
+    writetext MortyRematchAcceptText
+    waitbutton
+    closetext
+    winlosstext MortyRematchLossText, 0
+    loadtrainer MORTY, MORTY2
+    startbattle
+    reloadmapafterbattle
+    setevent EVENT_BEAT_MORTY
+    opentext
+    writetext MortyRematchAfterText
+    waitbutton
+    closetext
+    end
 
 EcruteakGymActivateRockets:
 	ifequal 7, .RadioTowerRockets
@@ -199,18 +229,15 @@ MortyIntroText:
 
 	para "It's said that a"
 	line "rainbow-colored"
-
-	para "#MON will come"
-	line "down to appear"
-
-	para "before a truly"
-	line "powerful trainer."
+	cont "#MON will come"
+	cont "down to appear"
+	cont "before a truly"
+	cont "powerful trainer."
 
 	para "I believed that"
 	line "tale, so I have"
-
-	para "secretly trained"
-	line "here all my life."
+	cont "secretly trained"
+	cont "here all my life."
 
 	para "As a result, I can"
 	line "now see what"
@@ -220,9 +247,8 @@ MortyIntroText:
 
 	para "With a little"
 	line "more, I could see"
-
-	para "a future in which"
-	line "I meet the #MON"
+	cont "a future in which"
+	cont "I meet the #MON"
 	cont "of rainbow colors."
 
 	para "You're going to"
@@ -241,20 +267,18 @@ MortyWinLossText:
 Text_ReceivedFogBadge:
 	text "<PLAYER> received"
 	line "FOGBADGE."
+
+	para "TRADED #MON"
+	line "OBEDIENCE & LEVEL"
+	cont "CAP UPDATE: L50"
 	done
 
 MortyText_FogBadgeSpeech:
-	text "By having FOG-"
-	line "BADGE, #MON up"
-
-	para "to L50 will obey"
-	line "you."
-
-	para "Also, #MON that"
-	line "know SURF will be"
-
-	para "able to use that"
-	line "move anytime."
+	text "FOGBADGE enables"
+	line "#MON that can"
+	cont "learn SURF to tra-"
+	cont "verse water out-"
+	cont "side of battles."
 
 	para "I want you to have"
 	line "this too."
@@ -263,9 +287,8 @@ MortyText_FogBadgeSpeech:
 MortyText_ShadowBallSpeech:
 	text "It's SHADOW BALL."
 	line "It causes damage"
-
-	para "and may reduce"
-	line "SPCL.DEF."
+	cont "and may reduce"
+	cont "SPCL.DEF."
 
 	para "Use it if it"
 	line "appeals to you."
@@ -284,6 +307,45 @@ MortyFightDoneText:
 
 	para "I envy you for"
 	line "that…"
+	done
+
+MortyRematchText:
+    text "MORTY: <PLAY_G>, I"
+	line "sense your growth."
+    
+	para "I aim to match"
+	line "HO-OH's virtue."
+	
+	para "And another bout"
+	line "between us would"
+	cont "beneficial!"
+	
+	para "Help me push my"
+	line "training to the"
+	cont "next level!"
+	done 
+	
+MortyRematchAcceptText:
+    text "Now witness my"
+	line "evolution!"
+	done 
+
+MortyRematchRefuseText:
+    text "Oh… perhaps"
+	line "another time?"
+	done 
+	
+MortyRematchLossText:
+    text "How is this"
+	line "possible…"
+	done
+	
+MortyRematchAfterText:
+    text "MORTY: Lost again…"
+	line "Maybe you've got"
+
+	para "more than just"
+	line "mere strength."
 	done
 
 SageJeffreySeenText:

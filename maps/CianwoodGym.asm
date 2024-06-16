@@ -80,11 +80,41 @@ CianwoodGymChuckScript:
 	end
 
 .AlreadyGotTM:
+    checkevent EVENT_BEAT_RED
+    iftrue .OfferRematch
+; player hasn't beaten RED yet
 	writetext ChuckAfterText
 	waitbutton
 .BagFull:
 	closetext
 	end
+
+.OfferRematch:
+    writetext ChuckRematchText
+    yesorno
+    iftrue .DoRematch
+    ; keep going if false
+	
+.DontDoRematch:
+    writetext ChuckRematchRefuseText
+    waitbutton
+    closetext
+    end
+
+.DoRematch:
+    writetext ChuckRematchAcceptText
+    waitbutton
+    closetext
+    winlosstext ChuckRematchLossText, 0
+    loadtrainer CHUCK, CHUCK2
+    startbattle
+    reloadmapafterbattle
+    setevent EVENT_BEAT_CHUCK
+    opentext
+    writetext ChuckRematchAfterText
+    waitbutton
+    closetext
+    end
 
 CianwoodGymActivateRockets:
 	ifequal 7, .RadioTowerRockets
@@ -161,7 +191,7 @@ CianwoodGymMovement_ChuckChucksBoulder:
 	step_end
 
 ChuckIntroText1:
-	text "WAHAHAH!"
+	text "CHUCK: WAHAHAH!"
 
 	para "So you've come"
 	line "this far!"
@@ -189,9 +219,9 @@ ChuckIntroText3:
 
 	para "What?"
 	line "It has nothing to"
+	cont "do with #MON?"
 
-	para "do with #MON?"
-	line "That's true!"
+	para "That's true!"
 
 	para "Come on. We shall"
 	line "do battle!"
@@ -212,17 +242,9 @@ GetStormBadgeText:
 	done
 
 ChuckExplainBadgeText:
-	text "STORMBADGE makes"
-	line "all #MON up to"
-
-	para "L70 obey, even"
-	line "traded ones."
-
-	para "It also lets your"
-	line "#MON use FLY"
-
-	para "when you're not in"
-	line "a battle."
+	text "STORMBADGE permits"
+	line "FLY usage outside"
+	cont "of battles."
 
 	para "Here, take this"
 	line "too!"
@@ -250,6 +272,47 @@ ChuckAfterText:
 	line "going to train 24"
 	cont "hours a day!"
 	done
+
+ChuckRematchText:
+	text "CHUCK: There you"
+	line "are <PLAY_G>!"
+
+	para "Sorry for all the"
+	line "yelling."
+	
+	para "I just finished up"
+	line "my training."
+	
+	para "Up for another"
+	line "battle?"
+	done
+	
+	ChuckRematchAcceptText:
+	text "Taste the outcome"
+	line "of my rigorous"
+
+	para "24-hours a day"
+	line "training!"
+	done
+	
+ChuckRematchRefuseText:
+	text "Well, if you're not"
+	line "interested, I'll do"
+	cont "another set."
+	done
+	
+ChuckRematchLossText:
+	text "We…lost… Back to"
+	line "training it is!"
+	done 
+
+ChuckRematchAfterText:
+	text "CHUCK: You're some-"
+	line "thing special kid!"
+
+	para "No wonder you"
+	line "became champion."
+	done 
 
 BlackbeltYoshiSeenText:
 	text "My #MON and I"

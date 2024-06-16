@@ -7,15 +7,15 @@ PewterGym_MapScripts:
 	def_scene_scripts
 
 	def_callbacks
-    callback MAPCALLBACK_NEWMAP, ResetPewterGymTrainersCallback
+	callback MAPCALLBACK_NEWMAP, ResetPewterGymTrainersCallback
 
 ResetPewterGymTrainersCallback:
-    checkevent EVENT_BEAT_BROCK
-    iffalse .ResetTrainers
-    endcallback
+	checkevent EVENT_BEAT_BROCK
+	iffalse .ResetTrainers
+	endcallback
 .ResetTrainers
-    clearevent EVENT_BEAT_CAMPER_JERRY
-    endcallback
+	clearevent EVENT_BEAT_CAMPER_JERRY
+	endcallback
 
 PewterGymBrockScript:
 	faceplayer
@@ -36,13 +36,43 @@ PewterGymBrockScript:
 	playsound SFX_GET_BADGE
 	waitsfx
 	setflag ENGINE_BOULDERBADGE
-	writetext BrockBoulderBadgeText
+.FightDone:
+	iftrue .GotBrocksTM
+	writetext BrockBoulderBadgeText	
+	waitbutton
+	verbosegiveitem TM_ROLLOUT
+	iffalse .GotBrocksTM
+.GotBrocksTM:
+	checkevent EVENT_BEAT_RED
+	iftrue .OfferRematch
+	; player hasn't beaten RED yet
+	writetext BrockFightDoneText
 	waitbutton
 	closetext
 	end
 
-.FightDone:
-	writetext BrockFightDoneText
+.OfferRematch:
+	writetext BrockRematchText
+	yesorno
+	iftrue .DoRematch
+	; keep going if false
+	
+.DontDoRematch:
+	writetext BrockRematchRefuseText
+	waitbutton
+	closetext
+	end
+	
+.DoRematch:
+	writetext BrockRematchAcceptText
+	waitbutton
+	closetext
+	winlosstext BrockRematchLossText, 0
+	loadtrainer BROCK, BROCK2
+	startbattle
+	reloadmapafterbattle
+	opentext
+	writetext BrockRematchAfterText
 	waitbutton
 	closetext
 	end
@@ -93,16 +123,15 @@ BrockIntroText:
 	line "PEWTER GYM LEADER."
 
 	para "I'm an expert on"
-	line "rock-type #MON."
+	line "ROCK #MON."
 
 	para "My #MON are im-"
 	line "pervious to most"
+	cont "physical attacks."
 
-	para "physical attacks."
-	line "You'll have a hard"
-
-	para "time inflicting"
-	line "any damage."
+	para "You'll have a hard"
+	line "time inflicting"
+	cont "any damage."
 
 	para "Come on!"
 	done
@@ -133,11 +162,15 @@ BrockBoulderBadgeText:
 	line "though I am a bit"
 	cont "upset."
 
-	para "That BOULDERBADGE"
-	line "will make your"
+	para "I look forward to"
+	line "see what strides"
+	cont "you make."
 
-	para "#MON even more"
-	line "powerful."
+	para "Before you leave,"
+	line "take this TM too."
+	
+	para "It may prove to be"
+	line "useful."
 	done
 
 BrockFightDoneText:
@@ -151,6 +184,50 @@ BrockFightDoneText:
 	line "I'm going to be-"
 	cont "come a lot strong-"
 	cont "er too."
+	done
+
+BrockRematchText:
+	text "BROCK: It's good"
+	line "to see you again!"
+	
+	para "Me and my #MON"
+	line "have been working"
+
+	para "hard since we"
+	line "last fought."
+	
+	para "Allow us the"
+	line "chance to show"
+	cont "our true power!"
+	done 
+	
+BrockRematchAcceptText:
+	text "When it comes to"
+	line "ROCK #MON, I'm"
+	cont "the best!"
+	
+	para "Come on!"
+	done 
+	
+BrockRematchRefuseText:
+	text "Is that so?"
+	
+	para "I suppose you"
+	line "must be busy."
+	done 
+	
+BrockRematchLossText:
+	text "It looks like"
+	line "you are the"
+	cont "stronger one…"
+	done 
+	
+BrockRematchAfterText:
+	text "I really enjoyed"
+	line "our battle."
+	
+	para "I hope we get"
+	line "to fight again!"
 	done
 
 CamperJerrySeenText:
@@ -230,5 +307,5 @@ PewterGym_MapEvents:
 
 	def_object_events
 	object_event  5,  1, SPRITE_BROCK, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, PewterGymBrockScript, -1
-	object_event  2,  5, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 3, TrainerCamperJerry, -1
+	object_event  3,  5, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 3, TrainerCamperJerry, -1
 	object_event  6, 11, SPRITE_GYM_GUIDE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 1, PewterGymGuideScript, -1

@@ -14,15 +14,15 @@ AzaleaGym_MapScripts:
     callback MAPCALLBACK_NEWMAP, ResetAzaleaGymTrainersCallback
 
 ResetAzaleaGymTrainersCallback:
-    checkevent EVENT_BEAT_BUGSY
-    iffalse .ResetTrainers
-    endcallback
+	checkevent EVENT_BEAT_BUGSY
+	iffalse .ResetTrainers
+	endcallback
 .ResetTrainers
 	clearevent EVENT_BEAT_TWINS_AMY_AND_MAY
 	clearevent EVENT_BEAT_BUG_CATCHER_BENNY
 	clearevent EVENT_BEAT_BUG_CATCHER_AL
 	clearevent EVENT_BEAT_BUG_CATCHER_JOSH
-    endcallback
+	endcallback
 
 AzaleaGymBugsyScript:
 	faceplayer
@@ -62,9 +62,39 @@ AzaleaGymBugsyScript:
 	end
 
 .GotFuryCutter:
+	checkevent EVENT_BEAT_RED
+	iftrue .OfferRematch
+; player hasn't beaten RED yet
 	writetext BugsyText_BugMonsAreDeep
 	waitbutton
 .NoRoomForFuryCutter:
+	closetext
+	end
+	
+.OfferRematch:
+	writetext BugsyRematchText
+	yesorno
+	iftrue .DoRematch
+	; keep going if false
+	
+.DontDoRematch:
+	writetext BugsyRematchRefuseText
+	waitbutton
+	closetext
+	end
+
+.DoRematch:
+	writetext BugsyRematchAcceptText
+	waitbutton
+	closetext
+	winlosstext BugsyRematchLossText, 0
+	loadtrainer BUGSY, BUGSY2
+	startbattle
+	reloadmapafterbattle
+	setevent EVENT_BEAT_BUGSY
+	opentext
+	writetext BugsyRematchAfterText
+	waitbutton
 	closetext
 	end
 
@@ -192,18 +222,16 @@ BugsyText_ResearchIncomplete:
 Text_ReceivedHiveBadge:
 	text "<PLAYER> received"
 	line "HIVEBADGE."
+
+	para "TRADED #MON"
+	line "OBEDIENCE & LEVEL"
+	cont "CAP UPDATE: L32"
 	done
 
 BugsyText_HiveBadgeSpeech:
 	text "Do you know the"
-	line "benefits of HIVE-"
-	cont "BADGE?"
-
-	para "If you have it,"
-	line "#MON up to L30"
-
-	para "will obey you,"
-	line "even traded ones."
+	line "benefit of the"
+	cont "HIVEBADGE?"
 
 	para "#MON that know"
 	line "CUT will be able"
@@ -229,6 +257,54 @@ BugsyText_FuryCutterSpeech:
 
 	para "Isn't that great?"
 	line "I discovered it!"
+	done
+
+BugsyRematchText:
+	text "BUGSY: Nice to see"
+	line "you again <PLAY_G>!"
+	
+	para "I'm doing great!"
+	
+	para "My research has" 
+	line "taken me through"
+
+	para "caves, crawling"
+	line "through bushes,"
+
+	para "waking late at"
+	line "nights to observe"
+
+	para "BUG #MON and"
+	line "much more!"
+	
+	para "Let me show you"
+	line "what I've learned?"
+	done
+
+BugsyRematchAcceptText:
+	text "Behold my BUG"
+	line "#MON research!"
+	done
+
+BugsyRematchRefuseText:
+	text "But… I had so much"
+	line "to show you…"
+	done
+	
+BugsyRematchLossText:
+	text "Aw, that's the"
+	line "end of it…"
+	done
+	
+BugsyRematchAfterText:
+	text "BUGSY: Amazing"
+	line "<PLAY_G>!"
+	
+	para "Your journey must"
+	line "taken you to many"
+
+	para "more places than"
+	line "my research!"
 	done
 
 BugsyText_BugMonsAreDeep:

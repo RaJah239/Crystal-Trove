@@ -12,17 +12,17 @@ CeruleanGym_MapScripts:
 	scene_script CeruleanGymGruntRunsOutScene, SCENE_CERULEANGYM_GRUNT_RUNS_OUT
 
 	def_callbacks
-    callback MAPCALLBACK_NEWMAP, ResetCeruleanGymTrainersCallback
+	callback MAPCALLBACK_NEWMAP, ResetCeruleanGymTrainersCallback
 
 ResetCeruleanGymTrainersCallback:
-    checkevent EVENT_BEAT_MISTY
-    iffalse .ResetTrainers
-    endcallback
+	checkevent EVENT_BEAT_MISTY
+	iffalse .ResetTrainers
+	endcallback
 .ResetTrainers
 	clearevent EVENT_BEAT_SWIMMERF_DIANA
 	clearevent EVENT_BEAT_SWIMMERF_BRIANA
 	clearevent EVENT_BEAT_SWIMMERM_PARKER
-    endcallback
+	endcallback
 
 CeruleanGymNoopScene:
 	end
@@ -89,7 +89,45 @@ CeruleanGymMistyScript:
 	waitsfx
 	setflag ENGINE_CASCADEBADGE
 .FightDone:
+	checkevent EVENT_MISTY_TMS
+	iftrue .GotMistysTMs
+	writetext MistyAfterBattleText
+	waitbutton
+	verbosegiveitem TM_DOUBLE_TEAM
+	verbosegiveitem TM_BLIZZARD
+	iffalse .GotMistysTMs
+	setevent EVENT_MISTY_TMS
+.GotMistysTMs:
+	checkevent EVENT_BEAT_RED
+	iftrue .OfferRematch
+	; player hasn't beaten RED yet
 	writetext MistyFightDoneText
+	waitbutton
+	closetext
+	end
+
+.OfferRematch:
+	writetext MistyRematchText
+	yesorno
+	iftrue .DoRematch
+	; keep going if false
+	
+.DontDoRematch:
+	writetext MistyRematchRefuseText
+	waitbutton
+	closetext
+	end
+	
+.DoRematch:
+	writetext MistyRematchAcceptText
+	waitbutton
+	closetext
+	winlosstext MistyRematchLossText, 0
+	loadtrainer MISTY, MISTY2
+	startbattle
+	reloadmapafterbattle
+	opentext
+	writetext MistyRematchAfterText
 	waitbutton
 	closetext
 	end
@@ -270,10 +308,10 @@ MistyIntroText:
 
 	para "You may have a"
 	line "lot of JOHTO GYM"
+	cont "BADGES, but you'd"
 
-	para "BADGES, but you'd"
-	line "better not take me"
-	cont "too lightly."
+	para "better not take me"
+	line "too lightly."
 
 	para "My water-type"
 	line "#MON are tough!"
@@ -295,6 +333,20 @@ ReceivedCascadeBadgeText:
 	line "CASCADEBADGE."
 	done
 
+MistyAfterBattleText:
+	text "You are quite the"
+	line "trainer! Not just"
+	cont "a pest."
+	
+	para "I am sorry about"
+	line "calling you a pest"
+	cont "before."
+	
+	para "Please accept both"
+	line "of these TMs as an"
+	cont "apology." 
+	done
+
 MistyFightDoneText:
 	text "MISTY: Are there"
 	line "many strong train-"
@@ -306,6 +358,42 @@ MistyFightDoneText:
 
 	para "I can battle some"
 	line "skilled trainers."
+	done
+
+MistyRematchText:
+    text "MISTY: Welcome"
+	line "back <PLAY_G>!"
+	
+	para "I hear you've been"
+	line "on the rise since"
+	cont "our last battle."
+	
+	para "Let me go a round"
+	line "with you too?"
+	done 
+
+MistyRematchAcceptText:
+	text "My strong WATER"
+	line "#MON are ready"
+	cont "for you!"
+	done 
+	
+MistyRematchRefuseText:
+	text "Why not?"
+	done 
+	
+MistyRematchLossText:
+	text "Looks like this is"
+	line "it…"
+	done
+	
+MistyRematchAfterText:
+	text "Wow! You are"
+	line "getting stronger"
+	cont "by the battle!"
+	
+	para "I'll get you next"
+	line "time though!"
 	done
 
 SwimmerfDianaSeenText:

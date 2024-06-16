@@ -64,10 +64,39 @@ FuchsiaGymJanineScript:
 	iffalse .AfterTM
 	setevent EVENT_GOT_TM06_TOXIC
 .AfterTM:
+    checkevent EVENT_BEAT_RED
+    iftrue .OfferRematch
+; player hasn't beaten RED yet
 	writetext JanineText_ApplyMyself
 	waitbutton
 	closetext
 	end
+
+.OfferRematch:
+    writetext JanineRematchText
+    yesorno
+    iftrue .DoRematch
+    ; keep going if false
+	
+.DontDoRematch:
+    writetext JanineRematchRefuseText
+    waitbutton
+    closetext
+    end
+	
+.DoRematch:
+    writetext JanineRematchAcceptText
+    waitbutton
+    closetext
+    winlosstext JanineRematchLossText, 0
+    loadtrainer JANINE, JANINE2
+    startbattle
+    reloadmapafterbattle
+    opentext
+    writetext JanineRematchAfterText
+    waitbutton
+    closetext
+    end
 
 LassAliceScript:
 	checkevent EVENT_BEAT_LASS_ALICE
@@ -295,6 +324,46 @@ JanineText_ApplyMyself:
 	para "I want to become"
 	line "better than both"
 	cont "Father and you!"
+	done
+
+JanineRematchText:
+	text "JANINE: Good of"
+	line "you to have come"
+	cont "<PLAY_G>."
+
+	para "I've been pushing"
+	line "hard to improve."
+	
+	para "I can't use my"
+	line "ninja technique,"
+
+	para "but I won't let"
+	line "you win."
+	
+	para "How about it? Up"
+	line "for a rematch?"
+	done 
+	
+JanineRematchAcceptText:
+	text "Feel the horror of"
+	line "my POISON #MON!"
+	done 
+	
+JanineRematchRefuseText:
+	text "What's the matter?"
+
+	para "Have I become in-"
+	line "timidating?"
+	done 
+	
+JanineRematchLossText:
+	text "…!!!"
+	line "So…So strong!"
+	done 
+	
+JanineRematchAfterText:
+	text "I lost today, but"
+	line "I'll win next time!"
 	done
 
 LassAliceBeforeText:

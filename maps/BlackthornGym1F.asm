@@ -98,10 +98,40 @@ BlackthornGymClairScript:
 	end
 
 .GotTM24:
+    checkevent EVENT_BEAT_RED
+    iftrue .OfferRematch
+; player hasn't beaten RED yet
 	writetext BlackthornGymClairText_League
 	waitbutton
 	closetext
 	end
+
+.OfferRematch:
+    writetext ClairRematchText
+    yesorno
+    iftrue .DoRematch
+    ; keep going if false
+	
+.DontDoRematch:
+    writetext ClairRematchRefuseText
+    waitbutton
+    closetext
+    end
+
+.DoRematch:
+    writetext ClairRematchAcceptText
+    waitbutton
+    closetext
+    winlosstext ClairRematchLossText, 0
+    loadtrainer CLAIR, CLAIR2
+    startbattle
+    reloadmapafterbattle
+    setevent EVENT_BEAT_CLAIR
+    opentext
+    writetext ClairRematchAfterText
+    waitbutton
+    closetext
+    end
 
 TrainerCooltrainermPaul:
 	trainer COOLTRAINERM, PAUL, EVENT_BEAT_COOLTRAINERM_PAUL, CooltrainermPaulSeenText, CooltrainermPaulBeatenText, 0, .Script
@@ -213,9 +243,9 @@ ClairText_GoToDragonsDen:
 
 	para "There is a small"
 	line "shrine at its"
+	cont "center."
 
-	para "center."
-	line "Go there."
+	para "Go there."
 
 	para "If you can prove"
 	line "that you've lost"
@@ -244,7 +274,7 @@ BlackthornGymClairText_YouKeptMeWaiting:
 
 BlackthornGymText_ReceivedTM24:
 	text "<PLAYER> received"
-	line "TM24 DRAGONBREATH."
+	line "TM24 DRAGON TAIL."
 	done
 
 BlackthornGymClairText_DescribeTM24:
@@ -294,6 +324,59 @@ BlackthornGymClairText_League:
 
 	para "Give it every-"
 	line "thing you've got."
+	done
+
+ClairRematchText:
+	text "CLAIR: You've gone"
+	line "and conquered the"
+	cont "#MON LEAGUE,"
+
+	para "and made a name"
+	line "for yourself in"
+	cont "KANTO."
+	
+	para "It looks like"
+	line "our first battle"
+	cont "was no fluke."
+	
+	para "But I haven't"
+	line "been slacking off" 
+	cont "either!"
+	
+	para "I can hold my own"
+	line "even against the"
+	cont "CHAMPION now!"
+	
+	para "Do you still wish"
+	line "to take me on?"
+	done 
+	
+ClairRematchAcceptText:
+	text "…Fine. Let's do"
+	line "it!"
+
+	para "I will use my full"
+	line "power against any"
+	cont "opponent!"
+	done
+	
+ClairRematchRefuseText:
+	text "How disappointing…"
+	done
+	
+ClairRematchLossText:
+    text "You're powerful."
+
+	para "There is no"
+	line "mistake…"
+	done
+	
+ClairRematchAfterText:
+	text "CLAIR: I wonder…"
+
+	para "…just how far you"
+	line "can go with your"
+	cont "skill…"
 	done
 
 CooltrainermPaulSeenText:

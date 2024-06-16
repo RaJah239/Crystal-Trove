@@ -9,17 +9,17 @@ VermilionGym_MapScripts:
 	def_scene_scripts
 
 	def_callbacks
-    callback MAPCALLBACK_NEWMAP, ResetVermillionGymTrainersCallback
+	callback MAPCALLBACK_NEWMAP, ResetVermillionGymTrainersCallback
 
 ResetVermillionGymTrainersCallback:
-    checkevent EVENT_BEAT_LTSURGE
-    iffalse .ResetTrainers
-    endcallback
+	checkevent EVENT_BEAT_LTSURGE
+	iffalse .ResetTrainers
+	endcallback
 .ResetTrainers
 	clearevent EVENT_BEAT_GENTLEMAN_GREGORY
 	clearevent EVENT_BEAT_GUITARIST_VINCENT
 	clearevent EVENT_BEAT_JUGGLER_HORTON
-    endcallback
+	endcallback
 
 VermilionGymSurgeScript:
 	faceplayer
@@ -43,12 +43,42 @@ VermilionGymSurgeScript:
 	waitsfx
 	setflag ENGINE_THUNDERBADGE
 	writetext LtSurgeThunderBadgeText
+.FightDone:
+	iftrue .GotThunder
+	waitbutton
+	verbosegiveitem TM_THUNDER
+	iffalse .GotThunder
+.GotThunder:
+	checkevent EVENT_BEAT_RED
+	iftrue .OfferRematch
+	; player hasn't beaten RED yet
+	writetext LtSurgeFightDoneText
 	waitbutton
 	closetext
 	end
 
-.FightDone:
-	writetext LtSurgeFightDoneText
+.OfferRematch:
+	writetext SurgeRematchText
+	yesorno
+	iftrue .DoRematch
+	; keep going if false
+	
+.DontDoRematch:
+	writetext SurgeRematchRefuseText
+	waitbutton
+	closetext
+	end
+
+.DoRematch:
+	writetext SurgeRematchAcceptText
+	waitbutton
+	closetext
+	winlosstext SurgeRematchLossText, 0
+	loadtrainer LT_SURGE, LT_SURGE2
+	startbattle
+	reloadmapafterbattle
+	opentext
+	writetext SurgeRematchAfterText
 	waitbutton
 	closetext
 	end
@@ -155,16 +185,52 @@ LtSurgeThunderBadgeText:
 
 	para "me. You wear it"
 	line "proudly, hear?"
+	
+	para "While you're at"
+	line "it, take this TM"
+	cont "too!"
 	done
 
 LtSurgeFightDoneText:
-	text "SURGE: Hey, kid!"
-	line "Still slugging and"
-	cont "chugging away?"
+	text "SURGE: Just you"
+	line "wait. I'll zap you"
 
-	para "My #MON and I"
-	line "are still at it!"
+	para "in our future re-"
+	line "match, y'hear me!"
 	done
+
+SurgeRematchText:
+	text "SURGE: Hey kid!"
+	line "Heard some current"
+	cont "news about you!"
+	
+	para "Wanna back it up?"
+	done 
+	
+SurgeRematchAcceptText:
+	text "Let's go kid!"
+	
+	para "I'll zap the truth"
+	line "out of you!"
+	done 
+	
+SurgeRematchRefuseText:
+	text "It must've been"
+	line "fake news then?"
+	done 
+	
+SurgeRematchLossText:
+	text "So you did also"
+	line "conquer KANTO!"
+	done 
+	
+SurgeRematchAfterText:
+	text "You're excellent!"
+
+	para "Keep going like"
+	line "lightning and"
+	cont "come again, kid!"
+	done 
 
 GentlemanGregorySeenText:
 	text "You're here to"

@@ -8,22 +8,22 @@ VioletGym_MapScripts:
 	def_scene_scripts
 
 	def_callbacks
-    callback MAPCALLBACK_NEWMAP, ResetVioletGymTrainersCallback
+	callback MAPCALLBACK_NEWMAP, ResetVioletGymTrainersCallback
 
 ResetVioletGymTrainersCallback:
-    checkevent EVENT_BEAT_FALKNER
-    iffalse .ResetTrainers
-    endcallback
+	checkevent EVENT_BEAT_FALKNER
+	iffalse .ResetTrainers
+	endcallback
 .ResetTrainers
-    clearevent EVENT_BEAT_BIRD_KEEPER_ROD
-    clearevent EVENT_BEAT_BIRD_KEEPER_ABE
-    endcallback
+	clearevent EVENT_BEAT_BIRD_KEEPER_ROD
+	clearevent EVENT_BEAT_BIRD_KEEPER_ABE
+	endcallback
 
 VioletGymFalknerScript:
 	faceplayer
 	opentext
 	checkevent EVENT_GOT_HM05_FLASH
-    iffalse .RookieTrainer
+	iffalse .RookieTrainer
 	checkevent EVENT_BEAT_FALKNER
 	iftrue .FightDone
 	writetext FalknerIntroText
@@ -51,7 +51,6 @@ VioletGymFalknerScript:
 	writetext FalknerZephyrBadgeText
 	promptbutton
 	verbosegiveitem TM_MUD_SLAP
-	iffalse .NoRoomForMudSlap
 	setevent EVENT_GOT_TM31_MUD_SLAP
 	writetext FalknerTMMudSlapText
 	waitbutton
@@ -59,15 +58,45 @@ VioletGymFalknerScript:
 	end
 
 .RookieTrainer
-    writetext PlayerisaRookie
-    waitbutton
-    closetext
-    end
+	writetext PlayerisaRookie
+	waitbutton
+	closetext
+	end
 
 .SpeechAfterTM:
+	checkevent EVENT_BEAT_RED
+	iftrue .OfferRematch
+	; player hasn't beaten RED yet
 	writetext FalknerFightDoneText
 	waitbutton
 .NoRoomForMudSlap:
+	closetext
+	end
+
+.OfferRematch:
+	writetext FalknerRematchText
+	yesorno
+	iftrue .DoRematch
+	; keep going if false
+	
+.DontDoRematch:
+	writetext FalknerRematchRefuseText
+	waitbutton
+	closetext
+    end
+	
+.DoRematch:
+	writetext FalknerRematchAcceptText
+	waitbutton
+	closetext
+	winlosstext FalknerRematchLossText, 0
+	loadtrainer FALKNER, FALKNER2
+	startbattle
+	reloadmapafterbattle
+	setevent EVENT_BEAT_FALKNER
+	opentext
+	writetext FalknerRematchAfterText
+	waitbutton
 	closetext
 	end
 
@@ -129,7 +158,7 @@ VioletGymStatue:
 	jumpstd GymStatue2Script
 
 PlayerisaRookie:
-	text "You… you're a new"
+	text "You… You're a new"
 	line "trainer right?"
 
 	para "You may not be"
@@ -139,9 +168,11 @@ PlayerisaRookie:
 	para "North of my gym" 
 	line "is SPROUT TOWER."
 
-	para "Return after you"
-	line "have earned ELDER"
-	cont "LI's recognition."
+	para "Visit ELDER LI and"
+	line "return after you"
+
+	para "have earned his"
+	line "recognition."
 	done
 
 FalknerIntroText:
@@ -183,6 +214,10 @@ FalknerWinLossText:
 ReceivedZephyrBadgeText:
 	text "<PLAYER> received"
 	line "ZEPHYRBADGE."
+
+	para "TRADED #MON"
+	line "OBEDIENCE & LEVEL"
+	cont "CAP UPDATE: L26"
 	done
 
 FalknerZephyrBadgeText:
@@ -234,8 +269,57 @@ FalknerFightDoneText:
 	line "harder to become"
 
 	para "the greatest bird"
-	line "master!"
+	line "#MON master!"
 	done
+
+FalknerRematchText:
+	text "FALKNER: Congrats"
+	line "on becoming champ-"
+	cont "ion, <PLAY_G>!"
+
+	para "But you're not the"
+	line "only one who's been"
+	cont "flying high."
+	
+	para "I've worked hard"
+	line "since our last" 
+	cont "battle."
+	
+	para "Now my #MON are"
+	line "in top shape."
+	
+	para "Up for a rematch?"
+	done 
+
+FalknerRematchAcceptText:
+	text "I'll show you the"
+	line "real power of the"
+
+	para "magnificent bird"
+	line "#MON!"
+	done 
+
+FalknerRematchRefuseText:
+	text "Sure, next time"
+	line "then."
+	done 
+	
+FalknerRematchLossText:
+	text "I understand…"
+	line "I'll bow out…"
+	done
+	
+FalknerRematchAfterText:
+	text "FALKNER: What an"
+	line "intense battle!"
+	
+	para "We've fought hard,"
+	line "but you've proven"
+
+	para "once again, that"
+	line "you're as tough as"
+	cont "ever!"
+	done 
 
 BirdKeeperRodSeenText:
 	text "The keyword is"

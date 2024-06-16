@@ -10,18 +10,18 @@ SaffronGym_MapScripts:
 	def_scene_scripts
 
 	def_callbacks
-    callback MAPCALLBACK_NEWMAP, ResetSaffronGymTrainersCallback
+	callback MAPCALLBACK_NEWMAP, ResetSaffronGymTrainersCallback
 
 ResetSaffronGymTrainersCallback:
-    checkevent EVENT_BEAT_SABRINA
-    iffalse .ResetTrainers
-    endcallback
+	checkevent EVENT_BEAT_SABRINA
+	iffalse .ResetTrainers
+	endcallback
 .ResetTrainers
 	clearevent EVENT_BEAT_MEDIUM_REBECCA
 	clearevent EVENT_BEAT_MEDIUM_DORIS
 	clearevent EVENT_BEAT_PSYCHIC_FRANKLIN
 	clearevent EVENT_BEAT_PSYCHIC_JARED
-    endcallback
+	endcallback
 
 SaffronGymSabrinaScript:
 	faceplayer
@@ -45,13 +45,45 @@ SaffronGymSabrinaScript:
 	playsound SFX_GET_BADGE
 	waitsfx
 	setflag ENGINE_MARSHBADGE
+.FightDone:
+	checkevent EVENT_SABRINA_TM
+	iftrue .GotSabrinasTM
 	writetext SabrinaMarshBadgeText
+	waitbutton
+	verbosegiveitem TM_DETECT
+	iffalse .GotSabrinasTM
+	setevent EVENT_SABRINA_TM
+.GotSabrinasTM:
+	checkevent EVENT_BEAT_RED
+	iftrue .OfferRematch
+	; player hasn't beaten RED yet
+	writetext SabrinaFightDoneText
 	waitbutton
 	closetext
 	end
 
-.FightDone:
-	writetext SabrinaFightDoneText
+.OfferRematch:
+	writetext SabrinaRematchText
+	yesorno
+	iftrue .DoRematch
+	; keep going if false
+	
+.DontDoRematch:
+	writetext SabrinaRematchRefuseText
+	waitbutton
+	closetext
+	end
+	
+.DoRematch:
+	writetext SabrinaRematchAcceptText
+	waitbutton
+	closetext
+	winlosstext SabrinaRematchLossText, 0
+	loadtrainer SABRINA, SABRINA2
+	startbattle
+	reloadmapafterbattle
+	opentext
+	writetext SabrinaRematchAfterText
 	waitbutton
 	closetext
 	end
@@ -174,21 +206,18 @@ ReceivedMarshBadgeText:
 	done
 
 SabrinaMarshBadgeText:
-	text "SABRINA: MARSH-"
-	line "BADGE draws out"
+	text "SABRINA: Couldn't"
+	line "fully predict"
+	cont "your strength…"
 
-	para "your subliminal"
-	line "powers…"
+	para "This much I know"
+	line "to be true, with"
 
-	para "Although I failed"
-	line "to accurately pre-"
-	cont "dict your power,"
-	cont "this much I know"
-	cont "to be true."
+	para "this TM that I am"
+	line "about to give you,"
 
-	para "You will become a"
-	line "celebrated and"
-	cont "beloved CHAMPION!"
+	para "you'll become even"
+	line "stronger!"
 	done
 
 SabrinaFightDoneText:
@@ -203,6 +232,50 @@ SabrinaFightDoneText:
 
 	para "kind of psychic"
 	line "power…"
+	done
+
+SabrinaRematchText:
+	text "SABRINA: I foresaw"
+	line "your return after"
+	cont "our last match."
+
+	para "I didn't attempt"
+	line "to predict the"
+
+	para "outcome as I know"
+	line "your power goes"
+
+	para "beyond my psychic"
+	line "abilities…"
+
+	para "How about we find" 
+	line "out as we did last"
+	cont "time <PLAY_G>?"
+	done 
+
+SabrinaRematchAcceptText:
+	text "Prepare yourself!"
+	done 
+
+SabrinaRematchRefuseText:
+	text "In the future, you"
+	line "will return…"
+	done 
+
+SabrinaRematchLossText:
+	text "It couldn't be"
+	line "helped…"
+	done 
+
+SabrinaRematchAfterText:
+	text "I suspected your"
+	line "abilities would"
+
+	para "have grown more"
+	line "potent."
+	
+	para "I look forward to"
+	line "our future clash."
 	done
 
 MediumRebeccaSeenText:
