@@ -434,7 +434,7 @@
 	const EVENT_RIVAL_MT_SILVER ; was unused in Crystal
 	const EVENT_BEAT_RIVAL_IN_MT_SILVER ; was unused in Crystal
 	const EVENT_DANA_ASKED_FOR_PHONE_NUMBER
-	const_skip ; unused in Crystal
+	const EVENT_BEAT_TOHJOFALLS_GIOVANNI ; was unused in Crystal
 	const EVENT_CHAD_ASKED_FOR_PHONE_NUMBER
 	const_skip ; unused in Crystal
 	const EVENT_DEREK_ASKED_FOR_PHONE_NUMBER
