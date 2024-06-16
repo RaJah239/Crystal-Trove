@@ -27,6 +27,9 @@ Oak:
 	sjump .AhGood
 
 .CheckPokedex:
+	faceplayer
+	checkevent EVENT_BEAT_RED
+	iftrue .OfferMatch
 	writetext OakLabDexCheckText
 	waitbutton
 	special ProfOaksPCBoot
@@ -37,10 +40,10 @@ Oak:
 
 .OpenMtSilver:
 	writetext OakOpenMtSilverText
-	promptbutton
+	waitbutton
+	closetext
 	setevent EVENT_OPENED_MT_SILVER
-	setmapscene SILVER_CAVE_OUTSIDE, SCENE_MTSILVER_RIVAL_BATTLE
-	sjump .CheckPokedex
+	end
 
 .Complain:
 	writetext OakNoKantoBadgesText
@@ -51,6 +54,40 @@ Oak:
 	writetext OakYesKantoBadgesText
 	promptbutton
 	sjump .CheckPokedex
+
+.OfferMatch:
+	writetext OakMatchText
+	yesorno
+	iftrue .DoMatch
+	; keep going if false
+	
+.DontDoMatch:
+	opentext
+	writetext OakRefuseMatchText
+	waitbutton
+	closetext
+	opentext
+	writetext OakLabDexCheckText
+	waitbutton
+	special ProfOaksPCBoot
+	writetext OakLabGoodbyeText
+	waitbutton
+	closetext
+	end
+	
+.DoMatch:
+    writetext OakMatchAcceptText
+    waitbutton
+    closetext
+    winlosstext OakMatchLossText, 0
+    loadtrainer OAK, OAK1
+    startbattle
+    reloadmapafterbattle
+	opentext
+    writetext OakMatchAfterText
+    waitbutton
+    closetext
+    end
 
 OaksAssistant1Script:
 	jumptextfaceplayer OaksAssistant1Text
@@ -89,7 +126,7 @@ OakWelcomeKantoText:
 
 OakLabDexCheckText:
 	text "How is your #-"
-	line "DEX coming?"
+	line "DEX coming along?"
 
 	para "Let's see…"
 	done
@@ -112,7 +149,7 @@ OakOpenMtSilverText:
 	line "assessment of you."
 
 	para "Tell you what,"
-	line "<PLAY_G>. I'll make"
+	line "<PLAY_G>, I'll make"
 
 	para "arrangements so"
 	line "that you can go to"
@@ -134,11 +171,56 @@ OakOpenMtSilverText:
 	line "exception in your"
 	cont "case, <PLAY_G>."
 
-	para "Go up to INDIGO"
-	line "PLATEAU. You can"
+	para "Go to the #MON"
+	line "LEAGUE RECEPTION"
 
-	para "reach MT.SILVER"
-	line "from there."
+	para "GATE from either"
+	line "ROUTE 22, ROUTE"
+	cont "26 or through"
+	cont "VICTORY ROAD."
+
+	para "Inside, the left"
+	line "gate will be free"
+	cont "to pass."
+
+	para "You can reach "
+	line "MT.SILVER through"
+	cont "there."
+	
+	para "Also…"
+	
+	para "<PLAY_G>, your"
+	line "fighting spirit"
+
+	para "inspires me to"
+	line "battle again."
+	
+	para "I used to be a"
+	line "skilled trainer,"
+
+	para "but now I'm a"
+	line "researcher."
+	
+	para "Still, I've got"
+	line "that fighting"
+
+	para "spirit, more than"
+	line "ever with strong"
+
+	para "trainers like you"
+	line "around."
+
+	para "<PLAY_G>, I need a"
+	line "little time to get"
+
+	para "ready but when you"
+	line "are done on MT."
+
+	para "SILVER, return and"
+	line "let's battle!"
+	
+	para "I won't go easy on"
+	line "you though."
 	done
 
 OakNoKantoBadgesText:
@@ -177,6 +259,36 @@ OakYesKantoBadgesText:
 	para "Keep trying hard,"
 	line "<PLAY_G>!"
 	done
+	
+OakMatchText:
+	text "OAK: Good to see"
+	line "you, <PLAY_G>! "
+
+	para "So, are you up"
+	line "for a battle?"
+	done 
+	
+OakMatchAcceptText:
+	text "Excellent!"
+	done
+
+OakRefuseMatchText:
+	text "I see. So you"
+	line "want me to check"
+	cont "your #DEX?"
+	done 
+
+OakMatchLossText:
+	text "Simply superb!"
+	done 
+	
+OakMatchAfterText:
+	text "Congratulations,"
+	line "<PLAY_G>!"
+	
+	para "You've truly come"
+	line "of age!"
+	done 
 
 OaksAssistant1Text:
 	text "The PROF's #MON"
