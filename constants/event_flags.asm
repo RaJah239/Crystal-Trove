@@ -428,7 +428,7 @@
 	const EVENT_IRWIN_ASKED_FOR_PHONE_NUMBER
 	const_skip ; unused in Crystal
 	const EVENT_ARNIE_ASKED_FOR_PHONE_NUMBER
-	const_skip ; unused in Crystal
+	const EVENT_BEAT_LAVRADIOTOWER1F_AGATHA ; was unused in Crystal
 	const EVENT_ALAN_ASKED_FOR_PHONE_NUMBER
 	const EVENT_BEAT_ROUTE25_LORELEI ; was unused in Crystal
 	const EVENT_RIVAL_MT_SILVER ; was unused in Crystal

@@ -4,6 +4,7 @@
 	const LAVRADIOTOWER1F_SUPER_NERD1
 	const LAVRADIOTOWER1F_GENTLEMAN
 	const LAVRADIOTOWER1F_SUPER_NERD2
+	const LAVRADIOTOWER1F_AGATHA
 
 LavRadioTower1F_MapScripts:
 	def_scene_scripts
@@ -71,6 +72,161 @@ LavRadioTower1FDirectory:
 
 LavRadioTower1FPokeFluteSign:
 	jumptext LavRadioTower1FPokeFluteSignText
+
+AgathaScript:
+	faceplayer
+	opentext
+	checkevent EVENT_BEAT_LAVRADIOTOWER1F_AGATHA
+	iftrue .FightDone
+	writetext AgathaIntroText
+	waitbutton
+	closetext
+	winlosstext AgathaMatchLossText, 0
+    loadtrainer AGATHA, AGATHA1
+	startbattle
+	reloadmapafterbattle
+	setevent EVENT_BEAT_LAVRADIOTOWER1F_AGATHA
+    opentext
+    writetext AgathaMatchAfterText1
+    waitbutton
+    closetext
+    end
+	
+.FightDone: 
+    writetext AgathaMatchAcceptText
+    yesorno
+    iftrue .DoMatch
+    ; keep going if false 
+
+.DontDoMatch:
+    writetext AgathaMatchRefuseText
+    waitbutton
+    closetext
+    end 
+
+.DoMatch:
+    checkevent EVENT_BEAT_RED
+	iftrue .DoMatch2
+; player hasn't beaten Red yet
+    writetext AgathaMatchAcceptText2
+    waitbutton
+    closetext
+	winlosstext AgathaMatchLossText, 0
+    loadtrainer AGATHA, AGATHA1
+	startbattle
+	reloadmapafterbattle
+	opentext
+	writetext AgathaMatchAfterText
+    waitbutton
+    closetext
+    end
+
+.DoMatch2:
+    writetext AgathaMatchAcceptText2
+    waitbutton
+    closetext
+    winlosstext AgathaMatchLossText, 0
+    loadtrainer AGATHA, AGATHA2
+    startbattle
+    reloadmapafterbattle
+    opentext
+    writetext AgathaMatchAfterText
+    waitbutton
+    closetext
+    end  
+
+AgathaIntroText:
+    text "AGATHA: That look"
+	line "in your eyes…"
+	
+	para "You're the one OAK's"
+	line "been keen on…"
+
+	para "Mm… <PLAY_G> is"
+	line "it?"
+
+	para "Let me introduce"
+	line "myself. I'm AGATHA"
+
+	para "and was part of"
+	line "the ELITE FOUR."
+
+	para "OAK used to be"
+	line "tough and good-"
+
+	para "looking, but now"
+	line "he's all about his"
+	cont "#DEX."
+	
+	para "#MON are for"
+	line "battling!"
+	
+	para "<PLAY_G>, brace"
+	line "yourself! You are"
+
+	para "about to see true"
+	line "battling skills!"
+	done
+
+AgathaMatchAcceptText:
+	text "Would you like" 
+	line "to battle me,"
+	cont "<PLAY_G>?"
+	done
+	
+AgathaMatchRefuseText:
+	text "Speak to me when"
+	line "you are prepared."
+	done 
+	
+AgathaMatchLossText:
+	text "Oh, my! You're"
+	line "indeed special!" 
+	done
+
+AgathaMatchAcceptText2:
+	text "Show me your"
+	line "full potential"
+	cont "<PLAY_G>!"
+	done
+
+AgathaMatchAfterText:
+	text "Mm… Good job"
+	line "on winning."
+
+	para "The future of"
+	line "battling is in"
+	cont "good hands."
+	done
+
+AgathaMatchAfterText1:
+	text "So that old duff"
+	line "can still see"
+
+	para "incredible talent"
+	line "even after all"
+	cont "these years."
+	
+	para "You really are"
+	line "quite special."
+
+	para "I haven't had a"
+	line "battle like this"
+
+	para "since I fought"
+	line "those boys from"
+	cont "PALLET."
+
+	para "Do us both a favor"
+	line "and complete that"
+	cont "old duff's #DEX."
+	
+	para "I'd also like to"
+	line "battle you again"
+
+	para "when you reach"
+	line "newer heights."
+	done
 
 LavRadioTower1FReceptionistText:
 	text "Welcome!"
@@ -235,3 +391,4 @@ LavRadioTower1F_MapEvents:
 	object_event  1,  3, SPRITE_SUPER_NERD, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, LavRadioTower1FSuperNerd1Script, -1
 	object_event  9,  1, SPRITE_GENTLEMAN, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, LavRadioTower1FGentlemanScript, -1
 	object_event 14,  6, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, LavRadioTower1FSuperNerd2Script, -1
+	object_event  4,  1, SPRITE_AGATHA, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, AgathaScript, -1
