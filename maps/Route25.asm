@@ -10,6 +10,7 @@
 	const ROUTE25_SUPER_NERD
 	const ROUTE25_COOLTRAINER_M2
 	const ROUTE25_POKE_BALL
+	const ROUTE25_LORELEI
 
 Route25_MapScripts:
 	def_scene_scripts
@@ -234,6 +235,147 @@ Route25MistyLeavesMovement:
 	step LEFT
 	step_end
 
+LoreleiScript:
+	faceplayer
+	opentext
+	checkevent EVENT_BEAT_ROUTE25_LORELEI
+	iftrue .FightDone
+	writetext LoreleiIntroText
+	waitbutton
+	closetext
+	winlosstext LoreleiMatchLossText, 0
+    loadtrainer LORELEI, LORELEI1
+	startbattle
+	reloadmapafterbattle
+	setevent EVENT_BEAT_ROUTE25_LORELEI
+    opentext
+    writetext LoreleiMatchAfterText1
+    waitbutton
+    closetext
+    end
+	
+.FightDone: 
+    writetext LoreleiMatchAcceptText
+    yesorno
+    iftrue .DoMatch
+    ; keep going if false 
+
+.DontDoMatch:
+    writetext LoreleiMatchRefuseText
+    waitbutton
+    closetext
+    end 
+
+.DoMatch:
+    checkevent EVENT_BEAT_RED
+	iftrue .DoMatch2
+; player hasn't beaten Red yet
+    writetext LoreleiMatchAcceptText2
+    waitbutton
+    closetext
+	winlosstext LoreleiMatchLossText, 0
+    loadtrainer LORELEI, LORELEI1
+	startbattle
+	reloadmapafterbattle
+	opentext
+	writetext LoreleiMatchAfterText
+    waitbutton
+    closetext
+    end
+
+.DoMatch2:
+    writetext LoreleiMatchAcceptText2
+    waitbutton
+    closetext
+    winlosstext LoreleiMatchLossText, 0
+    loadtrainer LORELEI, LORELEI2
+    startbattle
+    reloadmapafterbattle
+    opentext
+    writetext LoreleiMatchAfterText
+    waitbutton
+    closetext
+    end  
+
+LoreleiIntroText:
+    text "LORELEI: Well,"
+	line "hello there."
+
+	para "I'm LORELEI, a"
+	line "former ELITE FOUR"
+	cont "member."
+
+	para "I specialize in"
+	line "ICE type #MON."
+
+	para "And you are?"
+
+	para "<PLAY_G> is it?"
+
+	para "You exude the aura"
+	line "of a truly strong"
+	cont "trainer."
+
+	para "Let me test my"
+	line "hunch."
+	done
+
+LoreleiMatchAcceptText:
+	text "Up for another"
+	line "round <PLAY_G>?"
+	done
+	
+LoreleiMatchRefuseText:
+	text "Let's do it some"
+	line "other time, okay?"
+	done 
+	
+LoreleiMatchLossText:
+	text "…so this is how"
+	line "things are…" 
+	done
+
+LoreleiMatchAcceptText2:
+	text "My icy moves are"
+	line "unbeatable!"
+	
+	para "I hope you're"
+	line "ready for this!"
+	done
+
+LoreleiMatchAfterText:
+	text "You were quite"
+	line "something!"
+	done
+
+LoreleiMatchAfterText1:
+	text "You're even better"
+	line "than I thought!"
+
+	para "You've trained so"
+	line "very diligently"
+
+	para "to have reached"
+	line "this level."
+	
+	para "That's admirable!"
+
+	para "I know you'll go"
+	line "even further!"
+	
+	para "When you do, come"
+	line "back here and we"
+
+	para "will have a proper"
+	line "rematch."
+	
+	para "Keep up with your"
+	line "pursuits without"
+
+	para "fail until we meet"
+	line "again."
+	done
+
 Route25MistyDateText:
 	text "MISTY: Aww! Why"
 	line "did you have to"
@@ -423,3 +565,4 @@ Route25_MapEvents:
 	object_event 31,  7, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 1, TrainerSupernerdPat, -1
 	object_event 37,  8, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, TrainerCooltrainermKevin, -1
 	object_event 32,  4, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route25Protein, EVENT_ROUTE_25_PROTEIN
+	object_event 54,  9, SPRITE_LORELEI, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, LoreleiScript, -1
