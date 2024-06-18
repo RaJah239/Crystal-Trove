@@ -108,6 +108,12 @@
 	const MUSIC_FINAL_BATTLE                 ; 67
 	const MUSIC_RBY_INDIGO_PLATEAU           ; 68
 	const MUSIC_GROTTOS                      ; 69
+	const MUSIC_MAXIE_ARCHIE_BATTLE          ; 70
+	const MUSIC_GYM_LEADER_BATTLE            ; 71
+	const MUSIC_HOENN_RIVAL_BATTLE           ; 72
+	const MUSIC_UNOVA_ELITE_FOUR_BATTLE      ; 73
+	const MUSIC_CAVE_OF_ORIGIN               ; 74
+	const MUSIC_SCARLET                      ; 75
 DEF NUM_MUSIC_SONGS EQU const_value
 
 ; GetMapMusic picks music for these values (see home/map.asm)

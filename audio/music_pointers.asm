@@ -110,4 +110,10 @@ Music:
 	dba Music_FinalBattle
 	dba Music_RBYIndigoPlateau
 	dba Music_Grottos
+	dba Music_MaxieArchieBattle
+	dba Music_GymLeaderBattle
+	dba Music_HoennRivalBattle
+	dba Music_UnovaEliteFourBattle
+	dba Music_CaveOfOrigin
+	dba Music_MayEncounter
 	assert_table_length NUM_MUSIC_SONGS

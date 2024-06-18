@@ -154,6 +154,12 @@ SECTION "New Songs", ROMX
 INCLUDE "audio/music/finalbattle.asm"
 INCLUDE "audio/music/indigoplateaurby.asm"
 INCLUDE "audio/music/grottos.asm"
+INCLUDE "audio/music/maxiearchiebattle.asm"
+INCLUDE "audio/music/gymleaderbattle.asm"
+INCLUDE "audio/music/hoennrivalbattle.asm"
+INCLUDE "audio/music/unovaelitefourbattle.asm"
+INCLUDE "audio/music/caveoforigin.asm"
+INCLUDE "audio/music/mayencounter.asm"
 
 SECTION "Sound Effects", ROMX
 
