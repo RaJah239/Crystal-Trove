@@ -71,7 +71,7 @@ SageLiScript:
 	waitbutton
 	closetext
 	winlosstext SageLiBeatenText, 0
-	loadtrainer SAGE, LI
+	loadtrainer ELDER, ELDER1
 	startbattle
 	reloadmapafterbattle
 	opentext
@@ -89,7 +89,37 @@ SageLiScript:
 	end
 
 .GotFlash:
+	checkevent EVENT_BEAT_RED
+	iftrue .OfferRematch
+	; player hasn't beaten RED yet
 	writetext SageLiAfterBattleText
+	waitbutton
+	closetext
+	end
+
+.OfferRematch:
+	writetext SageLiRematchText
+	yesorno
+	iftrue .DoRematch
+	; keep going if false
+	
+.DontDoRematch:
+	writetext SageLiRematchRefuseText
+	waitbutton
+	closetext
+	end
+
+.DoRematch:
+	writetext SageLiRematchAcceptText
+	waitbutton
+	closetext
+	winlosstext SageLiRematchLossText, 0
+	loadtrainer ELDER, ELDER2
+	startbattle
+	reloadmapafterbattle
+	setevent EVENT_BEAT_SAGE_LI
+	opentext
+	writetext SageLiRematchAfterText
 	waitbutton
 	closetext
 	end
@@ -153,9 +183,9 @@ SproutTower3FRivalLeavesElderMovement:
 	step_end
 
 SproutTowerElderLecturesRivalText:
-	text "ELDER: You are in-"
-	line "deed skilled as a"
-	cont "trainer."
+	text "ELDER LI: You are"
+	line "indeed skilled as"
+	cont "a trainer."
 
 	para "As promised, here"
 	line "is your HM."
@@ -205,8 +235,9 @@ SproutTowerRivalUsedEscapeRopeText:
 	done
 
 SageLiSeenText:
-	text "So good of you to"
-	line "come here!"
+	text "ELDER LI: So good"
+	line "of you to come"
+	cont "here!"
 
 	para "SPROUT TOWER is a"
 	line "place of training."
@@ -243,7 +274,19 @@ SageLiTakeThisFlashText:
 	done
 
 SageLiFlashExplanationText:
-	text "FLASH illuminates"
+	text "If a #MON in"
+	line "your party can"
+
+	para "learn a HM move"
+	line "or certain special"
+
+	para "TMs, you can use"
+	line "those moves out of"
+
+	para "battle without"
+	line "teaching them it."
+
+	para "FLASH illuminates"
 	line "even the darkest"
 	cont "of all places."
 
@@ -265,8 +308,54 @@ SageLiBadgeRequirementExplanationText:
 SageLiAfterBattleText:
 	text "I hope you learn"
 	line "and grow from your"
-	cont "journey."
+
+	para "journey and re-"
+	line "visit one day."
 	done
+
+SageLiRematchText:
+	text "ELDER LI: Welcome"
+	line "back to the SPROUT"
+	cont "TOWER, <PLAY_G>."
+
+	para "Your journey has"
+	line "matured you and"
+
+	para "strengthened the"
+	line "bonds between you"
+
+	para "and your #MON"
+	line "beyond my expect-"
+	cont "ations!"
+
+	para "I'd like to test"
+	line "you again, not"
+
+	para "for a HM, but for"
+	line "merit?"
+	done 
+	
+SageLiRematchAcceptText:
+	text "You honor me."
+	done 
+	
+SageLiRematchRefuseText:
+	text "I respect your"
+	line "choice."
+	done 
+	
+SageLiRematchLossText:
+	text "You've displayed"
+	line "tremendous growth."
+	done 
+	
+SageLiRematchAfterText:
+	text "You shine so"
+	line "very brightly!"
+  
+	para "I'll test you"
+	line "anytime you wish."
+	done 
 
 SageJinSeenText:
 	text "I train to find"
@@ -374,7 +463,7 @@ SproutTower3F_MapEvents:
 	def_object_events
 	object_event  8, 13, SPRITE_SAGE, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerSageJin, -1
 	object_event  8,  8, SPRITE_SAGE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 2, TrainerSageTroy, -1
-	object_event 10,  2, SPRITE_SAGE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, SageLiScript, -1
+	object_event 10,  2, SPRITE_ELDER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, SageLiScript, -1
 	object_event 11, 11, SPRITE_SAGE, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerSageNeal, -1
 	object_event  6, 14, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, SproutTower3FPotion, EVENT_SPROUT_TOWER_3F_POTION
 	object_event  6,  1, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, SproutTower3FEscapeRope, EVENT_SPROUT_TOWER_3F_ESCAPE_ROPE
