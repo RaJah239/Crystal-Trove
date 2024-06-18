@@ -223,10 +223,10 @@ ViridianCityWelcomeSignText:
 	done
 
 TrainerHouseSignText:
-	text "TRAINER HOUSE"
+	text " TRAINERS' HOUSE"
 
-	para "The Club for Top"
-	line "Trainer Battles"
+	para "   THE CLUB FOR"
+	line "  UNIQUE BATTLES"
 	done
 
 ViridianCity_MapEvents:

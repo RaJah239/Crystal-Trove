@@ -44,55 +44,43 @@ TrainerHouse1FReceptionistText:
 	para "We're open to"
 	line "trainers only."
 
-	para "You can battle"
-	line "against the best"
+	para "Participate in new"
+	line "INVERSE BATTLES"
+	cont "downstairs."
 
-	para "of the best right"
-	line "downstairs."
+	para "The type chart is"
+	line "reversed. Also,"
+
+	para "IMMUNITIES become"
+	line "neutral damage."
 	done
 
 TrainerHouse1FCooltrainerMText:
-	text "VIRIDIAN is the"
-	line "town closest to"
-	cont "INDIGO PLATEAU."
-
-	para "They built this"
-	line "place because so"
-
-	para "many trainers pass"
-	line "through on their"
-
-	para "way up to INDIGO"
-	line "PLATEAU."
+	text "These battles can"
+	line "be tricky but very"
+	cont "fun!"
 	done
 
 TrainerHouse1FCooltrainerFText:
-	text "They hold practice"
-	line "battles downstairs"
-	cont "here."
+	text "Battles are held"
+	line "downstairs."
 
-	para "I would love to"
-	line "see how well a"
+	para "Your #MON are"
+	line "silently healed"
 
-	para "trainer from JOHTO"
-	line "battles."
+	para "before and after"
+	line "each battle!"
 	done
 
 TrainerHouse1FYoungsterText:
-	text "I guess you can't"
-	line "become the CHAMP"
+	text "Oh no!"
 
-	para "unless you go all"
-	line "over the place and"
+	para "I keep making bad"
+	line "plays and losing." 
 
-	para "battle all kinds"
-	line "of people."
-
-	para "The CHAMPION from"
-	line "PALLET traveled to"
-
-	para "all the cities and"
-	line "towns in KANTO."
+	para "Reversing the type"
+	line "chart in my head"
+	cont "is confusing me."
 	done
 
 TrainerHouse1FGentlemanText:
