@@ -45,6 +45,8 @@ KarenScript_Battle:
 	opentext
 	checkevent EVENT_BEAT_ELITE_4_KAREN
 	iftrue KarenScript_AfterBattle
+	checkevent EVENT_BEAT_RED
+	iftrue .Rematch
 	writetext KarenScript_KarenBeforeText
 	waitbutton
 	closetext
@@ -60,6 +62,29 @@ KarenScript_Battle:
 	playsound SFX_ENTER_DOOR
 	changeblock 4, 2, $16 ; open door
 	refreshmap
+	closetext
+	setevent EVENT_KARENS_ROOM_EXIT_OPEN
+	waitsfx
+	end
+
+.Rematch:
+	checkevent EVENT_BEAT_ELITE_4_KAREN
+	iftrue KarenRematchAfterDefeatText
+	writetext KarenRematchBeforeText
+	waitbutton
+	closetext
+	winlosstext KarenRematchBeatenText, 0
+	loadtrainer KAREN, KAREN2
+	startbattle
+	reloadmapafterbattle
+	setevent EVENT_BEAT_ELITE_4_KAREN
+	opentext
+	writetext KarenRematchAfterDefeatText
+	waitbutton
+	closetext
+	playsound SFX_ENTER_DOOR
+	changeblock 4, 2, $16 ; open door
+	reloadmappart
 	closetext
 	setevent EVENT_KARENS_ROOM_EXIT_OPEN
 	waitsfx
@@ -126,8 +151,38 @@ KarenScript_KarenDefeatText:
 	line "You understand"
 	cont "what's important."
 
-	para "Go on--the CHAM-"
-	line "PION is waiting."
+	para "Go on, --He-- is"
+	line "waiting."
+	done
+
+KarenRematchBeforeText:
+	text "KAREN: My DARK"
+	line "#MON and I have"
+
+	para "ventured into the"
+	line "depths of darkness"
+	cont "in MT.SILVER."
+	
+	para "We've reached our"
+	line "apex!"
+	
+	para "Let me show you"
+	line "the unbridled"
+	cont "power of them!"
+	done
+
+KarenRematchBeatenText:
+	text "You're still quite"
+	line "the trainer,"
+	cont "<PLAY_G>."
+	done
+
+KarenRematchAfterDefeatText:
+	text "The passion for"
+	line "your #MON has"
+
+	para "outweighed mine"
+	line "once more."
 	done
 
 KarensRoom_MapEvents:

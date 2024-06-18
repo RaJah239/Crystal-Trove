@@ -50,6 +50,8 @@ Script_ApproachLanceFromRight:
 	special FadeOutMusic
 	applymovement PLAYER, MovementData_ApproachLanceFromRight
 LancesRoomLanceScript:
+	checkevent EVENT_BEAT_RED
+	iftrue .Rematch
 	turnobject LANCESROOM_LANCE, LEFT
 	opentext
 	writetext LanceBattleIntroText
@@ -65,7 +67,7 @@ LancesRoomLanceScript:
 	clearevent EVENT_NO_E4_REMATCH_UNTIL_RED_IS_BEATEN
 	opentext
 	writetext LanceBattleAfterText
-	promptbutton
+	waitbutton
 	writetext ReceivedSilverTrophy
 	playsound SFX_1ST_PLACE
 	pause 100
@@ -131,6 +133,82 @@ LancesRoomLanceScript:
 	pause 30
 	closetext
 	applymovement LANCESROOM_MARY, LancesRoomMovementData_MaryRunsBackAndForth
+	special FadeOutToWhite
+	pause 15
+	warpfacing UP, HALL_OF_FAME, 4, 13
+	end
+
+.Rematch:
+	turnobject LANCESROOM_LANCE, LEFT
+	opentext
+	writetext LanceRematchBeforeText
+	waitbutton
+	closetext
+	winlosstext LanceRematchDefeatedText, 0
+	setlasttalked LANCESROOM_LANCE
+	loadtrainer CHAMPION, LANCE2
+	startbattle
+	dontrestartmapmusic
+	reloadmapafterbattle
+	setevent EVENT_BEAT_CHAMPION_LANCE
+	opentext
+	writetext LanceRematchDefeatText
+	waitbutton
+	checkevent EVENT_DECO_GOLD_TROPHY
+	iffalse .GiveGoldTrophy
+	waitbutton
+	closetext
+	playsound SFX_ENTER_DOOR
+	changeblock 4, 0, $0b ; open door
+	reloadmappart
+	closetext
+	setevent EVENT_LANCES_ROOM_ENTRANCE_CLOSED
+	applymovement LANCESROOM_LANCE, LancesRoomMovementData_LancePositionsSelfToGuidePlayerAway
+	turnobject PLAYER, UP
+	opentext
+	writetext LancesRoomYouKnowTheDrill
+	waitbutton
+	closetext
+	follow LANCESROOM_LANCE, PLAYER
+	applymovement LANCESROOM_LANCE, LancesRoomMovementData_LanceLeadsPlayerToHallOfFame
+	stopfollow
+	playsound SFX_EXIT_BUILDING
+	disappear LANCESROOM_LANCE
+	applymovement PLAYER, LancesRoomMovementData_PlayerExits
+	playsound SFX_EXIT_BUILDING
+	disappear PLAYER
+	special FadeOutToWhite
+	pause 15
+	warpfacing UP, HALL_OF_FAME, 4, 13
+	end
+
+.GiveGoldTrophy:
+	writetext ReceivedGoldTrophy
+	playsound SFX_1ST_PLACE
+	pause 100
+	writetext GoldTropySenttoBedroomPC
+	setevent EVENT_DECO_GOLD_TROPHY
+	waitbutton
+	closetext
+	playsound SFX_ENTER_DOOR
+	changeblock 4, 0, $0b ; open door
+	reloadmappart
+	closetext
+	setevent EVENT_LANCES_ROOM_ENTRANCE_CLOSED
+	applymovement LANCESROOM_LANCE, LancesRoomMovementData_LancePositionsSelfToGuidePlayerAway
+	turnobject PLAYER, UP
+	opentext
+	writetext LancesRoomYouKnowTheDrill
+	waitbutton
+	closetext
+	follow LANCESROOM_LANCE, PLAYER
+	applymovement LANCESROOM_LANCE, LancesRoomMovementData_LanceLeadsPlayerToHallOfFame
+	stopfollow
+	playsound SFX_EXIT_BUILDING
+	disappear LANCESROOM_LANCE
+	applymovement PLAYER, LancesRoomMovementData_PlayerExits
+	playsound SFX_EXIT_BUILDING
+	disappear PLAYER
 	special FadeOutToWhite
 	pause 15
 	warpfacing UP, HALL_OF_FAME, 4, 13
@@ -293,6 +371,10 @@ LanceBattleAfterTextTropySenttoBedroomPC:
 	text "SILVER TROPHY was"
 	line "sent to <PLAY_G>'s"
 	cont "bedroom PC."
+
+	para "TRADED #MON"
+	line "OBEDIENCE & LEVEL"
+	cont "CAP UPDATE: L90"
 	done
 
 LancesRoomMaryOhNoOakText:
@@ -355,6 +437,73 @@ LancesRoomMaryNoInterviewText:
 	text "MARY: Oh, wait!"
 	line "We haven't done"
 	cont "the interview!"
+	done
+
+LanceRematchBeforeText:
+	text "<PLAY_G>, I knew"
+	line "you'd return and"
+
+	para "I've made ready"
+	line "for you."
+	
+	para "A determined soul"
+	line "like you would"
+
+	para "not sit idly by"
+	line "and let your"
+	cont "skills go dull."
+	
+	para "Iron sharpens iron"
+	line "after all!"
+	
+	para "We are certain to"
+	line "have a fantastic"
+	cont "battle!"
+	
+	para "I, LANCE the drag-"
+	line "on master, accept"
+	cont "your challenge!"
+	done
+	
+LanceRematchDefeatedText:
+    text "What a splendid"
+	line "battle, <PLAY_G>!"
+	done
+
+LanceRematchDefeatText:
+	text "…Whew. That was"
+	line "intense!"
+
+	para "You and your"
+	line "#MON are a"
+
+	para "force to reckon"
+	line "with <PLAY_G>!"
+
+ 	para "Congratulations"
+	line "on cementing your"
+	cont "title as CHAMPION."
+	done 
+
+ReceivedGoldTrophy:
+	text "On behalf of the"
+	line "#MON LEAGUE,"
+	cont "accept this!"
+
+	para "<PLAY_G> received"
+	line "GOLD TROPHY!"
+	done
+
+GoldTropySenttoBedroomPC:
+	text "GOLD TROPHY was"
+	line "sent to <PLAY_G>'s"
+	cont "bedroom PC."
+	done
+
+LancesRoomYouKnowTheDrill:
+	text "Let's move onto"
+	line "the HALL OF FAME"
+	cont "once more <PLAY_G>."
 	done
 
 LancesRoom_MapEvents:

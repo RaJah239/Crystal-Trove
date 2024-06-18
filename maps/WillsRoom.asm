@@ -45,6 +45,8 @@ WillScript_Battle:
 	opentext
 	checkevent EVENT_BEAT_ELITE_4_WILL
 	iftrue WillScript_AfterBattle
+	checkevent EVENT_BEAT_RED
+	iftrue .Rematch
 	writetext WillScript_WillBeforeText
 	waitbutton
 	closetext
@@ -65,6 +67,29 @@ WillScript_Battle:
 	waitsfx
 	end
 
+.Rematch:
+	checkevent EVENT_BEAT_ELITE_4_WILL
+	iftrue WillRematchDefeatText
+	writetext WillRematchBeforeText
+	waitbutton
+	closetext
+	winlosstext WillRematchBeatenText, 0
+	loadtrainer WILL, WILL2
+	startbattle
+	reloadmapafterbattle
+	setevent EVENT_BEAT_ELITE_4_WILL
+	opentext
+	writetext WillRematchDefeatText
+	waitbutton
+	closetext
+	playsound SFX_ENTER_DOOR
+	changeblock 4, 2, $16 ; open door
+	reloadmappart
+	closetext
+	setevent EVENT_WILLS_ROOM_EXIT_OPEN
+	waitsfx
+	end
+
 WillScript_AfterBattle:
 	writetext WillScript_WillDefeatText
 	waitbutton
@@ -79,8 +104,9 @@ WillsRoom_EnterMovement:
 	step_end
 
 WillScript_WillBeforeText:
-	text "Welcome to #MON"
-	line "LEAGUE, <PLAYER>."
+	text "<PLAYER> welcome"
+	line "to the #MON"
+	cont "LEAGUE."
 
 	para "Allow me to intro-"
 	line "duce myself. I am"
@@ -124,6 +150,32 @@ WillScript_WillDefeatText:
 
 	para "the true ferocity"
 	line "of the ELITE FOUR."
+	done
+
+WillRematchBeforeText:
+	text "WILL: Welcome back"
+	line "to the #MON"
+	cont "LEAGUE <PLAY_G>."
+	
+	para "We've been train-"
+	line "ing hard at MT."
+
+	para "SILVER for your"
+	line "eminent return."
+	
+	para "Prove that you're"
+	line "worthy of your"
+	cont "title as CHAMPION!"
+	done
+
+WillRematchBeatenText:
+	text "Yes, you are!"
+	done
+
+WillRematchDefeatText:
+	text "The title of"
+	line "CHAMPION is in"
+	cont "good hands."
 	done
 
 WillsRoom_MapEvents:

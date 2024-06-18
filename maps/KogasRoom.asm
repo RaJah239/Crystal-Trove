@@ -45,6 +45,8 @@ KogaScript_Battle:
 	opentext
 	checkevent EVENT_BEAT_ELITE_4_KOGA
 	iftrue KogaScript_AfterBattle
+	checkevent EVENT_BEAT_RED
+	iftrue .Rematch
 	writetext KogaScript_KogaBeforeText
 	waitbutton
 	closetext
@@ -60,6 +62,29 @@ KogaScript_Battle:
 	playsound SFX_ENTER_DOOR
 	changeblock 4, 2, $16 ; open door
 	refreshmap
+	closetext
+	setevent EVENT_KOGAS_ROOM_EXIT_OPEN
+	waitsfx
+	end
+
+.Rematch:
+	checkevent EVENT_BEAT_ELITE_4_KOGA
+	iftrue KogaRematchAfterDefeatText
+	writetext KogaRematchBeforeText
+	waitbutton
+	closetext
+	winlosstext KogaRematchBeatenText, 0
+	loadtrainer KOGA, KOGA2
+	startbattle
+	reloadmapafterbattle
+	setevent EVENT_BEAT_ELITE_4_KOGA
+	opentext
+	writetext KogaRematchAfterDefeatText
+	waitbutton
+	closetext
+	playsound SFX_ENTER_DOOR
+	changeblock 4, 2, $16 ; open door
+	reloadmappart
 	closetext
 	setevent EVENT_KOGAS_ROOM_EXIT_OPEN
 	waitsfx
@@ -125,6 +150,39 @@ KogaScript_KogaDefeatText:
 	para "Go on to the next"
 	line "room, and put your"
 	cont "abilities to test!"
+	done
+
+KogaRematchBeforeText:
+	text "KOGA: Your return"
+	line "was anticipated,"
+	cont "<PLAY_G>."
+	
+	para "Ninjas need always"
+	line "be prepared!"
+	
+	para "My ninja training"
+	line "has taken me to my"
+	cont "limits and more!"
+
+	para "Will that be ade-"
+	line "quate to take you"
+	cont "down?"
+	
+	para "Let's find out!"
+	done
+
+KogaRematchBeatenText:
+	text "You are beyond the"
+	line "training of ninja!"
+	done
+
+KogaRematchAfterDefeatText:
+	text "Even in defeat, I"
+	line "am proud to have"
+
+	para "faced you honor-"
+	line "ably and not from"
+	cont "the shadows."
 	done
 
 KogasRoom_MapEvents:

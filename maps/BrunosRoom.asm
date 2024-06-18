@@ -45,6 +45,8 @@ BrunoScript_Battle:
 	opentext
 	checkevent EVENT_BEAT_ELITE_4_BRUNO
 	iftrue BrunoScript_AfterBattle
+	checkevent EVENT_BEAT_RED
+	iftrue .Rematch
 	writetext BrunoScript_BrunoBeforeText
 	waitbutton
 	closetext
@@ -60,6 +62,29 @@ BrunoScript_Battle:
 	playsound SFX_ENTER_DOOR
 	changeblock 4, 2, $16 ; open door
 	refreshmap
+	closetext
+	setevent EVENT_BRUNOS_ROOM_EXIT_OPEN
+	waitsfx
+	end
+
+.Rematch:
+	checkevent EVENT_BEAT_ELITE_4_BRUNO
+	iftrue BrunoRematchAfterDefeatText
+	writetext BrunoRematchBeforeText
+	waitbutton
+	closetext
+	winlosstext BrunoRematchBeatenText, 0
+	loadtrainer BRUNO, BRUNO2
+	startbattle
+	reloadmapafterbattle
+	setevent EVENT_BEAT_ELITE_4_BRUNO
+	opentext
+	writetext BrunoRematchAfterDefeatText
+	waitbutton
+	closetext
+	playsound SFX_ENTER_DOOR
+	changeblock 4, 2, $16 ; open door
+	reloadmappart
 	closetext
 	setevent EVENT_BRUNOS_ROOM_EXIT_OPEN
 	waitsfx
@@ -84,8 +109,9 @@ BrunoScript_BrunoBeforeText:
 
 	para "I always train to"
 	line "the extreme be-"
-	cont "cause I believe in"
-	cont "our potential."
+
+	para "cause I believe in"
+	line "our potential."
 
 	para "That is how we"
 	line "became strong."
@@ -120,6 +146,40 @@ BrunoScript_BrunoDefeatText:
 
 	para "Go face your next"
 	line "challenge!"
+	done
+
+BrunoRematchBeforeText:
+	text "BRUNO: I have"
+	line "trained to and"
+
+	para "have surpassed my"
+	line "ceiling for your"
+	cont "inevitable return."
+	
+	para "Our power will"
+	line "crush you this"
+	cont "time!"
+
+	para "Nothing can pre-"
+	line "pare you for what"
+	cont "is about to come!"
+
+	para "We're going all"
+	line "out <PLAY_G>!"
+
+	para "Hoo hah!"
+	done
+
+BrunoRematchBeatenText:
+	text "This can be…!"
+	done
+
+BrunoRematchAfterDefeatText:
+	text "No words are"
+	line "needed between"
+
+	para "victor and the"
+	line "defeated."
 	done
 
 BrunosRoom_MapEvents:

@@ -16,6 +16,8 @@ HallOfFameNoopScene:
 	end
 
 HallOfFameEnterScript:
+    checkevent EVENT_BEAT_RED
+    iftrue .RematchHallOfFame
 	follow HALLOFFAME_LANCE, PLAYER
 	applymovement HALLOFFAME_LANCE, HallOfFame_WalkUpWithLance
 	stopfollow
@@ -31,10 +33,34 @@ HallOfFameEnterScript:
 	setval HEALMACHINE_HALL_OF_FAME
 	special HealMachineAnim
 	setevent EVENT_BEAT_ELITE_FOUR
-	setevent EVENT_RIVAL_SPROUT_TOWER
 	clearevent EVENT_RED_IN_MT_SILVER
 	setevent EVENT_OLIVINE_PORT_SPRITES_BEFORE_HALL_OF_FAME
 	clearevent EVENT_OLIVINE_PORT_SPRITES_AFTER_HALL_OF_FAME
+	setmapscene SPROUT_TOWER_3F, SCENE_SPROUTTOWER3F_NOOP
+	special HealParty
+	checkevent EVENT_GOT_SS_TICKET_FROM_ELM
+	iftrue .SkipPhoneCall
+	specialphonecall SPECIALCALL_SSTICKET
+	halloffame
+	end
+
+.RematchHallOfFame
+	follow HALLOFFAME_LANCE, PLAYER
+	applymovement HALLOFFAME_LANCE, HallOfFame_WalkUpWithLance
+	stopfollow
+	turnobject PLAYER, RIGHT
+	opentext
+	writetext RematchHallOfFame_LanceText
+	waitbutton
+	closetext
+	turnobject HALLOFFAME_LANCE, UP
+	applymovement PLAYER, HallOfFame_SlowlyApproachMachine
+	setscene SCENE_HALLOFFAME_NOOP
+	pause 15
+	setval HEALMACHINE_HALL_OF_FAME
+	special HealMachineAnim
+	setevent EVENT_BEAT_ELITE_FOUR
+	clearevent EVENT_RED_IN_MT_SILVER
 	setmapscene SPROUT_TOWER_3F, SCENE_SPROUTTOWER3F_NOOP
 	special HealParty
 	checkevent EVENT_GOT_SS_TICKET_FROM_ELM
@@ -66,45 +92,36 @@ HallOfFame_LanceText:
 	line "long time since I"
 	cont "last came here."
 
-	para "This is where we"
-	line "honor the LEAGUE"
+	para "This hall honors"
+	line "the LEAGUE CHAMP-"
+	cont "IONS eternally."
+	
+	para "Today, we welcome"
+	line "a new CHAMPTION-"
 
-	para "CHAMPIONS for all"
-	line "eternity."
-
-	para "Their courageous"
-	line "#MON are also"
-	cont "inducted."
-
-	para "Here today, we"
-	line "witnessed the rise"
-
-	para "of a new LEAGUE"
-	line "CHAMPION--a"
-
-	para "trainer who feels"
-	line "compassion for,"
-
-	para "and trust toward,"
-	line "all #MON."
-
-	para "A trainer who"
-	line "succeeded through"
+	para "a trainer of com-"
+	line "passion, trust,"
 
 	para "perseverance and"
 	line "determination."
+	
+	para "<PLAY_G>, let's"
+	line "register you and"
 
-	para "The new LEAGUE"
-	line "CHAMPION who has"
+	para "your partners as"
+	line "CHAMPIONS!"
+	done
 
-	para "all the makings"
-	line "of greatness!"
+RematchHallOfFame_LanceText:
+	text "Please, <PLAY_G>,"
+	line "allow me to re-"
+	cont "gister you and"
 
-	para "<PLAY_G>, allow me"
-	line "to register you"
+	para "your beloved"
+	line "#MON into the"
 
-	para "and your partners"
-	line "as CHAMPIONS!"
+	para "HALL OF FAME as"
+	line "we've done before."
 	done
 
 HallOfFame_MapEvents:
