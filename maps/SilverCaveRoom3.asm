@@ -14,6 +14,9 @@ Red:
 	waitbutton
 	closetext
 	winlosstext RedWinLossText, RedWinLossText
+	checkevent EVENT_BEAT_RED
+	iftrue .Rematch
+; player hasn't beaten RED yet
 	loadtrainer RED, RED1
 	startbattle
 	dontrestartmapmusic
@@ -23,7 +26,7 @@ Red:
 	setevent EVENT_VIRIDIAN_TRAINER_HOUSE_BLOCKER
 	special FadeOutMusic
 	opentext
-	writetext RedLeavesText
+	writetext RedSeenText
 	waitbutton
 	closetext
 	special FadeOutToBlack
@@ -37,6 +40,28 @@ Red:
 	credits
 	end
 
+.Rematch:
+	loadtrainer RED, RED2
+	startbattle
+	dontrestartmapmusic
+	reloadmapafterbattle
+	setevent EVENT_BEAT_RED
+	special FadeOutMusic
+	opentext
+	writetext RedSeenText
+	waitbutton
+	closetext
+	special FadeOutToBlack
+	special ReloadSpritesNoPalettes
+	disappear SILVERCAVEROOM3_RED
+	pause 15
+	special FadeOutToBlack
+	pause 30
+	special HealParty
+	refreshscreen
+	credits
+	end
+
 RedSeenText:
 	text "<……>"
 	line "<……>"
@@ -44,11 +69,6 @@ RedSeenText:
 
 RedWinLossText:
 	text "…"
-	done
-
-RedLeavesText:
-	text "<……>"
-	line "<……>"
 	done
 
 SilverCaveRoom3_MapEvents:
