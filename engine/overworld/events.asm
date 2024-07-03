@@ -109,7 +109,7 @@ EnterMap:
 	xor a
 	ld [wXYComparePointer], a
 	ld [wXYComparePointer + 1], a
-	call SetUpFiveStepWildEncounterCooldown
+	call SetUpTwoStepWildEncounterCooldown
 	farcall RunMapSetupScript
 	call DisableEvents
 
@@ -358,8 +358,8 @@ CheckWildEncounterCooldown::
 	scf
 	ret
 
-SetUpFiveStepWildEncounterCooldown:
-	ld a, 5
+SetUpTwoStepWildEncounterCooldown:
+	ld a, 2
 	ld [wWildEncounterCooldown], a
 	ret
 
