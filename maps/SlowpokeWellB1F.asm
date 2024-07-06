@@ -51,6 +51,10 @@ TrainerGruntM1:
 	turnobject PLAYER, RIGHT
 	opentext
 	writetext KurtLeaveSlowpokeWellText
+	promptbutton
+	verbosegiveitem COIN_CASE
+	writetext KurtLeaveSlowpokeWellText2
+	givecoins 69
 	waitbutton
 	closetext
 	setevent EVENT_CLEARED_SLOWPOKE_WELL
@@ -178,9 +182,21 @@ KurtLeaveSlowpokeWellText:
 	para "TEAM ROCKET has"
 	line "taken off."
 
-	para "My back's better"
-	line "too. Let's get out"
-	cont "of here."
+	para "Huh? They dropped"
+	line "something. You can"
+	cont "have it <PLAYER>."
+	done
+
+KurtLeaveSlowpokeWellText2:
+	text "I hope this isn't"
+	line "foreboding some-"
+	cont "thing omnious…"
+
+	para "…"
+
+	para "Anyway, my back's"
+	line "better now. Let's"
+	cont "get out of here."
 	done
 
 GruntM29SeenText:

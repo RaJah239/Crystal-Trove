@@ -138,7 +138,6 @@ MoveTutorScript:
 .GoInside:
 	playsound SFX_ENTER_DOOR
 	disappear GOLDENRODCITY_MOVETUTOR
-	clearevent EVENT_GOLDENROD_GAME_CORNER_MOVE_TUTOR
 	setflag ENGINE_DAILY_MOVE_TUTOR
 	waitsfx
 	end
