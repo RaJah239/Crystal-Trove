@@ -197,15 +197,103 @@ ElmPhoneGiftText:
 	para "See you later!"
 	done
 
-ElmPhoneGotAholdOfSomethingNeatText:
-	text "Hello, <PLAY_G>?"
+ElmPhonePostGameText:
+	text "Yo <PLAY_G>!"
 	line "How's it going?"
 
-	para "I got ahold of"
-	line "something neat."
+	para "It must be great!"
+	
+	para "News of your feats"
+	line "have gone global!"
 
-	para "Swing by my LAB"
-	line "and pick it up!"
+	para "People you've met"
+	line "prior want to face"
+	cont "the NEW CHAMPION!"
 
-	para "See you later!"
+	para "Be ready - they're"
+	line "coming at full"
+	cont "force!"
+
+	para "VIRIDIAN TRAINER"
+	line "HOUSE is open."
+
+	para "The #MON LEAGUE"
+	line "is open again but"
+	cont "for ROUND TWO!" 
+
+	para "I know you'll have"
+	line "have a blast!"
+
+	para "<……> <……> <……>"
+
+	para "<……> <……> <……>"
+
+	para "<PLAY_G>, let's"
+	line "break the forth"
+	cont "wall for a bit…"
+
+	para "From now on, each"
+	line "time the #MON"
+	cont "LEAGUE is beaten,"
+
+	para "all legendary"
+	line "#MON respawn."
+
+	para "This includes the"
+	line "roaming #MON."
+
+	para "SUICUNE gets a"
+	line "familiar station-"
+	cont "ary encounter"
+	cont "right away."
+
+	para "After capturing"
+	line "RAIKOU, ENTEI and"
+	cont "SUICUNE, each time"
+
+	para "upon defeating"
+	line "RED, the roamers"
+
+	para "also get station-"
+	line "ary encounters in"
+	cont "JOHTO."
+
+	para "RAIKOU and ENTEI"
+	line "may still flee!"
+
+	cont "Look out for them."
+
+	para "After seeing the"
+	line "ILEX FOREST event"
+
+	para "once, later visits"
+	line "only require plac-"
+
+	para "ing the GS BALL in"
+	line "the shrine."
+
+	para "Next, RED only re-"
+	line "appears each time"
+
+	para "after beating the"
+	line "#MON LEAGUE."
+
+	para "Lastly, a new ODD"
+	line "EGG can be gotten"
+
+	para "from the DAY CARE"
+	line "each time as well."
+	
+	para "Let's reel this"
+	line "back to game-"
+	cont "mode now!"
+	
+	para "<……> <……> <……>"
+
+	para "<……> <……> <……>"
+
+	para "Drop by and visit"
+	line "sometime <PLAY_G>."
+	
+	para "Bye!"
 	done
