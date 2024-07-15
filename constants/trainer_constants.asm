@@ -614,7 +614,7 @@ DEF KRIS EQU __trainer_class__
 	const LLOYD
 	const DEAN
 	const SID
-	const HARVEY ; unused
+	const ARTHUR ; was unused - Now used for Route 36 Arthur
 	const DALE ; unused
 	const TED
 	const TODD2

@@ -2897,8 +2897,8 @@ CamperGroup:
 	db 29, POLIWRATH
 	db -1 ; end
 
-	; CAMPER (9)
-	db "HARVEY@", TRAINERTYPE_NORMAL
+	; CAMPER (9) - was unused - Now used for Route 36 Arthur
+	db "ARTHUR@", TRAINERTYPE_NORMAL
 	db 15, NIDORINO
 	db -1 ; end
 

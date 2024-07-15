@@ -16,7 +16,6 @@ Route36_MapScripts:
 	scene_script Route36Noop3Scene, SCENE_ROUTE36_GUY_GIVES_ROCK_SMASH_TM
 
 	def_callbacks
-	callback MAPCALLBACK_OBJECTS, Route36ArthurCallback
 
 Route36Noop1Scene:
 	end
@@ -26,16 +25,6 @@ Route36Noop2Scene:
 
 Route36Noop3Scene:
 	end
-
-Route36ArthurCallback:
-	readvar VAR_WEEKDAY
-	ifequal THURSDAY, .ArthurAppears
-	disappear ROUTE36_ARTHUR
-	endcallback
-
-.ArthurAppears:
-	appear ROUTE36_ARTHUR
-	endcallback
 
 Route36SuicuneScript:
 	showemote EMOTE_SHOCK, PLAYER, 15
@@ -324,14 +313,19 @@ ArthurScript:
 	opentext
 	checkevent EVENT_GOT_HARD_STONE_FROM_ARTHUR
 	iftrue .AlreadyGotStone
-	readvar VAR_WEEKDAY
-	ifnotequal THURSDAY, ArthurNotThursdayScript
-	checkevent EVENT_MET_ARTHUR_OF_THURSDAY
-	iftrue .MetArthur
 	writetext MeetArthurText
 	promptbutton
-	setevent EVENT_MET_ARTHUR_OF_THURSDAY
-.MetArthur:
+	readvar VAR_WEEKDAY
+	ifequal THURSDAY, .GiveStone
+	writetext ArthurSeenText
+	waitbutton
+	closetext
+	winlosstext ArthurBeatenText, 0
+	loadtrainer CAMPER, ARTHUR
+	startbattle
+	reloadmapafterbattle
+	opentext
+.GiveStone:
 	writetext ArthurGivesGiftText
 	promptbutton
 	verbosegiveitem HARD_STONE
@@ -343,8 +337,13 @@ ArthurScript:
 	end
 
 .AlreadyGotStone:
+	readvar VAR_WEEKDAY
+	ifnotequal THURSDAY, ArthurNotThursdayScript
 	writetext ArthurThursdayText
 	waitbutton
+	closetext
+	end
+	
 .BagFull:
 	closetext
 	end
@@ -571,6 +570,31 @@ MeetArthurText:
 
 	para "I'm ARTHUR of"
 	line "Thursday."
+	done
+	
+ArthurSeenText:
+	text "I give these rare"
+	line "stones as gifts to"
+
+	para "trainers on Thurs-"
+	line "day."
+	
+	para "Come back then!"
+	
+	para "Huh? You want to"
+	line "challenge me for"
+	cont "one?"
+	
+	para "I suppose I could"
+	line "if you show me a"
+	cont "good battle."
+	
+	para "You're on!"
+	done
+	
+ArthurBeatenText:
+	text "You caught me by"
+	line "surprise!"
 	done
 
 ArthurGivesGiftText:
