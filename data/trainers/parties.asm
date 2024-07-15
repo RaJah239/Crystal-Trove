@@ -1605,6 +1605,12 @@ BugCatcherGroup:
 	db 10, PARAS
 	db -1 ; end
 
+	; BUG_CATCHER (19) - SUNNY Sunday battle.
+	db "SUNNY@", TRAINERTYPE_NORMAL
+	db  8, LEDYBA
+	db 10, PARAS
+	db -1 ; end
+
 FisherGroup:
 	; FISHER (1)
 	db "JUSTIN@", TRAINERTYPE_NORMAL
@@ -2856,7 +2862,7 @@ PicnickerGroup:
 	db 43, CLEFAIRY,   METRONOME, ENCORE, MOONLIGHT, MINIMIZE
 	db -1 ; end
 
-	; PICNICKER (26)
+	; PICNICKER (26) 0 Frieda Friday battle.
 	db "FRIEDA@", TRAINERTYPE_NORMAL
 	db 24, NIDOQUEEN
 	db -1 ; end
