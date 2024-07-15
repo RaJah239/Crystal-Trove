@@ -293,6 +293,7 @@ DEF KRIS EQU __trainer_class__
 	const ZACH
 	const BRENT4
 	const MILLER
+	const SANTOS
 
 	trainerclass GRUNTM ; 1f
 	const GRUNTM_1 ; used to be Proton in vanilla

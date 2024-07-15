@@ -1214,6 +1214,12 @@ PokemaniacGroup:
 	db 17, NIDOQUEEN
 	db -1 ; end
 
+	; POKEMANIAC (16) - Blackthorn Santos
+	db "SANTOS@", TRAINERTYPE_NORMAL
+	db 17, NIDOKING
+	db 17, NIDOQUEEN
+	db -1 ; end
+
 GruntMGroup:
 	; GRUNTM (1)
 	db "GRUNT@", TRAINERTYPE_NORMAL

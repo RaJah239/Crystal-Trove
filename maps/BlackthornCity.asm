@@ -14,20 +14,9 @@ BlackthornCity_MapScripts:
 
 	def_callbacks
 	callback MAPCALLBACK_NEWMAP, BlackthornCityFlypointCallback
-	callback MAPCALLBACK_OBJECTS, BlackthornCitySantosCallback
 
 BlackthornCityFlypointCallback:
 	setflag ENGINE_FLYPOINT_BLACKTHORN
-	endcallback
-
-BlackthornCitySantosCallback:
-	readvar VAR_WEEKDAY
-	ifequal SATURDAY, .SantosAppears
-	disappear BLACKTHORNCITY_SANTOS
-	endcallback
-
-.SantosAppears:
-	appear BLACKTHORNCITY_SANTOS
 	endcallback
 
 BlackthornSuperNerdScript:
@@ -90,14 +79,19 @@ SantosScript:
 	opentext
 	checkevent EVENT_GOT_SPELL_TAG_FROM_SANTOS
 	iftrue .Saturday
-	readvar VAR_WEEKDAY
-	ifnotequal SATURDAY, .NotSaturday
-	checkevent EVENT_MET_SANTOS_OF_SATURDAY
-	iftrue .MetSantos
 	writetext MeetSantosText
 	promptbutton
-	setevent EVENT_MET_SANTOS_OF_SATURDAY
-.MetSantos:
+	readvar VAR_WEEKDAY
+	ifequal SATURDAY, .GiveTag
+	writetext SantosSeenText
+	waitbutton
+	closetext
+	winlosstext SantosBeatenText, 0
+	loadtrainer POKEMANIAC, SANTOS
+	startbattle
+	reloadmapafterbattle
+	opentext
+.GiveTag:
 	writetext SantosGivesGiftText
 	promptbutton
 	verbosegiveitem SPELL_TAG
@@ -109,8 +103,13 @@ SantosScript:
 	end
 
 .Saturday:
+	readvar VAR_WEEKDAY
+	ifnotequal SATURDAY, .NotSaturday
 	writetext SantosSaturdayText
 	waitbutton
+	closetext
+	end
+	
 .Done:
 	closetext
 	end
@@ -120,6 +119,59 @@ SantosScript:
 	waitbutton
 	closetext
 	end
+
+MeetSantosText:
+	text "SANTOS: …"
+
+	para "I'm SANTOS of"
+	line "Saturday…"
+	done
+	
+SantosSeenText:
+	text "Do you want some-"
+	line "thing?"
+
+	para "It's not Saturday"
+	line "today."
+	
+	para "If you want SPELL"
+	line "TAG, then you'll"
+	cont "have to take it."
+	done
+	
+SantosBeatenText:
+	text "…terrifying."
+	done
+
+SantosGivesGiftText:
+	text "You can have this…"
+	done
+
+SantosGaveGiftText:
+	text "SANTOS: …"
+
+	para "SPELL TAG…"
+
+	para "Ghost-type moves"
+	line "get stronger…"
+
+	para "It will frighten"
+	line "you…"
+	done
+
+SantosSaturdayText:
+	text "SANTOS: …"
+
+	para "See you around…"
+
+	para "I won't have any"
+	line "more gifts though…"
+	done
+
+SantosNotSaturdayText:
+	text "SANTOS: Today's"
+	line "not Saturday…"
+	done
 
 BlackthornCitySign:
 	jumptext BlackthornCitySignText
@@ -226,45 +278,7 @@ BlackthornYoungsterText:
 	cont "of BLACKTHORN."
 	done
 
-MeetSantosText:
-	text "SANTOS: …"
 
-	para "It's Saturday…"
-
-	para "I'm SANTOS of"
-	line "Saturday…"
-	done
-
-SantosGivesGiftText:
-	text "You can have this…"
-	done
-
-SantosGaveGiftText:
-	text "SANTOS: …"
-
-	para "SPELL TAG…"
-
-	para "Ghost-type moves"
-	line "get stronger…"
-
-	para "It will frighten"
-	line "you…"
-	done
-
-SantosSaturdayText:
-	text "SANTOS: …"
-
-	para "See you again on"
-	line "another Saturday…"
-
-	para "I won't have any"
-	line "more gifts…"
-	done
-
-SantosNotSaturdayText:
-	text "SANTOS: Today's"
-	line "not Saturday…"
-	done
 
 BlackthornCooltrainerF2Text:
 	text "Wow, you came"
