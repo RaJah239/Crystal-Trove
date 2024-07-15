@@ -459,7 +459,7 @@ DEF KRIS EQU __trainer_class__
 	trainerclass SUPER_NERD ; 29
 	const STAN
 	const ERIC
-	const GREGG ; unused
+	const WESLEY ; was unused - Now Lake of Rage Wesley
 	const JAY ; unused
 	const DAVE ; unused
 	const SAM

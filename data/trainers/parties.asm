@@ -2111,8 +2111,8 @@ SuperNerdGroup:
 	db 11, GRIMER
 	db -1 ; end
 
-	; SUPER_NERD (3)
-	db "GREGG@", TRAINERTYPE_NORMAL
+	; SUPER_NERD (3) - was unused - Now Lake of Rage Wesley
+	db "WESLEY@", TRAINERTYPE_NORMAL
 	db 20, MAGNEMITE
 	db 20, MAGNEMITE
 	db 20, MAGNEMITE
