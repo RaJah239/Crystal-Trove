@@ -379,7 +379,10 @@
 	const EVENT_FOUGHT_MOLTRES
 	const EVENT_NO_E4_REMATCH_UNTIL_RED_IS_BEATEN
 	const EVENT_VIRIDIAN_TRAINER_HOUSE_BLOCKER
-; Unused: next 230 events
+	const EVENT_ROUTE_45_RAIKOU
+	const EVENT_BURNED_TOWER_ENTEI
+	const EVENT_ROUTE_42_STATIONARY_SUICUNE
+; Unused: next 227 events
 
 	const_next 600
 ; Kurt Apricorn events

@@ -8,6 +8,7 @@
 	const ROUTE42_POKE_BALL1
 	const ROUTE42_POKE_BALL2
 	const ROUTE42_SUICUNE
+	const ROUTE42_SUICUNE_STATIONARY
 
 Route42_MapScripts:
 	def_scene_scripts
@@ -21,6 +22,24 @@ Route42Noop1Scene:
 
 Route42Noop2Scene:
 	end
+
+Route45StationarySuicuneScript:
+    faceplayer
+	opentext
+	writetext SuicuneText
+	cry SUICUNE
+	pause 15
+	closetext
+	loadvar VAR_BATTLETYPE, BATTLETYPE_SUICUNE
+	loadwildmon SUICUNE, 65
+	startbattle
+	disappear ROUTE42_SUICUNE_STATIONARY
+	reloadmapafterbattle
+	end
+	
+SuicuneText:
+	text "Rrrr!"
+	done
 
 Route42SuicuneScript:
 	showemote EMOTE_SHOCK, PLAYER, 15
@@ -345,3 +364,4 @@ Route42_MapEvents:
 	object_event  6,  4, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route42UltraBall, EVENT_ROUTE_42_ULTRA_BALL
 	object_event 33,  8, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route42SuperPotion, EVENT_ROUTE_42_SUPER_POTION
 	object_event 26, 16, SPRITE_SUICUNE_OW, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_SAW_SUICUNE_ON_ROUTE_42
+	object_event 26, 16, SPRITE_SUICUNE_OW, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Route45StationarySuicuneScript, EVENT_ROUTE_42_STATIONARY_SUICUNE
