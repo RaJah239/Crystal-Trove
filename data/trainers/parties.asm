@@ -2850,6 +2850,11 @@ PicnickerGroup:
 	db 43, CLEFAIRY,   METRONOME, ENCORE, MOONLIGHT, MINIMIZE
 	db -1 ; end
 
+	; PICNICKER (26)
+	db "FRIEDA@", TRAINERTYPE_NORMAL
+	db 24, NIDOQUEEN
+	db -1 ; end
+
 CamperGroup:
 	; CAMPER (1)
 	db "ROLAND@", TRAINERTYPE_NORMAL

@@ -21,7 +21,6 @@ Route32_MapScripts:
 	scene_script Route32Noop3Scene, SCENE_ROUTE32_NOOP
 
 	def_callbacks
-	callback MAPCALLBACK_OBJECTS, Route32FriedaCallback
 	callback MAPCALLBACK_NEWMAP, .Flypoint
 
 .Flypoint:
@@ -36,16 +35,6 @@ Route32Noop2Scene:
 
 Route32Noop3Scene:
 	end
-
-Route32FriedaCallback:
-	readvar VAR_WEEKDAY
-	ifequal FRIDAY, .FriedaAppears
-	disappear ROUTE32_FRIEDA
-	endcallback
-
-.FriedaAppears:
-	appear ROUTE32_FRIEDA
-	endcallback
 
 Route32CooltrainerMScript:
 	faceplayer
@@ -408,42 +397,6 @@ TrainerBirdKeeperPeter:
 	closetext
 	end
 
-FriedaScript:
-	faceplayer
-	opentext
-	checkevent EVENT_GOT_POISON_BARB_FROM_FRIEDA
-	iftrue .Friday
-	readvar VAR_WEEKDAY
-	ifnotequal FRIDAY, .NotFriday
-	checkevent EVENT_MET_FRIEDA_OF_FRIDAY
-	iftrue .MetFrieda
-	writetext MeetFriedaText
-	promptbutton
-	setevent EVENT_MET_FRIEDA_OF_FRIDAY
-.MetFrieda:
-	writetext FriedaGivesGiftText
-	promptbutton
-	verbosegiveitem POISON_BARB
-	iffalse .Done
-	setevent EVENT_GOT_POISON_BARB_FROM_FRIEDA
-	writetext FriedaGaveGiftText
-	waitbutton
-	closetext
-	end
-
-.Friday:
-	writetext FriedaFridayText
-	waitbutton
-.Done:
-	closetext
-	end
-
-.NotFriday:
-	writetext FriedaNotFridayText
-	waitbutton
-	closetext
-	end
-
 Route32GreatBall:
 	itemball GREAT_BALL
 
@@ -754,14 +707,76 @@ Text_RoarOutro:
 	line "FROM A GOOD ROAR!"
 	done
 
-MeetFriedaText:
-	text "FRIEDA: Yahoo!"
-	line "It's Friday!"
+FriedaScript:
+	faceplayer
+	opentext
+	checkevent EVENT_GOT_POISON_BARB_FROM_FRIEDA
+	iftrue .Friday
+	writetext MeetFriedaText
+	promptbutton
+	readvar VAR_WEEKDAY
+	ifequal FRIDAY, .GiveBarb
+	writetext FriedaSeenText
+	waitbutton
+	closetext
+	winlosstext FriedaBeatenText, 0
+	loadtrainer PICNICKER, FRIEDA
+	startbattle
+	reloadmapafterbattle
+	opentext
+.GiveBarb:
+	writetext FriedaGivesGiftText
+	promptbutton
+	verbosegiveitem POISON_BARB
+	iffalse .Done
+	setevent EVENT_GOT_POISON_BARB_FROM_FRIEDA
+	writetext FriedaGaveGiftText
+	waitbutton
+	closetext
+	end
 
-	para "I'm FRIEDA of"
-	line "Friday!"
+.Friday:
+	readvar VAR_WEEKDAY
+	ifnotequal FRIDAY, .NotFriday
+	writetext FriedaFridayText
+	waitbutton
+	closetext
+	end
+	
+.Done:
+	closetext
+	end
+
+.NotFriday:
+	writetext FriedaNotFridayText
+	waitbutton
+	closetext
+	end
+
+MeetFriedaText:
+	text "FRIEDA: Hiya! I'm"
+	line "FRIEDA of Friday!"
 
 	para "Nice to meet you!"
+	done
+	
+FriedaSeenText:
+	text "Normally I share a"
+	line "gift with trainers"
+
+	para "only on Fridays,"
+	line "but I like you!"
+	
+	para "If you can beat me"
+	line "in a battle, I'll"
+	cont "give you one."
+	
+	para "Deal?"
+	done
+	
+FriedaBeatenText:
+	text "You even beat my"
+	line "NIDOQUEEN? Wow!"
 	done
 
 FriedaGivesGiftText:
@@ -773,8 +788,6 @@ FriedaGaveGiftText:
 	text "FRIEDA: Give it to"
 	line "a #MON that has"
 	cont "poison-type moves."
-
-	para "Oh!"
 
 	para "It's wicked!"
 
@@ -838,7 +851,7 @@ Route32_MapEvents:
 	bg_event  9,  1, BGEVENT_READ, Route32RuinsSign
 	bg_event 10, 84, BGEVENT_READ, Route32UnionCaveSign
 	bg_event 12, 73, BGEVENT_READ, Route32PokecenterSign
-	bg_event 12, 67, BGEVENT_ITEM, Route32HiddenGreatBall
+	bg_event  9, 67, BGEVENT_ITEM, Route32HiddenGreatBall
 	bg_event 11, 40, BGEVENT_ITEM, Route32HiddenSuperPotion
 
 	def_object_events
