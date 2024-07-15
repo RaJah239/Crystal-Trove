@@ -261,7 +261,7 @@ DEF KRIS EQU __trainer_class__
 	trainerclass BEAUTY ; 1d
 	const VICTORIA
 	const SAMANTHA
-	const JULIE ; unused
+	const MONICA ; was unused, Now Monica Monday uses it.
 	const JACLYN ; unused
 	const BRENDA ; unused
 	const CASSIE

@@ -16,18 +16,6 @@ Route40_MapScripts:
 	def_scene_scripts
 
 	def_callbacks
-	callback MAPCALLBACK_OBJECTS, Route40MonicaCallback
-
-Route40MonicaCallback:
-	clearevent EVENT_BATTLE_TOWER_OPEN_CIVILIANS
-	readvar VAR_WEEKDAY
-	ifequal MONDAY, .MonicaAppears
-	disappear ROUTE40_MONICA
-	endcallback
-
-.MonicaAppears:
-	appear ROUTE40_MONICA
-	endcallback
 
 TrainerSwimmerfElaine:
 	trainer SWIMMERF, ELAINE, EVENT_BEAT_SWIMMERF_ELAINE, SwimmerfElaineSeenText, SwimmerfElaineBeatenText, 0, .Script
@@ -90,15 +78,20 @@ MonicaScript:
 	faceplayer
 	opentext
 	checkevent EVENT_GOT_SHARP_BEAK_FROM_MONICA
-	iftrue .Monday
-	readvar VAR_WEEKDAY
-	ifnotequal MONDAY, .NotMonday
-	checkevent EVENT_MET_MONICA_OF_MONDAY
 	iftrue .MetMonica
 	writetext MeetMonicaText
 	promptbutton
-	setevent EVENT_MET_MONICA_OF_MONDAY
-.MetMonica:
+	readvar VAR_WEEKDAY
+	ifequal MONDAY, .GiveBeak
+	writetext MonicaSeenText
+	waitbutton
+	closetext
+	winlosstext MonicaBeatenText, 0
+	loadtrainer BEAUTY, MONICA
+	startbattle
+	reloadmapafterbattle
+	opentext
+.GiveBeak:
 	writetext MonicaGivesGiftText
 	promptbutton
 	verbosegiveitem SHARP_BEAK
@@ -109,9 +102,14 @@ MonicaScript:
 	closetext
 	end
 
-.Monday:
+.MetMonica:
+	readvar VAR_WEEKDAY
+	ifnotequal MONDAY, .NotMonday
 	writetext MonicaMondayText
 	waitbutton
+	closetext
+	end
+
 .done:
 	closetext
 	end
@@ -257,9 +255,35 @@ Route40StandingYoungsterText:
 	line "badly at all."
 	done
 
+MonicaSeenText:
+	text "My siblings and I"
+	line "give useful items"
+	
+	para "to trainers on di-"
+	line "fferent days of"
+	cont "the week."
+	
+	para "Although it isn't"
+	line "Monday today, I"
+	
+	para "can give you some-"
+	line "thing nice if you"
+
+	para "show me a good"
+	line "battle."
+	
+	para "Do you have what"
+	line "it takes?"
+	done
+	
+MonicaBeatenText:
+	text "Oh, I just love"
+	line "how you battle!"
+	done
+
 MeetMonicaText:
 	text "MONICA: Glad to"
-	line "meet you. I'm"
+	line "meet you. I am"
 
 	para "MONICA of Monday."
 	done
@@ -289,7 +313,7 @@ MonicaMondayText:
 	para "are all over the"
 	line "place."
 
-	para "See if you could"
+	para "See if you can"
 	line "find them all!"
 	done
 
@@ -330,4 +354,4 @@ Route40_MapEvents:
 	object_event  8, 10, SPRITE_BEAUTY, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, MonicaScript, EVENT_ROUTE_40_MONICA_OF_MONDAY
 	object_event  7,  6, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route40PokefanMScript, -1
 	object_event 13,  4, SPRITE_LASS, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, Route40Lass2Script, -1
-	object_event 16,  9, SPRITE_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Route40StandingYoungsterScript, EVENT_BATTLE_TOWER_OPEN_CIVILIANS
+	object_event 16,  9, SPRITE_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Route40StandingYoungsterScript, -1

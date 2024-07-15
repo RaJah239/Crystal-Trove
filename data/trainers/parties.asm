@@ -1052,8 +1052,8 @@ BeautyGroup:
 	db 16, MEOWTH,     SCRATCH, GROWL, BITE, SLASH
 	db -1 ; end
 
-	; BEAUTY (3)
-	db "JULIE@", TRAINERTYPE_NORMAL
+	; BEAUTY (3) - was unused, Now Monica Monday uses it.
+	db "MONICA@", TRAINERTYPE_NORMAL
 	db 15, SENTRET
 	db -1 ; end
 
