@@ -38,7 +38,7 @@ ItemEffects:
 	dw EvoStoneEffect      ; FIRE_STONE
 	dw EvoStoneEffect      ; THUNDERSTONE
 	dw EvoStoneEffect      ; WATER_STONE
-	dw NoEffect            ; ITEM_19
+	dw NoEffect            ; CATCH_CHARM
 	dw VitaminEffect       ; HP_UP
 	dw VitaminEffect       ; PROTEIN
 	dw VitaminEffect       ; IRON
@@ -58,7 +58,7 @@ ItemEffects:
 	dw HedgerEffect        ; HEDGER
 	dw PaddleBoatEffect    ; PADDLE_BOAT
 	dw DireHitEffect       ; DIRE_HIT
-	dw NoEffect            ; EXP_CHARM / ITEM_2D
+	dw NoEffect            ; EXP_CHARM
 	dw RestoreHPEffect     ; FRESH_WATER
 	dw RestoreHPEffect     ; SODA_POP
 	dw RestoreHPEffect     ; LEMONADE
@@ -373,6 +373,8 @@ PokeBallEffect:
 
 .skip_hp_calc
 	ld b, a
+	call CriticalCapture
+
 	ld [wFinalCatchRate], a
 	call Random
 
@@ -406,7 +408,6 @@ PokeBallEffect:
 	ld [wThrownBallWobbleCount], a
 	ld [wNumHits], a
 	predef PlayBattleAnim
-
 	ld a, [wWildMon]
 	and a
 	jr nz, .caught
@@ -2870,4 +2871,139 @@ GeyserBootsEffect:
 	ld a, 1
 	ld [wUsingHMItem], a
 	farcall WaterfallFunction
+	ret
+
+CriticalCapture:
+	; Critical Capture has a 5 step multiplier, starting from 30 Pokémon caught and going up to 600 Pokémon caught as follows:
+
+	; 601 or more: 2.5x multiplier
+	; 451 ~ 600: 2x multiplier
+	; 301 ~ 450: 1.5x multiplier
+	; 151 ~ 300: 1x multiplier
+	; 31 ~ 150: 0.5x multiplier
+
+	; Since Johto has 251 Pokémon, as opposed to 649 like Unova and later, the values will be adjusted accordingly:
+
+	; 201 or more: 2.5x multiplier
+	; 151 ~ 200: 2x multiplier
+	; 101 ~ 150: 1.5x multiplier
+	; 51 ~ 100: 1x multiplier
+	; 21 ~ 50: 0.5x multiplier
+
+	; Due to differences on how the Pokémon being caught is determined, instead of checking
+	; for the wobbling 4 times to determine whether the Pokémon was caught or not,
+	; Gen II games determine if it was caught beforehand, with no relation to the wobbling.
+
+	; To compensate for that, the Catch Rate will be multiplied by 4.
+
+	push hl
+	push bc
+	push de
+
+	ld [wFinalCatchRate], a
+	ld [wCriticalCaptureCheck], a
+
+	; Check Dex
+	ld hl, wPokedexCaught
+	ld b, wEndPokedexCaught - wPokedexCaught
+	call CountSetBits
+
+	ld a, [wCriticalCaptureCheck]
+	ld b, a
+	ld a, c
+	ld c, 0
+
+	cp 201
+	jr nc, .BonusFive
+	cp 151
+	jr nc, .BonusFour
+	cp 101
+	jr nc, .BonusThree
+	cp 51
+	jr nc, .BonusTwo
+	cp 21
+	jr nc, .BonusOne
+	jr .NoCriticalCapture
+
+.BonusFive ; 2.5x
+	ld a, b
+	srl a
+	add b
+	jr c, .FixCatchRate
+	add b
+	ld b, a
+	jr c, .FixCatchRate
+	jr .Continue
+.BonusFour ; 2x
+	ld a, b
+	add b
+	jr c, .FixCatchRate
+	add b
+	ld b, a
+	jr c, .FixCatchRate
+	jr .Continue
+.BonusThree ; 1.5x
+	ld a, b
+	srl a
+	add b
+	ld b, a
+	jr c, .FixCatchRate
+	jr .Continue
+.BonusTwo ; 1x
+	ld a, b
+	sla a
+	ld b, a
+	jr c, .FixCatchRate
+	jr .Continue
+.BonusOne ; 0.5x
+	ld a, b
+	srl a
+	ld b, a
+	jr c, .FixCatchRate
+	jr .Continue
+
+.FixCatchRate
+	ld b, $ff
+.Continue
+	ld a, b
+	ld c, 6
+	call SimpleDivide
+
+	ld a, CATCH_CHARM
+	ld [wCurItem], a
+	ld hl, wNumItems
+	call CheckItem
+	jr nc, .CheckedCharmMultiplier
+	ld a, b
+	sla a
+	ld b, a
+	jr nc, .CheckedCharmMultiplier
+	ld b, $ff
+.CheckedCharmMultiplier
+	call Random
+	cp b
+	jr c, .CriticalCaptureWorked
+.NoCriticalCapture
+	xor a
+	ld [wCriticalCaptureCheck], a
+	jr .Finish
+.CriticalCaptureWorked
+	ld a, 1
+	ld [wCriticalCaptureCheck], a
+	ld a, [wFinalCatchRate]
+	sla a
+	jr c, .NewCatchRate
+	sla a
+	jr c, .NewCatchRate
+	ld [wFinalCatchRate], a
+	jr .Finish
+.NewCatchRate
+	ld a, $ff
+	ld [wFinalCatchRate], a
+.Finish
+	ld a, [wFinalCatchRate]
+	pop de
+	pop bc
+	pop hl
+	ld b, a
 	ret
