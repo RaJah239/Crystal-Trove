@@ -56,7 +56,7 @@ Pokedex_PlayMonCry_AnimateFrontpic:
 	call .PokedexWaitCry
 	ld a, [wPokedexEntryType]
 	;bit 7, a
-	cp 150
+	cp 255
 	jr nz, .loop
 	xor a
 	ld [wPokedexEntryType], a

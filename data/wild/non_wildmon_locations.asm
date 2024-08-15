@@ -81,7 +81,7 @@ ShinyGyarados_Str:
 SnorlaxEvent_Str:
 	db 	 "Guaranteed to be"
 	next "holding LEFTOVERS."
-	next "LVL 40.@"
+	next "LVL 50.@"
 SuicuneEvent_Str:
 	db 	 "CLEAR BELL is the"
 	next "key to the hunt."
@@ -147,12 +147,12 @@ ExtremespeedDratini_Str:
 	next "virtue reflection.@"
 BillsEevee_Str:
 	db 	 "LVL 20 - Cute"
-	next "baby with un-"
+	next "#MON with un-"
 	next "limited potential.@"
 TyrogueEvent_Str:
 	db 	 "Gift from KIYO,"
-	next "Karate Expert."
-	next "@"
+	next "Karate Expert,"
+	next "Training alone.@"
 ; OldAmberEvent_Str:
 ; 	db 	 "Solve mysterious"
 ; 	next "ruins puzzle, then"
