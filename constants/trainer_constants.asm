@@ -521,4 +521,7 @@ DEF KRIS EQU __trainer_class__
 	trainerclass LINK_KRIS ; 44
 	const LINK_KRIS1
 
+ 	const_def
+ 	const RANDOMLIST_0
+
 DEF NUM_TRAINER_CLASSES EQU __trainer_class__ - 1
