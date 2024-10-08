@@ -3153,7 +3153,6 @@ wRoute36NationalParkGateSceneID::                 db
 wAzaleaTownSceneID::                              db
 wGoldenrodGymSceneID::                            db
 wGoldenrodMagnetTrainStationSceneID::             db
-wGoldenrodPokecenter1FSceneID::                   db
 wOlivineCitySceneID::                             db
 wRoute34SceneID::                                 db
 wRoute34IlexForestGateSceneID::                   db
@@ -3196,7 +3195,7 @@ wMobileTradeRoomSceneID::                         db
 wMobileBattleRoomSceneID::                        db
 wDayCareSceneID::                                 db
 
-	ds 176
+	ds 177
 
 wLevelCap:: db
 
