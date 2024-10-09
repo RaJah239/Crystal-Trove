@@ -10,7 +10,7 @@ Red:
 	special FadeOutMusic
 	faceplayer
 	opentext
-	writetext RedSeenText
+	writetext RedText
 	waitbutton
 	closetext
 	winlosstext RedWinLossText, RedWinLossText
@@ -26,7 +26,7 @@ Red:
 	setevent EVENT_VIRIDIAN_TRAINER_HOUSE_BLOCKER
 	special FadeOutMusic
 	opentext
-	writetext RedSeenText
+	writetext RedText
 	waitbutton
 	closetext
 	special FadeOutToBlack
@@ -45,10 +45,9 @@ Red:
 	startbattle
 	dontrestartmapmusic
 	reloadmapafterbattle
-	setevent EVENT_BEAT_RED
 	special FadeOutMusic
 	opentext
-	writetext RedSeenText
+	writetext RedText
 	waitbutton
 	closetext
 	special FadeOutToBlack
@@ -58,11 +57,41 @@ Red:
 	special FadeOutToBlack
 	pause 30
 	special HealParty
+	special BeastsCheck
+	iffalse .YouStillNeedToCatchRoamers
+	clearevent EVENT_ROUTE_45_RAIKOU
+	clearevent EVENT_BURNED_TOWER_ENTEI
+	jump .TheRegularStuff
+	end
+
+.YouStillNeedToCatchRoamers
+	special InitRoamMons
+	jump .TheRegularStuff
+	end
+
+.TheRegularStuff:
+	clearevent EVENT_GOT_ODD_EGG
+	clearevent EVENT_FOUGHT_ARTICUNO
+	clearevent EVENT_ICE_PATH_1F_ARTICUNO
+	clearevent EVENT_FOUGHT_ZAPDOS
+	clearevent EVENT_MOUNTMORTARB1F_ZAPDOS
+	clearevent EVENT_FOUGHT_MOLTRES
+	clearevent EVENT_VICTORY_ROAD_MOLTRES
+	setevent EVENT_FOREST_IS_RESTLESS
+	clearevent EVENT_FOUGHT_LUGIA
+	clearevent EVENT_WHIRL_ISLAND_LUGIA_CHAMBER_LUGIA
+	clearevent EVENT_ROUTE_42_STATIONARY_SUICUNE
+	clearevent EVENT_FOUGHT_HO_OH
+	clearevent EVENT_TIN_TOWER_ROOF_HO_OH
+	clearevent EVENT_FOUGHT_MEW
+	clearevent EVENT_RUINSOFALPHHOOHWORDROOM_MEW
+	clearevent EVENT_FOUGHT_MEWTWO
+	clearevent EVENT_SILVER_CAVE_ITEM_ROOMS_MEWTWO
 	refreshscreen
 	credits
 	end
 
-RedSeenText:
+RedText:
 	text "<……>"
 	line "<……>"
 	done
