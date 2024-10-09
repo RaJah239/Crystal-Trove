@@ -495,6 +495,7 @@ Cianwood_Map_Names: ;newgroup CIANWOOD
 	dw Cianwood_Map_Name9 ; map_const CIANWOOD_LUGIA_SPEECH_HOUSE ;  9
 	dw Cianwood_Map_Name10 ; map_const POKE_SEERS_HOUSE ; 10
 	dw Cianwood_Map_Name11 ; map_const BATTLE_TOWER_1F ; 11
+	dw Cianwood_Map_Name114 ; map_const BATTLE_TOWER_MART ; Crystal Trove
 	dw Cianwood_Map_Name12 ; map_const BATTLE_TOWER_BATTLE_ROOM ; 12
 	dw Cianwood_Map_Name13 ; map_const BATTLE_TOWER_ELEVATOR ; 13
 	dw Cianwood_Map_Name14 ; map_const BATTLE_TOWER_HALLWAY,                        11,  2 ; 14
@@ -1300,6 +1301,8 @@ Cianwood_Map_Name10: ; map_const POKE_SEERS_HOUSE ; 10
 	db "#SEER HOUSE@"
 Cianwood_Map_Name11: ; map_const BATTLE_TOWER_1F ; 11
 	db "BATTLE TOWER 1F@"
+Cianwood_Map_Name114: ; map_const BATTLE_TOWER_MART ; Crystal Trove
+	db "BATTLE TOWER MART@"
 Cianwood_Map_Name12: ; map_const BATTLE_TOWER_BATTLE_ROOM ; 12
 	db "BATTLE TOWER ROOM@"
 Cianwood_Map_Name13: ; map_const BATTLE_TOWER_ELEVATOR ; 13

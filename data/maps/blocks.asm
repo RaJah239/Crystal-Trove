@@ -945,6 +945,9 @@ DragonShrine_Blocks:
 BattleTower1F_Blocks:
 	INCBIN "maps/BattleTower1F.blk"
 
+BattleTowerMart_Blocks:
+	INCBIN "maps/BattleTowerMart.blk"
+
 BattleTowerBattleRoom_Blocks:
 	INCBIN "maps/BattleTowerBattleRoom.blk"
 
