@@ -119,13 +119,12 @@ VictoryRoadHiddenFullHeal:
 	hiddenitem FULL_HEAL, EVENT_VICTORY_ROAD_HIDDEN_FULL_HEAL
 	
 VictoryRoadMoltres:
-    faceplayer
+	faceplayer
 	opentext
 	writetext MoltresText
 	cry MOLTRES
 	pause 15
 	closetext
-	setevent EVENT_FOUGHT_MOLTRES
 	loadvar VAR_BATTLETYPE, BATTLETYPE_SUICUNE
 	loadwildmon MOLTRES, 75
 	startbattle

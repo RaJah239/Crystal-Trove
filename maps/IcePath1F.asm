@@ -25,7 +25,6 @@ IcePath1FArticuno:
 	cry ARTICUNO
 	pause 60
 	closetext
-	setevent EVENT_FOUGHT_ARTICUNO
 	loadvar VAR_BATTLETYPE, BATTLETYPE_SUICUNE
 	loadwildmon ARTICUNO, 65
 	startbattle

@@ -20,7 +20,6 @@ MountMortarB1FZapdos:
 	cry ZAPDOS
 	pause 15
 	closetext
-	setevent EVENT_FOUGHT_ZAPDOS
 	loadvar VAR_BATTLETYPE, BATTLETYPE_SUICUNE
 	loadwildmon ZAPDOS, 70
 	startbattle
