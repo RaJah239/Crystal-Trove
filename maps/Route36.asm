@@ -78,6 +78,7 @@ WateredWeirdTreeScript:: ; export (for when you use Squirtbottle from pack)
 	writetext SudowoodoAttackedText
 	waitbutton
 	closetext
+	takeitem SQUIRTBOTTLE
 	loadwildmon SUDOWOODO, 20
 	startbattle
 	setevent EVENT_FOUGHT_SUDOWOODO
@@ -446,10 +447,13 @@ UsedSquirtbottleText:
 
 SudowoodoAttackedText:
 	text "The weird tree"
-	line "doesn't like the"
+	line "really hates the"
 	cont "SQUIRTBOTTLE!"
 
 	para "The weird tree"
+	line "destroyed the"
+
+	para "SQUIRTBOTTLE and"
 	line "attacked!"
 	done
 
