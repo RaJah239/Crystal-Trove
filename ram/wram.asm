@@ -3111,7 +3111,8 @@ wMobileBattleRoomSceneID::                        db
 wSilverCavePokecenter1F::                         db ; Crystal Trove
 wSilverCaveOutsideSceneID::                       db ; Crystal Trove removed Mt. Moon scene with Rival and moved to Mt. Silver
 wUnionCaveGrottoSceneID::                         db ; Union Cave Grotto
-	ds 22
+wRoute38EcruteakGateSceneID::                     db ; Route 38 Ecruteak Gate blocker until defeating Pryce
+	ds 21
 
  wNumBalls:: db
  wBalls:: ds MAX_BALLS * 2 + 1

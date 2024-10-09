@@ -381,7 +381,9 @@
 	const EVENT_ROUTE_45_RAIKOU
 	const EVENT_BURNED_TOWER_ENTEI
 	const EVENT_ROUTE_42_STATIONARY_SUICUNE
-; Unused: next 226 events
+	const EVENT_ROUTE_38_ECRUTEAKGATE_OFFICER
+	const EVENT_ROUTE_38_ECRUTEAKGATE_OFFICER_BLOCKER
+; Unused: next 224 events
 
 	const_next 600
 ; Kurt Apricorn events
