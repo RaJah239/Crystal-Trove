@@ -340,9 +340,6 @@ CooltrainermDarinAfterBattleText:
 
 	para "There's also Grotto"
 	line "here."
-	
-	para "It's said to have"
-	line "2 rare #MON."
 	done
 
 CooltrainerfCaraSeenText:
