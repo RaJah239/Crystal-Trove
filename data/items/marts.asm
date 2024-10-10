@@ -426,8 +426,8 @@ MartBattleTowerEvostones:
 	db THUNDERSTONE
 	db SUN_STONE
 	db MOON_STONE
-	db EVERSTONE
 	db DRAGON_SCALE
+	db EVERSTONE
 	db -1 ; end
 
 MartBattleTowerTypeBoosting1:
