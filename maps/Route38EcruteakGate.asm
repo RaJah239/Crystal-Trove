@@ -20,8 +20,6 @@ Route38EcruteakGateOfficerSceneScript:
 	applymovement ROUTE38ECRUTEAKGATE_OFFICER_BLOCKER, Route38EcruteakGateOfficerWalksInfrontPlayer
 	turnobject ROUTE38ECRUTEAKGATE_OFFICER_BLOCKER, RIGHT
 	opentext
-	writetext HoldUpTrainerText
-	promptbutton
 	writetext Route38EcruteakGateOfficerBlockerText
 	waitbutton
 	closetext
@@ -50,10 +48,6 @@ Route38EcruteakGateOfficerScript:
 Route38EcruteakGateOfficerBlockerScript:
 	jumptextfaceplayer Route38EcruteakGateOfficerBlockerText
 
-HoldUpTrainerText:
-	text "Hold up trainer!"
-	done
-
 Route38EcruteakGateOfficerBlockerText:
 	text "It's unsafe to go"
 	line "this way."
@@ -81,11 +75,11 @@ Route38EcruteakGate_MapEvents:
 	warp_event  9,  5, ECRUTEAK_CITY, 15
 
 	def_coord_events
-	coord_event  2,  5, SCENE_ROUTE38ECRUTEAKGATE_OFFICER_BLOCKER, Route38EcruteakGateOfficerSceneScript
+	coord_event  5,  5, SCENE_ROUTE38ECRUTEAKGATE_OFFICER_BLOCKER, Route38EcruteakGateOfficerSceneScript
 
 
 	def_bg_events
 
 	def_object_events
 	object_event  5,  2, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Route38EcruteakGateOfficerScript, EVENT_ROUTE_38_ECRUTEAKGATE_OFFICER
-	object_event  2,  4, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Route38EcruteakGateOfficerBlockerScript, EVENT_ROUTE_38_ECRUTEAKGATE_OFFICER_BLOCKER
+	object_event  5,  4, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Route38EcruteakGateOfficerBlockerScript, EVENT_ROUTE_38_ECRUTEAKGATE_OFFICER_BLOCKER

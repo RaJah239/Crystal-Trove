@@ -21,7 +21,6 @@ SilverCaveItemRoomsMew:
 	cry MEW
 	pause 15
 	closetext
-	setevent EVENT_FOUGHT_MEWTWO
 	loadvar VAR_BATTLETYPE, BATTLETYPE_SUICUNE
 	loadwildmon MEWTWO, 95
 	startbattle

@@ -81,7 +81,6 @@ CherrygroveCityGuideMeetGent:
 	applymovement CHERRYGROVECITY_GRAMPS, GuideGentMovement6
 	playsound SFX_ENTER_DOOR
 	disappear CHERRYGROVECITY_GRAMPS
-	clearevent EVENT_GUIDE_GENT_VISIBLE_IN_CHERRYGROVE
 	waitsfx
 	setscene SCENE_CHERRYGROVECITY_NOOP
 	end
@@ -147,7 +146,6 @@ CherrygroveCityGuideGent:
 	applymovement CHERRYGROVECITY_GRAMPS, GuideGentMovement6
 	playsound SFX_ENTER_DOOR
 	disappear CHERRYGROVECITY_GRAMPS
-	clearevent EVENT_GUIDE_GENT_VISIBLE_IN_CHERRYGROVE
 	waitsfx
 	setscene SCENE_CHERRYGROVECITY_NOOP
 	end
@@ -238,15 +236,7 @@ CherrygroveRivalSceneNorth:
 CherrygroveTeacherScript:
 	faceplayer
 	opentext
-	checkflag ENGINE_MAP_CARD
-	iftrue .HaveMapCard
-	writetext CherrygroveTeacherText_NoMapCard
-	waitbutton
-	closetext
-	end
-
-.HaveMapCard:
-	writetext CherrygroveTeacherText_HaveMapCard
+	writetext CherrygroveTeacherWhenWithPokemonText
 	waitbutton
 	closetext
 	end
@@ -528,17 +518,7 @@ CherrygroveRivalText_YouWon:
 	cont "trainer."
 	done
 
-CherrygroveTeacherText_NoMapCard:
-	text "Did you talk to"
-	line "the old man by the"
-	cont "#MON CENTER?"
-
-	para "He'll put a MAP of"
-	line "JOHTO on your"
-	cont "#GEAR."
-	done
-
-CherrygroveTeacherText_HaveMapCard:
+CherrygroveTeacherWhenWithPokemonText:
 	text "When you're with"
 	line "#MON, going"
 	cont "anywhere is fun."

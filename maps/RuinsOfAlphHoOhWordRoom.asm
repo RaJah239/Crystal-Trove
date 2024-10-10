@@ -13,7 +13,6 @@ RuinsOfAlphHoOhWordRoomHooH:
 	cry MEW
 	pause 15
 	closetext
-	setevent EVENT_FOUGHT_MEW
 	loadvar VAR_BATTLETYPE, BATTLETYPE_SUICUNE
 	loadwildmon MEW, 90
 	startbattle
