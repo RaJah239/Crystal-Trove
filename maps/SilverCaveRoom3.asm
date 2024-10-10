@@ -24,6 +24,7 @@ Red:
 	setevent EVENT_BEAT_RED
 	setevent EVENT_NO_E4_REMATCH_UNTIL_RED_IS_BEATEN
 	setevent EVENT_VIRIDIAN_TRAINER_HOUSE_BLOCKER
+	clearevent EVENT_SILVER_CAVE_ITEM_ROOMS_MEWTWO
 	specialphonecall SPECIALCALL_RED_BEATEN
 	special FadeOutMusic
 	opentext
