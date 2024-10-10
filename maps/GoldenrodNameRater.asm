@@ -272,10 +272,12 @@ SkipSwarmText:
 
 	para "What I do remember"
 	line "is there are 15"
-	cont "#MON swarms."
 
-	para "You ought visit"
-	line "me again sometime."
+	para "#MON swarms and"
+	line "they change daily."
+
+	para "You ought to visit"
+	line "another day too."
 	done
 
 MoveRelearnerScript:
