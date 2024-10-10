@@ -46,6 +46,9 @@ EcruteakGymMortyScript:
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_MORTY
+	clearevent EVENT_ROUTE_42_ECRUTEAKGATE_OFFICER
+	setevent EVENT_ROUTE_42_ECRUTEAKGATE_OFFICER_BLOCKER
+	setmapscene ROUTE_42_ECRUTEAK_GATE, SCENE_ROUTE42ECRUTEAKGATE_NOOP
 	opentext
 	writetext Text_ReceivedFogBadge
 	playsound SFX_GET_BADGE

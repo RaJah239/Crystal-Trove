@@ -86,4 +86,5 @@ MapScenes::
 	scene_var SILVER_CAVE_OUTSIDE,                         wSilverCaveOutsideSceneID
 	scene_var UNION_CAVE_GROTTOS,                          wUnionCaveGrottoSceneID
 	scene_var ROUTE_38_ECRUTEAK_GATE,                      wRoute38EcruteakGateSceneID
+	scene_var ROUTE_42_ECRUTEAK_GATE,                      wRoute42EcruteakGateSceneID
 	db -1 ; end
