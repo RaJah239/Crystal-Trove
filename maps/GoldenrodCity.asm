@@ -157,9 +157,6 @@ MoveTutorScript:
 GoldenrodCityPokefanMScript:
 	jumptextfaceplayer GoldenrodCityPokefanMText
 
-GoldenrodCityYoungster1Script:
-	jumptextfaceplayer GoldenrodCityYoungster1Text
-
 GoldenrodCityCooltrainerF1Script:
 	faceplayer
 	opentext
@@ -286,14 +283,6 @@ GoldenrodCityPokefanMText:
 
 	para "replace the old,"
 	line "creaky one."
-	done
-
-GoldenrodCityYoungster1Text:
-	text "I know there's a"
-	line "new BIKE SHOP, but"
-
-	para "I can't find it"
-	line "anywhere."
 	done
 
 GoldenrodCityCooltrainerF1Text:
@@ -542,6 +531,62 @@ GoldenrodCityMoveTutorMoveText:
 	text_start
 	done
 
+GoldenrodCityYoungster1Script:
+	faceplayer
+	opentext
+	checkflag ENGINE_RADIO_CARD
+	iffalse .GoExploreGoldenrodCity
+	checkevent EVENT_GOT_BICYCLE
+	iffalse .GoExploreGoldenrodCity
+	checkevent EVENT_BEAT_WHITNEY
+	iffalse .GoExploreGoldenrodCity
+	writetext GoldenrodCityYoungster1LetMeGetOutYourWayText
+	waitbutton
+	closetext
+	applymovement GOLDENRODCITY_YOUNGSTER1, GOLDENRODCITY_YOUNGSTER1LEAVES
+	playsound SFX_ENTER_DOOR
+	disappear GOLDENRODCITY_YOUNGSTER1
+	setevent EVENT_GOLDENROD_GO_EXPLORE_THE_CITY_BLOCKER
+	end
+
+.GoExploreGoldenrodCity:
+	writetext GoldenrodCityYoungster1Text
+	waitbutton
+	closetext
+	end
+
+GOLDENRODCITY_YOUNGSTER1LEAVES:
+	step UP
+	step_end
+
+GoldenrodCityYoungster1LetMeGetOutYourWayText:
+	text "I best be on my"
+	line "way too…"
+	
+	para "So much again to"
+	line "see out there."
+	
+	para "Good luck!"
+	done
+
+GoldenrodCityYoungster1Text:
+	text "There's so much in"
+	line "GOLDENROD CITY!"
+
+	para "There's a new"
+	line "BIKE SHOP, a GYM,"
+
+	para "and of course, the"
+	line "RADIO TOWER."
+
+	para "The RADIO TOWER"
+	line "has a special quiz"
+	cont "right now too!"
+
+	para "You don't want to"
+	line "miss out!"
+	done
+
 GoldenrodCity_MapEvents:
 	db 0, 0 ; filler
 
@@ -580,7 +625,7 @@ GoldenrodCity_MapEvents:
 
 	def_object_events
 	object_event  7, 18, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodCityPokefanMScript, EVENT_GOLDENROD_CITY_CIVILIANS
-	object_event 30, 17, SPRITE_YOUNGSTER, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodCityYoungster1Script, EVENT_GOLDENROD_CITY_CIVILIANS
+	object_event 19,  2, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_DOWN, 1, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, PAL_NPC_RED, GoldenrodCityYoungster1Script, EVENT_GOLDENROD_GO_EXPLORE_THE_CITY_BLOCKER
 	object_event 12, 16, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, GoldenrodCityCooltrainerF1Script, EVENT_GOLDENROD_CITY_CIVILIANS
 	object_event 20, 26, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_WANDER, 1, 2, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodCityCooltrainerF2Script, EVENT_GOLDENROD_CITY_CIVILIANS
 	object_event 19, 17, SPRITE_YOUNGSTER, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, GoldenrodCityYoungster2Script, EVENT_GOLDENROD_CITY_CIVILIANS

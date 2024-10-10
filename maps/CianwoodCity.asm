@@ -193,7 +193,7 @@ CIANWOODCITY_GYM_BLOCKER1:
 	step_end
 
 PKMNBLUR:
-    text "W-what was that!?"
+	text "W-what was that!?"
     
 	para "Some kind of blue"
 	line "blur? It raced up"
@@ -204,7 +204,7 @@ PKMNBLUR:
 	
 	para "Can you check it"
 	line "out for me?"
-    done 
+	done 
 
 IbetterGetBackintheGym:
 	text "T-that was the"
