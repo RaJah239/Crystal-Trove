@@ -35,6 +35,13 @@ Marts:
 	dw MartMtMoon
 	dw MartIndigoPlateau
 	dw MartUnderground
+	dw MartBattleTowerEvostones
+	dw MartBattleTowerTypeBoosting1
+	dw MartBattleTowerTypeBoosting2
+	dw MartBattleTowerVitamins
+	dw MartBattleTowerBerries
+	dw MartBattleTowerBattleItems
+	dw MartBattleTowerUniqueMonBattleItems
 	assert_table_length NUM_MARTS
 
 MartCherrygrove:
@@ -156,17 +163,6 @@ MartGoldenrod3F:
 	db DIRE_HIT
 	db GUARD_SPEC
 	db X_ACCURACY
-	db -1 ; end
-
-MartCeladon5F1:
-MartGoldenrod4F:
-	db 6 ; # items
-	db HP_UP
-	db PROTEIN
-	db IRON
-	db ZINC
-	db CALCIUM
-	db CARBOS
 	db -1 ; end
 
 MartGoldenrod5F1:
@@ -420,4 +416,89 @@ DefaultMart:
 	db 2 ; # items
 	db POKE_BALL
 	db POTION
+	db -1 ; end
+
+MartBattleTowerEvostones:
+	db 8 ; # items
+	db FIRE_STONE
+	db WATER_STONE
+	db LEAF_STONE
+	db THUNDERSTONE
+	db SUN_STONE
+	db MOON_STONE
+	db EVERSTONE
+	db DRAGON_SCALE
+	db -1 ; end
+
+MartBattleTowerTypeBoosting1:
+	db 10 ; # items
+	db PINK_BOW
+	db POLKADOT_BOW
+	db CHARCOAL
+	db MYSTIC_WATER
+	db MIRACLE_SEED
+	db MAGNET
+	db NEVERMELTICE
+	db BLACKBELT_I
+	db POISON_BARB
+	db SOFT_SAND
+	db -1 ; end
+
+MartBattleTowerTypeBoosting2:
+	db 8 ; # items
+	db SHARP_BEAK
+	db TWISTEDSPOON
+	db SILVERPOWDER
+	db HARD_STONE
+	db SPELL_TAG
+	db DRAGON_FANG
+	db BLACKGLASSES
+	db METAL_COAT
+	db -1 ; end
+
+MartBattleTowerVitamins:
+MartCeladon5F1:
+MartGoldenrod4F:
+	db 6 ; # items
+	db HP_UP
+	db PROTEIN
+	db IRON
+	db CALCIUM
+	db ZINC
+	db CARBOS
+	db -1 ; end
+
+MartBattleTowerBerries:
+	db 10 ; # items
+	db BERRY
+	db GOLD_BERRY
+	db PSNCUREBERRY
+	db PRZCUREBERRY
+	db BURNT_BERRY
+	db ICE_BERRY
+	db BITTER_BERRY
+	db MINT_BERRY
+	db MYSTERYBERRY
+	db MIRACLEBERRY
+	db -1 ; end
+
+MartBattleTowerBattleItems:
+	db 6 ; # items
+	db LEFTOVERS
+	db QUICK_CLAW
+	db FOCUS_BAND
+	db SCOPE_LENS
+	db KINGS_ROCK
+	db BRIGHTPOWDER
+	db -1 ; end
+
+MartBattleTowerUniqueMonBattleItems:
+	db 7 ; # items
+	db THICK_CLUB
+	db LIGHT_BALL
+	db STICK
+	db METAL_POWDER
+	db LUCKY_EGG
+	db SMOKE_BALL
+	db CLEANSE_TAG
 	db -1 ; end
