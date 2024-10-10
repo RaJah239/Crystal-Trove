@@ -61,7 +61,8 @@ POKEGEAR: Now shows the detailed name of map you're currently in (based on Map G
 - Short beeping noise for low HP to replace the continuous beeping noise.
 - Lose money proportional to badges and lead level Pokémon on white out.
 - Survive poisoning with 1 HP.
-- PokeCentre fast heal added.
+- Show an icon for the current weather in battles.
+- PokeCentre fast heal after the first visit added.
 - Use unique colours for each thrown Poké Ball.
 - Field moves are useable of a Pokémon can learn the TM/HM and is in the respective pocket.
 - Items that act like HMs added (except Fly) to prevent softlocks.
@@ -72,10 +73,13 @@ POKEGEAR: Now shows the detailed name of map you're currently in (based on Map G
 - Hatch Room was added to the Day Care out back. Only accessible via Bicycle. The old man appears there if your Pokémon laid any eggs and there’s a Porygon PC as well.
 - Press A or B to stop the Bicycle in the Day Care's Hatch Room or Kanto’s Cycling Road.
 - Slot Machines payout were adjusted as coins are now used for a lot of things.
+- Made the Lottery Corner generate a lucky number daily instead of weekly.
 - Swarm system reworked to trigger by talking to NPC daily. Swarms include Gen 1 and 2 starters, all baby Pokémon and Ditto.
+- Move Relearner
 - Smashed rock may contain items.
 - Gen 1 fossils added and a way to revive them.
 - Name Rater can change traded Pokémon’s nicknames.
+- Trade Back Kid added in Ecruteak to evolve all Pokémon that require it.
 - New Fly Points added for Route 20/Blaine’s Gym, Route 32, Route 26, Tohjo Falls/Route 27, Battle Tower, National Park, Mt. Moon and Rock Tunnel.
 - Old man and Kadabra at the Indigo Plateau Pokémon Center doesn't leave.
 - 21 Grotto-like maps added throughout the game. 
@@ -113,7 +117,8 @@ POKEGEAR: Now shows the detailed name of map you're currently in (based on Map G
 - Chansey, Porygon, Lanturn and Seaking overworld sprites by Megaman-Omega from DeviantArt
 - Charizard, Dragonite and Feraligatr back sprites by mauvesea on Discord
 - Surf faster - cRz-Shadows on Discord
-- RBY Indigo Plateau & Champion Theme by dannye from Discord & GitHub.
+- RBY Kanto's Gym Leader Battle, Indigo Plateau & Champion Theme by dannye from Discord & GitHub.
+- Maxie/Archie Battle, Hoen Rival Battle, May Encounter, Cave of Origin and Unova Elite Four themes all by Mmmmm from SoundCloud/ https://soundcloud.com/mmmmmmmmmmmmmmmmm-1.
 
 # **General Credits List:**
 - Everyone that contributed to the pokecrystal disassembly, Pret’s Discord Server and pokecrystal tutorials which legitimately carried me.
