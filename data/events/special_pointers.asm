@@ -187,3 +187,4 @@ SpecialsPointers::
 	add_special TradebackNPC
 	add_special BirdsCheck
 	add_special MoveRelearner
+	add_special CoinsTMTrader
