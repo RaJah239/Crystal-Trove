@@ -1,5 +1,5 @@
     object_const_def
-	const ROUTE29GROTTO_SENTRET
+	const ROUTE29GROTTO_PIDGEY
 	const ROUTE29GROTTO_HOPPIP
 	const ROUTE29GROTTO_LEDYBA
 	const ROUTE29GROTTO_SPINARAK
@@ -21,7 +21,7 @@ Route29GrottoPokemonOW:
     ifequal 3, .AppearSpinark
     ifequal 4, .AppearHoothoot
 .NoAppear:
-    disappear ROUTE29GROTTO_SENTRET
+    disappear ROUTE29GROTTO_PIDGEY
     disappear ROUTE29GROTTO_HOPPIP
     disappear ROUTE29GROTTO_LEDYBA
     disappear ROUTE29GROTTO_SPINARAK
@@ -33,11 +33,11 @@ Route29GrottoPokemonOW:
     disappear ROUTE29GROTTO_LEDYBA
     disappear ROUTE29GROTTO_SPINARAK
     disappear ROUTE29GROTTO_HOOTHOOT
-    appear ROUTE29GROTTO_SENTRET
+    appear ROUTE29GROTTO_PIDGEY
     endcallback
 
 .AppearHoppip:
-    disappear ROUTE29GROTTO_SENTRET
+    disappear ROUTE29GROTTO_PIDGEY
     disappear ROUTE29GROTTO_LEDYBA
     disappear ROUTE29GROTTO_SPINARAK
     disappear ROUTE29GROTTO_HOOTHOOT
@@ -45,7 +45,7 @@ Route29GrottoPokemonOW:
     endcallback
 
 .AppearLedyba:
-    disappear ROUTE29GROTTO_SENTRET
+    disappear ROUTE29GROTTO_PIDGEY
     disappear ROUTE29GROTTO_SPINARAK
     disappear ROUTE29GROTTO_HOOTHOOT
     disappear ROUTE29GROTTO_HOPPIP
@@ -53,7 +53,7 @@ Route29GrottoPokemonOW:
     endcallback
 
 .AppearSpinark:
-    disappear ROUTE29GROTTO_SENTRET
+    disappear ROUTE29GROTTO_PIDGEY
     disappear ROUTE29GROTTO_HOOTHOOT
     disappear ROUTE29GROTTO_HOPPIP
     disappear ROUTE29GROTTO_LEDYBA
@@ -61,7 +61,7 @@ Route29GrottoPokemonOW:
     endcallback
 
 .AppearHoothoot:
-    disappear ROUTE29GROTTO_SENTRET
+    disappear ROUTE29GROTTO_PIDGEY
     disappear ROUTE29GROTTO_SPINARAK
     disappear ROUTE29GROTTO_HOPPIP
     disappear ROUTE29GROTTO_LEDYBA
@@ -70,11 +70,11 @@ Route29GrottoPokemonOW:
 
 Route29GrottoSentretScript:
     faceplayer
-    cry SENTRET
-    loadwildmon SENTRET, 5
+    cry PIDGEY
+    loadwildmon PIDGEY, 5
     loadvar VAR_BATTLETYPE, BATTLETYPE_TRAP
     startbattle
-    disappear ROUTE29GROTTO_SENTRET
+    disappear ROUTE29GROTTO_PIDGEY
     reloadmapafterbattle
     end
 
@@ -125,7 +125,7 @@ Route29GrottoSignText:
 	text "This GROTTO get"
 	line "visited by:"
 
-	para "SENTRET, HOOTHOOT,"
+	para "PIDGEY, HOOTHOOT,"
 	line "LEDYBA, HOPPIP and"
 	cont "HOOTHOOT."
 	done
@@ -143,7 +143,7 @@ Route29Grotto_MapEvents:
 	bg_event  8,  9, BGEVENT_READ, Route29GrottoSign
 
     def_object_events
-	object_event  9,  4, SPRITE_SENTRET_OW, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, Route29GrottoSentretScript, EVENT_ROUTE_29_GROTTO_SENTRET
+	object_event  9,  4, SPRITE_PIDGEY_OW, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, Route29GrottoSentretScript, EVENT_ROUTE_29_GROTTO_PIDGEY
 	object_event  9,  9, SPRITE_HOPPIP_OW, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, Route29GrottoHoppipScript, EVENT_ROUTE_29_GROTTO_HOPPIP
 	object_event  7,  5, SPRITE_LEDYBA_OW, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Route29GrottoLedybaScript, EVENT_ROUTE_29_GROTTO_LEDYBA
 	object_event  8,  7, SPRITE_SPINARAK_OW, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, Route29GrottoSpinarkScript, EVENT_ROUTE_29_GROTTO_SPINARAK

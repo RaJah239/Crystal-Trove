@@ -20,7 +20,7 @@ SpriteMons:
 	db CUBONE
 	db ONIX
 	db WOOPER
-	db SENTRET
+	db PIDGEY
 	db HOPPIP
 	db LEDYBA
 	db SPINARAK
