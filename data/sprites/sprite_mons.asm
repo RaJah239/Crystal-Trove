@@ -82,7 +82,6 @@ SpriteMons:
 	db SUICUNE
 	db ENTEI
 	db RAIKOU
-	db GENGAR
 	db TENTACRUEL
 	db TEDDIURSA
 	db TANGELA
@@ -106,4 +105,6 @@ SpriteMons:
 	db MEWTWO
 	db MEW
 	db FURRET
+	db AMPHAROS
+	db GASTLY
 	assert_table_length NUM_POKEMON_SPRITES

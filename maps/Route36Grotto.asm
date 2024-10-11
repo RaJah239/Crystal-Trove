@@ -1,7 +1,7 @@
     object_const_def
 	const ROUTE36GROTTO_BELLSPROUT
 	const ROUTE36GROTTO_GROWLITHE
-	const ROUTE36GROTTO_MAREEP
+	const ROUTE36GROTTO_GASTLY
 	const ROUTE36GROTTO_YANMA
 	const ROUTE36GROTTO_HOUNDOUR
 
@@ -17,20 +17,20 @@ Route36GrottoPokemonOW:
     random 20 ; random 5 - this makes it always have a Pokemon.
     ifequal 0, .AppearBellsprout
     ifequal 1, .AppearGrowlithe
-    ifequal 2, .AppearMareep
+    ifequal 2, .AppearGastly
     ifequal 3, .AppearYanma
     ifequal 4, .AppearHoundour
 .NoAppear:
     disappear ROUTE36GROTTO_BELLSPROUT
     disappear ROUTE36GROTTO_GROWLITHE
-    disappear ROUTE36GROTTO_MAREEP
+    disappear ROUTE36GROTTO_GASTLY
     disappear ROUTE36GROTTO_YANMA
     disappear ROUTE36GROTTO_HOUNDOUR
     endcallback
 
 .AppearBellsprout:
     disappear ROUTE36GROTTO_GROWLITHE
-    disappear ROUTE36GROTTO_MAREEP
+    disappear ROUTE36GROTTO_GASTLY
     disappear ROUTE36GROTTO_YANMA
     disappear ROUTE36GROTTO_HOUNDOUR
     appear ROUTE36GROTTO_BELLSPROUT
@@ -38,25 +38,25 @@ Route36GrottoPokemonOW:
 
 .AppearGrowlithe:
     disappear ROUTE36GROTTO_BELLSPROUT
-    disappear ROUTE36GROTTO_MAREEP
+    disappear ROUTE36GROTTO_GASTLY
     disappear ROUTE36GROTTO_YANMA
     disappear ROUTE36GROTTO_HOUNDOUR
     appear ROUTE36GROTTO_GROWLITHE
     endcallback
 
-.AppearMareep:
+.AppearGastly:
     disappear ROUTE36GROTTO_BELLSPROUT
     disappear ROUTE36GROTTO_YANMA
     disappear ROUTE36GROTTO_HOUNDOUR
     disappear ROUTE36GROTTO_GROWLITHE
-    appear ROUTE36GROTTO_MAREEP
+    appear ROUTE36GROTTO_GASTLY
     endcallback
 
 .AppearYanma:
     disappear ROUTE36GROTTO_BELLSPROUT
     disappear ROUTE36GROTTO_HOUNDOUR
     disappear ROUTE36GROTTO_GROWLITHE
-    disappear ROUTE36GROTTO_MAREEP
+    disappear ROUTE36GROTTO_GASTLY
     appear ROUTE36GROTTO_YANMA
     endcallback
 
@@ -64,7 +64,7 @@ Route36GrottoPokemonOW:
     disappear ROUTE36GROTTO_BELLSPROUT
     disappear ROUTE36GROTTO_YANMA
     disappear ROUTE36GROTTO_GROWLITHE
-    disappear ROUTE36GROTTO_MAREEP
+    disappear ROUTE36GROTTO_GASTLY
     appear ROUTE36GROTTO_HOUNDOUR
     endcallback
 
@@ -88,13 +88,13 @@ Route36GrottoGrowlitheScript:
     reloadmapafterbattle
     end
 
-Route36GrottoMareepScript:
+Route36GrottoGASTLYScript:
     faceplayer
-    cry MAREEP
-    loadwildmon MAREEP, 8
+    cry GASTLY
+    loadwildmon GASTLY, 8
     loadvar VAR_BATTLETYPE, BATTLETYPE_TRAP
     startbattle
-    disappear ROUTE36GROTTO_MAREEP
+    disappear ROUTE36GROTTO_GASTLY
     reloadmapafterbattle
     end
 
@@ -126,7 +126,7 @@ Route36GrottoSignText:
 	line "visited by:"
 
 	para "HOUNDOUR, YANMA,"
-	line "GROWLITHE, MAREEP"
+	line "GROWLITHE, GASTLY"
 	cont "and BELLSPROUT."
 	done
 
@@ -145,6 +145,6 @@ Route36Grotto_MapEvents:
     def_object_events
 	object_event  8,  6, SPRITE_BELLSPROUT_OW, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, Route36GrottoBellsproutScript, EVENT_ROUTE_36_GROTTO_BELLSPROUT
 	object_event  8,  7, SPRITE_GROWLITHE_OW, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Route36GrottoGrowlitheScript, EVENT_ROUTE_36_GROTTO_GROWLITHE
-	object_event  7,  6, SPRITE_MAREEP_OW, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Route36GrottoMareepScript, EVENT_ROUTE_36_GROTTO_MAREEP
+	object_event  7,  6, SPRITE_GASTLY_OW, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_PINK, OBJECTTYPE_SCRIPT, 0, Route36GrottoGASTLYScript, EVENT_ROUTE_36_GROTTO_GASTLY
 	object_event  7,  9, SPRITE_YANMA_OW, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Route36GrottoYanmaScript, EVENT_ROUTE_36_GROTTO_YANMA
 	object_event  6,  4, SPRITE_HOUNDOUR_OW, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Route36GrottoHoundourScript, EVENT_ROUTE_36_GROTTO_HOUNDOUR
