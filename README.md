@@ -1,6 +1,6 @@
 Needs to edit properly..but for now:
 
-Crystal Trove is hack that aims to maintain the Gen 2 experience but with QoL, catching all Pokemon infinitely, increased replay value and tougher battles.
+Crystal Trove is hack that aims to be an enhanced Gen 2 experience with Quality of Life features, catching all Pokemon infinitely, increased replay value and tougher battles.
 It is however an ongoing project..
 
 Project Base: https://github.com/Nayru62/pokecrystal/tree/8.0_Nayrus_Pokedex which was based on the disassembly of Pokémon Crystal.
@@ -8,15 +8,6 @@ Project Base: https://github.com/Nayru62/pokecrystal/tree/8.0_Nayrus_Pokedex whi
 Recommended RGBDS version: v0.7.0
 
 Recommended Emulator: BGB
-
-This hack will not include:
-- New Pokémon.
-- The altering of any Pokémon's base stats.
-- New moves or edited moves any way or new battle items.
-- New Battle Mechanics.
-
-Everything else is fare game.
-
 
 # **Nayru's Pokedex Project (Rom Hack's Base):**
 
@@ -88,6 +79,7 @@ POKEGEAR: Now shows the detailed name of map you're currently in (based on Map G
 # **Pokémon // Battle Related:**
 - Affection added to Pokémon's 3rd (blue) stat page.
 - Gen 3+ Effort Values (EVs) system replaced vanilla Stat Experience and Pokémon EV yield on KO readjusted. EV yeild can be seen in the Pokédex.
+- Gen4+ Moves Physical/Special split added.
 - 4th (orange) Stat Page added to Pokémon - met time, level & location caught, Hidden Power type and EVs earned are all displayed.
 - Vitamins give 4 EVs and prices re-adjusted. Pokémon can max out EVs with items alone. 
 - Reworked Exp Share to give party wide Experience and EVs even when at the level cap or level 100. If a Pokémon cannot level up, deposit and withdraw them via the PC to gain the stat changes. 
@@ -99,6 +91,7 @@ POKEGEAR: Now shows the detailed name of map you're currently in (based on Map G
 - Item usage is forbidden and forced Set mode is enabled for all trainers.
 - Removed the 25% failure chance for AI status moves.
 - Removed the gym badges boosts.
+- Enemy trainer's Return deal max damage (102) always.
 - Level caps added (not fully implemented yet).
 - Quick Claw activation text added.
 - Sacred Ash acts like a Pokémon Center heal and does not require any KO’d Pokémon for its activation.
