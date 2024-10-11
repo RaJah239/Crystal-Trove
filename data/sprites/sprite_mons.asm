@@ -51,7 +51,6 @@ SpriteMons:
 	db ODDISH
 	db PARAS
 	db MEOWTH
-	db PIDGEOTTO
 	db SNUBBULL
 	db KADABRA
 	db DROWZEE
