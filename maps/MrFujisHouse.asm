@@ -32,10 +32,10 @@ MrFujisRapidashScript:
 	closetext
 	end
 
-MrFujisPidgeottoScript:
+MrFujisPidgeyScript:
 	opentext
-	writetext MrFujisPidgeottoText
-	cry PIDGEOTTO
+	writetext MrFujisPidgeyText
+	cry PIDGEY
 	waitbutton
 	closetext
 	end
@@ -73,8 +73,8 @@ MrFujisRapidashScriptText:
 	text "RAPIDASH: Neigh!"
 	done
 
-MrFujisPidgeottoText:
-	text "PIDGEOTTO: Pijji!"
+MrFujisPidgeyText:
+	text "PIDGEY: Pijji!"
 	done
 
 MrFujisHouse_MapEvents:
@@ -95,4 +95,4 @@ MrFujisHouse_MapEvents:
 	object_event  3,  4, SPRITE_LASS, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, MrFujisHouseLassScript, -1
 	object_event  7,  4, SPRITE_PSYDUCK_OW, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, MrFujisPsyduck, -1
 	object_event  5,  5, SPRITE_RAPIDASH_OW, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, MrFujisRapidashScript, -1
-	object_event  1,  3, SPRITE_PIDGEOTTO_OW, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, MrFujisPidgeottoScript, -1
+	object_event  1,  3, SPRITE_PIDGEY_OW, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, MrFujisPidgeyScript, -1
