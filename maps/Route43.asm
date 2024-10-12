@@ -454,6 +454,9 @@ PicnickerTiffanyClefairyText:
 	text "Isn't my CLEFAIRY"
 	line "just the most"
 	cont "adorable thing?"
+	
+	para "If you had one, we"
+	line "could be friends!"
 	done
 
 Route43Sign1Text:
