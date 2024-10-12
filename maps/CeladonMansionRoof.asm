@@ -158,7 +158,7 @@ ArcherMatchAfterText:
 	line "members."
 
 	para "Rumor of GIOVANNI"
-	line "is training some-"
+	line "training somewhere"
 	
 	para "where linking"
 	line "JOHTO to KANTO…"

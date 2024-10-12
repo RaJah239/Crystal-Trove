@@ -107,7 +107,7 @@ Route24RocketDisappearsText:
 	line "rumors of ARCHER"
 	
 	para "in CELADON but I"
-	line "haven't fond him…"
+	line "haven't found him…"
 
 	para "I've been talking"
 	line "aloud again…"
