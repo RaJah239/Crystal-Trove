@@ -1,5 +1,5 @@
 	object_const_def
-		const CELADONMANSIONROOF_TEAM_ROCKET
+		const CELADONMANSIONROOF_TEAM_ROCKET_ARCHER
 
 CeladonMansionRoof_MapScripts:
 	def_scene_scripts
@@ -26,7 +26,7 @@ CeladonArcherScript:
 	writetext ArcherMatchAfterText
 	waitbutton
 	closetext
-	turnobject CELADONMANSIONROOF_TEAM_ROCKET, RIGHT
+	turnobject CELADONMANSIONROOF_TEAM_ROCKET_ARCHER, RIGHT
 	end
 	
 .FightDone: 
@@ -70,7 +70,7 @@ CeladonArcherScript:
 	writetext ArcherMatch2AfterText
 	waitbutton
 	closetext
-	turnobject CELADONMANSIONROOF_TEAM_ROCKET, RIGHT
+	turnobject CELADONMANSIONROOF_TEAM_ROCKET_ARCHER, RIGHT
 	end
 
 ArcherIntroText:
@@ -216,4 +216,4 @@ CeladonMansionRoof_MapEvents:
 	bg_event  6,  1, BGEVENT_LEFT, CeladonMansionRoofGraffiti
 
 	def_object_events
-	object_event  7,  8, SPRITE_ARCHER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 1, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CeladonArcherScript, -1
+	object_event  7,  8, SPRITE_ARCHER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 1, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CeladonArcherScript, EVENT_CELADON_MANSION_ROOF_TEAM_ROCKET_ARCHER

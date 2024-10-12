@@ -24,6 +24,7 @@ Route24RocketScript:
 	waitbutton
 	verbosegiveitem MACHINE_PART
 	setevent EVENT_FOUND_MACHINE_PART_IN_CERULEAN_GYM
+	clearevent EVENT_CELADON_MANSION_ROOF_TEAM_ROCKET_ARCHER
 	promptbutton
 	special FadeOutMusic
 	writetext Route24RocketDisappearsText
@@ -102,11 +103,11 @@ Route24RocketDisappearsText:
 	para "given orders for"
 	line "some time now."
 	
-	para "Your formidable"
-	line "strength indeed"
-
-	para "does seem capable"
-	line "of it…"
+	para "There's been some"
+	line "rumors of ARCHER"
+	
+	para "in CELADON but I"
+	line "haven't fond him…"
 
 	para "I've been talking"
 	line "aloud again…"
