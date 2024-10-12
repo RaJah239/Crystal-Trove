@@ -22,6 +22,7 @@ CeladonArcherScript:
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_CELADON_ARCHER
+	clearevent EVENT_TOHJO_FALLS_GIOVANNI
 	opentext
 	writetext ArcherMatchAfterText
 	waitbutton
@@ -155,6 +156,14 @@ ArcherMatchAfterText:
 
 	para "TEAM ROCKET"
 	line "members."
+
+	para "Rumor of GIOVANNI"
+	line "is training some-"
+	
+	para "where linking"
+	line "JOHTO to KANTO…"
+
+	para "…"
 
 	para "Our dream has come"
 	line "to an end and the"
