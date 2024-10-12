@@ -58,7 +58,7 @@ POKEGEAR: Now shows the detailed name of map you're currently in (based on Map G
 - Field moves are useable of a Pokémon can learn the TM/HM and is in the respective pocket.
 - Items that act like HMs added (except Fly) to prevent softlocks.
 - Animate tiles when text boxes are open.
-- Pokémon eggs get laid 100% of the time after a set number of steps.
+- Pokémon eggs get laid 100% of the time after 256 steps and all eggs hatch after 1,024 steps.
 - Eggs hatch at level 1.
 - Refusing eggs no longer prevents Pokémon from laying more.
 - Eggs can be released via the PC.
