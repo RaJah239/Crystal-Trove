@@ -59,8 +59,10 @@ POKEGEAR: Now shows the detailed name of map you're currently in (based on Map G
 - Items that act like HMs added (except Fly) to prevent softlocks.
 - Animate tiles when text boxes are open.
 - Pokémon eggs get laid 100% of the time after a set number of steps.
+- Eggs hatch at level 1.
 - Refusing eggs no longer prevents Pokémon from laying more.
 - Eggs can be released via the PC.
+- Odd Egg always has PokéRUS.
 - Hatch Room was added to the Day Care out back. Only accessible via Bicycle. The old man appears there if your Pokémon laid any eggs and there’s a Porygon PC as well.
 - Press A or B to stop the Bicycle in the Day Care's Hatch Room or Kanto’s Cycling Road.
 - Slot Machines payout were adjusted as coins are now used for a lot of things.
