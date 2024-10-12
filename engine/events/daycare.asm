@@ -538,7 +538,7 @@ DayCare_InitBreeding:
     ret z
     ld hl, wDayCareMan
     set DAYCAREMAN_MONS_COMPATIBLE_F, [hl]
-    ld a, 100	; number of steps to get egg
+    ld a, 256	; number of steps to get egg
     ld [wStepsToEgg], a
     jp .UselessJump
 
