@@ -96,6 +96,7 @@ POKEGEAR: Now shows the detailed name of map you're currently in (based on Map G
 - Quick Claw activation text added.
 - Sacred Ash acts like a Pokémon Center heal and does not require any KO’d Pokémon for its activation.
 - Gym trainers reset when exiting if the leader hasn't been defeated.
+- Shiny Pokémon chance is 1/256. Can get any Hidden Power type (except Fairy).
 
 # **Asset Credits List:**
 - RBY text frame added from Polished Crystal
