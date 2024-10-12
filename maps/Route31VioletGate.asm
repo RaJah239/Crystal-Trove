@@ -5,8 +5,32 @@
 
 Route31VioletGate_MapScripts:
 	def_scene_scripts
+	scene_script Route31VioletGateScene1, SCENE_ROUTE31VIOLETGATE_FISHING_GURU
+	scene_script Route31VioletGateFNoop1, SCENE_ROUTE31VIOLETGATE_NOOP
 
 	def_callbacks
+
+Route31VioletGateScene1:
+	end
+
+Route31VioletGateFNoop1:
+	end
+
+Route31VioletGateFishingGuruSceneScript:
+	showemote EMOTE_SHOCK, ROUTE31VIOLETGATE_FISHING_GURU, 15
+	turnobject PLAYER, UP
+	setscene SCENE_ROUTE31VIOLETGATE_NOOP
+	opentext
+	writetext Route31VioletGateFishingGuruText_Question
+	promptbutton
+	verbosegiveitem OLD_ROD
+	writetext NowYoureAnAnglerTooText
+	promptbutton
+	writetext Route31VioletGateFishingGuruText_GiveOldRod
+	waitbutton
+	closetext
+	setevent EVENT_GOT_OLD_ROD
+	end
 
 Route31VioletGateOfficerScript:
 	jumptextfaceplayer Route31VioletGateOfficerText
@@ -17,24 +41,18 @@ Route31VioletGateCooltrainerFScript:
 Route31VioletGateFishingGuruScript:
 	faceplayer
 	opentext
+	setscene SCENE_ROUTE31VIOLETGATE_NOOP
 	checkevent EVENT_GOT_OLD_ROD
 	iftrue .GotOldRod
 	writetext Route31VioletGateFishingGuruText_Question
-	yesorno
-	iffalse .Refused
-	writetext Route31VioletGateFishingGuruText_Yes
 	promptbutton
 	verbosegiveitem OLD_ROD
+	writetext NowYoureAnAnglerTooText
+	promptbutton
 	writetext Route31VioletGateFishingGuruText_GiveOldRod
 	waitbutton
 	closetext
 	setevent EVENT_GOT_OLD_ROD
-	end
-
-.Refused:
-	writetext Route31VioletGateFishingGuruText_No
-	waitbutton
-	closetext
 	end
 
 .GotOldRod:
@@ -55,15 +73,11 @@ Route31VioletGateFishingGuruText_Question:
 	line "I have peaked"
 	cont "your interest."
 
-	para "Would you like one"
-	line "of my RODS?"
+	para "Take this!"
 	done
 
-Route31VioletGateFishingGuruText_Yes:
-	text "Heh, that's good"
-	line "to hear."
-
-	para "Now you're an"
+NowYoureAnAnglerTooText:
+	text "Now you're an"
 	line "angler too!"
 	done
 
@@ -75,11 +89,6 @@ Route31VioletGateFishingGuruText_GiveOldRod:
 
 	para "stream, try out"
 	line "your ROD."
-	done
-
-Route31VioletGateFishingGuruText_No:
-	text "Oh. That's rather"
-	line "disappointing…"
 	done
 
 Route31VioletGateFishingGuruText_After:
@@ -109,6 +118,7 @@ Route31VioletGate_MapEvents:
 	warp_event  9,  5, ROUTE_31, 2
 
 	def_coord_events
+	coord_event  2,  5, SCENE_ROUTE31VIOLETGATE_FISHING_GURU, Route31VioletGateFishingGuruSceneScript
 
 	def_bg_events
 
