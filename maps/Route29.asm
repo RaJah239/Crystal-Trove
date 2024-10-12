@@ -44,8 +44,7 @@ Route29Tutorial1:
 	setevent EVENT_DUDE_TALKED_TO_YOU
 	opentext
 	writetext CatchingTutorialIntroText
-	yesorno
-	iffalse Script_RefusedTutorial1
+	promptbutton
 	closetext
 	follow ROUTE29_COOLTRAINER_M1, PLAYER
 	applymovement ROUTE29_COOLTRAINER_M1, DudeMovementData1b
@@ -55,6 +54,10 @@ Route29Tutorial1:
 	turnobject ROUTE29_COOLTRAINER_M1, UP
 	opentext
 	writetext CatchingTutorialDebriefText
+	promptbutton
+	writetext PokemonHideInGrassText
+	promptbutton
+	writetext RememberToSwitchOnEncountersText
 	waitbutton
 	closetext
 	setscene SCENE_ROUTE29_NOOP
@@ -69,8 +72,7 @@ Route29Tutorial2:
 	setevent EVENT_DUDE_TALKED_TO_YOU
 	opentext
 	writetext CatchingTutorialIntroText
-	yesorno
-	iffalse Script_RefusedTutorial2
+	promptbutton
 	closetext
 	follow ROUTE29_COOLTRAINER_M1, PLAYER
 	applymovement ROUTE29_COOLTRAINER_M1, DudeMovementData2b
@@ -80,58 +82,22 @@ Route29Tutorial2:
 	turnobject ROUTE29_COOLTRAINER_M1, UP
 	opentext
 	writetext CatchingTutorialDebriefText
+	promptbutton
+	writetext PokemonHideInGrassText
+	promptbutton
+	writetext RememberToSwitchOnEncountersText
 	waitbutton
 	closetext
 	setscene SCENE_ROUTE29_NOOP
 	setevent EVENT_LEARNED_TO_CATCH_POKEMON
-	end
-
-Script_RefusedTutorial1:
-	writetext CatchingTutorialDeclinedText
-	waitbutton
-	closetext
-	applymovement ROUTE29_COOLTRAINER_M1, DudeMovementData1b
-	setscene SCENE_ROUTE29_NOOP
-	end
-
-Script_RefusedTutorial2:
-	writetext CatchingTutorialDeclinedText
-	waitbutton
-	closetext
-	applymovement ROUTE29_COOLTRAINER_M1, DudeMovementData2b
-	setscene SCENE_ROUTE29_NOOP
 	end
 
 CatchingTutorialDudeScript:
 	faceplayer
 	opentext
-	readvar VAR_BOXSPACE
-	ifequal 0, .BoxFull
-	checkevent EVENT_LEARNED_TO_CATCH_POKEMON
-	iftrue .BoxFull
-	checkevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
-	iffalse .BoxFull
-	writetext CatchingTutorialRepeatText
-	yesorno
-	iffalse .Declined
-	closetext
-	loadwildmon RATTATA, 5
-	catchtutorial BATTLETYPE_TUTORIAL
-	opentext
-	writetext CatchingTutorialDebriefText
-	waitbutton
-	closetext
-	setevent EVENT_LEARNED_TO_CATCH_POKEMON
-	end
-
-.BoxFull:
-	writetext CatchingTutorialBoxFullText
-	waitbutton
-	closetext
-	end
-
-.Declined:
-	writetext CatchingTutorialDeclinedText
+	writetext PokemonHideInGrassText
+	promptbutton
+	writetext RememberToSwitchOnEncountersText
 	waitbutton
 	closetext
 	end
@@ -246,12 +212,23 @@ DudeMovementData2b:
 	step DOWN
 	step_end
 
-CatchingTutorialBoxFullText:
+PokemonHideInGrassText:
 	text "#MON hide in"
 	line "the grass. Who"
 
 	para "knows when they'll"
-	line "pop out…"
+	line "pop out…and they"
+	cont "may flee too!"
+
+	para "Putting a #MON"
+	line "to sleep or more"
+
+	para "reliably using"
+	line "a trapping move"
+
+	para "like MEAN LOOK"
+	line "or SPIDER WEB"
+	cont "prevents escape."
 	done
 
 CatchingTutorialIntroText:
@@ -259,11 +236,11 @@ CatchingTutorialIntroText:
 	line "couple times. How"
 
 	para "many #MON have"
-	line "you caught?"
+	line "you caught? Zero?"
 
-	para "Would you like me"
-	line "to show you how to"
-	cont "catch #MON?"
+	para "Allow me show you"
+	line "you how to catch"
+	cont "#MON."
 	done
 
 CatchingTutorialDebriefText:
@@ -271,28 +248,22 @@ CatchingTutorialDebriefText:
 	line "it."
 
 	para "If you weaken them"
-	line "first, #MON are"
-	cont "easier to catch."
+	line "first by lowering"
+
+	para "Hit Points and us-"
+	line "ing Status moves,"
+
+	para "#MON become"
+	line "easier to catch."
 	done
 
-CatchingTutorialDeclinedText:
-	text "Oh. Fine, then."
+RememberToSwitchOnEncountersText:
+	text "Remember to switch"
+	line "ENCOUNTERS 'ON' in"
 
-	para "Anyway, if you"
-	line "want to catch"
-
-	para "#MON, you have"
-	line "to walk a lot."
-
-	para "Your #DEX shows"
-	line "where you can find"
-	cont "them too!"	
-	done
-
-CatchingTutorialRepeatText:
-	text "Huh? You want me"
-	line "to show you how to"
-	cont "catch #MON?"
+	para "your OPTIONS menu"
+	line "when you want to"
+	cont "find #MON."
 	done
 
 Route29YoungsterText:
