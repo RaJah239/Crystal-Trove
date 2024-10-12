@@ -36,7 +36,7 @@ Red:
 	disappear SILVERCAVEROOM3_RED
 	pause 15
 	special FadeInFromBlack
-	pause 30
+	pause 15
 	special HealParty
 	reanchormap
 	credits
@@ -56,9 +56,8 @@ Red:
 	special ReloadSpritesNoPalettes
 	disappear SILVERCAVEROOM3_RED
 	pause 15
-	special FadeOutToBlack
-	pause 30
-	special HealParty
+	special FadeInFromBlack
+	pause 15
 	special BeastsCheck
 	iffalse .YouStillNeedToCatchRoamers
 	clearevent EVENT_ROUTE_45_RAIKOU
@@ -85,7 +84,6 @@ Red:
 	clearevent EVENT_RUINSOFALPHHOOHWORDROOM_MEW
 	clearevent EVENT_SILVER_CAVE_ITEM_ROOMS_MEWTWO
 	refreshscreen
-	credits
 	end
 
 RedText:
