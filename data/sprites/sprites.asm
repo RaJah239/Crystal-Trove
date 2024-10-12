@@ -80,7 +80,7 @@ OverworldSprites:
 	overworld_sprite SailorSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE
 	overworld_sprite BikerSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BROWN
 	overworld_sprite PharmacistSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE
-	overworld_sprite MonsterSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED
+	overworld_sprite MonsterSpriteGFX, 12, STILL_SPRITE, PAL_OW_RED
 	overworld_sprite FairySpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED
 	overworld_sprite BirdSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED
 	overworld_sprite DragonSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED
@@ -104,8 +104,8 @@ OverworldSprites:
 	overworld_sprite KrisRunSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE
 	overworld_sprite ChrisSurfSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE
 	overworld_sprite KrisSurfSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE
-	overworld_sprite ChanseyOWSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED
-	overworld_sprite PorygonOWSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED
+	overworld_sprite ChanseyOWSpriteGFX, 12, STANDING_SPRITE, PAL_OW_RED
+	overworld_sprite PorygonOWSpriteGFX, 12, STANDING_SPRITE, PAL_OW_RED
 	overworld_sprite QwilfishOWSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE
 	overworld_sprite LanturnOWSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE
 	overworld_sprite MantineOWSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE
