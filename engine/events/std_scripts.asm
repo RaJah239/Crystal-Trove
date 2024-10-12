@@ -1693,7 +1693,7 @@ CoinVendor_IntroScript:
 	ifequal HAVE_MORE, .CoinCaseFull
 	checkmoney YOUR_MONEY, 10000
 	ifequal HAVE_LESS, .NotEnoughMoney
-	givecoins 10
+	givecoins 50
 	takemoney YOUR_MONEY, 10000
 	waitsfx
 	playsound SFX_TRANSACTION
@@ -1728,7 +1728,7 @@ CoinVendor_IntroScript:
 .MenuData:
 	db STATICMENU_CURSOR ; flags
 	db 2 ; items
-	db " 10 : ¥10000@"
+	db " 50 : ¥10000@"
 	db "CANCEL@"
 
 HappinessCheckScript:
