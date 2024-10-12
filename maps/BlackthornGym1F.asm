@@ -40,6 +40,7 @@ BlackthornGym1FBouldersCallback:
 	endcallback
 
 BlackthornGymClairScript:
+	playmusic MUSIC_CLAIR	
 	faceplayer
 	opentext
 	checkflag ENGINE_RISINGBADGE
@@ -116,6 +117,7 @@ BlackthornGymClairScript:
     writetext ClairRematchRefuseText
     waitbutton
     closetext
+    special RestartMapMusic
     end
 
 .DoRematch:
