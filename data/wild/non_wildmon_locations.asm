@@ -20,7 +20,7 @@ CasinoMons::
 	; johto, from maps\goldenrodgamecorner.asm
 	map_id GOLDENROD_GAME_CORNER
 	casinomon ABRA, GOLDENRODGAMECORNER_MR__MIME_COINS
-	casinomon CUBONE, GOLDENRODGAMECORNER_LARVITAR_COINS
+	casinomon CUBONE, GOLDENRODGAMECORNER_DUNSPARCE_COINS
 	casinomon WOBBUFFET, GOLDENRODGAMECORNER_PORYGON_COINS 
 	db -1
 	; kanto, from maps\celadongamecornerprizeroom.asm

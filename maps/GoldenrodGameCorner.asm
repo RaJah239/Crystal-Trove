@@ -2,12 +2,12 @@ DEF GOLDENRODGAMECORNER_TM25_COINS      EQU 8000
 DEF GOLDENRODGAMECORNER_TM14_COINS      EQU 8000
 DEF GOLDENRODGAMECORNER_TM38_COINS      EQU 8000
 DEF GOLDENRODGAMECORNER_MR__MIME_COINS  EQU 7777
-DEF GOLDENRODGAMECORNER_LARVITAR_COINS  EQU 8888
+DEF GOLDENRODGAMECORNER_DUNSPARCE_COINS EQU 8888
 DEF GOLDENRODGAMECORNER_PORYGON_COINS   EQU 9999
 
 
 EXPORT GOLDENRODGAMECORNER_MR__MIME_COINS
-EXPORT GOLDENRODGAMECORNER_LARVITAR_COINS
+EXPORT GOLDENRODGAMECORNER_DUNSPARCE_COINS
 EXPORT GOLDENRODGAMECORNER_PORYGON_COINS
 
 	object_const_def
@@ -139,7 +139,7 @@ GoldenrodGameCornerPrizeMonVendorScript:
 	verticalmenu
 	closewindow
 	ifequal 1, .MrMime
-	ifequal 2, .Larvitar
+	ifequal 2, .Dunsparce
 	ifequal 3, .Porygon
 	sjump GoldenrodGameCornerPrizeVendor_CancelPurchaseScript
 
@@ -179,22 +179,22 @@ GoldenrodGameCornerPrizeMonVendorScript:
 	takecoins GOLDENRODGAMECORNER_PORYGON_COINS
 	sjump .loop
 
-.Larvitar:
-	checkcoins GOLDENRODGAMECORNER_LARVITAR_COINS
+.Dunsparce:
+	checkcoins GOLDENRODGAMECORNER_DUNSPARCE_COINS
 	ifequal HAVE_LESS, GoldenrodGameCornerPrizeVendor_NotEnoughCoinsScript
 	readvar VAR_PARTYCOUNT
 	ifequal PARTY_LENGTH, GoldenrodGameCornerPrizeMonVendor_NoRoomForPrizeScript
-	getmonname STRING_BUFFER_3, LARVITAR
+	getmonname STRING_BUFFER_3, DUNSPARCE
 	scall GoldenrodGameCornerPrizeVendor_ConfirmPurchaseScript
 	iffalse GoldenrodGameCornerPrizeVendor_CancelPurchaseScript
 	waitsfx
 	playsound SFX_TRANSACTION
 	writetext GoldenrodGameCornerPrizeVendorHereYouGoText
 	waitbutton
-	setval LARVITAR
+	setval DUNSPARCE
 	special GameCornerPrizeMonCheckDex
-	givepoke LARVITAR, 15, HARD_STONE
-	takecoins GOLDENRODGAMECORNER_LARVITAR_COINS
+	givepoke DUNSPARCE, 15, PINK_BOW
+	takecoins GOLDENRODGAMECORNER_DUNSPARCE_COINS
 	sjump .loop
 
 .MenuHeader:
@@ -207,7 +207,7 @@ GoldenrodGameCornerPrizeMonVendorScript:
 	db STATICMENU_CURSOR ; flags
 	db 4 ; items
 	db "MR.MIME    7777@"
-	db "LARVITAR   8888@"
+	db "DUNSPARCE  8888@"
 	db "PORYGON    9999@"
 	db "CANCEL@"
 
