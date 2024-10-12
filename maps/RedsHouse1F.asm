@@ -1,5 +1,6 @@
 	object_const_def
 	const REDSHOUSE1F_REDS_MOM
+	const REDSHOUSE1F_RED
 
 RedsHouse1F_MapScripts:
 	def_scene_scripts
@@ -13,17 +14,28 @@ RedHouse1FNoopScene:
 RedsMom:
 	faceplayer
 	opentext
+	checkevent EVENT_REDS_HOUSE_1F_RED_IS_HOME
+	iffalse .RedsFinallyHome
 	checkevent EVENT_MET_REDS_MOM
 	iftrue .MetAlready
 	writetext RedsMomText1
 	waitbutton
 	closetext
 	setevent EVENT_MET_REDS_MOM
+	turnobject REDSHOUSE1F_REDS_MOM, LEFT
 	end
 .MetAlready:
 	writetext RedsMomText2
 	waitbutton
 	closetext
+	turnobject REDSHOUSE1F_REDS_MOM, LEFT
+	end
+
+.RedsFinallyHome
+	writetext RedsFinallyHomeText
+	waitbutton
+	closetext
+	turnobject REDSHOUSE1F_REDS_MOM, LEFT
 	end
 
 RedsHouse1FTV:
@@ -31,6 +43,34 @@ RedsHouse1FTV:
 
 RedsHouse1FBookshelf:
 	jumpstd PictureBookshelfScript
+
+RedScript:
+	faceplayer
+	opentext
+	writetext RedHomeText
+	waitbutton
+	closetext
+	turnobject REDSHOUSE1F_RED, RIGHT
+	end
+
+RedHomeText:
+	text "<……>"
+	line "<……>"
+	done
+
+RedsFinallyHomeText:
+	text "RED's finally home!"
+	line "I'm so happy!"
+
+	para "A mom will always"
+	line "worry about her"
+	
+	para "children regard-"
+	line "less their age."
+	
+	para "You ought to check"
+	line "home regularly."
+	done
 
 RedsMomText1:
 	text "Hi!"
@@ -88,4 +128,5 @@ RedsHouse1F_MapEvents:
 	bg_event  2,  1, BGEVENT_READ, RedsHouse1FTV
 
 	def_object_events
-	object_event  5,  3, SPRITE_REDS_MOM, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, RedsMom, -1
+	object_event  5,  4, SPRITE_REDS_MOM, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, RedsMom, -1
+	object_event  2,  4, SPRITE_RED, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, RedScript, EVENT_REDS_HOUSE_1F_RED_IS_HOME

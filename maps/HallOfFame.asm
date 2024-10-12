@@ -36,10 +36,7 @@ HallOfFameEnterScript:
 	clearevent EVENT_RED_IN_MT_SILVER
 	setevent EVENT_OLIVINE_PORT_SPRITES_BEFORE_HALL_OF_FAME
 	clearevent EVENT_OLIVINE_PORT_SPRITES_AFTER_HALL_OF_FAME
-	setmapscene SPROUT_TOWER_3F, SCENE_SPROUTTOWER3F_NOOP
 	special HealParty
-	checkevent EVENT_GOT_SS_TICKET_FROM_ELM
-	iftrue .SkipPhoneCall
 	specialphonecall SPECIALCALL_SSTICKET
 	halloffame
 	end
@@ -61,12 +58,8 @@ HallOfFameEnterScript:
 	special HealMachineAnim
 	setevent EVENT_BEAT_ELITE_FOUR
 	clearevent EVENT_RED_IN_MT_SILVER
-	setmapscene SPROUT_TOWER_3F, SCENE_SPROUTTOWER3F_NOOP
+	setevent EVENT_REDS_HOUSE_1F_RED_IS_HOME
 	special HealParty
-	checkevent EVENT_GOT_SS_TICKET_FROM_ELM
-	iftrue .SkipPhoneCall
-	specialphonecall SPECIALCALL_SSTICKET
-.SkipPhoneCall:
 	halloffame
 	end
 
