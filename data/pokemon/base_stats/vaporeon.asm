@@ -9,7 +9,7 @@
 	db 196 ; base exp
 	db NO_ITEM, NO_ITEM ; items
 	db GENDER_F12_5 ; gender ratio
-	db 35 ; step cycles to hatch
+	db 4 ; step cycles to hatch
 	INCBIN "gfx/pokemon/vaporeon/front.dimensions"
 	dw NULL, NULL ; unused (beta front/back pics)
 	db GROWTH_MEDIUM_FAST ; growth rate

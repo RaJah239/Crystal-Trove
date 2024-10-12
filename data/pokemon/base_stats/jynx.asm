@@ -9,7 +9,7 @@
 	db 137 ; base exp
 	db ICE_BERRY, ICE_BERRY ; items
 	db GENDER_F100 ; gender ratio
-	db 25 ; step cycles to hatch
+	db 4 ; step cycles to hatch
 	INCBIN "gfx/pokemon/jynx/front.dimensions"
 	dw NULL, NULL ; unused (beta front/back pics)
 	db GROWTH_MEDIUM_FAST ; growth rate

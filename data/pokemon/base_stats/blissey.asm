@@ -9,7 +9,7 @@
 	db 255 ; base exp
 	db NO_ITEM, LUCKY_EGG ; items
 	db GENDER_F100 ; gender ratio
-	db 40 ; step cycles to hatch
+	db 4 ; step cycles to hatch
 	INCBIN "gfx/pokemon/blissey/front.dimensions"
 	dw NULL, NULL ; unused (beta front/back pics)
 	db GROWTH_FAST ; growth rate

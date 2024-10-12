@@ -9,7 +9,7 @@
 	db 154 ; base exp
 	db LEFTOVERS, LEFTOVERS ; items
 	db GENDER_F12_5 ; gender ratio
-	db 40 ; step cycles to hatch
+	db 4 ; step cycles to hatch
 	INCBIN "gfx/pokemon/snorlax/front.dimensions"
 	dw NULL, NULL ; unused (beta front/back pics)
 	db GROWTH_SLOW ; growth rate
