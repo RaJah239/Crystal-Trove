@@ -112,7 +112,7 @@ POKEGEAR: Now shows the detailed name of map you're currently in (based on Map G
 - Surf faster - cRz-Shadows on Discord
 - RBY Kanto's Gym Leader Battle, Indigo Plateau & Champion Theme by dannye from Discord & GitHub.
 - Maxie/Archie Battle, Hoen Rival Battle, May Encounter, Cave of Origin and Unova Elite Four themes all by Mmmmm from SoundCloud/ https://soundcloud.com/mmmmmmmmmmmmmmmmm-1.
-- Farfetch'd overworld sprite by SourApple.
+- Dragonite and Farfetch'd overworld sprite by SourApple.
 
 # **General Credits List:**
 - Everyone that contributed to the pokecrystal disassembly, Pret’s Discord Server and pokecrystal tutorials which legitimately carried me.
