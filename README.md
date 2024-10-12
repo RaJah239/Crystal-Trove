@@ -78,6 +78,11 @@ POKEGEAR: Now shows the detailed name of map you're currently in (based on Map G
 - 21 Grotto-like maps added throughout the game. 
 - Each Grotto have 5 Pokémon (except two). There is a 1/20 to have one appear on each entry. May need to be entered a few times to have one spawn.
 
+**Miscellaneous**
+- Time of Day Updated:
+Morning	-  5:00am - 9:59am // Day	- 10:00am - 6:59pm // Night	-	7:00pm - 4:59pm
+
+
 # **Pokémon // Battle Related:**
 - Affection added to Pokémon's 3rd (blue) stat page.
 - Gen 3+ Effort Values (EVs) system replaced vanilla Stat Experience and Pokémon EV yield on KO readjusted. EV yeild can be seen in the Pokédex.
