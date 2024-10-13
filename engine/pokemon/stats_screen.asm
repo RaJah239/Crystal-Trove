@@ -1043,7 +1043,7 @@ StatsScreen_placeCaughtLocation:
 .MetAtMapString:
 	db "MET: @"
 .MetUnknownMapString:
-	db "UNKNOWN LOCATION@"
+	db "LOCATION UNCLEAR@"
 
 StatsScreen_placeCaughtTime:
 	ld a, [wTempMonCaughtTime]
@@ -1077,7 +1077,7 @@ StatsScreen_placeCaughtTime:
 	db "DAY@"
 	db "NITE@"
 .unknown_time_text
-	db "LINK@"
+	db "TRADE/HATCHED@"
 
 StatsScreen_placeCaughtLevel:
 	; caught level
@@ -1104,7 +1104,7 @@ StatsScreen_placeCaughtLevel:
 	call PlaceString
 	ret   
 .MetUnknownLevelString:
-	db "TRADE@"
+	db "@"
 
 StatsScreen_LoadUnownFont:
 	ld a, BANK(sScratch)
