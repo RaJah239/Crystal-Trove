@@ -35,7 +35,7 @@ DayCareManScript_Outside:
 	ifequal TRUE, .end_fail
 	clearflag ENGINE_DAY_CARE_MAN_HAS_EGG
 	readvar VAR_FACING
-	ifequal UP, .walk_around_player
+	ifequal RIGHT, .walk_around_player
 	applymovement HATCH_ROOM_GRAMPS, HatchRoomMovementData_DayCareManWalksBackInside
 	playsound SFX_ENTER_DOOR
 	disappear HATCH_ROOM_GRAMPS
@@ -49,16 +49,22 @@ DayCareManScript_Outside:
 	end
 
 HatchRoomMovementData_DayCareManWalksBackInside:
+	slow_step LEFT
 	slow_step DOWN
 	slow_step DOWN
-	slow_step RIGHT
+	slow_step DOWN
 	slow_step DOWN
 	step_end
 
 HatchRoomMovementData_DayCareManWalksBackInside_WalkAroundPlayer:
+	slow_step UP
+	slow_step LEFT
+	slow_step LEFT
+	slow_step DOWN
+	slow_step DOWN
+	slow_step DOWN
+	slow_step DOWN
 	slow_step RIGHT
-	slow_step DOWN
-	slow_step DOWN
 	slow_step DOWN
 	step_end
 
@@ -91,5 +97,5 @@ HatchRoom_MapEvents:
     def_bg_events
 
     def_object_events
-	object_event  1, 132, SPRITE_GRAMPS, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, DayCareManScript_Outside, EVENT_DAY_CARE_MAN_ON_ROUTE_34
+	object_event  3, 131, SPRITE_GRAMPS, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, DayCareManScript_Outside, EVENT_DAY_CARE_MAN_ON_ROUTE_34
 	object_event  4, 132, SPRITE_PORYGON_OW, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, DayCareHatchRoomPorygonPCScript, -1
