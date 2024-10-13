@@ -1587,9 +1587,7 @@ _NotYetText::
 
 _FoundAnEggText::
 	text "Your #MON had"
-	line "an EGG!"
-
-	para "Do you want it?"
+	line "an EGG! Want it?"
 	done
 
 _ReceivedEggText::
