@@ -308,7 +308,7 @@ DEF CELEBIEVENT_FOREST_IS_RESTLESS_F EQU 2
 	const DAILYFLAGS2_GOLDENROD_DEPT_STORE_TM27_RETURN_F  ; 3
 	const DAILYFLAGS2_DAISYS_GROOMING_F                   ; 4
 	const DAILYFLAGS2_INDIGO_PLATEAU_RIVAL_FIGHT_F        ; 5
-	const DAILYFLAGS2_MOVE_TUTOR_F                        ; 6
+	const DAILYFLAGS2_DAILY_GIFT_BERRY_F                  ; 6
 	const DAILYFLAGS2_BUENAS_PASSWORD_F                   ; 7
 
 ;  wDailyFlags3:: - 8 daily Flags can be added here (max)
