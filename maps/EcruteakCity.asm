@@ -127,7 +127,7 @@ EcruteakSuperNerdBurnedTowerBlockerText:
 	text "There's an invest-"
 	line "igation inside."
 
-	para "Go pass some time."
+	para "Come back later."
 
 	para "I hear, a man at"
 	line "the DANCE THEATER"
