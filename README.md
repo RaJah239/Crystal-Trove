@@ -1,7 +1,4 @@
-Needs to edit properly..but for now:
-
-Crystal Trove is hack that aims to be an enhanced Gen 2 experience with Quality of Life features, catching all Pokemon infinitely, increased replay value and tougher battles.
-It is however an ongoing project..
+Crystal Trove is an ongoing hack that aims to be an enhanced Gen 2 experience with Quality of Life features, catching all Pokemon infinitely, increased replay value (especially the post game) and tougher battles.
 
 Project Base: https://github.com/Nayru62/pokecrystal/tree/8.0_Nayrus_Pokedex which was based on the disassembly of Pokémon Crystal.
 
@@ -39,7 +36,7 @@ POKEGEAR: Now shows the detailed name of map you're currently in (based on Map G
 - Replace Menu Account with a small clock in the top left corner of the screen.
 - Clock Reset added to Main Menu.
 - All encounters can be turned On/Off from the Options Menu.
-- Do Not Disturb mode added Options Menu; prevent all non essential phone calls.
+- Do Not Disturb mode added in Options Menu; prevent all non essential phone calls.
 - Running shoes added (default Run, press B to walk).
 - Surf faster by default, press B to surf at regular speed.
 - Overworld Porygons added throughout the game for PC access.
@@ -65,7 +62,7 @@ POKEGEAR: Now shows the detailed name of map you're currently in (based on Map G
 - Eggs can be released via the PC.
 - Odd Egg always has PokéRUS.
 - Hatch Room was added to the Day Care out back. Only accessible via Bicycle. The old man appears there if your Pokémon laid any eggs and there’s a Porygon PC as well.
-- Press A or B to stop the Bicycle in the Day Care's Hatch Room or Kanto’s Cycling Road.
+- Press A or B to stop the Bicycle in the Day Care's Hatch Room and Kanto’s Cycling Road.
 - Slot Machines payout were adjusted as coins are now used for a lot of things.
 - Made the Lottery Corner generate a lucky number daily instead of weekly.
 - Swarm system reworked to trigger by talking to NPC daily. Swarms include Gen 1 and 2 starters, all baby Pokémon and Ditto.
@@ -99,7 +96,7 @@ Morning	-  5:00am - 9:59am // Day	- 10:00am - 6:59pm // Night	-	7:00pm - 4:59pm
 - Item usage is forbidden and forced Set mode is enabled for all trainers.
 - Removed the 25% failure chance for AI status moves.
 - Removed the gym badges boosts.
-- Enemy trainer's Return deal max damage (102) always.
+- Return has its maximum battle power (102) for enemy trainers.
 - Level caps added (not fully implemented yet).
 - Quick Claw activation text added.
 - Sacred Ash acts like a Pokémon Center heal and does not require any KO’d Pokémon for its activation.
@@ -110,18 +107,21 @@ Morning	-  5:00am - 9:59am // Day	- 10:00am - 6:59pm // Night	-	7:00pm - 4:59pm
 - RBY text frame added from Polished Crystal
 - Chris' run sprite by Tom Wang  and Kris' run sprite by Seasick both from GitHub
 - Do Not Disturb mode by lifeofmauri on Discord
-- Take off Encounters by lifeofmauri on Discord
+- Take off all overworld Encounters by lifeofmauri on Discord
 - Item usage is forbidden by lifeofmauri on Discord
 - Scarlet/Chiaki and Maxima's overworld and trainer sprite by TheBrawlUnit from DeviantArt
-- Cooltrainer Male overworld sprite eye fix by Major Agnostic on Discord
+- Ariana's trainer sprite by GetKosiorekt
+- Elder Li's trainer sprite from Polished Crystal
+- Giovanni, Archer, Proton and Petrel's overworld and trainer sprites by sirwhibbles from DeviantArt
+- Cooltrainer Male's overworld sprite eye fix by Major Agnostic on Discord
 - Battle HUD update by Idain and Major Agnostic on Discord
-- Corsola, Dratini, Kingdra, Starmie, Mantine, Octillery and Qwilfish swimming overworld sprites by FrenchOrange on Discord
-- Chansey, Porygon, Lanturn and Seaking overworld sprites by Megaman-Omega from DeviantArt
-- Charizard, Dragonite and Feraligatr back sprites by mauvesea on Discord
+- Corsola, Dratini, Kingdra, Starmie, Mantine, Octillery and Qwilfish's overworld swimming sprites by FrenchOrange on Discord
+- Chansey and Porygon's overworld sprites and Lanturn and Seaking's overworld swimming sprites by Megaman-Omega from DeviantArt
+- Charizard, Dragonite and Feraligatr's back sprites by mauvesea on Discord
 - Surf faster - cRz-Shadows on Discord
 - RBY Kanto's Gym Leader Battle, Indigo Plateau & Champion Theme by dannye from Discord & GitHub.
-- Maxie/Archie Battle, Hoen Rival Battle, May Encounter, Cave of Origin and Unova Elite Four themes all by Mmmmm from SoundCloud/ https://soundcloud.com/mmmmmmmmmmmmmmmmm-1.
-- Dragonite and Farfetch'd overworld sprite by SourApple.
+- Maxie/Archie Battle, Hoen Rival Battle, May Encounter, Cave of Origin and Unova Elite Four's themes all by Mmmmm from SoundCloud/ https://soundcloud.com/mmmmmmmmmmmmmmmmm-1.
+- Dragonite and Farfetch'd's overworld sprite by SourApple.
 
 # **General Credits List:**
 - Everyone that contributed to the pokecrystal disassembly, Pret’s Discord Server and pokecrystal tutorials which legitimately carried me.
