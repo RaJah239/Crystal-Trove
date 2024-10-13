@@ -56,6 +56,20 @@ StdScripts::
 	add_stdscript GameCornerCoinVendorScript
 	add_stdscript HappinessCheckScript
 	add_stdscript PorygonPCScript
+	add_stdscript ChanseyHealsOWScript
+
+
+ChanseyHealsOWScript:
+	faceplayer
+	opentext
+	farwritetext ChanseyHealText
+	cry CHANSEY
+	pause 10
+	closetext
+	special StubbedTrainerRankings_Healings
+	playsound SFX_FULL_HEAL
+	special HealParty
+	end
 
 PokecenterNurseScript:
 	checktime MORN

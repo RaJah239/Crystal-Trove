@@ -23,20 +23,7 @@ SilverCaveRoom2HiddenMaxPotion:
 	hiddenitem MAX_POTION, EVENT_SILVER_CAVE_ROOM_2_HIDDEN_MAX_POTION
 
 SilverCaveRoom2ChanseyScript:
-	faceplayer
-	opentext
-	writetext SilverCaveRoom2ChanseyHealText
-	cry CHANSEY
-	pause 10
-	closetext
-	special StubbedTrainerRankings_Healings
-	playsound SFX_FULL_HEAL
-	special HealParty
-	end
-	
-SilverCaveRoom2ChanseyHealText:
-	text "Seyyyy!"
-	done
+	jumpstd ChanseyHealsOWScript
 
 SilverCaveRoom2PorygonPCScript:
 	jumpstd PorygonPCScript

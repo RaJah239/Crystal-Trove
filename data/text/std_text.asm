@@ -1,3 +1,7 @@
+ChanseyHealText:
+	text "Seyyyy!"
+	done
+
 NurseMornText:
 	text "Good morning!"
 	line "Welcome to our"
