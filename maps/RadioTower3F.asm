@@ -6,7 +6,7 @@
 	const RADIOTOWER3F_ROCKET2
 	const RADIOTOWER3F_ROCKET3
 	const RADIOTOWER3F_SCIENTIST
-	const RADIOTOWER3F_NURSE
+	const RADIOTOWER3F_CHANSEY
 
 RadioTower3F_MapScripts:
 	def_scene_scripts
@@ -41,19 +41,6 @@ RadioTower3FGymGuideScript:
 	writetext RadioTower3FGymGuideText
 	waitbutton
 	closetext
-	end
-
-NurseHealScript:
-	faceplayer
-    opentext
-	writetext NurseHealText
-	waitbutton
-	closetext
-	special FadeOutToWhite
-	special StubbedTrainerRankings_Healings
-	playsound SFX_FULL_HEAL
-	special HealParty
-	special FadeInFromWhite
 	end
 
 RadioTower3FCooltrainerFScript:
@@ -164,11 +151,6 @@ RadioTower3FPersonnelSign:
 
 RadioTower3FPokemonMusicSign:
 	jumptext RadioTower3FPokemonMusicSignText
-
-NurseHealText:
-    text "Let me heal your"
-	line "#MON."
-	done
 
 RadioTower3FSuperNerdText:
 	text "We have recordings"
@@ -342,6 +324,9 @@ RadioTower3FPokemonMusicSignText:
 	line "Host DJ BEN"
 	done
 
+RadioTower3FChanseyScript:
+	jumpstd ChanseyHealsOWScript
+
 RadioTower3F_MapEvents:
 	db 0, 0 ; filler
 
@@ -365,4 +350,4 @@ RadioTower3F_MapEvents:
 	object_event  6,  2, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 3, TrainerGruntM8, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
 	object_event 16,  6, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 3, TrainerGruntM9, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
 	object_event  9,  6, SPRITE_SCIENTIST, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 5, TrainerScientistMarc, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	object_event  2,  1, SPRITE_NURSE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, NurseHealScript, -1
+	object_event  2,  1, SPRITE_CHANSEY_OW, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, RadioTower3FChanseyScript, EVENT_RADIO_TOWER_3F_CHANSEY
