@@ -23,6 +23,7 @@ OlivineGymJasmineScript:
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_JASMINE
+	clearevent EVENT_GOLDENROD_CITY_MOVE_TUTOR
 	opentext
 	writetext Text_ReceivedMineralBadge
 	playsound SFX_GET_BADGE

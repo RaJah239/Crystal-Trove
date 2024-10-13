@@ -72,6 +72,7 @@ POKEGEAR: Now shows the detailed name of map you're currently in (based on Map G
 - Name Rater can change traded Pokémon’s nicknames.
 - Trade Back Kid added in Ecruteak to evolve all Pokémon that require it.
 - Releasing the beasts registers Entei, Raikou and Suicune in the Pokédex for easier tracking.
+- Goldenrod Move Tutor appears after defeating Jasmine.
 - New Fly Points added for Route 20/Blaine’s Gym, Route 32, Route 26, Tohjo Falls/Route 27, Battle Tower, National Park, Mt. Moon and Rock Tunnel.
 - Old man and Kadabra at the Indigo Plateau Pokémon Center doesn't leave.
 - 21 Grotto-like maps added throughout the game. 
