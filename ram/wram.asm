@@ -3276,7 +3276,7 @@ wBackupWarpNumber:: db
 wBackupMapGroup::   db
 wBackupMapNumber::  db
 
-	ds 3
+	ds 2
 
 wLastSpawnMapGroup:: db
 wLastSpawnMapNumber:: db

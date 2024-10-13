@@ -35,6 +35,13 @@ FakeDirectorScript:
 	writetext FakeDirectorTextBefore2
 	waitbutton
 	closetext
+	applymovement RADIOTOWER5F_DIRECTOR, FakeDirectorImpersonatorSpinMovement
+	faceplayer
+	variablesprite SPRITE_DIRECTOR_IMPERSONATOR, SPRITE_PETREL
+	special LoadUsedSpritesGFX
+	opentext
+	writetext PetrelRevealsHimselfText
+	waitbutton
 	winlosstext FakeDirectorWinText, 0
 	setlasttalked RADIOTOWER5F_DIRECTOR
 	loadtrainer PETREL, PETREL2
@@ -48,6 +55,22 @@ FakeDirectorScript:
 	setscene SCENE_RADIOTOWER5F_ROCKET_BOSS
 	setevent EVENT_BEAT_ROCKET_EXECUTIVEM_3
 	end
+
+FakeDirectorImpersonatorSpinMovement:
+	turn_head DOWN
+	turn_head LEFT
+	turn_head UP
+	turn_head RIGHT
+	turn_head DOWN
+	turn_head LEFT
+	turn_head UP
+	turn_head RIGHT
+	turn_head DOWN
+	turn_head LEFT
+	turn_head UP
+	turn_head RIGHT
+	turn_head DOWN
+	step_end
 
 Director:
 	faceplayer
@@ -201,8 +224,10 @@ FakeDirectorTextBefore2:
 	cont "imposter!"
 
 	para "It is I, PETREL!"
+	done
 
-	para "I posed as the"
+PetrelRevealsHimselfText:
+	text "I posed as the"
 	line "Director to sway"
 
 	para "the entire region"
@@ -463,7 +488,7 @@ RadioTower5F_MapEvents:
 	bg_event 17,  1, BGEVENT_READ, RadioTower5FBookshelf
 
 	def_object_events
-	object_event  3,  6, SPRITE_GENTLEMAN, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Director, -1
+	object_event  3,  6, SPRITE_DIRECTOR_IMPERSONATOR, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1,PAL_NPC_PINK, OBJECTTYPE_SCRIPT, 0, Director, -1
 	object_event 13,  5, SPRITE_ARCHER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
 	object_event 17,  2, SPRITE_ARIANA, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 1, TrainerExecutivef1, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
 	object_event 13,  5, SPRITE_ROCKER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Ben, EVENT_RADIO_TOWER_CIVILIANS_AFTER
