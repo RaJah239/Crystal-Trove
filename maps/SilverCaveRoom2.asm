@@ -39,19 +39,7 @@ SilverCaveRoom2ChanseyHealText:
 	done
 
 SilverCaveRoom2PorygonPCScript:
-	faceplayer
-	opentext
-	writetext SilverCaveRoom2PorygonPCText
-	cry PORYGON
-	pause 10
-	special PokemonCenterPC
-	reloadmappart
-	end
-
-SilverCaveRoom2PorygonPCText:
-	text "#MON Storage"
-	line "System opened."
-	done
+	jumpstd PorygonPCScript
 
 SilverCaveRoom2_MapEvents:
 	db 0, 0 ; filler

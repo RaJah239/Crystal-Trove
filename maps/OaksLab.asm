@@ -354,19 +354,7 @@ OaksLabPCText:
 	done
 
 OaksLabPorygonPCScript:
-	faceplayer
-	opentext
-	writetext OaksLabPorygonPCText
-	cry PORYGON
-	pause 10
-	special PokemonCenterPC
-	reloadmappart
-	end
-
-OaksLabPorygonPCText:
-	text "#MON Storage"
-	line "System opened."
-	done
+	jumpstd PorygonPCScript
 
 OaksLabChanseyScript:
 	faceplayer

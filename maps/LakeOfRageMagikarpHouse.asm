@@ -203,19 +203,7 @@ LakeOfRageMagikarpHouseUnusedRecordText:
 	text_end
 
 LakeOfRageMagikarpHousePorygonPCScript:
-	faceplayer
-	opentext
-	writetext LakeOfRageMagikarpHousePorygonPCText
-	cry PORYGON
-	pause 10
-	special PokemonCenterPC
-	reloadmappart
-	end
-
-LakeOfRageMagikarpHousePorygonPCText:
-	text "#MON Storage"
-	line "System opened."
-	done
+	jumpstd PorygonPCScript
 
 LakeOfRageMagikarpHouse_MapEvents:
 	db 0, 0 ; filler

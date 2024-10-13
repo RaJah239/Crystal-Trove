@@ -136,19 +136,7 @@ Route34IlexForestGateLassText:
 	done
 
 Route34IlexForestGatePorygonPCScript:
-	faceplayer
-	opentext
-	writetext Route34IlexForestGatePorygonPCText
-	cry PORYGON
-	pause 10
-	special PokemonCenterPC
-	reloadmappart
-	end
-
-Route34IlexForestGatePorygonPCText:
-	text "#MON Storage"
-	line "System opened."
-	done
+	jumpstd PorygonPCScript
 
 Route34IlexForestGate_MapEvents:
 	db 0, 0 ; filler

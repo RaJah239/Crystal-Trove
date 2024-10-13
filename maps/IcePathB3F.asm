@@ -33,19 +33,7 @@ IcePathB3FChanseyHealText:
 
 
 IcePathB3FPorygonPCScript:
-	faceplayer
-	opentext
-	writetext IcePathB3PorygonPCText
-	cry PORYGON
-	pause 10
-	special PokemonCenterPC
-	reloadmappart
-	end
-
-IcePathB3PorygonPCText:
-	text "#MON Storage"
-	line "System opened."
-	done
+	jumpstd PorygonPCScript
 
 IcePathB3F_MapEvents:
 	db 0, 0 ; filler

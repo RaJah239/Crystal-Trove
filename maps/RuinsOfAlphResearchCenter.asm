@@ -564,19 +564,7 @@ RuinsOfAlphResearchCenterAcademicBooksText:
 	done
 
 RuinsOfAlphResearchCenterPorygonPCScript:
-	faceplayer
-	opentext
-	writetext RuinsOfAlphResearchCenterPorygonPCText
-	cry PORYGON
-	pause 10
-	special PokemonCenterPC
-	reloadmappart
-	end
-
-RuinsOfAlphResearchCenterPorygonPCText:
-	text "#MON Storage"
-	line "System opened."
-	done
+	jumpstd PorygonPCScript
 
 RuinsOfAlphResearchCenter_MapEvents:
 	db 0, 0 ; filler

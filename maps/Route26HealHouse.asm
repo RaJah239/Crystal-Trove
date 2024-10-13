@@ -41,19 +41,7 @@ Route26HealHouseKeepAtItText:
 	done
 
 Route26HealHousePorygonPCScript:
-	faceplayer
-	opentext
-	writetext Route26HealHousePorygonPCText
-	cry PORYGON
-	pause 10
-	special PokemonCenterPC
-	reloadmappart
-	end
-
-Route26HealHousePorygonPCText:
-	text "#MON Storage"
-	line "System opened."
-	done
+	jumpstd PorygonPCScript
 
 Route26HealHouse_MapEvents:
 	db 0, 0 ; filler

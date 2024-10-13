@@ -1388,19 +1388,7 @@ ElmsLabPCText:
 	done
 
 ElmsLabPorygonPCScript:
-	faceplayer
-	opentext
-	writetext ElmsLabPorygonPCText
-	cry PORYGON
-	pause 10
-	special PokemonCenterPC
-	reloadmappart
-	end
-
-ElmsLabPorygonPCText:
-	text "#MON Storage"
-	line "System opened."
-	done
+	jumpstd PorygonPCScript
 
 ElmsLab_MapEvents:
 	db 0, 0 ; filler

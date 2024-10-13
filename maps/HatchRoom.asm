@@ -69,19 +69,7 @@ HatchRoomMovementData_DayCareManWalksBackInside_WalkAroundPlayer:
 	step_end
 
 DayCareHatchRoomPorygonPCScript:
-	faceplayer
-	opentext
-	writetext DayCareHatchRoomPorygonPCText
-	cry PORYGON
-	pause 10
-	special PokemonCenterPC
-	reloadmappart
-	end
-
-DayCareHatchRoomPorygonPCText:
-	text "#MON Storage"
-	line "System opened."
-	done
+	jumpstd PorygonPCScript
 
 HatchRoom_MapEvents:
     db 0, 0 ; filler

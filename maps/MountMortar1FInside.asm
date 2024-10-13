@@ -115,19 +115,7 @@ SupernerdMarkusAfterBattleText:
 	done
 
 MtMortarPorygonPCScript:
-	faceplayer
-	opentext
-	writetext MtMortarPorygonPCText
-	cry PORYGON
-	pause 10
-	special PokemonCenterPC
-	reloadmappart
-	end
-
-MtMortarPorygonPCText:
-	text "#MON Storage"
-	line "System opened."
-	done
+	jumpstd PorygonPCScript
 
 MountMortar1FInsideChanseyScript:
 	faceplayer
