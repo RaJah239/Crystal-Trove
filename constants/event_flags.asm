@@ -389,7 +389,8 @@
 	const EVENT_CELADON_MANSION_ROOF_TEAM_ROCKET_ARCHER
 	const EVENT_TOHJO_FALLS_GIOVANNI
 	const EVENT_REDS_HOUSE_1F_RED_IS_HOME
-; Unused: next 218 events
+	const EVENT_BURNED_TOWER_1F_BLOCKER_INSIDE
+; Unused: next 217 events
 
 	const_next 600
 ; Kurt Apricorn events

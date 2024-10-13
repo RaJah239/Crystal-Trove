@@ -254,14 +254,16 @@ KimonoGirlMikiAfterBattleText:
 SurfGuyNeverLeftAScratchText:
 	text "Not only are the"
 	line "KIMONO GIRLS great"
-	cont "dancers, they're"
-	cont "also skilled at"
+
+	para "dancers, they're"
+	line "also skilled at"
 	cont "#MON."
 
 	para "I always challenge"
 	line "them, but I've"
-	cont "never even left a"
-	cont "scratch…"
+
+	para "never even left a"
+	line "scratch…"
 	done
 
 SurfGuyLadGiftText:
