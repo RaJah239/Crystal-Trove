@@ -4,6 +4,7 @@
 	const ECRUTEAKPOKECENTER1F_COOLTRAINER_F
 	const ECRUTEAKPOKECENTER1F_GYM_GUIDE
 	const ECRUTEAKPOKECENTER1F_BILL
+	const ECRUTEAKPOKECENTER1F_CHANSEY
 
 EcruteakPokecenter1F_MapScripts:
 	def_scene_scripts
@@ -204,6 +205,9 @@ EcruteakPokecenter1FGymGuideText:
 	line "acy. I know it!"
 	done
 
+EcruteakPokecenterChanseyScript:
+	jumpstd ChanseyPokeCenterScript
+
 EcruteakPokecenter1F_MapEvents:
 	db 0, 0 ; filler
 
@@ -222,3 +226,4 @@ EcruteakPokecenter1F_MapEvents:
 	object_event  1,  4, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, EcruteakPokecenter1FCooltrainerFScript, -1
 	object_event  7,  1, SPRITE_GYM_GUIDE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, EcruteakPokecenter1FGymGuideScript, -1
 	object_event  0,  7, SPRITE_BILL, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_ECRUTEAK_POKE_CENTER_BILL
+	object_event  4,  1, SPRITE_CHANSEY_OW, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, EcruteakPokecenterChanseyScript, -1

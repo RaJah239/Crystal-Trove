@@ -403,6 +403,7 @@ DEF gamecornercoinvendor  EQUS "GameCornerCoinVendorScript"
 DEF happinesschecknpc     EQUS "HappinessCheckScript"
 DEF porygonpc             EQUS "PorygonPCScript"
 DEF chanseyhealow         EQUS "ChanseyHealsOWScript"
+DEF chanseypokecenter     EQUS "ChanseyPokeCenterScript"
 
 ; constants/charmap.asm
 charmap "%", "<BSP>"

@@ -57,7 +57,15 @@ StdScripts::
 	add_stdscript HappinessCheckScript
 	add_stdscript PorygonPCScript
 	add_stdscript ChanseyHealsOWScript
+	add_stdscript ChanseyPokeCenterScript
 
+ChanseyPokeCenterScript:
+	opentext
+	farwritetext ChanseyHealText
+	cry CHANSEY
+	pause 10
+	closetext
+	end
 
 ChanseyHealsOWScript:
 	faceplayer
