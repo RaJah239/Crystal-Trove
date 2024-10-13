@@ -650,19 +650,7 @@ YoureACollectorText:
 	done
 
 BattleTowerMartPorygonPCScript:
-	faceplayer
-	opentext
-	writetext BattleTowerMarPorygonPCText
-	cry PORYGON
-	pause 10
-	special PokemonCenterPC
-	reloadmappart
-	end
-
-BattleTowerMarPorygonPCText:
-	text "#MON Storage"
-	line "System opened."
-	done
+	jumpstd PorygonPCScript
 
 BattleTowerMart_MapEvents:
     db 0, 0 ; filler

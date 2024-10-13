@@ -55,6 +55,7 @@ StdScripts::
 	add_stdscript PCScript
 	add_stdscript GameCornerCoinVendorScript
 	add_stdscript HappinessCheckScript
+	add_stdscript PorygonPCScript
 
 PokecenterNurseScript:
 	checktime MORN
@@ -241,6 +242,11 @@ Radio2Script:
 TrashCanScript:
 	farjumptext TrashCanText
 
+
+PorygonPCScript:
+	faceplayer
+	cry PORYGON
+	pause 10
 PCScript:
 	opentext
 	special PokemonCenterPC
