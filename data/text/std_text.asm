@@ -1,5 +1,5 @@
 ChanseyHealText:
-	text "Seyyyy!"
+	text "CHANSEY: Seyyyy!"
 	done
 
 NurseMornText:
