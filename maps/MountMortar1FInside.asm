@@ -118,22 +118,7 @@ MtMortarPorygonPCScript:
 	jumpstd PorygonPCScript
 
 MountMortar1FInsideChanseyScript:
-	faceplayer
-	opentext
-	writetext MountMortar1FInsideChanseyHealText
-	cry CHANSEY
-	pause 10
-	closetext
-	special FadeOutToWhite
-	special StubbedTrainerRankings_Healings
-	playsound SFX_FULL_HEAL
-	special HealParty
-	special FadeInFromWhite
-	end
-	
-MountMortar1FInsideChanseyHealText:
-	text "Seyyyy!"
-	done
+	jumpstd ChanseyHealsOWScript
 
 MountMortar1FInside_MapEvents:
 	db 0, 0 ; filler

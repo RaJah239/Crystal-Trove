@@ -148,22 +148,7 @@ PokemaniacCalvinAfterBattleText:
 	done
 
 UnionCaveChanseyScript:
-	faceplayer
-	opentext
-	writetext ChanseyHealText
-	cry CHANSEY
-	pause 10
-	closetext
-	special FadeOutToWhite
-	special StubbedTrainerRankings_Healings
-	playsound SFX_FULL_HEAL
-	special HealParty
-	special FadeInFromWhite
-	end
-	
-ChanseyHealText:
-	text "Seyyyy!"
-	done
+	jumpstd ChanseyHealsOWScript
 
 UnionCaveB1F_MapEvents:
 	db 0, 0 ; filler

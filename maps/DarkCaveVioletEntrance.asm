@@ -33,22 +33,7 @@ DarkCaveVioletEntranceHiddenElixer:
 	hiddenitem ELIXER, EVENT_DARK_CAVE_VIOLET_ENTRANCE_HIDDEN_ELIXER
 
 DarkCaveVioletEntranceChanseyScript:
-	faceplayer
-	opentext
-	writetext DarkCaveVioletEntranceChanseyHealText
-	cry CHANSEY
-	pause 10
-	closetext
-	special FadeOutToWhite
-	special StubbedTrainerRankings_Healings
-	playsound SFX_FULL_HEAL
-	special HealParty
-	special FadeInFromWhite
-	end
-	
-DarkCaveVioletEntranceChanseyHealText:
-	text "Seyyyy!"
-	done
+	jumpstd ChanseyHealsOWScript
 
 
 DarkCaveVioletEntrance_MapEvents:

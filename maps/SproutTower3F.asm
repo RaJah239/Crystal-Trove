@@ -426,22 +426,7 @@ SproutTower3FStatueText:
 	done
 
 SproutTower3FChanseyScript:
-	faceplayer
-	opentext
-	writetext SproutTower3FChanseyHealText
-	cry CHANSEY
-	pause 10
-	closetext
-	special FadeOutToWhite
-	special StubbedTrainerRankings_Healings
-	playsound SFX_FULL_HEAL
-	special HealParty
-	special FadeInFromWhite
-	end
-	
-SproutTower3FChanseyHealText:
-	text "Seyyyy!"
-	done
+	jumpstd ChanseyHealsOWScript
 
 SproutTower3F_MapEvents:
 	db 0, 0 ; filler

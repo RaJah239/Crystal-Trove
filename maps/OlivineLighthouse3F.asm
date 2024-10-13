@@ -109,22 +109,7 @@ GentlemanPrestonAfterBattleText:
 	done
 
 OlivineLightHouseChanseyScript:
-	faceplayer
-	opentext
-	writetext OlivineLightHouseChanseyHealText
-	cry CHANSEY
-	pause 10
-	closetext
-	special FadeOutToWhite
-	special StubbedTrainerRankings_Healings
-	playsound SFX_FULL_HEAL
-	special HealParty
-	special FadeInFromWhite
-	end
-	
-OlivineLightHouseChanseyHealText:
-	text "Seyyyy!"
-	done
+	jumpstd ChanseyHealsOWScript
 
 OlivineLighthouse3F_MapEvents:
 	db 0, 0 ; filler

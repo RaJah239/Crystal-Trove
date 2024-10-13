@@ -437,22 +437,7 @@ BugCatchingContestExplanationText:
 	done
 
 Route35NationalParkGateChanseyScript:
-	faceplayer
-	opentext
-	writetext Route35NationalParkGateChanseyHealText
-	cry CHANSEY
-	pause 10
-	closetext
-	special FadeOutToWhite
-	special StubbedTrainerRankings_Healings
-	playsound SFX_FULL_HEAL
-	special HealParty
-	special FadeInFromWhite
-	end
-	
-Route35NationalParkGateChanseyHealText:
-	text "Seyyyy!"
-	done
+	jumpstd ChanseyHealsOWScript
 
 Route35NationalParkGate_MapEvents:
 	db 0, 0 ; filler

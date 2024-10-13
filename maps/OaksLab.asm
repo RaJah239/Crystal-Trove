@@ -357,22 +357,7 @@ OaksLabPorygonPCScript:
 	jumpstd PorygonPCScript
 
 OaksLabChanseyScript:
-	faceplayer
-	opentext
-	writetext OaksLabChanseyHealText
-	cry CHANSEY
-	pause 10
-	closetext
-	special FadeOutToWhite
-	special StubbedTrainerRankings_Healings
-	playsound SFX_FULL_HEAL
-	special HealParty
-	special FadeInFromWhite
-	end
-	
-OaksLabChanseyHealText:
-	text "Seyyyy!"
-	done
+	jumpstd ChanseyHealsOWScript
 
 OaksLab_MapEvents:
 	db 0, 0 ; filler

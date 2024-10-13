@@ -16,20 +16,7 @@ IcePathB3FRock:
 	jumpstd SmashRockScript
 
 IcePathB3FChanseyScript:
-	faceplayer
-	opentext
-	writetext IcePathB3FChanseyHealText
-	cry CHANSEY
-	pause 10
-	closetext
-	special StubbedTrainerRankings_Healings
-	playsound SFX_FULL_HEAL
-	special HealParty
-	end
-	
-IcePathB3FChanseyHealText:
-	text "Seyyyy!"
-	done
+	jumpstd ChanseyHealsOWScript
 
 
 IcePathB3FPorygonPCScript:

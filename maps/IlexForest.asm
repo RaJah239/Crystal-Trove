@@ -946,22 +946,7 @@ BugCatcherWayneAfterBattleText:
 	done
 
 IlexForestChanseyScript:
-	faceplayer
-	opentext
-	writetext IlexForestChanseyHealText
-	cry CHANSEY
-	pause 10
-	closetext
-	special FadeOutToWhite
-	special StubbedTrainerRankings_Healings
-	playsound SFX_FULL_HEAL
-	special HealParty
-	special FadeInFromWhite
-	end
-	
-IlexForestChanseyHealText:
-	text "Seyyyy!"
-	done
+	jumpstd ChanseyHealsOWScript
 
 IlexForest_MapEvents:
 	db 0, 0 ; filler

@@ -76,22 +76,7 @@ RuinsOfAlphInnerChamberStatueText:
 	done
 
 RuinsOfAlphInnerChamberChanseyScript:
-	faceplayer
-	opentext
-	writetext RuinsOfAlphInnerChamberChanseyHealText
-	cry CHANSEY
-	pause 10
-	closetext
-	special FadeOutToWhite
-	special StubbedTrainerRankings_Healings
-	playsound SFX_FULL_HEAL
-	special HealParty
-	special FadeInFromWhite
-	end
-	
-RuinsOfAlphInnerChamberChanseyHealText:
-	text "Seyyyy!"
-	done
+	jumpstd ChanseyHealsOWScript
 
 RuinsOfAlphInnerChamber_MapEvents:
 	db 0, 0 ; filler

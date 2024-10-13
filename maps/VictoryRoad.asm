@@ -258,22 +258,7 @@ VictoryRoadRivalVictoryText:
 	done
 
 VictoryRoadChanseyScript:
-	faceplayer
-	opentext
-	writetext VictoryRoadChanseyHealText
-	cry CHANSEY
-	pause 10
-	closetext
-	special FadeOutToWhite
-	special StubbedTrainerRankings_Healings
-	playsound SFX_FULL_HEAL
-	special HealParty
-	special FadeInFromWhite
-	end
-	
-VictoryRoadChanseyHealText:
-	text "Seyyyy!"
-	done
+	jumpstd ChanseyHealsOWScript
 
 VictoryRoadEricTheExplorerScript:
 	faceplayer
