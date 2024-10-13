@@ -285,8 +285,8 @@ BurnedTower1FSuperNerdScript:
 	end
 
 SuperNerdBurnedTower1FText:
-	text "Careful now, there"
-	line "may be pitfalls."
+	text "Careful, the floor"
+	line "may be unsturdy."
 	done
 
 BurnedTower1F_MapEvents:
