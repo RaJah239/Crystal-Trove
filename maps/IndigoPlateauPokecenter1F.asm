@@ -8,6 +8,7 @@
 	const INDIGOPLATEAUPOKECENTER1F_COINCOLLECTORF
 	const INDIGOPLATEAUPOKECENTER1F_OFFICER1
 	const INDIGOPLATEAUPOKECENTER1F_OFFICER2
+	const INDIGOPLATEAUPOKECENTER1F_CHANSEY
 
 IndigoPlateauPokecenter1F_MapScripts:
 	def_scene_scripts
@@ -454,6 +455,9 @@ RematchPreventionOfficerText:
 	line "issue right now."
 	done
 
+IndigoPlateauPokecenterChanseyScript:
+	jumpstd ChanseyPokeCenterScript
+
 IndigoPlateauPokecenter1F_MapEvents:
 	db 0, 0 ; filler
 
@@ -479,3 +483,4 @@ IndigoPlateauPokecenter1F_MapEvents:
 	object_event  5, 10, SPRITE_POKEFAN_F, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_PINK, OBJECTTYPE_SCRIPT, 0, CoinCollectorScript, -1
 	object_event 16,  8, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, VictoryRoadGateOfficer1Script, EVENT_NO_E4_REMATCH_UNTIL_RED_IS_BEATEN
 	object_event 17,  8, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, VictoryRoadGateOfficer2Script, EVENT_NO_E4_REMATCH_UNTIL_RED_IS_BEATEN
+	object_event  4,  7, SPRITE_CHANSEY_OW, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, IndigoPlateauPokecenterChanseyScript, -1

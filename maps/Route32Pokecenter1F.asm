@@ -1,7 +1,7 @@
 	object_const_def
 	const ROUTE32POKECENTER1F_NURSE
-	const ROUTE32POKECENTER1F_FISHING_GURU
 	const ROUTE32POKECENTER1F_COOLTRAINER_F
+	const ROUTE32POKECENTER1F_CHANSEY
 
 Route32Pokecenter1F_MapScripts:
 	def_scene_scripts
@@ -23,6 +23,9 @@ Route32Pokecenter1FCooltrainerFText:
 	cont "power…"
 	done
 
+Route32PokecenterChanseyScript:
+	jumpstd ChanseyPokeCenterScript
+
 Route32Pokecenter1F_MapEvents:
 	db 0, 0 ; filler
 
@@ -38,3 +41,4 @@ Route32Pokecenter1F_MapEvents:
 	def_object_events
 	object_event  3,  1, SPRITE_NURSE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route32Pokecenter1FNurseScript, -1
 	object_event  6,  2, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Route32Pokecenter1FCooltrainerFScript, -1
+	object_event  4,  1, SPRITE_CHANSEY_OW, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route32PokecenterChanseyScript, -1

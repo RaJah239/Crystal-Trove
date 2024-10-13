@@ -3,6 +3,7 @@
 	const CHERRYGROVEPOKECENTER1F_FISHER
 	const CHERRYGROVEPOKECENTER1F_GENTLEMAN
 	const CHERRYGROVEPOKECENTER1F_TEACHER
+	const CHERRYGROVEPOKECENTER1F_CHANSEY
 
 CherrygrovePokecenter1F_MapScripts:
 	def_scene_scripts
@@ -66,6 +67,9 @@ CherrygrovePokecenter1FTeacherText_CommCenterOpen:
 	line "there already!"
 	done
 
+CherrygrovePokecenterChanseyScript:
+	jumpstd ChanseyPokeCenterScript
+
 CherrygrovePokecenter1F_MapEvents:
 	db 0, 0 ; filler
 
@@ -83,3 +87,4 @@ CherrygrovePokecenter1F_MapEvents:
 	object_event  2,  3, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CherrygrovePokecenter1FFisherScript, -1
 	object_event  8,  6, SPRITE_GENTLEMAN, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CherrygrovePokecenter1FGentlemanScript, -1
 	object_event  1,  6, SPRITE_TEACHER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CherrygrovePokecenter1FTeacherScript, -1
+	object_event  4,  1, SPRITE_CHANSEY_OW, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CherrygrovePokecenterChanseyScript, -1

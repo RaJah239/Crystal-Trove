@@ -3,6 +3,7 @@
 	const AZALEAPOKECENTER1F_GENTLEMAN
 	const AZALEAPOKECENTER1F_FISHING_GURU
 	const AZALEAPOKECENTER1F_POKEFAN_F
+	const AZALEAPOKECENTER1F_CHANSEY
 
 AzaleaPokecenter1F_MapScripts:
 	def_scene_scripts
@@ -62,6 +63,9 @@ AzaleaPokecenter1FPokefanFText:
 	line "APRICORNS."
 	done
 
+AzaleaPokecenterChanseyScript:
+	jumpstd ChanseyPokeCenterScript
+
 AzaleaPokecenter1F_MapEvents:
 	db 0, 0 ; filler
 
@@ -79,3 +83,4 @@ AzaleaPokecenter1F_MapEvents:
 	object_event  9,  6, SPRITE_GENTLEMAN, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, AzaleaPokecenter1FGentlemanScript, -1
 	object_event  6,  1, SPRITE_FISHING_GURU, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, AzaleaPokecenter1FFishingGuruScript, -1
 	object_event  1,  4, SPRITE_POKEFAN_F, SPRITEMOVEDATA_WANDER, 1, 2, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, AzaleaPokecenter1FPokefanFScript, -1
+	object_event  4,  1, SPRITE_CHANSEY_OW, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, AzaleaPokecenterChanseyScript, -1

@@ -2,6 +2,7 @@
 	const SILVERCAVEPOKECENTER1F_NURSE
 	const SILVERCAVEPOKECENTER1F_MONEYCOLLECTOR_M
 	const SILVERCAVEPOKECENTER1F_MAXIMA
+	const SILVERCAVEPOKECENTER1F_CHANSEY
 
 SilverCavePokecenter1F_MapScripts:
 	def_scene_scripts
@@ -296,6 +297,9 @@ YouNeedToMaxOutYourMoneyText:
 	line "All the best!"
 	done
 
+SilverCavePokecenterChanseyScript:
+	jumpstd ChanseyPokeCenterScript
+
 SilverCavePokecenter1F_MapEvents:
 	db 0, 0 ; filler
 
@@ -312,3 +316,4 @@ SilverCavePokecenter1F_MapEvents:
 	object_event  3,  1, SPRITE_NURSE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SilverCavePokecenter1FNurseScript, -1
 	object_event  1,  5, SPRITE_POKEFAN_M, SPRITEMOVEDATA_SPINRANDOM_FAST, 2, 1, -1, -1, PAL_NPC_PINK, OBJECTTYPE_SCRIPT, 0, SilverCavePokecenter1FMoneyCollectorMScript, -1
 	object_event  2,  5, SPRITE_MAXIMA, SPRITEMOVEDATA_STANDING_LEFT, 2, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SilverCavePokecenter1MaximaEventScript, EVENT_MET_SILVERCAVEPOKECENTER1F_MAXIMA
+	object_event  4,  1, SPRITE_CHANSEY_OW, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SilverCavePokecenterChanseyScript, -1
