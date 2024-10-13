@@ -102,13 +102,13 @@ DidntCatchSudowoodo:
 Route36FloriaScript:
 	faceplayer
 	opentext
-	checkevent EVENT_TALKED_TO_FLORIA_AT_FLOWER_SHOP
-	iftrue .SecondTimeTalking
-	setevent EVENT_MET_FLORIA
 	writetext FloriaText1
 	waitbutton
+	verbosegiveitem SQUIRTBOTTLE
+	writetext FloriaText2
+	waitbutton
 	closetext
-	clearevent EVENT_FLORIA_AT_FLOWER_SHOP
+	clearevent EVENT_FLOWER_SHOP_FLORINA_GIVES_BERRIES
 	readvar VAR_FACING
 	ifequal UP, .Up
 	applymovement ROUTE36_FLORIA, FloriaMovement1
@@ -118,12 +118,6 @@ Route36FloriaScript:
 .Up:
 	applymovement ROUTE36_FLORIA, FloriaMovement2
 	disappear ROUTE36_FLORIA
-	end
-
-.SecondTimeTalking:
-	writetext FloriaText2
-	waitbutton
-	closetext
 	end
 
 GuyGivesRockSmashTMScript:
@@ -469,32 +463,26 @@ FloriaText1:
 	para "wiggly tree, it"
 	line "jumped right up!"
 
-	para "It just has to be"
-	line "a #MON."
+	para "It's a #MON!"
+	
+	para "It's too strong"
+	line "for me though…"
 
-	para "I bet it would be"
-	line "shocked out of its"
-
-	para "disguise if you"
-	line "soaked it!"
-
-	para "I know! I'll tell"
-	line "my sis and borrow"
-	cont "her water bottle!"
+	para "Take this and try"
+	line "for yourself."
 	done
 
 FloriaText2:
-	text "When I told my sis"
-	line "about the jiggly"
-
-	para "tree, she said"
-	line "it's dangerous."
-
-	para "If I beat WHITNEY,"
-	line "I wonder if she'll"
-
-	para "lend me her water"
-	line "bottle…"
+	text "Be careful though."
+	
+	para "I'm going back to"
+	line "the FLOWER SHOP."
+	
+	para "Come visit some-"
+	line "time and I'll have"
+	
+	para "something nice for"
+	line "you."
 	done
 
 RockSmashGuyText1:

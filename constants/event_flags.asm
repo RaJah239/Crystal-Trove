@@ -98,7 +98,7 @@
 	const EVENT_GOT_TM36_SLUDGE_BOMB
 	const EVENT_GOT_ITEMFINDER
 	const EVENT_GOT_BICYCLE
-	const EVENT_GOT_SQUIRTBOTTLE
+	const_skip ; unused in Crystal Trove
 	const EVENT_GOT_MIRACLE_SEED_IN_ROUTE_32
 	const EVENT_GOT_CHARCOAL_IN_CHARCOAL_KILN
 	const EVENT_GOT_TM02_HEADBUTT
@@ -193,8 +193,8 @@
 	const EVENT_LAKE_OF_RAGE_HIDDEN_MAX_POTION
 	const_skip ; unused in Crystal
 ; Crystal-exclusive events in Johto
-	const EVENT_MET_FLORIA
-	const EVENT_TALKED_TO_FLORIA_AT_FLOWER_SHOP
+	const_skip ; unused in Crystal
+	const_skip ; unused in Crystal
 	const EVENT_BUGGING_KURT_TOO_MUCH
 	const EVENT_TALKED_TO_RUINS_COWARD
 	const EVENT_GOT_DRATINI
@@ -390,7 +390,8 @@
 	const EVENT_TOHJO_FALLS_GIOVANNI
 	const EVENT_REDS_HOUSE_1F_RED_IS_HOME
 	const EVENT_BURNED_TOWER_1F_BLOCKER_INSIDE
-; Unused: next 217 events
+	const EVENT_FLOWER_SHOP_FLORINA_GIVES_BERRIES
+; Unused: next 216 events
 
 	const_next 600
 ; Kurt Apricorn events
@@ -1468,7 +1469,7 @@
 	const EVENT_BURNED_TOWER_1F_EUSINE
 	const EVENT_RANG_CLEAR_BELL_1
 	const EVENT_RANG_CLEAR_BELL_2
-	const EVENT_FLORIA_AT_FLOWER_SHOP
+	const_skip ; unused in Crystal Trove 
 	const EVENT_FLORIA_AT_SUDOWOODO
 	const EVENT_GOLDENROD_CITY_MOVE_TUTOR 
 	const_skip ; presently unused in Crystal Trove (was EVENT_GOLDENROD_GAME_CORNER_MOVE_TUTOR)
