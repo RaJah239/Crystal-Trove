@@ -95,6 +95,7 @@ Morning	-  5:00am - 9:59am // Day	- 10:00am - 6:59pm // Night	-	7:00pm - 4:59pm
 - Catching Pokémon yield Exp and EVs. 
 - DVs no longer affect battle stats. Pokémon of the same specie at the same level without EVs have the same Battle stats. DVs now only affect chance for shininess and Hidden Power Type.
 - Hidden Power’s battle strength is always 70 and type is determined the same way as vanilla. 
+- Replaced the Freeze status with Frostbite.
 - Battle HUD updated.
 - More information added to Move Menu.
 - Item usage is forbidden and forced Set mode is enabled for all trainers.
