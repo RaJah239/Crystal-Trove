@@ -74,6 +74,7 @@ POKEGEAR: Now shows the detailed name of map you're currently in (based on Map G
 - Releasing the beasts registers Entei, Raikou and Suicune in the Pokédex for easier tracking.
 - Goldenrod Move Tutor appears after defeating Jasmine.
 - New Fly Points added for Route 20/Blaine’s Gym, Route 32, Route 26, Tohjo Falls/Route 27, Battle Tower, National Park, Mt. Moon and Rock Tunnel.
+- Take daily Pokémon photographs at Cianwood photo studio to increase affection.
 - Old man and Kadabra at the Indigo Plateau Pokémon Center doesn't leave.
 - 21 Grotto-like maps added throughout the game. 
 - Each Grotto have 5 Pokémon (except two). There is a 1/20 to have one appear on each entry. May need to be entered a few times to have one spawn.
@@ -130,6 +131,9 @@ Morning	-  5:00am - 9:59am // Day	- 10:00am - 6:59pm // Night	-	7:00pm - 4:59pm
 - Everyone that contributed to the pokecrystal disassembly, Pret’s Discord Server and pokecrystal tutorials which legitimately carried me.
 
 - I wanted to name these people in particular from Pret's Discord Server: GetKosiorekt, Nayru62, NickJam, Grate Oracle Lewot, Idain, Major_Agnostic, SourApple, lifeofmauri, FrenchOrange, PiaCRT, mauvemon, Ardorin, PerreteCartago, Rod , cRz-Shadows, ElfinHilon10, dannye, FootFingers, Ferropexola, Handheld Hero, 8bitzeta, Pferomon, Vulcandth, ax6, FIQ and rangi42.
+
+# **Vanilla Bugfixes:**
+- Prevent Steel‐types from being poisoned by Twineedle. Prevent burning fire types and freezing ice types by Tri-Attack.
 
 # **Known Bugs:**
 
