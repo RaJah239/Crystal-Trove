@@ -3114,37 +3114,13 @@ wUnionCaveGrottoSceneID::                         db ; Union Cave Grotto
 wRoute38EcruteakGateSceneID::                     db ; Route 38 Ecruteak Gate blocker until defeating Pryce
 wRoute42EcruteakGateSceneID::                     db ; Route 42 Ecruteak Gate blocker until defeating Morty
 wRoute31VioletGateSceneID::                       db ; Route 31 Violet City Gate Old Rod Fishing Guru scene 
-	ds 19
+
+	ds 42
 
  wNumBalls:: db
  wBalls:: ds MAX_BALLS * 2 + 1
 
-; fight counts
-wJackFightCount::    db
 wLevelCap::          db
-wHueyFightCount::    db
-wGavenFightCount::   db
-wBethFightCount::    db
-wJoseFightCount::    db
-wReenaFightCount::   db
-wJoeyFightCount::    db
-wWadeFightCount::    db
-wRalphFightCount::   db
-wLizFightCount::     db
-wAnthonyFightCount:: db
-wToddFightCount::    db
-wGinaFightCount::    db
-wArnieFightCount::   db
-wAlanFightCount::    db
-wDanaFightCount::    db
-wChadFightCount::    db
-wTullyFightCount::   db
-wBrentFightCount::   db
-wTiffanyFightCount:: db
-wVanceFightCount::   db
-wWiltonFightCount::  db
-wParryFightCount::   db
-wErinFightCount::    db
 
 wNumPCItems:: db
 wPCItems:: ds MAX_PC_ITEMS * 2 + 1
