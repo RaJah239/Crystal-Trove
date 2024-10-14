@@ -319,8 +319,8 @@ _MomItsInPCText::
 
 _MomFoundADollText::
 	text "While shopping"
-	line "today, I saw this"
-	cont "adorable doll, so"
+	line "today, I saw some"
+	cont "unique decor, so"
 	prompt
 
 _MomItsInYourRoomText::

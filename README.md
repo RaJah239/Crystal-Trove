@@ -81,6 +81,7 @@ POKEGEAR: Now shows the detailed name of map you're currently in (based on Map G
 **Miscellaneous**
 - Time of Day Updated:
 Morning	-  5:00am - 9:59am // Day	- 10:00am - 6:59pm // Night	-	7:00pm - 4:59pm
+- Mom buys all dolls and decorations with saved money
 
 
 # **Pokémon // Battle Related:**
