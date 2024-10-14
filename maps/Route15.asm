@@ -76,7 +76,7 @@ Route15Sign:
 	jumptext Route15SignText
 
 Route15PPUp:
-	itemball PP_UP
+	itemball RARE_CANDY
 
 TeacherColetteSeenText:
 	text "Have you forgotten"

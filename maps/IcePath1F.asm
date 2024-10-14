@@ -13,7 +13,7 @@ IcePath1FHMWaterfall:
 	itemball FULL_RESTORE
 
 IcePath1FPPUp:
-	itemball PP_UP
+	itemball HP_UP
 
 IcePath1FProtein:
 	itemball PROTEIN
