@@ -1,4 +1,4 @@
-NUMBER_OF_TMS EQU 50
+DEF NUMBER_OF_TMS EQU 50
 
 CoinsTMTrader:
 	
@@ -61,10 +61,10 @@ SelectTM:
 	
 .tmnumber
 	db NUMBER_OF_TMS
-x = 1
+DEF x = 1
 rept NUMBER_OF_TMS
 	db x
-x = x + 1
+DEF x = x + 1
 endr
 	db -1
 	
