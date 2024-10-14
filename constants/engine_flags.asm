@@ -120,6 +120,7 @@
 	const ENGINE_DAILY_GIFT_BERRY
 	const ENGINE_BUENAS_PASSWORD
 ; wDailyFlags3 - 8 daily Flags can be added here (max)
+	const ENGINE_CIANWOOD_PHOTOGRAPH
 
 ; wSwarmFlags
 	const ENGINE_BUENAS_PASSWORD_2

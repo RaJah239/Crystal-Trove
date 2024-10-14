@@ -312,6 +312,7 @@ DEF CELEBIEVENT_FOREST_IS_RESTLESS_F EQU 2
 	const DAILYFLAGS2_BUENAS_PASSWORD_F                   ; 7
 
 ;  wDailyFlags3:: - 8 daily Flags can be added here (max)
+	const DAILYFLAGS3_CIANWOOD_PHOTOGRAPH                 ; 0
 
 ; wSwarmFlags::
 	const_def

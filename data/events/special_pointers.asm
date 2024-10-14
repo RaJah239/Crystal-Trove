@@ -188,3 +188,4 @@ SpecialsPointers::
 	add_special BirdsCheck
 	add_special MoveRelearner
 	add_special CoinsTMTrader
+	add_special CianwoodPhotograph

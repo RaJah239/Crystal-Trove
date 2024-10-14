@@ -131,6 +131,7 @@ EngineFlags:
 	engine_flag wDailyFlags2, DAILYFLAGS2_BUENAS_PASSWORD_F
 
 ;  wDailyFlags3:: - 8 daily Flags can be added here (max)
+	engine_flag wDailyFlags3, DAILYFLAGS3_CIANWOOD_PHOTOGRAPH
 
 	engine_flag wSwarmFlags, SWARMFLAGS_BUENAS_PASSWORD_F
 	engine_flag wSwarmFlags, SWARMFLAGS_GOLDENROD_DEPT_STORE_SALE_F
