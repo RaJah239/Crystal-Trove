@@ -1,4 +1,5 @@
 ; sprite ids
+; 18 more free sprites
 ; OverworldSprites indexes (see data/sprites/sprites.asm)
 	const_def
 	const SPRITE_NONE ; 00

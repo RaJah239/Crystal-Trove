@@ -50,17 +50,17 @@ POKEGEAR: Now shows the detailed name of map you're currently in (based on Map G
 - Lose money proportional to badges and lead level Pokémon on white out.
 - Survive poisoning with 1 HP.
 - Show an icon for the current weather in battles.
-- PokeCentre fast heal after the first visit added.
+- Pokémon Centre fast heal after the first visit added.
 - Use unique colours for each thrown Poké Ball.
 - Animate tiles when text boxes are open.
-- Field moves are useable of a Pokémon can learn the TM/HM and is in the respective pocket.
+- Field moves are useable if a Pokémon can learn the TM/HM and is in the respective pocket.
 - Items that act like HMs added (except Fly) to prevent softlocks.
 - Third paged added to trainer card for Kanto Badges and all badges colored.
 - Pokémon eggs get laid 100% of the time after 256 steps and all eggs hatch after 1,024 steps.
 - Eggs hatch at level 1.
 - Refusing eggs no longer prevents Pokémon from laying more.
 - Eggs can be released via the PC.
-- Odd Egg always has PokéRUS.
+- Odd Eggs always have PokéRUS.
 - Hatch Room was added to the Day Care out back. Only accessible via Bicycle. The old man appears there if your Pokémon laid any eggs and there’s a Porygon PC as well.
 - Press A or B to stop the Bicycle in the Day Care's Hatch Room and Kanto’s Cycling Road.
 - Slot Machines payout were adjusted as coins are now used for a lot of things.
