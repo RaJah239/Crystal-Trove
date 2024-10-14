@@ -45,6 +45,7 @@ POKEGEAR: Now shows the detailed name of map you're currently in (based on Map G
 - Displays colored Pokémon pictures in the overworld.
 - Phone now holds up to 35 contacts / max in game.
 - Bag's item pocket now has a capacity of 84.
+- A Battle Item Pocket has been added, with a capacity to hold up to 50 items, including all berries.
 - Edited PC text to allow for faster maneuvering.
 - Short beeping noise for low HP to replace the continuous beeping noise.
 - Lose money proportional to badges and lead level Pokémon on white out.
@@ -53,6 +54,7 @@ POKEGEAR: Now shows the detailed name of map you're currently in (based on Map G
 - Pokémon Centre fast heal after the first visit added.
 - Use unique colours for each thrown Poké Ball.
 - Animate tiles when text boxes are open.
+- Trainer rematch system has been improved.
 - Field moves are useable if a Pokémon can learn the TM/HM and is in the respective pocket.
 - Items that act like HMs added (except Fly) to prevent softlocks.
 - Third paged added to trainer card for Kanto Badges and all badges colored.
@@ -63,6 +65,7 @@ POKEGEAR: Now shows the detailed name of map you're currently in (based on Map G
 - Odd Eggs always have PokéRUS.
 - Hatch Room was added to the Day Care out back. Only accessible via Bicycle. The old man appears there if your Pokémon laid any eggs and there’s a Porygon PC as well.
 - Press A or B to stop the Bicycle in the Day Care's Hatch Room and Kanto’s Cycling Road.
+- Egg Tutor and new move tutors added.
 - Slot Machines payout were adjusted as coins are now used for a lot of things.
 - Made the Lottery Corner generate a lucky number daily instead of weekly.
 - Swarm system reworked to trigger by talking to NPC daily. Swarms include Gen 1 and 2 starters, all baby Pokémon and Ditto.
