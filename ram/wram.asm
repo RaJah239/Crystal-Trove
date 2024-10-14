@@ -2265,6 +2265,7 @@ wItemsPocketCursor::    db
 wKeyItemsPocketCursor:: db
 wBallsPocketCursor::    db
 wTMHMPocketCursor::     db
+wBattlePocketCursor::    db
 
 wPCItemsScrollPosition::        db
 	ds 1
@@ -2272,6 +2273,7 @@ wItemsPocketScrollPosition::    db
 wKeyItemsPocketScrollPosition:: db
 wBallsPocketScrollPosition::    db
 wTMHMPocketScrollPosition::     db
+wBattlePocketScrollPosition::    db
 
 wSwitchMon::
 wSwitchItem::
@@ -2777,6 +2779,7 @@ NEXTU
 wDudeNumItems:: db
 wDudeItems:: ds 2 * 4 + 1
 
+wDudeNumBattleItems::
 wDudeNumKeyItems:: db
 wDudeKeyItems:: ds 18 + 1
 
@@ -2936,7 +2939,6 @@ endr
 
 wStoneTableAddress:: dw
 
-	ds 62
 
 wMapObjects::
 wPlayerObject:: map_object wPlayer ; player is map object 0
@@ -2950,9 +2952,9 @@ wObjectMasks:: ds NUM_OBJECTS
 wVariableSprites:: ds $100 - SPRITE_VARS
 
 wEnteredMapFromContinue:: db
-	ds 2
+
 wTimeOfDayPal:: db
-	ds 4
+
 wTimeOfDayPalFlags:: db
 wTimeOfDayPalset:: db
 wCurTimeOfDay:: db
@@ -3027,8 +3029,6 @@ wTradeFlags:: flag_array NUM_NPC_TRADES
 wMooMooBerries:: db
 wUndergroundSwitchPositions:: db
 wFarfetchdPosition:: db
-
-	ds 13
 
 ; map scene ids
 wPokecenter2FSceneID::                            db
@@ -3120,6 +3120,9 @@ wRoute31VioletGateSceneID::                       db ; Route 31 Violet City Gate
  wNumBalls:: db
  wBalls:: ds MAX_BALLS * 2 + 1
 
+wNumBattleItems:: db
+wBattleItems:: ds MAX_BATTLE_ITEMS * 2 + 1
+
 wLevelCap::          db
 
 wNumPCItems:: db
@@ -3184,23 +3187,23 @@ wDailyFlags1:: db
 wDailyFlags2:: db
 wDailyFlags3:: db
 wSwarmFlags:: db
-	ds 1
+
 wTimerEventStartDay:: db
-	ds 3
+
 
 wFruitTreeFlags:: flag_array NUM_FRUIT_TREES
 
-	ds 2
+
 
 wLuckyNumberDayTimer:: dw
-	ds 2
+
 wSpecialPhoneCallID:: db
-	ds 3
+
 wBugContestStartTime:: ds 4 ; day, hour, min, sec
 wUnusedTwoDayTimerOn:: db
 wUnusedTwoDayTimer:: db
 wUnusedTwoDayTimerStartDate:: db
-	ds 4
+
 wMobileOrCable_LastSelection:: db
 wdc41:: ds 1
 wdc42:: ds 8
@@ -3294,7 +3297,7 @@ wPartyMon{d:n}Nickname:: ds MON_NAME_LENGTH
 endr
 wPartyMonNicknamesEnd::
 
-	ds 22
+	ds 15
 
 wPokedexCaught:: flag_array NUM_POKEMON
 wEndPokedexCaught::

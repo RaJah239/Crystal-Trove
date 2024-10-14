@@ -5,9 +5,11 @@ ItemPocketNames:
 	dw .Key
 	dw .Ball
 	dw .TM
+	dw .BattlePocket
 	assert_table_length NUM_ITEM_TYPES
 
 .Item: db "ITEM POCKET@"
 .Key:  db "KEY POCKET@"
 .Ball: db "BALL POCKET@"
 .TM:   db "TM/HM POCKET@"
+.BattlePocket: db "BATTLE POCKET@"

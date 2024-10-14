@@ -483,12 +483,13 @@ MartBattleTowerBerries:
 	db -1 ; end
 
 MartBattleTowerBattleItems:
-	db 6 ; # items
+	db 7 ; # items
 	db LEFTOVERS
 	db QUICK_CLAW
 	db FOCUS_BAND
 	db SCOPE_LENS
 	db KINGS_ROCK
+	db BERRY_JUICE
 	db BRIGHTPOWDER
 	db -1 ; end
 
