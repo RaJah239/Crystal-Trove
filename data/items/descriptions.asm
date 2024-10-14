@@ -62,7 +62,7 @@ ItemDescriptions:
 	dw GoodRodDesc
 	dw SilverLeafDesc
 	dw SuperRodDesc
-	dw PPUpDesc
+	dw CrystalDesc
 	dw EtherDesc
 	dw MaxEtherDesc
 	dw ElixerDesc
@@ -397,6 +397,10 @@ MetalPowderDesc:
 	db   "Raises DEFENSE of"
 	next "DITTO. (HOLD)@"
 
+CrystalDesc:
+	db   "A rare Crystal."
+	next "Sell very high.@"
+
 NuggetDesc:
 	db   "Made of pure gold."
 	next "Sell high.@"
@@ -497,10 +501,6 @@ SilverLeafDesc:
 SuperRodDesc:
 	db   "The best ROD for"
 	next "catching #MON.@"
-
-PPUpDesc:
-	db   "Raises max PP of"
-	next "a selected move.@"
 
 EtherDesc:
 	db   "Restores PP of one"

@@ -75,7 +75,7 @@ ItemEffects:
 	dw GoodRodEffect       ; GOOD_ROD
 	dw NoEffect            ; SILVER_LEAF
 	dw SuperRodEffect      ; SUPER_ROD
-	dw RestorePPEffect     ; PP_UP
+	dw NoEffect            ; CRYSTAL
 	dw RestorePPEffect     ; ETHER
 	dw RestorePPEffect     ; MAX_ETHER
 	dw RestorePPEffect     ; ELIXER
@@ -2391,68 +2391,7 @@ RestorePPEffect:
 	cp ELIXER
 	jp z, Elixer_RestorePPofAllMoves
 
-	ld hl, RaiseThePPOfWhichMoveText
-	ld a, [wTempRestorePPItem]
-	cp PP_UP
-	jr z, .ppup
 	ld hl, RestoreThePPOfWhichMoveText
-
-.ppup
-	call PrintText
-
-	ld a, [wCurMoveNum]
-	push af
-	xor a
-	ld [wCurMoveNum], a
-	ld a, $2
-	ld [wMoveSelectionMenuType], a
-	farcall MoveSelectionScreen
-	pop bc
-
-	ld a, b
-	ld [wCurMoveNum], a
-	jr nz, .loop
-	ld hl, wPartyMon1Moves
-	ld bc, PARTYMON_STRUCT_LENGTH
-	call GetMthMoveOfNthPartymon
-
-	push hl
-	ld a, [hl]
-	ld [wNamedObjectIndex], a
-	call GetMoveName
-	call CopyName1
-	pop hl
-
-	ld a, [wTempRestorePPItem]
-	cp PP_UP
-	jp nz, Not_PP_Up
-
-	ld a, [hl]
-	cp SKETCH
-	jr z, .CantUsePPUpOnSketch
-
-	ld bc, MON_PP - MON_MOVES
-	add hl, bc
-	ld a, [hl]
-	cp PP_UP_MASK
-	jr c, .do_ppup
-
-.CantUsePPUpOnSketch:
-	ld hl, PPIsMaxedOutText
-	call PrintText
-	jr .loop2
-
-.do_ppup
-	ld a, [hl]
-	add PP_UP_ONE
-	ld [hl], a
-	ld a, TRUE
-	ld [wUsePPUp], a
-	call ApplyPPUp
-	call Play_SFX_FULL_HEAL
-
-	ld hl, PPsIncreasedText
-	call PrintText
 
 FinishPPRestore:
 	call ClearPalettes
@@ -2603,20 +2542,8 @@ RestorePP:
 	xor a
 	ret
 
-RaiseThePPOfWhichMoveText:
-	text_far _RaiseThePPOfWhichMoveText
-	text_end
-
 RestoreThePPOfWhichMoveText:
 	text_far _RestoreThePPOfWhichMoveText
-	text_end
-
-PPIsMaxedOutText:
-	text_far _PPIsMaxedOutText
-	text_end
-
-PPsIncreasedText:
-	text_far _PPsIncreasedText
 	text_end
 
 PPRestoredText:

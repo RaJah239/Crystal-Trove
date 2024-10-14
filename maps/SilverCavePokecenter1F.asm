@@ -290,8 +290,9 @@ YouNeedToMaxOutYourMoneyText:
 
 	para "She'll trade you"
 	line "coins for a number"
-	cont "of NUGGETS which"
-	cont "can be sold off."
+
+	para "of CRYSTALS which"
+	line "can be sold off."
 
 	para "Until next time…"
 	line "All the best!"

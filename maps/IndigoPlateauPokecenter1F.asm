@@ -215,7 +215,7 @@ CoinCollectorScript:
 	waitbutton
 	ifequal 1, .SacredAsh
 	ifequal 2, .EonMail
-	ifequal 3, .Nuggets
+	ifequal 3, .Crystals
 	sjump .No
 
 .No
@@ -237,9 +237,9 @@ CoinCollectorScript:
 	ifequal TRUE, .ConcludeTransaction
 	closetext
 
-.Nuggets:
+.Crystals:
 	promptbutton
-	verbosegiveitem NUGGET, 99
+	verbosegiveitem CRYSTAL, 33
 	iffalse .NoRoom
 	ifequal TRUE, .ConcludeTransaction
 	closetext
@@ -283,7 +283,7 @@ CoinCollectorScript:
 	db 4 ; items
 	db "SACRED ASH x5@"
 	db "EON MAIL   x1@"
-	db "NUGGET    x99@"
+	db "CRYSTAL   x33@"
 	db "CANCEL@"
 
 CoinCollectorIntroText:

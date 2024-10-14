@@ -1231,27 +1231,10 @@ _CoinCaseCountText::
 	text_decimal wCoins, 2, 4
 	text_end
 
-_RaiseThePPOfWhichMoveText::
-	text "Raise the PP of"
-	line "which move?"
-	done
-
 _RestoreThePPOfWhichMoveText::
 	text "Restore the PP of"
 	line "which move?"
 	done
-
-_PPIsMaxedOutText::
-	text_ram wStringBuffer2
-	text "'s PP"
-	line "is maxed out."
-	prompt
-
-_PPsIncreasedText::
-	text_ram wStringBuffer2
-	text "'s PP"
-	line "increased."
-	prompt
 
 _PPRestoredText::
 	text "PP was restored."
