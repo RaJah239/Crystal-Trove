@@ -158,4 +158,11 @@ MoveEffectsPointers:
 	dw BeatUp
 	dw Fly
 	dw DefenseCurl
+	dw Dig
+	dw Fissure
+	dw BoneClub
+	dw SandAttack
+	dw Bonemerang
+	dw MudSlap
+	dw BoneRush
 	assert_table_length NUM_MOVE_EFFECTS

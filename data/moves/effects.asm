@@ -647,6 +647,29 @@ SpecialDefenseDownHit:
 	statdownmessage
 	endmove
 
+MudSlap:
+	checkobedience
+	usedmovetext
+	doturn
+	critical
+	damagestats
+	damagecalc
+	stab
+	damagevariation
+	checkhit
+	checkfloatmon
+	effectchance
+	moveanim
+	failuretext
+	applydamage
+	criticaltext
+	supereffectivetext
+	checkfaint
+	buildopponentrage
+	accuracydown
+	statdownmessage
+	endmove
+
 AccuracyDownHit:
 	checkobedience
 	usedmovetext
@@ -836,6 +859,33 @@ ForceSwitch:
 	doturn
 	checkhit
 	forceswitch
+	endmove
+
+BoneRush:
+	checkobedience
+	usedmovetext
+	doturn
+	startloop
+	lowersub
+	checkhit
+	checkfloatmon
+	critical
+	damagestats
+	damagecalc
+	stab
+	damagevariation
+	clearmissdamage
+	moveanimnosub
+	failuretext
+	applydamage
+	criticaltext
+	cleartext
+	supereffectivelooptext
+	checkfaint
+	buildopponentrage
+	endloop
+	raisesub
+	kingsrock
 	endmove
 
 MultiHit:
@@ -1191,6 +1241,87 @@ RazorWind:
 	kingsrock
 	endmove
 
+Bonemerang:
+	checkobedience
+	usedmovetext
+	doturn
+	startloop
+	lowersub
+	checkhit
+	checkfloatmon
+	critical
+	damagestats
+	damagecalc
+	stab
+	damagevariation
+	clearmissdamage
+	moveanimnosub
+	failuretext
+	applydamage
+	criticaltext
+	cleartext
+	supereffectivelooptext
+	checkfaint
+	buildopponentrage
+	endloop
+	raisesub
+	kingsrock
+	endmove
+
+SandAttack:
+	checkobedience
+	usedmovetext
+	doturn
+	checkhit
+	checkfloatmon
+	accuracydown
+	lowersub
+	statdownanim
+	raisesub
+	statdownmessage
+	statdownfailtext
+	endmove
+
+
+BoneClub:
+	checkobedience
+	usedmovetext
+	doturn
+	critical
+	damagestats
+	damagecalc
+	stab
+	damagevariation
+	checkhit
+	checkfloatmon
+	effectchance
+	moveanim
+	failuretext
+	applydamage
+	criticaltext
+	supereffectivetext
+	checkfaint
+	buildopponentrage
+	flinchtarget
+	endmove
+
+
+Fissure:
+	checkobedience
+	usedmovetext
+	doturn
+	checkfloatmon
+	ohko
+	moveanim
+	failuretext
+	applydamage
+	criticaltext
+	supereffectivetext
+	checkfaint
+	buildopponentrage
+	endmove
+
+Dig:
 Fly:
 	checkcharge
 	checkobedience
@@ -1203,6 +1334,7 @@ Fly:
 	stab
 	damagevariation
 	checkhit
+	checkfloatmon
 	moveanimnosub
 	raisesub
 	failuretext
@@ -1708,6 +1840,7 @@ Magnitude:
 	stab
 	damagevariation
 	checkhit
+	checkfloatmon
 	doubleundergrounddamage
 	moveanim
 	failuretext
@@ -1918,6 +2051,7 @@ Earthquake:
 	damagevariation
 	doubleundergrounddamage
 	checkhit
+	checkfloatmon
 	effectchance
 	moveanim
 	failuretext
