@@ -413,6 +413,13 @@ AI_Smart_EffectHandlers:
 	dbw EFFECT_SOLARBEAM,        AI_Smart_Solarbeam
 	dbw EFFECT_THUNDER,          AI_Smart_Thunder
 	dbw EFFECT_FLY,              AI_Smart_Fly
+	dbw EFFECT_DIG,              AI_Smart_Dig
+	dbw EFFECT_FISSURE,          AI_Smart_Fissure
+	dbw EFFECT_BONE_CLUB,        AI_Smart_CantHitFloatMon
+	dbw EFFECT_SAND_ATTACK,      AI_Smart_CantHitFloatMon
+	dbw EFFECT_BONEMERANG,       AI_Smart_CantHitFloatMon
+	dbw EFFECT_MUD_SLAP,         AI_Smart_CantHitFloatMon
+	dbw EFFECT_BONE_RUSH,        AI_Smart_CantHitFloatMon
 	db -1 ; end
 
 AI_Smart_Sleep:
@@ -997,6 +1004,22 @@ AI_Smart_Reflect:
 	inc [hl]
 	ret
 
+
+AI_Smart_CantHitFloatMon:
+; Dismiss this move if the player is a floatmon.
+	push hl
+	ld a, [wBattleMonSpecies]
+	ld hl, FloatMons
+	call IsInByteArray
+	pop hl
+	jp c, AIDiscourageMove
+	ret
+
+
+AI_Smart_Fissure:
+	call AI_Smart_CantHitFloatMon
+	; fallthrough
+
 AI_Smart_Ohko:
 ; Dismiss this move if player's level is higher than enemy's level.
 ; Else, discourage this move is player's HP is below 50%.
@@ -1167,6 +1190,10 @@ AI_Smart_SpDefenseUp2:
 .discourage
 	inc [hl]
 	ret
+
+AI_Smart_Dig:
+	call AI_Smart_CantHitFloatMon
+	; fallthrough
 
 AI_Smart_Fly:
 ; Fly, Dig
@@ -2236,14 +2263,14 @@ AI_Smart_Earthquake:
 ; Greatly encourage this move if the player is underground and the enemy is faster.
 	ld a, [wLastPlayerCounterMove]
 	cp DIG
-	ret nz
+	jr nz, .discourage_float
 
 	ld a, [wPlayerSubStatus3]
 	bit SUBSTATUS_UNDERGROUND, a
 	jr z, .could_dig
 
 	call AICompareSpeed
-	ret nc
+	jr nc, .discourage_float
 	dec [hl]
 	dec [hl]
 	ret
@@ -2253,12 +2280,22 @@ AI_Smart_Earthquake:
 
 	; 50% chance to encourage this move if the enemy is slower than the player.
 	call AICompareSpeed
-	ret c
+	jr c, .discourage_float
 
 	call AI_50_50
-	ret c
+	jr c, .discourage_float
 
 	dec [hl]
+	ret
+
+.discourage_float
+; Dismiss this move if the player is a floatmon.
+	push hl
+	ld a, [wBattleMonSpecies]
+	ld hl, FloatMons
+	call IsInByteArray
+	pop hl
+	jp c, AIDiscourageMove
 	ret
 
 AI_Smart_BatonPass:
