@@ -6,6 +6,7 @@
 	const ELMSLAB_POKE_BALL3
 	const ELMSLAB_OFFICER
 	const ELMSLAB_PORYGON_PC
+	const ELMSLAB_SCARLET
 
 ElmsLab_MapScripts:
 	def_scene_scripts
@@ -15,6 +16,7 @@ ElmsLab_MapScripts:
 	scene_script ElmsLabNoop3Scene,   SCENE_ELMSLAB_MEET_OFFICER
 	scene_script ElmsLabNoop4Scene,   SCENE_ELMSLAB_UNUSED
 	scene_script ElmsLabNoop5Scene,   SCENE_ELMSLAB_AIDE_GIVES_POTION
+	scene_script ElmsLabNoop6Scene,   SCENE_ELMSLAB_SCARLET_TUTORIAL_BATTLE
 	scene_const SCENE_ELMSLAB_AIDE_GIVES_POKE_BALLS
 
 	def_callbacks
@@ -39,6 +41,9 @@ ElmsLabNoop4Scene:
 ElmsLabNoop5Scene:
 	end
 
+ElmsLabNoop6Scene:
+	end
+
 ElmsLabMoveElmCallback:
 	checkscene
 	iftrue .Skip ; not SCENE_ELMSLAB_MEET_ELM
@@ -49,19 +54,10 @@ ElmsLabMoveElmCallback:
 ElmsLabWalkUpToElmScript:
 	applymovement PLAYER, ElmsLab_WalkUpToElmMovement
 	showemote EMOTE_SHOCK, ELMSLAB_ELM, 15
+	turnobject ELMSLAB_SCARLET, LEFT
 	turnobject ELMSLAB_ELM, RIGHT
 	opentext
 	writetext ElmText_Intro
-.MustSayYes:
-	yesorno
-	iftrue .ElmGetsEmail
-	writetext ElmText_Refused
-	sjump .MustSayYes
-
-.ElmGetsEmail:
-	writetext ElmText_Accepted
-	promptbutton
-	writetext ElmText_ResearchAmbitions
 	waitbutton
 	closetext
 	playsound SFX_GLASS_TING
@@ -77,10 +73,9 @@ ElmsLabWalkUpToElmScript:
 	writetext ElmText_MissionFromMrPokemon
 	waitbutton
 	closetext
-	applymovement ELMSLAB_ELM, ElmsLab_ElmToDefaultPositionMovement1
+	applymovement ELMSLAB_ELM, ElmsLab_ElmToDefaultPositionMovement
 	turnobject PLAYER, UP
-	applymovement ELMSLAB_ELM, ElmsLab_ElmToDefaultPositionMovement2
-	turnobject PLAYER, RIGHT
+	turnobject ELMSLAB_SCARLET, UP
 	opentext
 	writetext ElmText_ChooseAPokemon
 	waitbutton
@@ -183,9 +178,43 @@ CyndaquilPokeBallScript:
 	givepoke CYNDAQUIL, 5, BERRY
 	closetext
 	readvar VAR_FACING
+	ifequal RIGHT, ScarletDoesntWalkAroundScript
+	applymovement ELMSLAB_SCARLET, ScarletChikoritaMovement
+	opentext
+	writetext ScarletChosesAStarterText
+	waitbutton
+	closetext
+	disappear ELMSLAB_POKE_BALL3
+	playsound SFX_CAUGHT_MON
+	waitsfx
+	opentext
+	writetext ScarletReceivedChikoritaText
+	waitbutton
+	closetext
+	applymovement ELMSLAB_SCARLET, ScarletChikoritaMovementAfter
+	turnobject ELMSLAB_SCARLET, UP
+	readvar VAR_FACING
 	ifequal RIGHT, ElmDirectionsScript
 	applymovement PLAYER, AfterCyndaquilMovement
 	sjump ElmDirectionsScript
+
+ScarletDoesntWalkAroundScript:
+	applymovement ELMSLAB_SCARLET, ScarletChikoritaMovementNormal
+	opentext
+	writetext ScarletChosesAStarterText
+	waitbutton
+	closetext
+	disappear ELMSLAB_POKE_BALL3
+	playsound SFX_CAUGHT_MON
+	waitsfx
+	opentext
+	writetext ScarletReceivedChikoritaText
+	waitbutton
+	closetext
+	applymovement ELMSLAB_SCARLET, ScarletChikoritaMovementAfterNormal
+	turnobject ELMSLAB_SCARLET, UP
+	sjump ElmDirectionsScript
+
 
 TotodilePokeBallScript:
 	checkevent EVENT_GOT_A_POKEMON_FROM_ELM
@@ -212,6 +241,20 @@ TotodilePokeBallScript:
 	promptbutton
 	givepoke TOTODILE, 5, BERRY
 	closetext
+		applymovement ELMSLAB_SCARLET, ScarletCyndaquilMovement
+	opentext
+	writetext ScarletChosesAStarterText
+	waitbutton
+	closetext
+	disappear ELMSLAB_POKE_BALL1
+	playsound SFX_CAUGHT_MON
+	waitsfx
+	opentext
+	writetext ScarletReceivedCyndaquilText
+	waitbutton
+	closetext
+	applymovement ELMSLAB_SCARLET, ScarletCyndaquilMovementAfter
+	turnobject ELMSLAB_SCARLET, UP
 	applymovement PLAYER, AfterTotodileMovement
 	sjump ElmDirectionsScript
 
@@ -240,6 +283,20 @@ ChikoritaPokeBallScript:
 	promptbutton
 	givepoke CHIKORITA, 5, BERRY
 	closetext
+	applymovement ELMSLAB_SCARLET, ScarletTotodileMovement
+	opentext
+	writetext ScarletChosesAStarterText
+	waitbutton
+	closetext
+	disappear ELMSLAB_POKE_BALL2
+	playsound SFX_CAUGHT_MON
+	waitsfx
+	opentext
+	writetext ScarletReceivedTotodileText
+	waitbutton
+	closetext
+	applymovement ELMSLAB_SCARLET, ScarletTotodileMovementAfter
+	turnobject ELMSLAB_SCARLET, UP
 	applymovement PLAYER, AfterChikoritaMovement
 	sjump ElmDirectionsScript
 
@@ -274,7 +331,7 @@ ElmDirectionsScript:
 	closetext
 	setevent EVENT_GOT_A_POKEMON_FROM_ELM
 	setevent EVENT_RIVAL_CHERRYGROVE_CITY
-	setscene SCENE_ELMSLAB_AIDE_GIVES_POTION
+	setscene SCENE_ELMSLAB_SCARLET_TUTORIAL_BATTLE
 	setmapscene NEW_BARK_TOWN, SCENE_NEWBARKTOWN_NOOP
 	setmapscene CHERRYGROVE_CITY, SCENE_CHERRYGROVECITY_MEET_GUIDE_GENT
 	end
@@ -481,6 +538,75 @@ AideScript_GivePotion:
 	waitbutton
 	closetext
 	setscene SCENE_ELMSLAB_NOOP
+	end
+
+ScarletsTutorialBattleScript:
+	turnobject PLAYER, LEFT
+	turnobject ELMSLAB_SCARLET, RIGHT
+	playmusic MUSIC_SCARLET
+	opentext
+	writetext TutorialBattleIntroText
+	waitbutton
+	closetext
+	checkevent EVENT_GOT_TOTODILE_FROM_ELM
+	iftrue .Totodile
+	checkevent EVENT_GOT_CHIKORITA_FROM_ELM
+	iftrue .Chikorita
+	winlosstext ScarletsTutLossText, ScarletsTutWinText
+	loadtrainer SCARLET, SCARLET1
+	loadvar VAR_BATTLETYPE, BATTLETYPE_CANLOSE
+	startbattle
+	reloadmap
+	iftrue .AfterVictorious
+	sjump .AfterYourDefeat
+
+.Totodile:
+	winlosstext ScarletsTutLossText, ScarletsTutWinText
+	loadtrainer SCARLET, SCARLET2
+	loadvar VAR_BATTLETYPE, BATTLETYPE_CANLOSE
+	startbattle
+	reloadmap
+	iftrue .AfterVictorious
+	sjump .AfterYourDefeat
+
+.Chikorita:
+	winlosstext ScarletsTutLossText, ScarletsTutWinText
+	loadtrainer SCARLET, SCARLET3
+	loadvar VAR_BATTLETYPE, BATTLETYPE_CANLOSE
+	startbattle
+	reloadmap
+	iftrue .AfterVictorious
+	sjump .AfterYourDefeat
+
+.AfterVictorious:
+	opentext
+	writetext ElmsLabScarletText_YouWon
+	waitbutton
+	closetext
+	sjump .FinishRival
+
+.AfterYourDefeat:
+	opentext
+	writetext ElmsLabScarletText_YouWon
+	waitbutton
+	closetext
+.FinishRival
+	turnobject ELMSLAB_SCARLET, UP
+	opentext
+	writetext ThanksForThePokemonText
+	waitbutton
+	closetext
+	turnobject ELMSLAB_SCARLET, RIGHT
+	opentext
+	writetext SeeYouLaterPlayerText
+	waitbutton
+	closetext
+	applymovement ELMSLAB_SCARLET, ElmsLabScarletLeaves
+	disappear ELMSLAB_SCARLET
+	playsound SFX_ENTER_DOOR
+	setscene SCENE_ELMSLAB_NOOP
+	setscene SCENE_ELMSLAB_AIDE_GIVES_POTION
+	special HealParty
 	end
 
 AideScript_WalkBalls1:
@@ -699,20 +825,71 @@ ElmJumpRightMovement:
 	remove_fixed_facing
 	step_end
 
-ElmsLab_ElmToDefaultPositionMovement1:
+ElmsLab_ElmToDefaultPositionMovement:
 	step UP
-	step_end
-
-ElmsLab_ElmToDefaultPositionMovement2:
 	step RIGHT
 	step RIGHT
 	step UP
 	turn_head DOWN
 	step_end
 
-AfterCyndaquilMovement:
-	step LEFT
+ScarletChikoritaMovementNormal:
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	turn_head UP
+	step_end
+
+ScarletChikoritaMovement:
+	step DOWN	
+	step RIGHT
+	step RIGHT
 	step UP
+	step RIGHT
+	turn_head UP
+	step_end
+
+ScarletChikoritaMovementAfterNormal:
+	step LEFT
+	step LEFT
+	step LEFT
+	step LEFT
+	step DOWN
+	turn_head UP
+	step_end
+
+ScarletChikoritaMovementAfter:
+	step LEFT
+	step DOWN
+	step LEFT
+	step LEFT
+	step LEFT
+	turn_head UP
+	step_end
+
+ScarletCyndaquilMovement:
+	step RIGHT
+	turn_head UP
+	step_end
+
+ScarletCyndaquilMovementAfter:
+	step LEFT
+	step LEFT
+	step DOWN
+	turn_head UP
+	step_end
+
+ScarletTotodileMovement:
+	step RIGHT
+	step RIGHT
+	turn_head UP
+	step_end
+
+ScarletTotodileMovementAfter:
+	step LEFT
+	step LEFT
+	step LEFT
+	step DOWN
 	turn_head UP
 	step_end
 
@@ -731,69 +908,134 @@ AfterChikoritaMovement:
 	turn_head UP
 	step_end
 
+AfterCyndaquilMovement:
+	step LEFT
+	step UP
+	turn_head UP
+	step_end
+
+ElmsLabScarletLeaves:
+	step DOWN
+	step DOWN
+	step DOWN
+	step DOWN
+	step DOWN
+	step DOWN
+	step_end
+
+ProElmsLabScarletScript:
+	faceplayer
+	opentext
+	checkevent EVENT_GOT_A_POKEMON_FROM_ELM
+	iftrue .YourPokemonLooksCute
+	writetext ProElmsLabScarletText
+	waitbutton
+	closetext
+	end
+
+.YourPokemonLooksCute
+	writetext YourPokemonLooksCuteTooText
+	waitbutton
+	closetext
+	end
+
+TutorialBattleIntroText:
+	text "SCARLET: <PLAY_G>,"
+	line "let's get to know"
+	
+	para "our #MON with"
+	line "a battle!"
+	done
+
+ScarletsTutLossText:
+	text "Fun…! I'll try"
+	line "harder next time!"
+	done
+
+ScarletsTutWinText:
+	text "Yay! I won!"
+	done
+
+ElmsLabScarletText_YouWon:
+	text "That was an"
+	line "exciting battle!"
+	done
+
+ThanksForThePokemonText:
+	text "Thanks for the"
+	line "#MON, PROF."
+	cont "ELM."
+	done
+
+SeeYouLaterPlayerText:
+	text "<PLAY_G>, I'll"
+	line "see you later!"
+	
+	para "Have fun on your"
+	line "errand!"
+	done
+
+YourPokemonLooksCuteTooText:
+	text "Your #MON"
+	line "looks cute too!"
+	done
+
+ProElmsLabScarletText:
+	text "Go on <PLAY_G>,"
+	line "I'll choose after."
+	done
+
+ScarletChosesAStarterText:
+	text "SCARLET: Then I'll"
+	line "pick this one!"
+	done
+
+ScarletReceivedChikoritaText:
+	text "SCARLET received"
+	line "CHIKORITA!"
+
+	para "SCARLET: Huh!?"
+	line "This color? So"
+	cont "cute!"
+	
+	para "I'll call you"
+	line "HAZEL."
+	done
+
+ScarletReceivedCyndaquilText:
+	text "SCARLET received"
+	line "CYNDAQUIL!"
+
+	para "SCARLET: Huh!?"
+	line "This color? So"
+	cont "cute!"
+	
+	para "I'll call you"
+	line "CINDER."
+	done
+
+ScarletReceivedTotodileText:
+	text "SCARLET received"
+	line "TOTODILE!"
+	
+	para "SCARLET: Huh!?"
+	line "This color? So"
+	cont "cute!"
+	
+	para "I'll call you"
+	line "CHOMPER."
+	done
+
 ElmText_Intro:
 	text "ELM: <PLAY_G>!"
 	line "There you are!"
 
-	para "I needed to ask"
-	line "you a favor."
+	para "SCARLET and I have"
+	line "been waiting."
 
-	para "I'm conducting new"
-	line "#MON research"
-
-	para "right now. I was"
-	line "wondering if you"
-
-	para "could help me with"
-	line "it, <PLAY_G>."
-
-	para "You see…"
-
-	para "I'm writing a"
-	line "paper that I want"
-
-	para "to present at a"
-	line "conference."
-
-	para "But there are some"
-	line "things I don't"
-
-	para "quite understand"
-	line "yet."
-
-	para "So!"
-
-	para "I'd like you to"
-	line "raise a #MON"
-
-	para "that I recently"
-	line "caught."
-	done
-
-ElmText_Accepted:
-	text "Thanks, <PLAY_G>!"
-
-	para "You're a great"
-	line "help!"
-	done
-
-ElmText_Refused:
-	text "But… Please, I"
-	line "need your help!"
-	done
-
-ElmText_ResearchAmbitions:
-	text "When I announce my"
-	line "findings, I'm sure"
-
-	para "we'll delve a bit"
-	line "deeper into the"
-
-	para "many mysteries of"
-	line "#MON."
-
-	para "You can count on"
-	line "it!"
+	para "You're both of age"
+	line "now, so I'll give"
+	cont "you a #MON!"
 	done
 
 ElmText_GotAnEmail:
@@ -837,11 +1079,18 @@ ElmText_MissionFromMrPokemon:
 
 	para "<PLAY_G>, can you"
 	line "go in our place?"
+	
+	para "SCARLET has a"
+	line "prior engagement…"
+	
+	para "…"
+	
+	para "Then it's settled!"
 	done
 
 ElmText_ChooseAPokemon:
-	text "I want you to"
-	line "raise one of the"
+	text "Before you go,"
+	line "please choose a"
 
 	para "#MON contained"
 	line "in these BALLS."
@@ -851,6 +1100,9 @@ ElmText_ChooseAPokemon:
 	cont "partner, <PLAY_G>!"
 
 	para "Go on. Pick one!"
+	
+	para "Afterward, you'll"
+	line "take one SCARLET."
 	done
 
 ElmText_LetYourMonBattleIt:
@@ -867,19 +1119,19 @@ LabWhereGoingText:
 TakeCyndaquilText:
 	text "ELM: You'll take"
 	line "CYNDAQUIL, the"
-	cont "fire #MON?"
+	cont "FIRE #MON?"
 	done
 
 TakeTotodileText:
 	text "ELM: Do you want"
 	line "TOTODILE, the"
-	cont "water #MON?"
+	cont "WATER #MON?"
 	done
 
 TakeChikoritaText:
 	text "ELM: So, you like"
 	line "CHIKORITA, the"
-	cont "grass #MON?"
+	cont "GRASS #MON?"
 	done
 
 DidntChooseStarterText:
@@ -935,7 +1187,23 @@ ElmDirectionsText2:
 	done
 
 ElmDirectionsText3:
-	text "<PLAY_G>, I'm"
+	text "Know this: #MON"
+	line "appear in grass"
+
+	para "and dungeons"
+	line "as random clashes."
+
+	para "In your OPTIONS"
+	line "menu you can turn"
+	
+	para "OFF or ON all"
+	line "overworld encount-"
+	cont "ers."
+	
+	para "Use it to your"
+	line "convenience."
+
+	para "<PLAY_G>, I'm"
 	line "counting on you!"
 	done
 
@@ -1406,6 +1674,7 @@ ElmsLab_MapEvents:
 	coord_event  5,  8, SCENE_ELMSLAB_AIDE_GIVES_POTION, AideScript_WalkPotion2
 	coord_event  4,  8, SCENE_ELMSLAB_AIDE_GIVES_POKE_BALLS, AideScript_WalkBalls1
 	coord_event  5,  8, SCENE_ELMSLAB_AIDE_GIVES_POKE_BALLS, AideScript_WalkBalls2
+	coord_event  5,  5, SCENE_ELMSLAB_SCARLET_TUTORIAL_BATTLE, ScarletsTutorialBattleScript
 
 	def_bg_events
 	bg_event  2,  1, BGEVENT_READ, ElmsLabHealingMachine
@@ -1433,3 +1702,4 @@ ElmsLab_MapEvents:
 	object_event  8,  3, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, ChikoritaPokeBallScript, EVENT_CHIKORITA_POKEBALL_IN_ELMS_LAB
 	object_event  5,  3, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CopScript, EVENT_COP_IN_ELMS_LAB
 	object_event  0,  4, SPRITE_PORYGON_OW, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ElmsLabPorygonPCScript, -1
+	object_event  5,  4, SPRITE_SCARLET, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ProElmsLabScarletScript, EVENT_ELMS_LAB_SCARLET

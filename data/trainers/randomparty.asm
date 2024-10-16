@@ -99,11 +99,6 @@ ElderGroup:
 	db "LI@", TRAINERTYPE_RANDOM | TRAINERTYPE_NICKNAME | TRAINERTYPE_DVS | TRAINERTYPE_EVS | TRAINERTYPE_ITEM | TRAINERTYPE_MOVES, 1, ELDERLILIST2 ; ELDERLILIST2 matches const ELDERLILIST2
 	db -1 ; end
 
-ScarletGroup:
-	; SCARLET1 (1)
-	db "SCARLET@", TRAINERTYPE_RANDOM | TRAINERTYPE_NICKNAME | TRAINERTYPE_DVS | TRAINERTYPE_EVS | TRAINERTYPE_ITEM | TRAINERTYPE_MOVES, 3, SCARLETLIST1 ; SCARLETLIST1 matches const SCARLETLIST1
-	db -1 ; end
-
 RandomPartyLists::
 
 ; EXAMPLE from above continued -:
@@ -464,31 +459,6 @@ RandomPartyLists::
 	db 1, CHARIZARD
 			db "ZARD@"		; Nickname
 			db $DE, $DD		; atk|def dv, spd|spc dv
-			ds 6, MAX_EV	; hp, atk, def, spd, sat, sdf 
-			db LEFTOVERS	; NO_ITEM is a thing
-			db SLEEP_POWDER, LEECH_SEED, GIGA_DRAIN, ROCK_SLIDE ; Moveset - NO_MOVE is a thing
-			db $fe ; End of Pokemon
-	db -1 ; end
-
-   ; SCARLET1
-   db 3
-	db 1, ARTICUNO
-			db "BIRB1@"		; Nickname
-			db $DE, $DD		; atk|def dv, spd|spc dv
-			ds 6, MAX_EV	; hp, atk, def, spd, sat, sdf 
-			db LEFTOVERS	; NO_ITEM is a thing
-			db SLEEP_POWDER, LEECH_SEED, GIGA_DRAIN, ROCK_SLIDE ; Moveset - NO_MOVE is a thing
-			db $fe ; End of Pokemon
-	db 1, ZAPDOS
-			db "ZAPPY@"		; Nickname
-			db $DE, $DD		; atk|def dv, spd|spc dv
-			ds 6, MAX_EV	; hp, atk, def, spd, sat, sdf 
-			db LEFTOVERS	; NO_ITEM is a thing
-			db SLEEP_POWDER, LEECH_SEED, GIGA_DRAIN, ROCK_SLIDE ; Moveset - NO_MOVE is a thing
-			db $fe ; End of Pokemon
-	db 1, MOLTRES
-			db "TRES@"		; Nickname
-			db $EA, $AA		; atk|def dv, spd|spc dv
 			ds 6, MAX_EV	; hp, atk, def, spd, sat, sdf 
 			db LEFTOVERS	; NO_ITEM is a thing
 			db SLEEP_POWDER, LEECH_SEED, GIGA_DRAIN, ROCK_SLIDE ; Moveset - NO_MOVE is a thing
