@@ -370,7 +370,7 @@
 	charmap "と", $c4
 	charmap "な", $c5
 	charmap "に", $c6
-	charmap "ぬ", $c7
+	charmap "<FLOAT>",   $c7 ; floatmon arrow
 	charmap "ね", $c8
 	charmap "の", $c9
 	charmap "は", $ca

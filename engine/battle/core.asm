@@ -4676,6 +4676,14 @@ PrintPlayerHUD:
 	ld a, [wBattleMonLevel]
 	ld [wTempMonLevel], a
 	jp PrintLevel
+.place_floaticon
+	ld a, [wCurSpecies]
+	ld hl, FloatMons
+	call IsInByteArray
+	ret nc
+	hlcoord 18, 8
+	ld [hl], "<DO>"
+	ret
 
 UpdateEnemyHUD::
 	push hl
@@ -4753,7 +4761,13 @@ DrawEnemyHUD:
 	ld [wTempMonLevel], a
 	call PrintLevel
 .skip_level
-
+	ld a, [wCurSpecies]
+	ld hl, FloatMons
+	call IsInByteArray
+	jr nc, .skip_floaticon
+	hlcoord 10, 1
+	ld [hl], "<DO>"
+.skip_floaticon
 	ld hl, wEnemyMonHP
 	ld a, [hli]
 	ldh [hMultiplicand + 1], a

@@ -451,7 +451,7 @@ StatsScreen_InitUpperHalf:
 	call StatsScreen_PlaceHorizontalDivider
 	call StatsScreen_PlacePageSwitchArrows
 	call StatsScreen_PlaceShinyIcon
-	ret
+	jp StatsScreen_PlaceFloatIcon
 
 .PlaceHPBar:
 	ld hl, wTempMonHP
@@ -524,6 +524,15 @@ StatsScreen_PlaceShinyIcon:
 	ret nc
 	hlcoord 19, 0
 	ld [hl], "⁂"
+	ret
+
+StatsScreen_PlaceFloatIcon:
+	ld a, [wCurPartySpecies]
+	ld hl, FloatMons
+	call IsInByteArray
+	ret nc
+	hlcoord 8, 6
+	ld [hl], "<DO>"
 	ret
 
 StatsScreen_LoadGFX:
