@@ -71,7 +71,10 @@ wMusicFade::
 wMusicFadeCount:: db
 wMusicFadeID:: dw
 
-	ds 5
+wBattleMonTempStat:: dw
+wEnemyMonTempStat:: dw
+
+	ds 3
 
 wCryPitch:: dw
 wCryLength:: dw
@@ -157,8 +160,6 @@ wMovementObject::
 wMovementDataBank:: db
 wMovementDataAddress:: dw
 wIndexedMovement2Pointer:: dw
-
-	ds 2
 
 wContinueReadingMovement:: db
 
@@ -270,8 +271,6 @@ wGlobalAnimYOffset:: db
 wGlobalAnimXOffset:: db
 
 wSpriteAnimDataEnd::
-
-	ds 11
 
 ; mobile data
 wc3cc:: ds 1
