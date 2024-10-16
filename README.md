@@ -98,8 +98,16 @@ Morning	-  5:00am - 9:59am // Day	- 10:00am - 6:59pm // Night	-	7:00pm - 4:59pm
 - Catching Pokémon yield Exp and EVs. 
 - DVs no longer affect battle stats. Pokémon of the same specie at the same level without EVs have the same Battle stats. DVs now only affect chance for shininess and Hidden Power Type.
 - Hidden Power’s battle strength is always 70 and type is determined the same way as vanilla. 
+- Granted Grass type Pokémon immunity to Powder/Spore based moves.
+- All Grass types get a 50% Speed boost in Sunny weather.
+- Made Sandstorm raise the Special Defense of Rock type Pokémon by 50%.
 - Replaced the Freeze status with Frostbite.
+- Water types are immune to being Burned.
+- Fire types can't be frostbitten.
+- Pseudo-levitate given to BUTTERFREE, VENOMOTH, MAGNEMITE, MAGNETON, GASTLY, HAUNTER, GENGAR, KOFFING, WEEZING, MEW, MISDREAVUS, UNOWN, CELEBI and CHARIZARD. Added a floating (up arrow) icon for levitating Pokémon in the Pokédex, Menu and Enemy side of the field.
 - Battle HUD updated.
+- Made new battle text to distinguish status move misses and fails.
+- Evolution moves tutorial used. (still need to add evolution moves and evo_attacks.asm..)
 - More information added to Move Menu.
 - Item usage is forbidden and forced Set mode is enabled for all trainers.
 - Removed the 25% failure chance for AI status moves.
