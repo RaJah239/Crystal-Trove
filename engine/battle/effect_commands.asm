@@ -4001,6 +4001,8 @@ BattleCommand_FreezeTarget:
 	ret z
 	ld a, ICE ; Don't freeze an Ice-type
 	call CheckIfTargetIsGivenType
+	ld a, FIRE ; Don't free a Fire-type
+	call CheckIfTargetIsGivenType
 	ret z
 	call GetOpponentItem
 	ld a, b
