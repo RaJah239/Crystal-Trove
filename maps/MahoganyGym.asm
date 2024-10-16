@@ -346,11 +346,8 @@ BoarderRonaldBeatenText:
 	done
 
 BoarderRonaldAfterBattleText:
-	text "I think there's a"
-	line "move a frostbitten"
-
-	para "#MON can use to"
-	line "cure itself."
+	text "FIRE types can't"
+	line "be frostbitten…"
 	done
 
 BoarderBradSeenText:

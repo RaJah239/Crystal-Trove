@@ -317,6 +317,9 @@ AcademyBurnText:
 
 	para "Use a BURN HEAL as"
 	line "the cure."
+	
+	para "WATER types can't"
+	line "be burned."
 	done
 
 AcademyFrostbiteText:
@@ -329,6 +332,9 @@ AcademyFrostbiteText:
 
 	para "Thaw it out with"
 	line "an ICE HEAL."
+	
+	para "FIRE types can't"
+	line "be frostbitten."
 	done
 
 AcademyNotebookText:
