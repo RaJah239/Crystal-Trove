@@ -11,14 +11,48 @@
 	const ILEXFOREST_POKE_BALL3
 	const ILEXFOREST_POKE_BALL4
 	const ILEXFOREST_CHANSEY
+	const ILEXFOREST_S_MUSHROOM
+	const ILEXFOREST_L_MUSHROOM
+	const ILEXFOREST_S2_MUSHROOM
 
 IlexForest_MapScripts:
 	def_scene_scripts
 
 	def_callbacks
-	callback MAPCALLBACK_OBJECTS, IlexForestFarfetchdCallback
+	callback MAPCALLBACK_OBJECTS, IlexForestFarfetchdandMushroomsCallback
 
-IlexForestFarfetchdCallback:
+IlexForestFarfetchdandMushroomsCallback:
+    checkflag ENGINE_ILEX_FOREST_MUSHROOMS
+    iftrue .NoAppear
+    random 3
+    ifequal 0, .AppearSmallMushroom
+    ifequal 1, .AppearLargeMushroom
+    ifequal 2, .AppearSmallMushroom2
+.NoAppear:
+    disappear ILEXFOREST_S_MUSHROOM
+    disappear ILEXFOREST_L_MUSHROOM
+    disappear ILEXFOREST_S2_MUSHROOM
+    sjump .IlexForestFarfetchd
+
+.AppearSmallMushroom:
+    disappear ILEXFOREST_L_MUSHROOM
+    disappear ILEXFOREST_S2_MUSHROOM
+    appear ILEXFOREST_S_MUSHROOM
+    sjump .IlexForestFarfetchd
+
+.AppearLargeMushroom:
+    disappear ILEXFOREST_S_MUSHROOM
+    disappear ILEXFOREST_S2_MUSHROOM
+    appear ILEXFOREST_L_MUSHROOM
+    sjump .IlexForestFarfetchd
+
+.AppearSmallMushroom2
+    disappear ILEXFOREST_S_MUSHROOM
+    disappear ILEXFOREST_L_MUSHROOM
+    appear ILEXFOREST_S2_MUSHROOM
+    sjump .IlexForestFarfetchd
+   
+.IlexForestFarfetchd
 	checkevent EVENT_GOT_HM01_CUT
 	iftrue .Static
 	readmem wFarfetchdPosition
@@ -948,6 +982,52 @@ BugCatcherWayneAfterBattleText:
 IlexForestChanseyScript:
 	jumpstd ChanseyHealsOWScript
 
+IlexForestSMushroomScript:
+	giveitem TINYMUSHROOM
+	getitemname STRING_BUFFER_3, TINYMUSHROOM
+	disappear ILEXFOREST_S_MUSHROOM
+	setflag ENGINE_ILEX_FOREST_MUSHROOMS
+	opentext
+	writetext IlexForestFoundMushroomText
+	playsound SFX_ITEM
+	waitsfx
+	itemnotify
+	closetext
+	end
+
+IlexForestSMushroomScript2:
+	giveitem TINYMUSHROOM
+	getitemname STRING_BUFFER_3, TINYMUSHROOM
+	disappear ILEXFOREST_S2_MUSHROOM
+	setflag ENGINE_ILEX_FOREST_MUSHROOMS
+	opentext
+	writetext IlexForestFoundMushroomText
+	playsound SFX_ITEM
+	waitsfx
+	itemnotify
+	closetext
+	end
+	
+IlexForestLMushroomScript:
+	giveitem BIG_MUSHROOM
+	getitemname STRING_BUFFER_3, BIG_MUSHROOM
+	disappear ILEXFOREST_L_MUSHROOM
+	setflag ENGINE_ILEX_FOREST_MUSHROOMS
+	opentext
+	writetext IlexForestFoundMushroomText
+	playsound SFX_ITEM
+	waitsfx
+	itemnotify
+	closetext
+	end
+
+IlexForestFoundMushroomText:
+	text "<PLAYER> found"
+	line "@"
+	text_ram wStringBuffer3
+	text "!"
+	done
+
 IlexForest_MapEvents:
 	db 0, 0 ; filler
 
@@ -976,6 +1056,9 @@ IlexForest_MapEvents:
 	object_event  3, 24, SPRITE_LASS, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, IlexForestLassScript, EVENT_ILEX_FOREST_LASS
 	object_event 12,  1, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 0, TrainerBugCatcherWayne, -1
 	object_event  9, 17, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, IlexForestXAttack, EVENT_ILEX_FOREST_X_ATTACK
-	object_event 17,  7, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, IlexForestAntidote, EVENT_ILEX_FOREST_ANTIDOTE
+	object_event 27, 14, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, IlexForestAntidote, EVENT_ILEX_FOREST_ANTIDOTE
 	object_event 27,  1, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, IlexForestEther, EVENT_ILEX_FOREST_ETHER
 	object_event 10,  4, SPRITE_CHANSEY_OW, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, IlexForestChanseyScript, -1
+	object_event  2,  8, SPRITE_S_MUSHROOM, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, IlexForestSMushroomScript, EVENT_ILEX_FOREST_S_MUSHROOM
+	object_event 23, 22, SPRITE_L_MUSHROOM, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, IlexForestLMushroomScript, EVENT_ILEX_FOREST_L_MUSHROOM
+	object_event 17,  7, SPRITE_S_MUSHROOM, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, IlexForestSMushroomScript2, EVENT_ILEX_FOREST_S2_MUSHROOM

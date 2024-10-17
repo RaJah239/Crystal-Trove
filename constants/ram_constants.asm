@@ -313,6 +313,7 @@ DEF CELEBIEVENT_FOREST_IS_RESTLESS_F EQU 2
 
 ;  wDailyFlags3:: - 8 daily Flags can be added here (max)
 	const DAILYFLAGS3_CIANWOOD_PHOTOGRAPH                 ; 0
+	const DAILYFLAGS3_ILEX_FOREST_MUSHROOMS
 
 ; wSwarmFlags::
 	const_def
