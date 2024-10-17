@@ -104,7 +104,7 @@ Morning	-  5:00am - 9:59am // Day	- 10:00am - 6:59pm // Night	-	7:00pm - 4:59pm
 - Replaced the Freeze status with Frostbite.
 - Water types are immune to being Burned.
 - Fire types can't be frostbitten.
-- Pseudo-levitate given to BUTTERFREE, VENOMOTH, MAGNEMITE, MAGNETON, GASTLY, HAUNTER, GENGAR, KOFFING, WEEZING, MEW, MISDREAVUS, UNOWN, CELEBI and CHARIZARD. Added a floating (up arrow) icon for levitating Pokémon in the Pokédex, Menu and Enemy side of the field.
+- Pseudo-levitate given to Butterfree, Venomth, Magnemite, Magneton, Gastly, Haunter, Gengar, Koffing, Weezing, Mew, Misdreavus, Unown, Celebi and Charizard. Added a floating (up arrow) icon for levitating Pokémon in the Pokédex, Menu and Enemy side of the field. Levitating Pokémon aren't affected by Spikes damage.
 - Battle HUD updated.
 - Made new battle text to distinguish status move misses and fails.
 - Evolution moves tutorial used. (still need to add evolution moves and evo_attacks.asm..)
@@ -125,7 +125,7 @@ Morning	-  5:00am - 9:59am // Day	- 10:00am - 6:59pm // Night	-	7:00pm - 4:59pm
 - Do Not Disturb mode by lifeofmauri on Discord
 - Take off all overworld Encounters by lifeofmauri on Discord
 - Item usage is forbidden by lifeofmauri on Discord
-- Scarlet/Chiaki and Maxima's overworld and trainer sprite by TheBrawlUnit from DeviantArt
+- Scarlet and Maxima's overworld and trainer sprite by TheBrawlUnit from DeviantArt
 - Ariana's trainer sprite by GetKosiorekt
 - Elder Li's trainer sprite from Polished Crystal
 - Giovanni, Archer, Proton and Petrel's overworld and trainer sprites by sirwhibbles from DeviantArt
@@ -137,7 +137,7 @@ Morning	-  5:00am - 9:59am // Day	- 10:00am - 6:59pm // Night	-	7:00pm - 4:59pm
 - Surf faster - cRz-Shadows on Discord
 - RBY Kanto's Gym Leader Battle, Indigo Plateau & Champion Theme by dannye from Discord & GitHub.
 - Maxie/Archie Battle, Hoen Rival Battle, May Encounter, Cave of Origin and Unova Elite Four's themes all by Mmmmm from SoundCloud/ https://soundcloud.com/mmmmmmmmmmmmmmmmm-1.
-- Dragonite and Farfetch'd's overworld sprite by SourApple.
+- Dragonite, Farfetch'd, small and large mushroom's overworld sprites by SourApple.
 
 # **General Credits List:**
 - Everyone that contributed to the pokecrystal disassembly, Pret’s Discord Server and pokecrystal tutorials which legitimately carried me.
