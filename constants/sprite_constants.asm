@@ -1,5 +1,5 @@
 ; sprite ids
-; 18 more free sprites
+; 16 more free sprites
 ; OverworldSprites indexes (see data/sprites/sprites.asm)
 	const_def
 	const SPRITE_NONE ; 00
@@ -121,10 +121,12 @@
 	const SPRITE_ARCHER
 	const SPRITE_EUSINE
 	const SPRITE_MAXIMA
+	const SPRITE_S_MUSHROOM
+	const SPRITE_L_MUSHROOM
 DEF NUM_OVERWORLD_SPRITES EQU const_value - 1
 
 ; SpriteMons indexes (see data/sprites/sprite_mons.asm)
-	const_next $77
+	const_next $79
 DEF SPRITE_POKEMON EQU const_value
 	const SPRITE_UNOWN ; 80
 	const SPRITE_WEEDLE ; 83
