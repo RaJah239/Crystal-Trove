@@ -71,9 +71,6 @@ wMusicFade::
 wMusicFadeCount:: db
 wMusicFadeID:: dw
 
-wBattleMonTempStat:: dw
-wEnemyMonTempStat:: dw
-
 	ds 3
 
 wCryPitch:: dw
@@ -350,6 +347,9 @@ wEnemyMonNickname::  ds MON_NAME_LENGTH
 wBattleMonNickname:: ds MON_NAME_LENGTH
 
 wBattleMon:: battle_struct wBattleMon
+
+wBattleMonTempStat:: dw
+wEnemyMonTempStat:: dw
 
 	ds 2
 
