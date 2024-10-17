@@ -1577,7 +1577,7 @@ RockSmashScript:
 	randomwildmon
 	startbattle
 	reloadmapafterbattle
-	end
+
 
 .no_battle
 	callasm RockItemEncounter
