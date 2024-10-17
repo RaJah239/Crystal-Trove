@@ -598,8 +598,8 @@ TinyMushroomDesc:
 	next "room. Sell low.@"
 
 BigMushroomDesc:
-	db   "A rare mushroom."
-	next "Sell high.@"
+	db   "A big mushroom."
+	next "Sell low.@"
 
 SilverPowderDesc:
 	db   "Powers up bug-type"
