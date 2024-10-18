@@ -137,7 +137,7 @@ Morning	-  5:00am - 9:59am // Day	- 10:00am - 6:59pm // Night	-	7:00pm - 4:59pm
 - Surf faster - cRz-Shadows on Discord
 - RBY Kanto's Gym Leader Battle, Indigo Plateau & Champion Theme by dannye from Discord & GitHub.
 - Maxie/Archie Battle, Hoen Rival Battle, May Encounter, Cave of Origin and Unova Elite Four's themes all by Mmmmm from SoundCloud/ https://soundcloud.com/mmmmmmmmmmmmmmmmm-1.
-- Dragonite, Farfetch'd, small and large mushroom's overworld sprites by SourApple.
+- Dragonite, Farfetch'd, berry tree, apricorn tree, small and large mushroom's overworld sprites by SourApple.
 
 # **General Credits List:**
 - Everyone that contributed to the pokecrystal disassembly, Pret’s Discord Server and pokecrystal tutorials which legitimately carried me.
