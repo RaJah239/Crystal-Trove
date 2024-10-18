@@ -125,13 +125,13 @@ Morning	-  5:00am - 9:59am // Day	- 10:00am - 6:59pm // Night	-	7:00pm - 4:59pm
 - Do Not Disturb mode by lifeofmauri on Discord
 - Take off all overworld Encounters by lifeofmauri on Discord
 - Item usage is forbidden by lifeofmauri on Discord
-- Scarlet and Maxima's overworld and trainer sprite by TheBrawlUnit from DeviantArt
+- Scarlet's overworld sprite and Maxima's overworld and trainer sprite by TheBrawlUnit from DeviantArt
 - Ariana's trainer sprite by GetKosiorekt
 - Elder Li's trainer sprite from Polished Crystal
 - Giovanni, Archer, Proton and Petrel's overworld and trainer sprites by sirwhibbles from DeviantArt
 - Cooltrainer Male's overworld sprite eye fix by Major Agnostic on Discord
 - Battle HUD update by Idain and Major Agnostic on Discord
-- Corsola, Dratini, Kingdra, Starmie, Mantine, Octillery and Qwilfish's overworld swimming sprites by FrenchOrange on Discord
+- Scarlet's trainer sprite, Corsola, Dratini, Kingdra, Starmie, Mantine, Octillery and Qwilfish's overworld swimming sprites by FrenchOrange on Discord
 - Chansey and Porygon's overworld sprites and Lanturn and Seaking's overworld swimming sprites by Megaman-Omega from DeviantArt
 - Charizard, Dragonite and Feraligatr's back sprites by mauvesea on Discord
 - Surf faster - cRz-Shadows on Discord
