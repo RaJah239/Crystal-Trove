@@ -131,6 +131,10 @@ EngineFlags:
 	engine_flag wDailyFlags2, DAILYFLAGS2_BUENAS_PASSWORD_F
 	engine_flag wDailyFlags2, DAILYFLAGS2_DAILY_ROUTE_29_BERRY
 	engine_flag wDailyFlags2, DAILYFLAGS2_DAILY_ROUTE_29_APRICORN
+	engine_flag wDailyFlags2, DAILYFLAGS2_DAILY_ROUTE_30_BERRY_1
+	engine_flag wDailyFlags2, DAILYFLAGS2_DAILY_ROUTE_30_APRICORN_1
+	engine_flag wDailyFlags2, DAILYFLAGS2_DAILY_ROUTE_30_BERRY_2
+	engine_flag wDailyFlags2, DAILYFLAGS2_DAILY_ROUTE_30_APRICORN_2
 
 ;  wDailyFlags3:: - 8 daily Flags can be added here (max)
 	engine_flag wDailyFlags3, DAILYFLAGS3_CIANWOOD_PHOTOGRAPH
