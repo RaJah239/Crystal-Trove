@@ -58,6 +58,16 @@ StdScripts::
 	add_stdscript PorygonPCScript
 	add_stdscript ChanseyHealsOWScript
 	add_stdscript ChanseyPokeCenterScript
+	add_stdscript MartDelibirdScript
+
+MartDelibirdScript:
+	faceplayer
+	opentext
+	farwritetext MartDelibirdText
+	cry DELIBIRD
+	pause 10
+	closetext
+	end
 
 ChanseyPokeCenterScript:
 	opentext

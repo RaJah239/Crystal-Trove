@@ -2,6 +2,10 @@ ChanseyHealText:
 	text "CHANSEY: Seyyyy!"
 	done
 
+MartDelibirdText:
+	text "DELIBIRD: Delii!"
+	done
+
 NurseMornText:
 	text "Good morning!"
 	line "Welcome to our"
