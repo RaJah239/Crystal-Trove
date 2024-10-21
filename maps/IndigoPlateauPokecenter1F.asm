@@ -9,6 +9,7 @@
 	const INDIGOPLATEAUPOKECENTER1F_OFFICER1
 	const INDIGOPLATEAUPOKECENTER1F_OFFICER2
 	const INDIGOPLATEAUPOKECENTER1F_CHANSEY
+	const INDIGOPLATEAUPOKECENTER1F_DELIBIRD
 
 IndigoPlateauPokecenter1F_MapScripts:
 	def_scene_scripts
@@ -134,6 +135,9 @@ IndigoPlateauPokecenter1FClerkScript:
 	pokemart MARTTYPE_STANDARD, MART_INDIGO_PLATEAU
 	closetext
 	end
+
+IndigoPlateauPokecenterDelibirdScript:
+	jumpstd MartDelibirdScript
 
 IndigoPlateauPokecenter1FCooltrainerMScript:
 	jumptextfaceplayer IndigoPlateauPokecenter1FCooltrainerMText
@@ -484,3 +488,4 @@ IndigoPlateauPokecenter1F_MapEvents:
 	object_event 16,  8, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, VictoryRoadGateOfficer1Script, EVENT_NO_E4_REMATCH_UNTIL_RED_IS_BEATEN
 	object_event 17,  8, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, VictoryRoadGateOfficer2Script, EVENT_NO_E4_REMATCH_UNTIL_RED_IS_BEATEN
 	object_event  4,  7, SPRITE_CHANSEY_OW, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, IndigoPlateauPokecenterChanseyScript, -1
+	object_event 12,  7, SPRITE_DELIBIRD_MART, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, IndigoPlateauPokecenterDelibirdScript, -1

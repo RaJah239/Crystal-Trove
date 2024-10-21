@@ -2,6 +2,7 @@
 	const SAFFRONMART_CLERK
 	const SAFFRONMART_COOLTRAINER_M
 	const SAFFRONMART_COOLTRAINER_F
+	const SAFFRONMART_DELIBIRD
 
 SaffronMart_MapScripts:
 	def_scene_scripts
@@ -13,6 +14,9 @@ SaffronMartClerkScript:
 	pokemart MARTTYPE_STANDARD, MART_SAFFRON
 	closetext
 	end
+
+SaffronDelibirdScript:
+	jumpstd MartDelibirdScript
 
 SaffronMartCooltrainerMScript:
 	jumptextfaceplayer SaffronMartCooltrainerMText
@@ -50,3 +54,4 @@ SaffronMart_MapEvents:
 	object_event  1,  3, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SaffronMartClerkScript, -1
 	object_event  7,  2, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, SaffronMartCooltrainerMScript, -1
 	object_event  7,  6, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, SaffronMartCooltrainerFScript, -1
+	object_event  1,  2, SPRITE_DELIBIRD_MART, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SaffronDelibirdScript, -1

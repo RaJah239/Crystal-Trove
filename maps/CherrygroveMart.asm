@@ -2,6 +2,7 @@
 	const CHERRYGROVEMART_CLERK
 	const CHERRYGROVEMART_COOLTRAINER_M
 	const CHERRYGROVEMART_YOUNGSTER
+	const CHERRYGROVEMART_DELIBIRD
 
 CherrygroveMart_MapScripts:
 	def_scene_scripts
@@ -36,6 +37,9 @@ CherrygroveMartCooltrainerMScript:
 	waitbutton
 	closetext
 	end
+
+CherrygroveDelibirdScript:
+	jumpstd MartDelibirdScript
 
 CherrygroveMartYoungsterScript:
 	jumptextfaceplayer CherrygroveMartYoungsterText
@@ -84,3 +88,4 @@ CherrygroveMart_MapEvents:
 	object_event  1,  3, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CherrygroveMartClerkScript, -1
 	object_event  7,  6, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 2, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CherrygroveMartCooltrainerMScript, -1
 	object_event  2,  5, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CherrygroveMartYoungsterScript, -1
+	object_event  1,  2, SPRITE_DELIBIRD_MART, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CherrygroveDelibirdScript, -1
