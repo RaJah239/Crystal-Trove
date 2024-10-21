@@ -125,10 +125,11 @@
 	const SPRITE_L_MUSHROOM
 	const SPRITE_BERRY
 	const SPRITE_APRICORN
+	const SPRITE_DELIBIRD_MART
 DEF NUM_OVERWORLD_SPRITES EQU const_value - 1
 
 ; SpriteMons indexes (see data/sprites/sprite_mons.asm)
-	const_next $7B
+	const_next $7C
 DEF SPRITE_POKEMON EQU const_value
 	const SPRITE_UNOWN ; 80
 	const SPRITE_WEEDLE ; 83
@@ -218,7 +219,6 @@ DEF SPRITE_POKEMON EQU const_value
 	const SPRITE_SKARMORY_OW
 	const SPRITE_KANGASKHAN_OW
 	const SPRITE_HERACROSS_OW
-	const SPRITE_DELIBIRD_OW
 	const SPRITE_SNEASEL_OW
 	const SPRITE_PILOSWINE_OW
 	const SPRITE_CLOYSTER_OW

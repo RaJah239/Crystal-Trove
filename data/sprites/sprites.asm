@@ -129,4 +129,5 @@ OverworldSprites:
 	overworld_sprite LMushroomSpriteGFX, 4, STILL_SPRITE, PAL_OW_RED
 	overworld_sprite BerryOWSpriteGFX, 4, STILL_SPRITE, PAL_OW_RED
 	overworld_sprite ApricornSpriteGFX, 4, STILL_SPRITE, PAL_OW_RED
+	overworld_sprite DelibirdMartSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED
 	assert_table_length NUM_OVERWORLD_SPRITES
