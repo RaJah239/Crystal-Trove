@@ -3183,7 +3183,7 @@ wMomItemTriggerBalance:: ds 3
 
 wDailyResetTimer:: dw
 wDailyFlags1:: db
-wDailyFlags2:: db
+wDailyFlags2:: ds 9
 wDailyFlags3:: db
 wSwarmFlags:: db
 
@@ -3218,7 +3218,7 @@ wPlayerMonSelection:: ds 3
 wdc5f:: db
 wdc60:: db
 
-	ds 18
+	ds 10
 
 wStepCount:: db
 wPoisonStepCount:: db

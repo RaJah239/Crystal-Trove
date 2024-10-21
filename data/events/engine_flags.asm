@@ -129,6 +129,8 @@ EngineFlags:
 	engine_flag wDailyFlags2, DAILYFLAGS2_INDIGO_PLATEAU_RIVAL_FIGHT_F
 	engine_flag wDailyFlags2, DAILYFLAGS2_DAILY_GIFT_BERRY_F
 	engine_flag wDailyFlags2, DAILYFLAGS2_BUENAS_PASSWORD_F
+	engine_flag wDailyFlags2, DAILYFLAGS2_DAILY_ROUTE_29_BERRY
+	engine_flag wDailyFlags2, DAILYFLAGS2_DAILY_ROUTE_29_APRICORN
 
 ;  wDailyFlags3:: - 8 daily Flags can be added here (max)
 	engine_flag wDailyFlags3, DAILYFLAGS3_CIANWOOD_PHOTOGRAPH

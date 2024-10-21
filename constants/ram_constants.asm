@@ -310,6 +310,8 @@ DEF CELEBIEVENT_FOREST_IS_RESTLESS_F EQU 2
 	const DAILYFLAGS2_INDIGO_PLATEAU_RIVAL_FIGHT_F        ; 5
 	const DAILYFLAGS2_DAILY_GIFT_BERRY_F                  ; 6
 	const DAILYFLAGS2_BUENAS_PASSWORD_F                   ; 7
+	const DAILYFLAGS2_DAILY_ROUTE_29_BERRY                ; 8
+	const DAILYFLAGS2_DAILY_ROUTE_29_APRICORN             ; 9
 
 ;  wDailyFlags3:: - 8 daily Flags can be added here (max)
 	const DAILYFLAGS3_CIANWOOD_PHOTOGRAPH                 ; 0
