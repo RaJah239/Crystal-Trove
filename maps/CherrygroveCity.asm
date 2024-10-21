@@ -228,6 +228,7 @@ CherrygroveRivalSceneNorth:
 	turnobject PLAYER, LEFT
 	applymovement CHERRYGROVECITY_RIVAL, CherrygroveCity_RivalExitsStageLeft
 	disappear CHERRYGROVECITY_RIVAL
+	clearevent EVENT_ROUTE_29_TUSCANY_OF_TUESDAY
 	setscene SCENE_CHERRYGROVECITY_NOOP
 	special HealParty
 	playmapmusic

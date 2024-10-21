@@ -1461,6 +1461,11 @@ TeacherGroup:
 	db 35, JIGGLYPUFF
 	db -1 ; end
 
+	; TEACHER (4)
+	db "TUSCANY@", TRAINERTYPE_NORMAL
+	db  7, JIGGLYPUFF
+	db -1 ; end
+
 SabrinaGroup:
 	; SABRINA (1)
 	db "SABRINA@", TRAINERTYPE_MOVES
