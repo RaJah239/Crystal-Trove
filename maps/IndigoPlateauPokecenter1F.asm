@@ -4,7 +4,12 @@
 	const INDIGOPLATEAUPOKECENTER1F_COOLTRAINER_M
 	const INDIGOPLATEAUPOKECENTER1F_RIVAL
 	const INDIGOPLATEAUPOKECENTER1F_GRAMPS
-	const INDIGOPLATEAUPOKECENTER1F_ABRA
+	const INDIGOPLATEAUPOKECENTER1F_KADABRA
+	const INDIGOPLATEAUPOKECENTER1F_COINCOLLECTORF
+	const INDIGOPLATEAUPOKECENTER1F_OFFICER1
+	const INDIGOPLATEAUPOKECENTER1F_OFFICER2
+	const INDIGOPLATEAUPOKECENTER1F_CHANSEY
+	const INDIGOPLATEAUPOKECENTER1F_DELIBIRD
 
 IndigoPlateauPokecenter1F_MapScripts:
 	def_scene_scripts
@@ -42,16 +47,10 @@ IndigoPlateauPokecenter1FPrepareElite4Callback:
 	endcallback
 
 PlateauRivalBattle1:
-	checkevent EVENT_BEAT_RIVAL_IN_MT_MOON
+	checkevent EVENT_BEAT_RIVAL_IN_MT_SILVER
 	iffalse PlateauRivalScriptDone
 	checkflag ENGINE_INDIGO_PLATEAU_RIVAL_FIGHT
 	iftrue PlateauRivalScriptDone
-	readvar VAR_WEEKDAY
-	ifequal SUNDAY, PlateauRivalScriptDone
-	ifequal TUESDAY, PlateauRivalScriptDone
-	ifequal THURSDAY, PlateauRivalScriptDone
-	ifequal FRIDAY, PlateauRivalScriptDone
-	ifequal SATURDAY, PlateauRivalScriptDone
 	moveobject INDIGOPLATEAUPOKECENTER1F_RIVAL, 17, 9
 	appear INDIGOPLATEAUPOKECENTER1F_RIVAL
 	turnobject PLAYER, DOWN
@@ -64,16 +63,10 @@ PlateauRivalBattle1:
 	sjump PlateauRivalBattleCommon
 
 PlateauRivalBattle2:
-	checkevent EVENT_BEAT_RIVAL_IN_MT_MOON
+	checkevent EVENT_BEAT_RIVAL_IN_MT_SILVER
 	iffalse PlateauRivalScriptDone
 	checkflag ENGINE_INDIGO_PLATEAU_RIVAL_FIGHT
 	iftrue PlateauRivalScriptDone
-	readvar VAR_WEEKDAY
-	ifequal SUNDAY, PlateauRivalScriptDone
-	ifequal TUESDAY, PlateauRivalScriptDone
-	ifequal THURSDAY, PlateauRivalScriptDone
-	ifequal FRIDAY, PlateauRivalScriptDone
-	ifequal SATURDAY, PlateauRivalScriptDone
 	appear INDIGOPLATEAUPOKECENTER1F_RIVAL
 	turnobject PLAYER, DOWN
 	showemote EMOTE_SHOCK, PLAYER, 15
@@ -143,6 +136,9 @@ IndigoPlateauPokecenter1FClerkScript:
 	closetext
 	end
 
+IndigoPlateauPokecenterDelibirdScript:
+	jumpstd MartDelibirdScript
+
 IndigoPlateauPokecenter1FCooltrainerMScript:
 	jumptextfaceplayer IndigoPlateauPokecenter1FCooltrainerMText
 
@@ -167,10 +163,10 @@ TeleportGuyScript:
 	closetext
 	end
 
-AbraScript:
+KadabraScript:
 	opentext
-	writetext AbraText
-	cry ABRA
+	writetext KadabraText
+	cry KADABRA
 	waitbutton
 	closetext
 	end
@@ -200,6 +196,169 @@ PlateauRivalLeavesMovement:
 	step DOWN
 	step DOWN
 	step_end
+
+CoinCollectorScript:
+	faceplayer
+	opentext
+	checkevent EVENT_MET_INDIGOPLATEAUPOKECENTER1F_COINCOLLECTORF
+	iftrue .LetsTrade
+	writetext CoinCollectorIntroText
+	setevent EVENT_MET_INDIGOPLATEAUPOKECENTER1F_COINCOLLECTORF
+	waitbutton
+.LetsTrade
+	writetext UpForATradeText
+	special DisplayCoinCaseBalance
+	yesorno
+	iffalse .Refused
+	checkcoins 9999
+	ifequal HAVE_LESS, .CoinCaseNotAtMax
+	loadmenu .MoveMenuHeader
+	verticalmenu
+	closewindow
+	writetext ThanksForDoingBusinessText
+	waitbutton
+	ifequal 1, .SacredAsh
+	ifequal 2, .EonMail
+	ifequal 3, .Crystals
+	sjump .No
+
+.No
+	writetext NoTradingText
+	waitbutton
+	closetext
+	end
+
+.SacredAsh:
+	verbosegiveitem SACRED_ASH, 4
+	iffalse .NoRoom
+	ifequal TRUE, .ConcludeTransaction
+	closetext
+	end
+
+.EonMail:
+	verbosegiveitem EON_MAIL
+	iffalse .NoRoom
+	ifequal TRUE, .ConcludeTransaction
+	closetext
+
+.Crystals:
+	promptbutton
+	verbosegiveitem CRYSTAL, 33
+	iffalse .NoRoom
+	ifequal TRUE, .ConcludeTransaction
+	closetext
+
+.NoRoom:
+	writetext CoinCollectorFNoRoomText
+	waitbutton
+	closetext
+	end
+
+.ConcludeTransaction:
+	takecoins 9999
+	waitsfx
+	playsound SFX_TRANSACTION
+	special DisplayCoinCaseBalance
+	writetext ThanksFortheTradeText
+	waitbutton
+	closetext
+	end 
+
+.Refused:
+	writetext ComOnByAnyTimeText
+	waitbutton
+	closetext
+	end
+
+.CoinCaseNotAtMax:
+	writetext YouNeedToFillItUpText
+	waitbutton
+	closetext
+	end
+
+.MoveMenuHeader:
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 0, 2, 15, TEXTBOX_Y - 1
+	dw .MenuData
+	db 1 ; default option
+
+.MenuData:
+	db STATICMENU_CURSOR ; flags
+	db 4 ; items
+	db "SACRED ASH x4@"
+	db "EON MAIL   x1@"
+	db "CRYSTAL   x33@"
+	db "CANCEL@"
+
+CoinCollectorIntroText:
+	text "Hello. I'm VIOLET."
+	line "I enjoy collecting"
+	cont "coins."
+
+	para "A COIN COLLECTOR"
+	line "of sorts."
+
+	para "And you are?"
+
+	para "…"
+
+	para "<PLAY_G>? Nice to"
+	line "meet you!"
+
+	para "To make it here,"
+	line "you must be quite"
+	cont "the trainer!"
+
+	para "I think we may be"
+	line "able to help each-"
+	cont "other out."
+
+	para "For 9,999 coins or"
+	line "a full COIN CASE,"
+
+	para "I'll trade you"
+	line "something special."
+
+	para "How about it?"
+	done
+
+UpForATradeText:
+	text "VIOLET: Up for a"
+	line "trade <PLAY_G>?"
+
+	para "9,999 coins for"
+	line "something special?"
+	done
+
+CoinCollectorFNoRoomText:
+	text "Make space to con-"
+	line "clude our trade…"
+	done
+
+ComOnByAnyTimeText:
+	text "VIOLET: Come trade"
+	line "with me anytime."
+	done
+
+YouNeedToFillItUpText:
+	text "VIOLET: Hm… You're"
+	line "short on coins…"
+	done
+
+NoTradingText:
+	text "VIOLET: Not in a"
+	line "trading mood?"
+	done
+
+ThanksForDoingBusinessText:
+	text "I hope you value"
+	line "our trade!"
+	done
+
+ThanksFortheTradeText:
+	text "VIOLET: Let's trade"
+	line "again sometime!"
+	done
 
 IndigoPlateauPokecenter1FCooltrainerMText:
 	text "At the #MON"
@@ -266,39 +425,42 @@ PlateauRivalLoseText:
 	done
 
 TeleportGuyText1:
-	text "Ah! You're chal-"
-	line "lenging the ELITE"
-
-	para "FOUR? Are you sure"
-	line "you're ready?"
-
-	para "If you need to"
-	line "train some more,"
-
-	para "my ABRA can help"
-	line "you."
-
-	para "It can TELEPORT"
-	line "you home."
-
-	para "Would you like to"
-	line "go home now?"
+	text "Want my KADABRA to"
+	line "TELEPORT you home?"
 	done
 
 TeleportGuyYesText:
-	text "OK, OK. Picture"
-	line "your house in your"
-	cont "mind…"
+	text "OK! Picture your"
+	line "house mentally…"
 	done
 
 TeleportGuyNoText:
-	text "OK, OK. The best"
-	line "of luck to you!"
+	text "OK, all the best!"
 	done
 
-AbraText:
-	text "ABRA: Aabra…"
+KadabraText:
+	text "KADABRA: Dabra!"
 	done
+
+VictoryRoadGateOfficer1Script:
+VictoryRoadGateOfficer2Script:
+	faceplayer
+	opentext
+	writetext RematchPreventionOfficerText
+	waitbutton
+	closetext
+	end
+
+RematchPreventionOfficerText:
+	text "The ELITE FOUR are"
+	line "out training."
+
+	para "No one can issue a"
+	line "issue right now."
+	done
+
+IndigoPlateauPokecenterChanseyScript:
+	jumpstd ChanseyPokeCenterScript
 
 IndigoPlateauPokecenter1F_MapEvents:
 	db 0, 0 ; filler
@@ -321,4 +483,9 @@ IndigoPlateauPokecenter1F_MapEvents:
 	object_event 11, 11, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, IndigoPlateauPokecenter1FCooltrainerMScript, -1
 	object_event 16,  9, SPRITE_RIVAL, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_INDIGO_PLATEAU_POKECENTER_RIVAL
 	object_event  1,  9, SPRITE_GRAMPS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, TeleportGuyScript, EVENT_TELEPORT_GUY
-	object_event  0,  9, SPRITE_JYNX, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, AbraScript, EVENT_TELEPORT_GUY
+	object_event  0,  9, SPRITE_KADABRA_OW, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, KadabraScript, EVENT_TELEPORT_GUY
+	object_event  5, 10, SPRITE_POKEFAN_F, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_PINK, OBJECTTYPE_SCRIPT, 0, CoinCollectorScript, -1
+	object_event 16,  8, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, VictoryRoadGateOfficer1Script, EVENT_NO_E4_REMATCH_UNTIL_RED_IS_BEATEN
+	object_event 17,  8, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, VictoryRoadGateOfficer2Script, EVENT_NO_E4_REMATCH_UNTIL_RED_IS_BEATEN
+	object_event  4,  7, SPRITE_CHANSEY_OW, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, IndigoPlateauPokecenterChanseyScript, -1
+	object_event 12,  7, SPRITE_DELIBIRD_MART, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, IndigoPlateauPokecenterDelibirdScript, -1
