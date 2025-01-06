@@ -558,7 +558,7 @@ Pokedex_Parse_grass:
 	add hl, bc
 	ld c, 0; up to NUM_GRASSMON ; * 3 ; total mon entries, morn/day/nite, 7 per
 	ld b, 0 ; for calcing encounter %
-	; 30%, 30%, 20%, 10%, 5%, 4%, 1%
+	; 15%, 15%, 14%, 14%, 14%, 14%, 13%, 1%
 	push bc ; % and NUM_GRASSMON
 .map_loop
 	ld a, BANK(JohtoGrassWildMons)
@@ -650,23 +650,26 @@ Add_encounter_percent_grass:
 	ret
 .body:
 	ld a, c
-	ld b, 30
+	ld b, 15
 	and a
 	ret z
-	ld b, 30
+	ld b, 15
 	cp 1
 	ret z
-	ld b, 20
+	ld b, 14
 	cp 2
 	ret z
-	ld b, 10
+	ld b, 14
 	cp 3
 	ret z
-	ld b, 5
+	ld b, 14
 	cp 4
 	ret z
-	ld b, 4
+	ld b, 14
 	cp 5
+	ret z
+	ld b, 13
+	cp 6
 	ret z
 	ld b, 1
 	ret
@@ -799,7 +802,7 @@ Pokedex_Parse_surf:
 	push bc ; current print line
 	ld c, 0; up to NUM_WATERMON ; unlike grass, which is 21, this is only 3. and no time of day shenanigans
 	ld b, 0 ; for calcing encounter %
-	; 60%, 30%, 10%
+	; 25%, 25%, 25%, 25%
 	push bc ; % and NUM_WATERMON
 .map_loop
 	ld a, BANK(JohtoWaterWildMons)
@@ -901,15 +904,20 @@ Add_encounter_percent_water:
 	ld a, c
 	and a
 	jr nz, .slot2
-	ld a, 60
+	ld a, 25
 	jr .done
 .slot2
 	cp 1
 	jr nz, .slot3
-	ld a, 30
+	ld a, 25
 	jr .done
 .slot3
-	ld a, 10
+	cp 2
+	jr nz, .slot4
+	ld a, 25
+	jr .done
+.slot4
+	ld a, 25
 .done
 	; whatever value is currently in a will added to b
 	ret
