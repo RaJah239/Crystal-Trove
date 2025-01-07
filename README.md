@@ -55,7 +55,7 @@ POKEGEAR: Now shows the detailed name of map you're currently in (based on Map G
 - New overworld trees added with visible berries and apricorns, inspired by Sour Crystal (https://github.com/SoupPotato/Sourcrystal).
 - Show an icon for the current weather in battles.
 - Pokémon Centre fast heal after the first visit added.
-- Use unique colours for each thrown Poké Ball.
+- Use unique colors for each thrown Poké Ball.
 - Animate tiles when text boxes are open.
 - Trainer phone call rematch system has been improved - trainers only call for rematches or to give items now.
 - Overworld mushrooms added to Ilex Forest, inspired by Sour Crystal (https://github.com/SoupPotato/Sourcrystal).
@@ -75,7 +75,7 @@ POKEGEAR: Now shows the detailed name of map you're currently in (based on Map G
 - Made the Lottery Corner generate a lucky number daily instead of weekly.
 - Swarm system reworked to trigger by talking to NPC daily. Swarms include Gen 1 and 2 starters, all baby Pokémon and Ditto.
 - Move Relearner
-- Smashed rock may contain items.
+- Smashed rocks may contain items.
 - Gen 1 fossils added and a way to revive them.
 - Name Rater can change traded Pokémon’s nicknames.
 - Trade Back Kid added in Ecruteak to evolve all Pokémon that require it.
@@ -122,7 +122,8 @@ Morning	-  5:00am - 9:59am // Day	- 10:00am - 6:59pm // Night	-	7:00pm - 4:59pm
 - Quick Claw activation text added.
 - Sacred Ash acts like a Pokémon Center heal and does not require any KO’d Pokémon for its activation.
 - Gym trainers reset when exiting if the leader hasn't been defeated.
-- Shiny Pokémon chance is 1/256. Can get any Hidden Power type (except Fairy).
+- Shiny Pokémon chance is 1/256. Can get both genders and any Hidden Power type (except Fairy).
+- Shiny Charm gifted in Pro. Oak's lab upon Pokédex completion. Shiny Charm gives all Pokémon a 3.125% chance to be shiny on encounter.
 
 # **Asset Credits List:**
 - RBY text frame added from Polished Crystal
