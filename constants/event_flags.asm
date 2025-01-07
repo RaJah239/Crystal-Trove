@@ -464,7 +464,9 @@
 	const EVENT_RADIO_TOWER_5F_REAL_DIRECTOR
 	const EVENT_RADIO_TOWER_5F_DIRECTOR_FAKE
 	const EVENT_REMATCH_FALKNER
-; Unused: next 145 events
+	const EVENT_SHINY_CHARM_OBTAINED
+	const EVENT_OAKSLAB_NAYRU62
+; Unused: next 143 events
 
 	const_next 600
 ; Kurt Apricorn events

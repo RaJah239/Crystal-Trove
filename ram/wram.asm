@@ -3109,8 +3109,9 @@ wRoute30SceneID::                                 db ; Route 30 Berry teacher sc
 wUnionCave1FSceneID::                             db ; Scarlet's Union Cave scene explaining Grottos
 wRoute35GoldenrodGate::                           db ; Scarlet's battle
 wOlivineLightHouse3F::                            db ; Scarlet's battle
+wOaksLab::                                        db ; Nayru62's scene in Oak's lab
 
-	ds 41
+	ds 40
 
  wNumBalls:: db
  wBalls:: ds MAX_BALLS * 2 + 1

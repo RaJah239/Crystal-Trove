@@ -89,4 +89,5 @@ MapScenes::
 	scene_var UNION_CAVE_1F,                               wUnionCave1FSceneID
 	scene_var ROUTE_35_GOLDENROD_GATE,                     wRoute35GoldenrodGate
 	scene_var OLIVINE_LIGHTHOUSE_3F,                       wOlivineLightHouse3F
+	scene_var OAKS_LAB,                                    wOaksLab
 	db -1 ; end
