@@ -79,9 +79,13 @@ ChanseyHealsOWScript:
 	cry CHANSEY
 	pause 10
 	closetext
-	special StubbedTrainerRankings_Healings
-	playsound SFX_FULL_HEAL
+	special FadeOutToBlack
+	special ReloadSpritesNoPalettes
+	playmusic MUSIC_HEAL
 	special HealParty
+	pause 60
+	special FadeInFromBlack
+	special RestartMapMusic
 	end
 
 PokecenterNurseScript:
