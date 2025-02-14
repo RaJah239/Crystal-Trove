@@ -148,7 +148,6 @@ PokecenterNurseScript:
 
 .ok
 	pause 10
-	special StubbedTrainerRankings_Healings
 	turnobject LAST_TALKED, LEFT
 	pause 10
 	special HealParty

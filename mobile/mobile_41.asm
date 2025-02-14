@@ -20,7 +20,6 @@ StubbedTrainerRankings_HookedEncounters:
 StubbedTrainerRankings_EggsHatched:
 StubbedTrainerRankings_MonsEvolved:
 StubbedTrainerRankings_FruitPicked:
-StubbedTrainerRankings_Healings:
 StubbedTrainerRankings_MysteryGift:
 StubbedTrainerRankings_Trades:
 StubbedTrainerRankings_Fly:
