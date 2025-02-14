@@ -133,7 +133,6 @@ SpecialsPointers::
 	add_special BeastsCheck
 	add_special MonCheck
 	add_special SetPlayerPalette
-	add_special StubbedTrainerRankings_Healings
 	add_special RefreshSprites
 	add_special AskRememberPassword
 	add_special LoadMapPalettes
