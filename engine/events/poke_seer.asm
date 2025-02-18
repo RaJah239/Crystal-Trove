@@ -97,15 +97,7 @@ SeerAction4:
 ReadCaughtData:
 	ld a, MON_CAUGHTDATA ; caught time/ball, caught gender/location, caught level
 	call GetPartyParamLocation
-	ld a , [hl]
-	and CAUGHT_TIME_MASK
-	rlca
-	rlca
-	ld [wSeerCaughtTime], a
-	ld a, MON_CAUGHTDATA ; caught time/ball, caught gender/location, caught level
-	call GetPartyParamLocation
-	ld a, [hli]
-	ld [wSeerCaughtLevel], a
+	ld [wSeerCaughtData], a
 	ld a, [hld]
 	ld [wSeerCaughtGender], a
 	ld a, [hld]
@@ -162,8 +154,9 @@ GetCaughtLevel:
 	call ByteFill
 
 	; caught level
-	ld a, [wSeerCaughtLevel]
-	and a
+	; Limited to between 1 and 63 since it's a 6-bit quantity.
+	ld a, [wSeerCaughtData]
+	and CAUGHT_LEVEL_MASK
 	jr z, .unknown
 	cp CAUGHT_EGG_LEVEL ; egg marker value
 	jr nz, .print
@@ -188,10 +181,12 @@ GetCaughtLevel:
 	db "???@"
 
 GetCaughtTime:
-	ld a, [wSeerCaughtTime]
-	and a
+	ld a, [wSeerCaughtData]
+	and CAUGHT_TIME_MASK
 	jr z, .none
 
+	rlca
+	rlca
 	dec a
 	ld hl, .times
 	call GetNthString
