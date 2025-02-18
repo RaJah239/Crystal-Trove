@@ -24,11 +24,7 @@ Route29Noop2Scene:
 	end
 
 Route29FruitTrees:
-	readvar VAR_WEEKDAY
-	ifequal TUESDAY, .NoFruit
-	ifequal THURSDAY, .NoFruit
-	ifequal SATURDAY, .NoFruit
-	checkflag ENGINE_DAILY_ROUTE_29_30_TREES
+	checkflag ENGINE_TREE_TEST
 	iftrue .NoFruit
 	appear ROUTE_29_BERRY
 	appear ROUTE_29_APRICORN
@@ -415,7 +411,7 @@ Route29BerryTree:
 	giveitem BERRY
 	iffalse Route29NoRoomInBag
 	disappear ROUTE_29_BERRY
-	setflag ENGINE_DAILY_ROUTE_29_30_TREES
+	setflag ENGINE_TREE_TEST
 	writetext Route29FoundItemText
 	playsound SFX_ITEM
 	waitsfx
@@ -433,7 +429,7 @@ Route29ApricornTree:
 	giveitem GRN_APRICORN
 	iffalse Route29NoRoomInBag
 	disappear ROUTE_29_APRICORN
-	setflag ENGINE_DAILY_ROUTE_29_30_TREES
+	setflag ENGINE_TREE_TEST
 	writetext Route29FoundItemText
 	playsound SFX_ITEM
 	waitsfx
