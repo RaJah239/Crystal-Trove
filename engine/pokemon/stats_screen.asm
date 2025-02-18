@@ -1071,22 +1071,50 @@ OTString:
 
 StatsScreen_PrintAffection:
 	ld de, AffectionString
-    hlcoord 0, 15
-    call PlaceString
+	hlcoord 0, 15
+	call PlaceString
 
-    hlcoord 1, 16
-    lb bc, 1, 3
-    ld de, wTempMonHappiness
-    call PrintNum
-    ld de, .outofMaxAffectionString
-    hlcoord 3, 17
-    call PlaceString
-    ret
-.outofMaxAffectionString:
-    db "/255@"
+	ld a, [wTempMonHappiness]
+	ld de, MaxString
+	cp 255
+	jr z, .got_happiness
+	ld de, PoorString
+	cp 30
+	jr c, .got_happiness
+	ld de, LowString
+	cp 70
+	jr c, .got_happiness
+	ld de, MidString
+	cp 150
+	jr c, .got_happiness
+	ld de, GoodString
+	cp 220
+ 	jr c, .got_happiness
+	ld de, HighString
+.got_happiness
+	hlcoord 1, 16
+	jp PlaceString
 
 AffectionString:
- db "AFFECTION:@"
+	db "CONDITION/@"
+	
+MaxString:
+	db "OVERJOYED@"
+	
+HighString:
+	db "HAPPY@"
+	
+GoodString:
+	db "CONTENT@"
+	
+MidString:
+	db "AVERAGE@"
+	
+LowString:
+	db "UNHAPPY@"
+	
+PoorString:
+	db "MISERABLE@"
 
 StatsScreen_PlaceFrontpic:
 	ld hl, wTempMonDVs
