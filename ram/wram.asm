@@ -3179,7 +3179,7 @@ wWhichMomItemSet:: db
 wMomItemTriggerBalance:: ds 3
 
 wDailyResetTimer:: dw
-wDailyFlags1:: db
+wDailyFlags1:: ds 2 ; Has 16 right now but only uses 9
 wDailyFlags2:: db
 wDailyFlags3:: db
 wSwarmFlags:: db
@@ -3192,7 +3192,7 @@ wSpecialPhoneCallID:: db
 
 wBugContestStartTime:: ds 4 ; day, hour, min, sec
 
-	ds 3
+	ds 2
 
 wMobileOrCable_LastSelection:: db
 wdc41:: ds 1
