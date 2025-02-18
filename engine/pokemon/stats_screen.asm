@@ -609,14 +609,6 @@ LoadPinkPage:
 	hlcoord 13, 10
 	lb bc, 3, 7
 	ld de, wTempMonExp
-	ld a, [de]
-	and EXP_MASK
-	ld [wStringBuffer1], a
-	ld a, [wTempMonExp + 1]
-	ld [wStringBuffer1 + 1], a
-	ld a, [wTempMonExp + 2]
-	ld [wStringBuffer1 + 2], a
-	ld de, wStringBuffer1
 	call PrintNum
 	call .CalcExpToNextLevel
 	hlcoord 13, 13
@@ -661,6 +653,7 @@ LoadPinkPage:
 	ld d, a
 	farcall CalcExpAtLevel
 	ld hl, wTempMonExp + 2
+	ld hl, wTempMonExp + 2
 	ldh a, [hQuotient + 3]
 	sub [hl]
 	dec hl
@@ -670,14 +663,7 @@ LoadPinkPage:
 	dec hl
 	ld [wExpToNextLevel + 1], a
 	ldh a, [hQuotient + 1]
-	push af
-	ld e, a
-	ld a, [hl]
-	and EXP_MASK
-	ld d, a
-	pop af
-	ld a, e
-	sbc d
+	sbc [hl]
 	ld [wExpToNextLevel], a
 	ret
 
@@ -809,8 +795,8 @@ LoadBluePage:
 	dw wBufferMonOT
 
 LoadOrangePage:
-	call StatsScreen_placeCaughtLevel
-	call StatsScreen_placeCaughtTime
+;	call StatsScreen_placeCaughtLevel
+;	call StatsScreen_placeCaughtTime
 	call StatsScreen_placeCaughtLocation
 	call StatsScreen_PrintEVs
 	ld de, HiddenPowerTypeString
@@ -988,6 +974,68 @@ StatsScreen_PrintEVs:
 HiddenPowerTypeString:
 	db "HIDDEN POWER:@"
 
+;StatsScreen_placeCaughtLevel:
+;	; caught level
+;	ld a, [wTempMonCaughtLevel]
+;	and CAUGHT_LEVEL_MASK	
+;	and a
+;	jr z, .unknown_level
+;	cp CAUGHT_EGG_LEVEL ; egg marker value
+;	jr nz, .print
+;	ld a, EGG_LEVEL ; egg hatch level
+;
+;.print
+;	ld [wTextDecimalByte], a
+;	hlcoord 12, 8
+;	ld de, wTextDecimalByte
+;	lb bc, PRINTNUM_LEFTALIGN | 1, 3
+;	call PrintNum
+;	hlcoord 11, 8
+;	ld [hl], "<LV>"
+;	ret
+;
+;.unknown_level
+;	ld de, .MetUnknownLevelString
+;	hlcoord 11, 8
+;	call PlaceString
+;	ret   
+;.MetUnknownLevelString:
+;	db "@"
+;
+;StatsScreen_placeCaughtTime:
+;	ld a, [wTempMonCaughtTime]
+;	and CAUGHT_TIME_MASK
+;	jr z, .unknown_time
+;	rlca
+;	rlca
+;	dec a
+;	ld hl, .times
+;	call GetNthString
+;	ld d, h
+;	ld e, l
+;	call CopyName1
+;	ld de, wStringBuffer2
+;	hlcoord 6, 8
+;	call PlaceString
+;	ret
+;.unknown_time
+;	ld a, 0
+;	ld hl, .unknown_time_text
+;	call GetNthString
+;	ld d, h
+;	ld e, l
+;	call CopyName1
+;	ld de, wStringBuffer2
+;	hlcoord 6, 8
+;	call PlaceString
+;	ret
+;.times
+;	db "MORN@"
+;	db "DAY@"
+;	db "NITE@"
+;.unknown_time_text
+;	db "TRADE@"
+
 StatsScreen_placeCaughtLocation:
 	ld de, .MetAtMapString
 	hlcoord 1, 8
@@ -1013,336 +1061,7 @@ StatsScreen_placeCaughtLocation:
 .MetAtMapString:
 	db "MET: @"
 .MetUnknownMapString:
-	db "LOCATION UNCLEAR@"
-
-StatsScreen_placeCaughtTime:
-	ld a, [wTempMonCaughtTime]
-	and CAUGHT_TIME_MASK
-	jr z, .unknown_time
-	rlca
-	rlca
-	dec a
-	ld hl, .times
-	call GetNthString
-	ld d, h
-	ld e, l
-	call CopyName1
-	ld de, wStringBuffer2
-	hlcoord 6, 8
-	call PlaceString
-	ret
-.unknown_time
-	ld a, 0
-	ld hl, .unknown_time_text
-	call GetNthString
-	ld d, h
-	ld e, l
-	call CopyName1
-	ld de, wStringBuffer2
-	hlcoord 6, 8
-	call PlaceString
-	ret
-.times
-	db "MORN@"
-	db "DAY@"
-	db "NITE@"
-.unknown_time_text
-	db "TRADE/HATCHED@"
-
-StatsScreen_placeCaughtLevel:
-	; caught level
-	ld a, [wTempMonCaughtLevel]
-	and a
-	jr z, .unknown_level
-	cp CAUGHT_EGG_LEVEL ; egg marker value
-	jr nz, .print
-	ld a, EGG_LEVEL ; egg hatch level
-
-.print
-	ld [wTextDecimalByte], a
-	hlcoord 12, 8
-	ld de, wTextDecimalByte
-	lb bc, PRINTNUM_LEFTALIGN | 1, 3
-	call PrintNum
-	hlcoord 11, 8
-	ld [hl], "<LV>"
-	ret
-
-.unknown_level
-	ld de, .MetUnknownLevelString
-	hlcoord 11, 8
-	call PlaceString
-	ret   
-.MetUnknownLevelString:
-	db "@"
-
-StatsScreen_LoadUnownFont:
-	ld a, BANK(sScratch)
-	call OpenSRAM
-	ld hl, UnownFont
-	; sScratch + $188 was the address of sDecompressBuffer in pokegold
-	ld de, sScratch + $188
-	ld bc, 38 tiles
-	ld a, BANK(UnownFont)
-	call FarCopyBytes
-	; ld hl, sScratch + $188
-	; ld bc, (NUM_UNOWN + 1) tiles
-	;call Pokedex_InvertTiles
-	ld de, sScratch + $188
-	ld hl, vTiles1 tile $3a ;FIRST_UNOWN_CHAR
-	lb bc, BANK(Pokedex_LoadUnownFont), NUM_UNOWN
-	call Request2bpp
-	call CloseSRAM
-	ret
-
-StatsScreen_HiddenPow_BP:
-	call StatsScreen_LoadUnownFont
-; Take the top/most significant bit from each stat
-; basically, if the DV is 8 or above
-; arrange those bits in order, into a nybble
-	; Attack
-	ld a, [wTempMonDVs]
-	swap a
-	and %1000
-	; Defense
-	ld b, a
-	ld a, [wTempMonDVs]
-	and %1000
-	srl a
-	or b
-	; Speed
-	ld b, a
-	ld a, [wTempMonDVs + 1]
-	swap a
-	and %1000
-	srl a
-	srl a
-	or b
-	; Special
-	ld b, a
-	ld a, [wTempMonDVs + 1]
-	and %1000
-	srl a
-	srl a
-	srl a
-	or b
-; Multiply by 5
-	ld b, a
-	add a
-	add a
-	add b
-; Add Special & 3
-	ld b, a
-	ld a, [wTempMonDVs + 1]
-	and %0011
-	add b
-; Divide by 2 and add 30 + 1
-	srl a
-	add 30
-	inc a
-	ret
-StatsScreen_Print_HiddenPow_Info:
-; print Type first
-	ld a, [wTempMonDVs]
-	and %0011
-	ld b, a
-	; + (Atk & 3) << 2
-	ld a, [wTempMonDVs]
-	and %0011 << 4
-	swap a
-	add a
-	add a
-	or b
-; Skip Normal
-	inc a
-; Skip Bird
-	cp BIRD
-	jr c, .done
-	inc a
-; Skip unused types
-	cp UNUSED_TYPES
-	jr c, .done
-	add UNUSED_TYPES_END - UNUSED_TYPES
-.done
-	add a
-	ld e, a
-	ld d, 0
-	ld a, BANK(TypeNames)
-	ld hl, TypeNames
-	add hl, de
-	call GetFarWord
-	ld d, h
-	ld e, l
-
-	hlcoord 2, 16
-	call PlaceString_UnownFont_Type
-	hlcoord 1, 15
-	ld de, .hidden_pow_text
-	call PlaceString_UnownFont
-
-	call StatsScreen_HiddenPow_BP
-	ld de, .hp_70_text
-	cp 70
-	jr c, .not70
-	ld de, .hp_70_text
-	sub 70
-	jr .print1
-.not70
-	cp 60
-	jr c, .not60
-	ld de, .hp_60_text
-	sub 60
-	jr .print1
-.not60
-	cp 50
-	jr c, .not50
-	ld de, .hp_50_text
-	sub 50
-	jr .print1
-.not50
-	cp 40
-	jr c, .not40
-	ld de, .hp_40_text
-	sub 40
-	jr .print1
-.not40
-	ld de, .hp_30_text
-	sub 30
-.print1
-	hlcoord 2, 17
-	push af
-	call PlaceString_UnownFont
-	pop af
-
-	cp 9
-	jr c, .not9
-	ld de, .hp_9_text
-	jr .print2
-.not9
-	cp 8
-	jr c, .not8
-	ld de, .hp_8_text
-	jr .print2
-.not8
-	cp 7
-	jr c, .not7
-	ld de, .hp_7_text
-	jr .print2
-.not7
-	cp 6
-	jr c, .not6
-	ld de, .hp_6_text
-	jr .print2
-.not6
-	cp 5
-	jr c, .not5
-	ld de, .hp_5_text
-	jr .print2
-.not5
-	cp 4
-	jr c, .not4
-	ld de, .hp_4_text
-	jr .print2
-.not4
-	cp 3
-	jr c, .not3
-	ld de, .hp_3_text
-	jr .print2
-.not3
-	cp 2
-	jr c, .not2
-	ld de, .hp_2_text
-	jr .print2
-.not2
-	cp 1
-	ret c
-	ld de, .hp_1_text
-.print2
-	; hlcoord 13, 16
-	call PlaceString_UnownFont	
-	ret
-.hidden_pow_text:
-	db "HIDDEN POWER@"
-.hp_70_text:
-	db "SEVENTY@"
-.hp_60_text:
-	db "SIXTY@"
-.hp_50_text:
-	db "FIFTY@"
-.hp_40_text:
-	db "FOURTY@"
-.hp_30_text:
-	db "THIRTY@"
-.hp_1_text:
-	db "-ONE@"
-.hp_2_text:
-	db "-TWO@"
-.hp_3_text:
-	db "-THREE@"
-.hp_4_text:
-	db "-FOUR@"
-.hp_5_text:
-	db "-FIVE@"
-.hp_6_text:
-	db "-SIX@"
-.hp_7_text:
-	db "-SEVEN@"
-.hp_8_text:
-	db "-EIGHT@"
-.hp_9_text:
-	db "-NINE@"
-
-PlaceString_UnownFont_Type:
-	push hl
-	push de
-.loop
-	pop hl
-	ld a, BANK(TypeNames)
-	call GetFarByte
-	ld d, h
-	ld e, l
-	pop hl
-	cp "@"
-	ret z
-	inc de
-	sub "A"
-	add $BA ; FIRST_UNOWN_CHAR
-	ld [hli], a
-	push hl
-	push de
-	jr .loop
-
-PlaceString_UnownFont:
-	push hl
-	push de
-.loop
-	pop hl
-	ld a, [hl]
-	pop hl
-	cp "@"
-	ret z
-	cp " "
-	call z, .skip_space
-	cp "-"
-	call z, .skip_space
-	inc de
-	sub "A"
-	add $BA ; FIRST_UNOWN_CHAR
-	
-	ld [hli], a
-	push hl
-	push de
-	jr .loop	
-.skip_space:
-	ld [hl], a
-	inc hl
-	push hl
-	inc de
-	push de
-	pop hl
-	ld a, [hl]
-	pop hl
-	ret
+	db "UNKNOWN LOCATION@"
 
 IDNoString:
 	db "<ID>№.@"

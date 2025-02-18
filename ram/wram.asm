@@ -1847,7 +1847,7 @@ wSeerOT:: ds NAME_LENGTH
 wSeerOTGrammar:: db
 wSeerCaughtLevelString:: ds 4
 wSeerCaughtLevel:: db
-wSeerCaughtTime:: db
+wSeerCaughtData:: db
 wSeerCaughtGender:: db
 
 
