@@ -119,6 +119,8 @@ EngineFlags:
 	engine_flag wDailyFlags1, DAILYFLAGS1_ILEX_FOREST_MUSHROOMS
 	engine_flag wDailyFlags1, DAILYFLAGS1_GOLDENROD_UNDERGROUND_BARGAIN_F
 	engine_flag wDailyFlags1, DAILYFLAGS1_INDIGO_PLATEAU_RIVAL_FIGHT_F
+; Trees
+	engine_flag wDailyFlags1, DAILYFLAGS1_TREE_TEST
 
 ; wDailyFlags2
 	engine_flag wDailyFlags2, DAILYFLAGS2_BUENAS_PASSWORD_F
