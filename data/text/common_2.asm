@@ -682,13 +682,7 @@ _BreedAskNicknameText::
 	text "?"
 	done
 
-_LeftWithDayCareLadyText::
-	text "It's @"
-	text_ram wBreedMon2Nickname
-	text "."
-	done
-
-_LeftWithDayCareManText::
+_LeftWithDayCarePersonText::
 	text "It's my @"
 	text_ram wBreedMon1Nickname
 	text "."
