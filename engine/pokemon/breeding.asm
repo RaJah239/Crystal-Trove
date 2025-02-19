@@ -846,7 +846,7 @@ Hatch_ShellFragmentLoop:
 	ret
 
 DayCareMon1:
-	ld hl, LeftWithDayCareManText
+	ld hl, LeftWithDayCarePersonText
 	call PrintText
 	ld a, [wBreedMon1Species]
 	call PlayMonCry
@@ -859,7 +859,7 @@ DayCareMon1:
 	jp PrintText
 
 DayCareMon2:
-	ld hl, LeftWithDayCareLadyText
+	ld hl, LeftWithDayCarePersonText
 	call PrintText
 	ld a, [wBreedMon2Species]
 	call PlayMonCry
@@ -874,12 +874,8 @@ DayCareMon2:
 DayCareMonCursor:
 	jp WaitPressAorB_BlinkCursor
 
-LeftWithDayCareLadyText:
-	text_far _LeftWithDayCareLadyText
-	text_end
-
-LeftWithDayCareManText:
-	text_far _LeftWithDayCareManText
+LeftWithDayCarePersonText:
+	text_far _LeftWithDayCarePersonText
 	text_end
 
 DayCareMonCompatibilityText:
