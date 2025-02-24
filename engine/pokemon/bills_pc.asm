@@ -60,7 +60,7 @@ _DepositPKMN:
 	ld [wBillsPC_NumMonsOnScreen], a
 	call BillsPC_RefreshTextboxes
 	call PCMonInfo
-	ld a, $ff
+	ld a, $4a ; $4a almost prefectly grey
 	ld [wCurPartySpecies], a
 	ld a, SCGB_BILLS_PC
 	call BillsPC_ApplyPalettes
@@ -296,7 +296,7 @@ _WithdrawPKMN:
 	ld [wBillsPC_NumMonsOnScreen], a
 	call BillsPC_RefreshTextboxes
 	call PCMonInfo
-	ld a, $ff
+	ld a, $4a ; $4a almost prefectly grey
 	ld [wCurPartySpecies], a
 	ld a, SCGB_BILLS_PC
 	call BillsPC_ApplyPalettes
@@ -530,7 +530,7 @@ _MovePKMNWithoutMail:
 	call BillsPC_RefreshTextboxes
 	call BillsPC_MoveMonWOMail_BoxNameAndArrows
 	call PCMonInfo
-	ld a, $ff
+	ld a, $4a ; $4a almost prefectly grey
 	ld [wCurPartySpecies], a
 	ld a, SCGB_BILLS_PC
 	call BillsPC_ApplyPalettes
