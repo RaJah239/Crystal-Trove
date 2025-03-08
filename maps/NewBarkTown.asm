@@ -112,7 +112,12 @@ NewBarkTownTeacherScript:
 	end
 
 NewBarkTownFisherScript:
-	jumptextfaceplayer Text_ElmDiscoveredNewMon
+	faceplayer
+	opentext
+	special ClockResetter
+	reloadmap
+	closetext
+	end
 
 NewBarkTownRivalScript:
 	opentext

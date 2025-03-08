@@ -21,6 +21,10 @@ SetPlayerPalette:
 	farcall _SetPlayerPalette
 	ret
 
+ClockResetter:
+	farcall RestartClock
+	ret
+
 FillPokedex:
 	ld a, UNOWN_A
 	ld [wFirstUnownSeen], a
