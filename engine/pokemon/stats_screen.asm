@@ -795,8 +795,8 @@ LoadBluePage:
 	dw wBufferMonOT
 
 LoadOrangePage:
-;	call StatsScreen_placeCaughtLevel
-;	call StatsScreen_placeCaughtTime
+	call StatsScreen_placeCaughtLevel
+	call StatsScreen_placeCaughtTime
 	call StatsScreen_placeCaughtLocation
 	call StatsScreen_PrintEVs
 	ld de, HiddenPowerTypeString
@@ -974,67 +974,66 @@ StatsScreen_PrintEVs:
 HiddenPowerTypeString:
 	db "HIDDEN POWER:@"
 
-;StatsScreen_placeCaughtLevel:
-;	; caught level
-;	ld a, [wTempMonCaughtLevel]
-;	and CAUGHT_LEVEL_MASK	
-;	and a
-;	jr z, .unknown_level
-;	cp CAUGHT_EGG_LEVEL ; egg marker value
-;	jr nz, .print
-;	ld a, EGG_LEVEL ; egg hatch level
-;
-;.print
-;	ld [wTextDecimalByte], a
-;	hlcoord 12, 8
-;	ld de, wTextDecimalByte
-;	lb bc, PRINTNUM_LEFTALIGN | 1, 3
-;	call PrintNum
-;	hlcoord 11, 8
-;	ld [hl], "<LV>"
-;	ret
-;
-;.unknown_level
-;	ld de, .MetUnknownLevelString
-;	hlcoord 11, 8
-;	call PlaceString
-;	ret   
-;.MetUnknownLevelString:
-;	db "@"
-;
-;StatsScreen_placeCaughtTime:
-;	ld a, [wTempMonCaughtTime]
-;	and CAUGHT_TIME_MASK
-;	jr z, .unknown_time
-;	rlca
-;	rlca
-;	dec a
-;	ld hl, .times
-;	call GetNthString
-;	ld d, h
-;	ld e, l
-;	call CopyName1
-;	ld de, wStringBuffer2
-;	hlcoord 6, 8
-;	call PlaceString
-;	ret
-;.unknown_time
-;	ld a, 0
-;	ld hl, .unknown_time_text
-;	call GetNthString
-;	ld d, h
-;	ld e, l
-;	call CopyName1
-;	ld de, wStringBuffer2
-;	hlcoord 6, 8
-;	call PlaceString
-;	ret
-;.times
-;	db "MORN@"
-;	db "DAY@"
-;	db "NITE@"
-;.unknown_time_text
-;	db "TRADE@"
+StatsScreen_placeCaughtLevel:
+	; caught level
+	ld a, [wTempMonCaughtLevel]
+	and a
+	jr z, .unknown_level
+	cp CAUGHT_EGG_LEVEL ; egg marker value
+	jr nz, .print
+	ld a, EGG_LEVEL ; egg hatch level
+
+.print
+	ld [wTextDecimalByte], a
+	hlcoord 12, 8
+	ld de, wTextDecimalByte
+	lb bc, PRINTNUM_LEFTALIGN | 1, 3
+	call PrintNum
+	hlcoord 11, 8
+	ld [hl], "<LV>"
+	ret
+
+.unknown_level
+	ld de, .MetUnknownLevelString
+	hlcoord 11, 8
+	call PlaceString
+	ret   
+.MetUnknownLevelString:
+	db "@"
+
+StatsScreen_placeCaughtTime:
+	ld a, [wTempMonCaughtTime]
+	and CAUGHT_TIME_MASK
+	jr z, .unknown_time
+	rlca
+	rlca
+	dec a
+	ld hl, .times
+	call GetNthString
+	ld d, h
+	ld e, l
+	call CopyName1
+	ld de, wStringBuffer2
+	hlcoord 6, 8
+	call PlaceString
+	ret
+.unknown_time
+	ld a, 0
+	ld hl, .unknown_time_text
+	call GetNthString
+	ld d, h
+	ld e, l
+	call CopyName1
+	ld de, wStringBuffer2
+	hlcoord 6, 8
+	call PlaceString
+	ret
+.times
+	db "MORN@"
+	db "DAY@"
+	db "NITE@"
+.unknown_time_text
+	db "TRADE@"
 
 StatsScreen_placeCaughtLocation:
 	ld de, .MetAtMapString
