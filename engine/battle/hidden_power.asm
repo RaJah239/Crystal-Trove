@@ -8,8 +8,6 @@ HiddenPowerDamage:
     ld hl, wEnemyMonDVs
 .got_dvs
 
-; Power:
-
 ; Type:
 
     ; Def & 3
@@ -24,6 +22,13 @@ HiddenPowerDamage:
     add a
     add a
     or b
+
+    ; add the least significant bit of the Speed DV to increment 50% of the time (to reach Fairy type)
+    ld b, a
+    ld a, [hl]
+    swap a
+    and %0001
+    add b
 
 ; Skip Normal
     inc a
