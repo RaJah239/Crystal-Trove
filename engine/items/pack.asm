@@ -1164,7 +1164,10 @@ TutorialPack:
 	db 1 ; default option
 
 .ItemsMenuData:
-	db STATICMENU_ENABLE_SELECT | STATICMENU_ENABLE_LEFT_RIGHT | STATICMENU_ENABLE_START | STATICMENU_WRAP | STATICMENU_CURSOR ; flags
+; @towersvault note:
+; SCROLLINGMENU_ENABLE_START gets added since the function 'ScrollingMenuJoyAction'
+; requires the 7th bit to be set.
+	db STATICMENU_ENABLE_SELECT | STATICMENU_ENABLE_LEFT_RIGHT | STATICMENU_ENABLE_START | STATICMENU_WRAP | STATICMENU_CURSOR | SCROLLINGMENU_ENABLE_START ; flags
 	db 5, 8 ; rows, columns
 	db SCROLLINGMENU_ITEMS_QUANTITY ; item format
 	dbw 0, wDudeNumItems
@@ -1184,7 +1187,10 @@ TutorialPack:
 	db 1 ; default option
 
 .KeyItemsMenuData:
-	db STATICMENU_ENABLE_SELECT | STATICMENU_ENABLE_LEFT_RIGHT | STATICMENU_ENABLE_START | STATICMENU_WRAP | STATICMENU_CURSOR ; flags
+; @towersvault note:
+; SCROLLINGMENU_ENABLE_START gets added since the function 'ScrollingMenuJoyAction'
+; requires the 7th bit to be set.
+	db STATICMENU_ENABLE_SELECT | STATICMENU_ENABLE_LEFT_RIGHT | STATICMENU_ENABLE_START | STATICMENU_WRAP | STATICMENU_CURSOR | SCROLLINGMENU_ENABLE_START ; flags
 	db 5, 8 ; rows, columns
 	db SCROLLINGMENU_ITEMS_NORMAL ; item format
 	dbw 0, wDudeNumKeyItems
@@ -1213,7 +1219,10 @@ TutorialPack:
 	db 1 ; default option
 
 .BallsMenuData:
-	db STATICMENU_ENABLE_SELECT | STATICMENU_ENABLE_LEFT_RIGHT | STATICMENU_ENABLE_START | STATICMENU_WRAP | STATICMENU_CURSOR ; flags
+; @towersvault note:
+; SCROLLINGMENU_ENABLE_START gets added since the function 'ScrollingMenuJoyAction'
+; requires the 7th bit to be set.
+	db STATICMENU_ENABLE_SELECT | STATICMENU_ENABLE_LEFT_RIGHT | STATICMENU_ENABLE_START | STATICMENU_WRAP | STATICMENU_CURSOR | SCROLLINGMENU_ENABLE_START ; flags
 	db 5, 8 ; rows, columns
 	db SCROLLINGMENU_ITEMS_QUANTITY ; item format
 	dbw 0, wDudeNumBalls
@@ -1233,7 +1242,10 @@ TutorialPack:
 	db 1 ; default option
 
 .BattleItemsMenuData:
-	db STATICMENU_ENABLE_SELECT | STATICMENU_ENABLE_LEFT_RIGHT | STATICMENU_ENABLE_START | STATICMENU_WRAP | STATICMENU_CURSOR ; flags
+; @towersvault note:
+; SCROLLINGMENU_ENABLE_START gets added since the function 'ScrollingMenuJoyAction'
+; requires the 7th bit to be set.
+	db STATICMENU_ENABLE_SELECT | STATICMENU_ENABLE_LEFT_RIGHT | STATICMENU_ENABLE_START | STATICMENU_WRAP | STATICMENU_CURSOR | SCROLLINGMENU_ENABLE_START ; flags
 	db 5, 8 ; rows, columns
 	db 2 ; horizontal spacing
 	dbw 0, wDudeNumBattleItems
@@ -1328,7 +1340,7 @@ Pack_InterpretJoypad:
 	ld hl, wMenuJoypad
 	ld a, [wSwitchItem]
 	and a
-	jr nz, .switching_item
+	jp nz, .switching_item
 	ld a, [hl]
 	and A_BUTTON
 	jr nz, .a_button
@@ -1344,6 +1356,9 @@ Pack_InterpretJoypad:
 	ld a, [hl]
 	and SELECT
 	jr nz, .select
+	ld a, [hl]
+	and START
+	jr nz, .start
 	scf
 	ret
 
@@ -1383,6 +1398,21 @@ Pack_InterpretJoypad:
 	farcall SwitchItemsInBag
 	ld hl, AskItemMoveText
 	call Pack_PrintTextNoScroll
+	scf
+	ret
+
+.start
+	ld hl, Text_SortItems
+	call PrintText
+	ld c, 30
+	call DelayFrames
+	farcall SortItemsInBag
+	ld de, SFX_TALLY
+	call WaitPlaySFX
+	ld hl, Text_SortComplete
+	call PrintText
+	ld c, 30
+	call DelayFrames
 	scf
 	ret
 
@@ -1529,7 +1559,10 @@ ItemsPocketMenuHeader:
 	db 1 ; default option
 
 .MenuData:
-	db STATICMENU_ENABLE_SELECT | STATICMENU_ENABLE_LEFT_RIGHT | STATICMENU_ENABLE_START | STATICMENU_WRAP | STATICMENU_CURSOR ; flags
+; @towersvault note:
+; SCROLLINGMENU_ENABLE_START gets added since the function 'ScrollingMenuJoyAction'
+; requires the 7th bit to be set.
+	db STATICMENU_ENABLE_SELECT | STATICMENU_ENABLE_LEFT_RIGHT | STATICMENU_ENABLE_START | STATICMENU_WRAP | STATICMENU_CURSOR | SCROLLINGMENU_ENABLE_START ; flags
 	db 5, 8 ; rows, columns
 	db SCROLLINGMENU_ITEMS_QUANTITY ; item format
 	dbw 0, wNumItems
@@ -1559,7 +1592,10 @@ KeyItemsPocketMenuHeader:
 	db 1 ; default option
 
 .MenuData:
-	db STATICMENU_ENABLE_SELECT | STATICMENU_ENABLE_LEFT_RIGHT | STATICMENU_ENABLE_START | STATICMENU_WRAP | STATICMENU_CURSOR ; flags
+; @towersvault note:
+; SCROLLINGMENU_ENABLE_START gets added since the function 'ScrollingMenuJoyAction'
+; requires the 7th bit to be set.
+	db STATICMENU_ENABLE_SELECT | STATICMENU_ENABLE_LEFT_RIGHT | STATICMENU_ENABLE_START | STATICMENU_WRAP | STATICMENU_CURSOR | SCROLLINGMENU_ENABLE_START ; flags
 	db 5, 8 ; rows, columns
 	db SCROLLINGMENU_ITEMS_NORMAL ; item format
 	dbw 0, wNumKeyItems
@@ -1589,7 +1625,10 @@ BallsPocketMenuHeader:
 	db 1 ; default option
 
 .MenuData:
-	db STATICMENU_ENABLE_SELECT | STATICMENU_ENABLE_LEFT_RIGHT | STATICMENU_ENABLE_START | STATICMENU_WRAP | STATICMENU_CURSOR ; flags
+; @towersvault note:
+; SCROLLINGMENU_ENABLE_START gets added since the function 'ScrollingMenuJoyAction'
+; requires the 7th bit to be set.
+	db STATICMENU_ENABLE_SELECT | STATICMENU_ENABLE_LEFT_RIGHT | STATICMENU_ENABLE_START | STATICMENU_WRAP | STATICMENU_CURSOR | SCROLLINGMENU_ENABLE_START ; flags
 	db 5, 8 ; rows, columns
 	db SCROLLINGMENU_ITEMS_QUANTITY ; item format
 	dbw 0, wNumBalls
@@ -1619,7 +1658,10 @@ BattlePocketMenuHeader:
 	db 1 ; default option
 
 .MenuData:
-	db STATICMENU_ENABLE_SELECT | STATICMENU_ENABLE_LEFT_RIGHT | STATICMENU_ENABLE_START | STATICMENU_WRAP | STATICMENU_CURSOR ; flags
+; @towersvault note:
+; SCROLLINGMENU_ENABLE_START gets added since the function 'ScrollingMenuJoyAction'
+; requires the 7th bit to be set.
+	db STATICMENU_ENABLE_SELECT | STATICMENU_ENABLE_LEFT_RIGHT | STATICMENU_ENABLE_START | STATICMENU_WRAP | STATICMENU_CURSOR | SCROLLINGMENU_ENABLE_START ; flags
 	db 5, 8 ; rows, columns
 	db SCROLLINGMENU_ITEMS_QUANTITY ; item format
 	dbw 0, wNumBattleItems
@@ -1641,6 +1683,14 @@ PC_Mart_BattlePocketMenuHeader:
 	dba PlaceMenuItemName
 	dba PlaceMenuItemQuantity
 	dba UpdateItemDescription
+
+Text_SortItems:
+	text "Sorting items…"
+	done
+
+Text_SortComplete:
+	text "Sorting complete!"
+	done
 
 AskThrowAwayText:
 	text_far _AskThrowAwayText
