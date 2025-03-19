@@ -477,22 +477,23 @@ MartBattleTowerBerries:
 	db -1 ; end
 
 MartBattleTowerBattleItems:
-	db 7 ; # items
-	db LEFTOVERS
-	db QUICK_CLAW
-	db FOCUS_BAND
-	db SCOPE_LENS
-	db KINGS_ROCK
+	db 8 ; # items
 	db BERRY_JUICE
+	db BERSERK_GENE
 	db BRIGHTPOWDER
+	db FOCUS_BAND
+	db LEFTOVERS
+	db KINGS_ROCK
+	db QUICK_CLAW
+	db SCOPE_LENS
 	db -1 ; end
 
 MartBattleTowerUniqueMonBattleItems:
 	db 7 ; # items
-	db THICK_CLUB
+	db METAL_POWDER
 	db LIGHT_BALL
 	db STICK
-	db METAL_POWDER
+	db THICK_CLUB
 	db LUCKY_EGG
 	db SMOKE_BALL
 	db CLEANSE_TAG
