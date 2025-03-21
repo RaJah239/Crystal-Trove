@@ -41,7 +41,7 @@ SaffronGymSabrinaScript:
 	setevent EVENT_BEAT_PSYCHIC_FRANKLIN
 	setevent EVENT_BEAT_PSYCHIC_JARED
 	opentext
-	writetext ReceivedMarshBadgeText
+	writetext Text_ReceivedSoulBadge
 	playsound SFX_GET_BADGE
 	waitsfx
 	setflag ENGINE_MARSHBADGE
@@ -197,12 +197,12 @@ SabrinaWinLossText:
 
 	para "OK, you win. You"
 	line "earned yourself"
-	cont "MARSHBADGE."
+	cont "SOULBADGE."
 	done
 
-ReceivedMarshBadgeText:
+Text_ReceivedSoulBadge:
 	text "<PLAYER> received"
-	line "MARSHBADGE."
+	line "SOULBADGE."
 	done
 
 SabrinaMarshBadgeText:

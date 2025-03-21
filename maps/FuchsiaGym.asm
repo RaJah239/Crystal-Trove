@@ -47,7 +47,7 @@ FuchsiaGymJanineScript:
 	variablesprite SPRITE_FUCHSIA_GYM_4, SPRITE_YOUNGSTER
 	special LoadUsedSpritesGFX
 	opentext
-	writetext Text_ReceivedSoulBadge
+	writetext ReceivedMarshBadgeText
 	playsound SFX_GET_BADGE
 	waitsfx
 	setflag ENGINE_SOULBADGE
@@ -293,13 +293,13 @@ JanineText_ToughOne:
 	line "tough one. You"
 	cont "definitely won…"
 
-	para "Here's SOULBADGE."
+	para "Here's MARSHBADGE."
 	line "Take it."
 	done
 
-Text_ReceivedSoulBadge:
+ReceivedMarshBadgeText:
 	text "<PLAYER> received"
-	line "SOULBADGE."
+	line "MARSHBADGE."
 	done
 
 JanineText_ToxicSpeech:
