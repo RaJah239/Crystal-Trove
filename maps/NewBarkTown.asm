@@ -82,6 +82,11 @@ NewBarkTown_TeacherStopsYouScene2:
 NewBarkTownTeacherScript:
 	faceplayer
 	opentext
+
+;	readvar VAR_PARTYCOUNT
+;	ifequal 1, .OnlyHaveOneMonLeft
+;	special PlayerGivesAwayAPokemon
+
 	checkevent EVENT_TALKED_TO_MOM_AFTER_MYSTERY_EGG_QUEST
 	iftrue .CallMom
 	checkevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
@@ -92,6 +97,12 @@ NewBarkTownTeacherScript:
 	waitbutton
 	closetext
 	end
+	
+;.OnlyHaveOneMonLeft:
+;	writetext Text_YouOnlyHaveOneMonLeft
+;	waitbutton
+;	closetext
+;	end
 
 .MonIsAdorable:
 	writetext Text_YourMonIsAdorable
@@ -110,6 +121,12 @@ NewBarkTownTeacherScript:
 	waitbutton
 	closetext
 	end
+
+;Text_YouOnlyHaveOneMonLeft:
+;	text "You only have 1"
+;	line "#MON on you"
+;	cont "left!"
+;	done
 
 NewBarkTownFisherScript:
 	jumptextfaceplayer Text_ElmDiscoveredNewMon

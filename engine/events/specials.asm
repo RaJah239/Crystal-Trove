@@ -52,6 +52,13 @@ GameCornerPrizeMonCheckDex:
 	call ExitAllMenus
 	ret
 
+;PlayerGivesAwayAPokemon:
+;	farcall SelectMonFromParty
+;	ld [wMonType], a ; PARTYMON
+;	ld [wPokemonWithdrawDepositParameter], a ; REMOVE_PARTY
+;	callfar RemoveMonFromParty
+;	ret
+
 UnusedSetSeenMon:
 	ld a, [wScriptVar]
 	dec a
