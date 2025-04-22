@@ -148,3 +148,4 @@ SpecialsPointers::
 	add_special EggMaster
 	add_special FillPokedex ; used for testing
 ;	add_special PlayerGivesAwayAPokemon
+	add_special SetMonHiddenPowerDVs
