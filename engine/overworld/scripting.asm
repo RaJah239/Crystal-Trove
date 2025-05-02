@@ -1776,10 +1776,13 @@ Script_takeitem:
 	ret
 
 Script_checkitem:
+; parameters: item, quantity
 	xor a
 	ld [wScriptVar], a
 	call GetScriptByte
 	ld [wCurItem], a
+	call GetScriptByte
+	ld [wItemQuantityChange], a
 	ld hl, wNumItems
 	call CheckItem
 	ret nc
