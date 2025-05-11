@@ -430,6 +430,10 @@ CheckEnemyTurn:
 
 	ld hl, FrozenSolidText
 	call StdBattleTextbox
+	xor a
+	ld [wNumHits], a
+	ld de, ANIM_FRZ
+	call FarPlayBattleAnimation
 	call CantMove
 	jp EndTurn
 
@@ -576,6 +580,10 @@ CheckEnemyTurn:
 
 	ld hl, FullyParalyzedText
 	call StdBattleTextbox
+	xor a
+	ld [wNumHits], a
+	ld de, ANIM_PAR
+	call FarPlayBattleAnimation
 	call CantMove
 
 	; fallthrough
