@@ -58,7 +58,7 @@ BattleText_WildFled:
 	prompt
 
 BattleText_EnemyFled:
-	text "Enemy @"
+	text "Foe @"
 	text_ram wEnemyMonNickname
 	text_start
 	line "fled!"
@@ -170,7 +170,7 @@ BattleText_TheSandstormSubsided:
 	prompt
 
 BattleText_EnemyMonFainted:
-	text "Enemy @"
+	text "Foe @"
 	text_ram wEnemyMonNickname
 	text_start
 	line "fainted!"
