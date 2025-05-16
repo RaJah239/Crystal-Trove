@@ -374,12 +374,10 @@ DoPlayerMovement::
 	and a
 	jr nz, .ExitWater
 
-    call .FastSurfCheck
-    jr z, .fast
-    ld a, STEP_WALK
-    call .DoStep
-    scf
-    ret
+	ld a, STEP_WALK
+	call .DoStep
+	scf
+	ret
 
 .ExitWater:
 	call .GetOutOfWater
@@ -778,15 +776,6 @@ ENDM
 	cp PLAYER_BIKE
 	ret z
 	cp PLAYER_SKATE
-	ret
-
-.FastSurfCheck:
-	ld a, [wPlayerState]
-	cp PLAYER_SURF
-	ret nz
-	ldh a, [hJoypadDown]
-	and B_BUTTON
-	cp B_BUTTON		; Delete this line to Default Fast Surf, Press B to Slow Surf
 	ret
 
 .CheckWalkable:
