@@ -1682,6 +1682,118 @@ JohtoGrassWildMons:
 	db 2, RATTATA
 	end_grass_wildmons
 
+	def_grass_wildmons ROUTE_26
+	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
+	; morn
+	db 28, DODUO
+	db 28, SANDSLASH
+	db 32, PONYTA
+	db 30, RATICATE
+	db 30, DODUO
+	db 30, ARBOK
+	db 30, ARBOK
+	; day
+	db 28, DODUO
+	db 28, SANDSLASH
+	db 32, PONYTA
+	db 30, RATICATE
+	db 30, DODUO
+	db 30, ARBOK
+	db 30, ARBOK
+	; nite
+	db 28, NOCTOWL
+	db 28, RATICATE
+	db 32, NOCTOWL
+	db 30, RATICATE
+	db 30, QUAGSIRE
+	db 30, QUAGSIRE
+	db 30, QUAGSIRE
+	end_grass_wildmons
+
+	def_grass_wildmons ROUTE_27
+	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
+	; morn
+	db 28, DODUO
+	db 28, ARBOK
+	db 30, RATICATE
+	db 30, DODUO
+	db 32, PONYTA
+	db 30, DODRIO
+	db 30, DODRIO
+	; day
+	db 28, DODUO
+	db 28, ARBOK
+	db 30, RATICATE
+	db 30, DODUO
+	db 32, PONYTA
+	db 30, DODRIO
+	db 30, DODRIO
+	; nite
+	db 28, QUAGSIRE
+	db 28, NOCTOWL
+	db 30, RATICATE
+	db 30, QUAGSIRE
+	db 32, NOCTOWL
+	db 32, NOCTOWL
+	db 32, NOCTOWL
+	end_grass_wildmons
+
+	def_grass_wildmons VICTORY_ROAD
+	db 6 percent, 6 percent, 6 percent ; encounter rates: morn/day/nite
+	; morn
+	db 34, GRAVELER
+	db 32, RHYHORN
+	db 33, ONIX
+	db 34, GOLBAT
+	db 35, SANDSLASH
+	db 35, RHYDON
+	db 35, RHYDON
+	; day
+	db 34, GRAVELER
+	db 32, RHYHORN
+	db 33, ONIX
+	db 34, GOLBAT
+	db 35, SANDSLASH
+	db 35, RHYDON
+	db 35, RHYDON
+	; nite
+	db 34, GOLBAT
+	db 34, GRAVELER
+	db 32, ONIX
+	db 36, GRAVELER
+	db 38, GRAVELER
+	db 40, GRAVELER
+	db 40, GRAVELER
+	end_grass_wildmons
+
+	def_grass_wildmons TOHJO_FALLS
+	db 6 percent, 6 percent, 6 percent ; encounter rates: morn/day/nite
+	; morn
+	db 22, ZUBAT
+	db 22, RATICATE
+	db 24, GOLBAT
+	db 21, SLOWPOKE
+	db 20, RATTATA
+	db 23, SLOWPOKE
+	db 23, SLOWPOKE
+	; day
+	db 22, ZUBAT
+	db 22, RATICATE
+	db 24, GOLBAT
+	db 21, SLOWPOKE
+	db 20, RATTATA
+	db 23, SLOWPOKE
+	db 23, SLOWPOKE
+	; nite
+	db 22, ZUBAT
+	db 22, RATICATE
+	db 24, GOLBAT
+	db 21, SLOWPOKE
+	db 20, RATTATA
+	db 23, SLOWPOKE
+	db 23, SLOWPOKE
+	end_grass_wildmons
+
 	def_grass_wildmons SILVER_CAVE_OUTSIDE
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
 	; morn

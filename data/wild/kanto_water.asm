@@ -2,13 +2,6 @@
 
 KantoWaterWildMons:
 
-	def_water_wildmons TOHJO_FALLS
-	db 4 percent ; encounter rate
-	db 20, GOLDEEN
-	db 20, SLOWPOKE
-	db 20, SEAKING
-	end_water_wildmons
-
 	def_water_wildmons VERMILION_PORT
 	db 2 percent ; encounter rate
 	db 35, TENTACOOL
@@ -98,20 +91,6 @@ KantoWaterWildMons:
 	db 10, GOLDEEN
 	db 5, GOLDEEN
 	db 10, SEAKING
-	end_water_wildmons
-
-	def_water_wildmons ROUTE_26
-	db 6 percent ; encounter rate
-	db 30, TENTACOOL
-	db 25, TENTACOOL
-	db 30, TENTACRUEL
-	end_water_wildmons
-
-	def_water_wildmons ROUTE_27
-	db 6 percent ; encounter rate
-	db 20, TENTACOOL
-	db 15, TENTACOOL
-	db 20, TENTACRUEL
 	end_water_wildmons
 
 	def_water_wildmons ROUTE_28
