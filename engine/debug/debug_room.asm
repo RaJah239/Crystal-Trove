@@ -31,8 +31,9 @@ DEF DEBUGROOMMENU_NUM_PAGES EQU const_value
 
 _DebugRoom:
 	ldh a, [hJoyDown]
-	and SELECT | START
-	cp SELECT | START
+; Press "A" alone to enter the Debug Room
+;	and SELECT | START
+;	cp SELECT | START
 	ret nz
 	ldh a, [hDebugRoomMenuPage]
 	push af
