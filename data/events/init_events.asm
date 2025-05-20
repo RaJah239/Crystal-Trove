@@ -123,7 +123,9 @@ InitialEvents:
 	dw EVENT_SAFFRON_TRAIN_STATION_POPULATION
 	dw EVENT_INDIGO_PLATEAU_POKECENTER_RIVAL
 	dw EVENT_INITIALIZED_EVENTS
-
+if DEF(_DEBUG)
+	dw EVENT_GAVE_MYSTERY_EGG_TO_ELM
+endc
 ; Place new events that initialises on game start
 	dw -1 ; end
 
