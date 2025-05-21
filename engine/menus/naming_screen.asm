@@ -11,6 +11,8 @@ _NamingScreen:
 	ret
 
 NamingScreen:
+	ld c, 15
+	call FadeToWhite
 	ld hl, wNamingScreenDestinationPointer
 	ld [hl], e
 	inc hl
