@@ -38,8 +38,8 @@ ClosePokepic::
 	ldh [hBGMapMode], a
 
 	call UpdateSprites
-	call LoadStandardFont
-	ret
+	farcall EnableDynPalUpdates
+	jp LoadStandardFont
 
 PokepicMenuHeader:
 	db MENU_BACKUP_TILES ; flags
