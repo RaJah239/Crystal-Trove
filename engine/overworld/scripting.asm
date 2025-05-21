@@ -805,6 +805,8 @@ Script_waitsfx:
 Script_warpsound:
 	farcall GetWarpSFX
 	call PlaySFX
+	ld c, 10
+	call FadeToWhite
 	ret
 
 Script_cry:
