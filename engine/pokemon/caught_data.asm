@@ -52,6 +52,8 @@ CheckPartyFullAfterContest:
 	xor a
 	ld [wMonType], a
 	ld de, wMonOrItemNameBuffer
+	ld c, 15
+	call FadeToWhite
 	callfar InitNickname
 
 .Party_SkipNickname:
