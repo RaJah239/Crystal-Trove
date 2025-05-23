@@ -66,11 +66,11 @@ LancesRoomLanceScript:
 	writetext LanceBattleAfterText
 	waitbutton
 	closetext
+	clearevent EVENT_LANCES_ROOM_ENTRANCE_CLOSED
 	playsound SFX_ENTER_DOOR
 	changeblock 4, 0, $0b ; open door
 	refreshmap
 	closetext
-	setevent EVENT_LANCES_ROOM_ENTRANCE_CLOSED
 	musicfadeout MUSIC_BEAUTY_ENCOUNTER, 16
 	pause 30
 	showemote EMOTE_SHOCK, LANCESROOM_LANCE, 15

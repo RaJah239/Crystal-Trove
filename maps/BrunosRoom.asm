@@ -57,11 +57,10 @@ BrunoScript_Battle:
 	writetext BrunoScript_BrunoDefeatText
 	waitbutton
 	closetext
+	setevent EVENT_BRUNOS_ROOM_EXIT_OPEN
 	playsound SFX_ENTER_DOOR
 	changeblock 4, 2, $16 ; open door
 	refreshmap
-	closetext
-	setevent EVENT_BRUNOS_ROOM_EXIT_OPEN
 	waitsfx
 	end
 

@@ -385,10 +385,11 @@ BasementDoorScript::
 	writetext GoldenrodUndergroundBasementKeyOpenedDoorText
 	waitbutton
 	closetext
+	setevent EVENT_USED_BASEMENT_KEY
 	changeblock 18, 6, $2e ; unlocked door
 	refreshmap
 	closetext
-	setevent EVENT_USED_BASEMENT_KEY
+	
 	end
 
 .Open:

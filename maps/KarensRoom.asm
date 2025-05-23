@@ -57,11 +57,10 @@ KarenScript_Battle:
 	writetext KarenScript_KarenDefeatText
 	waitbutton
 	closetext
+	setevent EVENT_KARENS_ROOM_EXIT_OPEN
 	playsound SFX_ENTER_DOOR
 	changeblock 4, 2, $16 ; open door
 	refreshmap
-	closetext
-	setevent EVENT_KARENS_ROOM_EXIT_OPEN
 	waitsfx
 	end
 
