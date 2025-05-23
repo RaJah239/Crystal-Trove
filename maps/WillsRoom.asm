@@ -57,11 +57,10 @@ WillScript_Battle:
 	writetext WillScript_WillDefeatText
 	waitbutton
 	closetext
+	setevent EVENT_WILLS_ROOM_EXIT_OPEN
 	playsound SFX_ENTER_DOOR
 	changeblock 4, 2, $16 ; open door
 	refreshmap
-	closetext
-	setevent EVENT_WILLS_ROOM_EXIT_OPEN
 	waitsfx
 	end
 
