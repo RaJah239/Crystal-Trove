@@ -82,6 +82,7 @@ if DEF(_DEBUG)
 	giveitem TM_ROCK_SMASH, 50
 	giveitem TM_HEADBUTT, 50
 	giveitem TM_DIG, 50
+	giveitem TM_HIDDEN_POWER, 50
 	; all hms
 	giveitem HM_CUT
 	giveitem HM_FLY
