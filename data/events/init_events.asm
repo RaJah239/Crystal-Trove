@@ -125,6 +125,7 @@ InitialEvents:
 	dw EVENT_INITIALIZED_EVENTS
 if DEF(_DEBUG)
 	dw EVENT_GAVE_MYSTERY_EGG_TO_ELM
+	dw EVENT_CAUGHT_ALL_UNOWN
 endc
 ; Place new events that initialises on game start
 	dw -1 ; end
