@@ -52,6 +52,7 @@ GoldenrodGymWhitneyScript:
 	iftrue .GotAttract
 	checkflag ENGINE_PLAINBADGE
 	iftrue .GotPlainBadge
+	loadmem wLevelCap, 26
 	writetext WhitneyWhatDoYouWantText
 	promptbutton
 	waitsfx
