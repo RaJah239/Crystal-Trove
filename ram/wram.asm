@@ -581,8 +581,10 @@ wLastEnemyMove:: db
 
 wPlayerFutureSightCount:: db
 wEnemyFutureSightCount:: db
+wExpShare:: db
+wExpShareText:: db
 
-	ds 8
+	ds 6
 
 wPlayerFutureSightDamage:: dw
 wEnemyFutureSightDamage:: dw
