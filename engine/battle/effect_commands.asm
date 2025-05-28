@@ -677,23 +677,43 @@ BattleCommand_CheckObedience:
 	ld a, MAX_LEVEL + 1
 	jr nz, .getlevel
 
+	; mineralbadge
+	bit MINERALBADGE, [hl]
+	ld a, 42
+	jr nz, .getlevel
+
 	; stormbadge
 	bit STORMBADGE, [hl]
-	ld a, 70
+	ld a, 37
+	jr nz, .getlevel
+
+	; glacierbadge
+	bit GLACIERBADGE, [hl]
+	ld a, 36
 	jr nz, .getlevel
 
 	; fogbadge
 	bit FOGBADGE, [hl]
-	ld a, 50
+	ld a, 31
+	jr nz, .getlevel
+
+	; plainbadge
+	bit PLAINBADGE, [hl]
+	ld a, 26
 	jr nz, .getlevel
 
 	; hivebadge
 	bit HIVEBADGE, [hl]
-	ld a, 30
+	ld a, 21
+	jr nz, .getlevel
+
+	; zephyrbadge
+	bit ZEPHYRBADGE, [hl]
+	ld a, 16
 	jr nz, .getlevel
 
 	; no badges
-	ld a, 10
+	ld a, 9
 
 .getlevel
 ; c = obedience level
