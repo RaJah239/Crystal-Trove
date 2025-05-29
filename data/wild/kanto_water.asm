@@ -93,13 +93,6 @@ KantoWaterWildMons:
 	db 10, SEAKING
 	end_water_wildmons
 
-	def_water_wildmons ROUTE_28
-	db 2 percent ; encounter rate
-	db 40, POLIWAG
-	db 35, POLIWAG
-	db 40, POLIWHIRL
-	end_water_wildmons
-
 	def_water_wildmons PALLET_TOWN
 	db 6 percent ; encounter rate
 	db 35, TENTACOOL
