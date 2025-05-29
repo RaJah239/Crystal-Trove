@@ -252,4 +252,5 @@ MoveNames::
 	li "WHIRLPOOL"
 	li "BEAT UP"
 	li "U-TURN"
+	li "VOLT SWITCH"
 	assert_list_length NUM_ATTACKS
