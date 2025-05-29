@@ -5969,6 +5969,8 @@ EndRechargeOpp:
 	pop hl
 	ret
 
+INCLUDE "engine/battle/move_effects/hitandswitch.asm"
+
 INCLUDE "engine/battle/move_effects/rage.asm"
 
 BattleCommand_DoubleFlyingDamage:

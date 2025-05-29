@@ -414,6 +414,7 @@ AI_Smart_EffectHandlers:
 	dbw EFFECT_SOLARBEAM,        AI_Smart_Solarbeam
 	dbw EFFECT_THUNDER,          AI_Smart_Thunder
 	dbw EFFECT_FLY,              AI_Smart_Fly
+	dbw EFFECT_HIT_AND_SWITCH,   AI_Smart_HitAndSwitch
 	db -1 ; end
 
 AI_Smart_Sleep:
@@ -2202,6 +2203,7 @@ AI_Smart_Rollout:
 	inc [hl]
 	ret
 
+AI_Smart_HitAndSwitch:
 AI_Smart_Swagger:
 AI_Smart_Attract:
 ; 80% chance to encourage this move during the first turn of player's Pokemon.
