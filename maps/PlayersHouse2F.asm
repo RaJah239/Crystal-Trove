@@ -56,9 +56,9 @@ if DEF(_DEBUG)
 	givepoke MEW, 100, LEFTOVERS
 	givepoke SMEARGLE, 100, FOCUS_BAND
 	givepoke GYARADOS, 100, GOLD_BERRY
-	givepoke DIGLETT, 17
-	givepoke DITTO, 5, METAL_POWDER
-	givepoke ABRA, 5, EVERSTONE
+	givepoke STEELIX, 100
+	givepoke DITTO, 100, METAL_POWDER
+	givepoke JYNX, 100, LEFTOVERS
 	; first mon shiny
 	loadmem wPartyMon1DVs+0, $ea
 	loadmem wPartyMon1DVs+1, $aa
@@ -66,8 +66,8 @@ if DEF(_DEBUG)
 	loadmem wPartyMon3DVs+0, $ea
 	loadmem wPartyMon3DVs+1, $aa
 	; useful moves
-	loadmem wPartyMon1Moves+0, ICE_BEAM
-	loadmem wPartyMon1Moves+1, THUNDERBOLT
+	loadmem wPartyMon1Moves+0, U_TURN
+	loadmem wPartyMon1Moves+1, VOLT_SWITCH
 	loadmem wPartyMon1Moves+2, FLAMETHROWER
 	; overworld moves
 	loadmem wPartyMon1Moves+3, FLY
