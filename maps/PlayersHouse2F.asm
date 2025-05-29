@@ -5,6 +5,7 @@
 	const PLAYERSHOUSE2F_BIG_DOLL
 if DEF(_DEBUG)
 	const PLAYERSHOUSE2F_TEST
+	const PLAYERSHOUSE2F_KANTO_WARP
 endc
 
 PlayersHouse2F_MapScripts:
@@ -245,6 +246,12 @@ PlayersRadioText4:
 	done
 
 if DEF(_DEBUG)
+TestWarpScript:
+	faceplayer
+	special FadeOutToWhite
+	warp PALLET_TOWN, 12,  12 ; Map, coordinates via Polished Map
+	end
+
 TestScript:
 	faceplayer
 	special HealParty
@@ -283,5 +290,6 @@ PlayersHouse2F_MapEvents:
 	object_event  5,  4, SPRITE_DOLL_2, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, PlayersHouseDoll2Script, EVENT_PLAYERS_HOUSE_2F_DOLL_2
 	object_event  0,  1, SPRITE_BIG_DOLL, SPRITEMOVEDATA_BIGDOLL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, PlayersHouseBigDollScript, EVENT_PLAYERS_HOUSE_2F_BIG_DOLL
 if DEF(_DEBUG)
-	object_event  4,  2, SPRITE_RED, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, TestScript, -1
+	object_event  4,  2, SPRITE_RED, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, TestScript, -1
+	object_event  6,  2, SPRITE_BLUE, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, TestWarpScript, -1
 endc
