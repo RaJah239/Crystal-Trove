@@ -2073,7 +2073,7 @@ HitAndSwitch:
 	applydamage
 	criticaltext
 	supereffectivetext
-	hitandswitch
 	checkfaint
+	hitandswitch
 	kingsrock
 	endmove
