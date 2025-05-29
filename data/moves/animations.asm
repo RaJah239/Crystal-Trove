@@ -254,8 +254,8 @@ BattleAnimations::
 	dw BattleAnim_Whirlpool
 	dw BattleAnim_BeatUp
 	dw BattleAnim_UTurn
+	dw BattleAnim_VoltSwitch
 	assert_table_length NUM_ATTACKS + 1
-	dw BattleAnim_Dummy
 	dw BattleAnim_Dummy
 	dw BattleAnim_SweetScent2
 	assert_table_length $100
@@ -1166,6 +1166,29 @@ BattleAnim_UTurn:
 	anim_obj ANIM_OBJ_U_TURN_FALL, 48, 92, $30
 	anim_wait 16
 	anim_bgeffect BATTLE_BG_EFFECT_SHOW_MON, $0, $1, $0
+	anim_ret
+
+BattleAnim_VoltSwitch:
+	anim_2gfx BATTLE_ANIM_GFX_LIGHTNING, BATTLE_ANIM_GFX_EXPLOSION
+	anim_sound 0, 0, SFX_ZAP_CANNON
+	anim_bgeffect BATTLE_BG_EFFECT_FLASH_INVERTED, $0, $4, $3
+	anim_obj BATTLE_ANIM_OBJ_THUNDER_WAVE, 48, 92, $0
+	anim_wait 24
+	anim_setobj $1, $3
+	anim_wait 1
+	anim_2gfx BATTLE_ANIM_GFX_SPEED, BATTLE_ANIM_GFX_HIT
+	anim_sound 0, 0, SFX_MENU
+	anim_bgeffect BATTLE_BG_EFFECT_HIDE_MON, $0, BG_EFFECT_USER, $0
+	anim_call BattleAnimSub_QuickAttack
+	anim_wait 12
+	anim_sound 0, 1, SFX_TACKLE
+	anim_2gfx BATTLE_ANIM_GFX_HIT, BATTLE_ANIM_GFX_LIGHTNING
+	anim_obj BATTLE_ANIM_OBJ_HIT_BIG_YFIX, 136, 48, $0
+	anim_bgeffect BATTLE_BG_EFFECT_FLASH_INVERTED, $0, $8, $2
+	anim_sound 0, 1, SFX_THUNDER
+	anim_obj BATTLE_ANIM_OBJ_THUNDER_RIGHT, 152, 68, $0
+	anim_wait 64
+	anim_bgeffect BATTLE_BG_EFFECT_SHOW_MON, $0, BG_EFFECT_USER, $0
 	anim_ret
 
 BattleAnim_RazorLeaf:
@@ -2800,12 +2823,7 @@ BattleAnim_QuickAttack:
 	anim_2gfx BATTLE_ANIM_GFX_SPEED, BATTLE_ANIM_GFX_HIT
 	anim_sound 0, 0, SFX_MENU
 	anim_bgeffect BATTLE_BG_EFFECT_HIDE_MON, $0, BG_EFFECT_USER, $0
-	anim_obj BATTLE_ANIM_OBJ_SPEED_LINE, 24, 88, $2
-	anim_obj BATTLE_ANIM_OBJ_SPEED_LINE, 32, 88, $1
-	anim_obj BATTLE_ANIM_OBJ_SPEED_LINE, 40, 88, $0
-	anim_obj BATTLE_ANIM_OBJ_SPEED_LINE, 48, 88, $80
-	anim_obj BATTLE_ANIM_OBJ_SPEED_LINE, 56, 88, $81
-	anim_obj BATTLE_ANIM_OBJ_SPEED_LINE, 64, 88, $82
+	anim_call BattleAnimSub_QuickAttack
 	anim_wait 12
 	anim_sound 0, 1, SFX_COMET_PUNCH
 	anim_obj BATTLE_ANIM_OBJ_HIT_YFIX, 136, 56, $0
@@ -3380,12 +3398,7 @@ BattleAnim_MachPunch:
 	anim_2gfx BATTLE_ANIM_GFX_SPEED, BATTLE_ANIM_GFX_HIT
 	anim_bgeffect BATTLE_BG_EFFECT_HIDE_MON, $0, BG_EFFECT_USER, $0
 	anim_sound 0, 0, SFX_MENU
-	anim_obj BATTLE_ANIM_OBJ_SPEED_LINE, 24, 88, $2
-	anim_obj BATTLE_ANIM_OBJ_SPEED_LINE, 32, 88, $1
-	anim_obj BATTLE_ANIM_OBJ_SPEED_LINE, 40, 88, $0
-	anim_obj BATTLE_ANIM_OBJ_SPEED_LINE, 48, 88, $80
-	anim_obj BATTLE_ANIM_OBJ_SPEED_LINE, 56, 88, $81
-	anim_obj BATTLE_ANIM_OBJ_SPEED_LINE, 64, 88, $82
+	anim_call BattleAnimSub_QuickAttack
 	anim_wait 12
 	anim_sound 0, 1, SFX_MEGA_PUNCH
 	anim_obj BATTLE_ANIM_OBJ_PUNCH, 136, 56, $0
@@ -4444,12 +4457,7 @@ BattleAnim_Extremespeed:
 	anim_2gfx BATTLE_ANIM_GFX_SPEED, BATTLE_ANIM_GFX_CUT
 	anim_bgeffect BATTLE_BG_EFFECT_HIDE_MON, $0, BG_EFFECT_USER, $0
 	anim_sound 0, 0, SFX_MENU
-	anim_obj BATTLE_ANIM_OBJ_SPEED_LINE, 24, 88, $2
-	anim_obj BATTLE_ANIM_OBJ_SPEED_LINE, 32, 88, $1
-	anim_obj BATTLE_ANIM_OBJ_SPEED_LINE, 40, 88, $0
-	anim_obj BATTLE_ANIM_OBJ_SPEED_LINE, 48, 88, $80
-	anim_obj BATTLE_ANIM_OBJ_SPEED_LINE, 56, 88, $81
-	anim_obj BATTLE_ANIM_OBJ_SPEED_LINE, 64, 88, $82
+	anim_call BattleAnimSub_QuickAttack
 	anim_wait 12
 	anim_sound 0, 1, SFX_CUT
 	anim_obj BATTLE_ANIM_OBJ_CUT_LONG_DOWN_LEFT, 152, 40, $0
@@ -4800,4 +4808,13 @@ BattleAnim_ShowMon_1:
 	anim_wait 4
 	anim_incobj 1
 	anim_wait 1
+	anim_ret
+
+BattleAnimSub_QuickAttack:
+	anim_obj BATTLE_ANIM_OBJ_SPEED_LINE, 24, 88, $2
+	anim_obj BATTLE_ANIM_OBJ_SPEED_LINE, 32, 88, $1
+	anim_obj BATTLE_ANIM_OBJ_SPEED_LINE, 40, 88, $0
+	anim_obj BATTLE_ANIM_OBJ_SPEED_LINE, 48, 88, $80
+	anim_obj BATTLE_ANIM_OBJ_SPEED_LINE, 56, 88, $81
+	anim_obj BATTLE_ANIM_OBJ_SPEED_LINE, 64, 88, $82
 	anim_ret

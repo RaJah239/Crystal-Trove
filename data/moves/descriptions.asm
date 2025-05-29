@@ -253,14 +253,13 @@ MoveDescriptions::
 	dw WhirlpoolDescription
 	dw BeatUpDescription
 	dw UTurnDescription
+	dw VoltSwitchDescription
 	assert_table_length NUM_ATTACKS
-	dw MoveFDDescription
 	dw MoveFEDescription
 	dw MoveFFDescription
 	dw Move00Description
 	assert_table_length $100
 
-MoveFDDescription:
 MoveFEDescription:
 MoveFFDescription:
 Move00Description:
@@ -1267,6 +1266,7 @@ BeatUpDescription:
 	db   "Party #MON join"
 	line "in the attack.@"
 
+VoltSwitchDescription:
 UTurnDescription:
 	db   "Attacks, then swap"
 	line "out if possible.@"
