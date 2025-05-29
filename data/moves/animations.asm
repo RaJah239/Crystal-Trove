@@ -253,8 +253,8 @@ BattleAnimations::
 	dw BattleAnim_RockSmash
 	dw BattleAnim_Whirlpool
 	dw BattleAnim_BeatUp
+	dw BattleAnim_UTurn
 	assert_table_length NUM_ATTACKS + 1
-	dw BattleAnim_Dummy
 	dw BattleAnim_Dummy
 	dw BattleAnim_Dummy
 	dw BattleAnim_SweetScent2
@@ -286,19 +286,6 @@ BattleAnimations::
 
 BattleAnim_Dummy:
 BattleAnim_MirrorMove:
-	anim_ret
-
-BattleAnim_SweetScent2:
-	anim_2gfx BATTLE_ANIM_GFX_FLOWER, BATTLE_ANIM_GFX_MISC
-	anim_obj BATTLE_ANIM_OBJ_FLOWER, 64, 96, $2
-	anim_wait 2
-	anim_obj BATTLE_ANIM_OBJ_FLOWER, 64, 80, $2
-	anim_wait 64
-	anim_obj BATTLE_ANIM_OBJ_COTTON, 136, 40, $15
-	anim_obj BATTLE_ANIM_OBJ_COTTON, 136, 40, $2a
-	anim_obj BATTLE_ANIM_OBJ_COTTON, 136, 40, $3f
-	anim_bgeffect BATTLE_BG_EFFECT_CYCLE_OBPALS_GRAY_AND_YELLOW, $0, $2, $0
-	anim_wait 128
 	anim_ret
 
 BattleAnim_ThrowPokeBall:
@@ -1161,6 +1148,24 @@ BattleAnim_LeechSeed:
 	anim_wait 32
 	anim_sound 0, 1, SFX_CHARGE
 	anim_wait 128
+	anim_ret
+
+;Uturn from Polished Crystal:
+BattleAnim_UTurn:
+	anim_2gfx BATTLE_ANIM_GFX_HIT, BATTLE_ANIM_GFX_EXPLOSION
+	anim_bgeffect BATTLE_BG_EFFECT_HIDE_MON, $0, $1, $0
+	anim_sound 6, 2, SFX_THROW_BALL
+	anim_obj ANIM_OBJ_U_TURN_LAUNCH, 64, 92, $4
+	anim_wait 16
+	anim_sound 0, 1, SFX_DOUBLE_KICK
+	anim_obj BATTLE_ANIM_OBJ_HIT_BIG_YFIX, 132, 56, $0
+	anim_wait 8
+	anim_sound 0, 0, SFX_RETURN
+	anim_obj ANIM_OBJ_U_TURN_RISE, 132, 40, $6
+	anim_wait 32
+	anim_obj ANIM_OBJ_U_TURN_FALL, 48, 92, $30
+	anim_wait 16
+	anim_bgeffect BATTLE_BG_EFFECT_SHOW_MON, $0, $1, $0
 	anim_ret
 
 BattleAnim_RazorLeaf:
@@ -4145,6 +4150,7 @@ BattleAnim_RapidSpin:
 	anim_wait 1
 	anim_ret
 
+BattleAnim_SweetScent2:
 BattleAnim_SweetScent:
 	anim_2gfx BATTLE_ANIM_GFX_FLOWER, BATTLE_ANIM_GFX_MISC
 	anim_sound 0, 0, SFX_SWEET_SCENT
