@@ -2074,3 +2074,22 @@ DefenseCurl:
 	statupmessage
 	statupfailtext
 	endmove
+
+HitAndSwitch:
+	usedmovetext
+	doturn
+	critical
+	damagestats
+	damagecalc
+	stab
+	damagevariation
+	checkhit
+	moveanim
+	failuretext
+	applydamage
+	criticaltext
+	supereffectivetext
+	hitandswitch
+	checkfaint
+	kingsrock
+	endmove
