@@ -3128,7 +3128,6 @@ wColosseumSceneID::                               db
 wTimeCapsuleSceneID::                             db
 wTrainerHouseB1FSceneID::                         db
 wVictoryRoadGateSceneID::                         db
-wSaffronMagnetTrainStationSceneID::               db
 wRoute16GateSceneID::                             db
 wRoute17Route18GateSceneID::                      db
 wIndigoPlateauPokecenter1FSceneID::               db
@@ -3198,7 +3197,7 @@ wMountMoonSquareSceneID::                         db
 wMobileTradeRoomSceneID::                         db
 wMobileBattleRoomSceneID::                        db
 
-	ds 170
+	ds 171
 
 wLevelCap:: db
 
