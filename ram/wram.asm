@@ -3128,7 +3128,6 @@ wColosseumSceneID::                               db
 wTimeCapsuleSceneID::                             db
 wPowerPlantSceneID::                              db
 wCeruleanGymSceneID::                             db
-wRoute25SceneID::                                 db
 wTrainerHouseB1FSceneID::                         db
 wVictoryRoadGateSceneID::                         db
 wSaffronMagnetTrainStationSceneID::               db
@@ -3201,7 +3200,7 @@ wMountMoonSquareSceneID::                         db
 wMobileTradeRoomSceneID::                         db
 wMobileBattleRoomSceneID::                        db
 
-	ds 167
+	ds 168
 
 wLevelCap:: db
 
