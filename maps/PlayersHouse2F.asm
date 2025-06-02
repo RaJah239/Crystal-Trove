@@ -236,7 +236,7 @@ if DEF(_DEBUG)
 TestWarpScript:
 	faceplayer
 	special FadeOutToWhite
-	warp PALLET_TOWN, 12,  12 ; Map, coordinates via Polished Map
+	warp PALLET_TOWN, 4,  6 ; Map, coordinates via Polished Map
 	end
 
 TestScript:
