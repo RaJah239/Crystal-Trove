@@ -123,17 +123,8 @@ DEF KRIS EQU __trainer_class__
 
 	trainerclass SCHOOLBOY ; 17
 	const JACK1
-	const KIPP ; unused
 	const ALAN1
-	const JOHNNY ; unused
-	const DANNY ; unused
-	const TOMMY ; unused
-	const DUDLEY ; unused
-	const JOE ; unused
-	const BILLY ; unused
 	const CHAD1
-	const NATE ; unused
-	const RICKY ; unused
 	const JACK2
 	const JACK3
 	const ALAN2
