@@ -1369,12 +1369,6 @@ FisherGroup:
 	db -1 ; end
 
 SwimmerMGroup:
-	; SWIMMERM (1)
-	db "HAROLD@", TRAINERTYPE_NORMAL
-	db 32, REMORAID
-	db 30, SEADRA
-	db -1 ; end
-
 	; SWIMMERM (2)
 	db "SIMON@", TRAINERTYPE_NORMAL
 	db 20, TENTACOOL
@@ -1419,94 +1413,6 @@ SwimmerMGroup:
 	; SWIMMERM (8)
 	db "MATHEW@", TRAINERTYPE_NORMAL
 	db 23, KRABBY
-	db -1 ; end
-
-	; SWIMMERM (9)
-	db "HAL@", TRAINERTYPE_NORMAL
-	db 24, SEEL
-	db 25, DEWGONG
-	db 24, SEEL
-	db -1 ; end
-
-	; SWIMMERM (10)
-	db "PATON@", TRAINERTYPE_NORMAL
-	db 26, PILOSWINE
-	db 26, PILOSWINE
-	db -1 ; end
-
-	; SWIMMERM (11)
-	db "DARYL@", TRAINERTYPE_NORMAL
-	db 24, SHELLDER
-	db 25, CLOYSTER
-	db 24, SHELLDER
-	db -1 ; end
-
-	; SWIMMERM (12)
-	db "WALTER@", TRAINERTYPE_NORMAL
-	db 15, HORSEA
-	db 15, HORSEA
-	db 20, SEADRA
-	db -1 ; end
-
-	; SWIMMERM (13)
-	db "TONY@", TRAINERTYPE_NORMAL
-	db 13, STARYU
-	db 18, STARMIE
-	db 16, HORSEA
-	db -1 ; end
-
-	; SWIMMERM (14)
-	db "JEROME@", TRAINERTYPE_NORMAL
-	db 26, SEADRA
-	db 28, TENTACOOL
-	db 30, TENTACRUEL
-	db 28, GOLDEEN
-	db -1 ; end
-
-	; SWIMMERM (15)
-	db "TUCKER@", TRAINERTYPE_NORMAL
-	db 30, SHELLDER
-	db 34, CLOYSTER
-	db -1 ; end
-
-	; SWIMMERM (16)
-	db "RICK@", TRAINERTYPE_NORMAL
-	db 13, STARYU
-	db 18, STARMIE
-	db 16, HORSEA
-	db -1 ; end
-
-	; SWIMMERM (17)
-	db "CAMERON@", TRAINERTYPE_NORMAL
-	db 34, MARILL
-	db -1 ; end
-
-	; SWIMMERM (18)
-	db "SETH@", TRAINERTYPE_NORMAL
-	db 29, QUAGSIRE
-	db 29, OCTILLERY
-	db 32, QUAGSIRE
-	db -1 ; end
-
-	; SWIMMERM (19)
-	db "JAMES@", TRAINERTYPE_NORMAL
-	db 13, STARYU
-	db 18, STARMIE
-	db 16, HORSEA
-	db -1 ; end
-
-	; SWIMMERM (20)
-	db "LEWIS@", TRAINERTYPE_NORMAL
-	db 13, STARYU
-	db 18, STARMIE
-	db 16, HORSEA
-	db -1 ; end
-
-	; SWIMMERM (21)
-	db "PARKER@", TRAINERTYPE_NORMAL
-	db 32, HORSEA
-	db 32, HORSEA
-	db 35, SEADRA
 	db -1 ; end
 
 SwimmerFGroup:
