@@ -2208,75 +2208,9 @@ PokefanMGroup:
 	db 17, PIKACHU,    BERRY
 	db -1 ; end
 
-	; POKEFANM (3)
-	db "ROBERT@", TRAINERTYPE_ITEM
-	db 33, QUAGSIRE,   BERRY
-	db -1 ; end
-
-	; POKEFANM (4)
-	db "JOSHUA@", TRAINERTYPE_ITEM
-	db 23, PIKACHU,    BERRY
-	db 23, PIKACHU,    BERRY
-	db 23, PIKACHU,    BERRY
-	db 23, PIKACHU,    BERRY
-	db 23, PIKACHU,    BERRY
-	db 23, PIKACHU,    BERRY
-	db -1 ; end
-
-	; POKEFANM (5)
-	db "CARTER@", TRAINERTYPE_ITEM
-	db 29, BULBASAUR,  BERRY
-	db 29, CHARMANDER, BERRY
-	db 29, SQUIRTLE,   BERRY
-	db -1 ; end
-
-	; POKEFANM (6)
-	db "TREVOR@", TRAINERTYPE_ITEM
-	db 33, PSYDUCK,    BERRY
-	db -1 ; end
-
 	; POKEFANM (7)
 	db "BRANDON@", TRAINERTYPE_ITEM
 	db 13, SNUBBULL,   BERRY
-	db -1 ; end
-
-	; POKEFANM (8)
-	db "JEREMY@", TRAINERTYPE_ITEM
-	db 28, MEOWTH,     BERRY
-	db 28, MEOWTH,     BERRY
-	db 28, MEOWTH,     BERRY
-	db -1 ; end
-
-	; POKEFANM (9)
-	db "COLIN@", TRAINERTYPE_ITEM
-	db 32, DELIBIRD,   BERRY
-	db -1 ; end
-
-	; POKEFANM (10)
-	db "DEREK@", TRAINERTYPE_ITEM
-	db 19, PIKACHU,    BERRY
-	db -1 ; end
-
-	; POKEFANM (11)
-	db "DEREK@", TRAINERTYPE_ITEM
-	db 36, PIKACHU,    BERRY
-	db -1 ; end
-
-	; POKEFANM (12)
-	db "ALEX@", TRAINERTYPE_ITEM
-	db 29, NIDOKING,   BERRY
-	db 29, SLOWKING,   BERRY
-	db 29, SEAKING,    BERRY
-	db -1 ; end
-
-	; POKEFANM (13)
-	db "REX@", TRAINERTYPE_ITEM
-	db 35, PHANPY,     BERRY
-	db -1 ; end
-
-	; POKEFANM (14)
-	db "ALLAN@", TRAINERTYPE_ITEM
-	db 35, TEDDIURSA,  BERRY
 	db -1 ; end
 
 KimonoGirlGroup:

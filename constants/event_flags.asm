@@ -774,8 +774,8 @@
 	const EVENT_BEAT_POKEFANM_BRANDON
 	const_skip
 	const_skip
-	const EVENT_BEAT_POKEFANM_DEREK2
-	const EVENT_BEAT_POKEFANM_DEREK3
+	const_skip
+	const_skip
 	const_skip
 ; PokefanF
 	const EVENT_BEAT_POKEFANF_BEVERLY

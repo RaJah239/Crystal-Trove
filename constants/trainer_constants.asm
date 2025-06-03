@@ -477,18 +477,7 @@ DEF KRIS EQU __trainer_class__
 	trainerclass POKEFANM ; 3b
 	const WILLIAM
 	const DEREK1
-	const ROBERT ; unused
-	const JOSHUA ; unused
-	const CARTER ; unused
-	const TREVOR ; unused
 	const BRANDON
-	const JEREMY ; unused
-	const COLIN ; unused
-	const DEREK2 ; unused
-	const DEREK3 ; unused
-	const ALEX ; unused
-	const REX ; unused
-	const ALLAN ; unused
 
 	trainerclass KIMONO_GIRL ; 3c
 	const NAOKO_UNUSED ; unused
