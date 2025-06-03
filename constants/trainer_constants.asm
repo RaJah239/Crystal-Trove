@@ -383,14 +383,9 @@ DEF KRIS EQU __trainer_class__
 	const EDDIE
 
 	trainerclass FIREBREATHER ; 30
-	const OTIS ; unused
-	const DICK ; unused
-	const NED ; unused
-	const BURT ; unused
 	const BILL
 	const WALT
 	const RAY
-	const LYLE ; unused
 
 	trainerclass JUGGLER ; 31
 	const IRWIN1
