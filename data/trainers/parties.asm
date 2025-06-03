@@ -549,30 +549,6 @@ BirdKeeperGroup:
 	db 25, PIDGEOTTO
 	db -1 ; end
 
-	; BIRD_KEEPER (8)
-	db "HANK@", TRAINERTYPE_NORMAL
-	db 12, PIDGEY
-	db 34, PIDGEOT
-	db -1 ; end
-
-	; BIRD_KEEPER (9)
-	db "ROY@", TRAINERTYPE_NORMAL
-	db 29, FEAROW
-	db 35, FEAROW
-	db -1 ; end
-
-	; BIRD_KEEPER (10)
-	db "BORIS@", TRAINERTYPE_NORMAL
-	db 30, DODUO
-	db 28, DODUO
-	db 32, DODRIO
-	db -1 ; end
-
-	; BIRD_KEEPER (11)
-	db "BOB@", TRAINERTYPE_NORMAL
-	db 34, NOCTOWL
-	db -1 ; end
-
 	; BIRD_KEEPER (12)
 	db "JOSE@", TRAINERTYPE_NORMAL
 	db 36, FARFETCH_D
@@ -588,17 +564,6 @@ BirdKeeperGroup:
 	; BIRD_KEEPER (14)
 	db "JOSE@", TRAINERTYPE_NORMAL
 	db 34, FARFETCH_D
-	db -1 ; end
-
-	; BIRD_KEEPER (15)
-	db "PERRY@", TRAINERTYPE_NORMAL
-	db 34, FARFETCH_D
-	db -1 ; end
-
-	; BIRD_KEEPER (16)
-	db "BRET@", TRAINERTYPE_NORMAL
-	db 32, PIDGEOTTO
-	db 32, FEAROW
 	db -1 ; end
 
 	; BIRD_KEEPER (17)
