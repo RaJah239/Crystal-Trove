@@ -3189,12 +3189,12 @@ wDragonsDenB1FSceneID::                           db
 wDragonShrineSceneID::                            db
 wOlivinePortSceneID::                             db
 wFastShip1FSceneID::                              db
-wFastShipB1FSceneID::                             db
+
 wMountMoonSquareSceneID::                         db
 wMobileTradeRoomSceneID::                         db
 wMobileBattleRoomSceneID::                        db
 
-	ds 174
+	ds 175
 
 wLevelCap:: db
 
