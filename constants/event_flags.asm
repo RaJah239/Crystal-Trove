@@ -595,7 +595,7 @@
 	const_skip
 ; Biker
 	const EVENT_BEAT_BIKER_BENNY
-	const EVENT_BEAT_BIKER_KAZU
+	const_skip
 	const_skip
 	const_skip
 	const_skip

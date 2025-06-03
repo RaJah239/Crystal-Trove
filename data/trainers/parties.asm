@@ -1726,59 +1726,6 @@ BikerGroup:
 	; BIKER (1)
 	db "BENNY@", TRAINERTYPE_NORMAL
 	db 20, KOFFING
-	db 20, KOFFING
-	db 20, KOFFING
-	db -1 ; end
-
-	; BIKER (2)
-	db "KAZU@", TRAINERTYPE_NORMAL
-	db 20, KOFFING
-	db 20, KOFFING
-	db 20, KOFFING
-	db -1 ; end
-
-	; BIKER (3)
-	db "DWAYNE@", TRAINERTYPE_NORMAL
-	db 27, KOFFING
-	db 28, KOFFING
-	db 29, KOFFING
-	db 30, KOFFING
-	db -1 ; end
-
-	; BIKER (4)
-	db "HARRIS@", TRAINERTYPE_NORMAL
-	db 34, FLAREON
-	db -1 ; end
-
-	; BIKER (5)
-	db "ZEKE@", TRAINERTYPE_NORMAL
-	db 32, KOFFING
-	db 32, KOFFING
-	db -1 ; end
-
-	; BIKER (6)
-	db "CHARLES@", TRAINERTYPE_NORMAL
-	db 30, KOFFING
-	db 30, CHARMELEON
-	db 30, WEEZING
-	db -1 ; end
-
-	; BIKER (7)
-	db "RILEY@", TRAINERTYPE_NORMAL
-	db 34, WEEZING
-	db -1 ; end
-
-	; BIKER (8)
-	db "JOEL@", TRAINERTYPE_NORMAL
-	db 32, MAGMAR
-	db 32, MAGMAR
-	db -1 ; end
-
-	; BIKER (9)
-	db "GLENN@", TRAINERTYPE_NORMAL
-	db 28, KOFFING
-	db 30, MAGMAR
-	db 32, WEEZING
 	db -1 ; end
 
 BlaineGroup:
