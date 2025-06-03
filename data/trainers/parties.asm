@@ -1524,67 +1524,12 @@ SuperNerdGroup:
 	db 11, GRIMER
 	db -1 ; end
 
-	; SUPER_NERD (3)
-	db "GREGG@", TRAINERTYPE_NORMAL
-	db 20, MAGNEMITE
-	db 20, MAGNEMITE
-	db 20, MAGNEMITE
-	db -1 ; end
-
-	; SUPER_NERD (4)
-	db "JAY@", TRAINERTYPE_NORMAL
-	db 22, KOFFING
-	db 22, KOFFING
-	db -1 ; end
-
-	; SUPER_NERD (5)
-	db "DAVE@", TRAINERTYPE_NORMAL
-	db 24, DITTO
-	db -1 ; end
-
-	; SUPER_NERD (6)
-	db "SAM@", TRAINERTYPE_NORMAL
-	db 34, GRIMER
-	db 34, MUK
-	db -1 ; end
-
-	; SUPER_NERD (7)
-	db "TOM@", TRAINERTYPE_NORMAL
-	db 32, MAGNEMITE
-	db 32, MAGNEMITE
-	db 32, MAGNEMITE
-	db -1 ; end
-
-	; SUPER_NERD (8)
-	db "PAT@", TRAINERTYPE_NORMAL
-	db 36, PORYGON
-	db -1 ; end
-
-	; SUPER_NERD (9)
-	db "SHAWN@", TRAINERTYPE_NORMAL
-	db 31, MAGNEMITE
-	db 33, MUK
-	db 31, MAGNEMITE
-	db -1 ; end
-
 	; SUPER_NERD (10)
 	db "TERU@", TRAINERTYPE_NORMAL
 	db  7, MAGNEMITE
 	db 11, VOLTORB
 	db  7, MAGNEMITE
 	db  9, MAGNEMITE
-	db -1 ; end
-
-	; SUPER_NERD (11)
-	db "RUSS@", TRAINERTYPE_NORMAL
-	db 27, MAGNEMITE
-	db 27, MAGNEMITE
-	db 27, MAGNEMITE
-	db -1 ; end
-
-	; SUPER_NERD (12)
-	db "NORTON@", TRAINERTYPE_MOVES
-	db 30, PORYGON,    CONVERSION, CONVERSION2, RECOVER, TRI_ATTACK
 	db -1 ; end
 
 	; SUPER_NERD (13)
