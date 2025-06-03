@@ -208,19 +208,6 @@ DEF KRIS EQU __trainer_class__
 	trainerclass BEAUTY ; 1d
 	const VICTORIA
 	const SAMANTHA
-	const JULIE ; unused
-	const JACLYN ; unused
-	const BRENDA ; unused
-	const CASSIE ; unused
-	const CAROLINE ; unused
-	const CARLENE ; unused
-	const JESSICA ; unused
-	const RACHAEL ; unused
-	const ANGELICA ; unused
-	const KENDRA ; unused
-	const VERONICA ; unused
-	const JULIA ; unused
-	const THERESA ; unused
 	const VALERIE
 	const OLIVIA
 
