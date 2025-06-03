@@ -180,12 +180,7 @@ DEF KRIS EQU __trainer_class__
 	const GAVEN3
 	const BLAKE
 	const BRIAN
-	const ERICK ; unused
-	const ANDY ; unused
-	const TYLER ; unused
-	const SEAN ; unused
 	const KEVIN
-	const STEVE ; unused
 	const ALLEN
 	const DARIN
 
