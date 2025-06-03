@@ -263,8 +263,6 @@ DEF KRIS EQU __trainer_class__
 
 	trainerclass TEACHER ; 22
 	const COLETTE ; unused
-	const HILLARY ; unused
-	const SHIRLEY ; unused
 
 	trainerclass SABRINA ; 23
 	const SABRINA1
