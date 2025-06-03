@@ -480,7 +480,6 @@ DEF KRIS EQU __trainer_class__
 	const BRANDON
 
 	trainerclass KIMONO_GIRL ; 3c
-	const NAOKO_UNUSED ; unused
 	const NAOKO
 	const SAYO
 	const ZUKI
