@@ -596,13 +596,6 @@ LassGroup:
 	db 15, JIGGLYPUFF
 	db -1 ; end
 
-	; LASS (3)
-	db "ALICE@", TRAINERTYPE_NORMAL
-	db 30, GLOOM
-	db 34, ARBOK
-	db 30, GLOOM
-	db -1 ; end
-
 	; LASS (4)
 	db "KRISE@", TRAINERTYPE_NORMAL
 	db 12, ODDISH
@@ -614,54 +607,10 @@ LassGroup:
 	db 21, MARILL
 	db -1 ; end
 
-	; LASS (6)
-	db "LINDA@", TRAINERTYPE_NORMAL
-	db 30, BULBASAUR
-	db 32, IVYSAUR
-	db 34, VENUSAUR
-	db -1 ; end
-
-	; LASS (7)
-	db "LAURA@", TRAINERTYPE_NORMAL
-	db 28, GLOOM
-	db 31, PIDGEOTTO
-	db 31, BELLOSSOM
-	db -1 ; end
-
-	; LASS (8)
-	db "SHANNON@", TRAINERTYPE_NORMAL
-	db 29, PARAS
-	db 29, PARAS
-	db 32, PARASECT
-	db -1 ; end
-
-	; LASS (9)
-	db "MICHELLE@", TRAINERTYPE_NORMAL
-	db 32, SKIPLOOM
-	db 33, HOPPIP
-	db 34, JUMPLUFF
-	db -1 ; end
-
 	; LASS (10)
 	db "DANA@", TRAINERTYPE_MOVES
 	db 18, FLAAFFY,    TACKLE, GROWL, THUNDERSHOCK, THUNDER_WAVE
 	db 18, PSYDUCK,    SCRATCH, TAIL_WHIP, DISABLE, CONFUSION
-	db -1 ; end
-
-	; LASS (11)
-	db "ELLEN@", TRAINERTYPE_NORMAL
-	db 30, WIGGLYTUFF
-	db 34, GRANBULL
-	db -1 ; end
-
-	; LASS (12)
-	db "CONNIE@", TRAINERTYPE_NORMAL
-	db 21, MARILL
-	db -1 ; end
-
-	; LASS (13)
-	db "CONNIE@", TRAINERTYPE_NORMAL
-	db 21, MARILL
 	db -1 ; end
 
 	; LASS (14)
