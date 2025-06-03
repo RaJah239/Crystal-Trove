@@ -418,21 +418,14 @@ DEF KRIS EQU __trainer_class__
 	const GINA1
 	const BROOKE
 	const KIM
-	const CINDY ; unused
-	const HOPE ; unused
-	const SHARON ; unused
-	const DEBRA ; unused
 	const GINA2
 	const ERIN1
 	const LIZ2
 	const LIZ3
-	const HEIDI ; unused
-	const EDNA ; unused
 	const GINA3
 	const TIFFANY1
 	const TIFFANY2
 	const ERIN2
-	const TANYA ; unused
 	const TIFFANY3
 	const ERIN3
 	const LIZ4

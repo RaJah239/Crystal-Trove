@@ -159,7 +159,7 @@ BugCatchingContestant6AText:
 	done
 
 BugCatchingContestant7AText:
-	text "CINDY: I love bug"
+	text "ERIN: I love bug"
 	line "#MON."
 
 	para "I guess you must"

@@ -56,7 +56,7 @@ BugContestant_CamperBarry:
 	dbw KAKUNA,     314
 
 BugContestant_PicnickerCindy:
-	db PICNICKER, CINDY
+	db PICNICKER, ERIN1
 	dbw BUTTERFREE, 341
 	dbw METAPOD,    301
 	dbw CATERPIE,   264
