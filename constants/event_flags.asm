@@ -973,9 +973,9 @@
 ; Medium
 	const EVENT_BEAT_MEDIUM_MARTHA
 	const EVENT_BEAT_MEDIUM_GRACE
-	const EVENT_BEAT_MEDIUM_BETHANY
-	const EVENT_BEAT_MEDIUM_MARGRET
-	const EVENT_BEAT_MEDIUM_ETHEL
+	const_skip
+	const_skip
+	const_skip
 	const_skip
 	const_skip
 ; Skier
