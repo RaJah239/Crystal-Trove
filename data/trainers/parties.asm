@@ -2176,33 +2176,6 @@ MediumGroup:
 	db 20, HAUNTER
 	db -1 ; end
 
-	; MEDIUM (3)
-	db "BETHANY@", TRAINERTYPE_NORMAL
-	db 25, HAUNTER
-	db -1 ; end
-
-	; MEDIUM (4)
-	db "MARGRET@", TRAINERTYPE_NORMAL
-	db 25, HAUNTER
-	db -1 ; end
-
-	; MEDIUM (5)
-	db "ETHEL@", TRAINERTYPE_NORMAL
-	db 25, HAUNTER
-	db -1 ; end
-
-	; MEDIUM (6)
-	db "REBECCA@", TRAINERTYPE_NORMAL
-	db 35, DROWZEE
-	db 35, HYPNO
-	db -1 ; end
-
-	; MEDIUM (7)
-	db "DORIS@", TRAINERTYPE_NORMAL
-	db 34, SLOWPOKE
-	db 36, SLOWBRO
-	db -1 ; end
-
 BoarderGroup:
 	; BOARDER (1)
 	db "RONALD@", TRAINERTYPE_NORMAL

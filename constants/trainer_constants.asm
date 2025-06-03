@@ -468,11 +468,6 @@ DEF KRIS EQU __trainer_class__
 	trainerclass MEDIUM ; 39
 	const MARTHA
 	const GRACE
-	const BETHANY ; unused
-	const MARGRET ; unused
-	const ETHEL ; unused
-	const REBECCA ; unused
-	const DORIS ; unused
 
 	trainerclass BOARDER ; 3a
 	const RONALD
