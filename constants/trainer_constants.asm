@@ -439,20 +439,9 @@ DEF KRIS EQU __trainer_class__
 	const TODD1
 	const IVAN
 	const ELLIOT
-	const BARRY ; unused
-	const LLOYD ; unused
-	const DEAN ; unused
-	const SID ; unused
-	const HARVEY ; unused
-	const DALE ; unused
 	const TED
 	const TODD2
 	const TODD3
-	const THOMAS ; unused
-	const LEROY ; unused
-	const DAVID ; unused
-	const JOHN ; unused
-	const JERRY ; unused
 	const SPENCER
 	const TODD4
 	const TODD5

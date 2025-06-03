@@ -151,7 +151,7 @@ BugCatchingContestant5AText:
 	done
 
 BugCatchingContestant6AText:
-	text "BARRY: You should"
+	text "TED: You should"
 	line "weaken bug #MON"
 
 	para "first, then throw"

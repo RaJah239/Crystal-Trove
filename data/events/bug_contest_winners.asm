@@ -50,7 +50,7 @@ BugContestant_BugCatcherBenny:
 	dbw CATERPIE,   285
 
 BugContestant_CamperBarry:
-	db CAMPER, BARRY
+	db CAMPER, TED
 	dbw PINSIR,     366
 	dbw VENONAT,    329
 	dbw KAKUNA,     314

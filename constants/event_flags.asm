@@ -577,15 +577,15 @@
 	const_skip
 	const_skip
 	const_skip
-	const EVENT_BEAT_CAMPER_HERVEY
-	const EVENT_BEAT_CAMPER_DALE
+	const_skip
+	const_skip
 	const EVENT_BEAT_CAMPER_TED
 	const EVENT_BEAT_CAMPER_TODD2
 	const EVENT_BEAT_CAMPER_TODD3
-	const EVENT_BEAT_CAMPER_THOMAS
-	const EVENT_BEAT_CAMPER_LEROY
-	const EVENT_BEAT_CAMPER_DAVID
-	const EVENT_BEAT_CAMPER_JOHN
+	const_skip
+	const_skip
+	const_skip
+	const_skip
 	const_skip
 	const EVENT_BEAT_CAMPER_SPENCER
 ; Burglar
