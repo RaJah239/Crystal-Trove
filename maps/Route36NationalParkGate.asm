@@ -721,13 +721,13 @@ BugCatchingContestant5BStillCompetingText:
 	done
 
 BugCatchingContestant6BText:
-	text "BARRY: That #-"
+	text "TED: That #-"
 	line "MON you caught…"
 	cont "it's awesome!"
 	done
 
 BugCatchingContestant6BStillCompetingText:
-	text "BARRY: It's easier"
+	text "TED: It's easier"
 	line "to win if you get"
 
 	para "a high-level bug"
