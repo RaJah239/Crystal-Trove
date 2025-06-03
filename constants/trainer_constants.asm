@@ -366,11 +366,6 @@ DEF KRIS EQU __trainer_class__
 	const TIMOTHY
 	const BAILEY
 	const ANTHONY3
-	const TIM ; unused
-	const NOLAND ; unused
-	const SIDNEY ; unused
-	const KENNY ; unused
-	const JIM ; unused
 	const DANIEL
 	const PARRY2
 	const PARRY3
