@@ -739,7 +739,7 @@ BugCatchingContestant6BStillCompetingText:
 	done
 
 BugCatchingContestant7BText:
-	text "CINDY: You won?"
+	text "ERIN: You won?"
 	line "That's great!"
 
 	para "Do you feel like"
@@ -748,7 +748,7 @@ BugCatchingContestant7BText:
 	done
 
 BugCatchingContestant7BStillCompetingText:
-	text "CINDY: I really"
+	text "ERIN: I really"
 	line "love bug #MON!"
 	done
 
