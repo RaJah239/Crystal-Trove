@@ -1142,17 +1142,6 @@ TeacherGroup:
 	db 36, CLEFAIRY
 	db -1 ; end
 
-	; TEACHER (2)
-	db "HILLARY@", TRAINERTYPE_NORMAL
-	db 32, AIPOM
-	db 36, CUBONE
-	db -1 ; end
-
-	; TEACHER (3)
-	db "SHIRLEY@", TRAINERTYPE_NORMAL
-	db 35, JIGGLYPUFF
-	db -1 ; end
-
 SabrinaGroup:
 	; SABRINA (1)
 	db "SABRINA@", TRAINERTYPE_MOVES
