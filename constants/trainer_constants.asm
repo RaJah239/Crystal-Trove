@@ -374,14 +374,6 @@ DEF KRIS EQU __trainer_class__
 
 	trainerclass BIKER ; 2d
 	const BIKER_BENNY ; unused
-	const KAZU ; unused
-	const DWAYNE ; unused
-	const HARRIS ; unused
-	const ZEKE ; unused
-	const CHARLES ; unused
-	const RILEY ; unused
-	const JOEL ; unused
-	const GLENN ; unused
 
 	trainerclass BLAINE ; 2e
 	const BLAINE1
