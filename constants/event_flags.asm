@@ -522,15 +522,15 @@
 	const EVENT_BEAT_SWIMMERF_DENISE
 	const EVENT_BEAT_SWIMMERF_KARA
 	const EVENT_BEAT_SWIMMERF_WENDY
-	const EVENT_BEAT_SWIMMERF_LISA
-	const EVENT_BEAT_SWIMMERF_JILL
-	const EVENT_BEAT_SWIMMERF_MARY
-	const EVENT_BEAT_SWIMMERF_KATIE
-	const_skip
-	const EVENT_BEAT_SWIMMERF_TARA
 	const_skip
 	const_skip
-	const EVENT_BEAT_SWIMMERF_JODY
+	const_skip
+	const_skip
+	const_skip
+	const_skip
+	const_skip
+	const_skip
+	const_skip
 	const_skip
 	const_skip
 	const_skip
