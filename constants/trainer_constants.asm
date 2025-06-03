@@ -381,7 +381,6 @@ DEF KRIS EQU __trainer_class__
 	trainerclass BURGLAR ; 2f
 	const DUNCAN
 	const EDDIE
-	const COREY ; unused
 
 	trainerclass FIREBREATHER ; 30
 	const OTIS ; unused
