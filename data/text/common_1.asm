@@ -17,11 +17,6 @@ _ObtainedFruitText::
 	text "!"
 	done
 
-_FruitPackIsFullText::
-	text "But the PACK is"
-	line "full…"
-	done
-
 _NothingHereText::
 	text "There's nothing"
 	line "here…"
@@ -103,54 +98,6 @@ _CameToItsSensesText::
 	line "to its senses."
 	done
 
-_EnterNewPasscodeText::
-	text "Please enter any"
-	line "four-digit number."
-	done
-
-_ConfirmPasscodeText::
-	text "Enter the same"
-	line "number to confirm."
-	done
-
-_PasscodesNotSameText::
-	text "That's not the"
-	line "same number."
-	done
-
-_PasscodeSetText::
-	text "Your PASSCODE has"
-	line "been set."
-
-	para "Enter this number"
-	line "next time to open"
-	cont "the CARD FOLDER."
-
-	para ""
-	done
-
-_FourZerosInvalidText::
-	text "0000 is invalid!"
-
-	para ""
-	done
-
-_EnterPasscodeText::
-	text "Enter the CARD"
-	next "FOLDER PASSCODE."
-	done
-
-_IncorrectPasscodeText::
-	text "Incorrect"
-	line "PASSCODE!"
-
-	para ""
-	done
-
-_CardFolderOpenText::
-	text "CARD FOLDER open.@"
-	text_end
-
 _OakTimeWokeUpText::
 	text "<……><……><……><……><……><……>"
 	line "<……><……><……><……><……><……>"
@@ -201,12 +148,6 @@ _OakTimeSoDarkText::
 	text "!"
 	line "No wonder it's so"
 	cont "dark!"
-	done
-
-_OakTimeNappedText::
-	text "!"
-	line "I napped for"
-	cont "too long!"
 	done
 
 _OakTimeWhatDayIsItText::
@@ -325,8 +266,8 @@ _MomItsInPCText::
 
 _MomFoundADollText::
 	text "While shopping"
-	line "today, I saw this"
-	cont "adorable doll, so"
+	line "today, I saw some"
+	cont "unique decor, so"
 	prompt
 
 _MomItsInYourRoomText::
@@ -411,14 +352,6 @@ _MobileForPartnersMonText::
 	line "@"
 	text_ram wOTTrademonSpeciesName
 	text "."
-	done
-
-_MobilePlayersMonTradeText::
-	text_ram wPlayerTrademonSenderName
-	text "'s"
-	line "@"
-	text_ram wPlayerTrademonSpeciesName
-	text " trade…"
 	done
 
 _MobileTakeGoodCareOfMonText::
@@ -749,7 +682,7 @@ _LC_Text6::
 
 _LC_Text7::
 	text_start
-	line "This week's Lucky"
+	line "Today's Lucky"
 	done
 
 _LC_Text8::
@@ -1045,12 +978,11 @@ _BuenaOffTheAirText::
 	done
 
 _EnemyWithdrewText::
-	text "<ENEMY>"
-	line "withdrew"
-	cont "@"
+	text "@" 
 	text_ram wEnemyMonNickname
-	text "!"
-	prompt
+	text " was"
+	line "withdrawn!"
+	done
 
 _EnemyUsedOnText::
 	text "<ENEMY>"
@@ -1124,17 +1056,7 @@ _BugCatchingContestIsOverText::
 	done
 
 _RepelWoreOffText::
-	text "REPEL's effect"
-	line "wore off."
-	done
-
-_UseAnotherRepelText::
-	text "@"
-	text_ram wStringBuffer3
-	text "'s"
-	line "wore off."
-
-	para "Use another?"
+	text "!"
 	done
 
 _PlayerFoundItemText::
@@ -1148,20 +1070,6 @@ _ButNoSpaceText::
 	text "But <PLAYER> has"
 	line "no space left…"
 	done
-
-_JustSawSomeRareMonText::
-	text "I just saw some"
-	line "rare @"
-	text_ram wStringBuffer1
-	text " in"
-	cont "@"
-	text_ram wStringBuffer2
-	text "."
-
-	para "I'll call you if I"
-	line "see another rare"
-	cont "#MON, OK?"
-	prompt
 
 _SavingRecordText::
 	text "SAVING RECORD…"
@@ -1479,12 +1387,18 @@ _MomJustDoWhatYouCanText::
 	line "you can."
 	done
 
+_DaycareDummyText::
+	text_start
+	done
+
 _DayCareManIntroText::
 	text "I'm the DAY-CARE"
 	line "MAN. Want me to"
 	cont "raise a #MON?"
 	done
 
+_DayCareLadyIntroEggText::
+_DayCareManIntroEggText::
 _DayCareLadyIntroText::
 	text "I'm the DAY-CARE"
 	line "LADY. Want me to"
@@ -1613,20 +1527,4 @@ _TakeGoodCareOfEggText::
 _IllKeepItThanksText::
 	text "Well then, I'll"
 	line "keep it."
-	done
-
-_WhichMonPhotoText::
-	text "Which #MON"
-	line "should I photo-"
-	cont "graph?"
-	prompt
-
-_HoldStillText::
-	text "All righty. Hold"
-	line "still for a bit."
-	prompt
-
-_PrestoAllDoneText::
-	text "Presto! All done."
-	line "Come again, OK?"
 	done

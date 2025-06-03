@@ -1,46 +1,3 @@
-JoseMonsStickHasADeliciousAromaText:
-	text "Hey listen, my"
-	line "@"
-	text_ram wStringBuffer4
-	text "'s stick"
-
-	para "has this really"
-	line "delicious aroma."
-
-	para "That aroma gets my"
-	line "appetite going!"
-	done
-
-JoseDefeatedMonText:
-	text "A while ago, my"
-	line "FARFETCH'D KO'd"
-	cont "this @"
-	text_ram wStringBuffer4
-	text "."
-
-	para "You should have"
-	line "seen FARFETCH'D"
-
-	para "wield that stick."
-	line "Amazing stuff!"
-	done
-
-JoseLostAMonText:
-	text "I ran into a wild"
-	line "@"
-	text_ram wStringBuffer4
-	text "…"
-
-	para "I was trying to"
-	line "catch it, but it"
-
-	para "took off faster"
-	line "than I thought it"
-
-	para "would. It was a"
-	line "bit disappointing."
-	done
-
 JoseBattleRematchText:
 	text "Want to battle"
 	line "again?"
@@ -112,19 +69,4 @@ JoseReminderText:
 
 	para "Please come as"
 	line "soon as you can!"
-	done
-
-JoseComePickUpText:
-	text "What's wrong?"
-
-	para "Don't you want"
-	line "this gift?"
-
-	para "Catch up to me on"
-	line "@"
-	text_ram wStringBuffer5
-	text ","
-
-	para "and I'll let you"
-	line "have it."
 	done

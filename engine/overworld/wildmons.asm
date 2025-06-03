@@ -799,6 +799,7 @@ ValidateTempWildMonSpecies:
 
 ; Finds a rare wild Pokemon in the route of the trainer calling, then checks if it's been Seen already.
 ; The trainer will then tell you about the Pokemon if you haven't seen it.
+; May remove this
 RandomUnseenWildMon:
 	farcall GetCallerLocation
 	ld d, b
