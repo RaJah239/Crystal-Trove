@@ -255,9 +255,6 @@ DEF KRIS EQU __trainer_class__
 
 	trainerclass GENTLEMAN ; 20
 	const PRESTON
-	const EDWARD ; unused
-	const GREGORY ; unused
-	const VIRGIL ; unused
 	const ALFRED
 
 	trainerclass SKIER ; 21
