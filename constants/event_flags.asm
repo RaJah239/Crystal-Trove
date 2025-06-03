@@ -854,8 +854,8 @@
 	const_skip
 	const EVENT_BEAT_LASS_DANA
 	const_skip
-	const EVENT_BEAT_LASS_CONNIE2
-	const EVENT_BEAT_LASS_CONNIE3
+	const_skip
+	const_skip
 	const EVENT_BEAT_LASS_DANA2
 	const EVENT_BEAT_LASS_DANA3
 ; Hiker
