@@ -224,13 +224,6 @@ WillGroup:
 	db -1 ; end
 
 PKMNTrainerGroup:
-	; CAL (1)
-	db "CAL@", TRAINERTYPE_NORMAL
-	db 10, CHIKORITA
-	db 10, CYNDAQUIL
-	db 10, TOTODILE
-	db -1 ; end
-
 	; CAL (2)
 	db "CAL@", TRAINERTYPE_NORMAL
 	db 30, BAYLEEF
@@ -400,28 +393,6 @@ YoungsterGroup:
 	; YOUNGSTER (8)
 	db "JOEY@", TRAINERTYPE_MOVES
 	db 21, RATICATE,   TAIL_WHIP, QUICK_ATTACK, HYPER_FANG, SCARY_FACE
-	db -1 ; end
-
-	; YOUNGSTER (9)
-	db "WARREN@", TRAINERTYPE_NORMAL
-	db 35, FEAROW
-	db -1 ; end
-
-	; YOUNGSTER (10)
-	db "JIMMY@", TRAINERTYPE_NORMAL
-	db 33, RATICATE
-	db 33, ARBOK
-	db -1 ; end
-
-	; YOUNGSTER (11)
-	db "OWEN@", TRAINERTYPE_NORMAL
-	db 35, GROWLITHE
-	db -1 ; end
-
-	; YOUNGSTER (12)
-	db "JASON@", TRAINERTYPE_NORMAL
-	db 33, SANDSLASH
-	db 33, CROBAT
 	db -1 ; end
 
 	; YOUNGSTER (13)
