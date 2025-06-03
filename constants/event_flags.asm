@@ -705,8 +705,8 @@
 	const EVENT_BEAT_JUGGLER_IRWIN
 	const_skip
 	const_skip
-	const EVENT_BEAT_JUGGLER_IRWIN2
-	const EVENT_BEAT_JUGGLER_IRWIN3
+	const_skip
+	const_skip
 ; Gentleman
 	const EVENT_BEAT_GENTLEMAN_PRESTON
 	const_skip
