@@ -1609,14 +1609,6 @@ GuitaristGroup:
 	db 34, ELECTABUZZ
 	db -1 ; end
 
-	; GUITARIST (2)
-	db "VINCENT@", TRAINERTYPE_NORMAL
-	db 27, MAGNEMITE
-	db 33, VOLTORB
-	db 32, MAGNEMITE
-	db 32, MAGNEMITE
-	db -1 ; end
-
 HikerGroup:
 	; HIKER (1)
 	db "ANTHONY@", TRAINERTYPE_NORMAL

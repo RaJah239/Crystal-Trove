@@ -352,7 +352,6 @@ DEF KRIS EQU __trainer_class__
 
 	trainerclass GUITARIST ; 2b
 	const CLYDE ; unused
-	const VINCENT ; unused
 
 	trainerclass HIKER ; 2c
 	const ANTHONY1
