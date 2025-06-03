@@ -990,10 +990,10 @@
 	const EVENT_BEAT_SWIMMERM_BERKE
 	const EVENT_BEAT_SWIMMERM_KIRK
 	const EVENT_BEAT_SWIMMERM_MATHEW
-	const EVENT_BEAT_SWIMMERM_HAL
-	const EVENT_BEAT_SWIMMERM_PATON
-	const EVENT_BEAT_SWIMMERM_DARYL
-	const EVENT_BEAT_SWIMMERM_WALTER
+	const_skip
+	const_skip
+	const_skip
+	const_skip
 	const_skip
 	const_skip
 	const_skip

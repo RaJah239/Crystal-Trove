@@ -307,7 +307,6 @@ DEF KRIS EQU __trainer_class__
 	const TULLY4
 
 	trainerclass SWIMMERM ; 26
-	const HAROLD ; unused
 	const SIMON
 	const RANDALL
 	const CHARLIE
@@ -315,19 +314,6 @@ DEF KRIS EQU __trainer_class__
 	const BERKE
 	const KIRK
 	const MATHEW
-	const HAL ; unused
-	const PATON ; unused
-	const DARYL ; unused
-	const WALTER ; unused
-	const TONY ; unused
-	const JEROME ; unused
-	const TUCKER ; unused
-	const RICK ; unused
-	const CAMERON ; unused
-	const SETH ; unused
-	const JAMES ; unused
-	const LEWIS ; unused
-	const PARKER ; unused
 
 	trainerclass SWIMMERF ; 27
 	const ELAINE
