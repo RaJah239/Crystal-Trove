@@ -491,12 +491,7 @@ DEF KRIS EQU __trainer_class__
 	const ANNANDANNE1
 	const ANNANDANNE2
 	const AMYANDMAY2
-	const JOANDZOE1 ; unused
-	const JOANDZOE2 ; unused
-	const MEGANDPEG1 ; unused
-	const MEGANDPEG2 ; unused
 	const LEAANDPIA1
-	const LEAANDPIA2 ; unused
 
 	trainerclass POKEFANF ; 3e
 	const BEVERLY1
