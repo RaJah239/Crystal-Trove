@@ -1691,38 +1691,6 @@ HikerGroup:
 	db 29, MACHOKE
 	db -1 ; end
 
-	; HIKER (13)
-	db "TIM@", TRAINERTYPE_NORMAL
-	db 31, GRAVELER
-	db 31, GRAVELER
-	db 31, GRAVELER
-	db -1 ; end
-
-	; HIKER (14)
-	db "NOLAND@", TRAINERTYPE_NORMAL
-	db 31, SANDSLASH
-	db 33, GOLEM
-	db -1 ; end
-
-	; HIKER (15)
-	db "SIDNEY@", TRAINERTYPE_NORMAL
-	db 34, DUGTRIO
-	db 32, ONIX
-	db -1 ; end
-
-	; HIKER (16)
-	db "KENNY@", TRAINERTYPE_NORMAL
-	db 27, SANDSLASH
-	db 29, GRAVELER
-	db 31, GOLEM
-	db 29, GRAVELER
-	db -1 ; end
-
-	; HIKER (17)
-	db "JIM@", TRAINERTYPE_NORMAL
-	db 35, MACHAMP
-	db -1 ; end
-
 	; HIKER (18)
 	db "DANIEL@", TRAINERTYPE_NORMAL
 	db 11, ONIX
