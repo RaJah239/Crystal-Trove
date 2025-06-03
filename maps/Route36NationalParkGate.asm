@@ -670,13 +670,13 @@ BugCatchingContestant1BStillCompetingText:
 	done
 
 BugCatchingContestant2BText:
-	text "ED: I envy you."
+	text "AL: I envy you."
 	line "I just couldn't"
 	cont "do it this time."
 	done
 
 BugCatchingContestant2BStillCompetingText:
-	text "ED: Maybe you win"
+	text "AL: Maybe you win"
 	line "with big #MON?"
 	done
 
