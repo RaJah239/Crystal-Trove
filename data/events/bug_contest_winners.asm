@@ -26,7 +26,7 @@ BugContestant_BugCatcherDon:
 	dbw CATERPIE,   226
 
 BugContestant_BugCatcherEd:
-	db BUG_CATCHER, ED
+	db BUG_CATCHER, AL
 	dbw BUTTERFREE, 286
 	dbw BUTTERFREE, 251
 	dbw CATERPIE,   237

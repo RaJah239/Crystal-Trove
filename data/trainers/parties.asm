@@ -1157,19 +1157,6 @@ BugCatcherGroup:
 	db  3, CATERPIE
 	db -1 ; end
 
-	; BUG_CATCHER (2)
-	db "ROB@", TRAINERTYPE_NORMAL
-	db 32, BEEDRILL
-	db 32, BUTTERFREE
-	db -1 ; end
-
-	; BUG_CATCHER (3)
-	db "ED@", TRAINERTYPE_NORMAL
-	db 30, BEEDRILL
-	db 30, BEEDRILL
-	db 30, BEEDRILL
-	db -1 ; end
-
 	; BUG_CATCHER (4)
 	db "WADE@", TRAINERTYPE_NORMAL
 	db  2, CATERPIE
@@ -1201,12 +1188,6 @@ BugCatcherGroup:
 	db 15, VENONAT
 	db -1 ; end
 
-	; BUG_CATCHER (9)
-	db "KEN@", TRAINERTYPE_NORMAL
-	db 30, ARIADOS
-	db 32, PINSIR
-	db -1 ; end
-
 	; BUG_CATCHER (10)
 	db "WADE@", TRAINERTYPE_NORMAL
 	db  9, METAPOD
@@ -1221,11 +1202,6 @@ BugCatcherGroup:
 	db 14, BUTTERFREE
 	db 15, BEEDRILL
 	db 14, BUTTERFREE
-	db -1 ; end
-
-	; BUG_CATCHER (12)
-	db "DOUG@", TRAINERTYPE_NORMAL
-	db 34, ARIADOS
 	db -1 ; end
 
 	; BUG_CATCHER (13)
