@@ -923,12 +923,6 @@ PokemaniacGroup:
 	db 19, NIDOKING
 	db -1 ; end
 
-	; POKEMANIAC (8)
-	db "ETHAN@", TRAINERTYPE_NORMAL
-	db 31, RHYHORN
-	db 31, RHYDON
-	db -1 ; end
-
 	; POKEMANIAC (9)
 	db "BRENT@", TRAINERTYPE_NORMAL
 	db 25, KANGASKHAN
