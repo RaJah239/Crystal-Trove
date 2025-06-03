@@ -2281,25 +2281,6 @@ PokefanFGroup:
 	db 17, PIKACHU,    BERRY
 	db -1 ; end
 
-	; POKEFANF (3)
-	db "BEVERLY@", TRAINERTYPE_ITEM
-	db 18, SNUBBULL,   BERRY
-	db -1 ; end
-
-	; POKEFANF (4)
-	db "BEVERLY@", TRAINERTYPE_ITEM
-	db 30, GRANBULL,   BERRY
-	db -1 ; end
-
-	; POKEFANF (5)
-	db "GEORGIA@", TRAINERTYPE_ITEM
-	db 23, SENTRET,    BERRY
-	db 23, SENTRET,    BERRY
-	db 23, SENTRET,    BERRY
-	db 28, FURRET,     BERRY
-	db 23, SENTRET,    BERRY
-	db -1 ; end
-
 	; POKEFANF (6)
 	db "JAIME@", TRAINERTYPE_ITEM
 	db 16, MEOWTH,     BERRY
