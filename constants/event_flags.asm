@@ -732,19 +732,19 @@
 ; Beauty
 	const EVENT_BEAT_BEAUTY_VICTORIA
 	const EVENT_BEAT_BEAUTY_SAMANTHA
-	const EVENT_BEAT_BEAUTY_JULIE
-	const EVENT_BEAT_BEAUTY_JACLYN
-	const EVENT_BEAT_BEAUTY_BRENDA
 	const_skip
-	const EVENT_BEAT_BEAUTY_CAROLINE
-	const EVENT_BEAT_BEAUTY_CARLENE
-	const EVENT_BEAT_BEAUTY_JESSICA
-	const EVENT_BEAT_BEAUTY_RACHAEL
-	const EVENT_BEAT_BEAUTY_ANGELICA
-	const EVENT_BEAT_BEAUTY_KENDRA
-	const EVENT_BEAT_BEAUTY_VERONICA
 	const_skip
-	const EVENT_BEAT_BEAUTY_THERESA
+	const_skip
+	const_skip
+	const_skip
+	const_skip
+	const_skip
+	const_skip
+	const_skip
+	const_skip
+	const_skip
+	const_skip
+	const_skip
 	const EVENT_BEAT_BEAUTY_VALERIE
 ; Johto Gym Leaders
 	const EVENT_BEAT_FALKNER
