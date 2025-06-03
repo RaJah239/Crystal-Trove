@@ -3187,12 +3187,11 @@ wSilverCaveRoom3SceneID::                         db
 wVictoryRoadSceneID::                             db
 wDragonsDenB1FSceneID::                           db
 wDragonShrineSceneID::                            db
-wOlivinePortSceneID::                             db
 wMountMoonSquareSceneID::                         db
 wMobileTradeRoomSceneID::                         db
 wMobileBattleRoomSceneID::                        db
 
-	ds 176
+	ds 177
 
 wLevelCap:: db
 
