@@ -10,7 +10,7 @@ BugContestantPointers:
 	dw BugContestant_PicnickerCindy
 	dw BugContestant_BugCatcherJosh
 	dw BugContestant_YoungsterSamuel
-	dw BugContestant_SchoolboyKipp
+	dw BugContestant_SchoolboyAlan
 	assert_table_length NUM_BUG_CONTESTANTS + 1
 
 ; contestant format:
@@ -73,8 +73,8 @@ BugContestant_YoungsterSamuel:
 	dbw PINSIR,     282
 	dbw CATERPIE,   251
 
-BugContestant_SchoolboyKipp:
-	db SCHOOLBOY, KIPP
+BugContestant_SchoolboyAlan:
+	db SCHOOLBOY, ALAN1
 	dbw VENONAT,    267
 	dbw PARAS,      254
 	dbw KAKUNA,     259

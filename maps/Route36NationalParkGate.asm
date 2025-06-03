@@ -776,7 +776,7 @@ BugCatchingContestant9BStillCompetingText:
 	done
 
 BugCatchingContestant10BText:
-	text "KIPP: Could you"
+	text "ALAN: Could you"
 	line "give me some tips?"
 
 	para "I want to study"
@@ -784,7 +784,7 @@ BugCatchingContestant10BText:
 	done
 
 BugCatchingContestant10BStillCompetingText:
-	text "KIPP: I study a"
+	text "ALAN: I study a"
 	line "lot, but that's"
 
 	para "not good enough to"

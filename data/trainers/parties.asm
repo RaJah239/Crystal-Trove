@@ -412,73 +412,14 @@ SchoolboyGroup:
 	db 15, VOLTORB
 	db -1 ; end
 
-	; SCHOOLBOY (2)
-	db "KIPP@", TRAINERTYPE_NORMAL
-	db 27, VOLTORB
-	db 27, MAGNEMITE
-	db 31, VOLTORB
-	db 31, MAGNETON
-	db -1 ; end
-
 	; SCHOOLBOY (3)
 	db "ALAN@", TRAINERTYPE_NORMAL
 	db 16, TANGELA
 	db -1 ; end
 
-	; SCHOOLBOY (4)
-	db "JOHNNY@", TRAINERTYPE_NORMAL
-	db 29, BELLSPROUT
-	db 31, WEEPINBELL
-	db 33, VICTREEBEL
-	db -1 ; end
-
-	; SCHOOLBOY (5)
-	db "DANNY@", TRAINERTYPE_NORMAL
-	db 31, JYNX
-	db 31, ELECTABUZZ
-	db 31, MAGMAR
-	db -1 ; end
-
-	; SCHOOLBOY (6)
-	db "TOMMY@", TRAINERTYPE_NORMAL
-	db 32, XATU
-	db 34, ALAKAZAM
-	db -1 ; end
-
-	; SCHOOLBOY (7)
-	db "DUDLEY@", TRAINERTYPE_NORMAL
-	db 35, ODDISH
-	db -1 ; end
-
-	; SCHOOLBOY (8)
-	db "JOE@", TRAINERTYPE_NORMAL
-	db 33, TANGELA
-	db 33, VAPOREON
-	db -1 ; end
-
-	; SCHOOLBOY (9)
-	db "BILLY@", TRAINERTYPE_NORMAL
-	db 27, PARAS
-	db 27, PARAS
-	db 27, POLIWHIRL
-	db 35, DITTO
-	db -1 ; end
-
 	; SCHOOLBOY (10)
 	db "CHAD@", TRAINERTYPE_NORMAL
 	db 19, MR__MIME
-	db -1 ; end
-
-	; SCHOOLBOY (11)
-	db "NATE@", TRAINERTYPE_NORMAL
-	db 32, LEDIAN
-	db 32, EXEGGUTOR
-	db -1 ; end
-
-	; SCHOOLBOY (12)
-	db "RICKY@", TRAINERTYPE_NORMAL
-	db 32, AIPOM
-	db 32, DITTO
 	db -1 ; end
 
 	; SCHOOLBOY (13)

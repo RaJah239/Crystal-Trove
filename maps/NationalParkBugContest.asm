@@ -186,7 +186,7 @@ BugCatchingContestant9AText:
 	done
 
 BugCatchingContestant10AText:
-	text "KIPP: I've studied"
+	text "ALAN: I've studied"
 	line "about bug #MON"
 	cont "a lot."
 
