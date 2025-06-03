@@ -3188,13 +3188,11 @@ wVictoryRoadSceneID::                             db
 wDragonsDenB1FSceneID::                           db
 wDragonShrineSceneID::                            db
 wOlivinePortSceneID::                             db
-wFastShip1FSceneID::                              db
-
 wMountMoonSquareSceneID::                         db
 wMobileTradeRoomSceneID::                         db
 wMobileBattleRoomSceneID::                        db
 
-	ds 175
+	ds 176
 
 wLevelCap:: db
 
