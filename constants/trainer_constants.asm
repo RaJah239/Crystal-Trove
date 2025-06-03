@@ -338,16 +338,7 @@ DEF KRIS EQU __trainer_class__
 	trainerclass SUPER_NERD ; 29
 	const STAN
 	const ERIC
-	const GREGG ; unused
-	const JAY ; unused
-	const DAVE ; unused
-	const SAM ; unused
-	const TOM ; unused
-	const PAT ; unused
-	const SHAWN ; unused
 	const TERU
-	const RUSS ; unused
-	const NORTON ; unused
 	const HUGH
 	const MARKUS
 

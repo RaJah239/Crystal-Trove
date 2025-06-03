@@ -962,9 +962,9 @@
 ; Super Nerd
 	const EVENT_BEAT_SUPER_NERD_STAN
 	const EVENT_BEAT_SUPER_NERD_ERIC
-	const EVENT_BEAT_SUPER_NERD_GREGG
-	const EVENT_BEAT_SUPER_NERD_JAY
-	const EVENT_BEAY_SUPER_NERD_DAVE
+	const_skip
+	const_skip
+	const_skip
 	const_skip
 	const_skip
 	const_skip
