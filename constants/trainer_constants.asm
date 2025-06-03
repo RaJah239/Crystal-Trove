@@ -146,15 +146,9 @@ DEF KRIS EQU __trainer_class__
 	const TOBY
 	const DENIS
 	const VANCE1
-	const HANK ; unused
-	const ROY ; unused
-	const BORIS ; unused
-	const BOB ; unused
 	const JOSE1
 	const PETER
 	const JOSE2
-	const PERRY ; unused
-	const BRET ; unused
 	const JOSE3
 	const VANCE2
 	const VANCE3
