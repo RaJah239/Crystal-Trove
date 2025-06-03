@@ -496,9 +496,6 @@ DEF KRIS EQU __trainer_class__
 	trainerclass POKEFANF ; 3e
 	const BEVERLY1
 	const RUTH
-	const BEVERLY2 ; unused
-	const BEVERLY3 ; unused
-	const GEORGIA ; unused
 	const JAIME
 
 	trainerclass RED ; 3f

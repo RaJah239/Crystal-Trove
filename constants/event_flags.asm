@@ -780,8 +780,8 @@
 ; PokefanF
 	const EVENT_BEAT_POKEFANF_BEVERLY
 	const EVENT_BEAT_POKEFANF_RUTH
-	const EVENT_BEAT_POKEFANF_BEVERLY2
-	const EVENT_BEAT_POKEFANF_BEVERLY3
+	const_skip
+	const_skip
 	const_skip
 ; Kimono Girl
 	const_skip ; unused
