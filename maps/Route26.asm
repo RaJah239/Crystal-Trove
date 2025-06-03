@@ -35,6 +35,8 @@ TrainerCooltrainermGaven3:
 .Script:
 	loadvar VAR_CALLERID, PHONE_COOLTRAINERM_GAVEN
 	opentext
+	checkevent EVENT_GAVEN_NUGGET
+	iftrue .RematchGift
 	checkflag ENGINE_GAVEN_READY_FOR_REMATCH
 	iftrue .WantsBattle
 	checkcellnum PHONE_COOLTRAINERM_GAVEN
@@ -44,14 +46,13 @@ TrainerCooltrainermGaven3:
 	writetext CooltrainermGavenAfterText
 	promptbutton
 	setevent EVENT_GAVEN_ASKED_FOR_PHONE_NUMBER
-	scall .AskNumber1
+	scall .AskNumber
 	sjump .AskForNumber
 
 .AskedAlready:
-	scall .AskNumber2
+	scall .AskNumber
 .AskForNumber:
 	askforphonenumber PHONE_COOLTRAINERM_GAVEN
-	ifequal PHONE_CONTACTS_FULL, .PhoneFull
 	ifequal PHONE_CONTACT_REFUSED, .NumberDeclined
 	gettrainername STRING_BUFFER_3, COOLTRAINERM, GAVEN3
 	scall .RegisteredNumber
@@ -82,14 +83,30 @@ TrainerCooltrainermGaven3:
 	startbattle
 	reloadmapafterbattle
 	clearflag ENGINE_GAVEN_READY_FOR_REMATCH
+	opentext
+	writetext CooltrainermGavenText_GiveCrytalAfterBattle
+	waitbutton
+	verbosegiveitem CRYSTAL
+	iffalse .PackFull
+	closetext
 	end
 
-.AskNumber1:
+.RematchGift
+	writetext CooltrainermGavenAgainText_GiveCrytalAfterBattle
+	waitbutton
+	verbosegiveitem CRYSTAL
+	iffalse .PackFull
+	clearevent EVENT_GAVEN_CRYSTAL
+	closetext
+	end
+
+.PackFull:
+	setevent EVENT_GAVEN_CRYSTAL
+	jumpstd PackFullMScript
+	end
+
+.AskNumber:
 	jumpstd AskNumber1MScript
-	end
-
-.AskNumber2:
-	jumpstd AskNumber2MScript
 	end
 
 .RegisteredNumber:
@@ -102,10 +119,6 @@ TrainerCooltrainermGaven3:
 
 .NumberDeclined:
 	jumpstd NumberDeclinedMScript
-	end
-
-.PhoneFull:
-	jumpstd PhoneFullMScript
 	end
 
 .Rematch:
@@ -129,6 +142,8 @@ TrainerCooltrainerfBeth1:
 .Script:
 	loadvar VAR_CALLERID, PHONE_COOLTRAINERF_BETH
 	opentext
+	checkevent EVENT_BETH_RARE_CANDY
+	iftrue .RematchGift
 	checkflag ENGINE_BETH_READY_FOR_REMATCH
 	iftrue .WantsBattle
 	checkcellnum PHONE_COOLTRAINERF_BETH
@@ -138,14 +153,13 @@ TrainerCooltrainerfBeth1:
 	writetext CooltrainerfBethAfterText
 	promptbutton
 	setevent EVENT_BETH_ASKED_FOR_PHONE_NUMBER
-	scall .AskNumber1
+	scall .AskNumber
 	sjump .AskForNumber
 
 .AskedAlready:
-	scall .AskNumber2
+	scall .AskNumber
 .AskForNumber:
 	askforphonenumber PHONE_COOLTRAINERF_BETH
-	ifequal PHONE_CONTACTS_FULL, .PhoneFull
 	ifequal PHONE_CONTACT_REFUSED, .NumberDeclined
 	gettrainername STRING_BUFFER_3, COOLTRAINERF, BETH1
 	scall .RegisteredNumber
@@ -176,14 +190,30 @@ TrainerCooltrainerfBeth1:
 	startbattle
 	reloadmapafterbattle
 	clearflag ENGINE_BETH_READY_FOR_REMATCH
+	opentext
+	writetext CooltrainermBethText_GiveRareCandyAfterBattle
+	waitbutton
+	verbosegiveitem RARE_CANDY
+	iffalse .PackFull
+	closetext
 	end
 
-.AskNumber1:
+.RematchGift
+	writetext CooltrainermBethText_AgainGiveRareCandyAfterBattle
+	waitbutton
+	verbosegiveitem RARE_CANDY
+	iffalse .PackFull
+	clearevent EVENT_BETH_RARE_CANDY
+	closetext
+	end
+
+.PackFull:
+	setevent EVENT_BETH_RARE_CANDY
+	jumpstd PackFullFScript
+	end
+
+.AskNumber:
 	jumpstd AskNumber1FScript
-	end
-
-.AskNumber2:
-	jumpstd AskNumber2FScript
 	end
 
 .RegisteredNumber:
@@ -196,10 +226,6 @@ TrainerCooltrainerfBeth1:
 
 .NumberDeclined:
 	jumpstd NumberDeclinedFScript
-	end
-
-.PhoneFull:
-	jumpstd PhoneFullFScript
 	end
 
 .Rematch:
@@ -393,6 +419,31 @@ Route26SignText:
 
 	para "#MON LEAGUE"
 	line "RECEPTION GATE"
+	done
+
+CooltrainermGavenText_GiveCrytalAfterBattle:
+	text "You beat me again!"
+	line "Here's a something"
+	cont "for your effort!"
+	done
+
+
+CooltrainermGavenAgainText_GiveCrytalAfterBattle:
+	text "Ready to receive"
+	line "my gift?"
+	done
+
+CooltrainermBethText_GiveRareCandyAfterBattle:
+	text "You won when I'm"
+	line "this strong?"
+	
+	para "You deserve this!"
+	done
+
+
+CooltrainermBethText_AgainGiveRareCandyAfterBattle:
+	text "You're ready for"
+	line "this RARE CANDY?"
 	done
 
 Route26_MapEvents:
