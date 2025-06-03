@@ -219,7 +219,6 @@ DEF KRIS EQU __trainer_class__
 	const BEN
 	const BRENT1
 	const RON
-	const ETHAN ; unused
 	const BRENT2
 	const BRENT3
 	const ISSAC
