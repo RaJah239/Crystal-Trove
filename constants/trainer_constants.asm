@@ -391,15 +391,12 @@ DEF KRIS EQU __trainer_class__
 	const IRWIN1
 
 	trainerclass BLACKBELT_T ; 32
-	const KENJI1 ; unused
 	const YOSHI
-	const KENJI2 ; unused
 	const LAO
 	const NOB
 	const KIYO
 	const LUNG
 	const KENJI3
-	const WAI ; unused
 
 	trainerclass EXECUTIVEM ; 33
 	const EXECUTIVEM_1
