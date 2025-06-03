@@ -75,7 +75,6 @@ DEF KRIS EQU __trainer_class__
 	const WILL1
 
 	trainerclass CAL ; c
-	const CAL1 ; unused
 	const CAL2
 	const CAL3
 
@@ -119,10 +118,6 @@ DEF KRIS EQU __trainer_class__
 	const IAN
 	const JOEY2
 	const JOEY3
-	const WARREN ; unused
-	const JIMMY ; unused
-	const OWEN ; unused
-	const JASON ; unused
 	const JOEY4
 	const JOEY5
 
