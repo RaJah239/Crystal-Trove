@@ -2214,13 +2214,6 @@ PokefanMGroup:
 	db -1 ; end
 
 KimonoGirlGroup:
-	; KIMONO_GIRL (1)
-	db "NAOKO@", TRAINERTYPE_NORMAL
-	db 20, SKIPLOOM
-	db 20, VULPIX
-	db 18, SKIPLOOM
-	db -1 ; end
-
 	; KIMONO_GIRL (2)
 	db "NAOKO@", TRAINERTYPE_NORMAL
 	db 17, FLAREON
