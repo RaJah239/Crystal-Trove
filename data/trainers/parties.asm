@@ -1750,14 +1750,6 @@ BurglarGroup:
 	db 24, KOFFING,    TACKLE, SMOG, SLUDGE, SMOKESCREEN
 	db -1 ; end
 
-	; BURGLAR (3)
-	db "COREY@", TRAINERTYPE_NORMAL
-	db 25, KOFFING
-	db 28, MAGMAR
-	db 25, KOFFING
-	db 30, KOFFING
-	db -1 ; end
-
 FirebreatherGroup:
 	; FIREBREATHER (1)
 	db "OTIS@", TRAINERTYPE_NORMAL
