@@ -1777,45 +1777,6 @@ JugglerGroup:
 	db 14, VOLTORB
 	db -1 ; end
 
-	; JUGGLER (2)
-	db "FRITZ@", TRAINERTYPE_NORMAL
-	db 29, MR__MIME
-	db 29, MAGMAR
-	db 29, MACHOKE
-	db -1 ; end
-
-	; JUGGLER (3)
-	db "HORTON@", TRAINERTYPE_NORMAL
-	db 33, ELECTRODE
-	db 33, ELECTRODE
-	db 33, ELECTRODE
-	db 33, ELECTRODE
-	db -1 ; end
-
-	; JUGGLER (4)
-	db "IRWIN@", TRAINERTYPE_NORMAL
-	db  6, VOLTORB
-	db 10, VOLTORB
-	db 14, VOLTORB
-	db 18, VOLTORB
-	db -1 ; end
-
-	; JUGGLER (5)
-	db "IRWIN@", TRAINERTYPE_NORMAL
-	db 18, VOLTORB
-	db 22, VOLTORB
-	db 26, VOLTORB
-	db 30, ELECTRODE
-	db -1 ; end
-
-	; JUGGLER (6)
-	db "IRWIN@", TRAINERTYPE_NORMAL
-	db 18, VOLTORB
-	db 22, VOLTORB
-	db 26, VOLTORB
-	db 30, ELECTRODE
-	db -1 ; end
-
 BlackbeltGroup:
 	; BLACKBELT_T (1)
 	db "KENJI@", TRAINERTYPE_NORMAL

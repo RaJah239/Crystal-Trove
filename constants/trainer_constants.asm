@@ -389,11 +389,6 @@ DEF KRIS EQU __trainer_class__
 
 	trainerclass JUGGLER ; 31
 	const IRWIN1
-	const FRITZ ; unused
-	const HORTON ; unused
-	const IRWIN2 ; unused
-	const IRWIN3 ; unused
-	const IRWIN4 ; unused
 
 	trainerclass BLACKBELT_T ; 32
 	const KENJI1 ; unused
