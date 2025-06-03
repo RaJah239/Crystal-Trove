@@ -1751,31 +1751,6 @@ BurglarGroup:
 	db -1 ; end
 
 FirebreatherGroup:
-	; FIREBREATHER (1)
-	db "OTIS@", TRAINERTYPE_NORMAL
-	db 29, MAGMAR
-	db 32, WEEZING
-	db 29, MAGMAR
-	db -1 ; end
-
-	; FIREBREATHER (2)
-	db "DICK@", TRAINERTYPE_NORMAL
-	db 17, CHARMELEON
-	db -1 ; end
-
-	; FIREBREATHER (3)
-	db "NED@", TRAINERTYPE_NORMAL
-	db 15, KOFFING
-	db 16, GROWLITHE
-	db 15, KOFFING
-	db -1 ; end
-
-	; FIREBREATHER (4)
-	db "BURT@", TRAINERTYPE_NORMAL
-	db 32, KOFFING
-	db 32, SLUGMA
-	db -1 ; end
-
 	; FIREBREATHER (5)
 	db "BILL@", TRAINERTYPE_NORMAL
 	db  6, KOFFING
@@ -1791,13 +1766,6 @@ FirebreatherGroup:
 	; FIREBREATHER (7)
 	db "RAY@", TRAINERTYPE_NORMAL
 	db  9, VULPIX
-	db -1 ; end
-
-	; FIREBREATHER (8)
-	db "LYLE@", TRAINERTYPE_NORMAL
-	db 28, KOFFING
-	db 31, FLAREON
-	db 28, KOFFING
 	db -1 ; end
 
 JugglerGroup:

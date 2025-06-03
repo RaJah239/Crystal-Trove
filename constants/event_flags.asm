@@ -618,8 +618,8 @@
 	const_skip
 ; Firebreather
 	const_skip
-	const EVENT_BEAT_FIREBREATHER_DICK
-	const EVENT_BEAT_FIREBREATHER_NED
+	const_skip
+	const_skip
 	const_skip
 	const EVENT_BEAT_FIREBREATHER_BILL
 	const EVENT_BEAT_FIREBREATHER_WALT
