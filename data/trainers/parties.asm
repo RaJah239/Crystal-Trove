@@ -1489,32 +1489,6 @@ SailorGroup:
 	db 18, POLIWHIRL
 	db -1 ; end
 
-	; SAILOR (6)
-	db "JEFF@", TRAINERTYPE_NORMAL
-	db 32, RATICATE
-	db 32, RATICATE
-	db -1 ; end
-
-	; SAILOR (7)
-	db "GARRETT@", TRAINERTYPE_NORMAL
-	db 34, KINGLER
-	db -1 ; end
-
-	; SAILOR (8)
-	db "KENNETH@", TRAINERTYPE_NORMAL
-	db 28, MACHOP
-	db 28, MACHOP
-	db 28, POLIWRATH
-	db 28, MACHOP
-	db -1 ; end
-
-	; SAILOR (9)
-	db "STANLY@", TRAINERTYPE_NORMAL
-	db 31, MACHOP
-	db 33, MACHOKE
-	db 26, PSYDUCK
-	db -1 ; end
-
 	; SAILOR (10)
 	db "HARRY@", TRAINERTYPE_NORMAL
 	db 19, WOOPER

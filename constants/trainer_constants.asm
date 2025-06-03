@@ -330,10 +330,6 @@ DEF KRIS EQU __trainer_class__
 	const TERRELL
 	const KENT
 	const ERNEST
-	const JEFF ; unused
-	const GARRETT ; unused
-	const KENNETH ; unused
-	const STANLY ; unused
 	const HARRY
 	const HUEY2
 	const HUEY3
