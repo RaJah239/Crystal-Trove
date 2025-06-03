@@ -1848,23 +1848,6 @@ PsychicGroup:
 	db 26, GIRAFARIG
 	db -1 ; end
 
-	; PSYCHIC_T (2)
-	db "FRANKLIN@", TRAINERTYPE_NORMAL
-	db 37, KADABRA
-	db -1 ; end
-
-	; PSYCHIC_T (3)
-	db "HERMAN@", TRAINERTYPE_NORMAL
-	db 30, EXEGGCUTE
-	db 30, EXEGGCUTE
-	db 30, EXEGGUTOR
-	db -1 ; end
-
-	; PSYCHIC_T (4)
-	db "FIDEL@", TRAINERTYPE_NORMAL
-	db 34, XATU
-	db -1 ; end
-
 	; PSYCHIC_T (5)
 	db "GREG@", TRAINERTYPE_MOVES
 	db 17, DROWZEE,    HYPNOSIS, DISABLE, DREAM_EATER, NO_MOVE
@@ -1899,19 +1882,6 @@ PsychicGroup:
 	db 30, STARMIE
 	db 30, EXEGGCUTE
 	db 34, GIRAFARIG
-	db -1 ; end
-
-	; PSYCHIC_T (11)
-	db "JARED@", TRAINERTYPE_NORMAL
-	db 32, MR__MIME
-	db 32, EXEGGCUTE
-	db 35, EXEGGCUTE
-	db -1 ; end
-
-	; PSYCHIC_T (12)
-	db "RODNEY@", TRAINERTYPE_NORMAL
-	db 29, DROWZEE
-	db 33, HYPNO
 	db -1 ; end
 
 PicnickerGroup:

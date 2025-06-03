@@ -406,17 +406,12 @@ DEF KRIS EQU __trainer_class__
 
 	trainerclass PSYCHIC_T ; 34
 	const NATHAN
-	const FRANKLIN ; unused 
-	const HERMAN ; unused
-	const FIDEL ; unused
 	const GREG
 	const NORMAN
 	const MARK
 	const PHIL
 	const RICHARD
 	const GILBERT
-	const JARED ; unused
-	const RODNEY ; unused
 
 	trainerclass PICNICKER ; 35
 	const LIZ1
