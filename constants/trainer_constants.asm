@@ -197,8 +197,6 @@ DEF KRIS EQU __trainer_class__
 	const REENA1
 	const MEGAN
 	const BETH2
-	const CAROL ; unused
-	const QUINN ; unused
 	const EMMA
 	const CYBIL
 	const JENN
