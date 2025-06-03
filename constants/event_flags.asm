@@ -711,7 +711,7 @@
 	const EVENT_BEAT_GENTLEMAN_PRESTON
 	const_skip
 	const_skip
-	const EVENT_BEAT_GENTLEMAN_VIRGIL
+	const_skip
 	const EVENT_BEAT_GENTLEMAN_ALFRED
 ; Scientist
 	const EVENT_BEAT_SCIENTIST_ROSS

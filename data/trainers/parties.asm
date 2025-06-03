@@ -1120,22 +1120,6 @@ GentlemanGroup:
 	db 18, GROWLITHE
 	db -1 ; end
 
-	; GENTLEMAN (2)
-	db "EDWARD@", TRAINERTYPE_NORMAL
-	db 33, PERSIAN
-	db -1 ; end
-
-	; GENTLEMAN (3)
-	db "GREGORY@", TRAINERTYPE_NORMAL
-	db 37, PIKACHU
-	db 33, FLAAFFY
-	db -1 ; end
-
-	; GENTLEMAN (4)
-	db "VIRGIL@", TRAINERTYPE_NORMAL
-	db 20, PONYTA
-	db -1 ; end
-
 	; GENTLEMAN (5)
 	db "ALFRED@", TRAINERTYPE_NORMAL
 	db 20, NOCTOWL
