@@ -139,6 +139,7 @@
 	charmap "└",         $be
 	charmap "┘",         $bf
 
+	charmap "<i>",       $c8 ; item icon
 	charmap "<%>",       $c9 ; Percent symbol
 	charmap "<⁂>",      $ca
 	charmap "′",         $ce
