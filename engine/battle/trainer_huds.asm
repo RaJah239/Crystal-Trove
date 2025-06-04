@@ -34,6 +34,15 @@ ShowOTTrainerMonsRemaining:
 	ld hl, wOTPartyMon1HP
 	ld de, wOTPartyCount
 	call StageBallTilesData
+
+	; Clear item icon if unused on previous mon
+	hlcoord 1, 1
+	ld [hl], " "  ; space tile (blank)
+
+	; Clear caught ball icon if next mon wasn't caught yet
+	hlcoord 1, 2
+	ld [hl], " "  ; space tile (blank)
+
 	; ldpixel wPlaceBallsX, 9, 4
 	ld hl, wPlaceBallsX
 	ld a, 9 * TILE_WIDTH
@@ -139,15 +148,24 @@ DrawEnemyHUDBorder:
 	hlcoord 1, 2
 	ld de, 1 ; start on left
 	call PlaceHUDBorderTiles
-	ld a, [wBattleMode]
-	dec a
-	ret nz
+
+; Place caught ball icon
 	ld a, [wTempEnemyMonSpecies]
 	dec a
 	call CheckCaughtMon
-	ret z
-	hlcoord 1, 1
-	ld [hl], $5f
+	jr z, .CheckIfItemHeld
+	hlcoord 1, 2 ; coordinates of caught ball icon
+	ld [hl], $5f ; caught ball icon
+
+.CheckIfItemHeld
+	ld a, [wEnemyMonItem]
+	cp NO_ITEM
+	jr z, .NoItemHeld
+
+	; Draw the held item icon
+	hlcoord 1, 1 ; coordinates of held item
+	ld [hl], $5f ; caught held icon
+.NoItemHeld:
 	ret
 
 .tiles
