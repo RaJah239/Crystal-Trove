@@ -828,54 +828,11 @@ LoadOrangePage:
 	call nz, StatsScreen_PrintEVs
 	ret
 
-StatsScreen_HiddenPow_BP:
-	call StatsScreen_LoadUnownFont
-; Take the top/most significant bit from each stat
-; basically, if the DV is 8 or above
-; arrange those bits in order, into a nybble
-	; Attack
-	ld a, [wTempMonDVs]
-	swap a
-	and %1000
-	; Defense
-	ld b, a
-	ld a, [wTempMonDVs]
-	and %1000
-	srl a
-	or b
-	; Speed
-	ld b, a
-	ld a, [wTempMonDVs + 1]
-	swap a
-	and %1000
-	srl a
-	srl a
-	or b
-	; Special
-	ld b, a
-	ld a, [wTempMonDVs + 1]
-	and %1000
-	srl a
-	srl a
-	srl a
-	or b
-; Multiply by 5
-	ld b, a
-	add a
-	add a
-	add b
-; Add Special & 3
-	ld b, a
-	ld a, [wTempMonDVs + 1]
-	and %0011
-	add b
-; Divide by 2 and add 30 + 1
-	srl a
-	add 30
-	inc a
-	ret
-
 StatsScreen_Print_HiddenPow_Info:
+	ld de, HiddenPowerTypeString
+	hlcoord 1, 16
+	call PlaceString
+
 	ld hl, wTempMonDVs
 	; Type:
 
@@ -913,158 +870,16 @@ StatsScreen_Print_HiddenPow_Info:
 	add UNUSED_TYPES_END - UNUSED_TYPES
 
 .done
-	add a
-	ld e, a
-	ld d, 0
-	ld a, BANK(TypeNames)
-	ld hl, TypeNames
-	add hl, de
-	call GetFarWord
-	ld d, h
-	ld e, l
+    ld [wNamedObjectIndex], a
+	farcall GetTypeName
+	ld de, wStringBuffer1
 
 	hlcoord 2, 17
-	call PlaceString_UnownFont_Type
-	hlcoord 1, 16
-	ld de, .hidden_pow_text
-	call PlaceString_UnownFont
-
-	call StatsScreen_HiddenPow_BP
-	ld de, .hp_dummy_text
-	cp 70
-	jr c, .not70
-	ld de, .hp_dummy_text
-	sub 70
-	jr .print1
-.not70
-	cp 60
-	jr c, .not60
-	ld de, .hp_dummy_text
-	sub 60
-	jr .print1
-.not60
-	cp 50
-	jr c, .not50
-	ld de, .hp_dummy_text
-	sub 50
-	jr .print1
-.not50
-	cp 40
-	jr c, .not40
-	ld de, .hp_dummy_text
-	sub 40
-	jr .print1
-.not40
-	ld de, .hp_dummy_text
-	sub 30
-.print1
-	hlcoord 17, 17 ; dummy Hidden Power bast power - unneeded, moved aside
-	push af
-	call PlaceString_UnownFont
-	pop af
-
-	cp 9
-	jr c, .not9
-	ld de, .hp_dummy_text
-	jr .print2
-.not9
-	cp 8
-	jr c, .not8
-	ld de, .hp_dummy_text
-	jr .print2
-.not8
-	cp 7
-	jr c, .not7
-	ld de, .hp_dummy_text
-	jr .print2
-.not7
-	cp 6
-	jr c, .not6
-	ld de, .hp_dummy_text
-	jr .print2
-.not6
-	cp 5
-	jr c, .not5
-	ld de, .hp_dummy_text
-	jr .print2
-.not5
-	cp 4
-	jr c, .not4
-	ld de, .hp_dummy_text
-	jr .print2
-.not4
-	cp 3
-	jr c, .not3
-	ld de, .hp_dummy_text
-	jr .print2
-.not3
-	cp 2
-	jr c, .not2
-	ld de, .hp_dummy_text
-	jr .print2
-.not2
-	cp 1
-	ret c
-	ld de, .hp_dummy_text
-.print2
-	call PlaceString_UnownFont	
+	call PlaceString
 	ret
-.hidden_pow_text:
-	db "HIDDEN POWER@"
-.hp_dummy_text:
-	db "@"
 
-PlaceString_UnownFont_Type:
-	push hl
-	push de
-.loop
-	pop hl
-	ld a, BANK(TypeNames)
-	call GetFarByte
-	ld d, h
-	ld e, l
-	pop hl
-	cp "@"
-	ret z
-	inc de
-	sub "A"
-	add $BA ; FIRST_UNOWN_CHAR
-	ld [hli], a
-	push hl
-	push de
-	jr .loop
-
-PlaceString_UnownFont:
-	push hl
-	push de
-.loop
-	pop hl
-	ld a, [hl]
-	pop hl
-	cp "@"
-	ret z
-	cp " "
-	call z, .skip_space
-	cp "-"
-	call z, .skip_space
-	inc de
-	sub "A"
-	add $BA ; FIRST_UNOWN_CHAR
-	
-	ld [hli], a
-	push hl
-	push de
-	jr .loop	
-.skip_space:
-	ld [hl], a
-	inc hl
-	push hl
-	inc de
-	push de
-	pop hl
-	ld a, [hl]
-	pop hl
-	ret
+HiddenPowerTypeString:
+	db "HIDDEN POWER:@"
 
 StatsScreen_PrintEVs:
 	hlcoord 1, 11
