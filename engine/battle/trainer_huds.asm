@@ -164,7 +164,7 @@ DrawEnemyHUDBorder:
 
 	; Draw the held item icon
 	hlcoord 1, 1 ; coordinates of held item
-	ld [hl], $5f ; caught held icon
+	ld [hl], $70 ; battle held item icon
 .NoItemHeld:
 	ret
 
