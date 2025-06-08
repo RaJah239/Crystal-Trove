@@ -13,7 +13,7 @@ endc
 ; wTextboxFlags: use text speed
 	db 1 << FAST_TEXT_DELAY_F
 ; wOptions2: trival calls on
-	db 0 << TRIVIAL_CALLS
+	db 0 << CASUAL_CALLS
 	db 1 << MINIMAL_DIALOGUE
 
 	db $00
