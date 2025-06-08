@@ -382,16 +382,6 @@ RestartMapMusic::
 	jp PopAFBCDEHL
 
 SpecialMapMusic::
-; Don't play surf music in Lake of Rage
-	push hl
-	push bc
-	ld de, MAP_MUSIC
-	call GetMapField
-	ld a, c
-	pop bc
-	pop hl
-	cp MUSIC_LAKE_OF_RAGE
-	jr z, .no
 	ld a, [wPlayerState]
 	cp PLAYER_SURF
 	jr z, .surf
