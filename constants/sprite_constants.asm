@@ -160,4 +160,3 @@ DEF SPRITE_VARS EQU const_value
 	const SPRITE_COPYCAT ; f8 unused to remove
 	const SPRITE_JANINE_IMPERSONATOR ; f9 unused to remove
 	const SPRITE_LINK_TRAINER ; fd
-	const SPRITE_BATTLE_TOWER_OPPONENT ; fe
