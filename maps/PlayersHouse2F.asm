@@ -52,9 +52,9 @@ if DEF(_DEBUG)
 	giveitem COIN_CASE
 	givecoins MAX_COINS
 	; good party
-	givepoke MEW, 100, LEFTOVERS
-	givepoke SMEARGLE, 100, FOCUS_BAND
-	givepoke GYARADOS, 100, GOLD_BERRY
+	givepoke MEW, 99, LEFTOVERS
+	givepoke SMEARGLE, 99, FOCUS_BAND
+	givepoke GYARADOS, 99, GOLD_BERRY
 	givepoke DIGLETT, 17
 	givepoke DITTO, 5, METAL_POWDER
 	givepoke ABRA, 5, EVERSTONE
