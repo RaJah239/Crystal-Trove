@@ -24,13 +24,13 @@ CheckShininess:
 ; Attack
 	ld a, [hl]
 	and SHINY_ATK_MASK << 4
-	jr z, .not_shiny
+;	jr z, .not_shiny
 
 ; Defense
 	ld a, [hli]
 	and %1111
 	cp SHINY_DEF_DV
-	jr nz, .not_shiny
+;	jr nz, .not_shiny
 
 ; Speed
 	ld a, [hl]
