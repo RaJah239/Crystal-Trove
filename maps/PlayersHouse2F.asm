@@ -51,6 +51,7 @@ if DEF(_DEBUG)
 	giveitem BICYCLE
 	giveitem COIN_CASE
 	givecoins MAX_COINS
+	giveitem LANTERN
 	giveitem HEDGER
 	giveitem POWER_GLOVE
 	giveitem PADDLE_BOAT
