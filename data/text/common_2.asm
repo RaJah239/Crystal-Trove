@@ -373,28 +373,24 @@ _CantUseTeleportText::
 	done
 
 _AlreadyUsingStrengthText::
-	text "A #MON is using"
-	line "STRENGTH already."
+	text "STRENGTH is active!"
 	prompt
 
 _UseStrengthText::
-	text_ram wStringBuffer2
-	text " used"
-	line "STRENGTH!"
+	text "STRENGTH was used!"
 	done
 
 _MoveBoulderText::
-	text_ram wStringBuffer1
-	text " can"
-	line "move boulders."
+	text "Boulders can now"
+	line "be moved!"
 	prompt
 
 _AskStrengthText::
-	text "A #MON may be"
-	line "able to move this."
-
-	para "Want to use"
-	line "STRENGTH?"
+	text "An item or #MON"
+	line "is needed to push"
+	cont "this."
+	
+	para "Use STRENGTH?"
 	done
 
 _BouldersMoveText::
@@ -403,8 +399,9 @@ _BouldersMoveText::
 	done
 
 _BouldersMayMoveText::
-	text "A #MON may be"
-	line "able to move this."
+	text "An item or #MON"
+	line "is needed to push"
+	cont "this."
 	done
 
 _UseWhirlpoolText::

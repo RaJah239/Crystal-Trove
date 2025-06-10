@@ -1149,9 +1149,7 @@ Script_StrengthFromMenu:
 Script_UsedStrength:
 	callasm SetStrengthFlag
 	writetext .UseStrengthText
-	readmem wStrengthSpecies
-	cry 0 ; plays [wStrengthSpecies] cry
-	pause 3
+	promptbutton
 	writetext .MoveBoulderText
 	closetext
 	end
@@ -1216,6 +1214,12 @@ TryStrengthOW:
 	jr z, .yes
 
 ; Step 4
+	ld a, POWER_GLOVE
+	ld [wCurItem], a
+	ld hl, wNumItems
+	call CheckItem
+	jr c, .yes
+
 	ld d, STRENGTH
 	call CheckPartyMove
 	jr c, .nope

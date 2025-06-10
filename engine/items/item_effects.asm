@@ -63,7 +63,7 @@ ItemEffects:
 	dw RestoreHPEffect     ; SODA_POP
 	dw RestoreHPEffect     ; LEMONADE
 	dw XItemEffect         ; X_ATTACK
-	dw NoEffect            ; ITEM_32
+	dw PowerGloveEffect    ; POWER_GLOVE
 	dw XItemEffect         ; X_DEFEND
 	dw XItemEffect         ; X_SPEED
 	dw XItemEffect         ; X_SPECIAL
@@ -2989,4 +2989,10 @@ PaddleBoatEffect:
 	ld a, 1
 	ld [wUsingHMItem], a
 	farcall SurfFunction
+	ret
+
+PowerGloveEffect:
+	ld a, 1
+	ld [wUsingHMItem], a
+	farcall StrengthFunction
 	ret
