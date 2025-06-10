@@ -505,8 +505,9 @@ UsedSurfScript:
 	waitbutton
 	closetext
 
-	callasm .stubbed_fn
+	setflag ENGINE_SURF_ACTIVE
 
+AutoSurfScript:
 	readmem wSurfingPlayerState
 	writevar VAR_MOVEMENT
 
@@ -514,10 +515,6 @@ UsedSurfScript:
 	special PlayMapMusic
 	special SurfStartStep
 	end
-
-.stubbed_fn
-	farcall StubbedTrainerRankings_Surf
-	ret
 
 UsedSurfText:
 	text_far _UsedSurfText
@@ -650,6 +647,8 @@ TrySurfOW::
 	ret
 
 AskSurfScript:
+	checkflag ENGINE_SURF_ACTIVE
+	iftrue AutoSurfScript
 	opentext
 	writetext AskSurfText
 	yesorno
