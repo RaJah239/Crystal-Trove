@@ -1393,6 +1393,12 @@ TryWhirlpoolOW::
 	jr z, .yes
 
 ; Step 4
+	ld a, STABILIZER
+	ld [wCurItem], a
+	ld hl, wNumItems
+	call CheckItem
+	jr c, .yes
+
 	ld d, WHIRLPOOL
 	call CheckPartyMove
 	jr c, .failed
