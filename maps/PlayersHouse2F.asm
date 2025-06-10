@@ -52,6 +52,7 @@ if DEF(_DEBUG)
 	giveitem COIN_CASE
 	givecoins MAX_COINS
 	giveitem AXE
+	giveitem LANTERN
 	giveitem POWER_GLOVE
 	giveitem PADDLE_BOAT
 	; good party
