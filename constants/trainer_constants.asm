@@ -334,6 +334,7 @@ DEF KRIS EQU __trainer_class__
 	const HUEY2
 	const HUEY3
 	const HUEY4
+	const STEELE
 
 	trainerclass SUPER_NERD ; 29
 	const STAN
@@ -393,7 +394,6 @@ DEF KRIS EQU __trainer_class__
 	trainerclass BLACKBELT_T ; 32
 	const YOSHI
 	const LAO
-	const NOB
 	const KIYO
 	const LUNG
 	const KENJI3
