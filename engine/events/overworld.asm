@@ -1583,7 +1583,9 @@ RockSmashScript:
 	callasm GetPartyNickname
 	writetext UseRockSmashText
 	closetext
-	special WaitSFX
+	setflag ENGINE_ROCK_SMASH_ACTIVE
+AutoRockSmashScript:
+	waitsfx
 	playsound SFX_STRENGTH
 	earthquake 84
 	applymovementlasttalked MovementData_RockSmash
@@ -1616,12 +1618,13 @@ AskRockSmashScript:
 	callasm HasRockSmash
 	ifequal 1, .no
 
+	checkflag ENGINE_ROCK_SMASH_ACTIVE
+	iftrue AutoRockSmashScript
 	opentext
 	writetext AskRockSmashText
 	yesorno
 	iftrue RockSmashScript
-	closetext
-	end
+
 .no
 	jumptext MaySmashText
 
