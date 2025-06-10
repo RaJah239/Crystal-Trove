@@ -113,7 +113,7 @@ ItemEffects:
 	dw NoEffect            ; WHT_APRICORN
 	dw NoEffect            ; BLACKBELT_I
 	dw NoEffect            ; BLK_APRICORN
-	dw NoEffect            ; ITEM_64
+	dw GeyserBootsEffect   ; GEYSER_BOOTS
 	dw NoEffect            ; PNK_APRICORN
 	dw NoEffect            ; BLACKGLASSES
 	dw NoEffect            ; SLOWPOKETAIL
@@ -3018,4 +3018,10 @@ StabilizerEffect:
 	ld a, 1
 	ld [wUsingHMItem], a
 	farcall WhirlpoolFunction
+	ret
+
+GeyserBootsEffect:
+	ld a, 1
+	ld [wUsingHMItem], a
+	farcall WaterfallFunction
 	ret
