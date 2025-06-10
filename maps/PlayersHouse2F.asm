@@ -243,7 +243,7 @@ TestScript:
 	special HealParty
 	special BackupPartyHeldItems
 	winlosstext TestText, TestText
-	loadtrainer RED, RED1
+	loadtrainer RED, RED2
 	startbattle
 	reloadmap
 	special HealParty

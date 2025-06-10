@@ -500,6 +500,7 @@ DEF KRIS EQU __trainer_class__
 
 	trainerclass RED ; 3f
 	const RED1
+	const RED2
 
 	trainerclass BLUE ; 40
 	const BLUE1
@@ -523,5 +524,6 @@ DEF KRIS EQU __trainer_class__
 
  	const_def
  	const RANDOMLIST_0
+ 	const RANDOMLIST_1
 
 DEF NUM_TRAINER_CLASSES EQU __trainer_class__ - 1
