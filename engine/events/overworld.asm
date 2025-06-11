@@ -238,16 +238,9 @@ CutFunction:
 	dw .FailCut
 
 .CheckAble:
-	ld de, ENGINE_HIVEBADGE
-	call CheckBadge
-	jr c, .nohivebadge
 	call CheckMapForSomethingToCut
 	jr c, .nothingtocut
 	ld a, $1
-	ret
-
-.nohivebadge
-	ld a, $80
 	ret
 
 .nothingtocut
@@ -2021,35 +2014,12 @@ GotOffBikeText:
 	text_end
 
 TryCutOW::
-; Step 1
-	ld de, ENGINE_HIVEBADGE
-	call CheckEngineFlag
-	jr c, .cant_cut
-
-; Step 2
-	ld a, HM_CUT
+	ld a, AXE
 	ld [wCurItem], a
 	ld hl, wNumItems
 	call CheckItem
-	jr z, .cant_cut
+	jr nc, .cant_cut
 
-; Step 3
-	ld d, CUT
-	call CheckPartyCanLearnMove
-       and a
-	jr z, .can_cut
-
-	ld a, HEDGER
-	ld [wCurItem], a
-	ld hl, wNumItems
-	call CheckItem
-	jr c, .can_cut
-
-	ld d, CUT
-	call CheckPartyMove
-	jr c, .cant_cut
-
-.can_cut
 	ld a, BANK(AskCutScript)
 	ld hl, AskCutScript
 	call CallScript

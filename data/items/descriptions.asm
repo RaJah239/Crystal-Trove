@@ -6,7 +6,7 @@ ItemDescriptions:
 	dw BrightpowderDesc
 	dw GreatBallDesc
 	dw PokeBallDesc
-	dw HedgerDesc
+	dw AxeDesc
 	dw BicycleDesc
 	dw MoonStoneDesc
 	dw AntidoteDesc
@@ -279,9 +279,9 @@ PokeBallDesc:
 	db   "An item for catch-"
 	next "ing #MON.@"
 
-HedgerDesc:
-	db   "Cuts trees without"
-	next "a #MON!@"
+AxeDesc:
+	db   "Used to cut grass"
+	next "and small trees.@"
 
 BicycleDesc:
 	db   "A collapsible bike"

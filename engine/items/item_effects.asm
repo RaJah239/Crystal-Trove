@@ -19,7 +19,7 @@ ItemEffects:
 	dw NoEffect            ; BRIGHTPOWDER
 	dw PokeBallEffect      ; GREAT_BALL
 	dw PokeBallEffect      ; POKE_BALL
-	dw HedgerEffect        ; HEDGER
+	dw AxeEffect           ; AXE
 	dw BicycleEffect       ; BICYCLE
 	dw EvoStoneEffect      ; MOON_STONE
 	dw StatusHealingEffect ; ANTIDOTE
@@ -2979,7 +2979,7 @@ GetMthMoveOfCurrentMon:
 	add hl, bc
 	ret
 
-HedgerEffect:
+AxeEffect:
 	ld a, 1
 	ld [wUsingHMItem], a
 	farcall CutFunction

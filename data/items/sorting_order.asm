@@ -238,7 +238,7 @@ ItemNameOrder:
 
 ; HM items
 	db LANTERN
-	db HEDGER
+	db AXE
 	db POWER_GLOVE
 	db PADDLE_BOAT
 	db STABILIZER
