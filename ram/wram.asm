@@ -3194,8 +3194,9 @@ wDragonShrineSceneID::                            db
 wMountMoonSquareSceneID::                         db
 wMobileTradeRoomSceneID::                         db
 wMobileBattleRoomSceneID::                        db
+wDayCareSceneID::                                 db
 
-	ds 177
+	ds 176
 
 wLevelCap:: db
 
