@@ -51,6 +51,7 @@ if DEF(_DEBUG)
 	giveitem BICYCLE
 	giveitem COIN_CASE
 	givecoins MAX_COINS
+	giveitem HEDGER
 	; good party
 	givepoke MEW, 99, LEFTOVERS
 	givepoke SMEARGLE, 99, FOCUS_BAND
