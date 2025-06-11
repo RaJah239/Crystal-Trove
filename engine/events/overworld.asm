@@ -1327,8 +1327,11 @@ Script_UsedWhirlpool:
 	callasm GetPartyNickname
 	writetext UseWhirlpoolText
 	refreshmap
+	setflag ENGINE_WHIRPOOL_ACTIVE
+	; fallthrough
+Script_AutoWhirlpool:
 	waitsfx
-	playsound SFX_SURF
+	playsound SFX_2_BOOPS
 	checkcode VAR_FACING
 	if_equal UP, .Up
 	if_equal DOWN, .Down
@@ -1425,6 +1428,8 @@ Script_MightyWhirlpool:
 	text_end
 
 Script_AskWhirlpoolOW:
+	checkflag ENGINE_WHIRPOOL_ACTIVE
+	iftrue Script_AutoWhirlpool
 	opentext
 	writetext AskWhirlpoolText
 	yesorno
