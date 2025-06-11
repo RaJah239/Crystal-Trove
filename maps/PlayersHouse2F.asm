@@ -51,8 +51,11 @@ if DEF(_DEBUG)
 	giveitem BICYCLE
 	giveitem COIN_CASE
 	givecoins MAX_COINS
-	giveitem AXE
+	giveitem OLD_ROD
+	giveitem GOOD_ROD
+	giveitem SUPER_ROD
 	giveitem LANTERN
+	giveitem AXE
 	giveitem POWER_GLOVE
 	giveitem PADDLE_BOAT
 	giveitem STABILIZER
@@ -75,29 +78,19 @@ if DEF(_DEBUG)
 	loadmem wPartyMon1Moves+1, THUNDERBOLT
 	loadmem wPartyMon1Moves+2, FLAMETHROWER
 	; overworld moves
-	loadmem wPartyMon1Moves+3, FLY
-	loadmem wPartyMon2Moves+0, CUT
-	loadmem wPartyMon2Moves+1, SURF
-	loadmem wPartyMon2Moves+2, STRENGTH
-	loadmem wPartyMon2Moves+3, FLASH
-	loadmem wPartyMon3Moves+0, WHIRLPOOL
-	loadmem wPartyMon3Moves+1, WATERFALL
-	loadmem wPartyMon3Moves+2, HEADBUTT
-	loadmem wPartyMon3Moves+3, ROCK_SMASH
+	loadmem wPartyMon1Moves+3, RECOVER
+	loadmem wPartyMon3Moves+0, CRUNCH
+	loadmem wPartyMon3Moves+1, EARTHQUAKE
+	loadmem wPartyMon3Moves+2, OUTRAGE
+	loadmem wPartyMon3Moves+3, SWORDS_DANCE
 	closetext
 	; tms for party
 	giveitem TM_ROCK_SMASH, 50
 	giveitem TM_HEADBUTT, 50
 	giveitem TM_DIG, 50
 	giveitem TM_HIDDEN_POWER, 50
-	; all hms
-	giveitem HM_CUT
+	; fly hm
 	giveitem HM_FLY
-	giveitem HM_SURF
-	giveitem HM_STRENGTH
-	giveitem HM_FLASH
-	giveitem HM_WHIRLPOOL
-	giveitem HM_WATERFALL
 	; full pokegear
 	setflag ENGINE_POKEGEAR
 	setflag ENGINE_PHONE_CARD
@@ -115,14 +108,6 @@ if DEF(_DEBUG)
 	setflag ENGINE_MINERALBADGE
 	setflag ENGINE_GLACIERBADGE
 	setflag ENGINE_RISINGBADGE
-	setflag ENGINE_BOULDERBADGE
-	setflag ENGINE_CASCADEBADGE
-	setflag ENGINE_THUNDERBADGE
-	setflag ENGINE_RAINBOWBADGE
-	setflag ENGINE_MARSHBADGE
-	setflag ENGINE_SOULBADGE
-	setflag ENGINE_VOLCANOBADGE
-	setflag ENGINE_EARTHBADGE
 	; fly points
 	setflag ENGINE_FLYPOINT_NEW_BARK
 	setflag ENGINE_FLYPOINT_CHERRYGROVE
@@ -145,9 +130,6 @@ if DEF(_DEBUG)
 	setflag ENGINE_FLYPOINT_NATIONAL_PARK
 	setflag ENGINE_FLYPOINT_BATTLE_TOWER
 	setflag ENGINE_CREDITS_SKIP
-	; magnet train works
-	setevent EVENT_RESTORED_POWER_TO_KANTO
-	giveitem PASS
 	; useful items
 	giveitem MAX_REPEL, MAX_ITEM_STACK
 	giveitem ESCAPE_ROPE, MAX_ITEM_STACK
