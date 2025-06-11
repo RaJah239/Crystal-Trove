@@ -2989,6 +2989,17 @@ PaddleBoatEffect:
 	ld a, 1
 	ld [wUsingHMItem], a
 	farcall SurfFunction
+	ld a, [wFieldMoveSucceeded]
+	and a
+	jr z, FailHMItem
+	ld b, $4
+	ld a, $2
+	ret
+
+FailHMItem:
+	xor a
+	ld [wItemEffectSucceeded], a
+	ld a, $3
 	ret
 
 PowerGloveEffect:

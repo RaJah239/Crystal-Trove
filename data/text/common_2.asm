@@ -314,13 +314,13 @@ _UsedSurfText::
 	done
 
 _CantSurfText::
-	text "You can't SURF"
+	text "You can't use this"
 	line "here."
 	prompt
 
 _AlreadySurfingText::
 	text "You're already"
-	line "SURFING."
+	line "traversing water!"
 	prompt
 
 _AskSurfText::
