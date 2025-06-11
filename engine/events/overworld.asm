@@ -797,9 +797,13 @@ Script_WaterfallFromMenu:
 
 Script_UsedWaterfall:
 	callasm GetPartyNickname
-	writetext .UseWaterfallText
+	farwritetext _UseWaterfallText
 	waitbutton
 	closetext
+	setflag ENGINE_WATERFALL_ACTIVE
+	; fallthrough
+Script_AutoWaterfall:
+	waitsfx
 	playsound SFX_BUBBLEBEAM
 .loop
 	applymovement PLAYER, .WaterfallStep
@@ -821,10 +825,6 @@ Script_UsedWaterfall:
 .WaterfallStep:
 	turn_waterfall UP
 	step_end
-
-.UseWaterfallText:
-	text_far _UseWaterfallText
-	text_end
 
 TryWaterfallOW::
 ; Step 1
@@ -879,6 +879,8 @@ Script_CantDoWaterfall:
 	text_end
 
 Script_AskWaterfall:
+	checkflag ENGINE_WATERFALL_ACTIVE
+	iftrue Script_AutoWaterfall
 	opentext
 	writetext .AskWaterfallText
 	yesorno
