@@ -47,6 +47,7 @@ PlayersHousePosterScript:
 PlayersHouseRadioScript:
 if DEF(_DEBUG)
 	opentext
+	; key items
 	givemoney YOUR_MONEY, MAX_MONEY
 	giveitem BICYCLE
 	giveitem COIN_CASE
@@ -167,6 +168,11 @@ if DEF(_DEBUG)
 	giveitem FRIEND_BALL, MAX_ITEM_STACK
 	giveitem MOON_BALL, MAX_ITEM_STACK
 	giveitem LOVE_BALL, MAX_ITEM_STACK
+
+	; fossils
+	giveitem OLD_AMBER
+	giveitem DOME_FOSSIL
+	giveitem HELIX_FOSSIL
 
 	; intro events
 	addcellnum PHONE_MOM
