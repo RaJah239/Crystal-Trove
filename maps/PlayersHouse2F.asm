@@ -60,6 +60,7 @@ if DEF(_DEBUG)
 	giveitem PADDLE_BOAT
 	giveitem STABILIZER
 	giveitem GEYSER_BOOTS
+
 	; good party
 	givepoke MEW, 99, LEFTOVERS
 	givepoke SMEARGLE, 99, FOCUS_BAND
@@ -67,12 +68,15 @@ if DEF(_DEBUG)
 	givepoke DIGLETT, 17
 	givepoke DITTO, 5, METAL_POWDER
 	givepoke ABRA, 5, EVERSTONE
+
 	; first mon shiny
 	loadmem wPartyMon1DVs+0, $ea
 	loadmem wPartyMon1DVs+1, $aa
+
 	; third mon shiny
 	loadmem wPartyMon3DVs+0, $ea
 	loadmem wPartyMon3DVs+1, $aa
+
 	; useful moves
 	loadmem wPartyMon1Moves+0, ICE_BEAM
 	loadmem wPartyMon1Moves+1, THUNDERBOLT
@@ -84,21 +88,26 @@ if DEF(_DEBUG)
 	loadmem wPartyMon3Moves+2, OUTRAGE
 	loadmem wPartyMon3Moves+3, SWORDS_DANCE
 	closetext
+
 	; tms for party
 	giveitem TM_ROCK_SMASH, 50
 	giveitem TM_HEADBUTT, 50
 	giveitem TM_DIG, 50
 	giveitem TM_HIDDEN_POWER, 50
+
 	; fly hm
 	giveitem HM_FLY
+
 	; full pokegear
 	setflag ENGINE_POKEGEAR
 	setflag ENGINE_PHONE_CARD
 	setflag ENGINE_MAP_CARD
 	setflag ENGINE_RADIO_CARD
 	setflag ENGINE_EXPN_CARD
+
 	; pokedex
 	setflag ENGINE_POKEDEX
+
 	; all badges
 	setflag ENGINE_ZEPHYRBADGE
 	setflag ENGINE_HIVEBADGE
@@ -108,6 +117,7 @@ if DEF(_DEBUG)
 	setflag ENGINE_MINERALBADGE
 	setflag ENGINE_GLACIERBADGE
 	setflag ENGINE_RISINGBADGE
+
 	; fly points
 	setflag ENGINE_FLYPOINT_NEW_BARK
 	setflag ENGINE_FLYPOINT_CHERRYGROVE
@@ -124,17 +134,28 @@ if DEF(_DEBUG)
 	setflag ENGINE_FLYPOINT_SILVER_CAVE
 	setflag ENGINE_FLYPOINT_INDIGO_PLATEAU
 	setflag ENGINE_FLYPOINT_PALLET
+
 	; new fly points
 	setflag ENGINE_FLYPOINT_ROUTE_26
 	setflag ENGINE_FLYPOINT_UNION_CAVE
 	setflag ENGINE_FLYPOINT_NATIONAL_PARK
 	setflag ENGINE_FLYPOINT_BATTLE_TOWER
 	setflag ENGINE_CREDITS_SKIP
+
 	; useful items
 	giveitem MAX_REPEL, MAX_ITEM_STACK
 	giveitem ESCAPE_ROPE, MAX_ITEM_STACK
 	giveitem SACRED_ASH, MAX_ITEM_STACK
 	giveitem RARE_CANDY, MAX_ITEM_STACK
+
+	; Vitamins
+	giveitem HP_UP, MAX_ITEM_STACK
+	giveitem PROTEIN, MAX_ITEM_STACK
+	giveitem IRON, MAX_ITEM_STACK
+	giveitem CALCIUM, MAX_ITEM_STACK
+	giveitem ZINC, MAX_ITEM_STACK
+	giveitem CARBOS, MAX_ITEM_STACK
+
 	; all balls
 	giveitem MASTER_BALL, MAX_ITEM_STACK
 	giveitem POKE_BALL, MAX_ITEM_STACK
@@ -146,6 +167,7 @@ if DEF(_DEBUG)
 	giveitem FRIEND_BALL, MAX_ITEM_STACK
 	giveitem MOON_BALL, MAX_ITEM_STACK
 	giveitem LOVE_BALL, MAX_ITEM_STACK
+
 	; intro events
 	addcellnum PHONE_MOM
 	setmapscene PLAYERS_HOUSE_1F, $1
