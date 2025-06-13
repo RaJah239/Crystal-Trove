@@ -906,12 +906,10 @@ StatsScreen_PrintEVs:
 	ld c, a
 .handle_this
 	push bc
-
-	; Print HP EV ranges text
-	ld a, [wTempMonHPEV]
-	call GetEVRangeTextString
+	ld de, wPokedexStatus
+	lb bc, 1, 3 ; 3 digits
 	hlcoord 6, 12
-	call PlaceString
+	call PrintNum
 
 	; ATK EVs
 	ld a, [wTempMonAtkEV]
@@ -925,12 +923,10 @@ StatsScreen_PrintEVs:
 	ld c, a
 .atk_not_odd
 	push bc
-
-	; Print Atk EV ranges text
-	ld a, [wTempMonAtkEV]
-	call GetEVRangeTextString
+	ld de, wPokedexStatus
+	lb bc, 1, 3 ; 3 digits
 	hlcoord 6, 13
-	call PlaceString
+	call PrintNum
 
 	; DEF EVs
 	ld a, [wTempMonDefEV]
@@ -944,12 +940,10 @@ StatsScreen_PrintEVs:
 	ld c, a
 .def_not_odd
 	push bc
-
-	; Print Def EV ranges text
-	ld a, [wTempMonDefEV]
-	call GetEVRangeTextString
+	ld de, wPokedexStatus
+	lb bc, 1, 3 ; 3 digits
 	hlcoord 6, 14
-	call PlaceString
+	call PrintNum
 
 	; SPE EVs
 	ld a, [wTempMonSpdEV]
@@ -963,12 +957,10 @@ StatsScreen_PrintEVs:
 	ld c, a
 .speed_not_odd
 	push bc
-
-	; Print Spe EV ranges text
-	ld a, [wTempMonSpdEV]
-	call GetEVRangeTextString
-	hlcoord 15, 12
-	call PlaceString
+	ld de, wPokedexStatus
+	lb bc, 1, 3 ; 3 digits
+	hlcoord 14, 12
+	call PrintNum
 
 	; SpAtk EVs
 	ld a, [wTempMonSpclAtkEV]
@@ -982,12 +974,10 @@ StatsScreen_PrintEVs:
 	ld c, a
 .spc_not_odd
 	push bc
-
-	; Print SpAtk EV ranges text
-	ld a, [wTempMonSpclAtkEV]
-	call GetEVRangeTextString
-	hlcoord 15, 13
-	call PlaceString
+	ld de, wPokedexStatus
+	lb bc, 1, 3 ; 3 digits
+	hlcoord 14, 13
+	call PrintNum
 
 	; SpDef EVs
 	ld a, [wTempMonSpclDefEV]
@@ -1001,12 +991,10 @@ StatsScreen_PrintEVs:
 	ld c, a
 .spc_not_odd1
 	push bc
-
-	; Print SpDef EV ranges text
-	ld a, [wTempMonSpclDefEV]
-	call GetEVRangeTextString
-	hlcoord 15, 14
-	call PlaceString
+	ld de, wPokedexStatus
+	lb bc, 1, 3 ; 3 digits
+	hlcoord 14, 14
+	call PrintNum
 
 	pop bc
 	ld a, c
@@ -1016,35 +1004,13 @@ StatsScreen_PrintEVs:
 	ret
 
 .EffortValuesString:
-	db "EFFORT SCORES:@"
+	db "EFFORT VALUES:@"
 .EVstring1:	
-	db "HP /     SPE/@"
+	db "HP      SPE@"
 .EVstring2:
- 	db "ATK/     SPA/@"
+ 	db "ATK     SPA@"
 .EVstring3:
- 	db "DEF/     SPD/@"
-
-GetEVRangeTextString:
-	ld de, .EVMaxString
-	cp 252
-	ret z ; if equal to 252 use .EVMaxString
-	ld de, .EVLowString
-	cp 85 ; if less than 85 use .EVLowString or else keep going
-	ret c
-	ld de, .EVMediumString
-	cp 169 ; if less than 169 use .EVMediumString or else keep going
-	ret c
-	ld de, .EVHighString ; if 170 or more use .EVAverageString
-	ret
-
-.EVLowString:
-	db "MIN@" ;   0-63 EVs
-.EVMediumString:
-	db "MID@" ;  64-127 EVs
-.EVHighString:
-	db "HIGH@" ; 128-191 EVs
-.EVMaxString:
-	db "MAX@" ;     252 EVs
+ 	db "DEF     SPD@"
 
 StatsScreen_placeCaughtLocation:
 	ld de, .MetAtMapString
