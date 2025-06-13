@@ -174,6 +174,10 @@ if DEF(_DEBUG)
 	giveitem DOME_FOSSIL
 	giveitem HELIX_FOSSIL
 
+	; leaves
+	giveitem SILVER_LEAF
+	giveitem GOLD_LEAF
+
 	; intro events
 	addcellnum PHONE_MOM
 	setmapscene PLAYERS_HOUSE_1F, $1
