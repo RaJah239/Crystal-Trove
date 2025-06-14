@@ -929,6 +929,11 @@ StatsScreen_PrintEVs:
 	call PrintNum
 
 	; DEF EVs
+	; Print Def EV ranges text
+	ld a, [wTempMonDefEV]
+	cp 252
+	jr z, .print_text
+
 	ld a, [wTempMonDefEV]
 	ld [wPokedexStatus], a 
 	pop bc
@@ -944,7 +949,14 @@ StatsScreen_PrintEVs:
 	lb bc, 1, 3 ; 3 digits
 	hlcoord 6, 14
 	call PrintNum
+	jr .done
 
+.print_text:
+	ld de, .EVMaxString
+	hlcoord 6, 14
+	call PlaceString
+
+.done:
 	; SPE EVs
 	ld a, [wTempMonSpdEV]
 	ld [wPokedexStatus], a
@@ -1011,6 +1023,8 @@ StatsScreen_PrintEVs:
  	db "ATK     SPA@"
 .EVstring3:
  	db "DEF     SPD@"
+.EVMaxString:
+	db "MAX@" ;     252 EVs
 
 StatsScreen_placeCaughtLocation:
 	ld de, .MetAtMapString
