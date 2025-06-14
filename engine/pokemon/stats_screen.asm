@@ -1024,7 +1024,7 @@ StatsScreen_PrintEVs:
 .EVstring3:
  	db "DEF     SPD@"
 .EVMaxString:
-	db "MAX@" ;     252 EVs
+	db "<star><star><star>@" ;     252 EVs
 
 StatsScreen_placeCaughtLocation:
 	ld de, .MetAtMapString
