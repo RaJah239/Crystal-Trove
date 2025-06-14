@@ -768,6 +768,10 @@ SECTION "Fade System", ROMX
 INCLUDE "engine/gfx/fade.asm"
 
 
+SECTION "Restore Music", ROMX
+
+INCLUDE "home/restore_music.asm"
+
 ;SECTION "Stadium 2 Checksums", ROMX[$7DE0], BANK[$7F]
 ;
 ; The end of the ROM is taken up by checksums of the content, apparently used

@@ -188,3 +188,6 @@ SpecialsPointers::
 	add_special FadeInPalettes_EnableDynNoApply
 	add_special FadeOutPalettes
 	add_special TradebackNPC
+	add_special SaveMusic
+	add_special RestoreMusic
+	add_special DeleteSavedMusic
