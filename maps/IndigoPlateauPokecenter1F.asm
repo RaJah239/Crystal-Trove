@@ -6,6 +6,8 @@
 	const INDIGOPLATEAUPOKECENTER1F_GRAMPS
 	const INDIGOPLATEAUPOKECENTER1F_NATU
 	const INDIGOPLATEAUPOKECENTER1F_VIOLET
+	const INDIGOPLATEAUPOKECENTER1F_OFFICER1
+	const INDIGOPLATEAUPOKECENTER1F_OFFICER2
 
 IndigoPlateauPokecenter1F_MapScripts:
 	def_scene_scripts
@@ -472,6 +474,23 @@ NatuText:
 	text "NATU: Tweet…"
 	done
 
+VictoryRoadGateOfficer1Script:
+VictoryRoadGateOfficer2Script:
+	faceplayer
+	opentext
+	writetext RematchPreventionOfficerText
+	waitbutton
+	closetext
+	end
+
+RematchPreventionOfficerText:
+	text "The ELITE FOUR are"
+	line "out training."
+
+	para "A challenge cannot"
+	line "be issued now."
+	done
+
 IndigoPlateauPokecenter1F_MapEvents:
 	def_warp_events
 	warp_event  5, 13, ROUTE_23, 1
@@ -493,3 +512,5 @@ IndigoPlateauPokecenter1F_MapEvents:
 	object_event  1,  9, SPRITE_GRAMPS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, TeleportGuyScript, -1
 	object_event  0,  9, SPRITE_NATU, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, NatuScript, -1
 	object_event  5, 10, SPRITE_POKEFAN_F, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_PINK, OBJECTTYPE_SCRIPT, 0, VioletScript, -1
+	object_event 16,  8, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, VictoryRoadGateOfficer1Script, EVENT_NO_E4_REMATCH_UNTIL_RED_IS_BEATEN
+	object_event 17,  8, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, VictoryRoadGateOfficer2Script, EVENT_NO_E4_REMATCH_UNTIL_RED_IS_BEATEN

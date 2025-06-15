@@ -62,6 +62,7 @@ LancesRoomLanceScript:
 	dontrestartmapmusic
 	reloadmapafterbattle
 	setevent EVENT_BEAT_CHAMPION_LANCE
+	clearevent EVENT_NO_E4_REMATCH_UNTIL_RED_IS_BEATEN
 	opentext
 	writetext LanceBattleAfterText
 	waitbutton
