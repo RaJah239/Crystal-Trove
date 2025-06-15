@@ -19,6 +19,7 @@ Red:
 	startbattle
 	dontrestartmapmusic
 	reloadmapafterbattle
+	setevent EVENT_NO_E4_REMATCH_UNTIL_RED_IS_BEATEN
 	special FadeOutMusic
 	opentext
 	writetext RedLeavesText
