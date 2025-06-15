@@ -228,7 +228,11 @@ endc
 PlayersHousePCScript:
 	opentext
 	special PlayersHousePC
+	iftrue .Warp
 	closetext
+	end
+.Warp:
+	warp NONE, 0, 0
 	end
 
 PlayersRadioText1:
