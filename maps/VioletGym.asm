@@ -24,6 +24,8 @@ VioletGymFalknerScript:
 	opentext
 	checkevent EVENT_BEAT_FALKNER
 	iftrue .FightDone
+	checkevent EVENT_GOT_LANTERN
+    iffalse .TrainAtTheSproutTower
 	writetext FalknerIntroText
 	waitbutton
 	closetext
@@ -56,6 +58,12 @@ VioletGymFalknerScript:
 	waitbutton
 	closetext
 	end
+
+.TrainAtTheSproutTower
+    writetext EarnElderLisRecognitionText
+    waitbutton
+    closetext
+    end
 
 .SpeechAfterTM:
 	writetext FalknerFightDoneText
@@ -120,6 +128,22 @@ VioletGymStatue:
 .Beaten:
 	gettrainername STRING_BUFFER_4, FALKNER, FALKNER1
 	jumpstd GymStatue2Script
+
+EarnElderLisRecognitionText:
+	text "You… you're a new"
+	line "trainer right?"
+
+	para "You may not be"
+	line "prepared for your"
+	cont "first gym match."
+
+	para "North of my gym" 
+	line "is SPROUT TOWER."
+
+	para "Return after you"
+	line "have earned ELDER"
+	cont "LI's recognition."
+	done
 
 FalknerIntroText:
 	text "I'm FALKNER, the"
