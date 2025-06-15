@@ -31,18 +31,18 @@ BlackthornCitySantosCallback:
 	endcallback
 
 BlackthornSuperNerdScript:
-	faceplayer
-	opentext
-	checkevent EVENT_BEAT_CLAIR
-	iftrue .BeatClair
-	checkevent EVENT_CLEARED_RADIO_TOWER
-	iftrue .ClearedRadioTower
-	writetext Text_ClairIsOut
-	waitbutton
-	closetext
-	end
+    faceplayer
+    opentext
+    checkevent EVENT_BEAT_CLAIR
+    iftrue .BeatClair
+    checkevent EVENT_FOUGHT_SUICUNE
+    iftrue .FoughtSuicune
+    writetext Text_ClairIsOut
+    waitbutton
+    closetext
+    end
 
-.ClearedRadioTower:
+.FoughtSuicune:
 	writetext Text_ClairIsIn
 	waitbutton
 	closetext
