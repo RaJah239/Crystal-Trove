@@ -12,6 +12,8 @@ OlivineGymJasmineScript:
 	opentext
 	checkevent EVENT_BEAT_JASMINE
 	iftrue .FightDone
+    checkevent EVENT_BEAT_CHUCK
+    iffalse .LessThan6Badges
 	writetext Jasmine_SteelTypeIntro
 	waitbutton
 	closetext
@@ -40,6 +42,11 @@ OlivineGymJasmineScript:
 	waitbutton
 	closetext
 	end
+
+.LessThan6Badges:
+    writetext YouNeedSixBadgesToIssueAChallengeText
+    waitbutton
+    sjump .NoRoomForIronTail
 
 .GotIronTail:
 	writetext Jasmine_GoodLuck
@@ -117,6 +124,17 @@ Jasmine_SteelTypeIntro:
 
 	para "…Um… May I begin?"
 	done
+
+YouNeedSixBadgesToIssueAChallengeText:
+    text "Um… excuse me."
+
+    para "You need to own" 
+    line "six badges to"
+	cont "challenge me."
+
+    para "I'll readily take"
+    line "you on then."
+    done
 
 Jasmine_BetterTrainer:
 	text "…You are a better"
