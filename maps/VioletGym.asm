@@ -24,7 +24,7 @@ VioletGymFalknerScript:
 	opentext
 	checkevent EVENT_BEAT_FALKNER
 	iftrue .FightDone
-	checkevent EVENT_GOT_LANTERN
+	checkevent EVENT_GOT_MAREEP_CALL
     iffalse .TrainAtTheSproutTower
 	writetext FalknerIntroText
 	waitbutton
