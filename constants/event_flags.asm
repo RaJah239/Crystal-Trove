@@ -275,7 +275,8 @@
 	const EVENT_MET_TRADE_KID
 	const EVENT_COMPLETED_TRADE_WITH_TRADE_BACK_KID
 	const EVENT_NO_E4_REMATCH_UNTIL_RED_IS_BEATEN
-; Unused: next 333 events
+	const EVENT_PIKA_SURF
+; Unused: next 332 events
 
 	const_next 600
 ; Kurt Apricorn events
