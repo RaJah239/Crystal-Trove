@@ -60,7 +60,7 @@ if DEF(_DEBUG)
 	giveitem DONPHAN_CALL
 	giveitem LANTURN_CALL
 	giveitem KINGDRA_CALL
-	giveitem GEYSER_BOOTS
+	giveitem SEAKING_CALL
 
 	; good party
 	givepoke MEW, 99, LEFTOVERS
