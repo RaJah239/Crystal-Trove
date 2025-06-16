@@ -146,7 +146,6 @@ PokemonActionSubmenu:
 	dbw MONMENUITEM_MILKDRINK,  MonMenu_Softboiled_MilkDrink
 	dbw MONMENUITEM_HEADBUTT,   MonMenu_Headbutt
 	dbw MONMENUITEM_ROCKSMASH,  MonMenu_RockSmash
-	dbw MONMENUITEM_SWEETSCENT, MonMenu_SweetScent
 	dbw MONMENUITEM_STATS,      OpenPartyStats
 	dbw MONMENUITEM_SWITCH,     SwitchPartyMons
 	dbw MONMENUITEM_ITEM,       GiveTakePartyMonItem
@@ -869,12 +868,6 @@ MonMenu_RockSmash:
 
 .Fail:
 	ld a, $3
-	ret
-
-MonMenu_SweetScent:
-	farcall SweetScentFromMenu
-	ld b, $4
-	ld a, $2
 	ret
 
 ChooseMoveToDelete:
