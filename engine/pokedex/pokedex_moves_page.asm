@@ -1,6 +1,6 @@
 Field_Moves_List:
  	db TELEPORT, SOFTBOILED, MILK_DRINK, \
- 		HEADBUTT, ROCK_SMASH, SWEET_SCENT, DIG,\
+ 		HEADBUTT, ROCK_SMASH, DIG,\
  		FLY
  Field_Moves_Method_List:
  ; 0 means lvl-up only
