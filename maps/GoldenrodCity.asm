@@ -20,7 +20,6 @@ GoldenrodCity_MapScripts:
 
 	def_callbacks
 	callback MAPCALLBACK_NEWMAP, GoldenrodCityFlypointAndFloriaCallback
-	callback MAPCALLBACK_OBJECTS, GoldenrodCityMoveTutorCallback
 
 GoldenrodCityFlypointAndFloriaCallback:
 	setflag ENGINE_FLYPOINT_GOLDENROD
@@ -31,36 +30,21 @@ GoldenrodCityFlypointAndFloriaCallback:
 .FloriaDone:
 	endcallback
 
-GoldenrodCityMoveTutorCallback:
-	checkevent EVENT_BEAT_ELITE_FOUR
-	iffalse .MoveTutorDone
-	checkitem COIN_CASE
-	iffalse .MoveTutorDisappear
-	readvar VAR_WEEKDAY
-	ifequal WEDNESDAY, .MoveTutorAppear
-	ifequal SATURDAY, .MoveTutorAppear
-.MoveTutorDisappear:
-	disappear GOLDENRODCITY_MOVETUTOR
-	endcallback
-
-.MoveTutorAppear:
-	checkflag ENGINE_DAILY_MOVE_TUTOR
-	iftrue .MoveTutorDone
-	appear GOLDENRODCITY_MOVETUTOR
-.MoveTutorDone:
-	endcallback
-
 MoveTutorScript:
 	faceplayer
 	opentext
-	writetext GoldenrodCityMoveTutorAskTeachAMoveText
+	special DisplayCoinCaseBalance
+	checkevent EVENT_MET_GOLDENROD_MOVE_TUTOR
+	iftrue .WantMeToTeachAGreatMove
+	writetext GoldenrodCityMoveTutorIntroText
+	setevent EVENT_MET_GOLDENROD_MOVE_TUTOR
+	waitbutton
+.WantMeToTeachAGreatMove
+	writetext GoldenrodCityMoveTutorAskToTeachText
 	yesorno
 	iffalse .Refused
 	special DisplayCoinCaseBalance
-	writetext GoldenrodCityMoveTutorAsk4000CoinsOkayText
-	yesorno
-	iffalse .Refused2
-	checkcoins 4000
+	checkcoins 9999
 	ifequal HAVE_LESS, .NotEnoughMoney
 	writetext GoldenrodCityMoveTutorWhichMoveShouldITeachText
 	loadmenu .MoveMenuHeader
@@ -69,28 +53,28 @@ MoveTutorScript:
 	ifequal MOVETUTOR_FLAMETHROWER, .Flamethrower
 	ifequal MOVETUTOR_THUNDERBOLT, .Thunderbolt
 	ifequal MOVETUTOR_ICE_BEAM, .IceBeam
-	sjump .Incompatible
+	sjump .Cancel
 
 .Flamethrower:
 	setval MOVETUTOR_FLAMETHROWER
 	writetext GoldenrodCityMoveTutorMoveText
 	special MoveTutor
 	ifequal FALSE, .TeachMove
-	sjump .Incompatible
+	sjump .Cancel
 
 .Thunderbolt:
 	setval MOVETUTOR_THUNDERBOLT
 	writetext GoldenrodCityMoveTutorMoveText
 	special MoveTutor
 	ifequal FALSE, .TeachMove
-	sjump .Incompatible
+	sjump .Cancel
 
 .IceBeam:
 	setval MOVETUTOR_ICE_BEAM
 	writetext GoldenrodCityMoveTutorMoveText
 	special MoveTutor
 	ifequal FALSE, .TeachMove
-	sjump .Incompatible
+	sjump .Cancel
 
 .MoveMenuHeader:
 	db MENU_BACKUP_TILES ; flags
@@ -112,38 +96,19 @@ MoveTutorScript:
 	closetext
 	end
 
-.Refused2:
-	writetext GoldenrodCityMoveTutorHmTooBadText
-	waitbutton
-	closetext
-	end
-
 .TeachMove:
-	writetext GoldenrodCityMoveTutorIfYouUnderstandYouveMadeItText
-	promptbutton
-	takecoins 4000
+	special DisplayCoinCaseBalance
+	takecoins 9999
 	waitsfx
 	playsound SFX_TRANSACTION
 	special DisplayCoinCaseBalance
-	writetext GoldenrodCityMoveTutorFarewellKidText
+	writetext GoldenrodCityMoveTutorComeBackAnytimeText
 	waitbutton
 	closetext
-	readvar VAR_FACING
-	ifequal LEFT, .WalkAroundPlayer
-	applymovement GOLDENRODCITY_MOVETUTOR, GoldenrodCityMoveTutorEnterGameCornerMovement
-	sjump .GoInside
-
-.WalkAroundPlayer:
-	applymovement GOLDENRODCITY_MOVETUTOR, GoldenrodCityMoveTutorWalkAroundPlayerThenEnterGameCornerMovement
-.GoInside:
-	playsound SFX_ENTER_DOOR
-	disappear GOLDENRODCITY_MOVETUTOR
-	setflag ENGINE_DAILY_MOVE_TUTOR
-	waitsfx
 	end
 
-.Incompatible:
-	writetext GoldenrodCityMoveTutorBButText
+.Cancel:
+	writetext GoldenrodCityMoveTutorAnytimeThenText
 	waitbutton
 	closetext
 	end
@@ -262,20 +227,6 @@ GoldenrodCityPokecenterSign:
 
 GoldenrodCityFlowerShopSign:
 	jumptext GoldenrodCityFlowerShopSignText
-
-GoldenrodCityMoveTutorEnterGameCornerMovement:
-	step RIGHT
-	step RIGHT
-	step UP
-	step_end
-
-GoldenrodCityMoveTutorWalkAroundPlayerThenEnterGameCornerMovement:
-	step DOWN
-	step RIGHT
-	step RIGHT
-	step UP
-	step UP
-	step_end
 
 GoldenrodCityYoungster1Script:
 	faceplayer
@@ -523,20 +474,18 @@ GoldenrodCityFlowerShopSignText:
 	line "FLOWER SHOP"
 	done
 
-GoldenrodCityMoveTutorAskTeachAMoveText:
+GoldenrodCityMoveTutorIntroText:
 	text "I can teach your"
 	line "#MON amazing"
 
 	para "moves if you'd"
-	line "like."
-
-	para "Should I teach a"
-	line "new move?"
+	line "like but each will"
+	cont "cost 9,999 coins."
 	done
 
-GoldenrodCityMoveTutorAsk4000CoinsOkayText:
-	text "It will cost you"
-	line "4000 coins. Okay?"
+GoldenrodCityMoveTutorAskToTeachText:
+	text "Teach a move for"
+	line "9,999 coins?"
 	done
 
 GoldenrodCityMoveTutorAwwButTheyreAmazingText:
@@ -545,35 +494,16 @@ GoldenrodCityMoveTutorAwwButTheyreAmazingText:
 	done
 
 GoldenrodCityMoveTutorWhichMoveShouldITeachText:
-	text "Wahahah! You won't"
-	line "regret it!"
-
-	para "Which move should"
+	text "Which move should"
 	line "I teach?"
 	done
 
-GoldenrodCityMoveTutorHmTooBadText:
-	text "Hm, too bad. I'll"
-	line "have to get some"
-	cont "cash from home…"
+GoldenrodCityMoveTutorAnytimeThenText:
+	text "Another time then…"
 	done
 
-GoldenrodCityMoveTutorIfYouUnderstandYouveMadeItText:
-	text "If you understand"
-	line "what's so amazing"
-
-	para "about this move,"
-	line "you've made it as"
-	cont "a trainer."
-	done
-
-GoldenrodCityMoveTutorFarewellKidText:
-	text "Wahahah!"
-	line "Farewell, kid!"
-	done
-
-GoldenrodCityMoveTutorBButText:
-	text "B-but…"
+GoldenrodCityMoveTutorComeBackAnytimeText:
+	text "Come back anytime!"
 	done
 
 GoldenrodCityMoveTutorYouDontHaveEnoughCoinsText:

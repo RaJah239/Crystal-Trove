@@ -54,6 +54,7 @@ CianwoodGymChuckScript:
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_CHUCK
+	clearevent EVENT_GOLDENROD_CITY_MOVE_TUTOR
 	opentext
 	writetext GetStormBadgeText
 	playsound SFX_GET_BADGE
