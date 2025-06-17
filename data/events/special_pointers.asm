@@ -191,3 +191,4 @@ SpecialsPointers::
 	add_special RestoreMusic
 	add_special DeleteSavedMusic
 	add_special MoveRelearner
+	add_special CoinsTMTrader
