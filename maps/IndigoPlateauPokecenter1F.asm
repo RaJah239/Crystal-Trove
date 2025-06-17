@@ -8,6 +8,7 @@
 	const INDIGOPLATEAUPOKECENTER1F_VIOLET
 	const INDIGOPLATEAUPOKECENTER1F_OFFICER1
 	const INDIGOPLATEAUPOKECENTER1F_OFFICER2
+	const INDIGOPLATEAUPOKECENTER1F_CHANSEY
 
 IndigoPlateauPokecenter1F_MapScripts:
 	def_scene_scripts
@@ -491,6 +492,9 @@ RematchPreventionOfficerText:
 	line "be issued now."
 	done
 
+IndigoPlateauPokecenterChanseyScript:
+	jumpstd ChanseyPokeCenterScript
+
 IndigoPlateauPokecenter1F_MapEvents:
 	def_warp_events
 	warp_event  5, 13, ROUTE_23, 1
@@ -514,3 +518,4 @@ IndigoPlateauPokecenter1F_MapEvents:
 	object_event  5, 10, SPRITE_POKEFAN_F, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_PINK, OBJECTTYPE_SCRIPT, 0, VioletScript, -1
 	object_event 16,  8, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, VictoryRoadGateOfficer1Script, EVENT_NO_E4_REMATCH_UNTIL_RED_IS_BEATEN
 	object_event 17,  8, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, VictoryRoadGateOfficer2Script, EVENT_NO_E4_REMATCH_UNTIL_RED_IS_BEATEN
+	object_event  4,  7, SPRITE_CHANSEY, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, IndigoPlateauPokecenterChanseyScript, -1
