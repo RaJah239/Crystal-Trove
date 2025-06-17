@@ -93,6 +93,10 @@ ClairGroup:
 	db -1 ; end
 
 PokemonProfGroup:
+	; OAK1 (1)
+	db "OAK@", TRAINERTYPE_NORMAL
+	db 10, TAUROS
+	db -1 ; end
 
 WillGroup:
 	; WILL (1)
@@ -2172,6 +2176,98 @@ KrisGroup:
 	; KRIS (1)
 	db "KRIS@", TRAINERTYPE_NORMAL
 	db 10, CYNDAQUIL
-	db 10, TOTODILE
-	db 10, CHIKORITA
+	db -1 ; end
+
+GiovanniGroup:
+	; GIOVANNI1 (1)
+	db "GIOVANNI@", TRAINERTYPE_NORMAL
+	db 10, RHYHORN
+	db -1 ; end
+
+	; GIOVANNI2 (2)
+	db "GIOVANNI@", TRAINERTYPE_NORMAL
+	db 10, RHYDON
+	db -1 ; end
+
+ProtonGroup:
+	; PROTON1 (1)
+	db "PROTON@", TRAINERTYPE_NORMAL
+	db 10, KOFFING
+	db -1 ; end
+
+	; PROTON2 (2)
+	db "PROTON@", TRAINERTYPE_NORMAL
+	db 10, WEEZING
+	db -1 ; end
+
+PetrelGroup:
+	; PETREL1 (1)
+	db "PETREL@", TRAINERTYPE_NORMAL
+	db 10, GRIMER
+	db -1 ; end
+
+	; PETREL2 (2)
+	db "PETREL@", TRAINERTYPE_NORMAL
+	db 10, MUK
+	db -1 ; end
+
+ArianaGroup:
+	; ARIANA1 (1)
+	db "ARIANA@", TRAINERTYPE_NORMAL
+	db 10, EKANS
+	db -1 ; end
+
+	; ARIANA2 (2)
+	db "ARIANA@", TRAINERTYPE_NORMAL
+	db 10, ARBOK
+	db -1 ; end
+
+ArcherGroup:
+	; ARCHER1 (1)
+	db "ARCHER@", TRAINERTYPE_NORMAL
+	db 10, HOUNDOUR
+	db -1 ; end
+
+	; ARCHER2 (2)
+	db "ARCHER@", TRAINERTYPE_NORMAL
+	db 10, HOUNDOOM
+	db -1 ; end
+
+LoreleiGroup:
+	; LORELEI1 (1)
+	db "LORELEI@", TRAINERTYPE_NORMAL
+	db 10, SEEL
+	db -1 ; end
+
+	; LORELEI2 (2)
+	db "LORELEI@", TRAINERTYPE_NORMAL
+	db 10, DEWGONG
+	db -1 ; end
+
+AgathaGroup:
+	; AGATHA1 (1)
+	db "AGATHA@", TRAINERTYPE_NORMAL
+	db 10, GASTLY
+	db -1 ; end
+
+	; AGATHA2 (2)
+	db "AGATHA@", TRAINERTYPE_NORMAL
+	db 10, GENGAR
+	db -1 ; end
+
+MaximaGroup:
+	; MAXIMA1 (1)
+	db "MAXIMA@", TRAINERTYPE_NORMAL
+	db 10, TYRANITAR
+	db -1 ; end
+
+	; MAXIMA2 (2)
+	db "MAXIMA@", TRAINERTYPE_NORMAL
+	db 10, DRAGONITE
+	db -1 ; end
+
+ScarletGroup:
+	; SCARLET1 (1)
+	db "SCARLET@", TRAINERTYPE_NORMAL
+	db 10, CLEFAIRY
 	db -1 ; end
