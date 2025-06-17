@@ -192,3 +192,4 @@ SpecialsPointers::
 	add_special MoveRelearner
 	add_special CoinsTMTrader
 	add_special CianwoodPhotograph
+	add_special EggMaster

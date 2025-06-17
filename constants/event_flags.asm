@@ -285,7 +285,8 @@
 	const EVENT_ROUTE_42_ECRUTEAKGATE_OFFICER_BLOCKER
 	const EVENT_GOLDENROD_GO_EXPLORE_THE_CITY_BLOCKER
 	const EVENT_MET_GOLDENROD_MOVE_TUTOR
-; Unused: next 324 events
+	const EVENT_MET_EGG_TUTOR
+; Unused: next 323 events
 
 	const_next 600
 ; Kurt Apricorn events
