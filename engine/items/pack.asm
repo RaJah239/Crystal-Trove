@@ -1714,17 +1714,23 @@ Pack_InterpretJoypad:
 	ret
 
 .start
+	call CheckDialogueMode
+	jr z, .skip1
 	ld hl, Text_SortItems
 	call PrintText
 	ld c, 30
 	call DelayFrames
+.skip1
 	farcall SortItemsInBag
+	call CheckDialogueMode
+	jr z, .skip2
 	ld de, SFX_TALLY
 	call WaitPlaySFX
 	ld hl, Text_SortComplete
 	call PrintText
 	ld c, 30
 	call DelayFrames
+.skip2
 	scf
 	ret
 
