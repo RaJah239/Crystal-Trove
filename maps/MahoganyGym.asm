@@ -38,6 +38,9 @@ MahoganyGymPryceScript:
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_PRYCE
+	clearevent EVENT_ROUTE_38_ECRUTEAKGATE_OFFICER
+	setevent EVENT_ROUTE_38_ECRUTEAKGATE_OFFICER_BLOCKER
+	setmapscene ROUTE_38_ECRUTEAK_GATE, SCENE_ROUTE38ECRUTEAKGATE_NOOP
 	opentext
 	writetext Text_ReceivedGlacierBadge
 	playsound SFX_GET_BADGE

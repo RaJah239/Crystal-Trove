@@ -278,7 +278,9 @@
 	const EVENT_PIKA_SURF
 	const EVENT_RADIO_TOWER_5F_DIRECTOR_FAKE
 	const EVENT_RADIO_TOWER_5F_REAL_DIRECTOR
-; Unused: next 330 events
+	const EVENT_ROUTE_38_ECRUTEAKGATE_OFFICER
+	const EVENT_ROUTE_38_ECRUTEAKGATE_OFFICER_BLOCKER
+; Unused: next 328 events
 
 	const_next 600
 ; Kurt Apricorn events
