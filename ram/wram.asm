@@ -3194,8 +3194,9 @@ wMountMoonSquareSceneID::                         db
 wMobileTradeRoomSceneID::                         db
 wMobileBattleRoomSceneID::                        db
 wDayCareSceneID::                                 db
-wRoute38EcruteakGateSceneID::                     db ; Route 38 Ecruteak Gate blocker until defeating Pryce
-	ds 176
+wRoute38EcruteakGateSceneID::                     db
+wRoute42EcruteakGateSceneID::                     db
+	ds 175
 
 wLevelCap:: db
 
