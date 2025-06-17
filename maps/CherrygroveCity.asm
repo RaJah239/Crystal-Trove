@@ -9,6 +9,7 @@ CherrygroveCity_MapScripts:
 	def_scene_scripts
 	scene_script CherrygroveCityNoop1Scene, SCENE_CHERRYGROVECITY_NOOP
 	scene_script CherrygroveCityNoop2Scene, SCENE_CHERRYGROVECITY_MEET_RIVAL
+	scene_script CherrygroveCityNoop3Scene, SCENE_CHERRYGROVECITY_MEET_GUIDE_GENT
 
 	def_callbacks
 	callback MAPCALLBACK_NEWMAP, CherrygroveCityFlypointCallback
@@ -19,19 +20,24 @@ CherrygroveCityNoop1Scene:
 CherrygroveCityNoop2Scene:
 	end
 
+CherrygroveCityNoop3Scene:
+	end
+
 CherrygroveCityFlypointCallback:
 	setflag ENGINE_FLYPOINT_CHERRYGROVE
 	endcallback
 
+CherrygroveCityGuideMeetGentUp:
+	applymovement PLAYER, CherrygroveCityPlayerWalksToGuideGent1
+	sjump CherrygroveCityGuideGent
+
+CherrygroveRivalSceneSouthDown:
+	applymovement PLAYER, CherrygroveCityPlayerWalksToGuideGent2
 CherrygroveCityGuideGent:
+	turnobject PLAYER, UP
 	faceplayer
 	opentext
 	writetext GuideGentIntroText
-	yesorno
-	iffalse .No
-	sjump .Yes
-.Yes:
-	writetext GuideGentTourText1
 	waitbutton
 	closetext
 	playmusic MUSIC_SHOW_ME_AROUND
@@ -81,7 +87,7 @@ CherrygroveCityGuideGent:
 	applymovement CHERRYGROVECITY_GRAMPS, GuideGentMovement6
 	playsound SFX_ENTER_DOOR
 	disappear CHERRYGROVECITY_GRAMPS
-	clearevent EVENT_GUIDE_GENT_VISIBLE_IN_CHERRYGROVE
+	setscene SCENE_CHERRYGROVECITY_NOOP
 	waitsfx
 	end
 
@@ -92,11 +98,14 @@ CherrygroveCityGuideGent:
 .mapcardname
 	db "MAP CARD@"
 
-.No:
-	writetext GuideGentNoText
-	waitbutton
-	closetext
-	end
+CherrygroveCityPlayerWalksToGuideGent1:
+	step DOWN
+	step LEFT
+	step_end
+
+CherrygroveCityPlayerWalksToGuideGent2:
+	step LEFT
+	step_end
 
 CherrygroveRivalSceneSouth:
 	moveobject CHERRYGROVECITY_RIVAL, 39, 7
@@ -179,15 +188,7 @@ CherrygroveRivalSceneNorth:
 CherrygroveTeacherScript:
 	faceplayer
 	opentext
-	checkflag ENGINE_MAP_CARD
-	iftrue .HaveMapCard
-	writetext CherrygroveTeacherText_NoMapCard
-	waitbutton
-	closetext
-	end
-
-.HaveMapCard:
-	writetext CherrygroveTeacherText_HaveMapCard
+	writetext CherrygroveTeacherText_PokemonAreFunText
 	waitbutton
 	closetext
 	end
@@ -339,14 +340,8 @@ GuideGentIntroText:
 	line "one is a rookie"
 	cont "at some point!"
 
-	para "If you'd like, I"
-	line "can teach you a"
-	cont "few things."
-	done
-
-GuideGentTourText1:
-	text "OK, then!"
-	line "Follow me!"
+	para "Let me teach you"
+	line "a few things."
 	done
 
 GuideGentPokecenterText:
@@ -419,14 +414,6 @@ GuideGentPokegearText:
 	line "your journey!"
 	done
 
-GuideGentNoText:
-	text "Oh… It's something"
-	line "I enjoy doing…"
-
-	para "Fine. Come see me"
-	line "when you like."
-	done
-
 CherrygroveRivalText_Seen:
 	text "<……> <……> <……>"
 
@@ -480,17 +467,7 @@ CherrygroveRivalText_YouWon:
 	cont "trainer."
 	done
 
-CherrygroveTeacherText_NoMapCard:
-	text "Did you talk to"
-	line "the old man by the"
-	cont "#MON CENTER?"
-
-	para "He'll put a MAP of"
-	line "JOHTO on your"
-	cont "#GEAR."
-	done
-
-CherrygroveTeacherText_HaveMapCard:
+CherrygroveTeacherText_PokemonAreFunText:
 	text "When you're with"
 	line "#MON, going"
 	cont "anywhere is fun."
@@ -552,6 +529,8 @@ CherrygroveCity_MapEvents:
 	def_coord_events
 	coord_event 33,  6, SCENE_CHERRYGROVECITY_MEET_RIVAL, CherrygroveRivalSceneNorth
 	coord_event 33,  7, SCENE_CHERRYGROVECITY_MEET_RIVAL, CherrygroveRivalSceneSouth
+	coord_event 33,  6, SCENE_CHERRYGROVECITY_MEET_GUIDE_GENT, CherrygroveCityGuideMeetGentUp
+	coord_event 33,  7, SCENE_CHERRYGROVECITY_MEET_GUIDE_GENT, CherrygroveRivalSceneSouthDown
 
 	def_bg_events
 	bg_event 30,  8, BGEVENT_READ, CherrygroveCitySign
