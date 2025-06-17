@@ -192,3 +192,4 @@ SpecialsPointers::
 	add_special DeleteSavedMusic
 	add_special MoveRelearner
 	add_special CoinsTMTrader
+	add_special CianwoodPhotograph
