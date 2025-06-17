@@ -201,6 +201,7 @@ ItemNameOrder:
 ; NEXT POCKET
 ; Loot Items Pocket - 14 total
 ; Leaves
+	db CRYSTAL
 	db SILVER_LEAF
 	db GOLD_LEAF
 
@@ -262,11 +263,10 @@ ItemNameOrder:
 
 
 ; UNUSED ITEMS
-; Unused Items - 20 total
+; Unused Items - 19 total
 	db EGG_TICKET
 	db POKE_FLUTE
 	db ITEM_2D
-	db ITEM_78
 	db ITEM_87
 	db ITEM_88
 	db ITEM_8D
