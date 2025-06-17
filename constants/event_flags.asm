@@ -276,7 +276,9 @@
 	const EVENT_COMPLETED_TRADE_WITH_TRADE_BACK_KID
 	const EVENT_NO_E4_REMATCH_UNTIL_RED_IS_BEATEN
 	const EVENT_PIKA_SURF
-; Unused: next 332 events
+	const EVENT_RADIO_TOWER_5F_DIRECTOR_FAKE
+	const EVENT_RADIO_TOWER_5F_REAL_DIRECTOR
+; Unused: next 330 events
 
 	const_next 600
 ; Kurt Apricorn events
