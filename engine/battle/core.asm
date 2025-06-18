@@ -4073,6 +4073,21 @@ SpikesDamage:
 	cp FLYING
 	ret z
 
+	
+
+	; Floatmons aren't affected by Spikes.
+	push bc
+	ldh a, [hBattleTurn]
+	and a
+	ld a, [wBattleMonSpecies]
+	jr z, .ok2
+	ld a, [wEnemyMonSpecies]
+.ok2
+	ld hl, FloatMons
+	call IsInByteArray
+	pop bc
+	ret c
+
 	push bc
 
 	ld hl, BattleText_UserHurtBySpikes ; "hurt by SPIKES!"
@@ -4086,7 +4101,7 @@ SpikesDamage:
 
 	jp WaitBGMap
 
-.hl
+.hl ; apparently you can jp hl but you can't call hl
 	jp hl
 
 PursuitSwitch:
