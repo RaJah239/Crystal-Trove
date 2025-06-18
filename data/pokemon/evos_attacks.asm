@@ -352,7 +352,6 @@ PikachuEvosAttacks:
 	db 8, THUNDER_WAVE
 	db 11, QUICK_ATTACK
 	db 15, DOUBLE_TEAM
-	db 20, SLAM
 	db 26, THUNDERBOLT
 	db 33, AGILITY
 	db 41, THUNDER
@@ -922,7 +921,6 @@ BellsproutEvosAttacks:
 	db 23, ACID
 	db 30, SWEET_SCENT
 	db 37, RAZOR_LEAF
-	db 45, SLAM
 	db 0 ; no more level-up moves
 
 WeepinbellEvosAttacks:
@@ -939,7 +937,6 @@ WeepinbellEvosAttacks:
 	db 24, ACID
 	db 33, SWEET_SCENT
 	db 42, RAZOR_LEAF
-	db 54, SLAM
 	db 0 ; no more level-up moves
 
 VictreebelEvosAttacks:
@@ -1286,7 +1283,6 @@ OnixEvosAttacks:
 	db 23, HARDEN
 	db 27, RAGE
 	db 36, SANDSTORM
-	db 40, SLAM
 	db 0 ; no more level-up moves
 
 DrowzeeEvosAttacks:
@@ -1471,7 +1467,6 @@ LickitungEvosAttacks:
 	db 19, STOMP
 	db 25, WRAP
 	db 31, DISABLE
-	db 37, SLAM
 	db 43, SCREECH
 	db 0 ; no more level-up moves
 
@@ -1557,7 +1552,6 @@ TangelaEvosAttacks:
 	db 25, BIND
 	db 31, MEGA_DRAIN
 	db 34, STUN_SPORE
-	db 40, SLAM
 	db 46, GROWTH
 	db 0 ; no more level-up moves
 
@@ -1991,7 +1985,6 @@ DratiniEvosAttacks:
 	db 8, THUNDER_WAVE
 	db 15, TWISTER
 	db 22, DRAGON_RAGE
-	db 29, SLAM
 	db 36, AGILITY
 	db 43, SAFEGUARD
 	db 50, OUTRAGE
@@ -2008,7 +2001,6 @@ DragonairEvosAttacks:
 	db 8, THUNDER_WAVE
 	db 15, TWISTER
 	db 22, DRAGON_RAGE
-	db 29, SLAM
 	db 38, AGILITY
 	db 47, SAFEGUARD
 	db 56, OUTRAGE
@@ -2024,7 +2016,6 @@ DragoniteEvosAttacks:
 	db 8, THUNDER_WAVE
 	db 15, TWISTER
 	db 22, DRAGON_RAGE
-	db 29, SLAM
 	db 38, AGILITY
 	db 47, SAFEGUARD
 	db 55, WING_ATTACK
@@ -2197,7 +2188,6 @@ SentretEvosAttacks:
 	db 5, DEFENSE_CURL
 	db 11, QUICK_ATTACK
 	db 17, FURY_SWIPES
-	db 25, SLAM
 	db 33, REST
 	db 41, AMNESIA
 	db 0 ; no more level-up moves
@@ -2210,7 +2200,6 @@ FurretEvosAttacks:
 	db 5, DEFENSE_CURL
 	db 11, QUICK_ATTACK
 	db 18, FURY_SWIPES
-	db 28, SLAM
 	db 38, REST
 	db 48, AMNESIA
 	db 0 ; no more level-up moves
@@ -2507,7 +2496,6 @@ SudowoodoEvosAttacks:
 	db 19, LOW_KICK
 	db 28, ROCK_SLIDE
 	db 37, FAINT_ATTACK
-	db 46, SLAM
 	db 0 ; no more level-up moves
 
 PolitoedEvosAttacks:
@@ -2622,7 +2610,6 @@ WooperEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, WATER_GUN
 	db 1, TAIL_WHIP
-	db 11, SLAM
 	db 21, AMNESIA
 	db 31, EARTHQUAKE
 	db 41, RAIN_DANCE
@@ -2634,7 +2621,6 @@ QuagsireEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, WATER_GUN
 	db 1, TAIL_WHIP
-	db 11, SLAM
 	db 23, AMNESIA
 	db 35, EARTHQUAKE
 	db 47, RAIN_DANCE
@@ -2790,7 +2776,6 @@ SteelixEvosAttacks:
 	db 23, HARDEN
 	db 27, RAGE
 	db 36, SANDSTORM
-	db 40, SLAM
 	db 49, CRUNCH
 	db 0 ; no more level-up moves
 

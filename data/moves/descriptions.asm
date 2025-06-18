@@ -21,7 +21,7 @@ MoveDescriptions::
 	dw WhirlwindDescription
 	dw FlyDescription
 	dw BindDescription
-	dw SlamDescription
+	dw PowerGemDescription
 	dw VineWhipDescription
 	dw StompDescription
 	dw DoubleKickDescription
@@ -345,9 +345,9 @@ BindDescription:
 	db   "Binds the target"
 	line "for 2-5 turns.@"
 
-SlamDescription:
-	db   "Slams the foe with"
-	line "a tail, vine, etc.@"
+PowerGemDescription:
+	db "Attacks with a ray"
+	line "of gem-like light.@"
 
 VineWhipDescription:
 	db   "Whips the foe with"
