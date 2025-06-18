@@ -290,7 +290,9 @@
 	const EVENT_ILEX_FOREST_TINY_MUSHROOM2
 	const EVENT_ILEX_FOREST_LARGE_MUSHROOM
 	const EVENT_ROUTE_1_APRICORN
-; Unused: next 320 events
+	const EVENT_ROUTE_1_BERRY1
+	const EVENT_ROUTE_1_BERRY2
+; Unused: next 317 events
 
 	const_next 600
 ; Kurt Apricorn events
