@@ -4757,6 +4757,15 @@ DrawEnemyHUD:
 	ld [wTempMonLevel], a
 	call PrintLevel
 
+	; place floaticon
+	ld a, [wCurSpecies]
+	ld hl, FloatMons
+	call IsInByteArray
+	jr nc, .skip_floaticon
+	hlcoord 5, 1
+	ld [hl], "<float>"
+.skip_floaticon
+
 	ld hl, wEnemyMonHP
 	ld a, [hli]
 	ldh [hMultiplicand + 1], a
