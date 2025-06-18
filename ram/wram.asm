@@ -71,7 +71,7 @@ wMusicFade::
 wMusicFadeCount:: db
 wMusicFadeID:: dw
 
-	ds 5
+	ds 3
 
 wCryPitch:: dw
 wCryLength:: dw
@@ -160,8 +160,6 @@ wMovementObject::
 wMovementDataBank:: db
 wMovementDataAddress:: dw
 wIndexedMovement2Pointer:: dw
-
-	ds 2
 
 wContinueReadingMovement:: db
 
@@ -274,8 +272,6 @@ wGlobalAnimXOffset:: db
 
 wSpriteAnimDataEnd::
 
-	ds 11
-
 ; mobile data
 wc3cc:: ds 1
 wEmailAddress:: ds MOBILE_EMAIL_LENGTH
@@ -354,6 +350,9 @@ wEnemyMonNickname::  ds MON_NAME_LENGTH
 wBattleMonNickname:: ds MON_NAME_LENGTH
 
 wBattleMon:: battle_struct wBattleMon
+
+wBattleMonTempStat:: dw
+wEnemyMonTempStat:: dw
 
 	ds 2
 
