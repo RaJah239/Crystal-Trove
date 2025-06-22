@@ -134,7 +134,7 @@ ItemNames::
 	li "STAR PIECE"
 	li "BASEMENT KEY"
 	li "PASS"
-	li "TERU-SAMA"
+	li "EXP.SHARE"
 	li "TERU-SAMA"
 	li "ZINC"
 	li "CHARCOAL"

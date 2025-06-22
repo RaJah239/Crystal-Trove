@@ -135,7 +135,7 @@ ItemDescriptions:
 	dw StarPieceDesc
 	dw BasementKeyDesc
 	dw PassDesc
-	dw TeruSama9Desc
+	dw ExpShareDesc
 	dw TeruSama10Desc
 	dw ZincDesc
 	dw CharcoalDesc
@@ -787,8 +787,9 @@ PassDesc:
 	db   "A ticket for the"
 	next "MAGNET TRAIN.@"
 
-TeruSama9Desc:
-	db   "?@"
+ExpShareDesc:
+	db   "Shares battle EXP."
+	next "Points with Party.@"
 
 TeruSama10Desc:
 	db   "?@"

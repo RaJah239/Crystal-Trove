@@ -148,7 +148,7 @@ ItemEffects:
 	dw NoEffect            ; STAR_PIECE
 	dw BasementKeyEffect   ; BASEMENT_KEY
 	dw NoEffect            ; PASS
-	dw NoEffect            ; ITEM_87
+	dw ExpShareEffect      ; EXP_SHARE
 	dw NoEffect            ; ITEM_88
 	dw VitaminEffect       ; ZINC
 	dw NoEffect            ; CHARCOAL
@@ -3020,3 +3020,22 @@ TangelaCallEffect:
 	ld [wUsingHMItem], a
 	farcall SweetScentFromMenu
 	ret
+
+ExpShareEffect:
+	ld a, [wExpShareToggle]
+	xor 1
+	ld [wExpShareToggle], a
+	and a
+	ld hl, ExpShareToggleOn
+	jp nz, PrintText
+
+	ld hl, ExpShareToggleOff
+	jp PrintText
+
+ExpShareToggleOff:
+	text_far _ExpShareToggleOff
+	text_end
+ 
+ExpShareToggleOn:
+	text_far _ExpShareToggleOn
+	text_end

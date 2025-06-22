@@ -140,7 +140,7 @@
 	const STAR_PIECE   ; 84
 	const BASEMENT_KEY ; 85
 	const PASS         ; 86
-	const ITEM_87      ; 87
+	const EXP_SHARE    ; 87
 	const ITEM_88      ; 88
 	const ZINC         ; 89
 	const CHARCOAL     ; 8a

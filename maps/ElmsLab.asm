@@ -500,18 +500,14 @@ AideScript_GiveYouBalls:
 	opentext
 	writetext AideText_GiveYouBalls
 	promptbutton
-	getitemname STRING_BUFFER_4, POKE_BALL
-	scall AideScript_ReceiveTheBalls
-	giveitem POKE_BALL, 5
+	verbosegiveitem POKE_BALL, 5
 	writetext AideText_ExplainBalls
-	promptbutton
-	itemnotify
+	waitbutton
+	verbosegiveitem EXP_SHARE
+	writetext AideText_ExplainExpShare
+	waitbutton
 	closetext
 	setscene SCENE_ELMSLAB_NOOP
-	end
-
-AideScript_ReceiveTheBalls:
-	jumpstd ReceiveItemScript
 	end
 
 ElmsAideScript:
@@ -1264,13 +1260,12 @@ AideText_ExplainBalls:
 	line "at wild #MON"
 	cont "to get them."
 
-	para "More #MON means"
-	line "more training but"
-	
-	para "you have EXP.SHARE"
-	line "in your OPTIONS."
+	para "Take this too!"
+	line "It's EXP.SHARE!"
+	done
 
-	para "Set it ON to share"
+AideText_ExplainExpShare:
+	text "Set it ON to share"
 	line "EXP. Points with"
 	cont "all your #MON."
 	done
