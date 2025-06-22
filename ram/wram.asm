@@ -1857,7 +1857,7 @@ wGBPrinterBrightness::
 	db
 wOptions2::
 ; bit 1: trival calls off/on
-; bit 2: exp all off/on
+; bit 2: running shoes off/on
 ; bit 3: minimal dialogue off/on
 	db
 	ds 2

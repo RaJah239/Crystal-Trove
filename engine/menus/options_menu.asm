@@ -2,7 +2,7 @@
 	const_def
 	const OPT_TEXT_SPEED    ; 0
 	const OPT_BATTLE_SCENE  ; 1
-	const OPT_EXP_SHARE     ; 2
+	const OPT_RUNNING_SHOES     ; 2
 	const OPT_SOUND         ; 3
 	const OPT_MINIMAL_DIALOGUE ; 4
 	const OPT_CASUAL_CALLS ; 5
@@ -79,7 +79,7 @@ StringOptions:
 	db "        :<LF>"
 	db "BATTLE SCENE<LF>"
 	db "        :<LF>"
-	db "EXP.SHARE<LF>"
+	db "RUNNING SHOES<LF>"
 	db "        :<LF>"
 	db "SOUND<LF>"
 	db "        :<LF>"
@@ -98,7 +98,7 @@ GetOptionPointer:
 ; entries correspond to OPT_* constants
 	dw Options_TextSpeed
 	dw Options_BattleScene
-	dw Options_ExpShare
+	dw Options_RunningShoes
 	dw Options_Sound
 	dw Options_MinimalDialogue
 	dw Options_CasualCalls
@@ -222,33 +222,33 @@ Options_BattleScene:
 .On:  db "ON @"
 .Off: db "OFF@"
 
-Options_ExpShare:
-	ld hl, wExpShareToggle
+Options_RunningShoes:
+	ld hl, wOptions2
 	ldh a, [hJoyPressed]
 	bit D_LEFT_F, a
 	jr nz, .LeftPressed
 	bit D_RIGHT_F, a
 	jr z, .NonePressed
-	bit EXP_SHARE, [hl]
+	bit RUNNING_SHOES, [hl]
 	jr nz, .ToggleOff
 	jr .ToggleOn
 
 .LeftPressed:
-	bit EXP_SHARE, [hl]
+	bit RUNNING_SHOES, [hl]
 	jr z, .ToggleOn
 	jr .ToggleOff
 
 .NonePressed:
-	bit EXP_SHARE, [hl]
+	bit RUNNING_SHOES, [hl]
 	jr nz, .ToggleOn
 
 .ToggleOff:
-	res EXP_SHARE, [hl]
+	res RUNNING_SHOES, [hl]
 	ld de, .Off
 	jr .Display
 
 .ToggleOn:
-	set EXP_SHARE, [hl]
+	set RUNNING_SHOES, [hl]
 	ld de, .On
 
 .Display:

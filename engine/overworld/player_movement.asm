@@ -321,7 +321,14 @@ endc
 	ld a, [wCurInput]
 	and B_BUTTON
 	jr nz, .walk
+
+	call RunningShoesState
+	jr nz, .runningshoesareactive
+	ld a, STEP_WALK
+	jr .walkinstead
+.runningshoesareactive:
 	ld a, STEP_RUN
+.walkinstead
 	call .DoStep
 	scf
 	ret
@@ -333,7 +340,13 @@ endc
 	ret
 
 .walk
+	call RunningShoesState
+	jr nz, .runningshoesareinactive
+	ld a, STEP_RUN
+	jr .runinstead
+.runningshoesareinactive:
 	ld a, STEP_WALK
+.runinstead:
 	call .DoStep
 	push af
 	ld a, [wWalkingDirection]
@@ -1052,4 +1065,9 @@ StopPlayerForEvent::
 	ld [hl], a
 	ld a, 0
 	ld [wPlayerTurningDirection], a
+	ret
+
+RunningShoesState:
+	ld a, [wOptions2]
+	bit RUNNING_SHOES, a
 	ret
