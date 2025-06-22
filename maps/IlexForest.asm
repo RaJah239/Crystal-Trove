@@ -942,12 +942,13 @@ IlexForestLargeMushroomScript:
 	giveitem BIG_MUSHROOM
 	getitemname STRING_BUFFER_3, BIG_MUSHROOM
 	iffalse .IlexForestNoRoomInBagForMushroom
+	disappear ILEXFOREST_L_MUSHROOM
 	opentext
 	writetext IlexForestFoundMushroomText
 	playsound SFX_ITEM
 	waitsfx
 	itemnotify
-	disappear ILEXFOREST_L_MUSHROOM
+
 	sjump .EndingThisMushroomScript
 
 .IlexForestParasBattle:
@@ -987,12 +988,12 @@ IlexForestTinyMushroomScript1:
 	getitemname STRING_BUFFER_3, BIG_MUSHROOM
 .SmallMushroon:
 	iffalse .IlexForestNoRoomInBagForMushroom
+	disappear ILEXFOREST_S_MUSHROOM1
 	opentext
 	writetext IlexForestFoundMushroomText
 	playsound SFX_ITEM
 	waitsfx
 	itemnotify
-	disappear ILEXFOREST_S_MUSHROOM1
 	sjump .EndingThisMushroomScript
 
 .IlexForestParasBattle:
@@ -1032,12 +1033,12 @@ IlexForestTinyMushroomScript2:
 	getitemname STRING_BUFFER_3, BIG_MUSHROOM
 .SmallMushroon:
 	iffalse .IlexForestNoRoomInBagForMushroom
+	disappear ILEXFOREST_S_MUSHROOM2
 	opentext
 	writetext IlexForestFoundMushroomText
 	playsound SFX_ITEM
 	waitsfx
 	itemnotify
-	disappear ILEXFOREST_S_MUSHROOM2
 	sjump .EndingThisMushroomScript
 
 .IlexForestParasBattle:
