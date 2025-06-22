@@ -4,6 +4,10 @@ CheckDialogueMode::
 	ret
 
 SkipIntroMode::
+if DEF(_DEBUG)
+ 	ld hl, wOptions2
+	set SKIP_INTRO, [hl]
+endc
 	ld a, [wOptions2]
 	bit SKIP_INTRO, a
 	ret
