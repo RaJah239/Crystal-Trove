@@ -205,6 +205,9 @@ EcruteakPokecenter1FGymGuideText:
 	line "acy. I know it!"
 	done
 
+EcruteakPokecenterSkipIntro:
+	jumpstd SkipIntroScript
+
 EcruteakPokecenter1F_MapEvents:
 	def_warp_events
 	warp_event  3,  7, ECRUTEAK_CITY, 6
@@ -214,6 +217,7 @@ EcruteakPokecenter1F_MapEvents:
 	def_coord_events
 
 	def_bg_events
+	bg_event 5,  2, BGEVENT_READ, EcruteakPokecenterSkipIntro
 
 	def_object_events
 	object_event  3,  1, SPRITE_NURSE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, EcruteakPokecenter1FNurseScript, -1
