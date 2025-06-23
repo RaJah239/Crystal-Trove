@@ -384,3 +384,7 @@ ChanseyCryText:
 	text "CHANSEY: Seyyyy!"
 	done
 
+SkipIntroText:
+	text "Skip this game's"
+	line "intro scenes?"
+	done
