@@ -319,8 +319,10 @@
 	const EVENT_ROUTE_37_APRICORN_1    ; RED_APRICORN
 	const EVENT_ROUTE_37_APRICORN_2    ; BLU_APRICORN
 	const EVENT_ROUTE_37_APRICORN_3    ; YLW_APRICORN
+	const EVENT_ROUTE_38_BERRY_1       ; BERRY
+	const EVENT_ROUTE_38_BERRY_2       ; MYSTERYBERRY
 
-; Unused: next 290 events
+; Unused: next 288 events
 
 	const_next 600
 ; Kurt Apricorn events
