@@ -334,7 +334,11 @@
 	const EVENT_ROUTE_45_BERRY_1       ; MYSTERYBERRY
 	const EVENT_ROUTE_45_BERRY_2       ; MIRACLEBERRY
 	const EVENT_ROUTE_45_BERRY_3       ; GOLD_BERRY
-; Unused: next 275 events
+	const EVENT_ROUTE_46_BERRY_1       ; PRZCUREBERRY
+	const EVENT_ROUTE_46_BERRY_2       ; BITTER_BERRY
+	const EVENT_ROUTE_46_BERRY_3       ; BERRY
+	const EVENT_ROUTE_46_BERRY_4       ; PSNCUREBERRY
+; Unused: next 271 events
 
 	const_next 600
 ; Kurt Apricorn events
