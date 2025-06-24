@@ -222,7 +222,7 @@ ItemNameOrder:
 	db OLD_AMBER
 
 ; NEXT POCKET
-; Key Items Pocket - 26 total
+; Key Items Pocket - 27 total
 ; Permanent Key Items
 ; Items that are possibly frequently used
 	db BICYCLE
@@ -246,6 +246,7 @@ ItemNameOrder:
 	db SEAKING_CALL
 
 ; Key Items that are possibly seldom used
+	db SHINY_CHARM
 	db CLEAR_BELL
 	db SILVER_WING
 	db RAINBOW_WING
@@ -264,11 +265,10 @@ ItemNameOrder:
 
 
 ; UNUSED ITEMS
-; Unused Items - 18 total
+; Unused Items - 17 total
 	db EGG_TICKET
 	db POKE_FLUTE
 	db ITEM_2D
-	db ITEM_88
 	db ITEM_8D
 	db ITEM_8E
 	db ITEM_91

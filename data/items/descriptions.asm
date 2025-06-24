@@ -136,7 +136,7 @@ ItemDescriptions:
 	dw BasementKeyDesc
 	dw PassDesc
 	dw ExpShareDesc
-	dw TeruSama10Desc
+	dw ShinyCharmDesc
 	dw ZincDesc
 	dw CharcoalDesc
 	dw BerryJuiceDesc
@@ -791,8 +791,9 @@ ExpShareDesc:
 	db   "Shares battle EXP."
 	next "Points with Party.@"
 
-TeruSama10Desc:
-	db   "?@"
+ShinyCharmDesc:
+	db "Raises chance of"
+	next "SHINY #MON.@"
 
 ZincDesc:
 	db   "Raises SPCL.DEF"
