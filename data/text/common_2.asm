@@ -1430,3 +1430,21 @@ _OakText5::
 _OakText5Min::
 	text "Alright…"
 	prompt
+
+_AboutText::
+	text "Crystal Trove aims"
+	line "to be a modified"
+
+	para "Generation Two"
+	line "#MON experience"
+
+	para "with QOL features,"
+	line "collecting all"
+	
+	para "#MON infinitely"
+	line "in one save file,"
+	
+	para "increased replay"
+	line "value; especially"
+	cont "in the post game."
+	prompt
