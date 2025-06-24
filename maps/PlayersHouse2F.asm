@@ -67,7 +67,7 @@ if DEF(_DEBUG)
 	; good party
 	givepoke MEW, 99, LEFTOVERS
 	givepoke SMEARGLE, 99, FOCUS_BAND
-	givepoke GYARADOS, 99, GOLD_BERRY
+	givepoke AERODACTYL, 99, GOLD_BERRY
 	givepoke DIGLETT, 17
 	givepoke DITTO, 5, METAL_POWDER
 	givepoke ABRA, 5, EVERSTONE
@@ -86,10 +86,10 @@ if DEF(_DEBUG)
 	loadmem wPartyMon1Moves+2, FLAMETHROWER
 	; overworld moves
 	loadmem wPartyMon1Moves+3, RECOVER
-	loadmem wPartyMon3Moves+0, CRUNCH
+	loadmem wPartyMon3Moves+0, ROCK_SLIDE
 	loadmem wPartyMon3Moves+1, EARTHQUAKE
-	loadmem wPartyMon3Moves+2, OUTRAGE
-	loadmem wPartyMon3Moves+3, SWORDS_DANCE
+	loadmem wPartyMon3Moves+2, SKY_ATTACK
+	loadmem wPartyMon3Moves+3, FLY
 	closetext
 
 	; tms for party
