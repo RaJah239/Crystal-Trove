@@ -3195,7 +3195,8 @@ wMobileBattleRoomSceneID::                        db
 wDayCareSceneID::                                 db
 wRoute38EcruteakGateSceneID::                     db
 wRoute42EcruteakGateSceneID::                     db
-	ds 175
+wRoute30SceneID::                                 db
+	ds 174
 
 wLevelCap:: db
 

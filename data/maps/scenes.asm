@@ -75,4 +75,5 @@ MapScenes::
 	scene_var DAY_CARE,                                    wDayCareSceneID
 	scene_var ROUTE_38_ECRUTEAK_GATE,                      wRoute38EcruteakGateSceneID
 	scene_var ROUTE_42_ECRUTEAK_GATE,                      wRoute42EcruteakGateSceneID
+	scene_var ROUTE_30,                                    wRoute30SceneID
 	db -1 ; end
