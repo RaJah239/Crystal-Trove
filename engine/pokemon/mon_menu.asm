@@ -1308,28 +1308,25 @@ PlaceMoveData:
 	jr nc, .special_category
 
 ; IF PHYSICAL
-	hlcoord 11, 13
+	hlcoord 10, 13
 	ld de, String_MovePhy
 	call PlaceString
-	jr .printed_category
+	jr .printed_effect_chance
 
 ; IF SPECIAL
 .special_category
-	hlcoord 11, 13
+	hlcoord 10, 13
 	ld de, String_MoveSpe
 	call PlaceString
-	jr .printed_category
+	jr .printed_effect_chance
 
 ; IF STATUS
 .status_move
-	hlcoord 11, 13
+	hlcoord 10, 13
 	ld de, String_MoveSta
 	call PlaceString
 
-.printed_category
-	hlcoord 10, 13
-	ld [hl], "/"
-	call PlaceString
+.printed_effect_chance
 
 ; Print move effect chance
 	ld a, [wCurSpecies]
@@ -1464,19 +1461,19 @@ String_MoveType_Top:
 String_MoveType_Bottom:
 	db "│       └@"
 String_MoveAtk:
-	db "POW/@"
+	db "Pow/@"
 String_MoveAcc:
-	db "ACC/@"
+	db "Acc/@"
 String_MoveEff:
-	db "EFF/@"
+	db "Eff/@"
 String_MoveNoPower:
 	db "---@"
 String_MovePhy:
-	db "PHYSICAL@"
+	db "<physical>Physical@"
 String_MoveSpe:
-	db "SPECIAL @"
+	db "<special>Special @"
 String_MoveSta:
-	db "OTHER   @"
+	db "<other>Other   @"
 
 PlaceMoveScreenArrows:
 	call PlaceMoveScreenLeftArrow

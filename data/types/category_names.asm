@@ -3,6 +3,15 @@ CategoryNames:
 	dw .Special
 	dw .Other
 
-.Physical: db "PHYSICAL@"
-.Special:  db "SPECIAL@"
-.Other:    db "OTHER@"
+.Physical: db "<physical>Physical@"
+.Special:  db "<special>Special @"
+.Other:    db "<other>Other   @"
+
+BattleCategoryNames:
+	dw .Physical
+	dw .Special
+	dw .Other
+
+.Physical: db "<physical>@"
+.Special:  db "<special>@"
+.Other:    db "<other>@"

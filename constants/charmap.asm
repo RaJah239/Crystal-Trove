@@ -139,10 +139,15 @@
 	charmap "└",         $be
 	charmap "┘",         $bf
 
+
+	charmap "<physical>", $c6
+	charmap "<special>",$c7
+	charmap "<other>",   $c8
 	charmap "<%>",       $c9 ; Percent symbol
 	charmap "<⁂>",      $ca
 	charmap "<star>",    $cb
 	charmap "<float>",   $cc
+	charmap "<boldp>",   $cd
 	charmap "′",         $ce
 	charmap "″",         $cf
 
