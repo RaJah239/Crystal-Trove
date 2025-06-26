@@ -4726,7 +4726,7 @@ PrintPlayerHUD:
 	farcall CheckShininess
 	jr nc, .not_own_shiny
 	ld a, "<⁂>"
-	hlcoord 19, 8
+	hlcoord 18, 8
 	ld [hl], a
 
 .not_own_shiny
@@ -4740,7 +4740,7 @@ PrintPlayerHUD:
 	ld a, "♀"
 
 .got_gender_char
-	hlcoord 18, 8 ;  where the player's mon gender is printed
+	hlcoord 17, 8 ;  where the player's mon gender is printed
 	ld [hl], a
 	hlcoord 11, 8  ;  where the player's mon status is printed
 
@@ -4750,7 +4750,7 @@ PrintPlayerHUD:
 	ld a, c
 	and a 
 
-	hlcoord 15, 8 ; where the player mon's lvl is printed
+	hlcoord 14, 8 ; where the player mon's lvl is printed
 	ld a, [wBattleMonLevel]
 	ld [wTempMonLevel], a
 	jp PrintLevel
