@@ -41,7 +41,7 @@ ShowOTTrainerMonsRemaining:
 
 	; Clear caught ball icon if next mon wasn't caught yet
 	hlcoord 1, 2
-	ld [hl], " "  ; space tile (blank)
+	ld [hl], $6d  ; black bar tile
 
 	; ldpixel wPlaceBallsX, 9, 4
 	ld hl, wPlaceBallsX
