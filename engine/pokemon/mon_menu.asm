@@ -1348,7 +1348,7 @@ PlaceMoveData:
 	jr .skip_null_chance
 
 .if_null_chance
-	ld de, String_MoveNoPower
+	ld de, String_MoveBlank
 	ld bc, 3
 	hlcoord 5, 13
 	call PlaceString
@@ -1358,10 +1358,29 @@ PlaceMoveData:
 ; Print move accuracy
 	ld a, [wCurSpecies]
 	ld bc, MOVE_LENGTH
+	ld hl, (Moves + MOVE_EFFECT) - MOVE_LENGTH
+	call AddNTimes
+	ld a, BANK(Moves)
+	call GetFarByte
+
+	ld hl, PerfectAccuracyEffects
+	call IsInByteArray
+	jr nc, .imperfect
+
+	ld de, String_MoveBlank
+	ld bc, 3
+	hlcoord 5, 12
+	call PlaceString
+	jr .done_accuracy
+
+.imperfect
+	ld a, [wCurSpecies]
+	ld bc, MOVE_LENGTH
 	ld hl, (Moves + MOVE_ACC) - MOVE_LENGTH
 	call AddNTimes
 	ld a, BANK(Moves)
 	call GetFarByte
+
 	Call ConvertPercentages
 	ld [wBuffer1], a
 	ld de, wBuffer1
@@ -1371,6 +1390,7 @@ PlaceMoveData:
 	ld [hl], "<%>" ; displays percent symbol
 	hlcoord 7, 8
 
+.done_accuracy:
 ; Print move type
 	ld a, [wCurSpecies]
 	ld b, a
@@ -1395,7 +1415,7 @@ PlaceMoveData:
 	jr .description
 
 .no_power
-	ld de, String_MoveNoPower
+	ld de, String_MoveBlank
 	call PlaceString
 
 ; Print move description
@@ -1466,7 +1486,7 @@ String_MoveAcc:
 	db "Acc/@"
 String_MoveEff:
 	db "Eff/@"
-String_MoveNoPower:
+String_MoveBlank:
 	db "---@"
 String_MovePhy:
 	db "<physical>Physical@"
