@@ -74,12 +74,12 @@ if DEF(_DEBUG)
 	givepoke ABRA, 5, EVERSTONE
 
 	; first mon shiny
-	loadmem wPartyMon1DVs+0, $ea
-	loadmem wPartyMon1DVs+1, $aa
+	loadmem wPartyMon1DVs+0, $ff
+	loadmem wPartyMon1DVs+1, $ff
 
 	; third mon shiny
-	loadmem wPartyMon3DVs+0, $ea
-	loadmem wPartyMon3DVs+1, $aa
+	loadmem wPartyMon3DVs+0, $ff
+	loadmem wPartyMon3DVs+1, $ff
 
 	; useful moves
 	loadmem wPartyMon1Moves+0, ICE_BEAM
@@ -172,14 +172,17 @@ if DEF(_DEBUG)
 	giveitem MOON_BALL, MAX_ITEM_STACK
 	giveitem LOVE_BALL, MAX_ITEM_STACK
 
+	; crystal
+	giveitem CRYSTAL, MAX_ITEM_STACK
+
 	; fossils
 	giveitem OLD_AMBER
 	giveitem DOME_FOSSIL
 	giveitem HELIX_FOSSIL
 
 	; leaves
-	giveitem SILVER_LEAF
-	giveitem GOLD_LEAF
+	giveitem SILVER_LEAF, MAX_ITEM_STACK
+	giveitem GOLD_LEAF, MAX_ITEM_STACK
 
 	; intro events
 	addcellnum PHONE_MOM
