@@ -664,6 +664,11 @@ MartPlaceInBagQuantity:
 .get_battle_pocket
 	ld hl, wNumBattles
 .check_bag
+	call CheckQuantityInBag
+	farcall PlaceItemInBagQuantity
+	ret
+
+CheckQuantityInBag:
 	ld a, [wCurItem]
 	ld c, a
 	ld b, $0
@@ -690,9 +695,35 @@ MartPlaceInBagQuantity:
 	ld a, b
 	ld [wMenuSelectionQuantity], a
 	and a
-
-	farcall PlaceItemInBagQuantity
 	ret
+
+CrystalCountInBag:
+	; Place a text box of size 1x7 at 11, 0.
+	hlcoord 11, 0
+	ld b, 1
+	ld c, 7
+	call Textbox
+	hlcoord 12, 0
+	ld de, CrystalString
+	call PlaceString
+
+	ld a, CRYSTAL
+	ld [wCurItem], a
+	ld hl, wNumLoot
+	call CheckItem
+
+	call CheckQuantityInBag
+
+	hlcoord 14, 1
+	ld [hl], "×"
+	inc hl
+	ld de, wMenuSelectionQuantity
+	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
+	call PrintNum
+	ret
+
+CrystalString:
+	db "Crystal@"
 
 HerbShopLadyIntroText:
 	text_far _HerbShopLadyIntroText
