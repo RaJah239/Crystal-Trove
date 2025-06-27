@@ -4736,7 +4736,7 @@ PrintPlayerHUD:
 	call IsInByteArray
 	jr nc, .skip_floaticon
 	hlcoord 19, 8
-	ld [hl], "<float>"
+	ld [hl], $72
 .skip_floaticon:
 
 	ld a, [wBattleMonItem]
@@ -4858,7 +4858,7 @@ DrawEnemyHUD:
 	call IsInByteArray
 	jr nc, .skip_floaticon
 	hlcoord 10, 1
-	ld [hl], "<float>"
+	ld [hl], $72
 .skip_floaticon
 
 	ld hl, wEnemyMonHP
