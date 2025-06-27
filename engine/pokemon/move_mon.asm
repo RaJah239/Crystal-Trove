@@ -856,6 +856,10 @@ String_Egg:
 	db "EGG@"
 
 RemoveMonFromParty:
+	jr RemoveMonFromPartyPartial
+	jp CloseSRAM
+
+RemoveMonFromPartyPartial:
 	ld hl, wPartyCount
 
 	ld a, [hl]
@@ -956,6 +960,14 @@ RemoveMonFromParty:
 	cp b
 	jr nz, .loop2
 .close_sram
+	ret
+
+AdoptMonFromParty:
+	call RemoveMonFromPartyPartial
+	; here we set an event to tell the Day Care Granddaughter took a Pokémon
+	ld de, EVENT_DAY_CARE_GRANDDAUGHTER_ADOPTS_AN_EGG
+	ld b, SET_FLAG
+	call EventFlagAction
 	jp CloseSRAM
 
 ComputeNPCTrademonStats:

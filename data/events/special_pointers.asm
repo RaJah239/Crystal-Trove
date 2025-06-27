@@ -193,6 +193,6 @@ SpecialsPointers::
 	add_special CoinsTMTrader
 	add_special CianwoodPhotograph
 	add_special EggMaster
-	add_special PlayerGivesAwayAPokemon
+	add_special PlayerGivesAwayAnEggForAdoption
 	add_special MoveTutor2
 	add_special CrystalCountInBag
