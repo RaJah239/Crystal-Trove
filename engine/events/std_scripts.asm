@@ -78,6 +78,26 @@ SkipIntroScript:
 	end
 
 ChanseyPokeCenterScript:
+	isdialogueminimal
+	iftrue .quickhealinstead
+	scall ChanseyCryPokePicScript
+	sjump .done
+.quickhealinstead:
+	scall ChanseyHealsOWScript
+	turnobject PLAYER, DOWN
+.done:
+	end
+
+ChanseyHealsOWScript:
+	scall ChanseyCryPokePicScript
+	special FadeOutPalettes
+	special LoadMapPalettes
+	playsound SFX_FULL_HEAL
+	special HealParty
+	special FadeInPalettes_EnableDynNoApply
+	end
+
+ChanseyCryPokePicScript:
 	faceplayer
 	reanchormap
 	pokepic CHANSEY
@@ -89,15 +109,6 @@ ChanseyPokeCenterScript:
 	farwritetext ChanseyCryText
 	pause 20
 	closetext
-	end
-
-ChanseyHealsOWScript:
-	scall ChanseyPokeCenterScript
-	special FadeOutPalettes
-	special LoadMapPalettes
-	playsound SFX_FULL_HEAL
-	special HealParty
-	special FadeInPalettes_EnableDynNoApply
 	end
 
 PokecenterNurseScript:
