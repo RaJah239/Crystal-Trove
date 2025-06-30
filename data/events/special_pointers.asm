@@ -196,3 +196,4 @@ SpecialsPointers::
 	add_special PlayerGivesAwayAnEggForAdoption
 	add_special MoveTutor2
 	add_special CrystalCountInBag
+	add_special NuggetCountInBag
