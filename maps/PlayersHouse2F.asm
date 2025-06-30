@@ -172,8 +172,10 @@ if DEF(_DEBUG)
 	giveitem MOON_BALL, MAX_ITEM_STACK
 	giveitem LOVE_BALL, MAX_ITEM_STACK
 
-	; crystal
+	; crystals
 	giveitem CRYSTAL, MAX_ITEM_STACK
+	; nuggets
+	giveitem NUGGET, MAX_ITEM_STACK
 
 	; fossils
 	giveitem OLD_AMBER
