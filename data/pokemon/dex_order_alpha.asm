@@ -69,6 +69,7 @@ AlphabeticalPokedexOrder:
 	db GASTLY
 	db GENGAR
 	db GEODUDE
+	db GHOLDENGO
 	db GIRAFARIG
 	db GLIGAR
 	db GLOOM

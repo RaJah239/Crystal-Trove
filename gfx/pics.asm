@@ -720,7 +720,8 @@ ScarletPic:          INCBIN "gfx/trainers/scarlet.2bpp.lz"
 ArianaPic:           INCBIN "gfx/trainers/ariana.2bpp.lz"
 ArcherPic:           INCBIN "gfx/trainers/archer.2bpp.lz"
 MaximaPic:           INCBIN "gfx/trainers/maxima.2bpp.lz"
-
+GholdengoFrontpic:   INCBIN "gfx/pokemon/gholdengo/front.animated.2bpp.lz"
+GholdengoBackpic:    INCBIN "gfx/pokemon/gholdengo/back.2bpp.lz"
 
 SECTION "Pics 20", ROMX
 
