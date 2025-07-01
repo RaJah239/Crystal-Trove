@@ -889,7 +889,7 @@ endr
 	db HIGH(65280), 40
 
 LureBallMultiplier:
-; multiply catch rate by 3 if this is a fishing rod battle
+; multiply catch rate by 5 if this is a fishing rod battle
 	ld a, [wBattleType]
 	cp BATTLETYPE_FISH
 	ret nz
@@ -897,6 +897,11 @@ LureBallMultiplier:
 	ld a, b
 	add a
 	jr c, .max
+
+rept 2
+	add b
+	jr c, .max
+endr
 
 	add b
 	jr nc, .done
