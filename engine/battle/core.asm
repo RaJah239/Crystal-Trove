@@ -525,8 +525,7 @@ DetermineMoveOrder:
 	call BattleRandom
 	cp e
 	jr nc, .weather_check
-	ld hl, BattleText_QuickClaw
-	call StdBattleTextbox
+	call QuickClawActivationAnimationAndText
 	jp .player_first
 
 .player_no_quick_claw
@@ -537,8 +536,7 @@ DetermineMoveOrder:
 	cp c
 	jr nc, .weather_check
 	call SetEnemyTurn
-	ld hl, BattleText_QuickClaw
-	call StdBattleTextbox
+	call QuickClawActivationAnimationAndText
 	jp .enemy_first
 
 .both_have_quick_claw
@@ -549,15 +547,13 @@ DetermineMoveOrder:
 	cp c
 	jr nc, .check_player_claw
 	call SetEnemyTurn
-	ld hl, BattleText_QuickClaw
-	call StdBattleTextbox
+	call QuickClawActivationAnimationAndText
 	jp .enemy_first
 .check_player_claw
 	call BattleRandom
 	cp e
 	jr nc, .weather_check
-	ld hl, BattleText_QuickClaw
-	call StdBattleTextbox
+	call QuickClawActivationAnimationAndText
 	jp .player_first
 	jr .weather_check
 
@@ -565,16 +561,14 @@ DetermineMoveOrder:
 	call BattleRandom
 	cp e
 	jr nc, .check_enemy_claw
-	ld hl, BattleText_QuickClaw
-	call StdBattleTextbox
+	call QuickClawActivationAnimationAndText
 	jp .player_first
 .check_enemy_claw
 	call BattleRandom
 	cp c
 	jr nc, .speed_check
 	call SetEnemyTurn
-	ld hl, BattleText_QuickClaw
-	call StdBattleTextbox
+	call QuickClawActivationAnimationAndText
 	jp .enemy_first
 	jr .weather_check
 
@@ -867,6 +861,18 @@ HandleEncore:
 	call SetPlayerTurn
 	ld hl, BattleText_TargetsEncoreEnded
 	jp StdBattleTextbox
+
+QuickClawActivationAnimationAndText:
+	call SwitchCoreItemRecoveryAnim
+	ld hl, BattleText_QuickClaw
+	call StdBattleTextbox
+	ret
+
+SwitchCoreItemRecoveryAnim:
+	call SwitchTurnCore
+	call ItemRecoveryAnim
+	call SwitchTurnCore
+	ret
 
 TryEnemyFlee:
 	ld a, [wBattleMode]
@@ -1575,9 +1581,7 @@ HandleMysteryberry:
 
 .skip_consumption
 	call GetItemName
-	call SwitchTurnCore
-	call ItemRecoveryAnim
-	call SwitchTurnCore
+	call SwitchCoreItemRecoveryAnim
 	ld hl, BattleText_UserRecoveredPPUsing
 	jp StdBattleTextbox
 
@@ -5188,13 +5192,7 @@ BattleMenuPKMN_Loop:
 	jp BattleMenu
 
 .GetMenu:
-	call IsMobileBattle
-	jr z, .mobile
 	farcall BattleMonMenu
-	ret
-
-.mobile
-	farcall MobileBattleMonMenu
 	ret
 
 Battle_StatsScreen:
@@ -5413,12 +5411,6 @@ CheckAmuletCoin:
 	ret
 
 MoveSelectionScreen:
-	call IsMobileBattle
-	jr nz, .not_mobile
-	farcall Mobile_MoveSelectionScreen
-	ret
-
-.not_mobile
 	ld hl, wEnemyMonMoves
 	ld a, [wMoveSelectionMenuType]
 	dec a
