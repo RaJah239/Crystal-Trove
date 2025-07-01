@@ -508,7 +508,7 @@ StatsScreen_PlaceFloatIcon:
 	ld hl, FloatMons
 	call IsInByteArray
 	ret nc
-	hlcoord 8, 6
+	hlcoord 7, 2
 	ld [hl], "<float>"
 	ret
 
