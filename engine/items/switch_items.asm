@@ -312,23 +312,31 @@ SortItemsInBag:
 ; Check if A is before or after C in the ItemNameOrder table
 	cp c
 	jr nc, .sortingOK
+	ld c, a
 
 ; Swap items
 	push bc
 	ld a, b
+	inc a
 	ld [wScrollingMenuCursorPosition], a
 	call SwitchItemsInBag
+	pop bc
+	push bc
+	ld b, 0
+.loop2
+	ld a, b
+	call GetSortingItemIndex
+	cp c
+	jr nc, .do_sort
+	inc b
+	jr .loop2
+.do_sort
+	ld a, b
 	ld [wScrollingMenuCursorPosition], a
 	call SwitchItemsInBag
 	pop bc
 
 ; Check if list index B is 0, if not, it means the item might be able to move one slot up in the list
-	ld a, b
-	and a
-	jr z, .innerLoop
-
-	dec b
-	jr .innerLoop
 .sortingOK
 	inc b
 	jr .outerLoop
