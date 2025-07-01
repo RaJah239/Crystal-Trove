@@ -257,7 +257,7 @@ BattleAnimations::
 	dw BattleAnim_VoltSwitch
 	assert_table_length NUM_ATTACKS + 1
 	dw BattleAnim_Dummy
-	dw BattleAnim_SweetScent2
+	dw BattleAnim_HeldItemTrigger
 	assert_table_length $100
 ; $100
 	dw BattleAnim_ThrowPokeBall
@@ -1670,6 +1670,13 @@ BattleAnim_Recover:
 	anim_call BattleAnim_TargetObj_1Row
 	anim_sound 0, 0, SFX_FULL_HEAL
 	anim_bgeffect BATTLE_BG_EFFECT_FADE_MON_TO_LIGHT_REPEATING, $0, BG_EFFECT_USER, $40
+	anim_call BattleAnim_Recover_branch
+	anim_wait 32
+	anim_incbgeffect BATTLE_BG_EFFECT_FADE_MON_TO_LIGHT_REPEATING
+	anim_call BattleAnim_ShowMon_0
+	anim_ret
+
+BattleAnim_Recover_branch:
 	anim_obj BATTLE_ANIM_OBJ_RECOVER, 44, 88, $30
 	anim_obj BATTLE_ANIM_OBJ_RECOVER, 44, 88, $31
 	anim_obj BATTLE_ANIM_OBJ_RECOVER, 44, 88, $32
@@ -1679,8 +1686,6 @@ BattleAnim_Recover:
 	anim_obj BATTLE_ANIM_OBJ_RECOVER, 44, 88, $36
 	anim_obj BATTLE_ANIM_OBJ_RECOVER, 44, 88, $37
 	anim_wait 64
-	anim_incbgeffect BATTLE_BG_EFFECT_FADE_MON_TO_LIGHT_REPEATING
-	anim_call BattleAnim_ShowMon_0
 	anim_ret
 
 BattleAnim_Absorb:
@@ -4194,7 +4199,15 @@ BattleAnim_RapidSpin:
 	anim_wait 1
 	anim_ret
 
-BattleAnim_SweetScent2:
+BattleAnim_HeldItemTrigger:
+	anim_1gfx BATTLE_ANIM_GFX_BUBBLE
+	anim_sound 0, 0, SFX_FULL_HEAL
+	anim_bgeffect BATTLE_BG_EFFECT_FADE_MON_TO_LIGHT_REPEATING, $0, BG_EFFECT_USER, $40
+	anim_call BattleAnim_Recover_branch
+	anim_incbgeffect BATTLE_BG_EFFECT_FADE_MON_TO_LIGHT_REPEATING
+	anim_ret
+
+
 BattleAnim_SweetScent:
 	anim_2gfx BATTLE_ANIM_GFX_FLOWER, BATTLE_ANIM_GFX_MISC
 	anim_sound 0, 0, SFX_SWEET_SCENT
