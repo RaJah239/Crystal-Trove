@@ -832,7 +832,7 @@ BattlePack:
 	ld [wKeyItemsPocketScrollPosition], a
 	ld a, [wMenuCursorY]
 	ld [wKeyItemsPocketCursor], a
-	ld b, PACKSTATE_INITFRUITPOCKET ; left
+	ld b, PACKSTATE_INITLOOTPOCKET ; left
 	ld c, PACKSTATE_INITTMHMPOCKET ; right
 	call Pack_InterpretJoypad
 	ret c
@@ -883,7 +883,7 @@ BattlePack:
 	ld [wBallsPocketScrollPosition], a
 	ld a, [wMenuCursorY]
 	ld [wBallsPocketCursor], a
-	ld b, PACKSTATE_INITBATTLEPOCKET ; left
+	ld b, PACKSTATE_INITITEMSPOCKET ; left
 	ld c, PACKSTATE_INITMEDICINEPOCKET ; right
 	call Pack_InterpretJoypad
 	ret c
