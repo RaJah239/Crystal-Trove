@@ -139,7 +139,6 @@
 	charmap "└",         $be
 	charmap "┘",         $bf
 
-
 	charmap "<physical>", $c6
 	charmap "<special>",$c7
 	charmap "<other>",   $c8
