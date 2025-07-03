@@ -29,7 +29,7 @@ BulbasaurEvosAttacks:
 	db 20, RAZOR_LEAF
 	db 25, SWEET_SCENT
 	db 32, GROWTH
-	db 39, SYNTHESIS
+	db 39, MORNING_SUN
 	db 46, SOLARBEAM
 	db 0 ; no more level-up moves
 
@@ -47,7 +47,7 @@ IvysaurEvosAttacks:
 	db 22, RAZOR_LEAF
 	db 29, SWEET_SCENT
 	db 38, GROWTH
-	db 47, SYNTHESIS
+	db 47, MORNING_SUN
 	db 56, SOLARBEAM
 	db 0 ; no more level-up moves
 
@@ -65,7 +65,7 @@ VenusaurEvosAttacks:
 	db 22, RAZOR_LEAF
 	db 29, SWEET_SCENT
 	db 41, GROWTH
-	db 53, SYNTHESIS
+	db 53, MORNING_SUN
 	db 65, SOLARBEAM
 	db 0 ; no more level-up moves
 
@@ -2056,7 +2056,7 @@ ChikoritaEvosAttacks:
 	db 8, RAZOR_LEAF
 	db 12, REFLECT
 	db 15, POISONPOWDER
-	db 22, SYNTHESIS
+	db 22, MORNING_SUN
 	db 29, BODY_SLAM
 	db 36, LIGHT_SCREEN
 	db 43, SAFEGUARD
@@ -2073,7 +2073,7 @@ BayleefEvosAttacks:
 	db 8, RAZOR_LEAF
 	db 12, REFLECT
 	db 15, POISONPOWDER
-	db 23, SYNTHESIS
+	db 23, MORNING_SUN
 	db 31, BODY_SLAM
 	db 39, LIGHT_SCREEN
 	db 47, SAFEGUARD
@@ -2089,7 +2089,7 @@ MeganiumEvosAttacks:
 	db 8, RAZOR_LEAF
 	db 12, REFLECT
 	db 15, POISONPOWDER
-	db 23, SYNTHESIS
+	db 23, MORNING_SUN
 	db 31, BODY_SLAM
 	db 41, LIGHT_SCREEN
 	db 51, SAFEGUARD
@@ -2512,7 +2512,7 @@ HoppipEvosAttacks:
 	db EVOLVE_LEVEL, 18, SKIPLOOM
 	db 0 ; no more evolutions
 	db 1, SPLASH
-	db 5, SYNTHESIS
+	db 5, MORNING_SUN
 	db 5, TAIL_WHIP
 	db 10, TACKLE
 	db 13, POISONPOWDER
@@ -2527,10 +2527,10 @@ SkiploomEvosAttacks:
 	db EVOLVE_LEVEL, 27, JUMPLUFF
 	db 0 ; no more evolutions
 	db 1, SPLASH
-	db 1, SYNTHESIS
+	db 1, MORNING_SUN
 	db 1, TAIL_WHIP
 	db 1, TACKLE
-	db 5, SYNTHESIS
+	db 5, MORNING_SUN
 	db 5, TAIL_WHIP
 	db 10, TACKLE
 	db 13, POISONPOWDER
@@ -2544,10 +2544,10 @@ SkiploomEvosAttacks:
 JumpluffEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, SPLASH
-	db 1, SYNTHESIS
+	db 1, MORNING_SUN
 	db 1, TAIL_WHIP
 	db 1, TACKLE
-	db 5, SYNTHESIS
+	db 5, MORNING_SUN
 	db 5, TAIL_WHIP
 	db 10, TACKLE
 	db 13, POISONPOWDER
@@ -2577,7 +2577,7 @@ SunkernEvosAttacks:
 	db 4, GROWTH
 	db 10, MEGA_DRAIN
 	db 19, SUNNY_DAY
-	db 31, SYNTHESIS
+	db 31, MORNING_SUN
 	db 46, GIGA_DRAIN
 	db 0 ; no more level-up moves
 

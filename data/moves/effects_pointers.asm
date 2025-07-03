@@ -156,6 +156,8 @@ MoveEffectsPointers:
 	dw Fly
 	dw DefenseCurl
 	dw HitAndSwitch
+	dw FreezeHit ; Blizzard
+	dw Hail
 	dw Dig
 	dw Fissure
 	dw BoneClub

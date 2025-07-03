@@ -176,4 +176,5 @@ BattleCommandPointers:
 	dw BattleCommand_StartLoop
 	dw BattleCommand_Curl
 	dw BattleCommand_HitAndSwitch
+	dw BattleCommand_StartHail
 	assert_table_length NUM_EFFECT_COMMANDS
