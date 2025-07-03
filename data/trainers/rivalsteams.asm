@@ -24,7 +24,7 @@
 ;		db $EC, PERFECT_DV ; atk|def dv, spd|spc dv
 ;		db 12, 16, 12, 16, 16, 12 ; hp, atk, def, spd, sat, sdf 
 ;		db TWISTEDSPOON
-;		db HIDDEN_POWER, REFLECT, MORNING_SUN, PSYCHIC_M
+;		db HIDDEN_POWER, REFLECT, HEALING_LIGHT, PSYCHIC_M
 ;	db -1 ; end
 
 SECTION "Rival's Teams", ROMX

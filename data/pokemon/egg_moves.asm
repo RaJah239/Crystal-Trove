@@ -114,7 +114,7 @@ OddishEggMoves:
 	db SWORDS_DANCE
 	db RAZOR_LEAF
 	db FLAIL
-	db MORNING_SUN
+	db HEALING_LIGHT
 	db -1 ; end
 
 ParasEggMoves:
@@ -201,7 +201,7 @@ BellsproutEggMoves:
 	db SWORDS_DANCE
 	db ENCORE
 	db REFLECT
-	db MORNING_SUN
+	db HEALING_LIGHT
 	db LEECH_LIFE
 	db -1 ; end
 
@@ -296,7 +296,7 @@ KrabbyEggMoves:
 	db -1 ; end
 
 ExeggcuteEggMoves:
-	db MORNING_SUN
+	db HEALING_LIGHT
 	db MOONLIGHT
 	db REFLECT
 	db MEGA_DRAIN
