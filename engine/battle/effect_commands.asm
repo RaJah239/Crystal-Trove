@@ -6456,6 +6456,20 @@ BattleCommand_WeatherBasedHeal:
 	jr z, .Full
 	dec c
 
+	ld a, [wTimeOfDay]
+	cp NITE_F
+	jr z, .moonlight_anim
+	ld a, [wTimeOfDay]
+	cp EVE_F
+	jr z, .moonlight_anim
+	xor a ; Morning Sun anim
+	jr .got_anim
+.moonlight_anim
+	ld a, $1
+.got_anim
+	ld [wBattleAnimParam], a
+	call AnimateCurrentMove
+
 .Weather:
 	ld a, [wBattleWeather]
 	and a
@@ -6481,7 +6495,6 @@ BattleCommand_WeatherBasedHeal:
 	ld a, BANK(GetMaxHP)
 	rst FarCall
 
-	call AnimateCurrentMove
 	call BattleCommand_SwitchTurn
 
 	callfar RestoreHP
