@@ -569,13 +569,13 @@ RegainedHealthText:
 	prompt
 
 AttackMissedText:
-	text "<USER>'s"
-	line "attack missed!"
+	text "Foe dodged the"
+	line "move!"
 	prompt
 
 AttackMissed2Text:
-	text "<USER>'s"
-	line "attack missed!"
+	text "Foe dodged the"
+	line "move!"
 	prompt
 
 CrashedText:
