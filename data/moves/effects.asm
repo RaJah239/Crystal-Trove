@@ -1885,25 +1885,11 @@ RapidSpin:
 	kingsrock
 	endmove
 
-MorningSun:
+WeatherHeal:
 	checkobedience
 	usedmovetext
 	doturn
-	healmorn
-	endmove
-
-Synthesis:
-	checkobedience
-	usedmovetext
-	doturn
-	healday
-	endmove
-
-Moonlight:
-	checkobedience
-	usedmovetext
-	doturn
-	healnite
+	weatherheal
 	endmove
 
 HiddenPower:
