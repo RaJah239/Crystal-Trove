@@ -297,7 +297,6 @@ KrabbyEggMoves:
 
 ExeggcuteEggMoves:
 	db HEALING_LIGHT
-	db MOONLIGHT
 	db REFLECT
 	db MEGA_DRAIN
 	db ANCIENTPOWER

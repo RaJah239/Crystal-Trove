@@ -474,7 +474,7 @@ ClefairyEvosAttacks:
 	db 19, MINIMIZE
 	db 26, DEFENSE_CURL
 	db 34, METRONOME
-	db 43, MOONLIGHT
+	db 43, HEALING_LIGHT
 	db 53, LIGHT_SCREEN
 	db 0 ; no more level-up moves
 
@@ -483,7 +483,7 @@ ClefableEvosAttacks:
 	db 1, SING
 	db 1, DOUBLESLAP
 	db 1, METRONOME
-	db 1, MOONLIGHT
+	db 1, HEALING_LIGHT
 	db 0 ; no more level-up moves
 
 VulpixEvosAttacks:
@@ -565,7 +565,7 @@ OddishEvosAttacks:
 	db 16, STUN_SPORE
 	db 18, SLEEP_POWDER
 	db 23, ACID
-	db 32, MOONLIGHT
+	db 32, HEALING_LIGHT
 	db 39, PETAL_DANCE
 	db 0 ; no more level-up moves
 
@@ -581,7 +581,7 @@ GloomEvosAttacks:
 	db 16, STUN_SPORE
 	db 18, SLEEP_POWDER
 	db 24, ACID
-	db 35, MOONLIGHT
+	db 35, HEALING_LIGHT
 	db 44, PETAL_DANCE
 	db 0 ; no more level-up moves
 
@@ -2653,7 +2653,7 @@ UmbreonEvosAttacks:
 	db 36, FAINT_ATTACK
 	db 42, MEAN_LOOK
 	db 47, SCREECH
-	db 52, MOONLIGHT
+	db 52, HEALING_LIGHT
 	db 0 ; no more level-up moves
 
 MurkrowEvosAttacks:
