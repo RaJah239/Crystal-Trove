@@ -587,14 +587,19 @@ RegainedHealthText:
 	line "regained health!"
 	prompt
 
+LevitateText:
+	text "<TARGET> "
+	line "is floating!"
+	prompt
+
 AttackMissedText:
-	text "Foe dodged the"
-	line "move!"
+	text "<TARGET>"
+	line "avoided!"
 	prompt
 
 AttackMissed2Text:
-	text "Foe dodged the"
-	line "move!"
+	text "<TARGET>"
+	line "avoided!"
 	prompt
 
 CrashedText:

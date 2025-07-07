@@ -6838,7 +6838,9 @@ BattleCommand_CheckFloatMon:
 ; if it's a floatmon, the attack misses
 	ld a, 1
 	ld [wAttackMissed], a
-	ret
+	
+	ld hl, LevitateText
+	jp StdBattleTextbox
 
 BattleCommand_CheckPowder:
 ; Checks if the move is powder/spore-based and 
