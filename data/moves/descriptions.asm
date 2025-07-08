@@ -1198,7 +1198,7 @@ HailDescription:
 	line "very turn.@"
 
 HiddenPowerDescription:
-	db   "The power varies"
+	db   "The type varies"
 	line "with the #MON.@"
 
 CrossChopDescription:
