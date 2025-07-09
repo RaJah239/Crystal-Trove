@@ -961,6 +961,16 @@ GetMoveEffect:
 	ld b, a
 	ret
 
+GetMoveAnim:
+	ld a, b
+	ld hl, Moves - MOVE_LENGTH
+	ld bc, MOVE_LENGTH
+	call AddNTimes
+	ld a, BANK(Moves)
+	call GetFarByte
+	ld b, a
+	ret
+
 Battle_EnemyFirst:
 	call LoadTilemapToTempTilemap
 	call TryEnemyFlee
