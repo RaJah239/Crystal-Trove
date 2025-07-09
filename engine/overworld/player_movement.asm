@@ -114,6 +114,9 @@ endc
 	ld a, [wWalkingDirection]
 	cp STANDING
 	jr z, .Standing
+	ld a, [wPlayerStepType]
+	cp STEP_TYPE_TURN
+	jr z, .Standing
 
 ; Walking into an edge warp won't bump.
 	ld a, [wWalkingIntoEdgeWarp]
@@ -451,6 +454,9 @@ endc
 	add hl, de
 	ld a, [wFacingDirection]
 	and [hl]
+	jr z, .DontJump
+	ld a, [wPlayerStepType]
+	cp STEP_TYPE_TURN
 	jr z, .DontJump
 
 ; d = x coordinate of tile across the ledge
