@@ -495,13 +495,9 @@ ListMoves:
 GetMonTypeIndex:
  ; type in c, because farcall clobbers a
  	ld a, c
- 	; Skip Bird
- 	cp BIRD
+  	cp UNUSED_TYPES
  	jr c, .done
- 	cp UNUSED_TYPES
- 	dec a
- 	jr c, .done
- 	sub UNUSED_TYPES
+ 	sub UNUSED_TYPES_END - UNUSED_TYPES
  .done
  	ld c, a
  	ret

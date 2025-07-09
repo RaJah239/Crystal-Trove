@@ -8,7 +8,6 @@ TypeNames:
 	dw Poison
 	dw Ground
 	dw Rock
-	dw Bird
 	dw Bug
 	dw Ghost
 	dw Steel
@@ -29,25 +28,26 @@ endr
 	dw Dragon
 	dw Dark
 	dw Fairy
+	dw Bird
 	assert_table_length TYPES_END
 
 Normal:    db "Normal@"
 Fighting:  db "Fighting@"
 Flying:    db "Flying@"
 Poison:    db "Poison@"
+Ground:    db "Ground@"
+Rock:      db "Rock@"
+Bug:       db "Bug@"
+Ghost:     db "Ghost@"
+Steel:     db "Steel@"
 CurseType: db "???@"
 Fire:      db "Fire@"
 Water:     db "Water@"
 Grass:     db "Grass@"
-Electric:  db "Electric@"
 Psychic:   db "Psychic@"
+Electric:  db "Electric@"
 Ice:       db "Ice@"
-Ground:    db "Ground@"
-Rock:      db "Rock@"
-Bird:      db "Bird@"
-Bug:       db "Bug@"
-Ghost:     db "Ghost@"
-Steel:     db "Steel@"
 Dragon:    db "Dragon@"
 Dark:      db "Dark@"
 Fairy:     db "Fairy@"
+Bird:      db "Bird@"

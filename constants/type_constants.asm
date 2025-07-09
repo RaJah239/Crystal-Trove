@@ -12,7 +12,6 @@
 	const POISON
 	const GROUND
 	const ROCK
-	const BIRD
 	const BUG
 	const GHOST
 	const STEEL
@@ -31,6 +30,7 @@ DEF UNUSED_TYPES_END EQU const_value
 	const DRAGON
 	const DARK
 	const FAIRY
+	const BIRD
 DEF TYPES_END EQU const_value
 
 DEF TYPE_MASK EQU %00111111

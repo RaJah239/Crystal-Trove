@@ -852,7 +852,7 @@ StatsScreen_Print_HiddenPow_Info:
 	ld b, a
 
 	; + (Atk & 3) << 2
-	ld a, [hl]
+	ld a, [hli]
 	and %0011 << 4
 	swap a
 	add a
@@ -867,11 +867,6 @@ StatsScreen_Print_HiddenPow_Info:
 	add b
 
 ; Skip Normal
-	inc a
-
-; Skip Bird
-	cp BIRD
-	jr c, .done
 	inc a
 
 ; Skip unused types
