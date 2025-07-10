@@ -177,17 +177,33 @@ GetGender:
 
 .DVs:
 ; Attack DV
-	ld a, [hli]
+	ld a, [hl]
 	and $f0
+	rlca
+	rlca
+	rlca
+	rlca
+	ld b, a
+; Def DV
+	ld a, [hli]
+	and $0f
+	add b
 	ld b, a
 ; Speed DV
 	ld a, [hl]
 	and $f0
-	swap a
-
-; Put our DVs together.
-	or b
+	rlca
+	rlca
+	rlca
+	rlca
+	add b
 	ld b, a
+; Spc DV
+	ld a, [hl]
+	and $0f
+	add b
+	ld b, a
+; Now we have DV total. Use its modulo to determine gender...
 
 ; We need the gender ratio to do anything with this.
 	push bc
@@ -213,8 +229,34 @@ GetGender:
 	jr z, .Female
 
 ; Values below the ratio are male, and vice versa.
-	cp b
-	jr c, .Male
+	cp GENDER_F12_5
+	jr nz, .not_12
+	ld a, b
+	and %111
+	jr z, .Female
+	jr .Male
+
+.not_12
+	cp GENDER_F25
+	jr nz, .not_25
+	ld a, b
+	and %11
+	jr z, .Female
+	jr .Male
+.not_25
+	cp GENDER_F50
+	jr nz, .not_50
+	ld a, b
+	and %1
+	jr z, .Female
+	jr .Male
+.not_50
+; Must be 75% female at this point
+; All other options have been checked
+	ld a, b
+	and %11
+	jr z, .Male
+; Fallthrough to Female
 
 .Female:
 	xor a
