@@ -3595,9 +3595,9 @@ if DEF(_DEBUG)
 	ld a, [sSkipBattle]
 	call CloseSRAM
 	or a
-	; If [sSkipBattle] is nonzero, skip the "jr nc, .no_underflow" check,
+	; If [sSkipBattle] is zero, skip the "jr nc, .no_underflow" check,
 	; so any attack deals maximum damage to the enemy.
-	jr nz, .debug_skip
+	jr z, .debug_skip
 	pop af
 	jr nc, .no_underflow
 	push af

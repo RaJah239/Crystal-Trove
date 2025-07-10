@@ -396,10 +396,10 @@ DebugRoom_PrintBattleSkip:
 	ld a, [sSkipBattle]
 	call CloseSRAM
 	hlcoord 16, 7
-	ld de, .DoString
+	ld de, .SkipString
 	or a
 	jr z, .ok
-	ld de, .SkipString
+	ld de, .DoString
 .ok
 	call PlaceString
 	ret
