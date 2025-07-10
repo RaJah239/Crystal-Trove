@@ -433,7 +433,7 @@ AI_Smart_Sleep:
 	call AIHasMoveEffect
 	jr c, .encourage
 
-	call AI_50_50
+	call AI_95_5
 	ret c
 .encourage
 	dec [hl]
@@ -3402,6 +3402,11 @@ AIGetEnemyMove:
 	pop bc
 	pop de
 	pop hl
+	ret
+
+AI_95_5:
+	call Random
+	cp 5 percent - 1
 	ret
 
 AI_80_20:
