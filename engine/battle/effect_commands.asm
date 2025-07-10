@@ -5768,7 +5768,12 @@ BattleCommand_TrapTarget:
 	call GetBattleVar
 	bit SUBSTATUS_SUBSTITUTE, a
 	ret nz
-	ld a, 5 ; set to 5 turns
+	call BattleRandom
+	; trapped for 2-5 turns
+	and %11
+	inc a
+	inc a
+	inc a
 	ld [hl], a
 	ld a, BATTLE_VARS_MOVE_ANIM
 	call GetBattleVar

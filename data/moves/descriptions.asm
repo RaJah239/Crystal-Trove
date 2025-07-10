@@ -342,6 +342,10 @@ FlyDescription:
 	db   "1st turn: Fly"
 	line "2nd turn: Attack@"
 
+BindDescription:
+	db   "Binds the target"
+	line "for 2-5 turns.@"
+
 PowerGemDescription:
 	db "Attacks with a ray"
 	line "of gem-like light.@"
@@ -398,6 +402,10 @@ TackleDescription:
 BodySlamDescription:
 	db   "An attack that may"
 	line "cause paralysis.@"
+
+WrapDescription:
+	db   "Squeezes the foe"
+	line "for 2-5 turns.@"
 
 SkyAttackDescription:
 OutrageDescription:
@@ -589,13 +597,6 @@ DragonRageDescription:
 	db   "Always inflicts"
 	line "40HP damage.@"
 
-ClampDescription:
-WrapDescription:
-WhirlpoolDescription:
-BindDescription:
-	db   "Traps the foe for"
-	line "5 turns.@"
-
 FireSpinDescription:
 	db   "Traps foe in fire"
 	line "for 2-5 turns.@"
@@ -771,6 +772,10 @@ FireBlastDescription:
 WaterfallDescription:
 	db   "An aquatic charge"
 	line "attack.@"
+
+ClampDescription:
+	db   "Traps the foe for"
+	line "2-5 turns.@"
 
 SwiftDescription:
 	db   "An attack that"
@@ -1243,6 +1248,10 @@ FutureSightDescription:
 RockSmashDescription:
 	db   "An attack that may"
 	line "lower DEFENSE.@"
+
+WhirlpoolDescription:
+	db   "Traps the foe for"
+	line "2-5 turns.@"
 
 BeatUpDescription:
 	db   "Party #MON join"
