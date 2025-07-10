@@ -1746,12 +1746,12 @@ HandleWeather:
 	cp STEEL
 	ret z
 
-	call SwitchTurnCore
-	xor a
-	ld [wNumHits], a
-	ld de, ANIM_IN_SANDSTORM
-	call Call_PlayBattleAnim
-	call SwitchTurnCore
+;	call SwitchTurnCore
+;	xor a
+;	ld [wNumHits], a
+;	ld de, ANIM_IN_SANDSTORM
+;	call Call_PlayBattleAnim
+;	call SwitchTurnCore
 	call GetEighthMaxHP
 	call SubtractHPFromUser
 
@@ -1798,12 +1798,12 @@ HandleWeather:
 	cp ICE
 	ret z
 
-	call SwitchTurnCore
-	xor a
-	ld [wNumHits], a
-	ld de, ANIM_IN_HAIL
-	call Call_PlayBattleAnim
-	call SwitchTurnCore
+;	call SwitchTurnCore
+;	xor a
+;	ld [wNumHits], a
+;	ld de, ANIM_IN_HAIL
+;	call Call_PlayBattleAnim
+;	call SwitchTurnCore
 
 	call GetEighthMaxHP
 	call SubtractHPFromUser
