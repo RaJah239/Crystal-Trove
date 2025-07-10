@@ -3131,7 +3131,15 @@ wMooMooBerries:: db
 wUndergroundSwitchPositions:: db
 wFarfetchdPosition:: db
 
-	ds 4
+wFieldWeather::
+; 00 normal
+; 01 rain
+; 02 sun
+; 03 sandstorm
+; 04 hail
+	db
+
+	ds 3
 
 ; map scene ids
 wPokecenter2FSceneID::                            db
