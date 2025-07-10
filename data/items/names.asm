@@ -180,25 +180,9 @@ ItemNames::
 	li "Rainbow Wing"
 	li "?"
 	li "Brick Piece"
-	li "?"
-	li "?"
-	li "?"
-	li "?"
-	li "?"
-	li "?"
-	li "?"
-	li "?"
-	li "?"
-	li "?"
-	li "?"
-
-
-
-
-
 	li "Surf Mail"
-	li "LiteBlueMail"
-	li "PortraitMail"
+	li "Litebluemail"
+	li "Portraitmail"
 	li "Lovely Mail"
 	li "Eon Mail"
 	li "Morph Mail"
@@ -262,6 +246,17 @@ ItemNames::
 	assert_list_length NUM_ITEMS + NUM_TMS
 	li "HM01"
 	assert_list_length NUM_ITEMS + NUM_TMS + NUM_HMS
+	li "?"
+	li "?"
+	li "?"
+	li "?"
+	li "?"
+	li "?"
+	li "?"
+	li "?"
+	li "?"
+	li "?"
+	li "?"
 	li "?"
 	li "?"
 	assert_list_length $100
