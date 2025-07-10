@@ -139,7 +139,7 @@ GoldenrodGameCornerTMVendorMenuHeader:
 	db "TM25    5500@"
 	db "TM14    5500@"
 	db "TM38    5500@"
-	db "CANCEL@"
+	db "Cancel@"
 
 GoldenrodGameCornerPrizeMonVendorScript:
 	faceplayer
@@ -222,10 +222,10 @@ GoldenrodGameCornerPrizeMonVendorScript:
 .MenuData:
 	db STATICMENU_CURSOR ; flags
 	db 4 ; items
-	db "ABRA        100@"
-	db "CUBONE      800@"
-	db "WOBBUFFET  1500@"
-	db "CANCEL@"
+	db "Abra        100@"
+	db "Cubone      800@"
+	db "Wobbuffet  1500@"
+	db "Cancel@"
 
 GoldenrodGameCornerPharmacistScript:
 	faceplayer

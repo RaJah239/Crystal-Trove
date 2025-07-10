@@ -111,7 +111,7 @@ PlacePartyNicknames:
 	ret
 
 .CancelString:
-	db "CANCEL@"
+	db "Cancel@"
 
 PlacePartyHPBar:
 	xor a
@@ -351,10 +351,10 @@ PlacePartyMonTMHMCompatibility:
 	ret
 
 .string_able
-	db "ABLE@"
+	db "Able@"
 
 .string_not_able
-	db "NOT ABLE@"
+	db "Not Able@"
 
 PlacePartyMonEvoStoneCompatibility:
 	ld a, [wPartyCount]
@@ -435,9 +435,9 @@ PlacePartyMonEvoStoneCompatibility:
 	ret
 
 .string_able
-	db "ABLE@"
+	db "Able@"
 .string_not_able
-	db "NOT ABLE@"
+	db "Not Able@"
 
 PlacePartyMonGender:
 	ld a, [wPartyCount]
@@ -556,13 +556,13 @@ PlacePartyMonMobileBattleSelection:
 	jr .loop2
 
 .String_Banme:
-	db "　ばんめ　　@" ; Place
+	db "@" ; Place
 .String_Sanka_Shinai:
-	db "さんかしない@" ; Cancel
+	db "@" ; Cancel
 .String_Kettei_Yameru:
-	db "けってい　　やめる@" ; Quit
+	db "@" ; Quit
 .Strings_1_2_3:
-	db "１@", "２@", "３@" ; 1st, 2nd, 3rd
+	db "@" ; 1st, 2nd, 3rd
 
 PartyMenuCheckEgg:
 	ld a, LOW(wPartySpecies)
@@ -758,7 +758,7 @@ PartyMenuStrings:
 	dw ToWhichPKMNString
 
 ChooseAMonString:
-	db "Choose a #MON.@"
+	db "Choose a #mon.@"
 
 UseOnWhichPKMNString:
 	db "Use on which <PK><MN>?@"
