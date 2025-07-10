@@ -134,7 +134,7 @@ ItemDescriptions:
 	dw StardustDesc
 	dw StarPieceDesc
 	dw BasementKeyDesc
-	dw PassDesc
+	dw ShinyBallDesc
 	dw ExpShareDesc
 	dw ShinyCharmDesc
 	dw ZincDesc
@@ -783,9 +783,9 @@ StarPieceDesc:
 BasementKeyDesc:
 	db   "Opens doors.@"
 
-PassDesc:
-	db   "A ticket for the"
-	next "MAGNET TRAIN.@"
+ShinyBallDesc:
+	db   "The caught #mon"
+	next "becomes shiny.@"
 
 ExpShareDesc:
 	db   "Shares battle EXP."

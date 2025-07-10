@@ -151,6 +151,7 @@ if DEF(_DEBUG)
 	giveitem CARBOS, MAX_ITEM_STACK
 
 	; all balls
+	giveitem SHINY_BALL, MAX_ITEM_STACK
 	giveitem MASTER_BALL, MAX_ITEM_STACK
 	giveitem POKE_BALL, MAX_ITEM_STACK
 	giveitem GREAT_BALL, MAX_ITEM_STACK
