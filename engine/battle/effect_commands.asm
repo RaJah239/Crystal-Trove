@@ -2408,6 +2408,20 @@ BattleCommand_SuperEffectiveText:
 	jp StdBattleTextbox
 
 BattleCommand_CheckFaint:
+; DevNote - right here we first apply life orb recoil
+    push hl
+	call GetUserItem
+	ld a, b
+	cp HELD_LIFE_ORB
+	pop hl
+	jr nz, .noLifeOrb
+	farcall GetEighthMaxHP
+	farcall SubtractHPFromUser
+	ld hl, BattleText_UserLostSomeOfItsHP
+	call StdBattleTextbox
+.noLifeOrb
+; checkfaint
+
 ; Faint the opponent if its HP reached zero
 ;  and faint the user along with it if it used Destiny Bond.
 ; Ends the move effect if the opponent faints.
@@ -2618,46 +2632,6 @@ UnevolvedEviolite:
 	rr c
 	ret
 
-DittoMetalPowder:
-	ld a, MON_SPECIES
-	call BattlePartyAttr
-	ldh a, [hBattleTurn]
-	and a
-	ld a, [hl]
-	jr nz, .got_species
-	ld a, [wTempEnemyMonSpecies]
-
-.got_species
-	cp DITTO
-	ret nz
-
-	push bc
-	call GetOpponentItem
-	ld a, [hl]
-	cp METAL_POWDER
-	pop bc
-	ret nz
-
-	ld h, b
- 	ld l, c
-	srl b
-	rr c
-	add hl, bc
- 	ld b, h
- 	ld c, l
- 
- 	ld a, HIGH(MAX_STAT_VALUE)
- 	cp b
- 	jr c, .cap
- 	ret nz
- 	ld a, LOW(MAX_STAT_VALUE)
- 	cp c
- 	ret nc
- 
- .cap
- 	ld bc, MAX_STAT_VALUE
-	ret
-
 BattleCommand_DamageStats:
 	ldh a, [hBattleTurn]
 	and a
@@ -2742,7 +2716,6 @@ PlayerAttackDamage:
 
 .done
 	push hl
- 	call DittoMetalPowder
 	call UnevolvedEviolite
 	pop hl
 
@@ -3021,7 +2994,6 @@ EnemyAttackDamage:
 
 .done
 	push hl
- 	call DittoMetalPowder
 	call UnevolvedEviolite
 	pop hl
 
@@ -3202,6 +3174,26 @@ ConfusionDamageCalc:
 	call Divide
 
 .DoneItem:
+
+; =====================
+; ==== Life Orb =======
+; =====================
+; DevNote - Life Orb - x1.3 damage but take recoil (dealt with in CheckFaint)
+    push hl
+    call GetUserItem
+	ld a, b
+	cp HELD_LIFE_ORB
+	pop hl
+	jr nz, .continue
+    ld a, 13
+	ldh [hMultiplier], a
+	call Multiply
+	ld a, 10
+	ldh [hDivisor], a
+	ld b, 4
+	call Divide
+
+.continue
 ; Critical hits
 	call .CriticalMultiplier
 
