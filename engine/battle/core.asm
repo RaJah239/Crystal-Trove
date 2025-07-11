@@ -9100,7 +9100,16 @@ SwitchInEffects:
     cp ENTEI
     jp z, .atkUp
 
+; AbilityIntimidate 
     cp GYARADOS
+    jp z, .atkDown
+    cp ARCANINE
+    jp z, .atkDown
+    cp EKANS
+    jp z, .atkDown
+    cp ARBOK
+    jp z, .atkDown
+    cp TAUROS
     jp z, .atkDown
 
     cp WEEZING
