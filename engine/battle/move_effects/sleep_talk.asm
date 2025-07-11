@@ -42,7 +42,7 @@ BattleCommand_SleepTalk:
 	ld a, e
 	cp d
 	jr z, .sample_move
-	call .check_unselectable_move
+	call .check_two_turn_move
 	jr z, .sample_move
 	ld a, BATTLE_VARS_MOVE
 	call GetBattleVarAddr
@@ -98,8 +98,8 @@ BattleCommand_SleepTalk:
 	cp b
 	jr z, .nope
 
-	call .check_unselectable_move
-	jr nc, .no_carry
+	call .check_two_turn_move
+	jr nz, .no_carry
 
 .nope
 	inc hl
@@ -114,18 +114,26 @@ BattleCommand_SleepTalk:
 	and a
 	ret
 
-.check_unselectable_move
+.check_two_turn_move
 	push hl
 	push de
 	push bc
 
 	ld b, a
-	callfar GetMoveAnim
+	callfar GetMoveEffect
 	ld a, b
 
 	pop bc
 	pop de
 	pop hl
-	ret
 
-INCLUDE "engine/battle/SleepTalk_unallowed_moves.asm"
+	cp EFFECT_SKULL_BASH
+	ret z
+	cp EFFECT_RAZOR_WIND
+	ret z
+	cp EFFECT_SKY_ATTACK
+	ret z
+	cp EFFECT_SOLARBEAM
+	ret z
+	cp EFFECT_FLY
+	ret
