@@ -3293,38 +3293,21 @@ DEF DAMAGE_CAP EQU MAX_DAMAGE - MIN_DAMAGE
 	and a
 	ret z
 
-; x1.5 (multiply by 15 and divide by 10)
-	xor a
-	ldh [hMultiplicand + 0], a
+; x2
+	ldh a, [hQuotient + 3]
+	add a
+	ldh [hQuotient + 3], a
 
 	ldh a, [hQuotient + 2]
-	ldh [hMultiplicand + 1], a
-
-	ldh a, [hQuotient + 3]
-	ldh [hMultiplicand + 2], a
-
-	ld a, 15
-	ldh [hMultiplier], a
-
-	call Multiply
-
-	ld a, 10
-	ldh [hDivisor], a
-	ld b, 4
-	call Divide
-
-	ldh a, [hQuotient + 3]
-	ldh [hProduct + 3], a
-
-	ldh a, [hQuotient + 2]
-	ldh [hProduct + 2], a
+	rl a
+	ldh [hQuotient + 2], a
 
 ; Cap at $ffff.
 	ret nc
 
 	ld a, $ff
-	ldh [hProduct + 2], a
-	ldh [hProduct + 3], a
+	ldh [hQuotient + 2], a
+	ldh [hQuotient + 3], a
 
 	ret
 
