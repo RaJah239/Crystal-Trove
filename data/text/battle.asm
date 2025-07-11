@@ -12,6 +12,12 @@ BattleText_QuickClaw:
 	line "QUICK CLAW procs!"
 	prompt
 
+SturdyText:
+	text "<TARGET>"
+	line "held on with"
+	cont "Sturdy!"
+	prompt
+
 ClearBodyText:
 	text "<TARGET>'s"
 	line "stats can't fall!"

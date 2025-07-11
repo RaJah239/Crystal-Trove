@@ -2180,7 +2180,7 @@ BattleCommand_ApplyDamage:
 	ld a, BATTLE_VARS_SUBSTATUS1_OPP
 	call GetBattleVar
 	bit SUBSTATUS_ENDURE, a
-	jr z, .check_item
+	jr z, .sturdy
 
 	call BattleCommand_FalseSwipe
 	ld b, 0
@@ -2188,7 +2188,19 @@ BattleCommand_ApplyDamage:
 	ld b, 1
 	jr .damage
 
-.check_item
+.sturdy:
+; =================================
+; ========== Sturdy ===============
+; =================================
+; Pokemon with sturdy can't be killed from full HP
+    call GetOpposingMon
+	push bc
+	ld hl, SturdyPokemon
+	ld de, 1
+	call IsInArray
+	pop bc
+	jr c, .focusSash
+
 	call GetOpponentItem
 	ld a, [hl]
 	ld [wNamedObjectIndex], a
@@ -2200,13 +2212,13 @@ BattleCommand_ApplyDamage:
 	cp HELD_FOCUS_SASH
 	jr nz, .damage
 
+.focusSash:
 ; check if target is at full hp
 	farcall CheckOpponentFullHP
 	jr nz, .damage
 	call BattleCommand_FalseSwipe
 	ld b, 0
 	jr nc, .damage
-	callfar ConsumeHeldItem
 	ld b, 2
 	jr .damage
 
@@ -2244,7 +2256,22 @@ BattleCommand_ApplyDamage:
 	jp StdBattleTextbox
 
 .focus_band_text
+	call GetOpponentItem
+    ld a, b
+	cp HELD_FOCUS_BAND
+	jr z, .hungontext
+	cp HELD_FOCUS_SASH
+	jr nz, .sturdytext
+
+.hungontext:
+	ld a, [hl]
+	ld [wNamedObjectIndex], a
+	call GetItemName
 	ld hl, HungOnText
+	jp StdBattleTextbox
+
+.sturdytext
+	ld hl, SturdyText
 	jp StdBattleTextbox
 
 .update_damage_taken
@@ -7018,6 +7045,15 @@ GetCurrentMon:
 	and a
 	ld a, [wBattleMonSpecies]
 	jr z, .done
+	ld a, [wEnemyMonSpecies]
+.done
+    ret
+
+GetOpposingMon:
+    ldh a, [hBattleTurn]
+	and a
+	ld a, [wBattleMonSpecies]
+	jr nz, .done
 	ld a, [wEnemyMonSpecies]
 .done
     ret

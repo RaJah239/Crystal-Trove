@@ -36,6 +36,22 @@ TechnicianPokemon:
     db BUTTERFREE
     db -1
 
+SturdyPokemon:
+    db SKARMORY
+    db GEODUDE
+    db GRAVELER
+    db GOLEM
+    db MAGNEMITE
+    db MAGNETON
+    db ONIX
+    db STEELIX
+    db SQUIRTLE
+    db WARTORTLE
+    db BLASTOISE
+    db METAPOD
+    db PINSIR
+    db -1
+
 ; modify in core.asm
 ; this list needs to be in core.asm
 ;Core_MoxiePokemon:
