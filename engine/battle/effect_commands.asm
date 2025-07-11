@@ -4494,16 +4494,30 @@ BattleCommand_EvasionDown2:
 BattleCommand_StatDown:
 	ld [wLoweredStat], a
 
-	call CheckMist
-	jp nz, .Mist
-
 	ld hl, wEnemyStatLevels
 	ldh a, [hBattleTurn]
 	and a
-	jr z, .GetStatLevel
+	ld a, [wEnemyMonSpecies]
+	jr z, .checkClearBody
 	ld hl, wPlayerStatLevels
+	ld a, [wBattleMonSpecies]
 
-.GetStatLevel:
+.checkClearBody
+; ===============================
+; ======== Clear Body ===========
+; ===============================
+; Pokemon whos stats can't be lowered
+    push hl
+    push de
+	push bc
+	ld hl, ClearBodyPokemon
+	ld de, 1
+	call IsInArray
+	pop bc
+	pop de
+	pop hl
+	jr c, .clearBody
+
 ; Attempt to lower the stat.
 	ld a, [wLoweredStat]
 	and $f
@@ -4576,36 +4590,13 @@ BattleCommand_StatDown:
 	ld [wAttackMissed], a
 	ret
 
-.Mist:
-	ld a, 2
+.clearBody:
+	ld hl, ClearBodyText
+	call StdBattleTextbox
+	ld a, 1
 	ld [wFailedMessage], a
 	ld a, 1
 	ld [wAttackMissed], a
-	ret
-
-CheckMist:
-	ld a, BATTLE_VARS_MOVE_EFFECT
-	call GetBattleVar
-	cp EFFECT_ATTACK_DOWN
-	jr c, .dont_check_mist
-	cp EFFECT_EVASION_DOWN + 1
-	jr c, .check_mist
-	cp EFFECT_ATTACK_DOWN_2
-	jr c, .dont_check_mist
-	cp EFFECT_EVASION_DOWN_2 + 1
-	jr c, .check_mist
-	cp EFFECT_ATTACK_DOWN_HIT
-	jr c, .dont_check_mist
-	cp EFFECT_EVASION_DOWN_HIT + 1
-	jr c, .check_mist
-.dont_check_mist
-	xor a
-	ret
-
-.check_mist
-	ld a, BATTLE_VARS_SUBSTATUS4_OPP
-	call GetBattleVar
-	bit SUBSTATUS_MIST, a
 	ret
 
 BattleCommand_StatUpMessage:
@@ -4738,8 +4729,7 @@ BattleCommand_StatDownFailText:
 	dec a
 	jp z, TryPrintButItFailed
 	dec a
-	ld hl, ProtectedByMistText
-	jp z, StdBattleTextbox
+	ret z
 	ld a, [wLoweredStat]
 	and $f
 	ld b, a

@@ -14,6 +14,14 @@ MultiScalePokemon:
     db ARBOK
     db -1
 
+ClearBodyPokemon:
+    db TENTACOOL
+    db TENTACRUEL
+     db DUNSPARCE
+    db VAPOREON
+    db WOBBUFFET
+    db -1
+
 ; modify in core.asm
 ; this list needs to be in core.asm
 ;Core_MoxiePokemon:

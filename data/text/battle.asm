@@ -12,6 +12,11 @@ BattleText_QuickClaw:
 	line "QUICK CLAW procs!"
 	prompt
 
+ClearBodyText:
+	text "<TARGET>'s"
+	line "stats can't fall!"
+	prompt
+
 WildPokemonAppearedText:
 	text "Wild @"
 	text_ram wEnemyMonNickname
@@ -798,11 +803,6 @@ MistText:
 	line "shrouded in MIST!"
 	prompt
 
-ProtectedByMistText:
-	text "<TARGET>'s"
-	line "protected by MIST."
-	prompt
-
 GettingPumpedText:
 	text_pause
 	text "<USER>'s"
@@ -908,7 +908,7 @@ NothingHappenedText:
 	prompt
 
 ButItFailedText:
-	text "But it failed!"
+	text "It failed to work!"
 	prompt
 
 ItFailedText:
