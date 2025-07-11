@@ -5181,6 +5181,9 @@ BattleCommand_ForceSwitch:
 	call StdBattleTextbox
 
 	ld hl, SpikesDamage
+	call CallBattleCore
+
+	ld hl, SwitchInEffects ; Force Switch - switch in effects
 	jp CallBattleCore
 
 .switch_fail
@@ -5278,6 +5281,9 @@ BattleCommand_ForceSwitch:
 	call StdBattleTextbox
 
 	ld hl, SpikesDamage
+	call CallBattleCore
+
+	ld hl, SwitchInEffects ; Force Switch - switch in effects
 	jp CallBattleCore
 
 .fail

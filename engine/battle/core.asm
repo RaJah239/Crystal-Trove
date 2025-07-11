@@ -42,6 +42,7 @@ DoBattle:
 	call EnemySwitch
 
 .wild
+	call SwitchInEffects
 	ld c, 40
 	call DelayFrames
 
@@ -94,6 +95,7 @@ DoBattle:
 	call LoadTilemapToTempTilemap
 	call SetPlayerTurn
 	call SpikesDamage
+	call SwitchInEffects
 	ld a, [wLinkMode]
 	and a
 	jr z, .not_linked_2
@@ -108,6 +110,7 @@ DoBattle:
 	call EnemySwitch
 	call SetEnemyTurn
 	call SpikesDamage
+	call SwitchInEffects
 
 .not_linked_2
 	call FieldWeather
@@ -497,6 +500,7 @@ DetermineMoveOrder:
 	callfar AI_Switch
 	call SetEnemyTurn
 	call SpikesDamage
+	call SwitchInEffects
 	jp .enemy_first
 
 .use_move
@@ -2047,6 +2051,7 @@ EnemyPartyMonEntrance:
 	call ResetBattleParticipants
 	call SetEnemyTurn
 	call SpikesDamage
+	call SwitchInEffects
 	xor a
 	ld [wEnemyMoveStruct + MOVE_ANIM], a
 	ld [wBattlePlayerAction], a
@@ -2503,6 +2508,7 @@ ForcePlayerMonChoice:
 	call LoadTilemapToTempTilemap
 	call SetPlayerTurn
 	call SpikesDamage
+	call SwitchInEffects
 	ld a, $1
 	and a
 	ld c, a
@@ -2523,7 +2529,8 @@ PlayerPartyMonEntrance:
 	call EmptyBattleTextbox
 	call LoadTilemapToTempTilemap
 	call SetPlayerTurn
-	jp SpikesDamage
+	call SpikesDamage
+	jp SwitchInEffects
 
 CheckMobileBattleError:
 	ld a, [wLinkMode]
@@ -4032,6 +4039,24 @@ ItemRecoveryAnim:
 	pop hl
 	ret
 
+; As far as I could tell, this needs to be in this file
+BattleMissAnim:
+	push hl
+	push de
+	push bc
+	call EmptyBattleTextbox
+	ld a, ANIM_BATTLE_MISS
+	ld [wFXAnimID], a
+	call SwitchTurnCore
+	xor a
+	ld [wNumHits], a
+	ld [wFXAnimID + 1], a
+	predef PlayBattleAnim
+	call SwitchTurnCore
+	pop bc
+	pop de
+	pop hl
+	ret
 UseHeldStatusHealingItem:
 	callfar GetOpponentItem
 	ld hl, HeldStatusHealingEffects
@@ -4937,7 +4962,8 @@ PlayerSwitch:
 EnemyMonEntrance:
 	callfar AI_Switch
 	call SetEnemyTurn
-	jp SpikesDamage
+	call SpikesDamage
+	jp SwitchInEffects
 
 BattleMonEntrance:
 	call WithdrawMonText
@@ -4971,6 +4997,7 @@ BattleMonEntrance:
 	call LoadTilemapToTempTilemap
 	call SetPlayerTurn
 	call SpikesDamage
+	call SwitchInEffects
 	ld a, $2
 	ld [wMenuCursorY], a
 	ret
@@ -4994,7 +5021,8 @@ PassedBattleMonEntrance:
 	call EmptyBattleTextbox
 	call LoadTilemapToTempTilemap
 	call SetPlayerTurn
-	jp SpikesDamage
+	call SpikesDamage
+	jp SwitchInEffects
 
 BattleMenu_Run:
 	call SafeLoadTempTilemapToTilemap
@@ -8107,6 +8135,13 @@ ExitBattle:
 	farcall GivePokerusAndConvertBerries
 	ret
 
+ClearFailures:
+	xor a
+	ld [wFailedMessage], a
+	ld [wEffectFailed], a
+	ld [wAttackMissed], a
+	ret
+
 CleanUpBattleRAM:
 	call BattleEnd_HandleRoamMons
 	xor a
@@ -9022,3 +9057,199 @@ FieldWeather:
 	call Call_PlayBattleAnim
 	ld hl, SunGotBrightText
 	jp StdBattleTextbox
+
+; DevNote - function for Pokemon with effects on switching in
+SwitchInEffects:
+    call ClearFailures
+
+;	farcall BattleCommand_FlameOrb
+
+    call GetCurrentMonCore
+; DevNote - abilities that activate on switching in
+    cp POLITOED
+    jp z, .rain
+
+    cp CHARIZARD
+    jp z, .sun
+
+    cp TYRANITAR
+    jp z,  .sand
+
+    cp RAICHU
+    jp z, .spAtkUp
+
+    cp SUICUNE
+    jp z, .defUp
+
+    cp RAIKOU
+    jp z, .spdUp
+
+    cp ENTEI
+    jp z, .atkUp
+
+    cp GYARADOS
+    jp z, .atkDown
+
+    cp WEEZING
+    jp z, .accDown
+
+    cp MILTANK
+    jp z, .spAtkDown
+
+    cp STEELIX
+    jp z, .defenseMode
+
+    cp CLEFABLE
+    jp z, .spDefUp
+
+    cp CROBAT
+    jp z, .evasionUp
+
+    cp MEW
+    jp z, .randomStatUp
+
+    cp SMEARGLE
+    jp z, .smeargle
+
+    cp SKARMORY
+    jp z, .spikes
+
+;	cp RHYPERIOR
+;	jp z, .stealthrock
+
+;	cp TENTACRUEL
+;	jp z, .toxicspikes
+
+;	cp CLEFABLE
+;	jp z, .trickroom
+
+    cp MR__MIME
+    jp z, .bothScreens
+
+    cp ARTICUNO
+    jp z, .reflect
+
+    cp ZAPDOS
+    jp z, .lightScreen
+
+    cp MOLTRES
+    jp z, .safeguard
+    ret
+
+.rain
+    farcall RainSwitch
+    ret
+
+.sun
+    farcall SunSwitch
+    ret
+
+.sand
+    farcall SandSwitch
+    ret
+
+.spikes
+    farcall SpikesSwitch
+    ret
+
+;.stealthrock
+;	farcall StealthRockSwitch
+;	ret
+;.toxicspikes
+;	farcall ToxicSpikesSwitch
+;	ret
+;.trickroom
+;	farcall TrickRoomSwitch
+;	ret
+
+.bothScreens
+    farcall ReflectSwitch
+    farcall LightScreenSwitch
+    ret
+
+.reflect
+    farcall ReflectSwitch
+    ret
+
+.lightScreen
+    farcall LightScreenSwitch
+    ret
+
+.safeguard
+    farcall SafeguardSwitch
+    ret
+
+.spAtkUp
+    farcall SpecialAttackUpSwitch
+	ret
+
+.spDefUp
+    farcall SpecialDefenseUpSwitch
+	ret
+
+.defUp
+    farcall DefenseUpSwitch
+	ret
+
+.spdUp
+    farcall SpeedUpSwitch
+	ret
+
+.atkUp
+    farcall AttackUpSwitch
+	ret
+
+.evasionUp
+    farcall EvasionUpSwitch
+	ret
+
+.smeargle
+    farcall SafeguardSwitch
+    ; fallthrough
+.randomStatUp
+    call BattleRandom
+    cp 43
+    jr c, .atkUp
+    cp 86
+    jr c, .defUp
+    cp 129
+    jr c, .spAtkUp
+    cp 172
+    jr c, .spDefUp
+    cp 215
+    jr c, .spdUp
+    cp 255
+    jr c, .evasionUp
+    ret
+
+.atkDown
+    farcall AttackDownSwitch
+	ret
+
+.spAtkDown
+    farcall SpecialAttackDownSwitch
+	ret
+
+.accDown ; DevNote - only Weezing uses this, can remove it if more room needed
+    farcall AccuracyDownSwitch
+	ret
+
+.defenseMode
+    farcall DefenseModeSwitch
+    ret
+
+GetCurrentMonCore:
+    farcall HasWildBattleBegun
+    jr nc, .trainer
+	ld a, [wTempWildMonSpecies]
+	ret
+.trainer
+    ldh a, [hBattleTurn]
+	and a
+	ld hl, wBattleMonHP
+	ld a, [wBattleMonSpecies]
+	jr z, .done
+	ld hl, wEnemyMonHP
+	ld a, [wEnemyMonSpecies]
+.done
+    ret

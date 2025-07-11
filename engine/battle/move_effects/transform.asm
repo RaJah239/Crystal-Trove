@@ -1,4 +1,15 @@
 BattleCommand_Transform:
+	
+; Protects before using Transform
+	ld a, BATTLE_VARS_SUBSTATUS1
+	call GetBattleVarAddr
+	set SUBSTATUS_PROTECT, [hl]
+
+	call PromptButton
+
+	ld hl, ProtectedItselfText
+	call StdBattleTextbox
+
 	call ClearLastMove
 	ld a, BATTLE_VARS_SUBSTATUS5_OPP
 	call GetBattleVarAddr
@@ -90,7 +101,7 @@ BattleCommand_Transform:
 	cp SKETCH
 	ld a, 1
 	jr z, .done_move
-	ld a, 5
+	ld a, 16
 .done_move
 	ld [hli], a
 	dec b

@@ -385,20 +385,316 @@ HandleFutureSight:
 	call UpdateBattleMonInParty
 	jp UpdateEnemyMonInParty
 
-BattleMissAnim:
-	push hl
-	push de
-	push bc
-	call EmptyBattleTextbox
-	ld a, ANIM_BATTLE_MISS
-	ld [wFXAnimID], a
-	farcall SwitchTurnCore
-	xor a
-	ld [wNumHits], a
-	ld [wFXAnimID + 1], a
-	predef PlayBattleAnim
-	farcall SwitchTurnCore
-	pop bc
-	pop de
-	pop hl
+; Handling Abilities
+
+PlayAnimationIfNotFirstTurn:
+; assume animation in de
+    call ShouldPlayAnim
+    jr nc, .skipAnim
+	farcall Call_PlayBattleAnim
+	scf
 	ret
+.skipAnim
+    xor a
+    ret
+
+ShouldPlayAnim:
+	ld a, [wBattleMode]
+	dec a
+	jr nz, .checkEnemyPresent
+	ld a, [wBattleHasJustStarted]
+	and a
+	jr nz, .no
+	jr .yes
+.checkEnemyPresent
+    ldh a, [hBattleTurn]
+	and a
+	ld a, [wBattleMonSpecies]
+	jr nz, .gotEnemy
+	ld a, [wEnemyMonSpecies]
+.gotEnemy
+    and a
+    jr z, .no
+.yes
+    scf
+    ret
+.no
+    xor a
+    ret
+
+HasWildBattleBegun:
+    ld a, [wBattleMode]
+	dec a
+	jr nz, .no
+	ld a, [wBattleMonSpecies]
+	and a
+	jr nz, .no
+	scf
+	ret
+.no
+    xor a
+    ret
+
+RainSwitch:
+	ld a, WEATHER_RAIN
+	ld [wBattleWeather], a
+	ld a, 255
+	ld [wWeatherCount], a
+    ld a, [wBattleHasJustStarted]
+    and a
+    ret nz
+    ld de, RAIN_DANCE
+	farcall Call_PlayBattleAnim
+	ld hl, DownpourText
+	jp StdBattleTextbox
+
+SunSwitch:
+    ld a, WEATHER_SUN
+	ld [wBattleWeather], a
+	ld a, 255
+	ld [wWeatherCount], a
+    ld a, [wBattleHasJustStarted]
+    and a
+    ret nz
+    ld de, SUNNY_DAY
+	farcall Call_PlayBattleAnim
+	ld hl, SunGotBrightText
+	jp StdBattleTextbox
+
+SandSwitch:
+    ld a, WEATHER_SANDSTORM
+	ld [wBattleWeather], a
+	ld a, 255
+	ld [wWeatherCount], a
+    ld a, [wBattleHasJustStarted]
+    and a
+    ret nz
+    ld de, ANIM_IN_SANDSTORM
+	farcall Call_PlayBattleAnim
+	ld hl, SandstormBrewedText
+	jp StdBattleTextbox
+
+SpikesSwitch:
+	ld hl, wEnemyScreens
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_screens
+	ld hl, wPlayerScreens
+.got_screens
+    bit SCREENS_SPIKES, [hl]
+    ret nz
+	set SCREENS_SPIKES, [hl]
+    ld de, SPIKES
+    call PlayAnimationIfNotFirstTurn
+	ld hl, SpikesText
+	jp StdBattleTextbox
+
+ReflectSwitch:
+    ld hl, wPlayerScreens
+	ld bc, wPlayerReflectCount
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_screens_pointer
+	ld hl, wEnemyScreens
+	ld bc, wEnemyReflectCount
+.got_screens_pointer
+	set SCREENS_REFLECT, [hl]
+	ld a, FIELD_EFFECT_DURATION
+	ld [bc], a
+    ld de, REFLECT
+    call PlayAnimationIfNotFirstTurn
+    ld hl, ReflectEffectText
+	jp StdBattleTextbox
+
+LightScreenSwitch:
+    ld hl, wPlayerScreens
+	ld bc, wPlayerLightScreenCount
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_screens_pointer
+	ld hl, wEnemyScreens
+	ld bc, wEnemyLightScreenCount
+.got_screens_pointer
+	set SCREENS_LIGHT_SCREEN, [hl]
+	ld a, FIELD_EFFECT_DURATION
+	ld [bc], a
+    ld de, LIGHT_SCREEN
+    call PlayAnimationIfNotFirstTurn
+    ld hl, LightScreenEffectText
+	jp StdBattleTextbox
+
+SafeguardSwitch:
+    ld hl, wPlayerScreens
+	ld bc, wPlayerSafeguardCount
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_screens_pointer
+	ld hl, wEnemyScreens
+	ld bc, wEnemySafeguardCount
+.got_screens_pointer
+	set SCREENS_SAFEGUARD, [hl]
+	ld a, FIELD_EFFECT_DURATION
+	ld [bc], a
+    ld de, SAFEGUARD
+    call PlayAnimationIfNotFirstTurn
+    ld hl, CoveredByVeilText
+	jp StdBattleTextbox
+
+SpecialAttackUpSwitch:
+    call PlayBoostAnimation
+    callfar BattleCommand_SpecialAttackUp
+	call PrintSpecialAttackUpMessage
+	ret
+
+AttackUpSwitch:
+    call PlayBoostAnimation
+    callfar BattleCommand_AttackUp
+	call PrintAttackUpMessage
+	ret
+
+SpecialDefenseUpSwitch:
+    call PlayBoostAnimation
+    callfar BattleCommand_SpecialDefenseUp
+	call PrintSpecialDefenseUpMessage
+	ret
+
+DefenseUpSwitch:
+    call PlayBoostAnimation
+    callfar BattleCommand_DefenseUp
+	call PrintDefenseUpMessage
+	ret
+
+SpeedUpSwitch:
+    call PlayBoostAnimation
+    callfar BattleCommand_SpeedUp
+	call PrintSpeedUpMessage
+	ret
+
+DefenseModeSwitch:
+    call PlayBoostAnimation
+    callfar BattleCommand_DefenseUp2
+    call PrintDefenseUpMessage
+    callfar BattleCommand_SpecialDefenseUp2
+    call PrintSpecialDefenseUpMessage
+    ret
+
+EvasionUpSwitch:
+    call PlayBoostAnimation
+    callfar BattleCommand_EvasionUp
+	call PrintEvasionUpMessage
+	ret
+
+; For all Stat Drop Abilities:
+; Doesn't work on first turn on either side of the field in a wild battle
+; Since the foe trainer sends out first without a target,
+; Only the player's pokemon stat drops the opponent
+AttackDownSwitch:
+    callfar BattleCommand_AttackDown
+    call PlayDropAnimation
+	ret
+
+SpecialAttackDownSwitch:
+    callfar BattleCommand_SpecialAttackDown
+    call PlayDropAnimation
+	ret
+
+AccuracyDownSwitch:
+    callfar BattleCommand_AccuracyDown
+    call PlayDropAnimation
+	ret
+
+PrintAttackUpMessage:
+    call HasWildBattleBegun
+    jr c, .wild
+	farcall BattleCommand_StatUpMessage
+	ret
+.wild
+    ld hl, WildAttackUpText
+    jp BattleTextbox
+
+WildAttackUpText:
+    text "<TARGET>'s"
+    line "Attack went up!"
+    prompt
+
+PrintDefenseUpMessage:
+    call HasWildBattleBegun
+    jr c, .wild
+	farcall BattleCommand_StatUpMessage
+	ret
+.wild
+    ld hl, WildDefenseUpText
+    jp BattleTextbox
+
+WildDefenseUpText:
+    text "<TARGET>'s"
+    line "Defense went up!"
+    prompt
+
+PrintSpeedUpMessage:
+    call HasWildBattleBegun
+    jr c, .wild
+	farcall BattleCommand_StatUpMessage
+	ret
+.wild
+    ld hl, WildSpeedUpText
+    jp BattleTextbox
+
+WildSpeedUpText:
+    text "<TARGET>'s"
+    line "Speed went up!"
+    prompt
+
+PrintSpecialAttackUpMessage:
+    call HasWildBattleBegun
+    jr c, .wild
+	farcall BattleCommand_StatUpMessage
+	ret
+.wild
+    ld hl, WildSpecialAttackUpText
+    jp BattleTextbox
+
+WildSpecialAttackUpText:
+    text "<TARGET>'s"
+    line "Spcl.Atk went up!"
+    prompt
+
+PrintSpecialDefenseUpMessage:
+    call HasWildBattleBegun
+    jr c, .wild
+	farcall BattleCommand_StatUpMessage
+	ret
+.wild
+    ld hl, WildSpecialDefenseUpText
+    jp BattleTextbox
+
+WildSpecialDefenseUpText:
+    text "<TARGET>'s"
+    line "Spcl.Def went up!"
+    prompt
+
+PrintEvasionUpMessage:
+    call HasWildBattleBegun
+    jr c, .wild
+	farcall BattleCommand_StatUpMessage
+	ret
+.wild
+    ld hl, WildEvasionUpText
+    jp BattleTextbox
+
+WildEvasionUpText:
+    text "<TARGET>'s"
+    line "Evasion went up!"
+    prompt
+
+PlayDropAnimation:
+    ld de, ANIM_ENEMY_STAT_DOWN
+    call PlayAnimationIfNotFirstTurn
+    ret nc
+    callfar BattleCommand_StatDownMessage
+    ret
+
+PlayBoostAnimation:
+    ld de, ANIM_STAT_UP
+    call PlayAnimationIfNotFirstTurn
+    ret

@@ -139,18 +139,18 @@ BattleText_TargetWasHitByFutureSight:
 	prompt
 
 BattleText_SafeguardFaded:
-	text "<USER>'s"
-	line "Safeguard faded!"
+	text "The veil of"
+	line "Safeguard faded."
 	prompt
 
 BattleText_MonsLightScreenFell:
-	text "<TARGET>'s"
-	line "Light Screen fell!"
+	text "The Light Screen"
+	line "faded faded away."
 	prompt
 
 BattleText_MonsReflectFaded:
-	text "<TARGET>'s"
-	line "Reflect faded!"
+	text "The Reflect wall"
+	line "faded faded away."
 	prompt
 
 BattleText_RainContinuesToFall:
@@ -893,13 +893,13 @@ TransformedText:
 	prompt
 
 LightScreenEffectText:
-	text "<USER>'s"
-	line "Spcl.Def rose!"
+	text "A Light Screen"
+	line "was raised."
 	prompt
 
 ReflectEffectText:
-	text "<USER>'s"
-	line "Defense rose!"
+	text "A Reflect wall"
+	line "was raised."
 	prompt
 
 NothingHappenedText:
@@ -1007,9 +1007,8 @@ ProtectingItselfText:
 	done
 
 SpikesText:
-	text "SPIKES scattered"
-	line "all around"
-	cont "<TARGET>!"
+	text "Spikes scattered"
+	line "all around."
 	prompt
 
 IdentifiedText:
@@ -1039,14 +1038,14 @@ FellInLoveText:
 	prompt
 
 CoveredByVeilText:
-	text "<USER>'s"
-	line "covered by a veil!"
+	text "A Safeguard"
+	line "was raised."
 	prompt
 
 SafeguardProtectText:
 	text "<TARGET>"
 	line "is protected by"
-	cont "SAFEGUARD!"
+	cont "Safeguard!"
 	prompt
 
 MagnitudeText:
