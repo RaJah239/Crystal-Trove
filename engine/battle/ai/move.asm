@@ -200,6 +200,7 @@ AIChooseMove:
 AIScoringPointers:
 ; entries correspond to AI_* constants
 	dw AI_Basic
+	dw AI_Smart_Switch
 	dw AI_Setup
 	dw AI_Types
 	dw AI_Offensive

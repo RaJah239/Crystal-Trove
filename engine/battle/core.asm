@@ -1114,7 +1114,22 @@ CheckIfHPIsZero:
 	or [hl]
 	ret
 
+Core_MagicGuardPokemon:
+    db CLEFAIRY
+    db CLEFABLE
+    db ABRA
+    db KADABRA
+    db ALAKAZAM
+    db -1
+
 ResidualDamage:
+; Pokemon who are immune to residual damage (magic guard) take no damage
+    call GetCurrentMonCore
+	ld hl, Core_MagicGuardPokemon
+	ld de, 1
+	call IsInArray
+	jp c, .check_fainted
+
 ; Return z if the user fainted before
 ; or as a result of residual damage.
 ; For Sandstorm damage, see HandleWeather.
@@ -1434,6 +1449,13 @@ HandleWeather:
 	call SetPlayerTurn
 
 .SandstormDamage:
+; Pokemon who are immune to residual damage (magic guard) take no damage
+    call GetCurrentMonCore
+	ld hl, Core_MagicGuardPokemon
+	ld de, 1
+	call IsInArray
+	ret c
+
 	ld a, BATTLE_VARS_SUBSTATUS3
 	call GetBattleVar
 	bit SUBSTATUS_UNDERGROUND, a

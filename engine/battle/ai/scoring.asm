@@ -1,5 +1,83 @@
 AIScoring: ; used only for BANK(AIScoring)
 
+AI_MagicGuardPokemon:
+    db CLEFAIRY
+    db CLEFABLE
+    db ABRA
+    db KADABRA
+    db ALAKAZAM
+    db $FF
+
+AI_Smart_Switch:
+; Enemies can switch intelligently under certain conditions
+
+; don't switch if enemy is weakened, just let it die
+	call AICheckEnemyQuarterHP
+	ret nc
+
+; switch if enemy accuracy at -2 or lower
+    ld a, [wEnemyAccLevel]
+	cp BASE_STAT_LEVEL - 1
+	jr c, .switch
+
+; switch if enemy attack or special attack at -2 or lower, unless the other offense is boosted
+    ld a, [wEnemyAtkLevel]
+    cp BASE_STAT_LEVEL + 1
+    jr nc, .magicGuard
+    ld a, [wEnemySAtkLevel]
+    cp BASE_STAT_LEVEL + 1
+    jr nc, .magicGuard
+    ld a, [wEnemyAtkLevel]
+	cp BASE_STAT_LEVEL - 1
+	jr c, .switch
+    ld a, [wEnemySAtkLevel]
+	cp BASE_STAT_LEVEL - 1
+	jr c, .switch
+
+.magicGuard
+; Pokemon who are immune to residual damage (magic guard) should not be considered
+    ld a, [wEnemyMonSpecies]
+    call DoesPokemonHaveMagicGuard
+	ret c
+
+; switch if enemy is cursed
+    ld a, [wEnemySubStatus1]
+	bit SUBSTATUS_CURSE, a
+	jr nz, .switch
+
+; if enemy afflicted with toxic
+; 50% chance to switch when above 50% hp if not set up
+; switch when below 50% hp
+    ld a, [wEnemySubStatus5]
+	bit SUBSTATUS_TOXIC, a
+    jr z, .checkLeechSeed
+	call AICheckEnemyHalfHP
+	jr nc, .switch
+	call AI_50_50
+	jr c, .checkLeechSeed
+	jr .switch
+
+.checkLeechSeed
+; 30% chance to switch per turn if enemy afflicted with leech seed
+    ld a, [wEnemySubStatus4]
+	bit SUBSTATUS_LEECH_SEED, a
+	ret z
+	call Random
+	cp 70 percent + 1
+	ret c
+
+    ; fallthrough
+.switch
+; can't switch if trapped
+	ld a, [wBattleMonSpecies]
+	cp WOBBUFFET
+	ret z
+;	cp GIRATINA
+;	ret z
+
+    ld a, $1
+    ld [wEnemyIsSwitching], a
+	ret
 
 AI_Basic:
 ; Don't do anything redundant:
@@ -1002,13 +1080,107 @@ AI_Smart_Heal:
 	ret
 
 AI_Smart_Toxic:
-AI_Smart_LeechSeed:
-; Discourage this move if player's HP is below 50%.
+; never use if player has substitute
+    ld a, [wPlayerSubStatus4]
+	bit SUBSTATUS_SUBSTITUTE, a
+	jr nz, .discourage
 
-	call AICheckPlayerHalfHP
-	ret c
-	inc [hl]
+; never use if player has safeguard
+	ld a, [wPlayerScreens]
+	bit SCREENS_SAFEGUARD, a
+	jr nz, .discourage
+
+; never use against steel types
+    ld a, [wBattleMonType1]
+	cp STEEL
+	jr z, .discourage
+	ld a, [wBattleMonType2]
+	cp STEEL
+	jr z, .discourage
+
+; never use against poison types
+    ld a, [wBattleMonType1]
+	cp POISON
+	jr z, .discourage
+	ld a, [wBattleMonType2]
+	cp POISON
+	jr z, .discourage
+
+; never use against Pokemon immune to status
+;	ld a, [wBattleMonSpecies]
+;	cp ARCEUS
+;	jr z, .discourage
+;	cp SYLVEON
+;	jr z, .discourage
+;	cp DUNSPARCE
+;	jp z, .discourage
+
+; never use against Pokemon with magic guard
+    ld a, [wBattleMonSpecies]
+    call DoesPokemonHaveMagicGuard
+   	jr c, .discourage
+
+; don't use if player below 50% HP
+    call AICheckPlayerHalfHP
+    jr nc, .discourage
+
+; encourage slightly if we get here
+    dec [hl]
 	ret
+
+.discourage
+    inc [hl]
+    inc [hl]
+    inc [hl]
+    ret
+
+AI_Smart_LeechSeed:
+; never use against grass types
+    ld a, [wBattleMonType1]
+	cp GRASS
+	jr z, .discourage
+	ld a, [wBattleMonType2]
+	cp GRASS
+	jr z, .discourage
+
+; don't use on foes twice our level
+	ld a, [wBattleMonLevel]
+	srl a
+	ld b, a
+	ld a, [wEnemyMonLevel]
+	sub b
+	jr c, .discourage
+
+; never use against Pokemon with magic guard
+    ld a, [wBattleMonSpecies]
+    call DoesPokemonHaveMagicGuard
+   	jr c, .discourage
+
+; don't use on already seeded player
+    ld a, [wPlayerSubStatus4]
+	bit SUBSTATUS_LEECH_SEED, a
+	jr nz, .discourage
+
+; don't use if we will be koed
+;	call ShouldAIBoost
+;	jr nc, .discourage
+
+; don't use if we can just 2hko the player
+;	call CanAI2HKO
+;	jr c, .discourage
+
+; otherwise use
+rept 5
+    dec [hl]
+endr
+    ret
+
+.discourage
+    inc [hl]
+    inc [hl]
+    ret
+
+; DevNote - functions which check if the player can KO the AI and decide to use boosting moves
 
 AI_Smart_LightScreen:
 AI_Smart_Reflect:
@@ -3418,3 +3590,20 @@ AI_50_50:
 	call Random
 	cp 50 percent + 1
 	ret
+
+DoesPokemonHaveMagicGuard:
+    push hl
+    push de
+   	push bc
+   	ld hl, AI_MagicGuardPokemon
+   	ld de, 1
+   	call IsInArray
+   	pop bc
+   	pop de
+   	pop hl
+   	jr c, .yes
+   	xor a
+   	ret
+.yes
+    scf
+    ret
