@@ -3226,6 +3226,28 @@ ConfusionDamageCalc:
 	call HalfDamage
 .finishDamage
 
+; =================================
+; ========== Technician ===========
+; =================================
+    call GetCurrentMon
+    push de
+	push bc
+	ld hl, TechnicianPokemon
+	ld de, 1
+	call IsInArray
+	pop bc
+	pop de
+	jr c, .loadMovePower
+    jr .finishTechnician
+.loadMovePower
+	ld a, BATTLE_VARS_MOVE_POWER
+	call GetBattleVar
+    cp $3D ; is power larger than 60
+    jr nc, .finishTechnician
+; 50% boost
+    call FiftyPercentBoost
+.finishTechnician
+
 ; Update wCurDamage. Max 999 (capped at 997, then add 2).
 DEF MAX_DAMAGE EQU 999
 DEF MIN_DAMAGE EQU 2
@@ -3332,6 +3354,11 @@ DEF DAMAGE_CAP EQU MAX_DAMAGE - MIN_DAMAGE
 
 	ret
 
+FiftyPercentBoost:
+    ld a, 3
+	ldh [hMultiplier], a
+	call Multiply
+; fallthrough
 HalfDamage:
 	ld a, 2
 	ldh [hDivisor], a

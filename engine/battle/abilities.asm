@@ -22,6 +22,20 @@ ClearBodyPokemon:
     db WOBBUFFET
     db -1
 
+TechnicianPokemon:
+    db SCYTHER
+    db SCIZOR
+    db MEOWTH
+    db PERSIAN
+    db PORYGON
+    db PORYGON2
+    db BULBASAUR
+    db IVYSAUR
+    db VENUSAUR
+    db MARILL
+    db BUTTERFREE
+    db -1
+
 ; modify in core.asm
 ; this list needs to be in core.asm
 ;Core_MoxiePokemon:
