@@ -1982,6 +1982,7 @@ StopDangerSound:
 	ret
 
 FaintYourPokemon:
+	call KOBoost
 	call StopDangerSound
 	call WaitSFX
 	ld a, $f0
@@ -1996,6 +1997,7 @@ FaintYourPokemon:
 	jp StdBattleTextbox
 
 FaintEnemyPokemon:
+	call KOBoost
 	call WaitSFX
 	ld de, SFX_KINESIS
 	call PlaySFX
@@ -2007,6 +2009,66 @@ FaintEnemyPokemon:
 	call ClearBox
 	ld hl, BattleText_EnemyMonFainted
 	jp StdBattleTextbox
+
+; ==========================
+; ==== Moxie and Grim ======
+; ==========================
+KOBoost:
+    push bc
+    call GetCurrentMonCore
+    ld b, a
+    ld a, [hli]
+    and a
+    jr nz, .cont
+    ld a, [hl]
+    and a
+    jr nz, .cont
+    pop bc
+    ret
+.cont
+    ld a, b
+    pop bc
+	ld hl, Core_MoxiePokemon
+	ld de, 1
+	call IsInArray
+	jr c, .moxie
+
+    call GetCurrentMonCore
+	ld hl, Core_GrimPokemon
+	ld de, 1
+	call IsInArray
+	jr c, .grim
+
+    ret
+.grim
+    call ClearFailures
+    ld [wNumHits], a
+    farcall SpecialAttackUpSwitch
+    ret
+.moxie
+    call ClearFailures
+    ld [wNumHits], a
+    farcall AttackUpSwitch
+    ret
+
+; this list needs to be in core.asm
+Core_MoxiePokemon:
+    db HERACROSS
+    db TAUROS
+    db LARVITAR
+    db PUPITAR
+    db TYRANITAR
+    db -1
+
+; this list needs to be in core.asm
+Core_GrimPokemon:
+    db RAIKOU
+    db GENGAR
+    db KINGDRA
+    db CHARMANDER
+    db CHARMELEON
+    db CHARIZARD
+    db -1
 
 CheckEnemyTrainerDefeated:
 	ld a, [wOTPartyCount]
