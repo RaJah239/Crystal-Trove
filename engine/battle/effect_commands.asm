@@ -3197,6 +3197,35 @@ ConfusionDamageCalc:
 ; Critical hits
 	call .CriticalMultiplier
 
+; ===============================
+; ========= Multi Scale =========
+; ===============================
+; half damage at full health for Dragonite and Lugia (multi scale)
+ 	ldh a, [hBattleTurn]
+ 	and a
+ 	jr z, .enemy
+ 	farcall ItemCheckPlayerMaxHP
+ 	jr nc, .finishDamage
+ 	ld a, [wBattleMonSpecies]
+ 	jr .checkSpecies
+.enemy
+    farcall ItemCheckEnemyMaxHP
+    jr nc, .finishDamage
+    ld a, [wEnemyMonSpecies]
+.checkSpecies
+    push de
+	push bc
+	ld hl, MultiScalePokemon
+	ld de, 1
+	call IsInArray
+	pop bc
+	pop de
+	jr c, .multiscaleReduction
+    jr .finishDamage
+.multiscaleReduction
+	call HalfDamage
+.finishDamage
+
 ; Update wCurDamage. Max 999 (capped at 997, then add 2).
 DEF MAX_DAMAGE EQU 999
 DEF MIN_DAMAGE EQU 2
@@ -3301,6 +3330,13 @@ DEF DAMAGE_CAP EQU MAX_DAMAGE - MIN_DAMAGE
 	ldh [hQuotient + 2], a
 	ldh [hQuotient + 3], a
 
+	ret
+
+HalfDamage:
+	ld a, 2
+	ldh [hDivisor], a
+	ld b, 4
+	call Divide
 	ret
 
 INCLUDE "data/types/type_boost_items.asm"

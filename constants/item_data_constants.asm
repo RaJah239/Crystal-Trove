@@ -110,13 +110,13 @@ DEF MAIL_STRUCT_LENGTH_JP EQU $2a ; mailmsg_jp struct
 
 	const_next 30
 	const HELD_30
-	const HELD_ATTACK_UP
-	const HELD_DEFENSE_UP
-	const HELD_SPEED_UP
-	const HELD_SP_ATTACK_UP
-	const HELD_SP_DEFENSE_UP
-	const HELD_ACCURACY_UP
-	const HELD_EVASION_UP
+	const_skip
+	const_skip
+	const_skip
+	const_skip
+	const_skip
+	const_skip
+	const_skip
 	const HELD_38
 
 	const_next 40

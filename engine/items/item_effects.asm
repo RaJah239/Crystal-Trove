@@ -3020,3 +3020,63 @@ ExpShareToggleOff:
 ExpShareToggleOn:
 	text_far _ExpShareToggleOn
 	text_end
+
+ItemCheckPlayerMaxHP:
+	push hl
+	push de
+	push bc
+	ld de, wBattleMonHP
+	ld hl, wBattleMonMaxHP
+
+	ld a, [de]
+	inc de
+	cp [hl]
+	jr nz, .not_max
+
+	inc hl
+	ld a, [de]
+	cp [hl]
+	jr nz, .not_max
+
+	pop bc
+	pop de
+	pop hl
+	scf
+	ret
+
+.not_max
+	pop bc
+	pop de
+	pop hl
+	and a
+	ret
+
+ItemCheckEnemyMaxHP:
+	push hl
+	push de
+	push bc
+	ld de, wEnemyMonHP
+	ld hl, wEnemyMonMaxHP
+
+	ld a, [de]
+	inc de
+	cp [hl]
+	jr nz, .not_max
+
+	inc hl
+	ld a, [de]
+	cp [hl]
+	jr nz, .not_max
+
+	pop bc
+	pop de
+	pop hl
+	scf
+	ret
+
+.not_max
+	pop bc
+	pop de
+	pop hl
+	and a
+	ret

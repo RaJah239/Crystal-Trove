@@ -295,7 +295,6 @@ HandleBetweenTurnEffects:
 
 .NoMoreFaintingConditions:
 	farcall Core2_NewTurnEndEffects
-	call HandleStatBoostingHeldItems
 	call HandleHealingItems
 	call UpdateBattleMonInParty
 	call LoadTilemapToTempTilemap
@@ -4175,76 +4174,6 @@ UseConfusionHealingItem:
 	ld [bc], a
 	ld [hl], a
 	ret
-
-HandleStatBoostingHeldItems:
-; The effects handled here are not used in-game.
-	ldh a, [hSerialConnectionStatus]
-	cp USING_EXTERNAL_CLOCK
-	jr z, .player_1
-	call .DoPlayer
-	jp .DoEnemy
-
-.player_1
-	call .DoEnemy
-	jp .DoPlayer
-
-.DoPlayer:
-	call GetPartymonItem
-	ld a, $0
-	jp .HandleItem
-
-.DoEnemy:
-	call GetOTPartymonItem
-	ld a, $1
-.HandleItem:
-	ldh [hBattleTurn], a
-	ld d, h
-	ld e, l
-	push de
-	push bc
-	ld a, [bc]
-	ld b, a
-	callfar GetItemHeldEffect
-	ld hl, HeldStatUpItems
-.loop
-	ld a, [hli]
-	cp -1
-	jr z, .finish
-	inc hl
-	inc hl
-	cp b
-	jr nz, .loop
-	pop bc
-	ld a, [bc]
-	ld [wNamedObjectIndex], a
-	push bc
-	dec hl
-	dec hl
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	ld a, BANK(BattleCommand_AttackUp)
-	rst FarCall
-	pop bc
-	pop de
-	ld a, [wFailedMessage]
-	and a
-	ret nz
-	xor a
-	ld [bc], a
-	ld [de], a
-	call GetItemName
-	ld hl, BattleText_UsersStringBuffer1Activated
-	call StdBattleTextbox
-	callfar BattleCommand_StatUpMessage
-	ret
-
-.finish
-	pop bc
-	pop de
-	ret
-
-INCLUDE "data/battle/held_stat_up.asm"
 
 GetPartymonItem:
 	ld hl, wPartyMon1Item
