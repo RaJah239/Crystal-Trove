@@ -7054,17 +7054,18 @@ GetOpposingMon:
 
 
 
-INCLUDE "engine/battle/move_effects/mimic.asm"
+
 INCLUDE "engine/battle/move_effects/pay_day.asm"
 INCLUDE "engine/battle/move_effects/conversion.asm"
 INCLUDE "engine/battle/move_effects/rage.asm"
 INCLUDE "engine/battle/move_effects/conversion2.asm"
 INCLUDE "engine/battle/move_effects/lock_on.asm"
 
-;to remove fully eventually
+;to remove fully eventually but thier code is commented out for now
 INCLUDE "engine/battle/move_effects/beat_up.asm"
 INCLUDE "engine/battle/move_effects/triple_kick.asm"
 INCLUDE "engine/battle/move_effects/mirror_move.asm"
+INCLUDE "engine/battle/move_effects/mimic.asm"
 
 BattleCommand_CheckFutureSight:
 BattleCommand_FutureSight:
