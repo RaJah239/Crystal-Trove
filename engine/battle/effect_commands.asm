@@ -1319,7 +1319,7 @@ BattleCommand_Stab:
 	inc hl
 
 	cp -1
-	jr z, .end
+	jp z, .end
 
 	; foresight
 	cp -2
@@ -1327,19 +1327,19 @@ BattleCommand_Stab:
 	ld a, BATTLE_VARS_SUBSTATUS1_OPP
 	call GetBattleVar
 	bit SUBSTATUS_IDENTIFIED, a
-	jr nz, .end
+	jp nz, .end
 
 	jr .TypesLoop
 
 .SkipForesightCheck:
 	cp b
-	jr nz, .SkipType
+	jp nz, .SkipType
 	call GetNextTypeMatchupsByte
 	cp d
 	jr z, .GotMatchup
 	cp e
 	jr z, .GotMatchup
-	jr .SkipType
+	jp .SkipType
 
 .GotMatchup:
 	push hl
@@ -1380,6 +1380,41 @@ BattleCommand_Stab:
 	or b
 	jr z, .ok ; This is a very convoluted way to get back that we've essentially dealt no damage.
 
+
+; ==============================
+; ======= Solid Rock ===========
+; ==============================
+    call GetOpposingMon
+	push bc
+	push de
+	push hl
+	ld hl, SolidRockPokemon
+	ld de, 1
+	call IsInArray
+	pop hl
+	pop de
+	pop bc
+	jr c, .checkSolidRock
+	jr .continue
+
+.checkSolidRock
+    ld a, [wTypeModifier]
+	and $7f
+    cp EFFECTIVE
+	jr nc, .applySolidRock
+	jr .continue
+
+.applySolidRock
+; SE hits do 80% normal damage
+    ld a, 4
+	ldh [hMultiplier], a
+	call Multiply
+	ld a, 5
+	ldh [hDivisor], a
+	ld b, 4
+	call Divide
+
+.continue
 ; Take the product and divide it by 10.
 	ld a, 10
 	ldh [hDivisor], a
@@ -1405,7 +1440,7 @@ BattleCommand_Stab:
 .SkipType:
 	inc hl
 	inc hl
-	jr .TypesLoop
+	jp .TypesLoop
 
 .end
 	call BattleCheckTypeMatchup

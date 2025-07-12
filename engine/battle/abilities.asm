@@ -88,6 +88,12 @@ GutsPokemon:
     db URSARING
     db -1
 
+SolidRockPokemon:
+    db RHYHORN
+    db RHYDON
+    db EXEGGUTOR
+    db -1
+
 ; modify in core.asm
 ; this list needs to be in core.asm
 ;Core_MoxiePokemon:
