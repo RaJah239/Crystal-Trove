@@ -168,7 +168,7 @@ ItemEffects:
 	dw NoEffect            ; BERSERK_GENE
 	dw NoEffect            ; MUSCLE_BAND
 	dw NoEffect            ; WISE_GLASSES
-	dw NoEffect            ; ITEM_9B
+	dw NoEffect            ; EXPERT_BELT
 	dw SacredAshEffect     ; SACRED_ASH
 	dw PokeBallEffect      ; HEAVY_BALL
 	dw NoEffect            ; FLOWER_MAIL

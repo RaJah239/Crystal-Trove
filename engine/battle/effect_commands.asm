@@ -1403,7 +1403,34 @@ BattleCommand_Stab:
 	or b
 	jr z, .ok ; This is a very convoluted way to get back that we've essentially dealt no damage.
 
+; DevNote - expert belt - x1.2 damage on SE hits
+; DevNote - Fix this!!
+; The problem with ExpertBelt / SolidRock is this
+; we are right now in a loop that goes through enemy types
+; if we are SE against one we boost
+; so we sometimes boost even if damage is neutral, eg thunderbolt vs dragon/flying
+; and if we are SE against both we get a double boost 1.2*1.2 = 1.44
+; ============================
+; ======= Expert Belt ========
+; ============================
+    push hl
+	call GetUserItem
+	ld a, b
+	cp HELD_EXPERT_BELT
+	pop hl
+	jr nz, .solidRock
 
+	ld a, [wTypeModifier]
+	and $7f
+    cp EFFECTIVE
+	jr nc, .applyExpertBelt
+	jr .solidRock
+
+; add 15% damage
+.applyExpertBelt
+    call FifteenPercentBoost
+
+.solidRock
 ; ==============================
 ; ======= Solid Rock ===========
 ; ==============================
@@ -3703,6 +3730,16 @@ FiftyPercentBoost:
 ; fallthrough
 HalfDamage:
 	ld a, 2
+	ldh [hDivisor], a
+	ld b, 4
+	call Divide
+	ret
+
+FifteenPercentBoost:
+    ld a, 23
+	ldh [hMultiplier], a
+	call Multiply
+	ld a, 20
 	ldh [hDivisor], a
 	ld b, 4
 	call Divide

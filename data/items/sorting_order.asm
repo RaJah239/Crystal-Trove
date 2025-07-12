@@ -146,7 +146,7 @@ ItemNameOrder:
 
 
 ; NEXT POCKET
-; Battle Pocket - 49 total
+; Battle Pocket - 50 total
 
 ; Stat altering Battle Items
 	db GUARD_SPEC
@@ -170,6 +170,7 @@ ItemNameOrder:
 	db CLEANSE_TAG
 	db DRAGON_FANG
 	db EVERSTONE
+	db EXPERT_BELT
 	db FOCUS_BAND
 	db FOCUS_SASH
 	db HARD_STONE
@@ -269,12 +270,11 @@ ItemNameOrder:
 
 
 ; UNUSED ITEMS
-; Unused Items - 13 total
+; Unused Items - 12 total
 	db EGG_TICKET
 	db POKE_FLUTE
 	db ITEM_2D
 	db ITEM_91
-	db ITEM_9B
 	db ITEM_A2
 	db ITEM_AB
 	db ITEM_B0

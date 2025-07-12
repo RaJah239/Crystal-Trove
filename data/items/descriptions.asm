@@ -155,7 +155,7 @@ ItemDescriptions:
 	dw BerserkGeneDesc
 	dw MuscleBandDesc
 	dw WiseGlassesDesc
-	dw TeruSama20Desc
+	dw ExpertBeltDesc
 	dw SacredAshDesc
 	dw HeavyBallDesc
 	dw FlowerMailDesc
@@ -860,8 +860,9 @@ WiseGlassesDesc:
 	db   "Slightly boosts"
 	next "special moves.@"
 
-TeruSama20Desc:
-	db   "?@"
+ExpertBeltDesc:
+	db   "Powers up super"
+	next "effective moves.@"
 
 SacredAshDesc:
 	db   "Fully heals all"
