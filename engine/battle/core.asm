@@ -3790,9 +3790,11 @@ SpikesDamage:
 	ld bc, UpdateEnemyHUD
 	ld a, [wEnemyMonSpecies]
 .ok
-	call .Spikes
+	call .spikes_move
+	call .StealthRock
+	ret
 
-.Spikes
+.spikes_move
 	bit SCREENS_SPIKES, [hl]
 	ret z
 
@@ -3821,34 +3823,81 @@ SpikesDamage:
 	push hl
 	push de
 
-	; Floatmons aren't affected by Spikes.
-	push bc
-	ldh a, [hBattleTurn]
-	and a
-	ld a, [wBattleMonSpecies]
-	jr z, .ok2
-	ld a, [wEnemyMonSpecies]
-.ok2
-	ld hl, FloatMons
-	call IsInByteArray
-	pop bc
-	ret c
-
-	push bc
-
 	ld hl, BattleText_UserHurtBySpikes ; "hurt by SPIKES!"
 	call StdBattleTextbox
 
 	call GetEighthMaxHP
 	call SubtractHPFromTarget
+	call WaitBGMap
+	jp .pop
 
+	; Floatmons aren't affected by Spikes.
+;	push bc
+;	ldh a, [hBattleTurn]
+;	and a
+;	ld a, [wBattleMonSpecies]
+;	jr z, .ok2
+;	ld a, [wEnemyMonSpecies]
+;.ok2
+;	ld hl, FloatMons
+;	call IsInByteArray
+;	pop bc
+;	ret c
+;
+;	push bc
+;	push hl
+;	push de
+
+.StealthRock
+	bit SCREENS_STEALTH_ROCK, [hl]
+	ret z
+
+    push hl
+    push de
+	push bc
+	call GetCurrentMonCore
+	ld hl, Core_MagicGuardPokemon
+	ld de, 1
+	call IsInArray
+	pop bc
+	pop de
 	pop hl
-	call .hl
+	ret c
 
-	jp WaitBGMap
+	push bc
+	push hl
+	push de
 
-.hl ; apparently you can jp hl but you can't call hl
-	jp hl
+	ld hl, BattleText_UserHurtByStealthRock
+	call StdBattleTextbox
+
+    pop de
+    ld h, d
+	ld l, e
+	callfar CheckStealthRockTypeMatchup
+	push de
+	ld a, [wTypeMatchup]
+	cp EFFECTIVE + 1
+	jr nc, .doubleDamage
+	cp EFFECTIVE - 1
+	jr c, .halfDamage
+	call GetEighthMaxHP
+	jr .finish
+.halfDamage
+    call GetSixteenthMaxHP
+    jr .finish
+.doubleDamage
+    call GetQuarterMaxHP
+.finish
+	call SubtractHPFromTarget
+	call WaitBGMap
+	jp .pop
+
+.pop
+    pop de
+	pop hl
+	pop bc
+	ret
 
 PursuitSwitch:
 	ld a, BATTLE_VARS_MOVE
@@ -9106,8 +9155,8 @@ SwitchInEffects:
     cp SKARMORY
     jp z, .spikes
 
-;	cp RHYPERIOR
-;	jp z, .stealthrock
+	cp RHYDON
+	jp z, .stealthrock
 
 ;	cp TENTACRUEL
 ;	jp z, .toxicspikes
@@ -9144,9 +9193,9 @@ SwitchInEffects:
     farcall SpikesSwitch
     ret
 
-;.stealthrock
-;	farcall StealthRockSwitch
-;	ret
+.stealthrock
+	farcall StealthRockSwitch
+	ret
 ;.toxicspikes
 ;	farcall ToxicSpikesSwitch
 ;	ret

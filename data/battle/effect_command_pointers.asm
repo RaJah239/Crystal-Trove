@@ -177,4 +177,5 @@ BattleCommandPointers:
 	dw BattleCommand_Curl
 	dw BattleCommand_HitAndSwitch
 	dw BattleCommand_StartHail
+	dw BattleCommand_StealthRock
 	assert_table_length NUM_EFFECT_COMMANDS

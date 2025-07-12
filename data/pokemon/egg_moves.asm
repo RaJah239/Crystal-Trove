@@ -149,14 +149,6 @@ MeowthEggMoves:
 	db -1 ; end
 
 PsyduckEggMoves:
-	db ICE_BEAM
-	db HYPNOSIS
-	db PSYBEAM
-	db FORESIGHT
-	db LIGHT_SCREEN
-	db FUTURE_SIGHT
-	db PSYCHIC_M
-	db CROSS_CHOP
 	db -1 ; end
 
 MankeyEggMoves:
@@ -228,10 +220,6 @@ PonytaEggMoves:
 	db -1 ; end
 
 SlowpokeEggMoves:
-	db SAFEGUARD
-	db BELLY_DRUM
-	db FUTURE_SIGHT
-	db STOMP
 	db -1 ; end
 
 FarfetchDEggMoves:
@@ -374,9 +362,6 @@ GoldeenEggMoves:
 	db -1 ; end
 
 MrMimeEggMoves:
-	db FUTURE_SIGHT
-	db HYPNOSIS
-	db MIMIC
 	db -1 ; end
 
 ScytherEggMoves:
@@ -521,11 +506,6 @@ IgglybuffEggMoves:
 	db -1 ; end
 
 TogepiEggMoves:
-	db PRESENT
-	db MIRROR_MOVE
-	db PECK
-	db FORESIGHT
-	db FUTURE_SIGHT
 	db -1 ; end
 
 NatuEggMoves:
@@ -546,14 +526,6 @@ MareepEggMoves:
 	db -1 ; end
 
 MarillEggMoves:
-	db LIGHT_SCREEN
-	db PRESENT
-	db AMNESIA
-	db FUTURE_SIGHT
-	db BELLY_DRUM
-	db PERISH_SONG
-	db SUPERSONIC
-	db FORESIGHT
 	db -1 ; end
 
 SudowoodoEggMoves:
@@ -607,11 +579,6 @@ MisdreavusEggMoves:
 	db -1 ; end
 
 GirafarigEggMoves:
-	db TAKE_DOWN
-	db AMNESIA
-	db FORESIGHT
-	db FUTURE_SIGHT
-	db BEAT_UP
 	db -1 ; end
 
 PinecoEggMoves:
@@ -708,11 +675,6 @@ RemoraidEggMoves:
 	db -1 ; end
 
 DelibirdEggMoves:
-	db AURORA_BEAM
-	db QUICK_ATTACK
-	db FUTURE_SIGHT
-	db SPLASH
-	db RAPID_SPIN
 	db -1 ; end
 
 MantineEggMoves:

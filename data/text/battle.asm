@@ -12,6 +12,15 @@ RockHeadText:
     line "takes no recoil!"
     prompt
 
+StealthRockText:
+	text "Pointed stones"
+	line "float all around!"
+	prompt
+
+BattleText_UserHurtByStealthRock:
+	text "Stones dug in!"
+	prompt
+
 CantFlinchText:
     text "<TARGET>"
     line "can not flinch!"

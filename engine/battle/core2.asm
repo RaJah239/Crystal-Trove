@@ -431,6 +431,21 @@ SpikesSwitch:
 	ld hl, SpikesText
 	jp StdBattleTextbox
 
+StealthRockSwitch:
+	ld hl, wEnemyScreens
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_screens
+	ld hl, wPlayerScreens
+.got_screens
+    bit SCREENS_STEALTH_ROCK, [hl]
+    ret nz
+	set SCREENS_STEALTH_ROCK, [hl]
+    ld de, STEALTH_ROCK
+    call PlayAnimationIfNotFirstTurn
+	ld hl, StealthRockText
+	jp StdBattleTextbox
+
 ReflectSwitch:
     ld hl, wPlayerScreens
 	ld bc, wPlayerReflectCount

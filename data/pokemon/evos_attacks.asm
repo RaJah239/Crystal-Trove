@@ -844,7 +844,6 @@ KadabraEvosAttacks:
 	db 18, DISABLE
 	db 21, PSYBEAM
 	db 26, RECOVER
-	db 31, FUTURE_SIGHT
 	db 38, PSYCHIC_M
 	db 45, REFLECT
 	db 0 ; no more level-up moves
@@ -858,7 +857,6 @@ AlakazamEvosAttacks:
 	db 18, DISABLE
 	db 21, PSYBEAM
 	db 26, RECOVER
-	db 31, FUTURE_SIGHT
 	db 38, PSYCHIC_M
 	db 45, REFLECT
 	db 0 ; no more level-up moves
@@ -1297,7 +1295,6 @@ DrowzeeEvosAttacks:
 	db 36, MEDITATE
 	db 40, PSYCHIC_M
 	db 43, PSYCH_UP
-	db 45, FUTURE_SIGHT
 	db 0 ; no more level-up moves
 
 HypnoEvosAttacks:
@@ -1313,7 +1310,6 @@ HypnoEvosAttacks:
 	db 40, MEDITATE
 	db 49, PSYCHIC_M
 	db 55, PSYCH_UP
-	db 60, FUTURE_SIGHT
 	db 0 ; no more level-up moves
 
 KrabbyEvosAttacks:
@@ -2030,7 +2026,6 @@ MewtwoEvosAttacks:
 	db 11, BARRIER
 	db 22, SWIFT
 	db 33, PSYCH_UP
-	db 44, FUTURE_SIGHT
 	db 55, MIST
 	db 66, PSYCHIC_M
 	db 77, AMNESIA
@@ -2395,7 +2390,6 @@ NatuEvosAttacks:
 	db 1, LEER
 	db 10, NIGHT_SHADE
 	db 20, TELEPORT
-	db 30, FUTURE_SIGHT
 	db 40, CONFUSE_RAY
 	db 50, PSYCHIC_M
 	db 0 ; no more level-up moves
@@ -2407,7 +2401,6 @@ XatuEvosAttacks:
 	db 1, NIGHT_SHADE
 	db 10, NIGHT_SHADE
 	db 20, TELEPORT
-	db 35, FUTURE_SIGHT
 	db 50, CONFUSE_RAY
 	db 65, PSYCHIC_M
 	db 0 ; no more level-up moves
@@ -3309,7 +3302,6 @@ LugiaEvosAttacks:
 	db 66, SWIFT
 	db 77, WHIRLWIND
 	db 88, ANCIENTPOWER
-	db 99, FUTURE_SIGHT
 	db 0 ; no more level-up moves
 
 HoOhEvosAttacks:
@@ -3323,7 +3315,6 @@ HoOhEvosAttacks:
 	db 66, SWIFT
 	db 77, WHIRLWIND
 	db 88, ANCIENTPOWER
-	db 99, FUTURE_SIGHT
 	db 0 ; no more level-up moves
 
 CelebiEvosAttacks:
@@ -3334,7 +3325,6 @@ CelebiEvosAttacks:
 	db 1, HEAL_BELL
 	db 10, SAFEGUARD
 	db 20, ANCIENTPOWER
-	db 30, FUTURE_SIGHT
 	db 40, BATON_PASS
 	db 50, PERISH_SONG
 	db 0 ; no more level-up moves
