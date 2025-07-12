@@ -105,6 +105,11 @@ RivalryPokemon:
     db MILTANK
     db -1
 
+RockHeadPokemon:
+    db AERODACTYL
+    db ONIX
+    db -1
+
 ; modify in core.asm
 ; this list needs to be in core.asm
 ;Core_MoxiePokemon:

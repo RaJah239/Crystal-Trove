@@ -5983,28 +5983,67 @@ INCLUDE "engine/battle/move_effects/mist.asm"
 INCLUDE "engine/battle/move_effects/focus_energy.asm"
 
 BattleCommand_Recoil:
+; recoil
+; DevNote - Struggle always does 1/4 hp as recoil
+	ld a, BATTLE_VARS_MOVE_ANIM
+	call GetBattleVar
+	cp STRUGGLE
+	jr nz, .begin
+	farcall GetQuarterMaxHP
+    farcall SubtractHPFromUser
+    ret
+.begin
 	ld hl, wBattleMonMaxHP
 	ldh a, [hBattleTurn]
 	and a
+	ld a, [wBattleMonSpecies]
 	jr z, .got_hp
 	ld hl, wEnemyMonMaxHP
+	ld a, [wEnemyMonSpecies]
 .got_hp
+; ========================
+; ===== Rock Head ========
+; ========================
+	push bc
+	push de
+	push hl
+	ld hl, RockHeadPokemon
+	ld de, 1
+	call IsInArray
+	pop hl
+	pop de
+	pop bc
+	jr c, .rockHead
+    jr .endRockHead
+.rockHead
+	ld hl, RockHeadText
+	jp StdBattleTextbox
+.endRockHead
+; ========================
 	ld a, BATTLE_VARS_MOVE_ANIM
 	call GetBattleVar
 	ld d, a
-; get 1/4 damage or 1 HP, whichever is higher
+; get 1/3 damage or 1 HP, whichever is higher
 	ld a, [wCurDamage]
 	ld b, a
 	ld a, [wCurDamage + 1]
 	ld c, a
-	srl b
-	rr c
-	srl b
-	rr c
-	ld a, b
-	or c
+	xor a
+	inc b
+.third_hp_loop
+	dec b
+	inc a
+	dec bc
+	dec bc
+	dec bc
+	inc b
+	jr nz, .third_hp_loop
+	dec a
+	ld c, a
 	jr nz, .min_damage
 	inc c
+	jr .min_damage
+
 .min_damage
 	ld a, [hli]
 	ld [wHPBuffer1 + 1], a

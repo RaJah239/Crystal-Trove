@@ -7,6 +7,11 @@ BattleText_PlayerPickedUpPayDayMoney:
 	text "!"
 	prompt
 
+RockHeadText:
+    text "<USER>"
+    line "takes no recoil!"
+    prompt
+
 BattleText_QuickClaw:
 	text "<USER>'s"
 	line "QUICK CLAW procs!"
