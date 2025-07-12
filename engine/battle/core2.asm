@@ -446,6 +446,29 @@ StealthRockSwitch:
 	ld hl, StealthRockText
 	jp StdBattleTextbox
 
+ToxicSpikesSwitch:
+	ld hl, wEnemyScreens
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_screens
+	ld hl, wPlayerScreens
+.got_screens
+    bit SCREENS_TOXIC_SPIKES, [hl]
+    ret nz
+	set SCREENS_TOXIC_SPIKES, [hl]
+    ld de, TOXIC_SPIKES
+    call PlayAnimationIfNotFirstTurn
+	ld hl, ToxicSpikesText
+	jp StdBattleTextbox
+
+TrickRoomSwitch:
+    ld a, 5
+    ld [wTrickRoomCount], a
+    ld de, TRICK_ROOM
+    call PlayAnimationIfNotFirstTurn
+	ld hl, TrickRoomText
+	jp StdBattleTextbox
+
 ReflectSwitch:
     ld hl, wPlayerScreens
 	ld bc, wPlayerReflectCount

@@ -597,7 +597,7 @@ wExpShareText:: db
 	ds 8
 
 wPlayerFutureSightDamage:: dw ; unused
-wEnemyFutureSightDamage:: dw ; unused
+wTrickRoomCount:: db
 wPlayerRageCounter:: db
 wEnemyRageCounter:: db
 

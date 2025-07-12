@@ -161,6 +161,7 @@ MoveEffectsPointers:
 	dw StealthRock
 	dw ToxicSpikes
 	dw StickyWeb
+	dw TrickRoom
 	dw Dig
 	dw Fissure
 	dw BoneClub

@@ -96,7 +96,7 @@ MoveDescriptions::
 	dw ConfusionDescription
 	dw PsychicMDescription
 	dw HypnosisDescription
-	dw MeditateDescription
+	dw TrickRoomDescription
 	dw AgilityDescription
 	dw QuickAttackDescription
 	dw RageDescription
@@ -649,9 +649,9 @@ HypnosisDescription:
 	db   "May put the foe to"
 	line "sleep.@"
 
-MeditateDescription:
-	db   "Raises the user's"
-	line "ATTACK.@"
+TrickRoomDescription:
+	db   "Reverses the move"
+	line "order for 5 turns.@"
 
 AgilityDescription:
 	db   "Sharply increases"

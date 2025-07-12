@@ -12,6 +12,16 @@ RockHeadText:
     line "takes no recoil!"
     prompt
 
+TrickRoomText:
+	text "The dimensions"
+	line "were twisted!"
+	prompt
+
+TrickRoomEndedText:
+	text "The dimensions"
+	line "stabilized!"
+	prompt
+
 StealthRockText:
 	text "Pointed stones"
 	line "float all around!"
@@ -23,14 +33,12 @@ BattleText_UserHurtByStealthRock:
 
 ToxicSpikesText:
 	text "Toxic Spikes scat-"
-	line "tered all around"
-	cont "<TARGET>!"
+	line "tered all around!"
 	prompt
 
 StickyWebText:
 	text "A Sticky Web has"
-	line "been laid beneath"
-	cont "<TARGET>!"
+	line "been laid beneath!"
 	prompt
 
 AbsorbedToxicSpikesText:

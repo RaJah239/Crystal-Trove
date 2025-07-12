@@ -95,7 +95,7 @@ MoveNames::
 	li "Confusion"
 	li "Psychic"
 	li "Hypnosis"
-	li "Meditate"
+	li "Trick Room"
 	li "Agility"
 	li "Quick Attack"
 	li "Rage"

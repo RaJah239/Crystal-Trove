@@ -297,6 +297,7 @@ HandleBetweenTurnEffects:
 
 .NoMoreFaintingConditions:
 	farcall Core2_NewTurnEndEffects
+	call HandleTrickRoom
 	call HandleHealingItems
 	call UpdateBattleMonInParty
 	call LoadTilemapToTempTilemap
@@ -440,18 +441,17 @@ DetermineMoveOrder:
 	jr z, .both_have_quick_claw
 	call BattleRandom
 	cp e
-	jr nc, .speed_check
+	jr nc, .trick_room_check
 	call QuickClawActivationAnimationAndText
 	jp .player_first
 
 .player_no_quick_claw
 	ld a, b
 	cp HELD_QUICK_CLAW
-	jr nz, .speed_check
+	jr nz, .trick_room_check
 	call BattleRandom
 	cp c
-	jr nc, .speed_check
-	call SetEnemyTurn
+	jr nc, .trick_room_check
 	call QuickClawActivationAnimationAndText
 	jp .enemy_first
 
@@ -461,30 +461,33 @@ DetermineMoveOrder:
 	jr z, .player_2b
 	call BattleRandom
 	cp c
-	jr nc, .check_player_claw
-	call SetEnemyTurn
-	call QuickClawActivationAnimationAndText
-	jp .enemy_first
-.check_player_claw
+	jp c, .enemy_first
+
 	call BattleRandom
 	cp e
-	jr nc, .speed_check
-	call QuickClawActivationAnimationAndText
-	jp .player_first
+	jp c, .player_first
+	jr .trick_room_check
 
 .player_2b
 	call BattleRandom
 	cp e
-	jr nc, .check_enemy_claw
-	call QuickClawActivationAnimationAndText
-	jp .player_first
-.check_enemy_claw
+	jp c, .player_first
 	call BattleRandom
 	cp c
-	jr nc, .speed_check
-	call SetEnemyTurn
-	call QuickClawActivationAnimationAndText
-	jp .enemy_first
+	jp c, .enemy_first
+
+; DevNote - Trick Room - In Trick Room, the slower Pokemon attacks first.
+.trick_room_check
+	ld a, [wTrickRoomCount]
+	and a
+	jr z, .speed_check
+	ld de, wBattleMonSpeed
+	ld hl, wEnemyMonSpeed
+	ld c, 2
+	call CompareBytes
+	jp z, .speed_tie
+	jp nc, .enemy_first
+	jp .player_first
 
 .speed_check
 	ld de, wBattleMonSpeed
@@ -1377,6 +1380,16 @@ SwitchTurnCore:
 	xor 1
 	ldh [hBattleTurn], a
 	ret
+
+HandleTrickRoom:
+	ld hl, wTrickRoomCount
+	ld a, [hl]
+	and a
+	ret z
+	dec [hl]
+	ret nz
+	ld hl, TrickRoomEndedText
+	jp StdBattleTextbox
 
 HandleWeather:
 	ld a, [wBattleWeather]
@@ -8323,6 +8336,7 @@ CleanUpBattleRAM:
 	ld [wKeyItemsPocketScrollPosition], a
 	ld [wItemsPocketScrollPosition], a
 	ld [wBallsPocketScrollPosition], a
+	ld [wTrickRoomCount], a
 	ld hl, wPlayerSubStatus1
 	ld b, wEnemyFuryCutterCount - wPlayerSubStatus1
 .loop
@@ -9284,11 +9298,11 @@ SwitchInEffects:
 	cp RHYDON
 	jp z, .stealthrock
 
-;	cp TENTACRUEL
-;	jp z, .toxicspikes
+	cp TENTACRUEL
+	jp z, .toxicspikes
 
-;	cp CLEFABLE
-;	jp z, .trickroom
+	cp CLEFAIRY
+	jp z, .trickroom
 
     cp MR__MIME
     jp z, .bothScreens
@@ -9322,12 +9336,14 @@ SwitchInEffects:
 .stealthrock
 	farcall StealthRockSwitch
 	ret
-;.toxicspikes
-;	farcall ToxicSpikesSwitch
-;	ret
-;.trickroom
-;	farcall TrickRoomSwitch
-;	ret
+
+.toxicspikes
+	farcall ToxicSpikesSwitch
+	ret
+
+.trickroom
+	farcall TrickRoomSwitch
+	ret
 
 .bothScreens
     farcall ReflectSwitch

@@ -2229,3 +2229,10 @@ StickyWeb:
 	doturn
 	stickyweb
 	endmove
+
+TrickRoom:
+	checkobedience
+	usedmovetext
+	doturn
+	trickroom
+	endmove
