@@ -12,6 +12,11 @@ RockHeadText:
     line "takes no recoil!"
     prompt
 
+CantFlinchText:
+    text "<TARGET>"
+    line "can not flinch!"
+    prompt
+
 BattleText_QuickClaw:
 	text "<USER>'s"
 	line "QUICK CLAW procs!"

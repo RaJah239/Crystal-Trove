@@ -117,6 +117,15 @@ SniperPokemon:
     db VICTREEBEL
     db -1
 
+; Hax prevention
+InnerFocusPokemon:
+    db MEWTWO
+    db LUGIA
+    db HO_OH
+    db WOBBUFFET
+    db DUNSPARCE
+    db -1
+
 ; modify in core.asm
 ; this list needs to be in core.asm
 ;Core_MoxiePokemon:
