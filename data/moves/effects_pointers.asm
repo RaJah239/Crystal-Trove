@@ -160,6 +160,7 @@ MoveEffectsPointers:
 	dw Hail
 	dw StealthRock
 	dw ToxicSpikes
+	dw StickyWeb
 	dw Dig
 	dw Fissure
 	dw BoneClub

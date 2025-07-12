@@ -27,6 +27,12 @@ ToxicSpikesText:
 	cont "<TARGET>!"
 	prompt
 
+StickyWebText:
+	text "A Sticky Web has"
+	line "been laid beneath"
+	cont "<TARGET>!"
+	prompt
+
 AbsorbedToxicSpikesText:
 	text "<USER>"
 	line "absorbed the"

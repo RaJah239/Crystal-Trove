@@ -3793,7 +3793,7 @@ SpikesDamage:
 	call .spikes_move
 	call .StealthRock
 	call .ToxicSpikes
-	ret
+	jp .StickyWeb
 
 .spikes_move
 	bit SCREENS_SPIKES, [hl]
@@ -3979,6 +3979,45 @@ SpikesDamage:
 	ld hl, AbsorbedToxicSpikesText
 	call StdBattleTextbox
 	jr .pop
+
+.StickyWeb:
+
+; End if there isn't a Sticky Web down.
+	bit SCREENS_STICKY_WEB, [hl]
+	ret z
+
+    push hl
+    push de
+	push bc
+	call GetCurrentMonCore
+	ld hl, Core_LevitatePokemon
+	ld de, 1
+	call IsInArray
+	pop bc
+	pop de
+	pop hl
+	ret c
+
+; Flying-types aren't affected by Sticky Web.
+	ld a, [de]
+	cp FLYING
+	ret z
+	inc de
+	ld a, [de]
+	dec de
+	cp FLYING
+	ret z
+
+	push bc
+	push hl
+	push de
+
+	ld de, ANIM_ENEMY_STAT_DOWN
+	call SwitchTurnCore
+	call Call_PlayBattleAnim
+	farcall BattleCommand_SpeedDown
+	farcall BattleCommand_StatDownMessage
+	call SwitchTurnCore
 
 .pop
     pop de
