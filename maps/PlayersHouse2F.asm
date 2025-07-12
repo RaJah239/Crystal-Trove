@@ -66,7 +66,7 @@ if DEF(_DEBUG)
 	giveitem SHINY_CHARM
 
 	; good party
-	givepoke MEW, 99, LEFTOVERS
+	givepoke MEWTWO, 99, BERSERK_GENE
 	givepoke SMEARGLE, 99, FOCUS_BAND
 	givepoke AERODACTYL, 99, GOLD_BERRY
 	givepoke DIGLETT, 17, LIFE_ORB

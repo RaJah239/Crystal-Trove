@@ -110,6 +110,13 @@ RockHeadPokemon:
     db ONIX
     db -1
 
+SniperPokemon:
+    db HORSEA
+    db SEADRA
+    db CROBAT
+    db VICTREEBEL
+    db -1
+
 ; modify in core.asm
 ; this list needs to be in core.asm
 ;Core_MoxiePokemon:
