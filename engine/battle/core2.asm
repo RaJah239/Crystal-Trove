@@ -640,3 +640,17 @@ PlayBoostAnimation:
     ld de, ANIM_STAT_UP
     call PlayAnimationIfNotFirstTurn
     ret
+
+ShadowTag:
+	ld a, [wEnemyMonSpecies]
+	cp WOBBUFFET
+	jr z, .trap
+;	cp GENGAR
+;	jr z, .trap
+    ret
+.trap
+	ld hl, wEnemySubStatus5
+	bit SUBSTATUS_CANT_RUN, [hl]
+	ret nz
+	set SUBSTATUS_CANT_RUN, [hl]
+	ret

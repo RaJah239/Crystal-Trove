@@ -177,6 +177,11 @@ BattleTurn:
 	ld [wCurDamage], a
 	ld [wCurDamage + 1], a
 
+; ==================================
+; ========== SHADOW TAG ============
+; ==================================
+    farcall ShadowTag
+
 	call UpdateBattleMonInParty
 	farcall AIChooseMove
 
