@@ -842,16 +842,6 @@ LoadOrangePage:
 	ld a, [wAbilityPageMode]
 	and a
 	jr z, .print_default_screen
-	ld de, AbilityText
-	hlcoord 1, 9
-	call PlaceString
-	farcall DisplayAbility
-	ld de, SelectSwapToPreviousPageText
-	hlcoord 11, 8
-	call PlaceString
-	ret
-
-.print_default_screen:
 	ld de, SelectSwapToAbilitiesPageText
 	hlcoord 11, 17
 	call PlaceString
@@ -878,14 +868,23 @@ LoadOrangePage:
 	call nz, StatsScreen_PrintEVs
 	ret
 
+.print_default_screen:
+	ld de, AbilityText
+	hlcoord 1, 9
+	call PlaceString
+	farcall DisplayAbility
+	ld de, SelectSwapToPreviousPageText
+	hlcoord 11, 8
+	call PlaceString
+	ret
+
 AbilityText:
     db "Ability:@"
 
 SelectSwapToAbilitiesPageText:
-    db "<se><le><ct>▶Next@"
+    db "<se><le><ct>▶Back@"
 SelectSwapToPreviousPageText:
-	db "<se><le><ct>▶Back@"
-
+	db "<se><le><ct>▶Next@"
 
 StatsScreen_Print_HiddenPow_Info:
 	ld de, HiddenPowerTypeString
