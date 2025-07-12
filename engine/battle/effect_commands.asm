@@ -1152,6 +1152,35 @@ BattleCommand_Critical:
 	inc c
 
 .CheckCritical:
+; DevNote - Persians Slash always crits
+    call GetCurrentMon
+    cp PERSIAN
+    jr z, .checkSlash
+; ===== Super Luck =====
+    push hl
+    push de
+	push bc
+    ld hl, SuperLuckPokemon
+	ld de, 1
+	call IsInArray
+    pop bc
+	pop de
+	pop hl
+	jr c, .increaseCritical
+    jr .continue
+.checkSlash
+	ld a, BATTLE_VARS_MOVE_ANIM
+	call GetBattleVar
+	cp SLASH
+	jr nz, .continue
+	ld a, 1
+	ld [wCriticalHit], a
+	ret
+.increaseCritical ; - super luck gives +2 levels
+    inc c
+    inc c
+
+.continue
 	ld a, BATTLE_VARS_MOVE_ANIM
 	call GetBattleVar
 	ld de, 1
@@ -3572,26 +3601,6 @@ INCLUDE "engine/battle/move_effects/sketch.asm"
 BattleCommand_DefrostOpponent:
 ; Thaw the opponent if frozen, and
 ; raise the user's Attack one stage.
-
-	call AnimateCurrentMove
-
-	ld a, BATTLE_VARS_STATUS_OPP
-	call GetBattleVarAddr
-	call Defrost
-
-	ld a, BATTLE_VARS_MOVE_EFFECT
-	call GetBattleVarAddr
-	ld a, [hl]
-	push hl
-	push af
-
-	ld a, EFFECT_ATTACK_UP
-	ld [hl], a
-	call BattleCommand_StatUp
-
-	pop af
-	pop hl
-	ld [hl], a
 	ret
 
 INCLUDE "engine/battle/move_effects/sleep_talk.asm"

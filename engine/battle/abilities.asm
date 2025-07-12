@@ -52,6 +52,15 @@ SturdyPokemon:
     db PINSIR
     db -1
 
+SuperLuckPokemon:
+    db MEWTWO
+    db ALAKAZAM
+    db JOLTEON
+    db BELLSPROUT
+    db WEEPINBELL
+    db VICTREEBEL
+    db -1
+
 ; modify in core.asm
 ; this list needs to be in core.asm
 ;Core_MoxiePokemon:
