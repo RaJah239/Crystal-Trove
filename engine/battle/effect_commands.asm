@@ -1953,15 +1953,27 @@ BattleCommand_EffectChance:
 	jr z, .got_move_chance
 	ld hl, wEnemyMoveStruct + MOVE_CHANCE
 .got_move_chance
-	ld a, [wLinkMode]
- 	cp LINK_COLOSSEUM
- 	scf ; Force RNG to be called
- 	jr z, .nofix ; Don't apply fix in link battles, for compatibility
+; ==============================
+; ====== Serene Grace ==========
+; ==============================
+	push bc
+	push de
+	push hl
+	ld hl, SereneGracePokemon
+	ld de, 1
+	call IsInArray
+	pop hl
+	pop de
+	pop bc
+    jr c, .sereneGrace
+    jr .continue
+.sereneGrace
+	sla [hl]
+.continue
  	ld a, [hl]
  	sub 100 percent
  	; If chance was 100%, RNG won't be called (carry not set)
  	; Thus chance will be subtracted from 0, guaranteeing a carry
- .nofix
  	call c, BattleRandom
 	cp [hl]
 	pop hl
@@ -5545,24 +5557,6 @@ BattleCommand_EndLoop:
 	ret
 
 BattleCommand_FakeOut:
-	ld a, [wAttackMissed]
-	and a
-	ret nz
-
-	call CheckSubstituteOpp
-	jr nz, .fail
-
-	ld a, BATTLE_VARS_STATUS_OPP
-	call GetBattleVar
-	and SLP_MASK
-	jr nz, .fail
-
-	call CheckOpponentWentFirst
-	jr z, FlinchTarget
-
-.fail
-	ld a, 1
-	ld [wAttackMissed], a
 	ret
 
 BattleCommand_FlinchTarget:

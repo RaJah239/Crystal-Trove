@@ -61,6 +61,15 @@ SuperLuckPokemon:
     db VICTREEBEL
     db -1
 
+SereneGracePokemon:
+    db CHANSEY
+    db BLISSEY
+    db TOGEPI
+    db TOGETIC
+    db LANTURN
+    db FLAREON
+    db -1
+
 ; modify in core.asm
 ; this list needs to be in core.asm
 ;Core_MoxiePokemon:
