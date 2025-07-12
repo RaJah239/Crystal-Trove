@@ -1881,16 +1881,24 @@ BattleCommand_CheckHit:
 	ret
 
 .StatModifiers:
-	ldh a, [hBattleTurn]
-	and a
-
 	; load the user's accuracy into b and the opponent's evasion into c.
 	ld hl, wPlayerMoveStruct + MOVE_ACC
 	ld a, [wPlayerAccLevel]
 	ld b, a
 	ld a, [wEnemyEvaLevel]
-	ld c, a
+    ld c, a
 
+    ld a, [wBattleWeather]
+    cp WEATHER_SANDSTORM
+    jr nz, .doneEnemySandVeil
+    ld a, [wEnemyMonSpecies]
+    call Sandveil
+.doneEnemySandVeil
+    ld a, [wBattleMonSpecies]
+    call CompoundEyes
+
+	ldh a, [hBattleTurn]
+	and a
 	jr z, .got_acc_eva
 
 	ld hl, wEnemyMoveStruct + MOVE_ACC
@@ -1899,16 +1907,21 @@ BattleCommand_CheckHit:
 	ld a, [wPlayerEvaLevel]
 	ld c, a
 
+    ld a, [wBattleWeather]
+    cp WEATHER_SANDSTORM
+    jr nz, .donePlayerSandVeil
+    ld a, [wBattleMonSpecies]
+    call Sandveil
+.donePlayerSandVeil
+    ld a, [wEnemyMonSpecies]
+    call CompoundEyes
+
 .got_acc_eva
 	cp b
 	jr c, .skip_foresight_check
 
 	; if the target's evasion is greater than the user's accuracy,
 	; check the target's foresight status
-	ld a, BATTLE_VARS_SUBSTATUS1_OPP
-	call GetBattleVar
-	bit SUBSTATUS_IDENTIFIED, a
-	ret nz
 
 .skip_foresight_check
 	; subtract evasion from 14
@@ -1970,6 +1983,14 @@ BattleCommand_CheckHit:
 	pop hl
 	ld [hl], a
 	ret
+
+IncrementC:
+    inc c
+    ret
+
+IncrementB:
+    inc b
+    ret
 
 INCLUDE "data/battle/accuracy_multipliers.asm"
 
@@ -7085,6 +7106,34 @@ _CheckBattleScene:
 	pop hl
 	ret
 
+; ===========================
+; ======= Sand Veil =========
+; ===========================
+Sandveil:
+    cp GLIGAR
+    call z, IncrementC
+    ret
+
+; ================================
+; ======= Compound Eyes ==========
+; ================================
+CompoundEyes:
+    cp CATERPIE
+    call z, IncrementB
+    cp BUTTERFREE
+    call z, IncrementB
+    cp YANMA
+    call z, IncrementB
+    cp STARYU
+    call z, IncrementB
+    cp STARMIE
+    call z, IncrementB
+    cp HOOTHOOT
+    call z, IncrementB
+    cp NOCTOWL
+    call z, IncrementB
+    ret
+
 BattleCommand_CheckFloatMon:
 ; if we're not using a Ground move, we don't need to be here
 ; (used only to differentiate Dig from Fly)
@@ -7213,6 +7262,7 @@ GetCurrentMon:
 .done
     ret
 
+; this needs to be in effect_commands.asm
 GetOpposingMon:
     ldh a, [hBattleTurn]
 	and a
