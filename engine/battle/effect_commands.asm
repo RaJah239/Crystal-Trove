@@ -3294,6 +3294,32 @@ ConfusionDamageCalc:
 	call HalfDamage
 .finishDamage
 
+; ==================================
+; ========= Thick Fat ==============
+; ==================================
+; half damage from fire and ice attacks
+    call GetOpposingMon
+    push de
+	push bc
+	ld hl, ThickFatPokemon
+	ld de, 1
+	call IsInArray
+	pop bc
+	pop de
+	jr nc, .finishThickFat
+
+	ld a, BATTLE_VARS_MOVE_TYPE
+	call GetBattleVarAddr
+	and TYPE_MASK
+	cp FIRE
+    jr z, .thickFatReduction
+    cp ICE
+    jr z, .thickFatReduction
+    jr .finishThickFat
+.thickFatReduction
+	call HalfDamage
+.finishThickFat
+
 ; =================================
 ; ========== Technician ===========
 ; =================================

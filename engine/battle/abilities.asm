@@ -70,6 +70,13 @@ SereneGracePokemon:
     db FLAREON
     db -1
 
+ThickFatPokemon:
+    db SNORLAX
+    db SWINUB
+    db PILOSWINE
+    db RATICATE
+    db -1
+
 ; modify in core.asm
 ; this list needs to be in core.asm
 ;Core_MoxiePokemon:
