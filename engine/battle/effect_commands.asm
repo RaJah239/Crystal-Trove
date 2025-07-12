@@ -322,8 +322,6 @@ CantMove:
 	and ~(1 << SUBSTATUS_RAMPAGE | 1 << SUBSTATUS_CHARGED)
 	ld [hl], a
 
-	call ResetFuryCutterCount
-
 	ld a, BATTLE_VARS_MOVE_ANIM
 	call GetBattleVar
 	cp FLY
@@ -2354,7 +2352,7 @@ GetFailureResultText:
 	jr z, .got_text
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call GetBattleVar
-	cp EFFECT_FUTURE_SIGHT
+	cp EFFECT_FUTURE_SIGHT ; probably remove this evenutally
 	ld hl, ButItFailedText
 	ld de, ItFailedText
 	jr z, .got_text
@@ -6517,27 +6515,18 @@ INCLUDE "engine/battle/move_effects/endure.asm"
 
 INCLUDE "engine/battle/move_effects/spikes.asm"
 
-INCLUDE "engine/battle/move_effects/foresight.asm"
-
 INCLUDE "engine/battle/move_effects/perish_song.asm"
 
 INCLUDE "engine/battle/move_effects/sandstorm.asm"
 
 INCLUDE "engine/battle/move_effects/rollout.asm"
 
-BattleCommand_Unused5D:
-; effect0x5d
-	ret
-
-INCLUDE "engine/battle/move_effects/fury_cutter.asm"
-
 INCLUDE "engine/battle/move_effects/attract.asm"
 
 INCLUDE "engine/battle/move_effects/return.asm"
 
-INCLUDE "engine/battle/move_effects/present.asm"
 
-INCLUDE "engine/battle/move_effects/frustration.asm"
+
 
 INCLUDE "engine/battle/move_effects/safeguard.asm"
 
@@ -6569,8 +6558,6 @@ BattleCommand_CheckSafeguard:
 	ld hl, SafeguardProtectText
 	call StdBattleTextbox
 	jp EndMoveEffect
-
-INCLUDE "engine/battle/move_effects/magnitude.asm"
 
 INCLUDE "engine/battle/move_effects/baton_pass.asm"
 
@@ -6672,8 +6659,6 @@ INCLUDE "engine/battle/move_effects/sunny_day.asm"
 
 INCLUDE "engine/battle/move_effects/belly_drum.asm"
 
-INCLUDE "engine/battle/move_effects/psych_up.asm"
-
 INCLUDE "engine/battle/move_effects/mirror_coat.asm"
 
 BattleCommand_DoubleMinimizeDamage:
@@ -6703,8 +6688,6 @@ BattleCommand_SkipSunCharge:
 	ret nz
 	ld b, charge_command
 	jp SkipToBattleCommand
-
-INCLUDE "engine/battle/move_effects/future_sight.asm"
 
 INCLUDE "engine/battle/move_effects/thunder.asm"
 
@@ -7086,3 +7069,13 @@ GetOpposingMon:
 	ld a, [wEnemyMonSpecies]
 .done
     ret
+
+BattleCommand_CheckFutureSight:
+BattleCommand_FutureSight:
+BattleCommand_GetMagnitude:
+BattleCommand_PsychUp:
+BattleCommand_FuryCutter:
+BattleCommand_Foresight:
+BattleCommand_FrustrationPower:
+BattleCommand_Present:
+	ret

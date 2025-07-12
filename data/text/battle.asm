@@ -143,12 +143,6 @@ BattleText_UserRecoveredPPUsing:
 	text "."
 	prompt
 
-BattleText_TargetWasHitByFutureSight:
-	text "<TARGET>"
-	line "was hit by FUTURE"
-	cont "SIGHT!"
-	prompt
-
 BattleText_SafeguardFaded:
 	text "The veil of"
 	line "Safeguard faded."
@@ -1054,12 +1048,6 @@ SafeguardProtectText:
 	cont "Safeguard!"
 	prompt
 
-MagnitudeText:
-	text "Magnitude @"
-	text_decimal wTextDecimalByte, 1, 1
-	text "!"
-	prompt
-
 ReleasedByText:
 	text "<USER>"
 	line "was released by"
@@ -1103,11 +1091,6 @@ CopiedStatsText:
 
 	para "changes of"
 	line "<TARGET>!"
-	prompt
-
-ForesawAttackText:
-	text "<USER>"
-	line "foresaw an attack!"
 	prompt
 
 BeatUpAttackText:

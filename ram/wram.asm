@@ -419,8 +419,8 @@ wPlayerToxicCount:: db
 wPlayerDisableCount:: db
 wPlayerEncoreCount:: db
 wPlayerPerishCount:: db
-wPlayerFuryCutterCount:: db
 wPlayerProtectCount:: db
+	ds 1
 
 wEnemyRolloutCount:: db
 wEnemyConfuseCount:: db
@@ -428,7 +428,7 @@ wEnemyToxicCount:: db
 wEnemyDisableCount:: db
 wEnemyEncoreCount:: db
 wEnemyPerishCount:: db
-wEnemyFuryCutterCount:: db
+wEnemyFuryCutterCount:: db ; practically used
 wEnemyProtectCount:: db
 
 wPlayerDamageTaken:: dw
@@ -587,15 +587,13 @@ wLastPlayerMon:: db
 wLastPlayerMove:: db
 wLastEnemyMove:: db
 
-wPlayerFutureSightCount:: db
-wEnemyFutureSightCount:: db
 wExpShare:: db
 wExpShareText:: db
 
-	ds 6
+	ds 8
 
-wPlayerFutureSightDamage:: dw
-wEnemyFutureSightDamage:: dw
+wPlayerFutureSightDamage:: dw ; unused
+wEnemyFutureSightDamage:: dw ; unused
 wPlayerRageCounter:: db
 wEnemyRageCounter:: db
 

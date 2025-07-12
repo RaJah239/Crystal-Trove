@@ -263,7 +263,6 @@ HandleBetweenTurnEffects:
 	jr z, .CheckEnemyFirst
 	call CheckFaint_PlayerThenEnemy
 	ret c
-	farcall HandleFutureSight
 	call CheckFaint_PlayerThenEnemy
 	ret c
 	call HandleWeather
@@ -280,7 +279,6 @@ HandleBetweenTurnEffects:
 .CheckEnemyFirst:
 	call CheckFaint_EnemyThenPlayer
 	ret c
-	farcall HandleFutureSight
 	call CheckFaint_EnemyThenPlayer
 	ret c
 	call HandleWeather
@@ -755,13 +753,6 @@ ParsePlayerAction:
 	xor a
 	ld [wPlayerCharging], a
 	ld a, [wPlayerMoveStruct + MOVE_EFFECT]
-	cp EFFECT_FURY_CUTTER
-	jr z, .continue_fury_cutter
-	xor a
-	ld [wPlayerFuryCutterCount], a
-
-.continue_fury_cutter
-	ld a, [wPlayerMoveStruct + MOVE_EFFECT]
 	cp EFFECT_RAGE
 	jr z, .continue_rage
 	ld hl, wPlayerSubStatus4
@@ -785,7 +776,6 @@ ParsePlayerAction:
 
 .locked_in
 	xor a
-	ld [wPlayerFuryCutterCount], a
 	ld [wPlayerProtectCount], a
 	ld [wPlayerRageCounter], a
 	ld hl, wPlayerSubStatus4
@@ -798,7 +788,6 @@ ParsePlayerAction:
 
 .reset_rage
 	xor a
-	ld [wPlayerFuryCutterCount], a
 	ld [wPlayerProtectCount], a
 	ld [wPlayerRageCounter], a
 	ld hl, wPlayerSubStatus4
@@ -3398,7 +3387,6 @@ rept 4
 endr
 	ld [hl], a
 	ld [wEnemyDisableCount], a
-	ld [wEnemyFuryCutterCount], a
 	ld [wEnemyProtectCount], a
 	ld [wEnemyRageCounter], a
 	ld [wEnemyDisabledMove], a
@@ -3798,7 +3786,6 @@ endr
 	ld [hli], a
 	ld [hl], a
 	ld [wPlayerDisableCount], a
-	ld [wPlayerFuryCutterCount], a
 	ld [wPlayerProtectCount], a
 	ld [wPlayerRageCounter], a
 	ld [wDisabledMove], a
@@ -5757,13 +5744,6 @@ ParseEnemyAction:
 
 .raging
 	ld a, [wEnemyMoveStruct + MOVE_EFFECT]
-	cp EFFECT_FURY_CUTTER
-	jr z, .fury_cutter
-	xor a
-	ld [wEnemyFuryCutterCount], a
-
-.fury_cutter
-	ld a, [wEnemyMoveStruct + MOVE_EFFECT]
 	cp EFFECT_RAGE
 	jr z, .no_rage
 	ld hl, wEnemySubStatus4
@@ -5787,7 +5767,6 @@ ParseEnemyAction:
 
 ResetVarsForSubstatusRage:
 	xor a
-	ld [wEnemyFuryCutterCount], a
 	ld [wEnemyProtectCount], a
 	ld [wEnemyRageCounter], a
 	ld hl, wEnemySubStatus4
