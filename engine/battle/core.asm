@@ -1183,12 +1183,30 @@ ResidualDamage:
 	ld a, BATTLE_VARS_SUBSTATUS1
 	call GetBattleVarAddr
 	bit SUBSTATUS_NIGHTMARE, [hl]
+	jr nz, .nightmare
+
+; ================================
+; ======= Bad Dreams =============
+; ================================
+    call GetOpposingMonCore
+    cp GENGAR
+    jr z, .checkSleep
+    cp JYNX
+    jr nz, .not_nightmare
+
+.checkSleep
+	ld a, BATTLE_VARS_STATUS
+	call GetBattleVarAddr
+	and SLP_MASK
 	jr z, .not_nightmare
+
+.nightmare
 	xor a
 	ld [wNumHits], a
 	ld de, ANIM_IN_NIGHTMARE
 	call Call_PlayBattleAnim_OnlyIfVisible
-	call GetQuarterMaxHP
+	;call GetQuarterMaxHP
+	call GetEighthMaxHP ; Nightmare now does 1/8 th hp for balance
 	call SubtractHPFromUser
 	ld hl, HasANightmareText
 	call StdBattleTextbox
@@ -9222,6 +9240,15 @@ GetCurrentMonCore:
 	ld a, [wBattleMonSpecies]
 	jr z, .done
 	ld hl, wEnemyMonHP
+	ld a, [wEnemyMonSpecies]
+.done
+    ret
+
+GetOpposingMonCore:
+    ldh a, [hBattleTurn]
+	and a
+	ld a, [wBattleMonSpecies]
+	jr nz, .done
 	ld a, [wEnemyMonSpecies]
 .done
     ret
