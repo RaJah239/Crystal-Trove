@@ -110,8 +110,8 @@ DEF MAIL_STRUCT_LENGTH_JP EQU $2a ; mailmsg_jp struct
 
 	const_next 30
 	const HELD_30
-	const_skip
-	const_skip
+	const HELD_CHOICE_BAND
+	const HELD_CHOICE_SPECS
 	const_skip
 	const_skip
 	const_skip
