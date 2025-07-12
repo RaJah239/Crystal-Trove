@@ -3801,7 +3801,21 @@ SpikesDamage:
 	cp FLYING
 	ret z
 
-	
+    push hl
+    push de
+	push bc
+	call GetCurrentMonCore
+	ld hl, Core_SpikesImmunePokemon
+	ld de, 1
+	call IsInArray
+	pop bc
+	pop de
+	pop hl
+	ret c
+
+	push bc
+	push hl
+	push de
 
 	; Floatmons aren't affected by Spikes.
 	push bc
@@ -9263,4 +9277,18 @@ Core_MagicGuardPokemon:
     db ABRA
     db KADABRA
     db ALAKAZAM
+    db -1
+
+Core_SpikesImmunePokemon: ; magic guard + levitate
+    db CLEFAIRY ; due to magic guard
+    db CLEFABLE ; due to magic guard
+    db ABRA		; due to magic guard
+    db KADABRA	; due to magic guard
+    db ALAKAZAM	; due to magic guard
+    db GASTLY	; due to levitate
+    db HAUNTER	; due to levitate
+    db GENGAR 	; due to levitate
+    db MISDREAVUS ; due to levitate
+    db KOFFING	; due to levitate
+    db WEEZING	; due to levitate
     db -1
