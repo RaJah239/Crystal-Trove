@@ -3072,8 +3072,6 @@ EnemyAttackDamage:
 	and a
 	ret
 
-INCLUDE "engine/battle/move_effects/beat_up.asm"
-
 BattleCommand_ClearMissDamage:
 	ld a, [wAttackMissed]
 	and a
@@ -7069,6 +7067,10 @@ GetOpposingMon:
 	ld a, [wEnemyMonSpecies]
 .done
     ret
+
+
+;to remove fully eventually
+INCLUDE "engine/battle/move_effects/beat_up.asm"
 
 BattleCommand_CheckFutureSight:
 BattleCommand_FutureSight:
