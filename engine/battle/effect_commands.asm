@@ -3248,7 +3248,7 @@ ConfusionDamageCalc:
 	ld a, b
 	cp HELD_LIFE_ORB
 	pop hl
-	jr nz, .continue
+	jr nz, .guts
     ld a, 13
 	ldh [hMultiplier], a
 	call Multiply
@@ -3256,6 +3256,35 @@ ConfusionDamageCalc:
 	ldh [hDivisor], a
 	ld b, 4
 	call Divide
+
+.guts
+; =====================
+; ======= Guts ========
+; =====================
+    call GetCurrentMon
+    push de
+	push bc
+	ld hl, GutsPokemon
+	ld de, 1
+	call IsInArray
+	pop bc
+	pop de
+    jr nc, .continue
+    ldh a, [hBattleTurn]
+	and a
+	ld a, [wBattleMonStatus]
+	jr z, .checkStatus
+	ld a, [wEnemyMonStatus]
+.checkStatus
+	cp 0
+	jr z, .continue
+	and 1 << BRN
+	jr z, .notBurn
+    ld a, 2
+	ldh [hMultiplier], a
+	call Multiply
+.notBurn
+    call FiftyPercentBoost
 
 .continue
 ; Critical hits

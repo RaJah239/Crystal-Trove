@@ -77,6 +77,17 @@ ThickFatPokemon:
     db RATICATE
     db -1
 
+GutsPokemon:
+    db RATTATA
+    db RATICATE
+    db HERACROSS
+    db MACHOP
+    db MACHOKE
+    db MACHAMP
+    db TEDDIURSA
+    db URSARING
+    db -1
+
 ; modify in core.asm
 ; this list needs to be in core.asm
 ;Core_MoxiePokemon:
