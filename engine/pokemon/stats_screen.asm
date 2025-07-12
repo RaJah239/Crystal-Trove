@@ -439,7 +439,7 @@ StatsScreen_InitUpperHalf:
 	call PlaceString
 	hlcoord 18, 0
 	call .PlaceGenderChar
-	hlcoord 9, 4
+	hlcoord 9, 3
 	ld a, "/"
 	ld [hli], a
 	ld a, [wBaseDexNo]
@@ -846,9 +846,16 @@ LoadOrangePage:
 	hlcoord 1, 9
 	call PlaceString
 	farcall DisplayAbility
+	ld de, SelectSwapToPreviousPageText
+	hlcoord 11, 8
+	call PlaceString
 	ret
 
 .print_default_screen:
+	ld de, SelectSwapToAbilitiesPageText
+	hlcoord 11, 17
+	call PlaceString
+
 	; these need to be in order
 	call StatsScreen_placeCaughtTime
 	call StatsScreen_placeCaughtLocation
@@ -873,6 +880,12 @@ LoadOrangePage:
 
 AbilityText:
     db "Ability:@"
+
+SelectSwapToAbilitiesPageText:
+    db "<se><le><ct>▶Next@"
+SelectSwapToPreviousPageText:
+	db "<se><le><ct>▶Back@"
+
 
 StatsScreen_Print_HiddenPow_Info:
 	ld de, HiddenPowerTypeString
