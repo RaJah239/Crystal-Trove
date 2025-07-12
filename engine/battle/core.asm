@@ -572,6 +572,127 @@ DetermineMoveOrder:
 .speed_check
 	ld de, wBattleMonSpeed
 	ld hl, wEnemyMonSpeed
+
+; DevNote - here add weather speed boosting abilities
+; ==============================
+; ========= Swift Swim =========
+; ==============================
+    ld a, [wBattleWeather]
+    cp WEATHER_RAIN
+    jr nz, .checkSun
+
+    ld a, [wEnemyMonSpecies]
+    cp KINGDRA
+    jr z, .checkOtherPlayerRain
+    cp POLIWRATH
+    jr z, .checkOtherPlayerRain
+
+    ld a, [wBattleMonSpecies]
+    cp KINGDRA
+    jp z, .simulatePlayerDoubleSpeed
+    cp POLIWRATH
+    jp z, .simulatePlayerDoubleSpeed
+
+.checkSun
+; ===============================
+; ========= Chlorophyll =========
+; ===============================
+    ld a, [wBattleWeather]
+    cp WEATHER_SUN
+    jr nz, .checkSand
+
+    ld a, [wEnemyMonSpecies]
+    cp VENUSAUR
+    jr z, .checkOtherPlayerSun
+    cp EXEGGCUTE
+    jr z, .checkOtherPlayerSun
+    cp EXEGGUTOR
+    jr z, .checkOtherPlayerSun
+
+    ld a, [wBattleMonSpecies]
+    cp VENUSAUR
+    jr z, .simulatePlayerDoubleSpeed
+    cp EXEGGCUTE
+    jr z, .simulatePlayerDoubleSpeed
+    cp EXEGGUTOR
+    jr z, .simulatePlayerDoubleSpeed
+
+.checkSand
+; ==============================
+; ========= Sand Rush ==========
+; ==============================
+    ld a, [wBattleWeather]
+    cp WEATHER_SANDSTORM
+    jp nz, .continue
+
+    ld a, [wEnemyMonSpecies]
+    cp ONIX
+    jr z, .checkOtherPlayerSand
+    cp GOLEM
+    jr z, .checkOtherPlayerSand
+
+    ld a, [wBattleMonSpecies]
+    cp ONIX
+    jr z, .simulatePlayerDoubleSpeed
+    cp GOLEM
+    jr z, .simulatePlayerDoubleSpeed
+    jr .continue
+
+.checkOtherPlayerRain
+    ld a, [wBattleMonSpecies]
+    cp POLIWRATH
+    jr z, .continue
+    cp KINGDRA
+    jr z, .continue
+    jr .simulateEnemyDoubleSpeed
+
+.checkOtherPlayerSun
+    ld a, [wBattleMonSpecies]
+    cp VENUSAUR
+    jr z, .continue
+    cp VICTREEBEL
+    jr z, .continue
+    cp EXEGGCUTE
+    jr z, .continue
+    cp EXEGGUTOR
+    jr z, .continue
+    jr .simulateEnemyDoubleSpeed
+
+.checkOtherPlayerSand
+    ld a, [wBattleMonSpecies]
+    cp ONIX
+    jr z, .continue
+    cp GOLEM
+    jr z, .continue
+    jr .simulateEnemyDoubleSpeed
+
+; enemy moves first unless enemy is paralysed or enemy is >+2 speed - in which case compare speed as normal
+.simulateEnemyDoubleSpeed
+	ld a, [wEnemyMonStatus]
+	and 1 << PAR
+	jr nz, .continue
+    ld a, [wPlayerSpdLevel]
+    cp BASE_STAT_LEVEL + 2
+    jr nc, .continue
+    ld a, [wEnemySpdLevel]
+    cp BASE_STAT_LEVEL - 1
+    jr c, .continue
+    jr .enemy_first
+
+; player moves first unless player is paralysed or enemy is >+2 speed - in which case compare speed as normal
+.simulatePlayerDoubleSpeed
+	ld a, [wBattleMonStatus]
+	and 1 << PAR
+	jr nz, .continue
+    ld a, [wEnemySpdLevel]
+    cp BASE_STAT_LEVEL + 2
+    jr nc, .continue
+    ld a, [wPlayerSpdLevel]
+    cp BASE_STAT_LEVEL - 1
+    jr c, .continue
+    jr .player_first
+
+.continue
 	ld c, 2
 	call CompareBytes
 	jr z, .speed_tie
