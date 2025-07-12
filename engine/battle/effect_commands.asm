@@ -3626,10 +3626,6 @@ INCLUDE "engine/battle/move_effects/pain_split.asm"
 
 INCLUDE "engine/battle/move_effects/snore.asm"
 
-INCLUDE "engine/battle/move_effects/conversion2.asm"
-
-INCLUDE "engine/battle/move_effects/lock_on.asm"
-
 INCLUDE "engine/battle/move_effects/sketch.asm"
 
 BattleCommand_DefrostOpponent:
@@ -6125,7 +6121,6 @@ EndRechargeOpp:
 
 INCLUDE "engine/battle/move_effects/hitandswitch.asm"
 
-INCLUDE "engine/battle/move_effects/rage.asm"
 
 BattleCommand_DoubleFlyingDamage:
 	ld a, BATTLE_VARS_SUBSTATUS3_OPP
@@ -6155,17 +6150,11 @@ DoubleDamage:
 .quit
 	ret
 
-INCLUDE "engine/battle/move_effects/mimic.asm"
-
 INCLUDE "engine/battle/move_effects/leech_seed.asm"
 
 INCLUDE "engine/battle/move_effects/splash.asm"
 
 INCLUDE "engine/battle/move_effects/disable.asm"
-
-INCLUDE "engine/battle/move_effects/pay_day.asm"
-
-INCLUDE "engine/battle/move_effects/conversion.asm"
 
 BattleCommand_ResetStats:
 	ld a, BASE_STAT_LEVEL
@@ -6406,8 +6395,6 @@ CheckSubstituteOpp:
 
 INCLUDE "engine/battle/move_effects/selfdestruct.asm"
 
-INCLUDE "engine/battle/move_effects/mirror_move.asm"
-
 INCLUDE "engine/battle/move_effects/metronome.asm"
 
 CheckUserMove:
@@ -6522,9 +6509,6 @@ INCLUDE "engine/battle/move_effects/rollout.asm"
 INCLUDE "engine/battle/move_effects/attract.asm"
 
 INCLUDE "engine/battle/move_effects/return.asm"
-
-
-
 
 INCLUDE "engine/battle/move_effects/safeguard.asm"
 
@@ -7068,9 +7052,19 @@ GetOpposingMon:
 .done
     ret
 
+
+
+INCLUDE "engine/battle/move_effects/mimic.asm"
+INCLUDE "engine/battle/move_effects/pay_day.asm"
+INCLUDE "engine/battle/move_effects/conversion.asm"
+INCLUDE "engine/battle/move_effects/rage.asm"
+INCLUDE "engine/battle/move_effects/conversion2.asm"
+INCLUDE "engine/battle/move_effects/lock_on.asm"
+
 ;to remove fully eventually
 INCLUDE "engine/battle/move_effects/beat_up.asm"
 INCLUDE "engine/battle/move_effects/triple_kick.asm"
+INCLUDE "engine/battle/move_effects/mirror_move.asm"
 
 BattleCommand_CheckFutureSight:
 BattleCommand_FutureSight:
