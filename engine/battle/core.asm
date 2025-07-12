@@ -523,17 +523,17 @@ DetermineMoveOrder:
 	jr z, .both_have_quick_claw
 	call BattleRandom
 	cp e
-	jr nc, .weather_check
+	jr nc, .speed_check
 	call QuickClawActivationAnimationAndText
 	jp .player_first
 
 .player_no_quick_claw
 	ld a, b
 	cp HELD_QUICK_CLAW
-	jr nz, .weather_check
+	jr nz, .speed_check
 	call BattleRandom
 	cp c
-	jr nc, .weather_check
+	jr nc, .speed_check
 	call SetEnemyTurn
 	call QuickClawActivationAnimationAndText
 	jp .enemy_first
@@ -551,10 +551,9 @@ DetermineMoveOrder:
 .check_player_claw
 	call BattleRandom
 	cp e
-	jr nc, .weather_check
+	jr nc, .speed_check
 	call QuickClawActivationAnimationAndText
 	jp .player_first
-	jr .weather_check
 
 .player_2b
 	call BattleRandom
@@ -569,50 +568,10 @@ DetermineMoveOrder:
 	call SetEnemyTurn
 	call QuickClawActivationAnimationAndText
 	jp .enemy_first
-	jr .weather_check
 
-.weather_check
-	ld de, wBattleMonSpeed
-
-	ld a, [wBattleWeather]
-	cp WEATHER_SUN
-	jr nz, .dont_boost_enemy_speed
-
-	ld hl, wBattleMonType1
-	ld a, [hli]
-	cp GRASS
-	jr z, .boost_player_speed
-
-	ld a, [hl]
-	cp GRASS
-	jr nz, .check_enemy_types
-
-.boost_player_speed
-	ld hl, wBattleMonSpeed
-	call ThreeHalfBoost
-	call LoadHLintoBattleMonTemp
-	ld de, wBattleMonTempStat
-
-.check_enemy_types
-	ld hl, wEnemyMonType1
-	ld a, [hli]
-	cp GRASS
-	jr z, .boost_enemy_speed
-
-	ld a, [hl]
-	cp GRASS
-	jr nz, .dont_boost_enemy_speed
-
-.boost_enemy_speed
-	ld hl, wEnemyMonSpeed
-	call ThreeHalfBoost
-	call LoadHLintoEnemyMonTemp
-	ld hl, wEnemyMonTempStat
-	jr .speed_check
-
-.dont_boost_enemy_speed
-	ld hl, wEnemyMonSpeed
 .speed_check
+	ld de, wBattleMonSpeed
+	ld hl, wEnemyMonSpeed
 	ld c, 2
 	call CompareBytes
 	jr z, .speed_tie
@@ -638,32 +597,6 @@ DetermineMoveOrder:
 
 .enemy_first
 	and a
-	ret
-
-ThreeHalfBoost:
-	ld a, [hli]
-	ld l, [hl]
-	ld h, a
-
-	ld b, h ; Copy value into bc
-	ld c, l
-	srl b ; Halve bc
-	rr c
-	add hl, bc ; 2/2 + 1/2 = 3/2
-	ret
-	
-LoadHLintoBattleMonTemp:
-	ld a, h
-	ld [wBattleMonTempStat], a
-	ld a, l
-	ld [wBattleMonTempStat + 1], a
-	ret
-
-LoadHLintoEnemyMonTemp:
-	ld a, h
-	ld [wEnemyMonTempStat], a
-	ld a, l
-	ld [wEnemyMonTempStat + 1], a
 	ret
 
 CheckContestBattleOver:
