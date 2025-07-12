@@ -3792,6 +3792,7 @@ SpikesDamage:
 .ok
 	call .spikes_move
 	call .StealthRock
+	call .ToxicSpikes
 	ret
 
 .spikes_move
@@ -3892,6 +3893,92 @@ SpikesDamage:
 	call SubtractHPFromTarget
 	call WaitBGMap
 	jp .pop
+
+.ToxicSpikes:
+
+; End if there aren't Toxic Spikes down.
+	bit SCREENS_TOXIC_SPIKES, [hl]
+	ret z
+
+    push hl
+    push de
+	push bc
+	call GetCurrentMonCore
+	ld hl, Core_LevitatePokemon
+	ld de, 1
+	call IsInArray
+	pop bc
+	pop de
+	pop hl
+	ret c
+
+; Toxic Spikes can't poison a Flying-, Steel-, or Poison-type
+	ld a, [de]
+	cp FLYING
+	ret z
+	cp STEEL
+	ret z
+	cp POISON
+	jr z, .AbsorbToxicSpikes
+	inc de
+	ld a, [de]
+	dec de
+	cp FLYING
+	ret z
+	cp STEEL
+	ret z
+	cp POISON
+	jr z, .AbsorbToxicSpikes
+
+	push bc
+	push hl
+	push de
+
+; Toxic Spikes can't poison a Safeguarded target
+	farcall SafeCheckSafeguard
+	jp nz, .pop
+
+; Toxic Spikes can't poison a status immune Pokemon
+    call GetCurrentMonCore
+;	cp SYLVEON
+;	jr z, .pop
+	cp DUNSPARCE
+	jr z, .pop
+
+; Toxic Spikes can't poison a Pokemon that already has a status condition
+	ld a, BATTLE_VARS_STATUS
+	call GetBattleVarAddr
+	and a
+	jr nz, .pop
+
+; Apply poison
+	set PSN, [hl]
+	ld de, ANIM_PSN
+	call Call_PlayBattleAnim
+	call RefreshBattleHuds
+
+	ld hl, WasPoisonedText
+	call SwitchTurnCore
+	call StdBattleTextbox
+	call SwitchTurnCore
+	jr .pop
+
+.AbsorbToxicSpikes:
+; Poison/Flying Pokemon won't absorb toxic spikes
+	inc de
+	ld a, [de]
+	dec de
+	cp FLYING
+	ret z
+
+	push bc
+	push hl
+	push de
+
+	res SCREENS_TOXIC_SPIKES, [hl]
+	ld hl, AbsorbedToxicSpikesText
+	call StdBattleTextbox
+	jr .pop
 
 .pop
     pop de
@@ -9344,4 +9431,13 @@ Core_SpikesImmunePokemon: ; magic guard + levitate
     db MISDREAVUS ; due to levitate
     db KOFFING	; due to levitate
     db WEEZING	; due to levitate
+    db -1
+
+Core_LevitatePokemon:
+    db GASTLY
+    db HAUNTER
+    db GENGAR
+    db MISDREAVUS
+    db KOFFING
+    db WEEZING
     db -1

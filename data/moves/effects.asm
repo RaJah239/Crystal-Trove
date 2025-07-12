@@ -2215,3 +2215,10 @@ StealthRock:
 	doturn
 	stealthrock
 	endmove
+
+ToxicSpikes:
+	checkobedience
+	usedmovetext
+	doturn
+	toxicspikes
+	endmove

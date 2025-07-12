@@ -159,6 +159,7 @@ MoveEffectsPointers:
 	dw FreezeHit ; Blizzard
 	dw Hail
 	dw StealthRock
+	dw ToxicSpikes
 	dw Dig
 	dw Fissure
 	dw BoneClub

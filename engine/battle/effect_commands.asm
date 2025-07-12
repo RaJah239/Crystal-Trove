@@ -6859,6 +6859,8 @@ INCLUDE "engine/battle/move_effects/protect.asm"
 
 INCLUDE "engine/battle/move_effects/stealth_rock.asm"
 
+INCLUDE "engine/battle/move_effects/toxic_spikes.asm"
+
 INCLUDE "engine/battle/move_effects/endure.asm"
 
 INCLUDE "engine/battle/move_effects/spikes.asm"

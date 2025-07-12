@@ -715,7 +715,6 @@ PsyduckEvosAttacks:
 	db 10, DISABLE
 	db 16, CONFUSION
 	db 23, SCREECH
-	db 31, PSYCH_UP
 	db 40, FURY_SWIPES
 	db 50, HYDRO_PUMP
 	db 0 ; no more level-up moves
@@ -730,7 +729,6 @@ GolduckEvosAttacks:
 	db 10, DISABLE
 	db 16, CONFUSION
 	db 23, SCREECH
-	db 31, PSYCH_UP
 	db 44, FURY_SWIPES
 	db 58, HYDRO_PUMP
 	db 0 ; no more level-up moves
@@ -1294,7 +1292,6 @@ DrowzeeEvosAttacks:
 	db 31, POISON_GAS
 	db 36, MEDITATE
 	db 40, PSYCHIC_M
-	db 43, PSYCH_UP
 	db 0 ; no more level-up moves
 
 HypnoEvosAttacks:
@@ -1309,7 +1306,6 @@ HypnoEvosAttacks:
 	db 33, POISON_GAS
 	db 40, MEDITATE
 	db 49, PSYCHIC_M
-	db 55, PSYCH_UP
 	db 0 ; no more level-up moves
 
 KrabbyEvosAttacks:
@@ -2025,7 +2021,6 @@ MewtwoEvosAttacks:
 	db 1, DISABLE
 	db 11, BARRIER
 	db 22, SWIFT
-	db 33, PSYCH_UP
 	db 55, MIST
 	db 66, PSYCHIC_M
 	db 77, AMNESIA
@@ -2630,7 +2625,6 @@ EspeonEvosAttacks:
 	db 23, QUICK_ATTACK
 	db 30, SWIFT
 	db 36, PSYBEAM
-	db 42, PSYCH_UP
 	db 47, PSYCHIC_M
 	db 52, HEALING_LIGHT
 	db 0 ; no more level-up moves
