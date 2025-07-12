@@ -146,7 +146,7 @@ ItemNameOrder:
 
 
 ; NEXT POCKET
-; Battle Pocket - 50 total
+; Battle Pocket - 51 total
 
 ; Stat altering Battle Items
 	db GUARD_SPEC
@@ -173,6 +173,7 @@ ItemNameOrder:
 	db EXPERT_BELT
 	db FOCUS_BAND
 	db FOCUS_SASH
+	db HEAVY_BOOTS
 	db HARD_STONE
 	db KINGS_ROCK
 	db LEFTOVERS
@@ -228,7 +229,7 @@ ItemNameOrder:
 	db OLD_AMBER
 
 ; NEXT POCKET
-; Key Items Pocket - 26 total
+; Key Items Pocket - 25 total
 ; Permanent Key Items
 ; Items that are possibly frequently used
 	db BICYCLE
@@ -261,7 +262,6 @@ ItemNameOrder:
 	db BASEMENT_KEY
 	db CARD_KEY
 	db GS_BALL
-	db MACHINE_PART
 	db MYSTERY_EGG
 	db RED_SCALE
 	db SECRETPOTION

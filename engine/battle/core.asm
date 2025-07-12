@@ -3767,6 +3767,17 @@ BreakAttraction:
 	ret
 
 SpikesDamage:
+	ld a, [wBattleHasJustStarted]
+	and a
+	ret nz
+
+	callfar GetUserItem
+	ld a, b
+	cp HELD_HEAVY_BOOTS
+	ret z
+
+    call ClearFailures
+
 	ld hl, wPlayerScreens
 	ld de, wBattleMonType
 	ld bc, UpdatePlayerHUD
