@@ -3419,6 +3419,38 @@ ConfusionDamageCalc:
 	call HalfDamage
 .finishThickFat
 
+; ==================================
+; ========= Lugia ==============
+; ==================================
+; quarter damage from Electric attacks
+    call GetOpposingMon
+    cp LUGIA
+	jr nz, .finishLugia
+	ld a, BATTLE_VARS_MOVE_TYPE
+	call GetBattleVarAddr
+	and TYPE_MASK
+	cp ELECTRIC
+    jr nz, .finishLugia
+	call HalfDamage
+	call HalfDamage
+.finishLugia
+
+; ==================================
+; ========= Ho-Oh ==============
+; ==================================
+; quarter damage from Electric attacks
+    call GetOpposingMon
+    cp HO_OH
+	jr nz, .finishHooH
+	ld a, BATTLE_VARS_MOVE_TYPE
+	call GetBattleVarAddr
+	and TYPE_MASK
+	cp ROCK
+    jr nz, .finishHooH
+	call HalfDamage
+	call HalfDamage
+.finishHooH
+
 ; =================================
 ; ========== Technician ===========
 ; =================================
