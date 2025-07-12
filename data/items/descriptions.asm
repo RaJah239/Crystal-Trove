@@ -153,8 +153,8 @@ ItemDescriptions:
 	dw MysteryBerryDesc
 	dw DragonScaleDesc
 	dw BerserkGeneDesc
-	dw TeruSama18Desc
-	dw TeruSama19Desc
+	dw MuscleBandDesc
+	dw WiseGlassesDesc
 	dw TeruSama20Desc
 	dw SacredAshDesc
 	dw HeavyBallDesc
@@ -816,7 +816,7 @@ LifeOrbDesc:
 	next "boost power.@"
 
 ChoiceBandDesc:
-	db   "Boost Atk"
+	db   "Boost Attack"
 	next "but lock moves@"
 
 MetalCoatDesc:
@@ -849,14 +849,16 @@ DragonScaleDesc:
 	next "item.@"
 
 BerserkGeneDesc:
-	db   "Boosts ATTACK but"
-	next "causes confusion.@"
+	db   "Boosts critical"
+	next "damage for Mewtwo.@"
 
-TeruSama18Desc:
-	db   "?@"
+MuscleBandDesc:
+	db   "Slightly boosts"
+	next "physical moves.@"
 
-TeruSama19Desc:
-	db   "?@"
+WiseGlassesDesc:
+	db   "Slightly boosts"
+	next "special moves.@"
 
 TeruSama20Desc:
 	db   "?@"

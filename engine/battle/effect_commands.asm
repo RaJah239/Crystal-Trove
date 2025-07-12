@@ -3392,12 +3392,46 @@ ConfusionDamageCalc:
 	ld a, b
 	cp HELD_CHOICE_SPECS
 	pop hl
+	jr nz, .muscleBand
+    ld a, BATTLE_VARS_MOVE_TYPE
+	call GetBattleVar
+	cp SPECIAL
+	jr c, .muscleBand
+    call FiftyPercentBoost
+
+.muscleBand
+; ========================
+; ===== Muscle Band ======
+; ========================
+; DevNote - muscle band - x1.1 damage
+    push hl
+	call GetUserItem
+	ld a, b
+	cp HELD_MUSCLE_BAND
+	pop hl
+	jr nz, .wiseGlasses
+    ld a, BATTLE_VARS_MOVE_TYPE
+	call GetBattleVar
+	cp SPECIAL
+	jr nc, .wiseGlasses
+	call TenPercentBoost
+
+.wiseGlasses
+; =========================
+; ===== Wise Glasses ======
+; =========================
+; DevNote - wise glasses - x1.1 damage
+    push hl
+	call GetUserItem
+	ld a, b
+	cp HELD_WISE_GLASSES
+	pop hl
 	jr nz, .rivalry
     ld a, BATTLE_VARS_MOVE_TYPE
 	call GetBattleVar
 	cp SPECIAL
 	jr c, .rivalry
-    call FiftyPercentBoost
+	call TenPercentBoost
 
 .rivalry
 ; =============================

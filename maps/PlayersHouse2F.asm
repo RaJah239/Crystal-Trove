@@ -166,7 +166,8 @@ if DEF(_DEBUG)
 	; crystals
 	giveitem CRYSTAL, MAX_ITEM_STACK
 	; nuggets
-	giveitem NUGGET, MAX_ITEM_STACK
+	giveitem MUSCLE_BAND, MAX_ITEM_STACK
+	giveitem WISE_GLASSES, MAX_ITEM_STACK
 
 	; fossils
 	giveitem OLD_AMBER
