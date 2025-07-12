@@ -3783,12 +3783,16 @@ SpikesDamage:
 	ld bc, UpdatePlayerHUD
 	ldh a, [hBattleTurn]
 	and a
+	ld a, [wBattleMonSpecies]
 	jr z, .ok
 	ld hl, wEnemyScreens
 	ld de, wEnemyMonType
 	ld bc, UpdateEnemyHUD
+	ld a, [wEnemyMonSpecies]
 .ok
+	call .Spikes
 
+.Spikes
 	bit SCREENS_SPIKES, [hl]
 	ret z
 
