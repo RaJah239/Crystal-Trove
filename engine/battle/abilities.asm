@@ -94,6 +94,17 @@ SolidRockPokemon:
     db EXEGGUTOR
     db -1
 
+RivalryPokemon:
+    db NIDORAN_M
+    db NIDORINO
+    db NIDOKING
+    db NIDORAN_F
+    db NIDORINA
+    db NIDOQUEEN
+    db TAUROS
+    db MILTANK
+    db -1
+
 ; modify in core.asm
 ; this list needs to be in core.asm
 ;Core_MoxiePokemon:

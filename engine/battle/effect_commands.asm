@@ -3304,7 +3304,7 @@ ConfusionDamageCalc:
 	call IsInArray
 	pop bc
 	pop de
-    jr nc, .continue
+    jr nc, .rivalry
     ldh a, [hBattleTurn]
 	and a
 	ld a, [wBattleMonStatus]
@@ -3312,7 +3312,7 @@ ConfusionDamageCalc:
 	ld a, [wEnemyMonStatus]
 .checkStatus
 	cp 0
-	jr z, .continue
+	jr z, .rivalry
 	and 1 << BRN
 	jr z, .notBurn
     ld a, 2
@@ -3320,6 +3320,24 @@ ConfusionDamageCalc:
 	call Multiply
 .notBurn
     call FiftyPercentBoost
+
+.rivalry
+; =============================
+; ======= Rivalry =============
+; =============================
+	call GetCurrentMon
+    push de
+	push bc
+	ld hl, RivalryPokemon
+	ld de, 1
+	call IsInArray
+	pop bc
+	pop de
+	jr nc, .continue
+	call CheckOppositeGender
+	jr c, .continue
+    call TenPercentBoost
+    call TenPercentBoost
 
 .continue
 ; Critical hits
@@ -3515,6 +3533,16 @@ FiftyPercentBoost:
 ; fallthrough
 HalfDamage:
 	ld a, 2
+	ldh [hDivisor], a
+	ld b, 4
+	call Divide
+	ret
+
+TenPercentBoost:
+    ld a, 11
+	ldh [hMultiplier], a
+	call Multiply
+	ld a, 10
 	ldh [hDivisor], a
 	ld b, 4
 	call Divide
