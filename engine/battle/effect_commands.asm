@@ -1218,7 +1218,7 @@ INCLUDE "data/moves/critical_hit_moves.asm"
 
 INCLUDE "data/battle/critical_hit_chances.asm"
 
-INCLUDE "engine/battle/move_effects/triple_kick.asm"
+
 
 GetNextTypeMatchupsByte:
    ld a, BANK(TypeMatchups)
@@ -7068,9 +7068,9 @@ GetOpposingMon:
 .done
     ret
 
-
 ;to remove fully eventually
 INCLUDE "engine/battle/move_effects/beat_up.asm"
+INCLUDE "engine/battle/move_effects/triple_kick.asm"
 
 BattleCommand_CheckFutureSight:
 BattleCommand_FutureSight:
