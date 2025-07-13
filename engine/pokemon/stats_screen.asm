@@ -237,8 +237,10 @@ MonStatsJoypad:
 	jp StatsScreen_JoypadAction
 
 StatsScreenWaitCry:
-	call IsSFXPlaying
-	ret nc
+;	call IsSFXPlaying
+;	ret nc
+; remove the top
+
 	ld a, [wJumptableIndex]
 	inc a
 	ld [wJumptableIndex], a
