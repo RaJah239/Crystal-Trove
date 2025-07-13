@@ -900,8 +900,13 @@ CompareMovePriority:
 
 GetPlayerMovePriority:
 ; Return the priority (0-3) of move a.
-
 	ld b, a
+
+	; Vital Throw goes last.
+	cp VITAL_THROW
+	ld a, 0
+	ret z
+
 	cp COUNTER
 	jr z, .noPrankster
 	cp MIRROR_COAT
