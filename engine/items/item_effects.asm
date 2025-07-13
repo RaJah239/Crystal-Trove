@@ -189,7 +189,7 @@ ItemEffects:
 	dw RestoreHPEffect     ; BERRY
 	dw Restore4THHPEffect  ; GOLD_BERRY
 	dw SquirtbottleEffect  ; SQUIRTBOTTLE
-	dw NoEffect            ; ITEM_B0
+	dw HyperEVUpEffect     ; HYPER_EV_UP
 	dw PokeBallEffect      ; PARK_BALL
 	dw NoEffect            ; RAINBOW_WING
 	dw NoEffect            ; ITEM_B3
@@ -3080,3 +3080,57 @@ ItemCheckEnemyMaxHP:
 	pop hl
 	and a
 	ret
+
+HyperEVUpEffect:
+	ld b, PARTYMENUACTION_HEALING_ITEM
+	call UseItem_SelectMon
+	jp c, RareCandy_StatBooster_ExitMenu
+
+	call RareCandy_StatBooster_GetParameters
+
+    ld a, HP_UP
+    ld [wCurItem], a
+	call HyperEVUpStatIncrease
+
+    ld a, PROTEIN
+    ld [wCurItem], a
+	call HyperEVUpStatIncrease
+
+    ld a, IRON
+    ld [wCurItem], a
+	call HyperEVUpStatIncrease
+
+    ld a, CARBOS
+    ld [wCurItem], a
+	call HyperEVUpStatIncrease
+
+    ld a, CALCIUM
+    ld [wCurItem], a
+	call HyperEVUpStatIncrease
+
+    ld a, ZINC
+    ld [wCurItem], a
+	call HyperEVUpStatIncrease
+
+	call Play_SFX_FULL_HEAL
+	ld hl, HyperEVUpText
+	call PrintText
+
+    ld a, HYPER_EV_UP
+    ld [wCurItem], a
+	jp UseDisposableItem
+
+HyperEVUpStatIncrease:
+    call GetEVRelativePointer
+	ld a, MON_EVS
+	call GetPartyParamLocation
+	add hl, bc
+	ld a, 252
+	ld [hl], a
+	call UpdateStatsAfterItem
+	ret
+
+HyperEVUpText:
+	text_far _HyperEVUpText
+	text_end
+    done

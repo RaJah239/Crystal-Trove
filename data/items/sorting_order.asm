@@ -110,6 +110,7 @@ ItemNameOrder:
 
 ; Vitamins
 	db RARE_CANDY
+	db HYPER_EV_UP
 	db PP_UP
 	db HP_UP
 	db PROTEIN
@@ -271,13 +272,12 @@ ItemNameOrder:
 
 
 ; UNUSED ITEMS
-; Unused Items - 10 total
+; Unused Items - 9 total
 	db EGG_TICKET
 	db POKE_FLUTE
 	db ITEM_2D
 	db ITEM_A2
 	db ITEM_AB
-	db ITEM_B0
 	db ITEM_B3
 	db ITEM_BE
 	db ITEM_C3

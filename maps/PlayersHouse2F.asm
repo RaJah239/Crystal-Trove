@@ -140,10 +140,11 @@ if DEF(_DEBUG)
 	; useful items
 	giveitem MAX_REPEL, MAX_ITEM_STACK
 	giveitem ESCAPE_ROPE, MAX_ITEM_STACK
-	giveitem SACRED_ASH, MAX_ITEM_STACK
-	giveitem RARE_CANDY, MAX_ITEM_STACK
 
-	; Vitamins
+	; medicine
+	giveitem SACRED_ASH, MAX_ITEM_STACK
+	giveitem HYPER_EV_UP, MAX_ITEM_STACK
+	giveitem RARE_CANDY, MAX_ITEM_STACK
 	giveitem HP_UP, MAX_ITEM_STACK
 	giveitem PROTEIN, MAX_ITEM_STACK
 	giveitem IRON, MAX_ITEM_STACK
@@ -166,10 +167,6 @@ if DEF(_DEBUG)
 
 	; crystals
 	giveitem CRYSTAL, MAX_ITEM_STACK
-	; nuggets
-	giveitem MUSCLE_BAND, MAX_ITEM_STACK
-	giveitem WISE_GLASSES, MAX_ITEM_STACK
-	giveitem EXPERT_BELT, MAX_ITEM_STACK
 
 	; fossils
 	giveitem OLD_AMBER
