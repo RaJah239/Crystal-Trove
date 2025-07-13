@@ -304,12 +304,11 @@ StatsScreen_JoypadAction:
 	jr nz, .select_done
 	ld a, [wAbilityPageMode]
 	and a
-	jr nz, .showStatExp
-.showStats
+	jr nz, .show_more_details_page
 	ld a, 1
 	ld [wAbilityPageMode], a
 	jr .refresh
-.showStatExp
+.show_more_details_page
 	xor a
 	ld [wAbilityPageMode], a
 .refresh
