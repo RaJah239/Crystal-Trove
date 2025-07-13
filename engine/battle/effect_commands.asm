@@ -7312,43 +7312,6 @@ CompoundEyes:
     call z, IncrementB
     ret
 
-BattleCommand_CheckFloatMon:
-; if we're not using a Ground move, we don't need to be here
-; (used only to differentiate Dig from Fly)
-	ld a, BATTLE_VARS_MOVE_TYPE
-	call GetBattleVar
-	and TYPE_MASK
-	cp GROUND
-	ret nz
-
-; if the target is underground, the move should hit
-	ld a, BATTLE_VARS_SUBSTATUS3_OPP
-	call GetBattleVar
-	bit SUBSTATUS_UNDERGROUND, a
-	ret nz
-
-; get the defender's species
-	ld a, MON_SPECIES
-	call BattlePartyAttr
-	ldh a, [hBattleTurn]
-	and a
-	ld a, [hl]
-	jr nz, .got_species
-	ld a, [wTempEnemyMonSpecies]
-
-.got_species
-; check if the species is in the list of floatmons
-	ld hl, FloatMons
-	call IsInByteArray
-	ret nc
-
-; if it's a floatmon, the attack misses
-	ld a, 1
-	ld [wAttackMissed], a
-	
-	ld hl, LevitateText
-	jp StdBattleTextbox
-
 BattleCommand_CheckPowder:
 ; Checks if the move is powder/spore-based and 
 ; if the opponent is Grass-type
@@ -7461,6 +7424,7 @@ INCLUDE "engine/battle/move_effects/rage.asm"
 INCLUDE "engine/battle/move_effects/conversion2.asm"
 INCLUDE "engine/battle/move_effects/pay_day.asm" ; may keep this one..
 
+BattleCommand_Unused5D: ; free to replace
 BattleCommand_CheckFutureSight:
 BattleCommand_FutureSight:
 BattleCommand_GetMagnitude:

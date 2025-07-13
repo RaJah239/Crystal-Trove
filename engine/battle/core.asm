@@ -3923,23 +3923,6 @@ SpikesDamage:
 	call WaitBGMap
 	jp .pop
 
-	; Floatmons aren't affected by Spikes.
-;	push bc
-;	ldh a, [hBattleTurn]
-;	and a
-;	ld a, [wBattleMonSpecies]
-;	jr z, .ok2
-;	ld a, [wEnemyMonSpecies]
-;.ok2
-;	ld hl, FloatMons
-;	call IsInByteArray
-;	pop bc
-;	ret c
-;
-;	push bc
-;	push hl
-;	push de
-
 .StealthRock
 	bit SCREENS_STEALTH_ROCK, [hl]
 	ret z

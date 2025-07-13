@@ -635,11 +635,6 @@ RegainedHealthText:
 	line "regained health!"
 	prompt
 
-LevitateText:
-	text "<TARGET> "
-	line "is floating!"
-	prompt
-
 AttackMissedText:
 	text "<TARGET>"
 	line "avoided!"
