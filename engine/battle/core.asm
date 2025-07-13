@@ -889,24 +889,93 @@ CompareMovePriority:
 ; Return carry if the player goes first, or z if they match.
 
 	ld a, [wCurPlayerMove]
-	call GetMovePriority
+	call GetPlayerMovePriority
 	ld b, a
 	push bc
 	ld a, [wCurEnemyMove]
-	call GetMovePriority
+	call GetEnemyMovePriority
 	pop bc
 	cp b
 	ret
 
-GetMovePriority:
+GetPlayerMovePriority:
 ; Return the priority (0-3) of move a.
 
 	ld b, a
+	cp COUNTER
+	jr z, .noPrankster
+	cp MIRROR_COAT
+	jr z, .noPrankster
+	cp ROAR
+	jr z, .noPrankster
+	cp PROTECT
+	jr z, .noPrankster
 
-	; Vital Throw goes last.
-	cp VITAL_THROW
-	ld a, 0
-	ret z
+; DevNote - prankster
+; ===== Prankster =======
+	ld a, [wBattleMonSpecies]
+;	cp RIOLU
+;	jr z, .prankster
+	cp MURKROW
+	jr z, .prankster
+	jr .noPrankster
+.prankster
+    push bc
+    call GetMovePower
+    pop bc
+    and a
+    jr nz, .noPrankster
+    ld a, 2
+    ret
+.noPrankster
+    ld a, b
+
+	call GetMoveEffect
+	ld hl, MoveEffectPriorities
+.loop
+	ld a, [hli]
+	cp b
+	jr z, .done
+	inc hl
+	cp -1
+	jr nz, .loop
+
+	ld a, BASE_PRIORITY
+	ret
+
+.done
+	ld a, [hl]
+	ret
+
+GetEnemyMovePriority:
+; Return the priority (0-3) of move a.
+
+	ld b, a
+	cp COUNTER
+	jr z, .noPrankster
+	cp MIRROR_COAT
+	jr z, .noPrankster
+	cp ROAR
+	jr z, .noPrankster
+
+; DevNote - prankster
+; ===== Prankster =======
+    ld a, [wEnemyMonSpecies]
+;	cp RIOLU
+;	jr z, .prankster
+	cp MURKROW
+	jr z, .prankster
+    jr .noPrankster
+.prankster
+    push bc
+    call GetMovePower
+    pop bc
+    and a
+    jr nz, .noPrankster
+    ld a, 2
+    ret
+.noPrankster
+    ld a, b
 
 	call GetMoveEffect
 	ld hl, MoveEffectPriorities
@@ -931,6 +1000,17 @@ GetMoveEffect:
 	ld a, b
 	dec a
 	ld hl, Moves + MOVE_EFFECT
+	ld bc, MOVE_LENGTH
+	call AddNTimes
+	ld a, BANK(Moves)
+	call GetFarByte
+	ld b, a
+	ret
+
+GetMovePower:
+	ld a, b
+	dec a
+	ld hl, Moves + MOVE_POWER
 	ld bc, MOVE_LENGTH
 	call AddNTimes
 	ld a, BANK(Moves)
@@ -3708,7 +3788,7 @@ SendOutPlayerMon:
 	ld [wLastPlayerCounterMove], a
 	ld [wLastEnemyCounterMove], a
 	ld [wLastPlayerMove], a
-	call CheckAmuletCoin
+	callfar CheckAmuletCoin
 	call FinishBattleAnim
 	xor a
 	ld [wEnemyWrapCount], a
@@ -5216,17 +5296,6 @@ BattleMenu_Run:
 	ret nz
 	jp BattleMenu
 
-CheckAmuletCoin:
-	ld a, [wBattleMonItem]
-	ld b, a
-	callfar GetItemHeldEffect
-	ld a, b
-	cp HELD_AMULET_COIN
-	ret nz
-	ld a, 1
-	ld [wAmuletCoin], a
-	ret
-
 MoveSelectionScreen:
 	ld hl, wEnemyMonMoves
 	ld a, [wMoveSelectionMenuType]
@@ -5334,7 +5403,7 @@ MoveSelectionScreen:
 
 .battle_player_moves
 	call MoveInfoBox
-	call GetWeatherImage
+	farcall GetWeatherImage
 	ld a, [wSwappingMove]
 	and a
 	jr z, .interpret_joypad
@@ -9128,60 +9197,6 @@ BattleStartMessage:
 	farcall Mobile_PrintOpponentBattleMessage
 
 	ret
-
-GetWeatherImage:
-	ld a, [wBattleWeather]
-	ld de, ClearWeatherImage
-	lb bc, PAL_BATTLE_OB_BLUE, 4
-	cp WEATHER_NONE
-	jr z, .done
-	ld de, RainWeatherImage
-	lb bc, PAL_BATTLE_OB_BLUE, 4
-	dec a
-	jr z, .done
-	ld de, SunWeatherImage
-	ld b, PAL_BATTLE_OB_YELLOW
-	dec a
-	jr z, .done
-	ld de, SandstormWeatherImage
-	ld b, PAL_BATTLE_OB_BROWN
-	dec a
-	jr z, .done
-	ld de, HailWeatherImage
-	ld b, PAL_BATTLE_OB_BLUE
-	dec a
-	ret nz
-	
-.done
-	push bc
-	ld b, BANK(WeatherImages) ; c = 4
-	ld hl, vTiles0
-	call Request2bpp
-	pop bc
-	ld hl, wShadowOAMSprite00
-	ld de, .WeatherImageOAMData
-.loop
-	ld a, [de]
-	inc de
-	ld [hli], a
-	ld a, [de]
-	inc de
-	ld [hli], a
-	dec c
-	ld a, c
-	ld [hli], a
-	ld a, b
-	ld [hli], a
-	jr nz, .loop
-	ret
-
-.WeatherImageOAMData
-; positions are backwards since
-; we load them in reverse order
-	db $88, $1c ; y/x - bottom right
-	db $88, $14 ; y/x - bottom left
-	db $80, $1c ; y/x - top right
-	db $80, $14 ; y/x - top left
 
 FieldWeather:
 ; is weather already set up
