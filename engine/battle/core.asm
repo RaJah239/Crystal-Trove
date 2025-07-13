@@ -9227,6 +9227,9 @@ SwitchInEffects:
     cp MEW
     jp z, .randomStatUp
 
+    cp AERODACTYL
+    jp z, .airlock
+
     cp SMEARGLE
     jp z, .smeargle
 
@@ -9269,6 +9272,10 @@ SwitchInEffects:
 .sand
     farcall SandSwitch
     ret
+
+.airlock
+	farcall AirLockSwitch
+	ret
 
 .stickyweb
 	farcall StickyWebSwitch

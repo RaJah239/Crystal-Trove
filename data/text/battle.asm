@@ -1093,6 +1093,11 @@ StartPerishText:
 	line "faint in 3 turns!"
 	prompt
 
+WeatherClearedUpText:
+	text "The weather has"
+	line "cleared up!"
+	prompt
+
 SandstormBrewedText:
 	text "A SANDSTORM"
 	line "brewed!"

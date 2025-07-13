@@ -492,6 +492,12 @@ SandSwitch:
 	ld hl, SandstormBrewedText
 	jp StdBattleTextbox
 
+AirLockSwitch:
+	ld a, WEATHER_NONE
+	ld [wBattleWeather], a
+	ld hl, WeatherClearedUpText
+	jp StdBattleTextbox
+
 StickyWebSwitch:
 	ld hl, wEnemyScreens
 	ldh a, [hBattleTurn]
