@@ -54,7 +54,7 @@ CantFlinchText:
 
 BattleText_QuickClaw:
 	text "<USER>'s"
-	line "QUICK CLAW procs!"
+	line "Quick Claw procs!"
 	prompt
 
 SturdyText:

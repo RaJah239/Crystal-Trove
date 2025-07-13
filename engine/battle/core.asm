@@ -442,8 +442,7 @@ DetermineMoveOrder:
 	call BattleRandom
 	cp e
 	jr nc, .trick_room_check
-	call QuickClawActivationAnimationAndText
-	jp .player_first
+	jp .player_first_due_to_quick_claw
 
 .player_no_quick_claw
 	ld a, b
@@ -452,8 +451,7 @@ DetermineMoveOrder:
 	call BattleRandom
 	cp c
 	jr nc, .trick_room_check
-	call QuickClawActivationAnimationAndText
-	jp .enemy_first
+	jp .enemy_first_due_to_quick_claw
 
 .both_have_quick_claw
 	ldh a, [hSerialConnectionStatus]
@@ -461,20 +459,20 @@ DetermineMoveOrder:
 	jr z, .player_2b
 	call BattleRandom
 	cp c
-	jp c, .enemy_first
+	jp c, .enemy_first_due_to_quick_claw
 
 	call BattleRandom
 	cp e
-	jp c, .player_first
+	jp c, .player_first_due_to_quick_claw
 	jr .trick_room_check
 
 .player_2b
 	call BattleRandom
 	cp e
-	jp c, .player_first
+	jp c, .player_first_due_to_quick_claw
 	call BattleRandom
 	cp c
-	jp c, .enemy_first
+	jp c, .enemy_first_due_to_quick_claw
 
 ; DevNote - Trick Room - In Trick Room, the slower Pokemon attacks first.
 .trick_room_check
@@ -637,6 +635,17 @@ DetermineMoveOrder:
 	ret
 
 .enemy_first
+	and a
+	ret
+
+.player_first_due_to_quick_claw
+	call QuickClawActivationAnimationAndText
+	scf
+	ret
+
+.enemy_first_due_to_quick_claw
+	call SetEnemyTurn
+	call QuickClawActivationAnimationAndText
 	and a
 	ret
 
