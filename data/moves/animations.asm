@@ -4575,14 +4575,17 @@ BattleAnim_MirrorCoat:
 BattleAnim_ToxicSpikes:
 	anim_1gfx BATTLE_ANIM_GFX_MISC
 	anim_sound 6, 2, SFX_TOXIC
-	anim_obj BATTLE_ANIM_OBJ_SLUDGE_BOMB, 48, 88, $20
+	anim_obj BATTLE_ANIM_OBJ_SPIKES, 48, 88, $20
 	anim_wait 8
 	anim_sound 6, 2, SFX_TOXIC
-	anim_obj BATTLE_ANIM_OBJ_SLUDGE_BOMB, 48, 88, $30
+	anim_obj BATTLE_ANIM_OBJ_SPIKES, 48, 88, $30
 	anim_wait 8
 	anim_sound 6, 2, SFX_TOXIC
-	anim_obj BATTLE_ANIM_OBJ_SLUDGE_BOMB, 48, 88, $28
-	anim_wait 64
+	anim_obj BATTLE_ANIM_OBJ_SPIKES, 48, 88, $28
+	anim_wait 32
+	anim_1gfx BATTLE_ANIM_GFX_POISON
+	anim_call BattleAnimSub_Sludge
+	anim_wait 24
 	anim_ret
 
 ;BattleAnim_PsychUp:
@@ -4845,14 +4848,14 @@ BattleAnimSub_Sludge:
 .loop
 	anim_sound 0, 1, SFX_TOXIC
 	anim_obj BATTLE_ANIM_OBJ_SLUDGE, 132, 72, $0
-	anim_wait 8
+	anim_wait 4
 	anim_sound 0, 1, SFX_TOXIC
 	anim_obj BATTLE_ANIM_OBJ_SLUDGE, 116, 72, $0
-	anim_wait 8
+	anim_wait 4
 	anim_sound 0, 1, SFX_TOXIC
 	anim_obj BATTLE_ANIM_OBJ_SLUDGE, 148, 72, $0
-	anim_wait 8
-	anim_loop 5, .loop
+	anim_wait 4
+	anim_loop 3, .loop
 	anim_ret
 
 BattleAnimSub_Acid:
