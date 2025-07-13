@@ -9185,6 +9185,12 @@ SwitchInEffects:
     cp SUICUNE
     jp z, .defUp
 
+    cp LAPRAS
+    jp z, .lapras
+
+    cp PIDGEOT
+    jp z, .clearField
+
     cp RAIKOU
     jp z, .spdUp
 
@@ -9348,6 +9354,13 @@ SwitchInEffects:
     farcall AttackDownSwitch
 	ret
 
+.clearField
+	farcall DefogSwitch
+	ret
+
+.lapras
+	farcall DefogSwitch
+	; fallthrough
 .spAtkDown
     farcall SpecialAttackDownSwitch
 	ret

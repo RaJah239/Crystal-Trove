@@ -552,6 +552,12 @@ ToxicSpikesSwitch:
 	ld hl, ToxicSpikesText
 	jp StdBattleTextbox
 
+DefogSwitch:
+    ld de, DEFOG
+    call PlayAnimationIfNotFirstTurn
+    callfar BattleCommand_Defog
+	ret
+
 TrickRoomSwitch:
     ld a, 5
     ld [wTrickRoomCount], a
