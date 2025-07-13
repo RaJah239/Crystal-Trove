@@ -297,7 +297,6 @@ HandleBetweenTurnEffects:
 
 .NoMoreFaintingConditions:
 	farcall Core2_NewTurnEndEffects
-	call HandleTrickRoom
 	call HandleHealingItems
 	call UpdateBattleMonInParty
 	call LoadTilemapToTempTilemap
@@ -1389,16 +1388,6 @@ SwitchTurnCore:
 	xor 1
 	ldh [hBattleTurn], a
 	ret
-
-HandleTrickRoom:
-	ld hl, wTrickRoomCount
-	ld a, [hl]
-	and a
-	ret z
-	dec [hl]
-	ret nz
-	ld hl, TrickRoomEndedText
-	jp StdBattleTextbox
 
 HandleWeather:
 	ld a, [wBattleWeather]
