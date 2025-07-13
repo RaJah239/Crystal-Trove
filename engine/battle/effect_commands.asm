@@ -7431,6 +7431,32 @@ GetOpposingMon:
 .done
     ret
 
+BattleCommand_FlameOrb:
+	call GetUserItem
+	ld a, b
+	cp HELD_FLAME_ORB
+	ret nz
+	farcall ShouldIgniteFlameOrb
+	ret nc
+    ld hl, FlameOrbText
+	call StdBattleTextbox
+    ld a, BATTLE_VARS_STATUS
+	call GetBattleVarAddr
+	set BRN, [hl]
+	call UpdateUserInParty
+	call BattleCommand_SwitchTurn
+	ld hl, ApplyBrnEffectOnAttack
+	call CallBattleCore
+    ld a, [wBattleHasJustStarted]
+    and a
+    jr nz, .skipAnim
+	ld de, ANIM_BRN
+	call PlayOpponentBattleAnim
+	call RefreshBattleHuds
+.skipAnim
+	call BattleCommand_SwitchTurn
+    ret
+
 ;to remove fully eventually but thier code is commented out for now
 INCLUDE "engine/battle/move_effects/beat_up.asm"
 INCLUDE "engine/battle/move_effects/triple_kick.asm"

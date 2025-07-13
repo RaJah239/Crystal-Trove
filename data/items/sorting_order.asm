@@ -171,6 +171,7 @@ ItemNameOrder:
 	db DRAGON_FANG
 	db EVERSTONE
 	db EXPERT_BELT
+	db FLAME_ORB
 	db FOCUS_BAND
 	db FOCUS_SASH
 	db HEAVY_BOOTS
@@ -270,11 +271,10 @@ ItemNameOrder:
 
 
 ; UNUSED ITEMS
-; Unused Items - 12 total
+; Unused Items - 10 total
 	db EGG_TICKET
 	db POKE_FLUTE
 	db ITEM_2D
-	db ITEM_91
 	db ITEM_A2
 	db ITEM_AB
 	db ITEM_B0

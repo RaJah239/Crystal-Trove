@@ -121,7 +121,7 @@ DEF MAIL_STRUCT_LENGTH_JP EQU $2a ; mailmsg_jp struct
 
 	const_next 40
 	const_skip
-	const_skip
+	const HELD_FLAME_ORB
 	const HELD_EVIOLITE
 
 	const_next 50

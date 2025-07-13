@@ -19,6 +19,11 @@ WaterAbsorbText:
 	cont "Water moves!"
 	prompt
 
+FlameOrbText:
+    text "Flame Orb"
+    line "ignites!"
+    prompt
+
 FireAbsorbText:
 	text "<TARGET> is"
 	line "unaffected by"

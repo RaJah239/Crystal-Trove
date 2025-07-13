@@ -9166,7 +9166,7 @@ FieldWeather:
 SwitchInEffects:
     call ClearFailures
 
-;	farcall BattleCommand_FlameOrb
+	farcall BattleCommand_FlameOrb
 
     call GetCurrentMonCore
 ; DevNote - abilities that activate on switching in
