@@ -492,6 +492,21 @@ SandSwitch:
 	ld hl, SandstormBrewedText
 	jp StdBattleTextbox
 
+StickyWebSwitch:
+	ld hl, wEnemyScreens
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_screens
+	ld hl, wPlayerScreens
+.got_screens
+    bit SCREENS_STICKY_WEB, [hl]
+    ret nz
+	set SCREENS_STICKY_WEB, [hl]
+    ld de, STICKY_WEB
+    call PlayAnimationIfNotFirstTurn
+	ld hl, StickyWebText
+	jp StdBattleTextbox
+
 SpikesSwitch:
 	ld hl, wEnemyScreens
 	ldh a, [hBattleTurn]

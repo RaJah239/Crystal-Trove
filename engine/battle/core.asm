@@ -9293,6 +9293,9 @@ SwitchInEffects:
     cp SMEARGLE
     jp z, .smeargle
 
+    cp ARIADOS
+    jp z, .stickyweb
+
     cp SKARMORY
     jp z, .spikes
 
@@ -9329,6 +9332,10 @@ SwitchInEffects:
 .sand
     farcall SandSwitch
     ret
+
+.stickyweb
+	farcall StickyWebSwitch
+	ret
 
 .spikes
     farcall SpikesSwitch
