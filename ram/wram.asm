@@ -2186,9 +2186,7 @@ SECTION UNION "Miscellaneous WRAM 1", WRAMX
 ; Every previous SECTION UNION takes up 60 or fewer bytes,
 ; except the initial "mon buffer" one.
 
-wAbilityPageMode:: db
-
-	ds 59
+	ds 60
 
 UNION
 ; trainer data
@@ -3218,7 +3216,9 @@ wDayCareSceneID::                                 db
 wRoute38EcruteakGateSceneID::                     db
 wRoute42EcruteakGateSceneID::                     db
 wRoute30SceneID::                                 db
-	ds 174
+	ds 173
+
+wAbilityPageMode:: db
 
 wLevelCap:: db
 
