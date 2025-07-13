@@ -6881,6 +6881,8 @@ INCLUDE "engine/battle/move_effects/sticky_web.asm"
 
 INCLUDE "engine/battle/move_effects/trick_room.asm"
 
+INCLUDE "engine/battle/move_effects/defog.asm"
+
 INCLUDE "engine/battle/move_effects/endure.asm"
 
 INCLUDE "engine/battle/move_effects/spikes.asm"

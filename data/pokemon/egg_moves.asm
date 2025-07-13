@@ -315,9 +315,6 @@ RhyhornEggMoves:
 	db -1 ; end
 
 ChanseyEggMoves:
-	db PRESENT
-	db METRONOME
-	db HEAL_BELL
 	db -1 ; end
 
 TangelaEggMoves:
@@ -474,25 +471,12 @@ ChinchouEggMoves:
 	db -1 ; end
 
 PichuEggMoves:
-	db REVERSAL
-	db PRESENT
-	db ENCORE
-	db DOUBLESLAP
 	db -1 ; end
 
 CleffaEggMoves:
-	db PRESENT
-	db METRONOME
-	db AMNESIA
-	db BELLY_DRUM
-	db SPLASH
-	db MIMIC
 	db -1 ; end
 
 IgglybuffEggMoves:
-	db PERISH_SONG
-	db PRESENT
-	db FAINT_ATTACK
 	db -1 ; end
 
 TogepiEggMoves:
@@ -593,14 +577,6 @@ GligarEggMoves:
 	db -1 ; end
 
 SnubbullEggMoves:
-	db METRONOME
-	db FAINT_ATTACK
-	db REFLECT
-	db PRESENT
-	db CRUNCH
-	db HEAL_BELL
-	db LICK
-	db LEER
 	db -1 ; end
 
 QwilfishEggMoves:
@@ -727,9 +703,6 @@ MagbyEggMoves:
 	db -1 ; end
 
 MiltankEggMoves:
-	db PRESENT
-	db REVERSAL
-	db SEISMIC_TOSS
 	db -1 ; end
 
 LarvitarEggMoves:

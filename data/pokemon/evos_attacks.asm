@@ -2955,7 +2955,7 @@ OctilleryEvosAttacks:
 
 DelibirdEvosAttacks:
 	db 0 ; no more evolutions
-	db 1, PRESENT
+	db 1, HYPER_BEAM
 	db 0 ; no more level-up moves
 
 MantineEvosAttacks:
