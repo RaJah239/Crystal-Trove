@@ -6,6 +6,7 @@
 if DEF(_DEBUG)
 	const PLAYERSHOUSE2F_TEST
 	const PLAYERSHOUSE2F_KANTO_WARP
+	const PLAYERSHOUSE2F_PORYGON_PC
 endc
 
 PlayersHouse2F_MapScripts:
@@ -279,6 +280,9 @@ TestText:
 	text "<……>"
 	line "<……>"
 	done
+
+PlayerRoomtPorygonPCScript:
+	jumpstd PorygonPCScript
 endc
 
 PlayersHouse2F_MapEvents:
@@ -301,4 +305,6 @@ PlayersHouse2F_MapEvents:
 if DEF(_DEBUG)
 	object_event  4,  2, SPRITE_RED, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, TestScript, -1
 	object_event  6,  2, SPRITE_BLUE, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, TestWarpScript, -1
+	object_event  1,  2, SPRITE_PORYGON_OW, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, PlayerRoomtPorygonPCScript, -1
+
 endc
