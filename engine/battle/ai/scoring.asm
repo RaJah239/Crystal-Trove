@@ -8,6 +8,24 @@ AI_MagicGuardPokemon:
     db ALAKAZAM
     db $FF
 
+AI_LevitatePokemon:
+	db BEEDRILL
+	db BUTTERFREE
+	db VENOMOTH
+	db MAGNEMITE
+	db MAGNETON
+	db GASTLY
+	db HAUNTER
+	db GENGAR
+	db KOFFING
+	db WEEZING
+	db MEW
+	db MISDREAVUS
+	db UNOWN
+	db CELEBI
+	db CHARIZARD
+    db $FF
+
 AI_Smart_Switch:
 ; Enemies can switch intelligently under certain conditions
 
@@ -3448,6 +3466,51 @@ DoesPokemonHaveMagicGuard:
     push de
    	push bc
    	ld hl, AI_MagicGuardPokemon
+   	ld de, 1
+   	call IsInArray
+   	pop bc
+   	pop de
+   	pop hl
+   	jr c, .yes
+   	xor a
+   	ret
+.yes
+    scf
+    ret
+
+Levitate:
+    ldh a, [hBattleTurn]
+	and a
+	ld a, [wEnemyMoveStruct + MOVE_TYPE]
+	jr nz, .checkType
+	ld a, [wPlayerMoveStruct + MOVE_TYPE]
+.checkType
+	and TYPE_MASK
+	cp GROUND
+    jr z, .getPokemon
+	ret
+.getPokemon
+	ldh a, [hBattleTurn]
+	and a
+	ld a, [wEnemyMonSpecies]
+	jr z, .checkLevitate
+	ld a, [wBattleMonSpecies]
+.checkLevitate
+	ld hl, AI_LevitatePokemon
+	ld de, 1
+	call IsInArray
+    jr c, .found
+    ret
+.found
+	ld hl, LevitateText
+	call StdBattleTextbox
+    ret z
+
+DoesPokemonHaveLevitate:
+    push hl
+    push de
+   	push bc
+   	ld hl, AI_LevitatePokemon
    	ld de, 1
    	call IsInArray
    	pop bc

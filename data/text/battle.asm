@@ -12,6 +12,11 @@ RockHeadText:
     line "takes no recoil!"
     prompt
 
+LevitateText:
+	text "<TARGET>"
+	line "is levitating!"
+	prompt
+
 TrickRoomText:
 	text "The dimensions"
 	line "were twisted!"

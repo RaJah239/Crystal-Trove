@@ -1675,6 +1675,9 @@ BattleCommand_DamageVariation:
 	ret
 
 BattleCommand_CheckHit:
+	farcall Levitate
+	jp z, .Miss
+
 	call .DreamEater
 	jp z, .Miss
 
