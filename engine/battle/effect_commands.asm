@@ -1675,8 +1675,21 @@ BattleCommand_DamageVariation:
 	ret
 
 BattleCommand_CheckHit:
+
+    ; DevNote - levitate, water absorb, volt absorb, fire absorb here
+    ; note these functions are defined in scoring.asm
+
 	farcall Levitate
 	jp z, .Miss
+
+	farcall WaterAbsorb
+	jp z, .Miss
+
+	farcall VoltAbsorb
+    jp z, .Miss
+
+	farcall FireAbsorb
+    jp z, .Miss
 
 	call .DreamEater
 	jp z, .Miss

@@ -7,6 +7,24 @@ BattleText_PlayerPickedUpPayDayMoney:
 	text "!"
 	prompt
 
+VoltAbsorbText:
+	text "<TARGET> is"
+	line "unaffected by"
+	cont "Electric moves!"
+	prompt
+
+WaterAbsorbText:
+	text "<TARGET> is"
+	line "unaffected by"
+	cont "Water moves!"
+	prompt
+
+FireAbsorbText:
+	text "<TARGET> is"
+	line "unaffected by"
+	cont "Fire moves!"
+	prompt
+
 RockHeadText:
     text "<USER>"
     line "takes no recoil!"

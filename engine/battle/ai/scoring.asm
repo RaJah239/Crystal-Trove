@@ -26,6 +26,40 @@ AI_LevitatePokemon:
 	db CHARIZARD
     db $FF
 
+AI_WaterAbsorbPokemon:
+    db VAPOREON
+    db POLIWAG
+    db POLIWHIRL
+    db POLIWRATH
+    db LAPRAS
+    db $FF
+
+AI_VoltAbsorbPokemon:
+    db CHINCHOU
+    db LANTURN
+    db ELECTABUZZ
+    db ZAPDOS
+    db JOLTEON
+    db PIKACHU
+    db RAICHU
+    db MAREEP
+    db FLAAFFY
+    db AMPHAROS
+    db RAIKOU
+    db $FF
+
+AI_FireAbsorbPokemon:
+    db MAGMAR
+    db FLAREON
+    db MOLTRES
+    db VULPIX
+    db NINETALES
+    db HOUNDOUR
+    db HOUNDOOM
+    db GROWLITHE
+    db ARCANINE
+    db $FF
+
 AI_Smart_Switch:
 ; Enemies can switch intelligently under certain conditions
 
@@ -3522,3 +3556,87 @@ DoesPokemonHaveLevitate:
 .yes
     scf
     ret
+
+WaterAbsorb:
+    ldh a, [hBattleTurn]
+	and a
+	ld a, [wEnemyMoveStruct + MOVE_TYPE]
+	jr nz, .checkType
+	ld a, [wPlayerMoveStruct + MOVE_TYPE]
+.checkType
+	and TYPE_MASK
+	cp WATER
+    jr z, .getPokemon
+	ret
+.getPokemon
+	ldh a, [hBattleTurn]
+	and a
+	ld a, [wEnemyMonSpecies]
+	jr z, .check
+	ld a, [wBattleMonSpecies]
+.check
+	ld hl, AI_WaterAbsorbPokemon
+	ld de, 1
+	call IsInArray
+    jr c, .found
+    ret
+.found
+	ld hl, WaterAbsorbText
+	call StdBattleTextbox
+    ret z
+
+VoltAbsorb:
+    ldh a, [hBattleTurn]
+	and a
+	ld a, [wEnemyMoveStruct + MOVE_TYPE]
+	jr nz, .checkType
+	ld a, [wPlayerMoveStruct + MOVE_TYPE]
+.checkType
+	and TYPE_MASK
+	cp ELECTRIC
+    jr z, .getPokemon
+	ret
+.getPokemon
+	ldh a, [hBattleTurn]
+	and a
+	ld a, [wEnemyMonSpecies]
+	jr z, .check
+	ld a, [wBattleMonSpecies]
+.check
+	ld hl, AI_VoltAbsorbPokemon
+	ld de, 1
+	call IsInArray
+    jr c, .found
+    ret
+.found
+	ld hl, VoltAbsorbText
+	call StdBattleTextbox
+    ret z
+
+FireAbsorb:
+    ldh a, [hBattleTurn]
+	and a
+	ld a, [wEnemyMoveStruct + MOVE_TYPE]
+	jr nz, .checkType
+	ld a, [wPlayerMoveStruct + MOVE_TYPE]
+.checkType
+	and TYPE_MASK
+	cp FIRE
+    jr z, .getPokemon
+	ret
+.getPokemon
+	ldh a, [hBattleTurn]
+	and a
+	ld a, [wEnemyMonSpecies]
+	jr z, .check
+	ld a, [wBattleMonSpecies]
+.check
+	ld hl, AI_FireAbsorbPokemon
+	ld de, 1
+	call IsInArray
+    jr c, .found
+    ret
+.found
+	ld hl, FireAbsorbText
+	call StdBattleTextbox
+    ret z
