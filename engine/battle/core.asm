@@ -9471,24 +9471,36 @@ Core_MagicGuardPokemon:
     db -1
 
 Core_SpikesImmunePokemon: ; magic guard + levitate
-    db CLEFAIRY ; due to magic guard
-    db CLEFABLE ; due to magic guard
-    db ABRA		; due to magic guard
-    db KADABRA	; due to magic guard
-    db ALAKAZAM	; due to magic guard
-    db GASTLY	; due to levitate
-    db HAUNTER	; due to levitate
-    db GENGAR 	; due to levitate
-    db MISDREAVUS ; due to levitate
-    db KOFFING	; due to levitate
-    db WEEZING	; due to levitate
-    db -1
-
-Core_LevitatePokemon:
-    db GASTLY
+; magic guard
+	db CLEFAIRY
+    db CLEFABLE
+    db ABRA	
+    db KADABRA
+    db ALAKAZAM
+; levitate	
+	db GASTLY
     db HAUNTER
     db GENGAR
     db MISDREAVUS
     db KOFFING
     db WEEZING
+    db -1
+
+; Needs to be the same as `FloatMons` in home/float_mons.asm
+Core_LevitatePokemon:
+	db BEEDRILL
+	db BUTTERFREE
+	db VENOMOTH
+	db MAGNEMITE
+	db MAGNETON
+	db GASTLY
+	db HAUNTER
+	db GENGAR
+	db KOFFING
+	db WEEZING
+	db MEW
+	db MISDREAVUS
+	db UNOWN
+	db CELEBI
+	db CHARIZARD
     db -1

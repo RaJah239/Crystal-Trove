@@ -1,3 +1,5 @@
+; needs to be the same as `Core_LevitatePokemon` in engine/battle/core.asm
+
 FloatMons::
 	db BEEDRILL
 	db BUTTERFREE
