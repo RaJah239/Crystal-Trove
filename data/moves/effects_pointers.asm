@@ -165,4 +165,5 @@ MoveEffectsPointers:
 	dw Defog
 	dw Taunt
 	dw BulkUp
+	dw CalmMind
 	assert_table_length NUM_MOVE_EFFECTS

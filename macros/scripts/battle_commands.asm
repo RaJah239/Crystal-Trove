@@ -184,7 +184,8 @@ ENDM
 	command defog                   ; b7
 	command flameorb                ; b8
 	command taunt                   ; b6
-	command bulkup                  ; 57
+	command bulkup                  ; b7
+	command calmmind                ; b8
 DEF NUM_EFFECT_COMMANDS EQU const_value - 1
 
 	const_def -1, -1
