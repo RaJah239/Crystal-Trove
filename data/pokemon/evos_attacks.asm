@@ -453,7 +453,7 @@ ClefairyEvosAttacks:
 	db 1, GROWL
 	db 4, ENCORE
 	db 8, SING
-	db 13, DOUBLESLAP
+	db 13, BUG_BITE
 	db 19, MINIMIZE
 	db 26, DEFENSE_CURL
 	db 34, METRONOME
@@ -464,7 +464,7 @@ ClefairyEvosAttacks:
 ClefableEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, SING
-	db 1, DOUBLESLAP
+	db 1, BUG_BITE
 	db 1, METRONOME
 	db 1, HEALING_LIGHT
 	db 0 ; no more level-up moves
@@ -499,7 +499,7 @@ JigglypuffEvosAttacks:
 	db 9, POUND
 	db 14, DISABLE
 	db 19, ROLLOUT
-	db 24, DOUBLESLAP
+	db 24, BUG_BITE
 	db 29, REST
 	db 34, BODY_SLAM
 	db 39, DOUBLE_EDGE
@@ -510,7 +510,7 @@ WigglytuffEvosAttacks:
 	db 1, SING
 	db 1, DISABLE
 	db 1, DEFENSE_CURL
-	db 1, DOUBLESLAP
+	db 1, BUG_BITE
 	db 0 ; no more level-up moves
 
 ZubatEvosAttacks:
@@ -765,7 +765,7 @@ PoliwagEvosAttacks:
 	db 0 ; no more evolutions
 	db 7, HYPNOSIS
 	db 13, WATER_GUN
-	db 19, DOUBLESLAP
+	db 19, BUG_BITE
 	db 25, RAIN_DANCE
 	db 31, BODY_SLAM
 	db 37, BELLY_DRUM
@@ -780,7 +780,7 @@ PoliwhirlEvosAttacks:
 	db 1, WATER_GUN
 	db 7, HYPNOSIS
 	db 13, WATER_GUN
-	db 19, DOUBLESLAP
+	db 19, BUG_BITE
 	db 27, RAIN_DANCE
 	db 35, BODY_SLAM
 	db 43, BELLY_DRUM
@@ -791,7 +791,7 @@ PoliwrathEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, WATER_GUN
 	db 1, HYPNOSIS
-	db 1, DOUBLESLAP
+	db 1, BUG_BITE
 	db 1, CLOSE_COMBAT
 	db 35, CLOSE_COMBAT
 	db 0 ; no more level-up moves
@@ -1450,7 +1450,7 @@ ChanseyEvosAttacks:
 	db 5, GROWL
 	db 9, TAIL_WHIP
 	db 13, SOFTBOILED
-	db 17, DOUBLESLAP
+	db 17, BUG_BITE
 	db 23, MINIMIZE
 	db 29, SING
 	db 35, EGG_BOMB
@@ -1587,7 +1587,7 @@ JynxEvosAttacks:
 	db 1, POWDER_SNOW
 	db 9, LOVELY_KISS
 	db 13, POWDER_SNOW
-	db 21, DOUBLESLAP
+	db 21, BUG_BITE
 	db 25, ICE_PUNCH
 	db 35, MEAN_LOOK
 	db 41, BODY_SLAM
@@ -2386,7 +2386,7 @@ PolitoedEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, WATER_GUN
 	db 1, HYPNOSIS
-	db 1, DOUBLESLAP
+	db 1, BUG_BITE
 	db 1, PERISH_SONG
 	db 35, PERISH_SONG
 	db 51, SWAGGER
@@ -3068,7 +3068,7 @@ BlisseyEvosAttacks:
 	db 4, GROWL
 	db 7, TAIL_WHIP
 	db 10, SOFTBOILED
-	db 13, DOUBLESLAP
+	db 13, BUG_BITE
 	db 18, MINIMIZE
 	db 23, SING
 	db 28, EGG_BOMB

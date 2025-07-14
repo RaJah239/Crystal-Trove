@@ -508,7 +508,6 @@ AipomEggMoves:
 	db PURSUIT
 	db AGILITY
 	db SPITE
-	db DOUBLESLAP
 	db BEAT_UP
 	db -1 ; end
 
