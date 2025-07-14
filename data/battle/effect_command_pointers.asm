@@ -183,4 +183,5 @@ BattleCommandPointers:
 	dw BattleCommand_TrickRoom
 	dw BattleCommand_Defog
 	dw BattleCommand_FlameOrb
+	dw BattleCommand_Taunt
 	assert_table_length NUM_EFFECT_COMMANDS

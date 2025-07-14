@@ -183,6 +183,7 @@ ENDM
 	command trickroom               ; b6
 	command defog                   ; b7
 	command flameorb                ; b8
+	command taunt                   ; b6
 DEF NUM_EFFECT_COMMANDS EQU const_value - 1
 
 	const_def -1, -1

@@ -36,7 +36,7 @@ MoveDescriptions::
 	dw TackleDescription
 	dw BodySlamDescription
 	dw WrapDescription
-	dw TakeDownDescription
+	dw TauntDescription
 	dw ThrashDescription
 	dw DoubleEdgeDescription
 	dw TailWhipDescription
@@ -409,9 +409,12 @@ WrapDescription:
 
 SkyAttackDescription:
 OutrageDescription:
-TakeDownDescription:
 	db "An attack with"
 	line "counterimpact.@"
+
+TauntDescription:
+	db   "Provokes enemy"
+	line "into attacking.@"
 
 ThrashDescription:
 	db   "Works 2-3 turns"

@@ -3452,6 +3452,7 @@ endr
 	ld [wPlayerWrapCount], a
 	ld [wEnemyWrapCount], a
 	ld [wEnemyTurnsTaken], a
+	ld [wEnemyTauntCount], a
 	ld hl, wPlayerSubStatus5
 	res SUBSTATUS_CANT_RUN, [hl]
 	ret
@@ -3851,6 +3852,7 @@ endr
 	ld [wEnemyWrapCount], a
 	ld [wPlayerWrapCount], a
 	ld [wPlayerTurnsTaken], a
+	ld [wPlayerTauntCount], a
 	ld hl, wEnemySubStatus5
 	res SUBSTATUS_CANT_RUN, [hl]
 	ret
@@ -5465,6 +5467,20 @@ MoveSelectionScreen:
 	add hl, bc
 	ld a, [hl]
 
+	; DevNote - Taunt - Here we actually block the use of moves with 0 power when taunted
+	; maybe we can just use the taunt count and not actually care about the taunt substatus
+	ld b, a                         ; a and b are the index of the current move
+	ld a, [wPlayerTauntCount]       ; a is now the player taunt count
+	and a                           ; is the player taunt count 0
+    ld a, b                         ; a is again the index of the current move
+	jr z, .skip2                    ; if player taunt count is 0 we continue
+	push bc                         ; save b
+    call GetMovePower               ; get the move power in a
+    pop bc                          ; retrieve b
+    and a                           ; is the move power 0
+    ld a, b                         ; a in now index of the current move
+    jr z, .move_disabled            ; if power is 0 the move is disabled
+
 .skip2
 	ld [wCurPlayerMove], a
 	xor a
@@ -5818,6 +5834,9 @@ CheckPlayerHasUsableMoves:
 	and a
 	ld hl, wBattleMonPP
 	jr nz, .disabled
+
+	; DevNote - Taunt - here we would force struggle if there are no usable moves
+	; if the move has 0 power and we are taunted maybe we can jump to disabled
 
 	ld a, [hli]
 	or [hl]
@@ -8393,7 +8412,7 @@ CleanUpBattleRAM:
 	ld [wBallsPocketScrollPosition], a
 	ld [wTrickRoomCount], a
 	ld hl, wPlayerSubStatus1
-	ld b, wEnemyFuryCutterCount - wPlayerSubStatus1
+	ld b, wEnemyTauntCount - wPlayerSubStatus1
 .loop
 	ld [hli], a
 	dec b

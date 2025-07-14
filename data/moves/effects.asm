@@ -2109,3 +2109,11 @@ Defog:
 	doturn
 	defog
 	endmove
+
+Taunt:
+	checkobedience
+	usedmovetext
+	doturn
+	checkhit
+	taunt
+	endmove

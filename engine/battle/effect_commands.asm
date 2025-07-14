@@ -220,6 +220,21 @@ BattleCommand_CheckTurn:
 
 .not_disabled
 
+    ; DevNote - Taunt - Here we decrement the player taunt count and print a message when it ends
+	ld hl, wPlayerTauntCount
+	ld a, [hl]
+	and a
+	jr z, .not_taunted
+
+	dec a
+	ld [hl], a
+	and $f
+	jr nz, .not_taunted
+
+	ld hl, TauntedNoMoreText
+	call StdBattleTextbox
+
+.not_taunted
 	ld a, [wPlayerSubStatus3]
 	add a
 	jr nc, .not_confused
@@ -297,6 +312,18 @@ BattleCommand_CheckTurn:
 
 .no_disabled_move
 
+; DevNote - Taunt - Block player move on the turn taunt is used
+    ld a, [wPlayerTauntCount]
+    and a
+    jr z, .no_taunt
+    ld a, [wPlayerMoveStruct + MOVE_POWER]
+    and a
+    jr nz, .no_taunt
+    call MoveDisabled
+	call CantMove
+	jp EndTurn
+
+.no_taunt
 	ld hl, wBattleMonStatus
 	bit PAR, [hl]
 	ret z
@@ -427,6 +454,21 @@ CheckEnemyTurn:
 
 .not_disabled
 
+    ; DevNote - Taunt - Here we decrement the enemy taunt count and print a message when ended
+	ld hl, wEnemyTauntCount
+	ld a, [hl]
+	and a
+	jr z, .not_taunted
+
+	dec a
+	ld [hl], a
+	and $f
+	jr nz, .not_taunted
+
+	ld hl, TauntedNoMoreText
+	call StdBattleTextbox
+
+.not_taunted
 	ld a, [wEnemySubStatus3]
 	add a ; bit SUBSTATUS_CONFUSED
 	jr nc, .not_confused
@@ -526,6 +568,18 @@ CheckEnemyTurn:
 
 .no_disabled_move
 
+; DevNote - Taunt - Block enemy move on the turn taunt is used
+    ld a, [wEnemyTauntCount]
+    and a
+    jr z, .no_taunt
+    ld a, [wEnemyMoveStruct + MOVE_POWER]
+    and a
+    jr nz, .no_taunt
+    call MoveDisabled
+	call CantMove
+	jp EndTurn
+
+.no_taunt
 	ld hl, wEnemyMonStatus
 	bit PAR, [hl]
 	ret z
@@ -6533,6 +6587,8 @@ INCLUDE "engine/battle/move_effects/splash.asm"
 
 INCLUDE "engine/battle/move_effects/disable.asm"
 
+INCLUDE "engine/battle/move_effects/taunt.asm"
+
 BattleCommand_ResetStats:
 	ld a, BASE_STAT_LEVEL
 	ld hl, wPlayerStatLevels
@@ -6662,6 +6718,7 @@ ClearLastMove:
 	ld [hl], a
 	ret
 
+; DevNote - Taunt - do we want something like this for taunt?
 ResetActorDisable:
 	ldh a, [hBattleTurn]
 	and a

@@ -35,7 +35,7 @@ MoveNames::
 	li "Tackle"
 	li "Body Slam"
 	li "Wrap"
-	li "Take Down"
+	li "Taunt"
 	li "Thrash"
 	li "Double-Edge"
 	li "Tail Whip"

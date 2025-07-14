@@ -77,21 +77,17 @@ SandshrewEggMoves:
 NidoranFEggMoves:
 	db SUPERSONIC
 	db DISABLE
-	db TAKE_DOWN
 	db FOCUS_ENERGY
 	db CHARM
 	db COUNTER
-	db BEAT_UP
 	db -1 ; end
 
 NidoranMEggMoves:
 	db SUPERSONIC
 	db DISABLE
-	db TAKE_DOWN
 	db CONFUSION
 	db AMNESIA
 	db COUNTER
-	db BEAT_UP
 	db -1 ; end
 
 VulpixEggMoves:
@@ -244,7 +240,6 @@ GrimerEggMoves:
 
 ShellderEggMoves:
 	db BUBBLEBEAM
-	db TAKE_DOWN
 	db BARRIER
 	db RAPID_SPIN
 	db SCREECH
@@ -492,7 +487,6 @@ NatuEggMoves:
 
 MareepEggMoves:
 	db THUNDERBOLT
-	db TAKE_DOWN
 	db BODY_SLAM
 	db SAFEGUARD
 	db SCREECH
@@ -605,7 +599,6 @@ SneaselEggMoves:
 
 TeddiursaEggMoves:
 	db CRUNCH
-	db TAKE_DOWN
 	db SEISMIC_TOSS
 	db FOCUS_ENERGY
 	db COUNTER
@@ -617,7 +610,6 @@ SlugmaEggMoves:
 	db -1 ; end
 
 SwinubEggMoves:
-	db TAKE_DOWN
 	db BITE
 	db BODY_SLAM
 	db ROCK_SLIDE
