@@ -116,7 +116,7 @@ DEF MAIL_STRUCT_LENGTH_JP EQU $2a ; mailmsg_jp struct
 	const HELD_WISE_GLASSES
 	const HELD_EXPERT_BELT
 	const HELD_HEAVY_BOOTS
-	const_skip
+	const HELD_ASSAULT_VEST
 	const HELD_38
 
 	const_next 40

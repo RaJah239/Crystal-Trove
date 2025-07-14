@@ -312,6 +312,19 @@ BattleCommand_CheckTurn:
 
 .no_disabled_move
 
+; DevNote - Assault Vest - Taunt player when using Assault Vest
+    push hl
+    push bc
+	call GetUserItem
+	ld a, b
+	cp HELD_ASSAULT_VEST
+	pop bc
+	pop hl
+	jr nz, .checkTaunt
+	ld a, 255
+	ld [wPlayerTauntCount], a
+
+.checkTaunt
 ; DevNote - Taunt - Block player move on the turn taunt is used
     ld a, [wPlayerTauntCount]
     and a
@@ -2938,6 +2951,7 @@ PlayerAttackDamage:
 	ld b, a
 	ld c, [hl]
 
+	call AssaultVestSpDefBoost
 	call SandstormSpDefBoost
 
 	ld a, [wEnemyScreens]
@@ -3219,6 +3233,7 @@ EnemyAttackDamage:
 	ld b, a
 	ld c, [hl]
 
+	call AssaultVestSpDefBoost
 	call SandstormSpDefBoost
 
 	ld a, [wPlayerScreens]
@@ -7414,6 +7429,23 @@ BattleCommand_CheckPowder:
 .Immune:
 	ld a, 1
 	ld [wAttackMissed], a
+	ret
+
+AssaultVestSpDefBoost:
+    push bc
+	call GetOpponentItem
+	ld a, b
+	cp HELD_ASSAULT_VEST
+	pop bc
+	ret nz
+
+	ld h, b
+	ld l, c
+	srl b
+	rr c
+	add hl, bc
+	ld b, h
+	ld c, l
 	ret
 
 SandstormSpDefBoost: 

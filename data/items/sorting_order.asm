@@ -147,7 +147,7 @@ ItemNameOrder:
 
 
 ; NEXT POCKET
-; Battle Pocket - 51 total
+; Battle Pocket - 52 total
 
 ; Stat altering Battle Items
 	db GUARD_SPEC
@@ -160,6 +160,7 @@ ItemNameOrder:
 
 ; Battle related Held Items
 	db AMULET_COIN
+	db ASSAULT_VEST
 	db BERRY_JUICE
 	db BERSERK_GENE
 	db BLACKBELT_I
@@ -272,13 +273,12 @@ ItemNameOrder:
 
 
 ; UNUSED ITEMS
-; Unused Items - 9 total
+; Unused Items - 8 total
 	db EGG_TICKET
 	db POKE_FLUTE
 	db ITEM_2D
 	db ITEM_A2
 	db ITEM_AB
-	db ITEM_B3
 	db ITEM_BE
 	db ITEM_C3
  	db ITEM_DC

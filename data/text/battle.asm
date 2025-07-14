@@ -426,7 +426,7 @@ BattleText_TheresNoPPLeftForThisMove:
 
 BattleText_TheMoveIsDisabled:
 	text "The move is"
-	line "DISABLED!"
+	line "Disabled!"
 	prompt
 
 BattleText_MonHasNoMovesLeft:
@@ -605,7 +605,7 @@ DisabledMoveText:
 	line "@"
 	text_ram wStringBuffer1
 	text " is"
-	cont "DISABLED!"
+	cont "Disabled!"
 	prompt
 
 LoafingAroundText:

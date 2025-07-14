@@ -192,10 +192,10 @@ ItemEffects:
 	dw HyperEVUpEffect     ; HYPER_EV_UP
 	dw PokeBallEffect      ; PARK_BALL
 	dw NoEffect            ; RAINBOW_WING
-	dw NoEffect            ; ITEM_B3
-	assert_table_length ITEM_B3
-; The items past ITEM_B3 do not have effect entries:
-;	BRICK_PIECE
+	dw NoEffect            ; ASSAULT_VEST
+	dw NoEffect            ; BRICK_PIECE
+	assert_table_length BRICK_PIECE
+; The items past BRICK_PIECE do not have effect entries:
 ;	SURF_MAIL
 ;	LITEBLUEMAIL
 ;	PORTRAITMAIL
