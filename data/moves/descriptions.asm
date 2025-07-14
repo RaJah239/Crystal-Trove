@@ -28,7 +28,7 @@ MoveDescriptions::
 	dw MegaKickDescription
 	dw StickyWebDescription
 	dw RollingKickDescription
-	dw SandAttackDescription
+	dw DrainKissDescription
 	dw HeadbuttDescription
 	dw HornAttackDescription
 	dw FuryAttackDescription
@@ -354,10 +354,6 @@ RollingKickDescription:
 	db   "A fast, spinning"
 	line "kick.@"
 
-SandAttackDescription:
-	db   "Reduces accuracy"
-	line "by throwing sand.@"
-
 DarkPulseDescription:
 HeadbuttDescription:
 	db   "An attack that may"
@@ -533,14 +529,6 @@ SeismicTossDescription:
 StrengthDescription:
 	db   "A powerful physi-"
 	line "cal attack.@"
-
-AbsorbDescription:
-	db   "Steals 1/2 of the"
-	line "damage inflicted.@"
-
-MegaDrainDescription:
-	db   "Steals 1/2 of the"
-	line "damage inflicted.@"
 
 LeechSeedDescription:
 	db   "Steals HP from the"
@@ -806,10 +794,6 @@ BarrageDescription:
 	db   "Throws orbs to hit"
 	line "2-5 times.@"
 
-LeechLifeDescription:
-	db   "Steals 1/2 of the"
-	line "damage inflicted.@"
-
 LovelyKissDescription:
 	db   "May cause the foe"
 	line "to fall asleep.@"
@@ -1040,6 +1024,10 @@ SandstormDescription:
 	db   "Inflicts damage"
 	line "every turn.@"
 
+LeechLifeDescription:
+DrainKissDescription:
+AbsorbDescription:
+MegaDrainDescription:
 GigaDrainDescription:
 	db   "Steals 1/2 of the"
 	line "damage inflicted.@"

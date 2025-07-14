@@ -209,7 +209,6 @@ PidgeyEvosAttacks:
 	db EVOLVE_LEVEL, 18, PIDGEOTTO
 	db 0 ; no more evolutions
 	db 1, AQUA_JET
-	db 5, SAND_ATTACK
 	db 9, GUST
 	db 15, QUICK_ATTACK
 	db 21, WHIRLWIND
@@ -221,9 +220,7 @@ PidgeottoEvosAttacks:
 	db EVOLVE_LEVEL, 36, PIDGEOT
 	db 0 ; no more evolutions
 	db 1, AQUA_JET
-	db 1, SAND_ATTACK
 	db 1, GUST
-	db 5, SAND_ATTACK
 	db 9, GUST
 	db 15, QUICK_ATTACK
 	db 23, WHIRLWIND
@@ -234,10 +231,8 @@ PidgeottoEvosAttacks:
 PidgeotEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, AQUA_JET
-	db 1, SAND_ATTACK
 	db 1, GUST
 	db 1, QUICK_ATTACK
-	db 5, SAND_ATTACK
 	db 9, GUST
 	db 15, QUICK_ATTACK
 	db 23, WHIRLWIND
@@ -349,7 +344,6 @@ SandshrewEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, AQUA_JET
 	db 6, DEFENSE_CURL
-	db 11, SAND_ATTACK
 	db 17, POISON_STING
 	db 23, SLASH
 	db 30, SWIFT
@@ -361,9 +355,7 @@ SandslashEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, AQUA_JET
 	db 1, DEFENSE_CURL
-	db 1, SAND_ATTACK
 	db 6, DEFENSE_CURL
-	db 11, SAND_ATTACK
 	db 17, POISON_STING
 	db 24, SLASH
 	db 33, SWIFT
@@ -633,7 +625,6 @@ DiglettEvosAttacks:
 	db 1, AQUA_JET
 	db 5, GROWL
 	db 17, DIG
-	db 25, SAND_ATTACK
 	db 33, SLASH
 	db 41, EARTHQUAKE
 	db 49, FISSURE
@@ -645,7 +636,6 @@ DugtrioEvosAttacks:
 	db 1, AQUA_JET
 	db 1, GROWL
 	db 17, DIG
-	db 25, SAND_ATTACK
 	db 37, SLASH
 	db 49, EARTHQUAKE
 	db 61, FISSURE
@@ -1057,7 +1047,6 @@ MagnetonEvosAttacks:
 FarfetchDEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, PECK
-	db 7, SAND_ATTACK
 	db 13, LEER
 	db 19, FURY_ATTACK
 	db 25, SWORDS_DANCE
@@ -1679,7 +1668,6 @@ EeveeEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, AQUA_JET
 	db 1, TAIL_WHIP
-	db 8, SAND_ATTACK
 	db 16, GROWL
 	db 23, QUICK_ATTACK
 	db 30, BITE
@@ -1690,7 +1678,6 @@ VaporeonEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, AQUA_JET
 	db 1, TAIL_WHIP
-	db 8, SAND_ATTACK
 	db 16, WATER_GUN
 	db 23, QUICK_ATTACK
 	db 30, BITE
@@ -1704,7 +1691,6 @@ JolteonEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, AQUA_JET
 	db 1, TAIL_WHIP
-	db 8, SAND_ATTACK
 	db 16, THUNDERSHOCK
 	db 23, QUICK_ATTACK
 	db 30, DOUBLE_KICK
@@ -1718,7 +1704,6 @@ FlareonEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, AQUA_JET
 	db 1, TAIL_WHIP
-	db 8, SAND_ATTACK
 	db 16, EMBER
 	db 23, QUICK_ATTACK
 	db 30, BITE
@@ -1775,7 +1760,6 @@ KabutoEvosAttacks:
 	db 1, HARDEN
 	db 10, ABSORB
 	db 19, LEER
-	db 28, SAND_ATTACK
 	db 37, ENDURE
 	db 46, MEGA_DRAIN
 	db 55, ANCIENTPOWER
@@ -1788,7 +1772,6 @@ KabutopsEvosAttacks:
 	db 1, ABSORB
 	db 10, ABSORB
 	db 19, LEER
-	db 28, SAND_ATTACK
 	db 37, ENDURE
 	db 40, SLASH
 	db 51, MEGA_DRAIN
@@ -2428,7 +2411,6 @@ AipomEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, AQUA_JET
 	db 1, TAIL_WHIP
-	db 6, SAND_ATTACK
 	db 12, BATON_PASS
 	db 19, FURY_SWIPES
 	db 27, SWIFT
@@ -2497,7 +2479,6 @@ EspeonEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, AQUA_JET
 	db 1, TAIL_WHIP
-	db 8, SAND_ATTACK
 	db 16, CONFUSION
 	db 23, QUICK_ATTACK
 	db 30, SWIFT
@@ -2510,7 +2491,6 @@ UmbreonEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, AQUA_JET
 	db 1, TAIL_WHIP
-	db 8, SAND_ATTACK
 	db 16, PURSUIT
 	db 23, QUICK_ATTACK
 	db 30, CONFUSE_RAY
@@ -2619,7 +2599,6 @@ DunsparceEvosAttacks:
 GligarEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, POISON_STING
-	db 6, SAND_ATTACK
 	db 13, HARDEN
 	db 20, QUICK_ATTACK
 	db 28, FAINT_ATTACK
@@ -2862,7 +2841,6 @@ SkarmoryEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, LEER
 	db 1, PECK
-	db 13, SAND_ATTACK
 	db 19, SWIFT
 	db 25, AGILITY
 	db 37, FURY_ATTACK
@@ -2950,7 +2928,6 @@ StantlerEvosAttacks:
 	db 8, LEER
 	db 15, HYPNOSIS
 	db 23, STOMP
-	db 31, SAND_ATTACK
 	db 49, CONFUSE_RAY
 	db 0 ; no more level-up moves
 
