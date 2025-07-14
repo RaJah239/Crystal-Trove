@@ -83,7 +83,7 @@ if DEF(_DEBUG)
 	loadmem wPartyMon3DVs+1, $ff
 
 	; useful moves
-	loadmem wPartyMon1Moves+0, BUG_BUZZ
+	loadmem wPartyMon1Moves+0, FLASH_CANNON
 	loadmem wPartyMon1Moves+1, THUNDERBOLT
 	loadmem wPartyMon1Moves+2, POWER_GEM
 	; overworld moves

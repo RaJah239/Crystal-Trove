@@ -12,7 +12,7 @@ MoveDescriptions::
 	dw ThunderpunchDescription
 	dw AquaJetDescription
 	dw BulkUpDescription
-	dw GuillotineDescription
+	dw FlashCannonDescription
 	dw RazorWindDescription
 	dw SwordsDanceDescription
 	dw CutDescription
@@ -293,10 +293,6 @@ ThunderpunchDescription:
 BulkUpDescription:
 	db   "Increases Attack"
 	line "and Defense.@"
-
-GuillotineDescription:
-	db   "A one-hit KO,"
-	line "pincer attack.@"
 
 RazorWindDescription:
 	db   "1st turn: Prepare"
@@ -630,6 +626,7 @@ ConfusionDescription:
 	db   "An attack that may"
 	line "cause confusion.@"
 
+FlashCannonDescription:
 BugBuzzDescription:
 PsychicMDescription:
 	db   "An attack that may"

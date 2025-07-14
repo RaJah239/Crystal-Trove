@@ -1253,7 +1253,6 @@ KrabbyEvosAttacks:
 	db 5, LEER
 	db 16, HARDEN
 	db 23, STOMP
-	db 27, GUILLOTINE
 	db 34, PROTECT
 	db 0 ; no more level-up moves
 
@@ -1262,7 +1261,6 @@ KinglerEvosAttacks:
 	db 1, LEER
 	db 16, HARDEN
 	db 23, STOMP
-	db 27, GUILLOTINE
 	db 38, PROTECT
 	db 0 ; no more level-up moves
 
@@ -1616,7 +1614,6 @@ PinsirEvosAttacks:
 	db 13, BIND
 	db 19, SEISMIC_TOSS
 	db 25, HARDEN
-	db 31, GUILLOTINE
 	db 37, CLOSE_COMBAT
 	db 43, SWORDS_DANCE
 	db 0 ; no more level-up moves
@@ -2628,7 +2625,6 @@ GligarEvosAttacks:
 	db 28, FAINT_ATTACK
 	db 36, SLASH
 	db 44, SCREECH
-	db 52, GUILLOTINE
 	db 0 ; no more level-up moves
 
 SteelixEvosAttacks:
