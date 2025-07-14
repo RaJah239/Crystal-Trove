@@ -811,7 +811,6 @@ PoliwrathEvosAttacks:
 	db 1, DOUBLESLAP
 	db 1, SUBMISSION
 	db 35, SUBMISSION
-	db 51, MIND_READER
 	db 0 ; no more level-up moves
 
 AbraEvosAttacks:
@@ -1873,8 +1872,7 @@ ArticunoEvosAttacks:
 	db 1, POWDER_SNOW
 	db 13, MIST
 	db 25, AGILITY
-	db 37, MIND_READER
-	db 49, ICE_BEAM
+	db 37, ICE_BEAM
 	db 61, REFLECT
 	db 73, BLIZZARD
 	db 0 ; no more level-up moves

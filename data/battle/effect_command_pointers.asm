@@ -186,4 +186,5 @@ BattleCommandPointers:
 	dw BattleCommand_Taunt
 	dw BattleCommand_BulkUp
 	dw BattleCommand_CalmMind
+	dw BattleCommand_DragonDance
 	assert_table_length NUM_EFFECT_COMMANDS

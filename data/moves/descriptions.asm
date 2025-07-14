@@ -170,7 +170,7 @@ MoveDescriptions::
 	dw TripleKickDescription
 	dw ThiefDescription
 	dw SpiderWebDescription
-	dw MindReaderDescription
+	dw DragonDanceDescription
 	dw NightmareDescription
 	dw FlameWheelDescription
 	dw SnoreDescription
@@ -940,9 +940,9 @@ SpiderWebDescription:
 	db   "Prevents fleeing"
 	line "or switching.@"
 
-MindReaderDescription:
-	db   "Ensures the next"
-	line "attack will hit.@"
+DragonDanceDescription:
+	db   "Increases Attack"
+	line "and Speed.@"
 
 NightmareDescription:
 	db   "A sleeper loses"

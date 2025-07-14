@@ -2131,3 +2131,10 @@ CalmMind:
 	doturn
 	calmmind
 	endmove
+
+DragonDance:
+	checkobedience
+	usedmovetext
+	doturn
+	dragondance
+	endmove

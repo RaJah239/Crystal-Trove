@@ -186,6 +186,7 @@ ENDM
 	command taunt                   ; b6
 	command bulkup                  ; b7
 	command calmmind                ; b8
+	command dragondance             ; b9
 DEF NUM_EFFECT_COMMANDS EQU const_value - 1
 
 	const_def -1, -1
