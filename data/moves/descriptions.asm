@@ -134,7 +134,7 @@ MoveDescriptions::
 	dw SpikeCannonDescription
 	dw ConstrictDescription
 	dw AmnesiaDescription
-	dw KinesisDescription
+	dw BugBuzzDescription
 	dw SoftboiledDescription
 	dw HiJumpKickDescription
 	dw GlareDescription
@@ -636,9 +636,10 @@ ConfusionDescription:
 	db   "An attack that may"
 	line "cause confusion.@"
 
+BugBuzzDescription:
 PsychicMDescription:
 	db   "An attack that may"
-	line "lower SPCL.DEF.@"
+	line "lower Spcl.Def.@"
 
 HypnosisDescription:
 	db   "May put the foe to"
@@ -792,10 +793,6 @@ ConstrictDescription:
 AmnesiaDescription:
 	db   "Sharply raises the"
 	line "user's SPCL.DEF.@"
-
-KinesisDescription:
-	db   "Reduces the foe's"
-	line "accuracy.@"
 
 SoftboiledDescription:
 	db   "Restores HP by 1/2"
