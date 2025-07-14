@@ -128,7 +128,7 @@ MoveDescriptions::
 	dw BoneClubDescription
 	dw FireBlastDescription
 	dw WaterfallDescription
-	dw ClampDescription
+	dw BulletPunchDescription
 	dw SwiftDescription
 	dw SkullBashDescription
 	dw SpikeCannonDescription
@@ -653,6 +653,7 @@ AgilityDescription:
 	db   "Sharply increases"
 	line "the user's SPEED.@"
 
+BulletPunchDescription:
 AquaJetDescription:
 QuickAttackDescription:
 	db   "Lets the user get"
@@ -765,10 +766,6 @@ FireBlastDescription:
 WaterfallDescription:
 	db   "An aquatic charge"
 	line "attack.@"
-
-ClampDescription:
-	db   "Traps the foe for"
-	line "2-5 turns.@"
 
 SwiftDescription:
 	db   "An attack that"
