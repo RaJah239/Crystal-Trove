@@ -189,7 +189,8 @@ ENDM
 	command dragondance             ; b9
 	command quiverdance             ; ba
 	command burn                    ; bb
-	command closecombat
+	command closecombat             ; bc
+	command hex                     ; bd
 DEF NUM_EFFECT_COMMANDS EQU const_value - 1
 
 	const_def -1, -1

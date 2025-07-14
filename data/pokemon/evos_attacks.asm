@@ -1756,8 +1756,7 @@ PorygonEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, CONVERSION2
 	db 1, TACKLE
-	db 1, CONVERSION
-	db 9, AGILITY
+	db 1, AGILITY
 	db 12, PSYBEAM
 	db 20, RECOVER
 	db 24, SHARPEN
@@ -2962,8 +2961,7 @@ Porygon2EvosAttacks:
 	db 0 ; no more evolutions
 	db 1, CONVERSION2
 	db 1, TACKLE
-	db 1, CONVERSION
-	db 9, AGILITY
+	db 1, AGILITY
 	db 12, PSYBEAM
 	db 20, RECOVER
 	db 24, DEFENSE_CURL
