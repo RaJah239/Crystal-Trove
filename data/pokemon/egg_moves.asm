@@ -573,7 +573,6 @@ QwilfishEggMoves:
 	db -1 ; end
 
 ShuckleEggMoves:
-	db SWEET_SCENT
 	db -1 ; end
 
 HeracrossEggMoves:

@@ -2145,3 +2145,13 @@ QuiverDance:
 	doturn
 	quiverdance
 	endmove
+
+DoBurn:
+	checkobedience
+	usedmovetext
+	doturn
+	stab
+	checkhit
+	checksafeguard
+	burn
+	endmove

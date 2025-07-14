@@ -2702,13 +2702,7 @@ JumpToPartyMenuAndPrintText:
 	ret
 
 SelectBattleMon:
-	call IsMobileBattle
-	jr z, .mobile
 	farcall PartyMenuSelect
-	ret
-
-.mobile
-	farcall Mobile_PartyMenuSelect
 	ret
 
 PickPartyMonInBattle:
