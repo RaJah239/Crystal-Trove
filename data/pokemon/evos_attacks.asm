@@ -1257,7 +1257,6 @@ KrabbyEvosAttacks:
 	db 23, STOMP
 	db 27, GUILLOTINE
 	db 34, PROTECT
-	db 41, CRABHAMMER
 	db 0 ; no more level-up moves
 
 KinglerEvosAttacks:
@@ -1267,7 +1266,6 @@ KinglerEvosAttacks:
 	db 23, STOMP
 	db 27, GUILLOTINE
 	db 38, PROTECT
-	db 49, CRABHAMMER
 	db 0 ; no more level-up moves
 
 VoltorbEvosAttacks:
