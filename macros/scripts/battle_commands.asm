@@ -191,6 +191,7 @@ ENDM
 	command burn                    ; bb
 	command closecombat             ; bc
 	command hex                     ; bd
+	command facade                  ; be
 DEF NUM_EFFECT_COMMANDS EQU const_value - 1
 
 	const_def -1, -1

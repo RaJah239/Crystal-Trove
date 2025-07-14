@@ -3941,6 +3941,8 @@ INCLUDE "data/moves/flail_reversal_power.asm"
 
 INCLUDE "engine/battle/abilities.asm"
 
+INCLUDE "engine/battle/move_effects/facade.asm"
+
 INCLUDE "engine/battle/move_effects/counter.asm"
 
 INCLUDE "engine/battle/move_effects/encore.asm"

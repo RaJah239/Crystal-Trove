@@ -172,4 +172,5 @@ MoveEffectsPointers:
 	dw CloseCombat
 	dw SpeedUpHit
 	dw Hex
+	dw Facade
 	assert_table_length NUM_MOVE_EFFECTS

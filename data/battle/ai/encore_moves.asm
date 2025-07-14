@@ -19,7 +19,6 @@ EncoreMoves:
 	db DREAM_EATER
 	db POISON_GAS
 	db SPLASH
-	db SHARPEN
 	db SUPER_FANG
 	db SUBSTITUTE
 	db TRIPLE_KICK
