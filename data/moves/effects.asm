@@ -2117,3 +2117,11 @@ Taunt:
 	checkhit
 	taunt
 	endmove
+
+BulkUp:
+	checkobedience
+	usedmovetext
+	doturn
+	bulkup
+	endmove
+
