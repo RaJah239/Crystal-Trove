@@ -650,7 +650,6 @@ DiglettEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, SCRATCH
 	db 5, GROWL
-	db 9, MAGNITUDE
 	db 17, DIG
 	db 25, SAND_ATTACK
 	db 33, SLASH
@@ -663,9 +662,6 @@ DugtrioEvosAttacks:
 	db 1, TRI_ATTACK
 	db 1, SCRATCH
 	db 1, GROWL
-	db 1, MAGNITUDE
-	db 5, GROWL
-	db 9, MAGNITUDE
 	db 17, DIG
 	db 25, SAND_ATTACK
 	db 37, SLASH
@@ -965,7 +961,6 @@ GeodudeEvosAttacks:
 	db 1, TACKLE
 	db 6, DEFENSE_CURL
 	db 11, ROCK_THROW
-	db 16, MAGNITUDE
 	db 21, SELFDESTRUCT
 	db 26, HARDEN
 	db 31, ROLLOUT
@@ -981,7 +976,6 @@ GravelerEvosAttacks:
 	db 1, ROCK_THROW
 	db 6, DEFENSE_CURL
 	db 11, ROCK_THROW
-	db 16, MAGNITUDE
 	db 21, SELFDESTRUCT
 	db 27, HARDEN
 	db 34, ROLLOUT
@@ -994,11 +988,6 @@ GolemEvosAttacks:
 	db 1, TACKLE
 	db 1, DEFENSE_CURL
 	db 1, ROCK_THROW
-	db 1, MAGNITUDE
-	db 6, DEFENSE_CURL
-	db 11, ROCK_THROW
-	db 16, MAGNITUDE
-	db 21, SELFDESTRUCT
 	db 27, HARDEN
 	db 34, ROLLOUT
 	db 41, EARTHQUAKE

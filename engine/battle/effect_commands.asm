@@ -1934,8 +1934,6 @@ BattleCommand_CheckHit:
 	ret z
 	cp FISSURE
 	ret z
-	cp MAGNITUDE
-	ret z
 
 .LockedOn:
 	ld a, 1
@@ -1991,8 +1989,6 @@ BattleCommand_CheckHit:
 	cp EARTHQUAKE
 	ret z
 	cp FISSURE
-	ret z
-	cp MAGNITUDE
 	ret
 
 .ThunderRain:
@@ -6950,6 +6946,8 @@ INCLUDE "engine/battle/move_effects/bulk_up.asm"
 INCLUDE "engine/battle/move_effects/calmmind.asm"
 
 INCLUDE "engine/battle/move_effects/dragondance.asm"
+
+INCLUDE "engine/battle/move_effects/quiver_dance.asm"
 
 INCLUDE "engine/battle/move_effects/stealth_rock.asm"
 

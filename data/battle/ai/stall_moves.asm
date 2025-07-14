@@ -31,4 +31,5 @@ StallMoves:
 	db SHARPEN
 	db CONVERSION
 	db SUBSTITUTE
+	db QUIVER_DANCE
 	db -1 ; end
