@@ -452,11 +452,6 @@ LedybaEggMoves:
 	db -1 ; end
 
 SpinarakEggMoves:
-	db PSYBEAM
-	db DISABLE
-	db SONICBOOM
-	db BATON_PASS
-	db PURSUIT
 	db -1 ; end
 
 ChinchouEggMoves:
