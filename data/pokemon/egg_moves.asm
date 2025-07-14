@@ -414,7 +414,7 @@ CyndaquilEggMoves:
 	db REVERSAL
 	db THRASH
 	db FORESIGHT
-	db SUBMISSION
+	db CLOSE_COMBAT
 	db -1 ; end
 
 TotodileEggMoves:

@@ -2155,3 +2155,24 @@ DoBurn:
 	checksafeguard
 	burn
 	endmove
+
+CloseCombat:
+	checkobedience
+	usedmovetext
+	doturn
+	critical
+	effectchance
+	damagestats
+	damagecalc
+	stab
+	damagevariation
+	checkhit
+	moveanim
+	failuretext
+	applydamage
+	criticaltext
+	supereffectivetext
+	closecombat
+	checkfaint
+	kingsrock
+	endmove

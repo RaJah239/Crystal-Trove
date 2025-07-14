@@ -169,4 +169,5 @@ MoveEffectsPointers:
 	dw DragonDance
 	dw QuiverDance
 	dw DoBurn
+	dw CloseCombat
 	assert_table_length NUM_MOVE_EFFECTS
