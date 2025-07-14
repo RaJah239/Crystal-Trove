@@ -191,7 +191,6 @@ TentacoolEggMoves:
 	db -1 ; end
 
 GeodudeEggMoves:
-	db MEGA_PUNCH
 	db ROCK_SLIDE
 	db -1 ; end
 
@@ -659,7 +658,6 @@ ElekidEggMoves:
 
 MagbyEggMoves:
 	db KARATE_CHOP
-	db MEGA_PUNCH
 	db BARRIER
 	db SCREECH
 	db CROSS_CHOP

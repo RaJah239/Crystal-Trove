@@ -1361,7 +1361,6 @@ HitmonchanEvosAttacks:
 	db 26, ICE_PUNCH
 	db 26, FIRE_PUNCH
 	db 32, MACH_PUNCH
-	db 38, MEGA_PUNCH
 	db 44, DETECT
 	db 50, COUNTER
 	db 0 ; no more level-up moves
@@ -1466,7 +1465,6 @@ KangaskhanEvosAttacks:
 	db 7, LEER
 	db 13, BITE
 	db 19, TAIL_WHIP
-	db 25, MEGA_PUNCH
 	db 31, RAGE
 	db 37, ENDURE
 	db 43, DIZZY_PUNCH
@@ -1923,7 +1921,6 @@ MewEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, POUND
 	db 10, TRANSFORM
-	db 20, MEGA_PUNCH
 	db 30, METRONOME
 	db 40, PSYCHIC_M
 	db 50, ANCIENTPOWER
