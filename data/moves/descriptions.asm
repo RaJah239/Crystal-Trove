@@ -1,7 +1,7 @@
 MoveDescriptions::
 ; entries correspond to move ids (see constants/move_constants.asm)
 	table_width 2, MoveDescriptions
-	dw PoundDescription
+	dw ZenHeadbuttDescription
 	dw KarateChopDescription
 	dw BugBiteDescription
 	dw CometPunchDescription
@@ -265,10 +265,6 @@ MoveFFDescription:
 Move00Description:
 	db "?@"
 
-PoundDescription:
-	db   "Pounds with fore-"
-	line "legs or tail.@"
-
 XScissorDescription:
 KarateChopDescription:
 	db   "Has a high criti-"
@@ -354,6 +350,7 @@ RollingKickDescription:
 	db   "A fast, spinning"
 	line "kick.@"
 
+ZenHeadbuttDescription:
 IronHeadDescription:
 DarkPulseDescription:
 HeadbuttDescription:
