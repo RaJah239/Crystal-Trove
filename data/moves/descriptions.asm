@@ -10,7 +10,7 @@ MoveDescriptions::
 	dw FirePunchDescription
 	dw IcePunchDescription
 	dw ThunderpunchDescription
-	dw ScratchDescription
+	dw AquaJetDescription
 	dw BulkUpDescription
 	dw GuillotineDescription
 	dw RazorWindDescription
@@ -301,10 +301,6 @@ IcePunchDescription:
 ThunderpunchDescription:
 	db   "An electric punch."
 	line "It may paralyze.@"
-
-ScratchDescription:
-	db   "Scratches with"
-	line "sharp claws.@"
 
 BulkUpDescription:
 	db   "Increases Attack"
@@ -660,6 +656,7 @@ AgilityDescription:
 	db   "Sharply increases"
 	line "the user's SPEED.@"
 
+AquaJetDescription:
 QuickAttackDescription:
 	db   "Lets the user get"
 	line "in the first hit.@"
