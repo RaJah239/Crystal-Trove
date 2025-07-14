@@ -80,7 +80,7 @@ AbsorbedToxicSpikesText:
 
 CantFlinchText:
     text "<TARGET>"
-    line "can not flinch!"
+    line "cannot flinch!"
     prompt
 
 BattleText_QuickClaw:

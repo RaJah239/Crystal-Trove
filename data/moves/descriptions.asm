@@ -99,7 +99,7 @@ MoveDescriptions::
 	dw TrickRoomDescription
 	dw AgilityDescription
 	dw QuickAttackDescription
-	dw RageDescription
+	dw IronHeadDescription
 	dw TeleportDescription
 	dw NightShadeDescription
 	dw MimicDescription
@@ -354,6 +354,7 @@ RollingKickDescription:
 	db   "A fast, spinning"
 	line "kick.@"
 
+IronHeadDescription:
 DarkPulseDescription:
 HeadbuttDescription:
 	db   "An attack that may"
@@ -637,10 +638,6 @@ AquaJetDescription:
 QuickAttackDescription:
 	db   "Lets the user get"
 	line "in the first hit.@"
-
-RageDescription:
-	db   "Raises ATTACK if"
-	line "the user is hit.@"
 
 TeleportDescription:
 	db   "A move for fleeing"
