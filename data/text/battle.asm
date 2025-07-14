@@ -1,12 +1,5 @@
 BattleText:: ; used only for BANK(BattleText)
 
-BattleText_PlayerPickedUpPayDayMoney:
-	text "<PLAYER> picked up"
-	line "¥@"
-	text_decimal wPayDayMoney, 3, 6
-	text "!"
-	prompt
-
 VoltAbsorbText:
 	text "<TARGET> is"
 	line "unaffected by"
@@ -941,11 +934,6 @@ WasDisabledText:
 	text_ram wStringBuffer1
 	text " was"
 	cont "DISABLED!"
-	prompt
-
-CoinsScatteredText:
-	text "Coins scattered"
-	line "everywhere!"
 	prompt
 
 TransformedTypeText:

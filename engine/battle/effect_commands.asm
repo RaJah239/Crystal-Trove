@@ -7497,7 +7497,6 @@ INCLUDE "engine/battle/move_effects/lock_on.asm"
 INCLUDE "engine/battle/move_effects/conversion.asm"
 INCLUDE "engine/battle/move_effects/rage.asm"
 INCLUDE "engine/battle/move_effects/conversion2.asm"
-INCLUDE "engine/battle/move_effects/pay_day.asm" ; may keep this one..
 
 BattleCommand_Unused5D: ; free to replace
 BattleCommand_CheckFutureSight:

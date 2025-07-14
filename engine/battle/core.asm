@@ -2262,7 +2262,7 @@ WinTrainerBattle:
 	ld c, BATTLETOWERTEXT_LOSS_TEXT
 	farcall BattleTowerText
 	call WaitPressAorB_BlinkCursor
-	ld hl, wPayDayMoney
+	ld hl, wPayDayMoney ; need to remove this
 	ld a, [hli]
 	or [hl]
 	inc hl
@@ -2417,7 +2417,7 @@ PlayVictoryMusic:
 	ld a, [wBattleMode]
 	dec a
 	jr nz, .trainer_victory
-	ld hl, wPayDayMoney
+	ld hl, wPayDayMoney ; need to remove this
 	ld a, [hli]
 	or [hl]
 	jr nz, .play_music
@@ -8367,7 +8367,6 @@ ExitBattle:
 	ld a, [wBattleResult]
 	and $f
 	ret nz
-	call CheckPayDay
 	xor a
 	ld [wForceEvolution], a
 	predef EvolveAfterBattle
@@ -8412,41 +8411,6 @@ CleanUpBattleRAM:
 	dec b
 	jr nz, .loop
 	call WaitSFX
-	ret
-
-CheckPayDay:
-	ld hl, wPayDayMoney
-	ld a, [hli]
-	or [hl]
-	inc hl
-	or [hl]
-	ret z
-	ld a, [wAmuletCoin]
-	and a
-	jr z, .okay
-	ld hl, wPayDayMoney + 2
-	sla [hl]
-	dec hl
-	rl [hl]
-	dec hl
-	rl [hl]
-	jr nc, .okay
-	ld a, $ff
-	ld [hli], a
-	ld [hli], a
-	ld [hl], a
-
-.okay
-	ld hl, wPayDayMoney + 2
-	ld de, wMoney + 2
-	call AddBattleMoneyToAccount
-	ld hl, BattleText_PlayerPickedUpPayDayMoney
-	call StdBattleTextbox
-	ld a, [wInBattleTowerBattle]
-	bit 0, a
-	ret z
-	call ClearTilemap
-	call ClearBGPalettes
 	ret
 
 ShowLinkBattleParticipantsAfterEnd:
