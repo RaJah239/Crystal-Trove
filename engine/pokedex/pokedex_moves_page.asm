@@ -4,7 +4,7 @@ Field_Moves_List:
  		FLY
  Field_Moves_Method_List:
  ; 0 means lvl-up only
- 	db 0, 0, 0, TM01 + 1, TM01 + 7, TM01 + 11, TM01 + 27, HM01
+ 	db 0, 0, 0, TM01 + 1, TM01 + 7, TM01 + 27, HM01, \
 
 ; started as 5 before UI overhaul, now is 7
 ; would decrease to 3 if we wanted to use additional line for attack info
