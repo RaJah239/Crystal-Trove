@@ -2177,7 +2177,7 @@ CloseCombat:
 	kingsrock
 	endmove
 
-	SpeedUpHit:
+SpeedUpHit:
 	checkobedience
 	usedmovetext
 	doturn
