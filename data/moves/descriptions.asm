@@ -130,7 +130,7 @@ MoveDescriptions::
 	dw WaterfallDescription
 	dw BulletPunchDescription
 	dw SwiftDescription
-	dw SkullBashDescription
+	dw NightSlashDescription
 	dw SpikeCannonDescription
 	dw ConstrictDescription
 	dw AmnesiaDescription
@@ -265,6 +265,8 @@ MoveFFDescription:
 Move00Description:
 	db "?@"
 
+NightSlashDescription:
+SlashDescription:
 DragonClawDescription:
 XScissorDescription:
 KarateChopDescription:
@@ -729,10 +731,6 @@ SwiftDescription:
 	db   "An attack that"
 	line "never misses.@"
 
-SkullBashDescription:
-	db   "1st turn: Prepare"
-	line "2nd turn: Attack@"
-
 SpikeCannonDescription:
 	db   "Fires spikes to"
 	line "hit 2-5 times.@"
@@ -844,10 +842,6 @@ TriAttackDescription:
 SuperFangDescription:
 	db   "Cuts the foe's HP"
 	line "by 1/2.@"
-
-SlashDescription:
-	db   "Has a high criti-"
-	line "cal hit ratio.@"
 
 SubstituteDescription:
 	db   "Makes a decoy with"

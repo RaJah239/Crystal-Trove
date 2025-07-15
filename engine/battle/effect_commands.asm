@@ -1150,7 +1150,6 @@ BattleCommand_DoTurn:
 .continuousmoves
 	db EFFECT_RAZOR_WIND
 	db EFFECT_SKY_ATTACK
-	db EFFECT_SKULL_BASH
 	db EFFECT_SOLARBEAM
 	db EFFECT_FLY
 	db EFFECT_ROLLOUT
@@ -2130,8 +2129,6 @@ BattleCommand_LowerSub:
 	cp EFFECT_RAZOR_WIND
 	jr z, .charge_turn
 	cp EFFECT_SKY_ATTACK
-	jr z, .charge_turn
-	cp EFFECT_SKULL_BASH
 	jr z, .charge_turn
 	cp EFFECT_SOLARBEAM
 	jr z, .charge_turn
@@ -6109,11 +6106,11 @@ BattleCommand_Charge:
 	ld hl, .UsedText
 	call BattleTextbox
 
-	ld a, BATTLE_VARS_MOVE_EFFECT
-	call GetBattleVar
-	cp EFFECT_SKULL_BASH
-	ld b, endturn_command
-	jp z, SkipToBattleCommand
+;	ld a, BATTLE_VARS_MOVE_EFFECT
+;	call GetBattleVar
+;	cp EFFECT_SKULL_BASH
+;	ld b, endturn_command
+;	jp z, SkipToBattleCommand
 	jp EndMoveEffect
 
 .UsedText:
@@ -6127,14 +6124,6 @@ BattleCommand_Charge:
 
 	cp SOLARBEAM
 	ld hl, .BattleTookSunlightText
-	jr z, .done
-
-	cp SKULL_BASH
-	ld hl, .BattleLoweredHeadText
-	jr z, .done
-
-	cp SKY_ATTACK
-	ld hl, .BattleGlowingText
 	jr z, .done
 
 	cp FLY
@@ -6153,14 +6142,6 @@ BattleCommand_Charge:
 
 .BattleTookSunlightText:
 	text_far _BattleTookSunlightText
-	text_end
-
-.BattleLoweredHeadText:
-	text_far _BattleLoweredHeadText
-	text_end
-
-.BattleGlowingText:
-	text_far _BattleGlowingText
 	text_end
 
 .BattleFlewText:
