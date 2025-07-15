@@ -198,7 +198,7 @@ MoveDescriptions::
 	dw PerishSongDescription
 	dw IcyWindDescription
 	dw DetectDescription
-	dw BoneRushDescription
+	dw SnarlDescription
 	dw LockOnDescription
 	dw OutrageDescription
 	dw SandstormDescription
@@ -365,9 +365,14 @@ BodySlamDescription:
 	db   "An attack that may"
 	line "cause paralysis.@"
 
+SnarlDescription:
+	db "An attack that"
+	line "lowers Sp.Atk.@"
+
+WhirlpoolDescription:
 WrapDescription:
-	db   "Squeezes the foe"
-	line "for 2-5 turns.@"
+	db   "Traps the foe for"
+	line "2-5 turns.@"
 
 SkyAttackDescription:
 OutrageDescription:
@@ -1155,10 +1160,6 @@ StealthRockDescription:
 RockSmashDescription:
 	db   "An attack that may"
 	line "lower DEFENSE.@"
-
-WhirlpoolDescription:
-	db   "Traps the foe for"
-	line "2-5 turns.@"
 
 BeatUpDescription:
 	db   "Party #MON join"

@@ -1256,7 +1256,6 @@ CuboneEvosAttacks:
 	db 25, BONEMERANG
 	db 33, FALSE_SWIPE
 	db 37, THRASH
-	db 41, BONE_RUSH
 	db 0 ; no more level-up moves
 
 MarowakEvosAttacks:
@@ -1273,7 +1272,6 @@ MarowakEvosAttacks:
 	db 25, BONEMERANG
 	db 39, FALSE_SWIPE
 	db 46, THRASH
-	db 53, BONE_RUSH
 	db 0 ; no more level-up moves
 
 HitmonleeEvosAttacks:
