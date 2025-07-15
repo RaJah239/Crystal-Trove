@@ -38,7 +38,7 @@ OddEggs:
 
 	db PICHU
 	db NO_ITEM
-	db THUNDERSHOCK, CHARM, DIZZY_PUNCH, 0
+	db THUNDERSHOCK, CHARM, TACKLE, 0
 	dw 02048 ; OT ID
 	dt 0 ; Exp
 	db 0, 0, 0, 0, 0, 0 ; EVs
@@ -60,7 +60,7 @@ OddEggs:
 
 	db PICHU
 	db NO_ITEM
-	db THUNDERSHOCK, CHARM, DIZZY_PUNCH, 0
+	db THUNDERSHOCK, CHARM, TACKLE, 0
 	dw 00256 ; OT ID
 	dt 0 ; Exp
 	db 0, 0, 0, 0, 0, 0 ; EVs
@@ -82,7 +82,7 @@ OddEggs:
 
 	db CLEFFA
 	db NO_ITEM
-	db TACKLE, CHARM, DIZZY_PUNCH, 0
+	db TACKLE, CHARM, TACKLE, 0
 	dw 04096 ; OT ID
 	dt 0 ; Exp
 	db 0, 0, 0, 0, 0, 0 ; EVs
@@ -104,7 +104,7 @@ OddEggs:
 
 	db CLEFFA
 	db NO_ITEM
-	db TACKLE, CHARM, DIZZY_PUNCH, 0
+	db TACKLE, CHARM, TACKLE, 0
 	dw 00768 ; OT ID
 	dt 0 ; Exp
 	db 0, 0, 0, 0, 0, 0 ; EVs
@@ -126,7 +126,7 @@ OddEggs:
 
 	db IGGLYBUFF
 	db NO_ITEM
-	db SING, CHARM, DIZZY_PUNCH, 0
+	db SING, CHARM, TACKLE, 0
 	dw 04096 ; OT ID
 	dt 0 ; Exp
 	db 0, 0, 0, 0, 0, 0 ; EVs
@@ -148,7 +148,7 @@ OddEggs:
 
 	db IGGLYBUFF
 	db NO_ITEM
-	db SING, CHARM, DIZZY_PUNCH, 0
+	db SING, CHARM, TACKLE, 0
 	dw 00768 ; OT ID
 	dt 0 ; Exp
 	db 0, 0, 0, 0, 0, 0 ; EVs
@@ -170,7 +170,7 @@ OddEggs:
 
 	db SMOOCHUM
 	db NO_ITEM
-	db TACKLE, LICK, DIZZY_PUNCH, 0
+	db TACKLE, LICK, TACKLE, 0
 	dw 03584 ; OT ID
 	dt 0 ; Exp
 	db 0, 0, 0, 0, 0, 0 ; EVs
@@ -192,7 +192,7 @@ OddEggs:
 
 	db SMOOCHUM
 	db NO_ITEM
-	db TACKLE, LICK, DIZZY_PUNCH, 0
+	db TACKLE, LICK, TACKLE, 0
 	dw 00512 ; OT ID
 	dt 0 ; Exp
 	db 0, 0, 0, 0, 0, 0 ; EVs
@@ -214,7 +214,7 @@ OddEggs:
 
 	db MAGBY
 	db NO_ITEM
-	db EMBER, DIZZY_PUNCH, 0, 0
+	db EMBER, TACKLE, 0, 0
 	dw 02560 ; OT ID
 	dt 0 ; Exp
 	db 0, 0, 0, 0, 0, 0 ; EVs
@@ -236,7 +236,7 @@ OddEggs:
 
 	db MAGBY
 	db NO_ITEM
-	db EMBER, DIZZY_PUNCH, 0, 0
+	db EMBER, TACKLE, 0, 0
 	dw 00512 ; OT ID
 	dt 0 ; Exp
 	db 0, 0, 0, 0, 0, 0 ; EVs
@@ -258,7 +258,7 @@ OddEggs:
 
 	db ELEKID
 	db NO_ITEM
-	db QUICK_ATTACK, LEER, DIZZY_PUNCH, 0
+	db QUICK_ATTACK, LEER, TACKLE, 0
 	dw 03072 ; OT ID
 	dt 0 ; Exp
 	db 0, 0, 0, 0, 0, 0 ; EVs
@@ -280,7 +280,7 @@ OddEggs:
 
 	db ELEKID
 	db NO_ITEM
-	db QUICK_ATTACK, LEER, DIZZY_PUNCH, 0
+	db QUICK_ATTACK, LEER, TACKLE, 0
 	dw 00512 ; OT ID
 	dt 0 ; Exp
 	db 0, 0, 0, 0, 0, 0 ; EVs
@@ -302,7 +302,7 @@ OddEggs:
 
 	db TYROGUE
 	db NO_ITEM
-	db TACKLE, DIZZY_PUNCH, 0, 0
+	db TACKLE, TACKLE, 0, 0
 	dw 02560 ; OT ID
 	dt 0 ; Exp
 	db 0, 0, 0, 0, 0, 0 ; EVs
@@ -324,7 +324,7 @@ OddEggs:
 
 	db TYROGUE
 	db NO_ITEM
-	db TACKLE, DIZZY_PUNCH, 0, 0
+	db TACKLE, TACKLE, 0, 0
 	dw 00256 ; OT ID
 	dt 0 ; Exp
 	db 0, 0, 0, 0, 0, 0 ; EVs

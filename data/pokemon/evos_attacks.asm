@@ -1380,8 +1380,7 @@ KangaskhanEvosAttacks:
 	db 13, BITE
 	db 19, DRAIN_PUNCH
 	db 37, ENDURE
-	db 43, DIZZY_PUNCH
-	db 49, REVERSAL
+	db 43, REVERSAL
 	db 0 ; no more level-up moves
 
 HorseaEvosAttacks:
