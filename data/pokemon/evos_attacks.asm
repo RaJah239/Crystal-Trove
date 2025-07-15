@@ -1210,8 +1210,7 @@ CuboneEvosAttacks:
 	db 13, HEADBUTT
 	db 17, LEER
 	db 21, FOCUS_ENERGY
-	db 25, BONEMERANG
-	db 33, FALSE_SWIPE
+	db 25, FALSE_SWIPE
 	db 37, THRASH
 	db 0 ; no more level-up moves
 
@@ -1226,8 +1225,7 @@ MarowakEvosAttacks:
 	db 13, HEADBUTT
 	db 17, LEER
 	db 21, FOCUS_ENERGY
-	db 25, BONEMERANG
-	db 39, FALSE_SWIPE
+	db 25, FALSE_SWIPE
 	db 46, THRASH
 	db 0 ; no more level-up moves
 

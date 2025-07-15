@@ -155,7 +155,7 @@ MoveDescriptions::
 	dw FairyFlashDescription
 	dw ExplosionDescription
 	dw FurySwipesDescription
-	dw BonemerangDescription
+	dw HiddenForceDescription
 	dw RestDescription
 	dw RockSlideDescription
 	dw HyperFangDescription
@@ -804,10 +804,6 @@ FurySwipesDescription:
 	db   "Quickly scratches"
 	line "2-5 times.@"
 
-BonemerangDescription:
-	db   "An attack that"
-	line "strikes twice.@"
-
 RestDescription:
 	db   "Sleep for 2 turns"
 	line "to fully recover.@"
@@ -1110,6 +1106,7 @@ HailDescription:
 	db   "Inflicts damage"
 	line "very turn.@"
 
+HiddenForceDescription:
 HiddenPowerDescription:
 	db   "The type varies"
 	line "with the #MON.@"
