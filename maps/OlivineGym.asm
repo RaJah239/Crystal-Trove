@@ -35,7 +35,7 @@ OlivineGymJasmineScript:
 	loadmem wLevelCap, 42
 	writetext Jasmine_BadgeSpeech
 	promptbutton
-	verbosegiveitem TM_IRON_TAIL
+	verbosegiveitem TM_SILVER_WIND
 	iffalse .NoRoomForIronTail
 	setevent EVENT_GOT_TM23_IRON_TAIL
 	writetext Jasmine_IronTailSpeech

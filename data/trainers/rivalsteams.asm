@@ -18,7 +18,7 @@
 ;		db $EA, $AA ; atk|def dv, spd|spc dv
 ;		ds 6, MAX_EV ; hp, atk, def, spd, sat, sdf 
 ;		db LIGHT_BALL
-;		db IRON_TAIL, QUICK_ATTACK, THUNDERBOLT, THUNDER
+;		db SILVER_WIND, QUICK_ATTACK, THUNDERBOLT, THUNDER
 ;	db 100, ESPEON
 ;		db "PAWS@"
 ;		db $EC, PERFECT_DV ; atk|def dv, spd|spc dv
