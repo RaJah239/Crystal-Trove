@@ -170,7 +170,7 @@ Moves:
 	move FURY_STRIKES, EFFECT_MULTI_HIT,          18, NORMAL,        PHYSICAL,  80, 15,   0
 	move BONEMERANG,   EFFECT_DOUBLE_HIT,         50, GROUND,        PHYSICAL,  90, 10,   0
 	move REST,         EFFECT_HEAL,                0, PSYCHIC_TYPE,  STATUS,   100, 10,   0
-	move ROCK_SLIDE,   EFFECT_FLINCH_HIT,         75, ROCK,          PHYSICAL, 100, 24,  15
+	move ROCK_SLIDE,   EFFECT_FLINCH_HIT,         80, ROCK,          PHYSICAL, 100, 24,  15
 	move HYPER_FANG,   EFFECT_FLINCH_HIT,         80, NORMAL,        PHYSICAL,  90, 15,  10
 	move FACADE,       EFFECT_FACADE,             70, NORMAL,        PHYSICAL, 100, 24,   0
 	move HEX,          EFFECT_HEX,                65, GHOST,         SPECIAL,  100, 16,   0
