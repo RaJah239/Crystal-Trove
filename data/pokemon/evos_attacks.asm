@@ -897,7 +897,7 @@ GeodudeEvosAttacks:
 	db 1, AQUA_JET
 	db 6, DEFENSE_CURL
 	db 11, ROCK_THROW
-	db 21, SELFDESTRUCT
+	db 21, THROAT_CHOP
 	db 26, HARDEN
 	db 31, ROLLOUT
 	db 36, EARTHQUAKE
@@ -912,7 +912,7 @@ GravelerEvosAttacks:
 	db 1, ROCK_THROW
 	db 6, DEFENSE_CURL
 	db 11, ROCK_THROW
-	db 21, SELFDESTRUCT
+	db 21, THROAT_CHOP
 	db 27, HARDEN
 	db 34, ROLLOUT
 	db 41, EARTHQUAKE
@@ -1210,7 +1210,7 @@ VoltorbEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, AQUA_JET
 	db 9, SCREECH
-	db 23, SELFDESTRUCT
+	db 23, THROAT_CHOP
 	db 29, ROLLOUT
 	db 33, LIGHT_SCREEN
 	db 37, SWIFT
@@ -1222,7 +1222,7 @@ ElectrodeEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, AQUA_JET
 	db 1, SCREECH
-	db 23, SELFDESTRUCT
+	db 23, THROAT_CHOP
 	db 29, ROLLOUT
 	db 34, LIGHT_SCREEN
 	db 40, SWIFT
@@ -1319,7 +1319,7 @@ KoffingEvosAttacks:
 	db 1, POISON_GAS
 	db 1, AQUA_JET
 	db 9, SMOG
-	db 17, SELFDESTRUCT
+	db 17, THROAT_CHOP
 	db 21, SLUDGE
 	db 25, SMOKESCREEN
 	db 33, HAZE
@@ -1332,9 +1332,9 @@ WeezingEvosAttacks:
 	db 1, POISON_GAS
 	db 1, AQUA_JET
 	db 1, SMOG
-	db 1, SELFDESTRUCT
+	db 1, THROAT_CHOP
 	db 9, SMOG
-	db 17, SELFDESTRUCT
+	db 17, THROAT_CHOP
 	db 21, SLUDGE
 	db 25, SMOKESCREEN
 	db 33, HAZE
@@ -2452,7 +2452,7 @@ PinecoEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, AQUA_JET
 	db 1, PROTECT
-	db 8, SELFDESTRUCT
+	db 8, THROAT_CHOP
 	db 22, RAPID_SPIN
 	db 36, EXPLOSION
 	db 43, SPIKES
@@ -2463,8 +2463,8 @@ ForretressEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, AQUA_JET
 	db 1, PROTECT
-	db 1, SELFDESTRUCT
-	db 8, SELFDESTRUCT
+	db 1, THROAT_CHOP
+	db 8, THROAT_CHOP
 	db 22, RAPID_SPIN
 	db 39, EXPLOSION
 	db 49, SPIKES

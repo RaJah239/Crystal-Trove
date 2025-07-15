@@ -474,7 +474,7 @@ MarillEggMoves:
 	db -1 ; end
 
 SudowoodoEggMoves:
-	db SELFDESTRUCT
+	db THROAT_CHOP
 	db -1 ; end
 
 HoppipEggMoves:
