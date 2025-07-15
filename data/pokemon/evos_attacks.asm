@@ -1242,7 +1242,6 @@ HitmonchanEvosAttacks:
 	db 26, ICE_PUNCH
 	db 26, FIRE_PUNCH
 	db 32, MACH_PUNCH
-	db 44, DETECT
 	db 50, COUNTER
 	db 0 ; no more level-up moves
 
@@ -1654,7 +1653,6 @@ ZapdosEvosAttacks:
 	db 1, THUNDERSHOCK
 	db 13, THUNDER_WAVE
 	db 25, AGILITY
-	db 37, DETECT
 	db 49, DRILL_PECK
 	db 61, LIGHT_SCREEN
 	db 73, THUNDER
@@ -2257,7 +2255,6 @@ YanmaEvosAttacks:
 	db 1, AQUA_JET
 	db 1, FORESIGHT
 	db 7, QUICK_ATTACK
-	db 25, DETECT
 	db 31, SUPERSONIC
 	db 37, WING_ATTACK
 	db 43, SCREECH
@@ -2727,7 +2724,6 @@ HitmontopEvosAttacks:
 	db 25, RAPID_SPIN
 	db 31, COUNTER
 	db 37, AGILITY
-	db 43, DETECT
 	db 49, TRIPLE_KICK
 	db 0 ; no more level-up moves
 

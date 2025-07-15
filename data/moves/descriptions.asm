@@ -197,7 +197,7 @@ MoveDescriptions::
 	dw DestinyBondDescription
 	dw PerishSongDescription
 	dw IcyWindDescription
-	dw DetectDescription
+	dw FairyWindDescription
 	dw SnarlDescription
 	dw LockOnDescription
 	dw OutrageDescription
@@ -305,6 +305,7 @@ CutDescription:
 	db   "Cuts using claws,"
 	line "scythes, etc.@"
 
+FairyWindDescription:
 GustDescription:
 	db   "Whips up a strong"
 	line "gust of wind.@"
@@ -962,10 +963,6 @@ BulldozeDescription:
 IcyWindDescription:
 	db   "An attack that"
 	line "lowers Speed.@"
-
-DetectDescription:
-	db   "Evades attack that"
-	line "turn. It may fail.@"
 
 BoneRushDescription:
 	db   "An attack that"
