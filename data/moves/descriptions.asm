@@ -210,7 +210,7 @@ MoveDescriptions::
 	dw SwaggerDescription
 	dw ScaldDescription
 	dw SparkDescription
-	dw FuryCutterDescription
+	dw ShadowPunchDescription
 	dw SteelWingDescription
 	dw MeanLookDescription
 	dw AttractDescription
@@ -1019,10 +1019,6 @@ SparkDescription:
 	db   "An attack that may"
 	line "cause paralysis.@"
 
-FuryCutterDescription:
-	db   "Successive hits"
-	line "raise power.@"
-
 SteelWingDescription:
 	db   "Stiff wings strike"
 	line "the foe.@"
@@ -1067,6 +1063,7 @@ QuiverDanceDescription:
 	db   "Raises Special"
 	line "stats and Speed.@"
 
+ShadowPunchDescription:
 MeteorMashDescription:
 MetalClawDescription:
 	db   "An attack that may"
