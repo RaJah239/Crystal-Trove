@@ -604,7 +604,6 @@ DelibirdEggMoves:
 	db -1 ; end
 
 MantineEggMoves:
-	db TWISTER
 	db HYDRO_PUMP
 	db HAZE
 	db -1 ; end
