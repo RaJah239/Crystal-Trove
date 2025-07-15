@@ -25,7 +25,7 @@ MoveDescriptions::
 	dw VineWhipDescription
 	dw StompDescription
 	dw DoubleKickDescription
-	dw MegaKickDescription
+	dw FocusBlastDescription
 	dw StickyWebDescription
 	dw RollingKickDescription
 	dw DrainKissDescription
@@ -336,10 +336,6 @@ StompDescription:
 
 DoubleKickDescription:
 	db   "A double kicking"
-	line "attack.@"
-
-MegaKickDescription:
-	db   "A powerful kicking"
 	line "attack.@"
 
 StickyWebDescription:
@@ -1183,9 +1179,10 @@ AncientpowerDescription:
 	db   "An attack that may"
 	line "raise all stats.@"
 
+FocusBlastDescription:
 ShadowBallDescription:
 	db   "An attack that may"
-	line "lower SPCL.DEF.@"
+	line "lower Spcl.Def.@"
 
 StealthRockDescription:
 	db   "Hurts foes when"
