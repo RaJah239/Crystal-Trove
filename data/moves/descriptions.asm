@@ -218,7 +218,7 @@ MoveDescriptions::
 	dw HealBellDescription
 	dw ReturnDescription
 	dw DefogDescription
-	dw FrustrationDescription
+	dw AuraSphereDescription
 	dw SafeguardDescription
 	dw PainSplitDescription
 	dw SacredFireDescription
@@ -737,6 +737,7 @@ WaterfallDescription:
 	db   "An aquatic charge"
 	line "attack.@"
 
+AuraSphereDescription:
 SwiftDescription:
 	db   "An attack that"
 	line "never misses.@"
@@ -1079,10 +1080,6 @@ ReturnDescription:
 DefogDescription:
 	db   "Clears the field"
 	line "of all effects.@"
-
-FrustrationDescription:
-	db   "An attack based on"
-	line "lack of loyalty.@"
 
 SafeguardDescription:
 	db   "Prevents all"
