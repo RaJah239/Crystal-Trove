@@ -1834,6 +1834,9 @@ BattleCommand_CheckHit:
 	farcall BlizzardHail
 	ret z
 
+	farcall HurricaneRain
+	ret z 
+
 	farcall XAccuracy
 	ret nz
 
@@ -3940,6 +3943,8 @@ BattleCommand_ConstantDamage:
 INCLUDE "data/moves/flail_reversal_power.asm"
 
 INCLUDE "engine/battle/abilities.asm"
+
+INCLUDE "engine/battle/move_effects/hurricane.asm"
 
 INCLUDE "engine/battle/move_effects/facade.asm"
 
@@ -6397,6 +6402,8 @@ BattleCommand_FinishConfusingTarget:
 	jr z, .got_effect
 	cp EFFECT_SWAGGER
 	jr z, .got_effect
+    cp EFFECT_HURRICANE
+    jr z, .got_effect
 	call AnimateCurrentMove
 
 .got_effect

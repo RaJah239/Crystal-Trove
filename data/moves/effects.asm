@@ -2210,3 +2210,26 @@ Facade:
 	checkfaint
 	kingsrock
 	endmove
+
+Hurricane:
+	checkobedience
+	usedmovetext
+	doturn
+	critical
+	damagestats
+	damagecalc
+	hurricaneaccuracy
+	checkhit
+	effectchance
+	stab
+	damagevariation
+	doubleflyingdamage
+	moveanim
+	failuretext
+	applydamage
+	criticaltext
+	supereffectivetext
+	checkfaint
+	buildopponentrage
+	confusetarget
+	endmove
