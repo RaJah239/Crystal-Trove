@@ -240,7 +240,7 @@ BattleTowerMartTMCoinTraderScript:
     sjump .ConcludeTransaction
 
 .TMDoulbeTeam:
-    verbosegiveitem TM_DOUBLE_TEAM
+    verbosegiveitem TM_GUNK_SHOT
     iffalse .NoRoom
     sjump .ConcludeTransaction
 

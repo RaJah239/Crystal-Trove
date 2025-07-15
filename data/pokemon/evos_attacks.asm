@@ -324,7 +324,6 @@ PikachuEvosAttacks:
 	db 6, DRAIN_PUNCH
 	db 8, THUNDER_WAVE
 	db 11, QUICK_ATTACK
-	db 15, DOUBLE_TEAM
 	db 26, THUNDERBOLT
 	db 33, AGILITY
 	db 41, THUNDER
@@ -1549,7 +1548,6 @@ ScytherEvosAttacks:
 	db 30, WING_ATTACK
 	db 36, SLASH
 	db 42, SWORDS_DANCE
-	db 48, DOUBLE_TEAM
 	db 0 ; no more level-up moves
 
 JynxEvosAttacks:
@@ -2445,7 +2443,6 @@ YanmaEvosAttacks:
 	db 1, AQUA_JET
 	db 1, FORESIGHT
 	db 7, QUICK_ATTACK
-	db 13, DOUBLE_TEAM
 	db 25, DETECT
 	db 31, SUPERSONIC
 	db 37, WING_ATTACK
@@ -2666,7 +2663,6 @@ ScizorEvosAttacks:
 	db 30, METAL_CLAW
 	db 36, SLASH
 	db 42, SWORDS_DANCE
-	db 48, DOUBLE_TEAM
 	db 0 ; no more level-up moves
 
 ShuckleEvosAttacks:
