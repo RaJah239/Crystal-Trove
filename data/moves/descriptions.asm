@@ -20,7 +20,7 @@ MoveDescriptions::
 	dw WingAttackDescription
 	dw WhirlwindDescription
 	dw FlyDescription
-	dw BindDescription
+	dw IcicleCrashDescription
 	dw PowerGemDescription
 	dw VineWhipDescription
 	dw StompDescription
@@ -318,10 +318,6 @@ FlyDescription:
 	db   "1st turn: Fly"
 	line "2nd turn: Attack@"
 
-BindDescription:
-	db   "Binds the target"
-	line "for 2-5 turns.@"
-
 PowerGemDescription:
 	db "Attacks with a ray"
 	line "of gem-like light.@"
@@ -346,6 +342,7 @@ RollingKickDescription:
 	db   "A fast, spinning"
 	line "kick.@"
 
+IcicleCrashDescription:
 ZenHeadbuttDescription:
 IronHeadDescription:
 DarkPulseDescription:

@@ -1190,8 +1190,7 @@ OnixEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, AQUA_JET
 	db 1, SCREECH
-	db 10, BIND
-	db 14, ROCK_THROW
+	db 10, ROCK_THROW
 	db 23, HARDEN
 	db 36, SANDSTORM
 	db 0 ; no more level-up moves
@@ -1420,8 +1419,7 @@ TangelaEvosAttacks:
 	db 10, ABSORB
 	db 13, POISONPOWDER
 	db 19, VINE_WHIP
-	db 25, BIND
-	db 31, MEGA_DRAIN
+	db 25, MEGA_DRAIN
 	db 34, STUN_SPORE
 	db 46, GROWTH
 	db 0 ; no more level-up moves
@@ -1577,8 +1575,7 @@ MagmarEvosAttacks:
 PinsirEvosAttacks:
 	db 0 ; no more evolutions
 	db 7, FOCUS_ENERGY
-	db 13, BIND
-	db 19, SEISMIC_TOSS
+	db 13, SEISMIC_TOSS
 	db 25, HARDEN
 	db 37, CLOSE_COMBAT
 	db 43, SWORDS_DANCE
@@ -2573,8 +2570,7 @@ SteelixEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, AQUA_JET
 	db 1, SCREECH
-	db 10, BIND
-	db 14, ROCK_THROW
+	db 10, ROCK_THROW
 	db 23, HARDEN
 	db 36, SANDSTORM
 	db 49, CRUNCH
