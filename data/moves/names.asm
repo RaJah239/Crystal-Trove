@@ -38,7 +38,7 @@ MoveNames::
 	li "Taunt"
 	li "Thrash"
 	li "Double-Edge"
-	li "Tail Whip"
+	li "Drain Punch"
 	li "Poison Sting"
 	li "Twineedle"
 	li "Pin Missile"

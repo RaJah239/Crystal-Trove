@@ -416,8 +416,6 @@ SECTION "bank32", ROMX
 
 INCLUDE "engine/battle_anims/bg_effects.asm"
 INCLUDE "data/moves/animations.asm"
-INCLUDE "engine/events/poisonstep_pals.asm"
-
 
 SECTION "Move Animations", ROMX
 
@@ -773,3 +771,4 @@ INCLUDE "engine/gfx/dynamic_pals.asm"
 SECTION "Fade System", ROMX
 
 INCLUDE "engine/gfx/fade.asm"
+INCLUDE "engine/events/poisonstep_pals.asm"

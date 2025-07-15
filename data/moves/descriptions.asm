@@ -39,7 +39,7 @@ MoveDescriptions::
 	dw TauntDescription
 	dw ThrashDescription
 	dw DoubleEdgeDescription
-	dw TailWhipDescription
+	dw DrainPunchDescription
 	dw PoisonStingDescription
 	dw TwineedleDescription
 	dw PinMissileDescription
@@ -399,10 +399,6 @@ ThrashDescription:
 DoubleEdgeDescription:
 	db   "A tackle that also"
 	line "hurts the user.@"
-
-TailWhipDescription:
-	db   "Lowers the foe's"
-	line "DEFENSE.@"
 
 PoisonStingDescription:
 	db   "An attack that may"
@@ -1024,6 +1020,7 @@ SandstormDescription:
 	db   "Inflicts damage"
 	line "every turn.@"
 
+DrainPunchDescription:
 LeechLifeDescription:
 DrainKissDescription:
 AbsorbDescription:
