@@ -1,5 +1,5 @@
 Field_Moves_List:
- 	db TELEPORT, SOFTBOILED, MILK_DRINK, \
+ 	db TELEPORT, SOFTBOILED, \
  		HEADBUTT, ROCK_SMASH, DIG,\
  		FLY
  Field_Moves_Method_List:
