@@ -341,7 +341,6 @@ SandshrewEvosAttacks:
 	db 17, POISON_STING
 	db 23, SLASH
 	db 30, SWIFT
-	db 37, FURY_SWIPES
 	db 45, SANDSTORM
 	db 0 ; no more level-up moves
 
@@ -353,7 +352,6 @@ SandslashEvosAttacks:
 	db 17, POISON_STING
 	db 24, SLASH
 	db 33, SWIFT
-	db 42, FURY_SWIPES
 	db 52, SANDSTORM
 	db 0 ; no more level-up moves
 
@@ -367,7 +365,6 @@ NidoranFEvosAttacks:
 	db 17, POISON_STING
 	db 23, DRAIN_PUNCH
 	db 30, BITE
-	db 38, FURY_SWIPES
 	db 0 ; no more level-up moves
 
 NidorinaEvosAttacks:
@@ -380,7 +377,6 @@ NidorinaEvosAttacks:
 	db 19, POISON_STING
 	db 27, DRAIN_PUNCH
 	db 36, BITE
-	db 46, FURY_SWIPES
 	db 0 ; no more level-up moves
 
 NidoqueenEvosAttacks:
@@ -639,7 +635,6 @@ MeowthEvosAttacks:
 	db 11, BITE
 	db 28, FAINT_ATTACK
 	db 35, SCREECH
-	db 41, FURY_SWIPES
 	db 46, SLASH
 	db 0 ; no more level-up moves
 
@@ -651,7 +646,6 @@ PersianEvosAttacks:
 	db 11, BITE
 	db 29, FAINT_ATTACK
 	db 38, SCREECH
-	db 46, FURY_SWIPES
 	db 53, SLASH
 	db 0 ; no more level-up moves
 
@@ -663,7 +657,6 @@ PsyduckEvosAttacks:
 	db 10, DISABLE
 	db 16, CONFUSION
 	db 23, SCREECH
-	db 40, FURY_SWIPES
 	db 50, HYDRO_PUMP
 	db 0 ; no more level-up moves
 
@@ -677,7 +670,6 @@ GolduckEvosAttacks:
 	db 10, DISABLE
 	db 16, CONFUSION
 	db 23, SCREECH
-	db 44, FURY_SWIPES
 	db 58, HYDRO_PUMP
 	db 0 ; no more level-up moves
 
@@ -688,7 +680,6 @@ MankeyEvosAttacks:
 	db 1, LEER
 	db 9, LOW_KICK
 	db 15, KARATE_CHOP
-	db 21, FURY_SWIPES
 	db 27, FOCUS_ENERGY
 	db 33, SEISMIC_TOSS
 	db 39, CROSS_CHOP
@@ -703,7 +694,6 @@ PrimeapeEvosAttacks:
 	db 1, LOW_KICK
 	db 9, LOW_KICK
 	db 15, KARATE_CHOP
-	db 21, FURY_SWIPES
 	db 27, FOCUS_ENERGY
 	db 36, SEISMIC_TOSS
 	db 45, CROSS_CHOP
@@ -2004,7 +1994,6 @@ SentretEvosAttacks:
 	db 1, AQUA_JET
 	db 5, DEFENSE_CURL
 	db 11, QUICK_ATTACK
-	db 17, FURY_SWIPES
 	db 33, REST
 	db 41, AMNESIA
 	db 0 ; no more level-up moves
@@ -2016,7 +2005,6 @@ FurretEvosAttacks:
 	db 1, QUICK_ATTACK
 	db 5, DEFENSE_CURL
 	db 11, QUICK_ATTACK
-	db 18, FURY_SWIPES
 	db 38, REST
 	db 48, AMNESIA
 	db 0 ; no more level-up moves
@@ -2087,7 +2075,6 @@ SpinarakEvosAttacks:
 	db 11, CONSTRICT
 	db 17, NIGHT_SHADE
 	db 23, LEECH_LIFE
-	db 30, FURY_SWIPES
 	db 37, SPIDER_WEB
 	db 45, AGILITY
 	db 53, PSYCHIC_M
@@ -2103,7 +2090,6 @@ AriadosEvosAttacks:
 	db 11, CONSTRICT
 	db 17, NIGHT_SHADE
 	db 25, LEECH_LIFE
-	db 34, FURY_SWIPES
 	db 43, SPIDER_WEB
 	db 53, AGILITY
 	db 63, PSYCHIC_M
@@ -2369,7 +2355,6 @@ AipomEvosAttacks:
 	db 1, AQUA_JET
 	db 1, DRAIN_PUNCH
 	db 12, BATON_PASS
-	db 19, FURY_SWIPES
 	db 27, SWIFT
 	db 36, SCREECH
 	db 46, AGILITY
@@ -2647,7 +2632,6 @@ SneaselEvosAttacks:
 	db 9, QUICK_ATTACK
 	db 17, SCREECH
 	db 25, FAINT_ATTACK
-	db 33, FURY_SWIPES
 	db 41, AGILITY
 	db 49, SLASH
 	db 57, BEAT_UP
@@ -2660,7 +2644,6 @@ TeddiursaEvosAttacks:
 	db 1, AQUA_JET
 	db 1, LEER
 	db 8, LICK
-	db 15, FURY_SWIPES
 	db 22, FAINT_ATTACK
 	db 29, REST
 	db 36, SLASH
@@ -2673,9 +2656,7 @@ UrsaringEvosAttacks:
 	db 1, AQUA_JET
 	db 1, LEER
 	db 1, LICK
-	db 1, FURY_SWIPES
 	db 8, LICK
-	db 15, FURY_SWIPES
 	db 22, FAINT_ATTACK
 	db 29, REST
 	db 39, SLASH

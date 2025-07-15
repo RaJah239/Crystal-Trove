@@ -45,7 +45,6 @@ PidgeyEggMoves:
 RattataEggMoves:
 	db SCREECH
 	db FLAME_CHARGE
-	db FURY_SWIPES
 	db BITE
 	db COUNTER
 	db REVERSAL
@@ -403,7 +402,6 @@ ChikoritaEggMoves:
 	db -1 ; end
 
 CyndaquilEggMoves:
-	db FURY_SWIPES
 	db QUICK_ATTACK
 	db REVERSAL
 	db THRASH
