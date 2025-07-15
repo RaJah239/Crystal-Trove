@@ -191,9 +191,7 @@ KakunaEvosAttacks:
 
 BeedrillEvosAttacks:
 	db 0 ; no more evolutions
-	db 1, FURY_ATTACK
-	db 10, FURY_ATTACK
-	db 15, FOCUS_ENERGY
+	db 1, FOCUS_ENERGY
 	db 20, TWINEEDLE
 	db 30, PURSUIT
 	db 35, PIN_MISSILE
@@ -265,8 +263,7 @@ SpearowEvosAttacks:
 	db 1, PECK
 	db 1, GROWL
 	db 7, LEER
-	db 13, FURY_ATTACK
-	db 25, PURSUIT
+	db 13, PURSUIT
 	db 37, DRILL_PECK
 	db 43, AGILITY
 	db 0 ; no more level-up moves
@@ -276,10 +273,8 @@ FearowEvosAttacks:
 	db 1, PECK
 	db 1, GROWL
 	db 1, LEER
-	db 1, FURY_ATTACK
-	db 7, LEER
-	db 13, FURY_ATTACK
-	db 26, PURSUIT
+	db 1, LEER
+	db 13, PURSUIT
 	db 40, DRILL_PECK
 	db 47, AGILITY
 	db 0 ; no more level-up moves
@@ -397,7 +392,6 @@ NidoranMEvosAttacks:
 	db 12, DOUBLE_KICK
 	db 17, POISON_STING
 	db 23, FOCUS_ENERGY
-	db 30, FURY_ATTACK
 	db 0 ; no more level-up moves
 
 NidorinoEvosAttacks:
@@ -409,7 +403,6 @@ NidorinoEvosAttacks:
 	db 12, DOUBLE_KICK
 	db 19, POISON_STING
 	db 27, FOCUS_ENERGY
-	db 36, FURY_ATTACK
 	db 0 ; no more level-up moves
 
 NidokingEvosAttacks:
@@ -961,8 +954,7 @@ RapidashEvosAttacks:
 	db 13, EMBER
 	db 19, STOMP
 	db 26, FIRE_SPIN
-	db 40, FURY_ATTACK
-	db 47, AGILITY
+	db 40, AGILITY
 	db 61, FIRE_BLAST
 	db 0 ; no more level-up moves
 
@@ -1026,8 +1018,7 @@ FarfetchDEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, PECK
 	db 13, LEER
-	db 19, FURY_ATTACK
-	db 25, SWORDS_DANCE
+	db 19, SWORDS_DANCE
 	db 31, AGILITY
 	db 37, SLASH
 	db 44, FALSE_SWIPE
@@ -1039,8 +1030,7 @@ DoduoEvosAttacks:
 	db 1, PECK
 	db 1, GROWL
 	db 9, PURSUIT
-	db 13, FURY_ATTACK
-	db 21, TRI_ATTACK
+	db 13, TRI_ATTACK
 	db 33, DRILL_PECK
 	db 37, AGILITY
 	db 0 ; no more level-up moves
@@ -1048,14 +1038,6 @@ DoduoEvosAttacks:
 DodrioEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, PECK
-	db 1, GROWL
-	db 1, PURSUIT
-	db 1, FURY_ATTACK
-	db 9, PURSUIT
-	db 13, FURY_ATTACK
-	db 21, TRI_ATTACK
-	db 38, DRILL_PECK
-	db 47, AGILITY
 	db 0 ; no more level-up moves
 
 SeelEvosAttacks:
@@ -1363,24 +1345,12 @@ WeezingEvosAttacks:
 RhyhornEvosAttacks:
 	db EVOLVE_LEVEL, 42, RHYDON
 	db 0 ; no more evolutions
-	db 1, HORN_ATTACK
-	db 1, DRAIN_PUNCH
-	db 13, STOMP
-	db 19, FURY_ATTACK
-	db 31, SCARY_FACE
-	db 55, EARTHQUAKE
+	db 1, EARTHQUAKE
 	db 0 ; no more level-up moves
 
 RhydonEvosAttacks:
 	db 0 ; no more evolutions
-	db 1, HORN_ATTACK
-	db 1, DRAIN_PUNCH
-	db 1, STOMP
-	db 1, FURY_ATTACK
-	db 13, STOMP
-	db 19, FURY_ATTACK
-	db 31, SCARY_FACE
-	db 65, EARTHQUAKE
+	db 1, EARTHQUAKE
 	db 0 ; no more level-up moves
 
 ChanseyEvosAttacks:
@@ -1449,27 +1419,12 @@ SeadraEvosAttacks:
 GoldeenEvosAttacks:
 	db EVOLVE_LEVEL, 33, SEAKING
 	db 0 ; no more evolutions
-	db 1, PECK
-	db 1, DRAIN_PUNCH
-	db 10, SUPERSONIC
-	db 15, HORN_ATTACK
-	db 24, FLAIL
-	db 29, FURY_ATTACK
-	db 38, WATERFALL
-	db 52, AGILITY
+	db 1, WATERFALL
 	db 0 ; no more level-up moves
 
 SeakingEvosAttacks:
 	db 0 ; no more evolutions
-	db 1, PECK
-	db 1, DRAIN_PUNCH
-	db 1, DRAIN_PUNCH
-	db 10, SUPERSONIC
-	db 15, HORN_ATTACK
-	db 24, FLAIL
-	db 29, FURY_ATTACK
-	db 41, WATERFALL
-	db 61, AGILITY
+	db 1, WATERFALL
 	db 0 ; no more level-up moves
 
 StaryuEvosAttacks:
@@ -2615,14 +2570,7 @@ ShuckleEvosAttacks:
 
 HeracrossEvosAttacks:
 	db 0 ; no more evolutions
-	db 1, AQUA_JET
-	db 1, LEER
-	db 6, HORN_ATTACK
-	db 12, ENDURE
-	db 19, FURY_ATTACK
-	db 27, COUNTER
-	db 44, REVERSAL
-	db 54, MEGAHORN
+	db 1, MEGAHORN
 	db 0 ; no more level-up moves
 
 SneaselEvosAttacks:
@@ -2704,15 +2652,7 @@ SwinubEvosAttacks:
 
 PiloswineEvosAttacks:
 	db 0 ; no more evolutions
-	db 1, HORN_ATTACK
-	db 1, POWDER_SNOW
-	db 1, ENDURE
-	db 10, POWDER_SNOW
-	db 19, ENDURE
-	db 33, FURY_ATTACK
-	db 42, MIST
-	db 56, BLIZZARD
-	db 70, AMNESIA
+	db 1, BLIZZARD
 	db 0 ; no more level-up moves
 
 CorsolaEvosAttacks:
@@ -2770,11 +2710,6 @@ MantineEvosAttacks:
 SkarmoryEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, LEER
-	db 1, PECK
-	db 19, SWIFT
-	db 25, AGILITY
-	db 37, FURY_ATTACK
-	db 49, STEEL_WING
 	db 0 ; no more level-up moves
 
 HoundourEvosAttacks:
@@ -2829,14 +2764,7 @@ PhanpyEvosAttacks:
 
 DonphanEvosAttacks:
 	db 0 ; no more evolutions
-	db 1, HORN_ATTACK
-	db 1, GROWL
-	db 9, DEFENSE_CURL
-	db 17, FLAIL
-	db 25, FURY_ATTACK
-	db 33, ROLLOUT
-	db 41, RAPID_SPIN
-	db 49, EARTHQUAKE
+	db 1, EARTHQUAKE
 	db 0 ; no more level-up moves
 
 Porygon2EvosAttacks:
