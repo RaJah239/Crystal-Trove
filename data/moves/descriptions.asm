@@ -110,7 +110,7 @@ MoveDescriptions::
 	dw MinimizeDescription
 	dw SmokescreenDescription
 	dw ConfuseRayDescription
-	dw WithdrawDescription
+	dw WildChargeDescription
 	dw DefenseCurlDescription
 	dw BarrierDescription
 	dw LightScreenDescription
@@ -374,6 +374,7 @@ WrapDescription:
 	db   "Traps the foe for"
 	line "2-5 turns.@"
 
+WildChargeDescription:
 SkyAttackDescription:
 OutrageDescription:
 	db "An attack with"
@@ -668,10 +669,6 @@ SmokescreenDescription:
 ConfuseRayDescription:
 	db   "A move that causes"
 	line "confusion.@"
-
-WithdrawDescription:
-	db   "Heightens the"
-	line "user's DEFENSE.@"
 
 DefenseCurlDescription:
 	db   "Heightens the"
