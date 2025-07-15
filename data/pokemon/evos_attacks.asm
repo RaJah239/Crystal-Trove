@@ -608,8 +608,6 @@ DiglettEvosAttacks:
 
 DugtrioEvosAttacks:
 	db 0 ; no more evolutions
-	db 1, TRI_ATTACK
-	db 1, AQUA_JET
 	db 1, GROWL
 	db 17, DIG
 	db 37, SLASH
@@ -1006,8 +1004,7 @@ MagnetonEvosAttacks:
 	db 1, SUPERSONIC
 	db 21, THUNDER_WAVE
 	db 27, LOCK_ON
-	db 35, TRI_ATTACK
-	db 43, SCREECH
+	db 35, SCREECH
 	db 53, ZAP_CANNON
 	db 0 ; no more level-up moves
 
@@ -1027,8 +1024,7 @@ DoduoEvosAttacks:
 	db 1, PECK
 	db 1, GROWL
 	db 9, PURSUIT
-	db 13, TRI_ATTACK
-	db 33, DRILL_PECK
+	db 13, DRILL_PECK
 	db 37, AGILITY
 	db 0 ; no more level-up moves
 
@@ -1627,8 +1623,7 @@ PorygonEvosAttacks:
 	db 12, PSYBEAM
 	db 20, RECOVER
 	db 32, LOCK_ON
-	db 36, TRI_ATTACK
-	db 44, ZAP_CANNON
+	db 36, ZAP_CANNON
 	db 0 ; no more level-up moves
 
 OmanyteEvosAttacks:
@@ -2761,8 +2756,7 @@ Porygon2EvosAttacks:
 	db 20, RECOVER
 	db 24, DEFENSE_CURL
 	db 32, LOCK_ON
-	db 36, TRI_ATTACK
-	db 44, ZAP_CANNON
+	db 36, ZAP_CANNON
 	db 0 ; no more level-up moves
 
 StantlerEvosAttacks:
