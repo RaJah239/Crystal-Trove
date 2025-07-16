@@ -753,7 +753,45 @@ AI_Smart_EffectHandlers:
 	dbw EFFECT_FACADE,           AI_Smart_Facade
 	dbw EFFECT_HEX,              AI_Smart_Hex
 	dbw EFFECT_HURRICANE,        AI_Smart_Hurricane
+	dbw EFFECT_BULK_UP,          AI_Smart_BulkUp
 	db -1 ; end
+
+AI_Smart_BulkUp:
+	call IsAttackMaxed
+	jr nc, .continue
+	call IsDefenseMaxed
+	jp c, StandardDiscourage
+
+.continue
+; if player is asleep or frozen and is physical we should boost
+	ld a, [wBattleMonStatus]
+	and SLP_MASK
+	jr z, .noStatus
+	call IsPlayerPhysicalOrSpecial
+	jp c, StandardEncourage
+.noStatus
+
+; don't use if we are at risk of being KOd, just attack them
+    call ShouldAIBoost
+    jp nc, StandardDiscourage
+
+; encourage to +2 - strong encourage if player is physical
+    ld a, [wEnemyAtkLevel]
+    cp BASE_STAT_LEVEL + 2
+    jp nc, .atPlus2
+    call IsPlayerPhysicalOrSpecial
+    jr nc, .special
+    jp StrongEncourage
+.special
+    jp StandardEncourage
+
+.atPlus2
+; discourage after boost if afflicted with toxic
+    call IsAIToxified
+    jp c, StandardDiscourage
+
+; encourage if we have no reason not to
+    jp StandardEncourage
 
 AI_Smart_Facade:
 ; Greatly encourage this move if the player has a status condition.
