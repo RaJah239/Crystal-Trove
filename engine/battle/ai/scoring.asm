@@ -734,8 +734,8 @@ AI_Smart_EffectHandlers:
 	dbw EFFECT_ATTRACT,          AI_Smart_Attract
 	dbw EFFECT_SAFEGUARD,        AI_Smart_Safeguard
 	dbw EFFECT_BATON_PASS,       AI_Smart_BatonPass ; updated
-	dbw EFFECT_PURSUIT,          AI_Smart_Pursuit
-	dbw EFFECT_RAPID_SPIN,       AI_Smart_RapidSpin
+	dbw EFFECT_PURSUIT,          AI_Smart_Pursuit ; updated
+	dbw EFFECT_RAPID_SPIN,       AI_Smart_RapidSpin ; updated
 	dbw EFFECT_WEATHER_HEAL,     AI_Smart_Heal
 	dbw EFFECT_HIDDEN_POWER,     AI_Smart_HiddenPower
 	dbw EFFECT_RAIN_DANCE,       AI_Smart_RainDance
@@ -2864,38 +2864,29 @@ AI_Smart_Pursuit:
 
 	call AICheckPlayerQuarterHP
 	jr nc, .encourage
-	call AI_80_20
+	call AI_50_50
 	ret c
 	inc [hl]
 	ret
 
 .encourage
-	call AI_50_50
+	call AI_80_20
 	ret c
 	dec [hl]
 	dec [hl]
 	ret
 
 AI_Smart_RapidSpin:
-; 80% chance to greatly encourage this move if the enemy is
-; trapped (Bind effect), seeded, or scattered with spikes.
-
-	ld a, [wEnemyWrapCount]
-	and a
-	jr nz, .encourage
-
-	ld a, [wEnemySubStatus4]
-	bit SUBSTATUS_LEECH_SEED, a
-	jr nz, .encourage
-
 	ld a, [wEnemyScreens]
 	bit SCREENS_SPIKES, a
+	jr nz, .encourage
+	bit SCREENS_STEALTH_ROCK, a
+	jr nz, .encourage
+	bit SCREENS_TOXIC_SPIKES, a
+	jr nz, .encourage
+	bit SCREENS_STICKY_WEB, a
 	ret z
-
 .encourage
-	call AI_80_20
-	ret c
-
 	dec [hl]
 	dec [hl]
 	ret
