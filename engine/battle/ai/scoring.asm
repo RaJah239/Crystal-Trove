@@ -736,9 +736,9 @@ AI_Smart_EffectHandlers:
 	dbw EFFECT_BATON_PASS,       AI_Smart_BatonPass ; updated
 	dbw EFFECT_PURSUIT,          AI_Smart_Pursuit ; updated
 	dbw EFFECT_RAPID_SPIN,       AI_Smart_RapidSpin ; updated
-	dbw EFFECT_WEATHER_HEAL,     AI_Smart_Heal
+	dbw EFFECT_WEATHER_HEAL,     AI_Smart_Heal ; updated
 	dbw EFFECT_HIDDEN_POWER,     AI_Smart_HiddenPower
-	dbw EFFECT_RAIN_DANCE,       AI_Smart_RainDance
+	dbw EFFECT_RAIN_DANCE,       AI_Smart_RainDance ; updated
 	dbw EFFECT_SUNNY_DAY,        AI_Smart_SunnyDay
 	dbw EFFECT_BELLY_DRUM,       AI_Smart_BellyDrum
 	dbw EFFECT_MIRROR_COAT,      AI_Smart_MirrorCoat
@@ -2916,23 +2916,58 @@ AI_Smart_HiddenPower:
 	ret
 
 AI_Smart_RainDance:
+; don't use if already raining
+	ld a, [wBattleWeather]
+	cp WEATHER_RAIN
+	jr z, .discourage
+
+; don't boost if choice locked
+    call DoesEnemyHaveChoiceItem
+    jp c, .discourage
+
+; even if we benefit from weather, don't use if we will be koed
+    call DoesEnemyHaveIntactFocusSashOrSturdy
+    jr c, .skipKOCheck
+    call CanPlayerKO
+    jr c, .discourage
+.skipKOCheck
+
+; encourage the move if AI is a swift swim mon
+    ld a, [wEnemyMonSpecies]
+    cp KINGDRA
+    jr z, .encourage
+    cp POLIWRATH
+    jr z, .encourage
+; discourage if we will be koed
+    call ShouldAIBoost
+    jr nc, .discourage
 ; Greatly discourage this move if it would favour the player type-wise.
 ; Particularly, if the player is a Water-type.
 	ld a, [wBattleMonType1]
 	cp WATER
-	jr z, AIBadWeatherType
+	jp z, AIBadWeatherType
 	cp FIRE
-	jr z, AIGoodWeatherType
+	jp z, AIGoodWeatherType
 
 	ld a, [wBattleMonType2]
 	cp WATER
-	jr z, AIBadWeatherType
+	jp z, AIBadWeatherType
 	cp FIRE
-	jr z, AIGoodWeatherType
+	jp z, AIGoodWeatherType
 
 	push hl
 	ld hl, RainDanceMoves
 	jr AI_Smart_WeatherMove
+.encourage
+    dec [hl]
+    dec [hl]
+    dec [hl]
+    ret
+.discourage
+    inc [hl]
+    inc [hl]
+    inc [hl]
+    ret
 
 INCLUDE "data/battle/ai/rain_dance_moves.asm"
 
