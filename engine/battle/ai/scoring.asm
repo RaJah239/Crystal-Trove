@@ -756,7 +756,48 @@ AI_Smart_EffectHandlers:
 	dbw EFFECT_HURRICANE,        AI_Smart_Hurricane
 	dbw EFFECT_BULK_UP,          AI_Smart_BulkUp
 	dbw EFFECT_SP_ATK_UP,        AI_Smart_Growth ; added
+	dbw EFFECT_SP_ATK_UP_2,      AI_Smart_NastyPlot ; added
 	db -1 ; end
+
+AI_Smart_NastyPlot:
+	call IsSpecialAttackMaxed
+	jp c, StandardDiscourage
+
+; Deoxys should not use Nasty Plot against dark types
+;	ld a, [wEnemyMonSpecies]
+;	cp DEOXYS
+;	jr nz, .notDeoxys
+;	ld a, [wBattleMonType1]
+;	cp DARK
+;	jp z, StandardDiscourage
+;	ld a, [wBattleMonType2]
+;	cp DARK
+;	jp z, StandardDiscourage
+;
+;.notDeoxys
+; if we are boosted >=+2 and can 2hko, just attack
+	ld a, [wEnemySAtkLevel]
+	cp BASE_STAT_LEVEL + 2
+	jr c, .notBoosted
+	call CanAI2HKO
+	jp c, StandardDiscourage
+.notBoosted
+
+; don't use if we are at risk of being KOd, just attack them
+    call ShouldAIBoost
+    jp nc, StandardDiscourage
+
+; encourage to +2
+    ld a, [wEnemySAtkLevel]
+    cp BASE_STAT_LEVEL + 2
+    jp c, StandardEncourage
+
+; discourage after boost if afflicted with toxic
+    call IsAIToxified
+    jp c, StandardDiscourage
+
+; encourage if we have no reason not to
+    jp StandardEncourage
 
 AI_Smart_Growth:
 	call IsSpecialAttackMaxed
