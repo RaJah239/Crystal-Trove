@@ -750,6 +750,7 @@ AI_Smart_EffectHandlers:
 	dbw EFFECT_FLY,              AI_Smart_Fly ; updated
 	dbw EFFECT_ATTACK_UP_2,      AI_Smart_SwordsDance ; added
 	dbw EFFECT_DEFENSE_UP_2,     AI_Smart_Barrier ; added
+	dbw EFFECT_SPEED_UP_2,       AI_Smart_Agility ; to add
 	dbw EFFECT_HAIL,             AI_Smart_Hail
 	dbw EFFECT_FACADE,           AI_Smart_Facade
 	dbw EFFECT_HEX,              AI_Smart_Hex
@@ -758,6 +759,23 @@ AI_Smart_EffectHandlers:
 	dbw EFFECT_SP_ATK_UP,        AI_Smart_Growth ; added
 	dbw EFFECT_SP_ATK_UP_2,      AI_Smart_NastyPlot ; added
 	db -1 ; end
+
+AI_Smart_Agility:
+; discourage if we are faster
+    call DoesAIOutSpeedPlayer
+    jp c, StandardDiscourage
+
+; discourage if enemy is paralyzed
+    ld a, [wEnemyMonStatus]
+	and 1 << PAR
+	jp nz, StandardDiscourage
+
+; discourage if we will be KOd
+    call CanPlayerKO
+    jp c, StandardDiscourage
+
+; otherwise use
+    jp StrongEncourage
 
 AI_Smart_NastyPlot:
 	call IsSpecialAttackMaxed
