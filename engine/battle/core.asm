@@ -1,5 +1,16 @@
 ; Core components of the battle engine.
 
+Core_RegeneratorPokemon:
+    db SLOWPOKE
+    db SLOWKING
+    db TENTACOOL
+    db TENTACRUEL
+    db WOBBUFFET
+    db HO_OH
+    db VENUSAUR
+    db MEW
+    db -1
+
 DoBattle:
 	xor a
 	ld [wBattleParticipantsNotFainted], a
@@ -297,6 +308,7 @@ HandleBetweenTurnEffects:
 
 .NoMoreFaintingConditions:
 	farcall Core2_NewTurnEndEffects
+	call HandleRegenerator
 	call HandleHealingItems
 	call UpdateBattleMonInParty
 	call LoadTilemapToTempTilemap
@@ -2662,21 +2674,22 @@ PlayerPartyMonEntrance:
 	call SpikesDamage
 	jp SwitchInEffects
 
+; dummied out to save space
 CheckMobileBattleError:
-	ld a, [wLinkMode]
-	cp LINK_MOBILE
-	jr nz, .not_mobile ; It's not a mobile battle
-
-	ld a, [wcd2b]
-	and a
-	jr z, .not_mobile
-
+;	ld a, [wLinkMode]
+;	cp LINK_MOBILE
+;	jr nz, .not_mobile ; It's not a mobile battle
+;
+;	ld a, [wcd2b]
+;	and a
+;	jr z, .not_mobile
+;
 ; We have a mobile battle and something else happened
-	scf
-	ret
-
-.not_mobile
-	xor a
+;	scf
+;	ret
+;
+;.not_mobile
+;	xor a
 	ret
 
 IsMobileBattle:
@@ -2736,10 +2749,11 @@ ForcePickPartyMonInBattle:
 ; Can't back out.
 
 .pick
-	call PickPartyMonInBattle
-	ret nc
-	call CheckMobileBattleError
-	ret c
+; dummied out to save space
+;	call PickPartyMonInBattle
+;	ret nc
+;	call CheckMobileBattleError
+;	ret c
 
 	ld de, SFX_WRONG
 	call PlaySFX
@@ -2854,19 +2868,20 @@ LostBattle:
 	scf
 	ret
 
+; dummied out to save space
 .mobile
 ; Remove the enemy from the screen.
-	hlcoord 0, 0
-	lb bc, 8, 21
-	call ClearBox
-	call BattleWinSlideInEnemyTrainerFrontpic
-
-	ld c, 40
-	call DelayFrames
-
-	ld c, $3 ; lost
-	farcall Mobile_PrintOpponentBattleMessage
-	scf
+;	hlcoord 0, 0
+;	lb bc, 8, 21
+;	call ClearBox
+;	call BattleWinSlideInEnemyTrainerFrontpic
+;
+;	ld c, 40
+;	call DelayFrames
+;
+;	ld c, $3 ; lost
+;	farcall Mobile_PrintOpponentBattleMessage
+;	scf
 	ret
 
 EnemyMonFaintedAnimation:
@@ -4193,6 +4208,52 @@ RecallPlayerMon:
 	pop af
 	ldh [hBattleTurn], a
 	ret
+
+HandleRegenerator:
+	ldh a, [hSerialConnectionStatus]
+	cp USING_EXTERNAL_CLOCK
+	jr z, .DoEnemyFirst
+	call SetPlayerTurn
+    ld a, [wBattleMonSpecies]
+	call .do_it
+	call SetEnemyTurn
+	ld a, [wEnemyMonSpecies]
+	jp .do_it
+.DoEnemyFirst:
+	call SetEnemyTurn
+	ld a, [wEnemyMonSpecies]
+	call .do_it
+	call SetPlayerTurn
+	ld a, [wBattleMonSpecies]
+.do_it
+	ld hl, Core_RegeneratorPokemon
+	ld de, 1
+	call IsInArray
+	ret nc
+
+    ld hl, wBattleMonHP
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_hp
+	ld hl, wEnemyMonHP
+.got_hp
+; Don't restore if we're already at max HP
+	ld a, [hli]
+	ld b, a
+	ld a, [hli]
+	ld c, a
+	ld a, [hli]
+	cp b
+	jr nz, .restore
+	ld a, [hl]
+	cp c
+	ret z
+.restore
+	call GetSixteenthMaxHP
+	call SwitchTurnCore
+	call RestoreHP
+	ld hl, BattleText_TargetRegenerates
+	jp StdBattleTextbox
 
 HandleHealingItems:
 	ldh a, [hSerialConnectionStatus]

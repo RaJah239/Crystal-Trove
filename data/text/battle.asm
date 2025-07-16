@@ -12,6 +12,11 @@ WaterAbsorbText:
 	cont "Water moves!"
 	prompt
 
+BattleText_TargetRegenerates:
+	text "<TARGET>"
+	line "regenerates."
+	prompt
+
 FlameOrbText:
     text "Flame Orb"
     line "ignites!"
