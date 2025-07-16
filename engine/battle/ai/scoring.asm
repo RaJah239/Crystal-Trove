@@ -756,13 +756,12 @@ AI_Smart_EffectHandlers:
     dbw EFFECT_TRICK_ROOM,       AI_Smart_TrickRoom ; added
     dbw EFFECT_DEFOG,            AI_Smart_Defog ; added
 	dbw EFFECT_SNORE,            AI_Smart_Snore ; updated
-
-	dbw EFFECT_THUNDER,          AI_Smart_Thunder
-	dbw EFFECT_GUST,             AI_Smart_Gust
-	dbw EFFECT_HURRICANE,        AI_Smart_Hurricane
+	dbw EFFECT_THUNDER,          AI_Smart_Thunder ; updated
+	dbw EFFECT_GUST,             AI_Smart_Gust ; updated
+	dbw EFFECT_HURRICANE,        AI_Smart_Hurricane ; updated
+	dbw EFFECT_THIEF,            AI_Smart_Thief ; updated
 
 	dbw EFFECT_PAIN_SPLIT,       AI_Smart_PainSplit
-	dbw EFFECT_STOMP,            AI_Smart_Stomp
 	dbw EFFECT_HIDDEN_POWER,     AI_Smart_HiddenPower
 	dbw EFFECT_SWAGGER,          AI_Smart_Swagger
 	dbw EFFECT_ATTRACT,          AI_Smart_Attract
@@ -770,7 +769,6 @@ AI_Smart_EffectHandlers:
 	dbw EFFECT_ENDURE,           AI_Smart_Endure
 	dbw EFFECT_FORESIGHT,        AI_Smart_Foresight
 	dbw EFFECT_NIGHTMARE,        AI_Smart_Nightmare
-	dbw EFFECT_THIEF,            AI_Smart_Thief
 	dbw EFFECT_LEECH_HIT,        AI_Smart_LeechHit
 	dbw EFFECT_SUPER_FANG,       AI_Smart_SuperFang
 	dbw EFFECT_TRAP_TARGET,      AI_Smart_TrapTarget
@@ -780,6 +778,7 @@ AI_Smart_EffectHandlers:
 	dbw EFFECT_FACADE,           AI_Smart_Facade
 	dbw EFFECT_HEX,              AI_Smart_Hex
 
+	dbw EFFECT_STOMP,            AI_Smart_Stomp
 	db -1 ; end
 
 AI_Smart_StealthRock:
@@ -2833,11 +2832,16 @@ endr
 	ret
 
 AI_Smart_Thief:
-; Don't use Thief unless it's the only move available.
+; Encourage this move if the enemy has no held item, and it's the player mon's first turn.
+	ld a, [wEnemyMonItem]
+	and a
+	ret nz
 
-	ld a, [hl]
-	add $1e
-	ld [hl], a
+	ld a, [wPlayerTurnsTaken]
+	and a
+	ret nz
+
+	dec [hl]
 	ret
 
 AI_Smart_Counter:
@@ -3424,7 +3428,6 @@ AI_Smart_Attract:
 
 AI_Smart_Safeguard:
 ; 80% chance to discourage this move if player's HP is below 50%.
-
 	call AICheckPlayerHalfHP
 	ret c
 	call AI_80_20
