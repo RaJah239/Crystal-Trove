@@ -750,7 +750,8 @@ AI_Smart_EffectHandlers:
 	dbw EFFECT_FLY,              AI_Smart_Fly ; updated
 	dbw EFFECT_ATTACK_UP_2,      AI_Smart_SwordsDance ; added
 	dbw EFFECT_DEFENSE_UP_2,     AI_Smart_Barrier ; added
-	dbw EFFECT_SPEED_UP_2,       AI_Smart_Agility ; to add
+	dbw EFFECT_SPEED_UP_2,       AI_Smart_Agility ; to added
+	dbw EFFECT_CALM_MIND,        AI_Smart_CalmMind ; added
 	dbw EFFECT_HAIL,             AI_Smart_Hail
 	dbw EFFECT_FACADE,           AI_Smart_Facade
 	dbw EFFECT_HEX,              AI_Smart_Hex
@@ -759,6 +760,37 @@ AI_Smart_EffectHandlers:
 	dbw EFFECT_SP_ATK_UP,        AI_Smart_Growth ; added
 	dbw EFFECT_SP_ATK_UP_2,      AI_Smart_NastyPlot ; added
 	db -1 ; end
+
+AI_Smart_CalmMind:
+	call IsSpecialAttackMaxed
+	jr nc, .continue
+	call IsSpecialDefenseMaxed
+	jp c, StandardDiscourage
+
+.continue
+; if player is asleep or frozen and is special we should boost
+	ld a, [wBattleMonStatus]
+	and 1 << FRZ | SLP
+	jr z, .noStatus
+	call IsPlayerPhysicalOrSpecial
+	jp nc, StandardEncourage
+.noStatus
+
+; don't use if we are at risk of being KOd, just attack them
+    call ShouldAIBoost
+    jp nc, StandardDiscourage
+
+; encourage to +2
+    ld a, [wEnemySAtkLevel]
+    cp BASE_STAT_LEVEL + 2
+    jp c, StandardEncourage
+
+; discourage after boost if afflicted with toxic
+    call IsAIToxified
+    jp c, StandardDiscourage
+
+; encourage if we have no reason not to
+    jp StandardEncourage
 
 AI_Smart_Agility:
 ; discourage if we are faster
