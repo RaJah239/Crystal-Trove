@@ -733,7 +733,7 @@ AI_Smart_EffectHandlers:
 	dbw EFFECT_SWAGGER,          AI_Smart_Swagger
 	dbw EFFECT_ATTRACT,          AI_Smart_Attract
 	dbw EFFECT_SAFEGUARD,        AI_Smart_Safeguard
-	dbw EFFECT_BATON_PASS,       AI_Smart_BatonPass
+	dbw EFFECT_BATON_PASS,       AI_Smart_BatonPass ; updated
 	dbw EFFECT_PURSUIT,          AI_Smart_Pursuit
 	dbw EFFECT_RAPID_SPIN,       AI_Smart_RapidSpin
 	dbw EFFECT_WEATHER_HEAL,     AI_Smart_Heal
@@ -2829,15 +2829,34 @@ AI_Smart_Earthquake:
 AI_Smart_BatonPass:
 ; Discourage this move if the player hasn't shown super-effective moves against the enemy.
 ; Consider player's type(s) if its moves are unknown.
+; DevNote - WTF, why would you do this, baton pass is not to escape an enemy!!
 
+; discourage if we don't have any other mons to pass to
 	push hl
-	callfar CheckPlayerMoveTypeMatchups
-	ld a, [wEnemyAISwitchScore]
-	cp BASE_AI_SWITCH_SCORE
+	farcall FindAliveEnemyMons
 	pop hl
-	ret c
-	inc [hl]
+	jr c, .discourage
+
+; encourage if we have good stat boosts to pass
+    ld a, [wEnemyAtkLevel]
+	cp BASE_STAT_LEVEL + 2
+	jr nc, .encourage
+    ld a, [wEnemySAtkLevel]
+	cp BASE_STAT_LEVEL + 2
+	jr nc, .encourage
+    ld a, [wEnemySpdLevel]
+	cp BASE_STAT_LEVEL + 2
+	jr nc, .encourage
+	jr .discourage
+.encourage
+	dec [hl]
+	dec [hl]
+	dec [hl]
 	ret
+.discourage
+    inc [hl]
+    inc [hl]
+    ret
 
 AI_Smart_Pursuit:
 ; 50% chance to greatly encourage this move if player's HP is below 25%.
