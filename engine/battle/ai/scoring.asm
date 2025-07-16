@@ -706,7 +706,7 @@ AI_Smart_EffectHandlers:
 	dbw EFFECT_PARALYZE,         AI_Smart_Paralyze ; updated
 	dbw EFFECT_SPEED_DOWN_HIT,   AI_Smart_SpeedDownHit ; updated
 	dbw EFFECT_SPEED_UP_HIT,     AI_Smart_SpeedUpHit ; added
-	dbw EFFECT_SUBSTITUTE,       AI_Smart_Substitute
+	dbw EFFECT_SUBSTITUTE,       AI_Smart_Substitute ; updated
 	dbw EFFECT_HYPER_BEAM,       AI_Smart_HyperBeam
 	dbw EFFECT_RAGE,             AI_Smart_Rage
 	dbw EFFECT_MIMIC,            AI_Smart_Mimic
@@ -1796,11 +1796,88 @@ AI_Smart_SpeedDownHit:
 	jp StandardEncourage
 
 AI_Smart_Substitute:
-; Dismiss this move if enemy's HP is below 50%.
+; don't boost if choice locked
+    call DoesEnemyHaveChoiceItem
+    jp c, .discourage
 
+; Prankster users
+    ld a, [wEnemyMonSpecies]
+;	cp COTTONEE
+;	jr z, .skipSpeedCheck
+;	cp WHIMSICOTT
+;	jr z, .skipSpeedCheck
+;	cp KLEFKI
+;	jr z, .skipSpeedCheck
+;	cp RIOLU
+;	jr z, .skipSpeedCheck
+    cp MURKROW
+    jr z, .skipSpeedCheck
+
+; discourage if Player will move first
+    call DoesAIOutSpeedPlayer
+    jr nc, .discourage
+
+.skipSpeedCheck
+; if player has status moves then don't consider player damage
+	ld b, EFFECT_PARALYZE
+	call PlayerHasMoveEffect
+	jr c, .hasStatus
+	ld b, EFFECT_SLEEP
+	call PlayerHasMoveEffect
+	jr c, .hasStatus
+	ld b, EFFECT_TOXIC
+	call PlayerHasMoveEffect
+	jr c, .hasStatus
+
+; if player can 3HKO from max hp the discourage sub
+    call CanPlayer3HKOMaxHP
+    jr c, .discourage
+    jr .pastStatus
+
+.hasStatus
+; extra encourage at full hp
+    call AICheckEnemyMaxHP
+    jr nc, .pastStatus
+    dec [hl]
+    dec [hl]
+    dec [hl]
+    dec [hl]
+
+.pastStatus
+; encourage at full hp
+    call AICheckEnemyMaxHP
+    jr c, .encourage
+
+; if above 1/4 hp encourage if player is asleep/frozen or user has boosted evasion
+    call AICheckEnemyQuarterHP
+    jr nc, .discourage
+	ld a, [wBattleMonStatus]
+	and SLP_MASK
+	jr nz, .encourage
+	ld a, [wEnemyEvaLevel]
+    cp BASE_STAT_LEVEL + 2
+    jp nc, .encourage
+
+; otherwise 50% to encourage if above half hp, discourage otherwise
 	call AICheckEnemyHalfHP
-	ret c
-	jp AIDiscourageMove
+	jr nc, .discourage
+	call AI_50_50
+	jr c, .discourage
+.encourage
+	dec [hl]
+	dec [hl]
+	dec [hl]
+	dec [hl]
+	dec [hl]
+	dec [hl]
+	dec [hl]
+	ret
+.discourage
+    inc [hl]
+    inc [hl]
+    inc [hl]
+    inc [hl]
+    ret
 
 AI_Smart_HyperBeam:
 	call AICheckEnemyHalfHP
