@@ -700,7 +700,7 @@ AI_Smart_EffectHandlers:
 	dbw EFFECT_OHKO,             AI_Smart_Ohko ; updated
 	dbw EFFECT_SUPER_FANG,       AI_Smart_SuperFang
 	dbw EFFECT_TRAP_TARGET,      AI_Smart_TrapTarget
-	dbw EFFECT_CONFUSE,          AI_Smart_Confuse
+	dbw EFFECT_CONFUSE,          AI_Smart_Confuse ; updated
 	dbw EFFECT_SP_DEF_UP_2,      AI_Smart_SpDefenseUp2
 	dbw EFFECT_REFLECT,          AI_Smart_Reflect ; updated
 	dbw EFFECT_PARALYZE,         AI_Smart_Paralyze
@@ -1583,20 +1583,44 @@ AI_Smart_TrapTarget:
 	ret
 
 AI_Smart_Confuse:
-; 90% chance to discourage this move if player's HP is between 25% and 50%.
-	call AICheckPlayerHalfHP
-	ret c
-	call Random
-	cp 10 percent
-	jr c, .skipdiscourage
-	inc [hl]
+; never use if player has substitute
+    ld a, [wPlayerSubStatus4]
+	bit SUBSTATUS_SUBSTITUTE, a
+	jr nz, .discourage
 
-.skipdiscourage
-; Discourage again if player's HP is below 25%.
-	call AICheckPlayerQuarterHP
-	ret c
-	inc [hl]
-	ret
+; never use if player has safeguard
+	ld a, [wPlayerScreens]
+	bit SCREENS_SAFEGUARD, a
+	jr nz, .discourage
+
+; don't use against Arceus since it is immune to status
+    ld a, [wBattleMonSpecies]
+;	cp ARCEUS
+;	jr z, .discourage
+;	cp SYLVEON
+;	jr z, .discourage
+    cp DUNSPARCE
+    jp z, .discourage
+    ret
+
+.continue
+; discourage if already confused
+	ld a, [wPlayerSubStatus3]
+	bit SUBSTATUS_CONFUSED, a
+	jr nz, .discourage
+
+; encourage if enemy is paralyzed
+    ld a, [wBattleMonStatus]
+	and 1 << PAR
+	ret z
+
+	dec [hl]
+	dec [hl]
+    ret
+.discourage
+    inc [hl]
+    inc [hl]
+    ret
 
 AI_Smart_SpDefenseUp2:
 ; Discourage this move if enemy's HP is lower than 50%.
