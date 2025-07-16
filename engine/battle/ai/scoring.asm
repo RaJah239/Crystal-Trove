@@ -750,19 +750,342 @@ AI_Smart_EffectHandlers:
 	dbw EFFECT_FLY,              AI_Smart_Fly ; updated
 	dbw EFFECT_ATTACK_UP_2,      AI_Smart_SwordsDance ; added
 	dbw EFFECT_DEFENSE_UP_2,     AI_Smart_Barrier ; added
-	dbw EFFECT_SPEED_UP_2,       AI_Smart_Agility ; to added
+	dbw EFFECT_SPEED_UP_2,       AI_Smart_Agility ; added
 	dbw EFFECT_CALM_MIND,        AI_Smart_CalmMind ; added
-	dbw EFFECT_HAIL,             AI_Smart_Hail
-	dbw EFFECT_FACADE,           AI_Smart_Facade
-	dbw EFFECT_HEX,              AI_Smart_Hex
-	dbw EFFECT_HURRICANE,        AI_Smart_Hurricane
-	dbw EFFECT_BULK_UP,          AI_Smart_BulkUp
+	dbw EFFECT_BULK_UP,          AI_Smart_BulkUp ; added
 	dbw EFFECT_SP_ATK_UP,        AI_Smart_Growth ; added
 	dbw EFFECT_SP_ATK_UP_2,      AI_Smart_NastyPlot ; added
 	dbw EFFECT_DRAGON_DANCE,     AI_Smart_DragonDance ; added
 	dbw EFFECT_CONFUSE_HIT,      AI_Smart_DynamicPunch ; added
 	dbw EFFECT_QUIVER_DANCE,     AI_Smart_QuiverDance ; added
+    dbw EFFECT_SPIKES,           AI_Smart_Spikes ; added
+    dbw EFFECT_FLINCH_HIT,       AI_Smart_Flinch ; added
+    dbw EFFECT_STATIC_DAMAGE,    AI_Smart_StaticDamage ; added
+    dbw EFFECT_DEFENSE_UP,       AI_Smart_LesserStatChange ; added
+    dbw EFFECT_FOCUS_ENERGY,     AI_Smart_LesserStatChange ; added
+    dbw EFFECT_SAFEGUARD,        AI_Smart_LesserStatChange ; added
+    dbw EFFECT_DEFENSE_CURL,     AI_Smart_LesserStatChange ; added
+    dbw EFFECT_PARALYZE_HIT,     AI_Smart_ParalyzeHit ; added
+    dbw EFFECT_TAUNT,            AI_Smart_Taunt ; added
+    dbw EFFECT_BURN,             AI_Smart_Burn ; added
+    dbw EFFECT_STEALTH_ROCK,     AI_Smart_StealthRock ; added
+    dbw EFFECT_TOXIC_SPIKES,     AI_Smart_ToxicSpikes ; added
+    dbw EFFECT_STICKY_WEB,       AI_Smart_StickyWeb ; added
+    dbw EFFECT_TRICK_ROOM,       AI_Smart_TrickRoom ; added
+    dbw EFFECT_DEFOG,            AI_Smart_Defog ; added
+
+	dbw EFFECT_HAIL,             AI_Smart_Hail
+	dbw EFFECT_FACADE,           AI_Smart_Facade
+	dbw EFFECT_HEX,              AI_Smart_Hex
+	dbw EFFECT_HURRICANE,        AI_Smart_Hurricane
 	db -1 ; end
+
+AI_Smart_StealthRock:
+; don't use if already up
+	ld a, [wPlayerScreens]
+	bit SCREENS_STEALTH_ROCK, a
+	jp nz, StandardDiscourage
+
+; don't use if player has only one pokemon left
+	push hl
+	call AICheckLastPlayerMon
+	pop hl
+	jp z, StandardDiscourage
+
+; use otherwise
+    jp DoIt
+
+AI_Smart_ToxicSpikes:
+; don't use if already up
+	ld a, [wPlayerScreens]
+	bit SCREENS_TOXIC_SPIKES, a
+	jp nz, StandardDiscourage
+
+; don't use if player has only one pokemon left
+	push hl
+	call AICheckLastPlayerMon
+	pop hl
+	jp z, StandardDiscourage
+
+; use otherwise
+    jp StrongEncourage
+
+AI_Smart_StickyWeb:
+; don't use if already up
+	ld a, [wPlayerScreens]
+	bit SCREENS_STICKY_WEB, a
+	jp nz, StandardDiscourage
+
+; don't use if player has only one pokemon left
+	push hl
+	call AICheckLastPlayerMon
+	pop hl
+	jp z, StandardDiscourage
+
+; use otherwise
+    jp DoIt
+
+AI_Smart_Defog:
+; don't use if player has only one pokemon left
+	push hl
+	call AICheckLastPlayerMon
+	pop hl
+	jp z, StandardDiscourage
+
+; use if player has any screens up
+	ld a, [wPlayerScreens]
+	bit SCREENS_STEALTH_ROCK, a
+	jp nz, StandardEncourage
+	bit SCREENS_SPIKES, a
+	jp nz, StandardEncourage
+	bit SCREENS_TOXIC_SPIKES, a
+	jp nz, StandardEncourage
+	bit SCREENS_STICKY_WEB, a
+	jp nz, StandardEncourage
+
+; otherwise discourage
+    jp StandardDiscourage
+
+AI_Smart_Burn:
+; if enemy is already statused - discourage
+    ld a, [wBattleMonStatus]
+    and a
+    jr nz, .discourage
+
+; never use if player has substitute
+    ld a, [wPlayerSubStatus4]
+	bit SUBSTATUS_SUBSTITUTE, a
+	jp nz, .discourage
+
+; never use if player has safeguard
+	ld a, [wPlayerScreens]
+	bit SCREENS_SAFEGUARD, a
+	jp nz, .discourage
+
+; if enemy is fire type - discourage
+    ld a, [wBattleMonType1]
+	cp FIRE
+	jr z, .discourage
+	ld a, [wBattleMonType2]
+	cp FIRE
+	jr z, .discourage
+
+; if enemy is immune to fire - discourage
+	ld a, [wBattleMonSpecies]
+    call DoesPokemonHaveFireAbsorb
+    jp c, .discourage
+
+; if enemy is immune to status discourage
+    ld a, [wBattleMonSpecies]
+;	cp SYLVEON
+;	jr z, .discourage
+    cp DUNSPARCE
+    jp z, .discourage
+
+; strongly encourage if enemy is physical
+    Call IsPlayerPhysicalOrSpecial
+    ret nc
+
+    dec [hl]
+    dec [hl]
+    dec [hl]
+    ret
+.discourage
+    inc [hl]
+    inc [hl]
+    ret
+
+AI_Smart_Taunt:
+; if player is already taunted - discourage
+    ld a, [wPlayerTauntCount]
+    and a
+    jp nz, .discourage
+
+; never use if player has safeguard
+	ld a, [wPlayerScreens]
+	bit SCREENS_SAFEGUARD, a
+	jp nz, .discourage
+
+; never use against uber immune Pokemon
+    ld a, [wBattleMonSpecies]
+    call DoesPokemonHaveUberImmunity
+   	jp c, .discourage
+
+; if player can KO - discourage
+    call ShouldAIBoost
+    jp nc, .discourage
+
+; if player is already set up - discourage
+    ld a, [wPlayerAtkLevel]
+	cp BASE_STAT_LEVEL + 2
+	jp nc, .discourage
+    ld a, [wPlayerSAtkLevel]
+	cp BASE_STAT_LEVEL + 2
+	jp nc, .discourage
+
+; if player has a setup move, status move, or healing move - encourage
+    ld b, EFFECT_TAUNT
+	call PlayerHasMoveEffect
+	jr c, .encourage
+    ld b, EFFECT_BULK_UP
+	call PlayerHasMoveEffect
+	jr c, .encourage
+    ld b, EFFECT_CALM_MIND
+	call PlayerHasMoveEffect
+	jr c, .encourage
+    ld b, EFFECT_CURSE
+	call PlayerHasMoveEffect
+	jr c, .encourage
+    ld b, EFFECT_ATTACK_UP_2
+	call PlayerHasMoveEffect
+	jr c, .encourage
+    ld b, EFFECT_SP_ATK_UP_2
+	call PlayerHasMoveEffect
+	jr c, .encourage
+    ld b, EFFECT_DRAGON_DANCE
+	call PlayerHasMoveEffect
+	jr c, .encourage
+    ld b, EFFECT_QUIVER_DANCE
+	call PlayerHasMoveEffect
+	jr c, .encourage
+    ld b, EFFECT_PARALYZE
+	call PlayerHasMoveEffect
+	jr c, .encourage
+    ld b, EFFECT_BURN
+	call PlayerHasMoveEffect
+	jr c, .encourage
+    ld b, EFFECT_TOXIC
+	call PlayerHasMoveEffect
+	jr c, .encourage
+    ld b, EFFECT_HEAL
+	call PlayerHasMoveEffect
+	jr c, .encourage
+    ld b, EFFECT_LEECH_SEED
+	call PlayerHasMoveEffect
+	jr c, .encourage
+    ld b, EFFECT_STEALTH_ROCK
+	call PlayerHasMoveEffect
+	jr c, .encourage
+
+; if players last move had 0 power - 50% chance to encourage
+	ld a, [wLastPlayerMove]
+	call AIGetPlayerMove
+	ld a, [wPlayerMoveStruct + MOVE_POWER]
+	and a
+	jr nz, .discourage
+	call AI_50_50
+	jr c, .encourage
+
+; otherwise discourage
+.discourage
+    inc [hl]
+    inc [hl]
+    ret
+.encourage
+rept 4
+    dec [hl]
+endr
+    ret
+
+AI_Smart_ParalyzeHit:
+; if we are Magnezone
+    ld a, [wEnemyMonSpecies]
+    cp MAGNETON
+    ret nz
+
+; if the move is zap cannon
+	ld a, [wEnemyMoveStruct + MOVE_ANIM]
+	cp ZAP_CANNON
+	ret nz
+
+; if the enemy is vulnerable to electric moves
+    ld a, [wBattleMonType1]
+	cp GROUND
+	jr z, .discourage
+	ld a, [wBattleMonType2]
+	cp GROUND
+	jr z, .discourage
+    ld a, [wBattleMonSpecies]
+    call DoesPokemonHaveVoltAbsorb
+	jr c, .discourage
+
+; if they are not statused
+    ld a, [wBattleMonStatus]
+    and a
+    ret nz
+
+; prioritize move
+    dec [hl]
+    dec [hl]
+    dec [hl]
+    ret
+.discourage
+    inc [hl]
+    inc [hl]
+    inc [hl]
+    inc [hl]
+    ret
+
+AI_Smart_LesserStatChange:
+    call AICheckEnemyMaxHP
+    jr nc, .discourage
+    call ShouldAIBoost
+    jr nc, .discourage
+    ret
+.discourage
+    inc [hl]
+    inc [hl]
+    inc [hl]
+    ret
+
+AI_Smart_StaticDamage:
+; don't use on Uber Pokemon as they are immune
+    ld a, [wBattleMonSpecies]
+    call DoesPokemonHaveUberImmunity
+   	ret nc
+
+   	inc [hl]
+   	inc [hl]
+   	ret
+
+AI_Smart_Flinch:
+; do nothing if slower than player
+    call DoesAIOutSpeedPlayer
+    ret nc
+
+; encourage if enemy is paralyzed
+;    ld a, [wBattleMonStatus]
+;	and 1 << PAR
+;	jr nz, .smallEncourage
+
+; encourage if we have serene grace
+    ld a, [wEnemyMonSpecies]
+;	cp TOGEKISS
+;	jr z, .encourage
+    cp LANTURN
+    jr z, .encourage
+
+    ret
+.encourage
+    dec [hl]
+.smallEncourage
+    dec [hl]
+    ret
+
+AI_Smart_Spikes:
+; don't use if already up
+	ld a, [wPlayerScreens]
+	bit SCREENS_SPIKES, a
+	jp nz, StandardDiscourage
+
+; don't use if player has only one pokemon left
+	push hl
+	call AICheckLastPlayerMon
+	pop hl
+	jp z, StandardDiscourage
+
+; use otherwise
+    jp StrongEncourage
 
 AI_Smart_QuiverDance:
 	call IsSpecialAttackMaxed
@@ -908,6 +1231,12 @@ AI_Smart_CalmMind:
 
 ; encourage if we have no reason not to
     jp StandardEncourage
+
+AI_Smart_TrickRoom:
+    ld a, [wTrickRoomCount]
+    and a
+    jp nz, StandardDiscourage
+    ; fallthrough
 
 AI_Smart_Agility:
 ; discourage if we are faster
