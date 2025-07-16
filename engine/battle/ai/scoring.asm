@@ -17,6 +17,13 @@ SubstituteImmuneEffects:
 	db EFFECT_BURN
 	db $FF
 
+AI_UberImmunePokemon:
+    db MEWTWO
+    db LUGIA
+    db HO_OH
+    db WOBBUFFET
+    db $FF
+
 ;===============================+
 ; Add the remainder if missing  |
 ;===============================+
@@ -31,6 +38,24 @@ BoostingMoveEffects:
 	db EFFECT_DRAGON_DANCE
 	db EFFECT_QUIVER_DANCE
 	db -1
+
+AI_SturdyPokemon:
+    db SKARMORY
+    db GEODUDE
+    db GRAVELER
+    db GOLEM
+    db MAGNEMITE
+    db MAGNETON
+    db ONIX
+    db STEELIX
+    db SQUIRTLE
+    db WARTORTLE
+    db BLASTOISE
+    db METAPOD
+    db LARVITAR
+    db PUPITAR
+    db PINSIR
+    db $FF
 
 AI_MagicGuardPokemon:
     db CLEFAIRY
@@ -651,9 +676,9 @@ AI_Smart:
 	jr .checkmove
 
 AI_Smart_EffectHandlers:
-	dbw EFFECT_SLEEP,            AI_Smart_Sleep
+	dbw EFFECT_SLEEP,            AI_Smart_Sleep ; updated
 	dbw EFFECT_LEECH_HIT,        AI_Smart_LeechHit
-	dbw EFFECT_SELFDESTRUCT,     AI_Smart_Selfdestruct
+	dbw EFFECT_SELFDESTRUCT,     AI_Smart_Selfdestruct ; updated
 	dbw EFFECT_DREAM_EATER,      AI_Smart_DreamEater
 	dbw EFFECT_EVASION_UP,       AI_Smart_EvasionUp
 	dbw EFFECT_ALWAYS_HIT,       AI_Smart_AlwaysHit
@@ -987,6 +1012,14 @@ AI_Smart_LockOn:
 AI_Smart_Selfdestruct:
 ; Selfdestruct, Explosion
 
+; never use against ghost types
+    ld a, [wBattleMonType1]
+	cp GHOST
+	jr z, .discourage
+	ld a, [wBattleMonType2]
+	cp GHOST
+	jr z, .discourage
+
 ; Unless this is the enemy's last Pokemon...
 	push hl
 	farcall FindAliveEnemyMons
@@ -1000,21 +1033,48 @@ AI_Smart_Selfdestruct:
 	jr nz, .discourage
 
 .notlastmon
+; don't use if player is behind a sub
+    ld a, [wPlayerSubStatus4]
+	bit SUBSTATUS_SUBSTITUTE, a	;check for substitute bit
+	jr nz, .discourage
+
+; don't use if player has protect
+	ld b, EFFECT_PROTECT
+	call PlayerHasMoveEffect
+	jr c, .discourage
+
+; don't use if player is faster and has - substitute, fly, dig
+	call DoesAIOutSpeedPlayer
+	jr c, .faster
+	ld b, EFFECT_SUBSTITUTE
+	call PlayerHasMoveEffect
+	jr c, .discourage
+	ld b, EFFECT_FLY
+	call PlayerHasMoveEffect
+	jr c, .discourage
+
+.faster
+; if enemy's HP is below 25% just boom
+	call AICheckEnemyQuarterHP
+	jr nc, .encourage
+
+; use if we are about to be KOd
+    call ShouldAIBoost
+    jr nc, .encourage
+
+.continue
 ; Greatly discourage this move if enemy's HP is above 50%.
 	call AICheckEnemyHalfHP
 	jr c, .discourage
 
-; Do nothing if enemy's HP is below 25%.
-	call AICheckEnemyQuarterHP
-	ret nc
+; if we are here we are below 1/2 hp and player is non boosted
+; if we have no other move that can ko the player just boom
 
-; If enemy's HP is between 25% and 50%,
-; over 90% chance to greatly discourage this move.
-	call Random
-	cp 8 percent
-	ret c
-
+.encourage
+    dec [hl]
+    ret
 .discourage
+	inc [hl]
 	inc [hl]
 	inc [hl]
 	inc [hl]
@@ -4244,3 +4304,530 @@ AIGetPlayerMove:
 	pop de
 	pop hl
 	ret
+
+; decide if AI should use boosting moves
+; generally don't boost if player will just KO anyway
+; returns carry if the AI can boost
+ShouldAIBoost:
+    call IsAttackMaxed
+    jp c, .dontBoost
+    call IsSpecialAttackMaxed
+    jp c, .dontBoost
+
+; don't boost if choice locked
+    call DoesEnemyHaveChoiceItem
+    jp c, .dontBoost
+
+;================================
+;    Maybe add Sucker Punch?
+;================================
+; if players last move was sucker punch - 50% chance to boost
+;	ld a, [wCurPlayerMove]
+;	call AIGetPlayerMove
+;   ld a, [wPlayerMoveStruct + MOVE_EFFECT]
+;    cp EFFECT_SUCKER_PUNCH
+;   jr nz, .notUsingSuckerPunch
+;	call AI_50_50
+;	ret c
+;
+;.notUsingSuckerPunch
+; if we are faster and player is flying or underground just boost
+    call DoesAIOutSpeedPlayer
+    jr nc, .checkEvasion
+	ld a, [wPlayerSubStatus3]
+	and 1 << SUBSTATUS_FLYING | 1 << SUBSTATUS_UNDERGROUND
+	jp nz, .boost
+
+.checkEvasion
+; if AI evasion is >= +2 then go for the boost - only used by Patches
+	ld a, [wEnemyEvaLevel]
+	cp BASE_STAT_LEVEL + 2
+	jp nc, .boost
+
+.checkHaze
+; if the player has roar/whirlwind/haze and we aren't immune to it then 50% to not boost
+    ld a, [wEnemyMonSpecies]
+    call DoesPokemonHaveUberImmunity
+   	jr c, .noForceSwitch
+
+    ld a, [wCurPlayerMove]
+	call AIGetPlayerMove
+    ld a, [wPlayerMoveStruct + MOVE_EFFECT]
+    cp EFFECT_FORCE_SWITCH
+    jp z, .dontBoost
+
+    ld b, EFFECT_FORCE_SWITCH
+	call PlayerHasMoveEffect
+	jr c, .maybeDontBoost
+    ld b, EFFECT_RESET_STATS
+	call PlayerHasMoveEffect
+	jr c, .maybeDontBoost
+	jr .noForceSwitch
+.maybeDontBoost
+	call Random
+	cp 50 percent
+	jp c, .decideNotToBoost
+.noForceSwitch
+
+; if our offence is already at or over +1 and either side can 2HKO, just attack
+; this is to prevent the AI from boosting until it only gets one attack off, should attack earlier for more damage
+	ld a, [wEnemyAtkLevel]
+	cp BASE_STAT_LEVEL + 1
+	jr c, .checkSpecialAttack
+    jr .checkMutual2HKO
+.checkSpecialAttack
+	ld a, [wEnemySAtkLevel]
+	cp BASE_STAT_LEVEL + 1
+	jr c, .checkSpeed
+.checkMutual2HKO
+
+; if AI is Zygarde and player is physical then skip mutual 2HKO check
+;    ld a, [wEnemyMonSpecies]
+;    cp ZYGARDE
+;    jr nz, .checkAsUsual
+;    call IsPlayerPhysicalOrSpecial
+;   jr c, .checkSpeed
+;.checkAsUsual
+
+	call CanAI2HKO
+	jp c, .decideNotToBoost
+	call CanPlayer2HKO
+	jr c, .decideNotToBoost
+
+.checkSpeed
+; who moves first
+    call DoesAIOutSpeedPlayer
+    jr nc, .playerMovesFirst
+
+.enemyMovesFirst
+; if AI moves first consider if player can 1HKO
+; first if the AI has an intact focus sash or sturdy it can boost, unless player has priority move
+; does player have priority move
+	ld b, EFFECT_PRIORITY_HIT
+	call PlayerHasMoveEffect
+	jr c, .skipSturdySashCheck
+
+    call DoesEnemyHaveIntactFocusSashOrSturdy
+    jp c, .boost
+
+.skipSturdySashCheck
+    call CanPlayerKO
+    jr c, .decideNotToBoost
+    jp .boost
+
+.playerMovesFirst
+; does the boost increase speed, these moves are treated differently
+	ld a, [wEnemyMoveStruct + MOVE_ANIM]
+	cp DRAGON_DANCE
+	jr z, .enemyMovesFirst
+	cp QUIVER_DANCE
+	jr z, .enemyMovesFirst
+
+; if player moves first consider if they can 2HKO
+    call CanPlayer2HKO
+    jr c, .decideNotToBoost
+    jp .boost
+
+.decideNotToBoost
+; if player is SLP and we get more than one turn before they wake up, then boost
+	ld a, [wBattleMonStatus]
+	and SLP_MASK
+	jr z, .keepgoing
+
+    call DoesAIOutSpeedPlayer
+    jr nc, .playerFaster
+    ld b, 1
+    jr .checkSleep
+.playerFaster
+    ld b, 2
+
+.checkSleep
+    ld a, [wBattleMonStatus]
+	and SLP_MASK
+    cp b
+	jr z, .keepgoing
+	jr .boost
+
+.keepgoing
+; is the player behind a sub, if so don't boost, just attack
+; unless we have baton pass, in which case boost up
+    ld b, EFFECT_BATON_PASS
+	call AIHasMoveEffect
+	jr c, .skipSubCheck
+    ld a, [wPlayerSubStatus4]
+	bit SUBSTATUS_SUBSTITUTE, a	;check for substitute bit
+	jr nz, .dontBoost
+.skipSubCheck
+
+; is the player setting up - if so we may want to boost to force them to stop and attack
+; if the player already has +4 attack or special attack then they have already set up, just attack
+; if the AI already has +2 attack or special attack then just attack
+; if the players last move was a healing move 50% chance to set up if we can't already 2HKO from max HP
+; otherwise if the players last move was non-damaging 50% chance to set up if we can't already 3HKO from current HP
+	ld a, [wPlayerAtkLevel]
+	cp BASE_STAT_LEVEL + 4
+	jr nc, .dontBoost
+	ld a, [wPlayerSAtkLevel]
+	cp BASE_STAT_LEVEL + 4
+	jr nc, .dontBoost
+
+	ld a, [wEnemyAtkLevel]
+	cp BASE_STAT_LEVEL + 2
+	jr nc, .dontBoost
+	ld a, [wEnemySAtkLevel]
+	cp BASE_STAT_LEVEL + 2
+	jr nc, .dontBoost
+
+    ld a, [wCurPlayerMove]
+	call AIGetPlayerMove
+    ld a, [wPlayerMoveStruct + MOVE_EFFECT]
+    cp EFFECT_HEAL
+    jr z, .check2HKOMaxHp
+    cp EFFECT_WEATHER_HEAL
+    jr z, .check2HKOMaxHp
+
+    push hl
+    push de
+    push bc
+	ld hl, BoostingMoveEffects
+	ld de, 1
+	call IsInArray
+	pop bc
+	pop de
+	pop hl
+	jr c, .check2HKO
+	jr .dontBoost
+.check2HKO
+	call CanAI2HKO
+	jr c, .dontBoost
+    call Random
+    cp 25 percent + 1
+    jr c, .dontBoost
+	jr .boost
+.check2HKOMaxHp
+	call CanAI2HKOMaxHP
+	jr c, .dontBoost
+    call Random
+    cp 25 percent + 1
+    jr c, .dontBoost
+
+.boost
+    scf ; set carry flag
+    ret
+.dontBoost
+    xor a ; clear carry flag
+    ret
+
+PlayerHasMoveEffect:
+; Return carry if the player has move b.
+
+	push hl
+	ld hl, wBattleMonMoves
+	ld c, NUM_MOVES
+
+.checkmove
+	ld a, [hli]
+	and a
+	jr z, .no
+
+	call AIGetPlayerMove
+
+	ld a, [wPlayerMoveStruct + MOVE_EFFECT]
+	cp b
+	jr z, .yes
+
+	dec c
+	jr nz, .checkmove
+
+.no
+	pop hl
+	and a
+	ret
+
+.yes
+	pop hl
+	scf
+	ret
+
+; return carry if the AI has a move that can 2HKO the player Pokemon from current HP
+CanAI2HKOMaxHP:
+    ld de, wEnemyMonMoves ; load AI moves
+	ld b, NUM_MOVES + 1
+.loopMoves
+	dec b ; b is num moves on 1st pass
+	jr z, .done ; if b is 0 return we are done
+	ld a, [de] ; load the move
+	and a
+	jr z, .done ; return if no move
+	inc de ; increment to next move
+	call AIGetEnemyMove
+	ld a, [wEnemyMoveStruct + MOVE_POWER]
+	and a
+	jr z, .loopMoves ; skip moves with 0 power
+
+    ld a, 1
+	ldh [hBattleTurn], a
+	push hl
+	push de
+	push bc
+	callfar EnemyAttackDamage
+	callfar BattleCommand_DamageCalc
+	callfar BattleCommand_Stab
+; double current damage
+	ld hl, wCurDamage + 1
+	ld a, [hld]
+	ld h, [hl]
+	ld l, a
+	add hl, hl
+	ld a, h
+	ld [wCurDamage], a
+	ld a, l
+	ld [wCurDamage + 1], a
+; continue
+	ld a, [wCurDamage + 1]
+	ld c, a ; c is curDamage upper
+	ld a, [wCurDamage]
+	ld b, a ; b is curDamage lower
+	ld a, [wBattleMonMaxHP + 1]
+	cp c ; compare upper
+	ld a, [wBattleMonMaxHP]
+    sbc b ; compare lower and set flag
+	pop bc
+	pop de
+	pop hl
+    jp nc, .loopMoves
+; skip moves that can't be used on consecutive turns, except hyper beam
+    ld a, [wEnemyMonSpecies]
+    cp PORYGON2
+    jr z, .setFlag
+;    cp URSALUNA_B
+;    jr z, .setFlag
+	ld a, [wPlayerMoveStruct + MOVE_EFFECT]
+	cp EFFECT_SELFDESTRUCT
+	jr z, .loopMoves
+	cp EFFECT_HYPER_BEAM
+	jr z, .loopMoves
+	cp EFFECT_SOLARBEAM
+	jr z, .loopMoves
+.setFlag
+    scf
+    ret
+.done
+    xor a ; clear carry flag
+    ret
+
+; return carry if the AI has a move that can 2HKO the player Pokemon from current HP
+CanAI2HKO:
+    ld de, wEnemyMonMoves ; load AI moves
+	ld b, NUM_MOVES + 1
+.loopMoves
+	dec b ; b is num moves on 1st pass
+	jr z, .done ; if b is 0 return we are done
+	ld a, [de] ; load the move
+	and a
+	jr z, .done ; return if no move
+	inc de ; increment to next move
+	call AIGetEnemyMove
+	ld a, [wEnemyMoveStruct + MOVE_POWER]
+	and a
+	jr z, .loopMoves ; skip moves with 0 power
+
+    ld a, 1
+	ldh [hBattleTurn], a
+	push hl
+	push de
+	push bc
+	callfar EnemyAttackDamage
+	callfar BattleCommand_DamageCalc
+	callfar BattleCommand_Stab
+; double current damage
+	ld hl, wCurDamage + 1
+	ld a, [hld]
+	ld h, [hl]
+	ld l, a
+	add hl, hl
+	ld a, h
+	ld [wCurDamage], a
+	ld a, l
+	ld [wCurDamage + 1], a
+; continue
+	ld a, [wCurDamage + 1]
+	ld c, a ; c is curDamage upper
+	ld a, [wCurDamage]
+	ld b, a ; b is curDamage lower
+	ld a, [wBattleMonHP + 1]
+	cp c ; compare upper
+	ld a, [wBattleMonHP]
+    sbc b ; compare lower and set flag
+	pop bc
+	pop de
+	pop hl
+    jp nc, .loopMoves
+; skip moves that can't be used on consecutive turns, except hyper beam
+    ld a, [wEnemyMonSpecies]
+    cp PORYGON2
+;    jr z, .setFlag
+;    cp URSALUNA_B
+    jr z, .setFlag
+	ld a, [wPlayerMoveStruct + MOVE_EFFECT]
+	cp EFFECT_SELFDESTRUCT
+	jr z, .loopMoves
+	cp EFFECT_HYPER_BEAM
+	jr z, .loopMoves
+	cp EFFECT_SOLARBEAM
+	jr z, .loopMoves
+.setFlag
+    scf
+    ret
+.done
+    xor a ; clear carry flag
+    ret
+
+DoesEnemyHaveIntactFocusSashOrSturdy:
+; Is the AI at full HP
+    call AICheckEnemyMaxHP
+    jr nc, .no
+
+; focus sash
+	push hl
+	push de
+	ld a, [wEnemyMonItem]
+	ld [wNamedObjectIndex], a
+	ld b, a
+	callfar GetItemHeldEffect
+	ld a, b
+	cp HELD_FOCUS_BAND
+	pop de
+	pop hl
+	jr z, .yes
+
+; sturdy
+    ld a, [wEnemyMonSpecies]
+    push bc
+    push hl
+    push de
+	ld hl, AI_SturdyPokemon
+	ld de, 1
+	call IsInArray
+	pop de
+	pop hl
+	pop bc
+	jr c, .yes
+
+.no
+    xor a ; clear carry flag
+    ret
+.yes
+    scf
+    ret
+
+DoesPokemonHaveUberImmunity:
+    push hl
+    push de
+   	push bc
+   	ld hl, AI_UberImmunePokemon
+   	ld de, 1
+   	call IsInArray
+   	pop bc
+   	pop de
+   	pop hl
+   	jr c, .yes
+   	xor a
+   	ret
+.yes
+    scf
+    ret
+
+DoesEnemyHaveChoiceItem:
+	push hl
+	push de
+	ld a, [wEnemyMonItem]
+	ld [wNamedObjectIndex], a
+	ld b, a
+	callfar GetItemHeldEffect
+	ld a, b
+	cp HELD_CHOICE_BAND
+	jr z, .yes
+	cp HELD_CHOICE_SPECS
+	jr z, .yes
+	pop de
+	pop hl
+	xor a
+	ret
+.yes
+	pop de
+	pop hl
+	scf
+	ret
+
+IsSpecialAttackMaxed:
+    ld a, [wEnemySAtkLevel]
+    cp BASE_STAT_LEVEL + 6
+    jr z, .yes
+
+    ld a, [wEnemyMonSpclAtk + 1]
+    sub LOW(MAX_STAT_VALUE)
+	jr nz, .no
+	ld a, [wEnemyMonSpclAtk]
+	sbc HIGH(MAX_STAT_VALUE)
+	jr z, .yes
+.no
+    xor a
+    ret
+.yes
+    scf
+    ret
+
+IsSpecialDefenseMaxed:
+    ld a, [wEnemySDefLevel]
+    cp BASE_STAT_LEVEL + 6
+    jr z, .yes
+
+    ld a, [wEnemyMonSpclDef + 1]
+    sub LOW(MAX_STAT_VALUE)
+	jr nz, .no
+	ld a, [wEnemyMonSpclDef]
+	sbc HIGH(MAX_STAT_VALUE)
+	jr z, .yes
+.no
+    xor a
+    ret
+.yes
+    scf
+    ret
+
+IsAttackMaxed:
+    ld a, [wEnemyAtkLevel]
+    cp BASE_STAT_LEVEL + 6
+    jr z, .yes
+
+    ld a, [wEnemyMonAttack + 1]
+    sub LOW(MAX_STAT_VALUE)
+	jr nz, .no
+	ld a, [wEnemyMonAttack]
+	sbc HIGH(MAX_STAT_VALUE)
+	jr z, .yes
+.no
+    xor a
+    ret
+.yes
+    scf
+    ret
+
+IsDefenseMaxed:
+    ld a, [wEnemyDefLevel]
+    cp BASE_STAT_LEVEL + 6
+    jr z, .yes
+
+    ld a, [wEnemyMonDefense + 1]
+    sub LOW(MAX_STAT_VALUE)
+	jr nz, .no
+	ld a, [wEnemyMonDefense]
+	sbc HIGH(MAX_STAT_VALUE)
+	jr z, .yes
+.no
+    xor a
+    ret
+.yes
+    scf
+    ret
