@@ -710,7 +710,7 @@ AI_Smart_EffectHandlers:
 	dbw EFFECT_HYPER_BEAM,       AI_Smart_HyperBeam ; updated
 	dbw EFFECT_LEECH_SEED,       AI_Smart_LeechSeed ; updated
 	dbw EFFECT_DISABLE,          AI_Smart_Disable ; updated
-	dbw EFFECT_COUNTER,          AI_Smart_Counter
+	dbw EFFECT_COUNTER,          AI_Smart_Counter ; updated
 	dbw EFFECT_ENCORE,           AI_Smart_Encore
 	dbw EFFECT_PAIN_SPLIT,       AI_Smart_PainSplit
 	dbw EFFECT_SNORE,            AI_Smart_Snore
@@ -1800,69 +1800,6 @@ AI_Smart_HyperBeam:
 	inc [hl]
 	ret
 
-AI_Smart_Counter:
-	push hl
-	ld hl, wPlayerUsedMoves
-	ld c, NUM_MOVES
-	ld b, 0
-
-.playermoveloop
-	ld a, [hli]
-	and a
-	jr z, .skipmove
-
-	call AIGetEnemyMove
-
-	ld a, [wEnemyMoveStruct + MOVE_POWER]
-	and a
-	jr z, .skipmove
-
-	ld a, [wEnemyMoveStruct + MOVE_TYPE]
-	cp SPECIAL
-	jr nc, .skipmove
-
-	inc b
-
-.skipmove
-	dec c
-	jr nz, .playermoveloop
-
-	pop hl
-	ld a, b
-	and a
-	jr z, .discourage
-
-	cp 3
-	jr nc, .encourage
-
-	ld a, [wLastPlayerCounterMove]
-	and a
-	jr z, .done
-
-	call AIGetEnemyMove
-
-	ld a, [wEnemyMoveStruct + MOVE_POWER]
-	and a
-	jr z, .done
-
-	ld a, [wEnemyMoveStruct + MOVE_TYPE]
-	cp SPECIAL
-	jr nc, .done
-
-.encourage
-	call Random
-	cp 39 percent + 1
-	jr c, .done
-
-	dec [hl]
-
-.done
-	ret
-
-.discourage
-	inc [hl]
-	ret
-
 AI_Smart_Encore:
 	call AICompareSpeed
 	jr nc, .discourage
@@ -2158,6 +2095,7 @@ AI_Smart_Conversion2:
 	inc [hl]
 	ret
 
+AI_Smart_Counter:
 AI_Smart_Disable:
 	call DoesAIOutSpeedPlayer
 	ret c
