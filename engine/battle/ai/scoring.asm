@@ -84,6 +84,12 @@ AI_LevitatePokemon:
 	db CHARIZARD
     db $FF
 
+AI_ClearBodyPokemon:
+    db TENTACOOL
+    db TENTACRUEL
+    db VAPOREON
+    db $FF
+
 AI_WaterAbsorbPokemon:
     db VAPOREON
     db POLIWAG
@@ -679,9 +685,9 @@ AI_Smart_EffectHandlers:
 	dbw EFFECT_SLEEP,            AI_Smart_Sleep ; updated
 	dbw EFFECT_LEECH_HIT,        AI_Smart_LeechHit
 	dbw EFFECT_SELFDESTRUCT,     AI_Smart_Selfdestruct ; updated
-	dbw EFFECT_EVASION_UP,       AI_Smart_EvasionUp
-	dbw EFFECT_ALWAYS_HIT,       AI_Smart_AlwaysHit
-	dbw EFFECT_ACCURACY_DOWN,    AI_Smart_AccuracyDown
+	dbw EFFECT_EVASION_UP,       AI_Smart_EvasionUp ; updated
+	dbw EFFECT_ALWAYS_HIT,       AI_Smart_AlwaysHit ; updated
+	dbw EFFECT_ACCURACY_DOWN,    AI_Smart_AccuracyDown ; updated
 	dbw EFFECT_RESET_STATS,      AI_Smart_ResetStats
 	dbw EFFECT_FORCE_SWITCH,     AI_Smart_ForceSwitch
 	dbw EFFECT_HEAL,             AI_Smart_Heal
@@ -1122,103 +1128,31 @@ AI_Smart_AlwaysHit:
 	ret
 
 AI_Smart_AccuracyDown:
-; If player's HP is full...
-	call AICheckPlayerMaxHP
-	jr nc, .hp_mismatch_1
-
-; ...and enemy's HP is above 50%...
-	call AICheckEnemyHalfHP
-	jr nc, .hp_mismatch_1
-
-; ...greatly encourage this move if player is badly poisoned.
-	ld a, [wPlayerSubStatus5]
-	bit SUBSTATUS_TOXIC, a
-	jr nz, .greatly_encourage
-
-; ...70% chance to greatly encourage this move if player is not badly poisoned.
-	call Random
-	cp 70 percent
-	jr nc, .not_encouraged
-
-.greatly_encourage
-	dec [hl]
-	dec [hl]
-	ret
-
-.hp_mismatch_1
-
-; Greatly discourage this move if player's HP is below 25%.
-	call AICheckPlayerQuarterHP
-	jr nc, .hp_mismatch_2
-
-; If player's HP is above 25% but not full, 4% chance to greatly encourage this move.
-	call Random
-	cp 4 percent
-	jr c, .greatly_encourage
-
-; If player's HP is between 25% and 50%,...
-	call AICheckPlayerHalfHP
-	jr nc, .hp_mismatch_3
-
-; If player's HP is above 50% but not full, 20% chance to greatly encourage this move.
-	call AI_80_20
-	jr c, .greatly_encourage
-	jr .not_encouraged
-
-; ...50% chance to greatly discourage this move.
-.hp_mismatch_3
-	call AI_50_50
-	jr c, .not_encouraged
-
-.hp_mismatch_2
-	inc [hl]
-	inc [hl]
-
-; We only end up here if the move has not been already encouraged.
-.not_encouraged
-	ld a, [wPlayerSubStatus5]
-	bit SUBSTATUS_TOXIC, a
-	jr nz, .maybe_greatly_encourage
-
-	ld a, [wPlayerSubStatus4]
-	bit SUBSTATUS_LEECH_SEED, a
-	jr nz, .encourage
-
-; Discourage this move if enemy's evasion level is higher than player's accuracy level.
-	ld a, [wEnemyEvaLevel]
-	ld b, a
-	ld a, [wPlayerAccLevel]
-	cp b
+; discourage if enemy is immune to stat drops
+    ld a, [wBattleMonSpecies]
+    call DoesPokemonHaveClearBody
 	jr c, .discourage
 
-	ld a, [wPlayerSubStatus1]
-	bit SUBSTATUS_ROLLOUT, a
-	jr nz, .greatly_encourage
+; discourage after player is at -3
+    ld a, [wPlayerAccLevel]
+    cp BASE_STAT_LEVEL - 2
+    jr c, .discourage
 
+; 50% chance to encourage slightly if player has full accuracy
+    ld a, [wPlayerAccLevel]
+    cp BASE_STAT_LEVEL
+    jr nc, .maybeEncourage
+    ret
+.maybeEncourage
+    call AI_50_50
+    jr c, .discourage
+    dec [hl]
+    ret
 .discourage
 	inc [hl]
-	ret
-
-; Player is badly poisoned.
-; 70% chance to greatly encourage this move.
-; This would counter any previous discouragement.
-.maybe_greatly_encourage
-	call Random
-	cp 31 percent + 1
-	ret c
-
-	dec [hl]
-	dec [hl]
-	ret
-
-; Player is seeded.
-; 50% chance to encourage this move.
-; This would partly counter any previous discouragement.
-.encourage
-	call AI_50_50
-	ret c
-
-	dec [hl]
+	inc [hl]
+	inc [hl]
+	inc [hl]
 	ret
 
 AI_Smart_ResetStats:
@@ -3741,6 +3675,23 @@ DoesPokemonHaveLevitate:
     push de
    	push bc
    	ld hl, AI_LevitatePokemon
+   	ld de, 1
+   	call IsInArray
+   	pop bc
+   	pop de
+   	pop hl
+   	jr c, .yes
+   	xor a
+   	ret
+.yes
+    scf
+    ret
+
+DoesPokemonHaveClearBody:
+    push hl
+    push de
+   	push bc
+   	ld hl, AI_ClearBodyPokemon
    	ld de, 1
    	call IsInArray
    	pop bc
