@@ -703,7 +703,7 @@ AI_Smart_EffectHandlers:
 	dbw EFFECT_CONFUSE,          AI_Smart_Confuse ; updated
 	dbw EFFECT_SP_DEF_UP_2,      AI_Smart_SpDefenseUp2 ; updated
 	dbw EFFECT_REFLECT,          AI_Smart_Reflect ; updated
-	dbw EFFECT_PARALYZE,         AI_Smart_Paralyze
+	dbw EFFECT_PARALYZE,         AI_Smart_Paralyze ; updated
 	dbw EFFECT_SPEED_DOWN_HIT,   AI_Smart_SpeedDownHit
 	dbw EFFECT_SUBSTITUTE,       AI_Smart_Substitute
 	dbw EFFECT_HYPER_BEAM,       AI_Smart_HyperBeam
@@ -1677,27 +1677,111 @@ AI_Smart_SuperFang:
 	ret
 
 AI_Smart_Paralyze:
-; 50% chance to discourage this move if player's HP is below 25%.
-	call AICheckPlayerQuarterHP
-	jr nc, .discourage
+; never use if player already has a status
+    ld a, [wBattleMonStatus]
+    and a
+    jp nz, .discourage
 
-; 80% chance to greatly encourage this move
-; if enemy is slower than player and its HP is above 25%.
-	call AICompareSpeed
-	ret c
-	call AICheckEnemyQuarterHP
-	ret nc
-	call AI_80_20
-	ret c
-	dec [hl]
-	dec [hl]
-	ret
+; never use if player has substitute
+    ld a, [wPlayerSubStatus4]
+	bit SUBSTATUS_SUBSTITUTE, a
+	jp nz, .discourage
 
+; never use if player has safeguard
+	ld a, [wPlayerScreens]
+	bit SCREENS_SAFEGUARD, a
+	jp nz, .discourage
+
+; never use while in trick room
+    ld a, [wTrickRoomCount]
+    and a
+    jp nz, .discourage
+
+; never use thunderwave against ground types or volt absorbers
+	ld a, [wEnemyMoveStruct + MOVE_ANIM]
+	cp THUNDER_WAVE
+	jr nz, .glare
+    ld a, [wBattleMonType1]
+	cp GROUND
+	jr z, .discourage
+	ld a, [wBattleMonType2]
+	cp GROUND
+	jr z, .discourage
+    ld a, [wBattleMonSpecies]
+    call DoesPokemonHaveVoltAbsorb
+	jr c, .discourage
+
+.glare
+; never use glare against ghost types
+	cp GLARE
+	jr nz, .notGlare
+    ld a, [wBattleMonType1]
+	cp GHOST
+	jr z, .discourage
+	ld a, [wBattleMonType2]
+	cp GHOST
+	jr z, .discourage
+
+.notGlare
+; don't use against Arceus since it is immune to status
+    ld a, [wBattleMonSpecies]
+;	cp ARCEUS
+;	jr z, .discourage
+;	cp SYLVEON
+;	jr z, .discourage
+    cp DUNSPARCE
+    jp z, .discourage
+
+; encourage if enemy is slower than player.
+; 50% chance to discourage otherwise
+	call DoesAIOutSpeedPlayer
+	jr c, .AIFaster
+
+;50% to discourage if player knows sub
+	ld b, EFFECT_SUBSTITUTE
+	call PlayerHasMoveEffect
+	jr c, .discourage50
+	jr .checkEvasion
+
+; if we are faster and either the player or us can 2HKO, discourage - otherwise discourage 50%
+.AIFaster
+    call CanPlayer2HKOMaxHP
+    jr c, .discourage
+    call CanAI2HKO
+    jr c, .discourage
+    jr .discourage50
+
+.checkEvasion
+; if player is evasive and we know an always hit move then discourage so we just attack
+    ld a, [wPlayerEvaLevel]
+    cp BASE_STAT_LEVEL + 2
+    jr c, .encourage
+
+	ld b, EFFECT_ALWAYS_HIT
+	call AIHasMoveEffect
+	jr c, .discourage
+;	ld b, EFFECT_JUDGEMENT
+;	call AIHasMoveEffect
+;	jr c, .discourage
+
+.encourage
+; needs to overcome encouragement to attack
+; no good reason not to paralyze
+rept 12
+    dec [hl]
+endr
+    ret
+.discourage50
+    call AI_50_50
+    ret c
 .discourage
-	call AI_50_50
-	ret c
-	inc [hl]
-	ret
+    inc [hl]
+    inc [hl]
+    inc [hl]
+    inc [hl]
+    inc [hl]
+    inc [hl]
+    ret
 
 AI_Smart_SpeedDownHit:
 ; Icy Wind
