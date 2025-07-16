@@ -749,23 +749,102 @@ AI_Smart_Hex:
 	ret
 
 AI_Smart_Sleep:
-; Greatly encourage sleep inducing moves if the enemy has either Dream Eater or Nightmare.
-; 50% chance to greatly encourage sleep inducing moves otherwise.
+; don't use if there already is a status
+    ld a, [wBattleMonStatus]
+    and a
+    jp nz, .discourage
 
+; never use if player has substitute
+    ld a, [wPlayerSubStatus4]
+	bit SUBSTATUS_SUBSTITUTE, a
+	jp nz, .discourage
+
+; never use if player has safeguard
+	ld a, [wPlayerScreens]
+	bit SCREENS_SAFEGUARD, a
+	jr nz, .discourage
+
+; don't use against status immune pokemon
+    ld a, [wBattleMonSpecies]
+    cp DUNSPARCE
+    jp z, .discourage
+    cp SMEARGLE
+    jp z, .discourage
+
+; does player have a held item that would heal sleep
+	push hl
+	push de
+	ld a, [wBattleMonItem]
+	ld [wNamedObjectIndex], a
+	ld b, a
+	callfar GetItemHeldEffect
+	ld a, b
+	cp HELD_HEAL_STATUS
+	pop de
+	pop hl
+	jr nz, .noItem
+
+; if faster than the player, don't sleep if the player can 1hko
+    call DoesAIOutSpeedPlayer
+    jr nc, .playerMovesFirst
+    call CanPlayerKO
+    jr c, .discourage
+    jr .noItem
+
+; if slower than the player, don't sleep if player can 2hko
+.playerMovesFirst
+    call CanPlayer2HKO
+    jr c, .discourage
+
+.noItem
+; check if the move is Spore
+	ld a, [wEnemyMoveStruct + MOVE_ANIM]
+	cp SPORE
+	jr nz, .notSpore
+	jr .useMove
+
+.notSpore
+; if faster then continue
+	call DoesAIOutSpeedPlayer
+	jr c, .continue
+
+; discourage if faster player has picked substitute
+	ld a, [wCurPlayerMove]
+	cp SUBSTITUTE
+	jr nc, .continue
+	inc [hl]
+	inc [hl]
+	inc [hl]
+	ret
+
+.continue
 	ld b, EFFECT_DREAM_EATER
 	call AIHasMoveEffect
-	jr c, .encourage
+	jr c, .encourage50
 
 	ld b, EFFECT_NIGHTMARE
 	call AIHasMoveEffect
-	jr c, .encourage
+	ret nc
 
-	call AI_95_5
+; Pokemon with Bad Dreams ability should prioritise sleep more
+    ld a, [wEnemyMonSpecies]
+;	cp DARKRAI
+;	jr z, .encourage50
+    cp JYNX
+    jr z, .encourage50
+
+.discourage
+    inc [hl]
+    inc [hl]
+    ret
+.encourage50
+	call AI_50_50
 	ret c
-.encourage
-	dec [hl]
-	dec [hl]
-	ret
+.useMove
+rept 12
+    dec [hl]
+endr
+    ret
 
 AI_Smart_LeechHit:
 	push hl
@@ -4030,3 +4109,138 @@ IsAISetup:
 .yes
     scf
     ret
+
+; return carry if the player has a move that can 1HKO the AI Pokemon from current HP
+; used to decide if the AI should use setup moves
+CanPlayerKO:
+    ld de, wBattleMonMoves ; load player moves
+	ld b, NUM_MOVES + 1
+.loopPlayerKOMoves
+	dec b ; b is num moves on 1st pass
+	jr z, .done ; if b is 0 return we are done
+	ld a, [de] ; load the move
+	and a
+	jr z, .done ; return if no move
+	inc de ; increment to next move
+	call AIGetPlayerMove
+	ld a, [wPlayerMoveStruct + MOVE_POWER]
+	and a
+	jr z, .loopPlayerKOMoves ; skip moves with 0 power
+    ld a, 0
+	ldh [hBattleTurn], a
+	push hl
+	push de
+	push bc
+	callfar PlayerAttackDamage
+	callfar BattleCommand_DamageCalc
+	callfar BattleCommand_Stab
+	ld a, [wCurDamage + 1]
+	ld c, a ; c is curDamage upper
+	ld a, [wCurDamage]
+	ld b, a ; b is curDamage lower
+	ld a, [wEnemyMonHP + 1]
+	cp c ; compare upper
+	ld a, [wEnemyMonHP]
+    sbc b ; compare lower and set flag
+	pop bc
+	pop de
+	pop hl
+    jp nc, .loopPlayerKOMoves
+; skip moves that can't be used on consecutive turns, except hyper beam
+	ld a, [wPlayerMoveStruct + MOVE_EFFECT]
+	cp EFFECT_SELFDESTRUCT
+	jr z, .loopPlayerKOMoves
+	cp EFFECT_SOLARBEAM
+	jr z, .loopPlayerKOMoves
+    scf
+    ret
+.done
+    xor a ; clear carry flag
+    ret
+
+; return carry if the player has a move that can 2HKO the AI Pokemon from current HP
+; used to decide if the AI should use setup moves
+CanPlayer2HKO:
+    ld de, wBattleMonMoves ; load player moves
+	ld b, NUM_MOVES + 1
+.loopPlayer2HKOMoves
+	dec b ; b is num moves on 1st pass
+	jr z, .done ; if b is 0 return we are done
+	ld a, [de] ; load the move
+	and a
+	jr z, .done ; return if no move
+	inc de ; increment to next move
+	call AIGetPlayerMove
+	ld a, [wPlayerMoveStruct + MOVE_POWER]
+	and a
+	jr z, .loopPlayer2HKOMoves ; skip moves with 0 power
+    ld a, 0
+	ldh [hBattleTurn], a
+	push hl
+	push de
+	push bc
+	callfar PlayerAttackDamage
+	callfar BattleCommand_DamageCalc
+	callfar BattleCommand_Stab
+; double current damage
+	ld hl, wCurDamage + 1
+	ld a, [hld]
+	ld h, [hl]
+	ld l, a
+	add hl, hl
+	ld a, h
+	ld [wCurDamage], a
+	ld a, l
+	ld [wCurDamage + 1], a
+; continue
+	ld a, [wCurDamage + 1]
+	ld c, a ; c is curDamage upper
+	ld a, [wCurDamage]
+	ld b, a ; b is curDamage lower
+	ld a, [wEnemyMonHP + 1]
+	cp c ; compare upper
+	ld a, [wEnemyMonHP]
+    sbc b ; compare lower and set flag
+	pop bc
+	pop de
+	pop hl
+    jp nc, .loopPlayer2HKOMoves
+; skip moves that can't be used on consecutive turns - exception for Porygon2 which can use Hyper Beam consecutively
+    ld a, [wBattleMonSpecies]
+    cp PORYGON2
+    jr z, .setFlag
+;	cp URSALUNA_B
+;	jr z, .setFlag
+	ld a, [wPlayerMoveStruct + MOVE_EFFECT]
+	cp EFFECT_SELFDESTRUCT
+	jr z, .loopPlayer2HKOMoves
+	cp EFFECT_HYPER_BEAM
+	jr z, .loopPlayer2HKOMoves
+	cp EFFECT_SOLARBEAM
+	jr z, .loopPlayer2HKOMoves
+.setFlag
+	scf
+    ret
+.done
+    xor a ; clear carry flag
+    ret
+
+AIGetPlayerMove:
+; Load attributes of move a into ram
+
+	push hl
+	push de
+	push bc
+	dec a
+	ld hl, Moves
+	ld bc, MOVE_LENGTH
+	call AddNTimes
+
+	ld de, wPlayerMoveStruct
+	ld a, BANK(Moves)
+	call FarCopyBytes
+
+	pop bc
+	pop de
+	pop hl
+	ret
