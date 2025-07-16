@@ -760,7 +760,31 @@ AI_Smart_EffectHandlers:
 	dbw EFFECT_SP_ATK_UP,        AI_Smart_Growth ; added
 	dbw EFFECT_SP_ATK_UP_2,      AI_Smart_NastyPlot ; added
 	dbw EFFECT_DRAGON_DANCE,     AI_Smart_DragonDance ; added
+	dbw EFFECT_CONFUSE_HIT,      AI_Smart_DynamicPunch ; added
 	db -1 ; end
+
+AI_Smart_DynamicPunch:
+; encourage dynamic punch for machamp
+    ld a, [wEnemyMonSpecies]
+    cp MACHAMP
+    ret nz
+
+; never use against ghost types
+    ld a, [wBattleMonType1]
+	cp GHOST
+	ret z
+	ld a, [wBattleMonType2]
+	cp GHOST
+	ret z
+
+; don't encourage if already confused
+	ld a, [wPlayerSubStatus3]
+	bit SUBSTATUS_CONFUSED, a
+	ret nz
+
+    dec [hl]
+    dec [hl]
+    ret
 
 AI_Smart_DragonDance:
 	call IsAttackMaxed
