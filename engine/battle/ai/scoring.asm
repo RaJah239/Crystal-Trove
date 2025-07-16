@@ -695,7 +695,7 @@ AI_Smart_EffectHandlers:
 	dbw EFFECT_RESET_STATS,      AI_Smart_ResetStats ; updated
 	dbw EFFECT_FORCE_SWITCH,     AI_Smart_ForceSwitch ; updated
 	dbw EFFECT_HEAL,             AI_Smart_Heal ; updated
-	dbw EFFECT_TOXIC,            AI_Smart_Toxic
+	dbw EFFECT_TOXIC,            AI_Smart_Toxic ; updated
 	dbw EFFECT_LIGHT_SCREEN,     AI_Smart_LightScreen
 	dbw EFFECT_OHKO,             AI_Smart_Ohko
 	dbw EFFECT_RAZOR_WIND,       AI_Smart_RazorWind
@@ -1420,13 +1420,13 @@ AI_Smart_Toxic:
 	jr z, .discourage
 
 ; never use against Pokemon immune to status
-;	ld a, [wBattleMonSpecies]
+    ld a, [wBattleMonSpecies]
 ;	cp ARCEUS
 ;	jr z, .discourage
 ;	cp SYLVEON
 ;	jr z, .discourage
-;	cp DUNSPARCE
-;	jp z, .discourage
+    cp DUNSPARCE
+    jp z, .discourage
 
 ; never use against Pokemon with magic guard
     ld a, [wBattleMonSpecies]
