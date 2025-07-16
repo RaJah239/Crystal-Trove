@@ -697,7 +697,7 @@ AI_Smart_EffectHandlers:
 	dbw EFFECT_HEAL,             AI_Smart_Heal ; updated
 	dbw EFFECT_TOXIC,            AI_Smart_Toxic ; updated
 	dbw EFFECT_LIGHT_SCREEN,     AI_Smart_LightScreen ; updated
-	dbw EFFECT_OHKO,             AI_Smart_Ohko
+	dbw EFFECT_OHKO,             AI_Smart_Ohko ; updated
 	dbw EFFECT_RAZOR_WIND,       AI_Smart_RazorWind
 	dbw EFFECT_SUPER_FANG,       AI_Smart_SuperFang
 	dbw EFFECT_TRAP_TARGET,      AI_Smart_TrapTarget
@@ -1517,6 +1517,23 @@ AI_Smart_Ohko:
 ; Dismiss this move if player's level is higher than enemy's level.
 ; Else, discourage this move is player's HP is below 50%.
 
+; don't use Fissure against a flying type
+    ld a, [wEnemyMoveStruct + MOVE_ANIM]
+	cp FISSURE
+	jr nz, .notFissure
+    ld a, [wBattleMonType1]
+	cp FLYING
+	jr z, .discourage
+	ld a, [wBattleMonType2]
+	cp FLYING
+	jr z, .discourage
+
+.notFissure
+; don't use on Uber Pokemon as they are immune
+    ld a, [wBattleMonSpecies]
+    call DoesPokemonHaveUberImmunity
+   	jr c, .discourage
+
 	ld a, [wBattleMonLevel]
 	ld b, a
 	ld a, [wEnemyMonLevel]
@@ -1524,6 +1541,7 @@ AI_Smart_Ohko:
 	jp c, AIDiscourageMove
 	call AICheckPlayerHalfHP
 	ret c
+.discourage
 	inc [hl]
 	ret
 
