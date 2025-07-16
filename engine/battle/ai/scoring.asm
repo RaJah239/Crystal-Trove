@@ -745,7 +745,7 @@ AI_Smart_EffectHandlers:
 	dbw EFFECT_EARTHQUAKE,       AI_Smart_Earthquake ; updated
 	dbw EFFECT_GUST,             AI_Smart_Gust
 	dbw EFFECT_STOMP,            AI_Smart_Stomp
-	dbw EFFECT_SOLARBEAM,        AI_Smart_Solarbeam
+	dbw EFFECT_SOLARBEAM,        AI_Smart_Solarbeam ; updated
 	dbw EFFECT_THUNDER,          AI_Smart_Thunder
 	dbw EFFECT_FLY,              AI_Smart_Fly
 	dbw EFFECT_HAIL,             AI_Smart_Hail
@@ -3166,15 +3166,15 @@ AI_Smart_Solarbeam:
 ; 90% chance to discourage this move when it's raining.
 
 	ld a, [wBattleWeather]
-	cp WEATHER_SUN
-	jr z, .encourage
+	;cp WEATHER_SUN
+	;jr z, .encourage
 
 	cp WEATHER_RAIN
 	ret nz
 
-	call Random
-	cp 10 percent
-	ret c
+	;call Random
+	;cp 10 percent
+	;ret c
 
 	inc [hl]
 	inc [hl]
