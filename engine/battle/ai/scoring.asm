@@ -17,6 +17,21 @@ SubstituteImmuneEffects:
 	db EFFECT_BURN
 	db $FF
 
+;===============================+
+; Add the remainder if missing  |
+;===============================+
+BoostingMoveEffects:
+	db EFFECT_ATTACK_UP_2
+	db EFFECT_SP_ATK_UP
+	db EFFECT_SP_ATK_UP_2
+	db EFFECT_SUBSTITUTE
+	db EFFECT_CURSE
+	db EFFECT_CALM_MIND
+	db EFFECT_BULK_UP
+	db EFFECT_DRAGON_DANCE
+	db EFFECT_QUIVER_DANCE
+	db -1
+
 AI_MagicGuardPokemon:
     db CLEFAIRY
     db CLEFABLE
@@ -447,14 +462,16 @@ AI_Smart_Switch:
 .switch
 ; can't switch if trapped
 	ld a, [wBattleMonSpecies]
+
+; Shadow Tag users
 	cp WOBBUFFET
 	ret z
-	cp CHANDELURE
-	ret z
-	cp SPIRITOMB
-	ret z
-	cp GIRATINA
-	ret z
+;	cp CHANDELURE
+;	ret z
+;	cp SPIRITOMB
+;	ret z
+;	cp GIRATINA
+;	ret z
 
     ld a, $1
     ld [wEnemyIsSwitching], a
@@ -4032,4 +4049,74 @@ DoesAIOutSpeedPlayer:
     ret
 .doNo
     xor a
+    ret
+
+; return carry if the AI has a move that can 1HKO the player Pokemon from current HP
+CanAIKO:
+    ld de, wEnemyMonMoves ; load player moves
+	ld b, NUM_MOVES + 1
+.loopAIKOMoves
+	dec b ; b is num moves on 1st pass
+	jr z, .done ; if b is 0 return we are done
+	ld a, [de] ; load the move
+	and a
+	jr z, .done ; return if no move
+	inc de ; increment to next move
+	call AIGetEnemyMove
+	ld a, [wEnemyMoveStruct + MOVE_POWER]
+	and a
+	jr z, .loopAIKOMoves ; skip moves with 0 power
+
+    ld a, 1
+	ldh [hBattleTurn], a
+	push hl
+	push de
+	push bc
+	callfar EnemyAttackDamage
+	callfar BattleCommand_DamageCalc
+	callfar BattleCommand_Stab
+	ld a, [wCurDamage + 1]
+	ld c, a ; c is curDamage upper
+	ld a, [wCurDamage]
+	ld b, a ; b is curDamage lower
+	ld a, [wBattleMonHP + 1]
+	cp c ; compare upper
+	ld a, [wBattleMonHP]
+    sbc b ; compare lower and set flag
+	pop bc
+	pop de
+	pop hl
+    jp nc, .loopAIKOMoves
+; skip moves that can't be used on consecutive turns, except hyper beam
+	ld a, [wPlayerMoveStruct + MOVE_EFFECT]
+	cp EFFECT_SELFDESTRUCT
+	jr z, .loopAIKOMoves
+
+; Remove this when Solarbeam is updated
+	cp EFFECT_SOLARBEAM
+	jr z, .loopAIKOMoves
+    scf
+    ret
+.done
+    xor a ; clear carry flag
+    ret
+
+IsAISetup:
+; don't switch if enemy mon is already set up
+    ld a, [wEnemyAtkLevel]
+	cp BASE_STAT_LEVEL + 2
+	jr nc, .yes
+    ld a, [wEnemySAtkLevel]
+	cp BASE_STAT_LEVEL + 2
+	jr nc, .yes
+    ;ld a, [wEnemyDefLevel]
+	;cp BASE_STAT_LEVEL + 2
+	;jr nc, .yes
+    ;ld a, [wEnemySDefLevel]
+	;cp BASE_STAT_LEVEL + 2
+	;jr nc, .yes
+    xor a
+    ret
+.yes
+    scf
     ret
