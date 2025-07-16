@@ -748,12 +748,33 @@ AI_Smart_EffectHandlers:
 	dbw EFFECT_SOLARBEAM,        AI_Smart_Solarbeam ; updated
 	dbw EFFECT_THUNDER,          AI_Smart_Thunder
 	dbw EFFECT_FLY,              AI_Smart_Fly ; updated
+	dbw EFFECT_ATTACK_UP_2,      AI_Smart_SwordsDance ; added
 	dbw EFFECT_HAIL,             AI_Smart_Hail
 	dbw EFFECT_FACADE,           AI_Smart_Facade
 	dbw EFFECT_HEX,              AI_Smart_Hex
 	dbw EFFECT_HURRICANE,        AI_Smart_Hurricane
 	dbw EFFECT_BULK_UP,          AI_Smart_BulkUp
 	db -1 ; end
+
+AI_Smart_SwordsDance:
+    call IsAttackMaxed
+    jp c, StandardDiscourage
+
+; don't use if we are at risk of being KOd, just attack them
+    call ShouldAIBoost
+    jp nc, StandardDiscourage
+
+; encourage to +2
+    ld a, [wEnemyAtkLevel]
+    cp BASE_STAT_LEVEL + 2
+    jp c, StandardEncourage
+
+; discourage after boost if afflicted with toxic
+    call IsAIToxified
+    jp c, StandardDiscourage
+
+; encourage if we have no reason not to
+    jp StandardEncourage
 
 AI_Smart_BulkUp:
 	call IsAttackMaxed
