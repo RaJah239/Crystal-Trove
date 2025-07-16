@@ -688,8 +688,10 @@ AI_Smart_EffectHandlers:
 	dbw EFFECT_EVASION_UP,       AI_Smart_EvasionUp ; updated
 	dbw EFFECT_ALWAYS_HIT,       AI_Smart_AlwaysHit ; updated
 	dbw EFFECT_ACCURACY_DOWN,    AI_Smart_AccuracyDown ; updated
-    dbw EFFECT_ATTACK_DOWN,      AI_Smart_AttackDown ; to add
-    dbw EFFECT_ATTACK_DOWN_2,    AI_Smart_AttackDown ; to add
+    dbw EFFECT_ATTACK_DOWN,      AI_Smart_AttackDown ; newly added
+    dbw EFFECT_ATTACK_DOWN_2,    AI_Smart_AttackDown ; newly added
+    dbw EFFECT_DEFENSE_DOWN,     AI_Smart_StatDown ; newly added
+    dbw EFFECT_DEFENSE_DOWN_2,   AI_Smart_StatDown ; newly added
 	dbw EFFECT_RESET_STATS,      AI_Smart_ResetStats
 	dbw EFFECT_FORCE_SWITCH,     AI_Smart_ForceSwitch
 	dbw EFFECT_HEAL,             AI_Smart_Heal
@@ -799,6 +801,25 @@ AI_Smart_AttackDown:
 
     dec [hl]
     ret
+.discourage
+    inc [hl]
+    inc [hl]
+    inc [hl]
+    inc [hl]
+    ret
+
+AI_Smart_StatDown:
+; discourage if enemy is immune to stat drops
+    ld a, [wBattleMonSpecies]
+    call DoesPokemonHaveClearBody
+    jr c, .discourage
+
+	call ShouldAIBoost
+	jr nc, .discourage
+
+    dec [hl]
+    ret
+
 .discourage
     inc [hl]
     inc [hl]
@@ -4707,6 +4728,34 @@ IsDefenseMaxed:
 	ld a, [wEnemyMonDefense]
 	sbc HIGH(MAX_STAT_VALUE)
 	jr z, .yes
+.no
+    xor a
+    ret
+.yes
+    scf
+    ret
+
+; return carry if players Attack is higher than Special Attack
+IsPlayerPhysicalOrSpecial:
+    ; compare high bytes
+	push bc
+	ld a, [wBattleMonAttack]
+	ld b, a
+	ld a, [wBattleMonSpclAtk]
+	cp b
+	pop bc
+	jr c, .yes ; attack high byte is bigger
+	jr nz, .no ; spclAtk high byte is bigger
+
+    ; here both high bytes are the same so check low byte
+	push bc
+	ld a, [wBattleMonAttack + 1]
+	ld b, a
+	ld a, [wBattleMonSpclAtk + 1]
+	cp b
+	pop bc
+	jr c, .yes ; attack bigger than special attack
+
 .no
     xor a
     ret
