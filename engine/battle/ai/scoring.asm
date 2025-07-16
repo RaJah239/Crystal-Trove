@@ -683,7 +683,6 @@ AI_Smart:
 
 AI_Smart_EffectHandlers:
 	dbw EFFECT_SLEEP,            AI_Smart_Sleep ; updated
-	dbw EFFECT_LEECH_HIT,        AI_Smart_LeechHit
 	dbw EFFECT_SELFDESTRUCT,     AI_Smart_Selfdestruct ; updated
 	dbw EFFECT_EVASION_UP,       AI_Smart_EvasionUp ; updated
 	dbw EFFECT_ALWAYS_HIT,       AI_Smart_AlwaysHit ; updated
@@ -698,8 +697,6 @@ AI_Smart_EffectHandlers:
 	dbw EFFECT_TOXIC,            AI_Smart_Toxic ; updated
 	dbw EFFECT_LIGHT_SCREEN,     AI_Smart_LightScreen ; updated
 	dbw EFFECT_OHKO,             AI_Smart_Ohko ; updated
-	dbw EFFECT_SUPER_FANG,       AI_Smart_SuperFang
-	dbw EFFECT_TRAP_TARGET,      AI_Smart_TrapTarget
 	dbw EFFECT_CONFUSE,          AI_Smart_Confuse ; updated
 	dbw EFFECT_SP_DEF_UP_2,      AI_Smart_SpDefenseUp2 ; updated
 	dbw EFFECT_REFLECT,          AI_Smart_Reflect ; updated
@@ -712,41 +709,26 @@ AI_Smart_EffectHandlers:
 	dbw EFFECT_DISABLE,          AI_Smart_Disable ; updated
 	dbw EFFECT_COUNTER,          AI_Smart_Counter ; updated
 	dbw EFFECT_ENCORE,           AI_Smart_Encore ; updated
-	dbw EFFECT_PAIN_SPLIT,       AI_Smart_PainSplit
-	dbw EFFECT_SNORE,            AI_Smart_Snore
 	dbw EFFECT_SLEEP_TALK,       AI_Smart_SleepTalk ; updated
 	dbw EFFECT_DESTINY_BOND,     AI_Smart_DestinyBond ; updated
-	dbw EFFECT_REVERSAL,         AI_Smart_Reversal
-	dbw EFFECT_SPITE,            AI_Smart_Spite
 	dbw EFFECT_HEAL_BELL,        AI_Smart_HealBell ; updated
 	dbw EFFECT_PRIORITY_HIT,     AI_Smart_PriorityHit ; updated
-	dbw EFFECT_THIEF,            AI_Smart_Thief
 	dbw EFFECT_MEAN_LOOK,        AI_Smart_MeanLook ; updated
-	dbw EFFECT_NIGHTMARE,        AI_Smart_Nightmare
 	dbw EFFECT_CURSE,            AI_Smart_Curse ; updated
 	dbw EFFECT_PROTECT,          AI_Smart_Protect ; updated
-	dbw EFFECT_FORESIGHT,        AI_Smart_Foresight
 	dbw EFFECT_PERISH_SONG,      AI_Smart_PerishSong ; updated
 	dbw EFFECT_SANDSTORM,        AI_Smart_Sandstorm ; updated
-	dbw EFFECT_ENDURE,           AI_Smart_Endure
 	dbw EFFECT_ROLLOUT,          AI_Smart_Rollout ; updated
-	dbw EFFECT_SWAGGER,          AI_Smart_Swagger
-	dbw EFFECT_ATTRACT,          AI_Smart_Attract
-	dbw EFFECT_SAFEGUARD,        AI_Smart_Safeguard
 	dbw EFFECT_BATON_PASS,       AI_Smart_BatonPass ; updated
 	dbw EFFECT_PURSUIT,          AI_Smart_Pursuit ; updated
 	dbw EFFECT_RAPID_SPIN,       AI_Smart_RapidSpin ; updated
 	dbw EFFECT_WEATHER_HEAL,     AI_Smart_Heal ; updated
-	dbw EFFECT_HIDDEN_POWER,     AI_Smart_HiddenPower
 	dbw EFFECT_RAIN_DANCE,       AI_Smart_RainDance ; updated
 	dbw EFFECT_SUNNY_DAY,        AI_Smart_SunnyDay ; updated
 	dbw EFFECT_BELLY_DRUM,       AI_Smart_BellyDrum ; updated
 	dbw EFFECT_MIRROR_COAT,      AI_Smart_MirrorCoat ; updated
 	dbw EFFECT_EARTHQUAKE,       AI_Smart_Earthquake ; updated
-	dbw EFFECT_GUST,             AI_Smart_Gust
-	dbw EFFECT_STOMP,            AI_Smart_Stomp
 	dbw EFFECT_SOLARBEAM,        AI_Smart_Solarbeam ; updated
-	dbw EFFECT_THUNDER,          AI_Smart_Thunder
 	dbw EFFECT_FLY,              AI_Smart_Fly ; updated
 	dbw EFFECT_ATTACK_UP_2,      AI_Smart_SwordsDance ; added
 	dbw EFFECT_DEFENSE_UP_2,     AI_Smart_Barrier ; added
@@ -773,7 +755,25 @@ AI_Smart_EffectHandlers:
     dbw EFFECT_STICKY_WEB,       AI_Smart_StickyWeb ; added
     dbw EFFECT_TRICK_ROOM,       AI_Smart_TrickRoom ; added
     dbw EFFECT_DEFOG,            AI_Smart_Defog ; added
+	dbw EFFECT_SNORE,            AI_Smart_Snore ; updated
 
+	dbw EFFECT_PAIN_SPLIT,       AI_Smart_PainSplit
+	dbw EFFECT_THUNDER,          AI_Smart_Thunder
+	dbw EFFECT_GUST,             AI_Smart_Gust
+	dbw EFFECT_STOMP,            AI_Smart_Stomp
+	dbw EFFECT_HIDDEN_POWER,     AI_Smart_HiddenPower
+	dbw EFFECT_SWAGGER,          AI_Smart_Swagger
+	dbw EFFECT_ATTRACT,          AI_Smart_Attract
+	dbw EFFECT_SAFEGUARD,        AI_Smart_Safeguard
+	dbw EFFECT_ENDURE,           AI_Smart_Endure
+	dbw EFFECT_FORESIGHT,        AI_Smart_Foresight
+	dbw EFFECT_NIGHTMARE,        AI_Smart_Nightmare
+	dbw EFFECT_THIEF,            AI_Smart_Thief
+	dbw EFFECT_LEECH_HIT,        AI_Smart_LeechHit
+	dbw EFFECT_SUPER_FANG,       AI_Smart_SuperFang
+	dbw EFFECT_TRAP_TARGET,      AI_Smart_TrapTarget
+	dbw EFFECT_REVERSAL,         AI_Smart_Reversal
+	dbw EFFECT_SPITE,            AI_Smart_Spite
 	dbw EFFECT_HAIL,             AI_Smart_Hail
 	dbw EFFECT_FACADE,           AI_Smart_Facade
 	dbw EFFECT_HEX,              AI_Smart_Hex
