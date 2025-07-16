@@ -708,7 +708,7 @@ AI_Smart_EffectHandlers:
 	dbw EFFECT_SPEED_UP_HIT,     AI_Smart_SpeedUpHit ; added
 	dbw EFFECT_SUBSTITUTE,       AI_Smart_Substitute ; updated
 	dbw EFFECT_HYPER_BEAM,       AI_Smart_HyperBeam ; updated
-	dbw EFFECT_LEECH_SEED,       AI_Smart_LeechSeed
+	dbw EFFECT_LEECH_SEED,       AI_Smart_LeechSeed ; updated
 	dbw EFFECT_DISABLE,          AI_Smart_Disable
 	dbw EFFECT_COUNTER,          AI_Smart_Counter
 	dbw EFFECT_ENCORE,           AI_Smart_Encore
@@ -1367,12 +1367,12 @@ AI_Smart_LeechSeed:
 	jr nz, .discourage
 
 ; don't use if we will be koed
-;	call ShouldAIBoost
-;	jr nc, .discourage
+    call ShouldAIBoost
+    jr nc, .discourage
 
 ; don't use if we can just 2hko the player
-;	call CanAI2HKO
-;	jr c, .discourage
+    call CanAI2HKO
+    jr c, .discourage
 
 ; otherwise use
 rept 5
@@ -1384,8 +1384,6 @@ endr
     inc [hl]
     inc [hl]
     ret
-
-; DevNote - functions which check if the player can KO the AI and decide to use boosting moves
 
 AI_Smart_LightScreen:
     call ShouldAIBoost
