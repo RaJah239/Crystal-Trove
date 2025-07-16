@@ -67,25 +67,6 @@
 ;	anim_wait 48
 ;	anim_ret
 
-; Unused - this one might be more compact too
-;BattleAnim_Scald:
-;	anim_2gfx BATTLE_ANIM_GFX_HAZE, BATTLE_ANIM_GFX_WATER
-;	anim_sound 0, 1, SFX_HYDRO_PUMP
-;	anim_obj BATTLE_ANIM_OBJ_HYDRO_PUMP, 124, 72, $0
-;	anim_wait 8
-;	anim_sound 0, 1, SFX_HYDRO_PUMP
-;	anim_obj BATTLE_ANIM_OBJ_HYDRO_PUMP, 132, 72, $0
-;	anim_wait 8
-;	anim_sound 0, 1, SFX_HYDRO_PUMP
-;	anim_obj BATTLE_ANIM_OBJ_HYDRO_PUMP, 140, 72, $0
-;	anim_wait 16
-;.loop
-;	anim_obj BATTLE_ANIM_GFX_SMOKE, 132, 60, $20
-;	anim_wait 8
-;	anim_loop 5, .loop
-;	anim_wait 128
-;	anim_ret
-
 ; Unused
 ;BattleAnim_LavaPlume:
 ;	anim_1gfx BATTLE_ANIM_GFX_FIRE
@@ -4195,28 +4176,48 @@ BattleAnim_Swagger:
 	anim_wait 40
 	anim_ret
 
+; Ported from https://github.com/AzureKeys/BW3G
 BattleAnim_Scald:
-	anim_bgeffect BATTLE_BG_EFFECT_START_WATER, $0, BG_EFFECT_TARGET, $0
-	anim_1gfx BATTLE_ANIM_GFX_WATER
-	anim_call BattleAnim_UserObj_2Row
+	anim_2gfx BATTLE_ANIM_GFX_HAZE, BATTLE_ANIM_GFX_WATER
 	anim_sound 0, 1, SFX_HYDRO_PUMP
 	anim_obj BATTLE_ANIM_OBJ_HYDRO_PUMP, 124, 72, $0
-	anim_bgeffect BATTLE_BG_EFFECT_WATER, $30, $0, $0
 	anim_wait 8
 	anim_sound 0, 1, SFX_HYDRO_PUMP
 	anim_obj BATTLE_ANIM_OBJ_HYDRO_PUMP, 132, 72, $0
-	anim_bgeffect BATTLE_BG_EFFECT_WATER, $1c, $0, $0
 	anim_wait 8
 	anim_sound 0, 1, SFX_HYDRO_PUMP
 	anim_obj BATTLE_ANIM_OBJ_HYDRO_PUMP, 140, 72, $0
-	anim_bgeffect BATTLE_BG_EFFECT_WATER, $8, $0, $0
-	anim_wait 8
-	anim_bgeffect BATTLE_BG_EFFECT_CYCLE_OBPALS_GRAY_AND_YELLOW, $0, $2, $0
-	anim_bgeffect BATTLE_BG_EFFECT_ALTERNATE_HUES, $0, $2, $0
-	anim_call BattleAnim_ShowMon_1
-	anim_bgeffect BATTLE_BG_EFFECT_END_WATER, $0, $0, $0
 	anim_wait 16
+.loop
+	anim_obj BATTLE_ANIM_GFX_SMOKE, 132, 60, $20
+	anim_wait 8
+	anim_loop 5, .loop
+	anim_wait 32
 	anim_ret
+
+; First version
+;BattleAnim_Scald:
+;	anim_bgeffect BATTLE_BG_EFFECT_START_WATER, $0, BG_EFFECT_TARGET, $0
+;	anim_1gfx BATTLE_ANIM_GFX_WATER
+;	anim_call BattleAnim_UserObj_2Row
+;	anim_sound 0, 1, SFX_HYDRO_PUMP
+;	anim_obj BATTLE_ANIM_OBJ_HYDRO_PUMP, 124, 72, $0
+;	anim_bgeffect BATTLE_BG_EFFECT_WATER, $30, $0, $0
+;	anim_wait 8
+;	anim_sound 0, 1, SFX_HYDRO_PUMP
+;	anim_obj BATTLE_ANIM_OBJ_HYDRO_PUMP, 132, 72, $0
+;	anim_bgeffect BATTLE_BG_EFFECT_WATER, $1c, $0, $0
+;	anim_wait 8
+;	anim_sound 0, 1, SFX_HYDRO_PUMP
+;	anim_obj BATTLE_ANIM_OBJ_HYDRO_PUMP, 140, 72, $0
+;	anim_bgeffect BATTLE_BG_EFFECT_WATER, $8, $0, $0
+;	anim_wait 8
+;	anim_bgeffect BATTLE_BG_EFFECT_CYCLE_OBPALS_GRAY_AND_YELLOW, $0, $2, $0
+;	anim_bgeffect BATTLE_BG_EFFECT_ALTERNATE_HUES, $0, $2, $0
+;	anim_call BattleAnim_ShowMon_1
+;	anim_bgeffect BATTLE_BG_EFFECT_END_WATER, $0, $0, $0
+;	anim_wait 16
+;	anim_ret
 
 BattleAnim_WildCharge:
 	anim_call BattleAnim_ChargedUpSub
@@ -4225,7 +4226,6 @@ BattleAnim_WildCharge:
 	anim_sound 0, 0, SFX_SPARK
 	anim_wait 16
 	anim_bgeffect BATTLE_BG_EFFECT_SHOW_MON, $0, BG_EFFECT_TARGET, $0
-
 	anim_jump BattleAnim_ElectricTackle
 
 BattleAnim_VoltSwitch:
