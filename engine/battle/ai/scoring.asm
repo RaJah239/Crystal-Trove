@@ -721,7 +721,7 @@ AI_Smart_EffectHandlers:
 	dbw EFFECT_HEAL_BELL,        AI_Smart_HealBell ; updated
 	dbw EFFECT_PRIORITY_HIT,     AI_Smart_PriorityHit ; updated
 	dbw EFFECT_THIEF,            AI_Smart_Thief
-	dbw EFFECT_MEAN_LOOK,        AI_Smart_MeanLook
+	dbw EFFECT_MEAN_LOOK,        AI_Smart_MeanLook ; updated
 	dbw EFFECT_NIGHTMARE,        AI_Smart_Nightmare
 	dbw EFFECT_CURSE,            AI_Smart_Curse
 	dbw EFFECT_PROTECT,          AI_Smart_Protect
@@ -2176,23 +2176,45 @@ AI_Smart_Disable:
 	ret
 
 AI_Smart_MeanLook:
-	call AICheckEnemyHalfHP
-	jr nc, .discourage
+; discourage if player is already trapped
+    ld a, [wEnemySubStatus5]
+	bit SUBSTATUS_CANT_RUN, a
+	jr nz, .discourage
 
+; discourage if this is the players last mon
 	push hl
 	call AICheckLastPlayerMon
 	pop hl
 	jp z, AIDiscourageMove
 
-; 80% chance to greatly encourage this move if the enemy is badly poisoned.
-    ld a, [wPlayerSubStatus5]
+; discourage if we will be koed
+    call ShouldAIBoost
+    jp nz, AIDiscourageMove
+
+; if we are Wobbuffet just encourage at this point
+	ld a, [wEnemyMonSpecies]
+	cp WOBBUFFET
+	jr nz, .notWobbuffet
+rept 5
+	dec [hl]
+endr
+	ret
+.notWobbuffet
+
+; discourage if below half health
+	call AICheckEnemyHalfHP
+	jr nc, .discourage
+
+; 80% chance to greatly encourage this move if the enemy is badly poisoned (buggy).
+; Should check wPlayerSubStatus5 instead.
+	ld a, [wPlayerSubStatus5]
 	bit SUBSTATUS_TOXIC, a
 	jr nz, .encourage
 
 ; 80% chance to greatly encourage this move if the player is either
 ; in love, identified, stuck in Rollout, or has a Nightmare.
 	ld a, [wPlayerSubStatus1]
-	and 1 << SUBSTATUS_IN_LOVE | 1 << SUBSTATUS_ROLLOUT | 1 << SUBSTATUS_IDENTIFIED | 1 << SUBSTATUS_NIGHTMARE
+	and 1 << SUBSTATUS_IN_LOVE | 1 << SUBSTATUS_ROLLOUT | 1 << SUBSTATUS_NIGHTMARE
 	jr nz, .encourage
 
 ; Otherwise, discourage this move unless the player only has not very effective moves against the enemy.
