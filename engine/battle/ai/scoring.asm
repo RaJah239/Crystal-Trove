@@ -707,7 +707,7 @@ AI_Smart_EffectHandlers:
 	dbw EFFECT_SPEED_DOWN_HIT,   AI_Smart_SpeedDownHit ; updated
 	dbw EFFECT_SPEED_UP_HIT,     AI_Smart_SpeedUpHit ; added
 	dbw EFFECT_SUBSTITUTE,       AI_Smart_Substitute ; updated
-	dbw EFFECT_HYPER_BEAM,       AI_Smart_HyperBeam
+	dbw EFFECT_HYPER_BEAM,       AI_Smart_HyperBeam ; updated
 	dbw EFFECT_RAGE,             AI_Smart_Rage
 	dbw EFFECT_MIMIC,            AI_Smart_Mimic
 	dbw EFFECT_LEECH_SEED,       AI_Smart_LeechSeed
@@ -1880,6 +1880,13 @@ AI_Smart_Substitute:
     ret
 
 AI_Smart_HyperBeam:
+; Hyper Beam free users
+    ld a, [wEnemyMonSpecies]
+    cp PORYGON2
+    ret z
+;	cp URSALUNA_B
+;	ret z
+
 	call AICheckEnemyHalfHP
 	jr c, .discourage
 
