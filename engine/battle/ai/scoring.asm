@@ -688,6 +688,8 @@ AI_Smart_EffectHandlers:
 	dbw EFFECT_EVASION_UP,       AI_Smart_EvasionUp ; updated
 	dbw EFFECT_ALWAYS_HIT,       AI_Smart_AlwaysHit ; updated
 	dbw EFFECT_ACCURACY_DOWN,    AI_Smart_AccuracyDown ; updated
+    dbw EFFECT_ATTACK_DOWN,      AI_Smart_AttackDown ; to add
+    dbw EFFECT_ATTACK_DOWN_2,    AI_Smart_AttackDown ; to add
 	dbw EFFECT_RESET_STATS,      AI_Smart_ResetStats
 	dbw EFFECT_FORCE_SWITCH,     AI_Smart_ForceSwitch
 	dbw EFFECT_HEAL,             AI_Smart_Heal
@@ -777,6 +779,32 @@ AI_Smart_Hex:
 	dec [hl]
 	dec [hl]
 	ret
+
+AI_Smart_AttackDown:
+; discourage if enemy is immune to stat drops
+    ld a, [wBattleMonSpecies]
+    call DoesPokemonHaveClearBody
+    jr c, .discourage
+
+	call ShouldAIBoost
+	jr nc, .discourage
+
+; discourage after player is at -3
+    ld a, [wPlayerAtkLevel]
+    cp BASE_STAT_LEVEL - 1
+    jr c, .discourage
+
+    call IsPlayerPhysicalOrSpecial
+    jr nc, .discourage
+
+    dec [hl]
+    ret
+.discourage
+    inc [hl]
+    inc [hl]
+    inc [hl]
+    inc [hl]
+    ret
 
 AI_Smart_Sleep:
 ; don't use if there already is a status
