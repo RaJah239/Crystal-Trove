@@ -66,6 +66,7 @@ AIChooseMove:
 
 	; If we have a battle in BattleTower just load the Attributes of the first trainer class in wTrainerClass (Falkner)
 	; so we have always the same AI, regardless of the loaded class of trainer
+	; DevNote - This is interesting, all battleTower trainers use falker ai
 	ld a, [wInBattleTowerBattle]
 	bit 0, a
 	jr nz, .battle_tower_skip
@@ -205,7 +206,7 @@ AIScoringPointers:
 	dw AI_Types
 	dw AI_Offensive
 	dw AI_Smart
-	dw AI_Opportunist
+	dw AI_Final_Attack
 	dw AI_Aggressive
 	dw AI_Cautious
 	dw AI_Status

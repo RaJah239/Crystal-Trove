@@ -1,5 +1,5 @@
-; AI_OPPORTUNIST discourages these moves
-; when the player's HP is low.
+; AI_FINAL_ATTACK discourages these moves when the player can KO the AI Pokemon
+; This does not include most stat increasing moves as they are handled in AI_Smart
 
 StallMoves:
 	db SWORDS_DANCE

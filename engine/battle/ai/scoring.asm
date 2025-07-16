@@ -4065,22 +4065,15 @@ StandardDiscourage:
 
 INCLUDE "data/battle/ai/useful_moves.asm"
 
-AI_Opportunist:
-; Discourage stall moves when the enemy's HP is low.
+; DevNote - this used to be AI_Opportunist
+; this used to discourage 0 power moves if the player is below 1/4 hp
+; that is no longer needed as AI_Basic now encourages any attack once it can KO the player
+; this discourages most 0 power moves if the player can KO the AI
+AI_Final_Attack:
+; Discourage stall moves if the player can KO us
+    call ShouldAIBoost
+    ret nc
 
-; Do nothing if enemy's HP is above 50%.
-	call AICheckEnemyHalfHP
-	ret c
-
-; Discourage stall moves if enemy's HP is below 25%.
-	call AICheckEnemyQuarterHP
-	jr nc, .lowhp
-
-; 50% chance to discourage stall moves if enemy's HP is between 25% and 50%.
-	call AI_50_50
-	ret c
-
-.lowhp
 	ld hl, wEnemyAIMoveScores - 1
 	ld de, wEnemyMonMoves
 	ld c, NUM_MOVES + 1
@@ -4106,6 +4099,9 @@ AI_Opportunist:
 	pop hl
 	jr nc, .checkmove
 
+	inc [hl]
+	inc [hl]
+	inc [hl]
 	inc [hl]
 	jr .checkmove
 
