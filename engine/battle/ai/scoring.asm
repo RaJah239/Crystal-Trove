@@ -742,7 +742,7 @@ AI_Smart_EffectHandlers:
 	dbw EFFECT_SUNNY_DAY,        AI_Smart_SunnyDay ; updated
 	dbw EFFECT_BELLY_DRUM,       AI_Smart_BellyDrum ; updated
 	dbw EFFECT_MIRROR_COAT,      AI_Smart_MirrorCoat ; updated
-	dbw EFFECT_EARTHQUAKE,       AI_Smart_Earthquake
+	dbw EFFECT_EARTHQUAKE,       AI_Smart_Earthquake ; updated
 	dbw EFFECT_GUST,             AI_Smart_Gust
 	dbw EFFECT_STOMP,            AI_Smart_Stomp
 	dbw EFFECT_SOLARBEAM,        AI_Smart_Solarbeam
@@ -2807,7 +2807,7 @@ AI_Smart_Earthquake:
 	bit SUBSTATUS_UNDERGROUND, a
 	jr z, .could_dig
 
-	call AICompareSpeed
+	call DoesAIOutSpeedPlayer
 	ret nc
 	dec [hl]
 	dec [hl]
@@ -2817,7 +2817,7 @@ AI_Smart_Earthquake:
 	; Try to predict if the player will use Dig this turn.
 
 	; 50% chance to encourage this move if the enemy is slower than the player.
-	call AICompareSpeed
+	call DoesAIOutSpeedPlayer
 	ret c
 
 	call AI_50_50
