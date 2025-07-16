@@ -761,7 +761,43 @@ AI_Smart_EffectHandlers:
 	dbw EFFECT_SP_ATK_UP_2,      AI_Smart_NastyPlot ; added
 	dbw EFFECT_DRAGON_DANCE,     AI_Smart_DragonDance ; added
 	dbw EFFECT_CONFUSE_HIT,      AI_Smart_DynamicPunch ; added
+	dbw EFFECT_QUIVER_DANCE,     AI_Smart_QuiverDance ; added
 	db -1 ; end
+
+AI_Smart_QuiverDance:
+	call IsSpecialAttackMaxed
+	jr nc, .shouldBoost
+	call IsSpecialDefenseMaxed
+	jp c, StandardDiscourage
+
+.shouldBoost
+    call ShouldAIBoost
+    jp nc, StandardDiscourage
+
+; discourage if enemy is paralyzed
+    ld a, [wEnemyMonStatus]
+	and 1 << PAR
+	jp nz, StandardDiscourage
+
+; discourage if player speed is +2 or higher
+    ld a, [wPlayerSpdLevel]
+    cp BASE_STAT_LEVEL + 2
+    jp nc, StandardDiscourage
+
+; never use while in trick room
+    ld a, [wTrickRoomCount]
+    and a
+    jp nz, StandardDiscourage
+
+; encourage to +2
+	ld a, [wEnemySAtkLevel]
+	cp BASE_STAT_LEVEL + 2
+	jp c, StandardEncourage
+
+; discourage after boost if afflicted with toxic
+    call IsAIToxified
+    jp c, StandardDiscourage
+    ret
 
 AI_Smart_DynamicPunch:
 ; encourage dynamic punch for machamp
