@@ -25,6 +25,7 @@ AI_MagicGuardPokemon:
     db ALAKAZAM
     db $FF
 
+; Needs to be the same as `Core_LevitatePokemon` and `FloatMons`
 AI_LevitatePokemon:
 	db BEEDRILL
 	db BUTTERFREE
@@ -132,7 +133,7 @@ AI_Basic:
 	pop bc
 	pop de
 	pop hl
-	jr nz, .discourage ; discourage if AI_Redundant - loop bck to check move
+	jp nz, .discourage ; discourage if AI_Redundant - loop bck to check move
 
 ; DevNote - Taunt - Check enemy is taunted or holding assault vest and discourage 0 power moves
     ld a, [wEnemyTauntCount]
@@ -191,11 +192,126 @@ AI_Basic:
 	jp c, .discourage ; discourage if sub is up and blocks move - loop back to check move
 
 .checkLevitate
+; Dismiss ground move if the player has levitate
+	ld a, [wEnemyMoveStruct + MOVE_TYPE]
+	and TYPE_MASK
+	cp GROUND
+	jr nz, .checkWaterAbsorb
+	ld a, [wBattleMonSpecies]
+    call DoesPokemonHaveLevitate
+    jp c, .discourage
+
+.checkWaterAbsorb
+    cp WATER
+	jr nz, .checkVoltAbsorb
+
+	ld a, [wBattleMonSpecies]
+    call DoesPokemonHaveWaterAbsorb
+    jp c, .discourage
+
+.checkVoltAbsorb
+    cp ELECTRIC
+	jr nz, .checkFireAbsorb
+	ld a, [wBattleMonSpecies]
+    call DoesPokemonHaveVoltAbsorb
+    jp c, .discourage
+
+.checkFireAbsorb
+    cp FIRE
+	jp nz, .checkKO
+	ld a, [wBattleMonSpecies]
+    call DoesPokemonHaveFireAbsorb
+    jp c, .discourage
 
 ; Dismiss Safeguard if it's already active.
 	ld a, [wPlayerScreens]
 	bit SCREENS_SAFEGUARD, a
 	jp z, .checkmove
+
+.checkKO
+	ld a, [wEnemyMoveStruct + MOVE_POWER]
+	and a
+	jp z, .checkmove
+
+; if we are faster and player is flying or underground then don't encourage attacks
+    call DoesAIOutSpeedPlayer
+    jr nc, .calcDamage
+	ld a, [wPlayerSubStatus3]
+	and 1 << SUBSTATUS_FLYING | 1 << SUBSTATUS_UNDERGROUND
+	jp nz, .checkmove
+
+.calcDamage
+    ld a, 1
+	ldh [hBattleTurn], a
+	push hl
+	push de
+	push bc
+	callfar EnemyAttackDamage
+	callfar BattleCommand_DamageCalc
+	callfar BattleCommand_Stab
+	ld a, [wCurDamage + 1]
+	ld c, a ; c is curDamage upper
+	ld a, [wCurDamage]
+	ld b, a ; b is curDamage lower
+	ld a, [wBattleMonHP + 1]
+	cp c ; compare upper
+	ld a, [wBattleMonHP]
+	sbc b ; compare lower and set flag
+	pop bc
+	pop de
+	pop hl
+    jp nc, .checkmove
+
+; don't encourage explosion as much
+	ld a, [wEnemyMoveStruct + MOVE_EFFECT]
+	cp EFFECT_SELFDESTRUCT
+	jr z, .explodeOrHeal
+
+; Rock Head users
+; don't encourage recoil moves as much
+    ld a, [wEnemyMonSpecies]
+    cp AERODACTYL
+    jr z, .skipRecoilCheck
+    cp MOLTRES
+    jr z, .skipRecoilCheck
+;	cp REGIGIGAS
+;	jr z, .skipRecoilCheck
+	ld a, [wEnemyMoveStruct + MOVE_EFFECT]
+	cp EFFECT_RECOIL_HIT
+	jr z, .recoil
+
+.skipRecoilCheck
+; if we are below 1/4 hp and have a healing move then lesser encourage so we can use it
+    call AICheckEnemyQuarterHP
+    jr c, .checkAcc
+	ld b, EFFECT_HEAL
+	call AIHasMoveEffect
+	jr c, .explodeOrHeal
+
+.checkAcc
+; encourage more accurate moves if they can kill
+	ld a, [wEnemyMoveStruct + MOVE_ACC]
+	cp 100 percent
+	jr c, .notAcc
+
+; encouragements to KO enemy
+; standard attack = 9
+; recoil attack = 7
+; inaccurate attack = 5
+; explode attack = 3
+	dec [hl]
+	dec [hl]
+.recoil
+	dec [hl]
+	dec [hl]
+.notAcc
+	dec [hl]
+    dec [hl]
+.explodeOrHeal
+    dec [hl]
+    dec [hl]
+    dec [hl]
+    jp .checkmove
 
 .discourage
 	call AIDiscourageMove
@@ -3626,6 +3742,23 @@ WaterAbsorb:
 	call StdBattleTextbox
     ret z
 
+DoesPokemonHaveWaterAbsorb:
+    push hl
+    push de
+   	push bc
+   	ld hl, AI_WaterAbsorbPokemon
+   	ld de, 1
+   	call IsInArray
+   	pop bc
+   	pop de
+   	pop hl
+   	jr c, .yes
+   	xor a
+   	ret
+.yes
+    scf
+    ret
+
 VoltAbsorb:
     ldh a, [hBattleTurn]
 	and a
@@ -3654,6 +3787,23 @@ VoltAbsorb:
 	call StdBattleTextbox
     ret z
 
+DoesPokemonHaveVoltAbsorb:
+    push hl
+    push de
+   	push bc
+   	ld hl, AI_VoltAbsorbPokemon
+   	ld de, 1
+   	call IsInArray
+   	pop bc
+   	pop de
+   	pop hl
+   	jr c, .yes
+   	xor a
+   	ret
+.yes
+    scf
+    ret
+
 FireAbsorb:
     ldh a, [hBattleTurn]
 	and a
@@ -3681,3 +3831,135 @@ FireAbsorb:
 	ld hl, FireAbsorbText
 	call StdBattleTextbox
     ret z
+
+DoesPokemonHaveFireAbsorb:
+    push hl
+    push de
+   	push bc
+   	ld hl, AI_FireAbsorbPokemon
+   	ld de, 1
+   	call IsInArray
+   	pop bc
+   	pop de
+   	pop hl
+   	jr c, .yes
+   	xor a
+   	ret
+.yes
+    scf
+    ret
+
+DoesAIOutSpeedPlayer:
+; lots of extra logic for the weather speed boosting abilities since they don't actually increase speed
+    ld a, [wEnemyMonStatus]
+	and 1 << PAR
+	jp nz, .checkPlayer
+    ld a, [wPlayerSpdLevel]
+    cp BASE_STAT_LEVEL + 2
+    jr nc, .checkPlayer
+
+	ld a, [wBattleWeather]
+	cp WEATHER_RAIN
+	jr nz, .checkSun
+	ld a, [wEnemyMonSpecies]
+
+; Swift Swimm users
+	cp POLIWRATH
+	jp z, .yes
+	cp KINGDRA
+	jp z, .yes
+.checkSun
+	ld a, [wBattleWeather]
+	cp WEATHER_SUN
+	jr nz, .checkSand
+	ld a, [wEnemyMonSpecies]
+
+; Chorophyll users
+	cp VENUSAUR
+	jr z, .yes
+	cp EXEGGUTOR
+	jr z, .yes
+.checkSand
+	ld a, [wBattleWeather]
+	cp WEATHER_SANDSTORM
+	jr nz, .checkPlayer
+	ld a, [wEnemyMonSpecies]
+
+; Sand Rush users
+;	cp EXCADRILL
+;	jr z, .yes
+	cp GOLEM
+	jr z, .yes
+
+.checkPlayer
+    ld a, [wBattleMonStatus]
+	and 1 << PAR
+	jp nz, .speedCheck
+    ld a, [wEnemySpdLevel]
+    cp BASE_STAT_LEVEL + 2
+    jr nc, .speedCheck
+
+	ld a, [wBattleWeather]
+
+; Swift Swimm users
+	cp WEATHER_RAIN
+	jr nz, .checkSunPlayer
+	ld a, [wBattleMonSpecies]
+	cp POLIWRATH
+	jr z, .no
+	cp KINGDRA
+	jr z, .no
+.checkSunPlayer
+	ld a, [wBattleWeather]
+	cp WEATHER_SUN
+	jr nz, .checkSandPlayer
+	ld a, [wBattleMonSpecies]
+
+; Chorophyll users
+	cp VENUSAUR
+	jr z, .no
+	cp EXEGGUTOR
+	jr z, .no
+.checkSandPlayer
+	ld a, [wBattleWeather]
+	cp WEATHER_SANDSTORM
+	jr nz, .speedCheck
+	ld a, [wBattleMonSpecies]
+
+; Sand Rush users
+;	cp EXCADRILL
+;	jr z, .no
+	cp GOLEM
+	jr z, .no
+
+.speedCheck
+; Return carry if enemy is faster than player.
+	push bc
+	ld a, [wEnemyMonSpeed + 1]
+	ld b, a
+	ld a, [wBattleMonSpeed + 1]
+	cp b
+	ld a, [wEnemyMonSpeed]
+	ld b, a
+	ld a, [wBattleMonSpeed]
+	sbc b
+	pop bc
+	jr nc, .no
+.yes
+    ld a, [wTrickRoomCount]
+    and a
+    jr z, .doYes
+    xor a
+    ret
+.doYes
+    scf
+    ret
+.no
+    ld a, [wTrickRoomCount]
+    and a
+    jr z, .doNo
+    scf
+    ret
+.doNo
+    xor a
+    ret
