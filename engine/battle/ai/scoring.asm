@@ -719,7 +719,7 @@ AI_Smart_EffectHandlers:
 	dbw EFFECT_REVERSAL,         AI_Smart_Reversal
 	dbw EFFECT_SPITE,            AI_Smart_Spite
 	dbw EFFECT_HEAL_BELL,        AI_Smart_HealBell ; updated
-	dbw EFFECT_PRIORITY_HIT,     AI_Smart_PriorityHit
+	dbw EFFECT_PRIORITY_HIT,     AI_Smart_PriorityHit ; updated
 	dbw EFFECT_THIEF,            AI_Smart_Thief
 	dbw EFFECT_MEAN_LOOK,        AI_Smart_MeanLook
 	dbw EFFECT_NIGHTMARE,        AI_Smart_Nightmare
@@ -2078,9 +2078,23 @@ AI_Smart_HealBell:
 	jp AIDiscourageMove
 
 AI_Smart_PriorityHit:
-	call AICompareSpeed
-	ret c
+; never use extremespeed, mach punch or quick attack against a ghost type
+	ld a, [wEnemyMoveStruct + MOVE_ANIM]
+	cp EXTREMESPEED
+	jr z, .ghostImmune
+	cp MACH_PUNCH
+	jr nz, .notGhostImmune
+	cp QUICK_ATTACK
+	jr nz, .notGhostImmune
+.ghostImmune
+    ld a, [wBattleMonType1]
+	cp GHOST
+	jp z, AIDiscourageMove
+	ld a, [wBattleMonType2]
+	cp GHOST
+	jp z, AIDiscourageMove
 
+.notGhostImmune
 ; Dismiss this move if the player is flying or underground.
 	ld a, [wPlayerSubStatus3]
 	and 1 << SUBSTATUS_FLYING | 1 << SUBSTATUS_UNDERGROUND
@@ -2102,10 +2116,48 @@ AI_Smart_PriorityHit:
 	cp c
 	ld a, [wBattleMonHP]
 	sbc b
+	jr nc, .noKO
+	dec [hl]
+	dec [hl]
+	dec [hl]
+	dec [hl]
+	dec [hl]
+	ret
+
+.noKO
+; does player have priority move and are we low on hp
+; if so skip speed check so we might use priority even if we are faster
+	ld b, EFFECT_PRIORITY_HIT
+	call PlayerHasMoveEffect
+	jr nc, .speedCheck
+
+	call AICheckEnemyQuarterHP
+	jr nc, .skipSpeedCheck
+
+.speedCheck
+; if faster than the player then do nothing
+	call DoesAIOutSpeedPlayer
+	ret c
+
+.skipSpeedCheck
+; massive encourage if player can KO and player is attacking, unless we have sash
+; this needs to overcome encouragement from other moves which do more damage and can KO
+	call CanPlayerKO
 	ret nc
+
+    call DoesEnemyHaveIntactFocusSashOrSturdy
+    ret c
+
+; has player picked a damaging move, if not then don't encourage.
+    ld a, [wCurPlayerMove]
+	call AIGetPlayerMove
+	ld a, [wPlayerMoveStruct + MOVE_POWER]
+    and a
+	ret z
+
+rept 12
 	dec [hl]
-	dec [hl]
-	dec [hl]
+endr
 	ret
 
 AI_Smart_Thief:
