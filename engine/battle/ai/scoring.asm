@@ -723,7 +723,7 @@ AI_Smart_EffectHandlers:
 	dbw EFFECT_THIEF,            AI_Smart_Thief
 	dbw EFFECT_MEAN_LOOK,        AI_Smart_MeanLook ; updated
 	dbw EFFECT_NIGHTMARE,        AI_Smart_Nightmare
-	dbw EFFECT_CURSE,            AI_Smart_Curse
+	dbw EFFECT_CURSE,            AI_Smart_Curse updated
 	dbw EFFECT_PROTECT,          AI_Smart_Protect
 	dbw EFFECT_FORESIGHT,        AI_Smart_Foresight
 	dbw EFFECT_PERISH_SONG,      AI_Smart_PerishSong
@@ -2275,37 +2275,57 @@ AI_Smart_Nightmare:
 AI_Smart_Curse:
 	ld a, [wEnemyMonType1]
 	cp GHOST
-	jr z, .ghost_curse
+	jp z, .ghost_curse
 	ld a, [wEnemyMonType2]
 	cp GHOST
-	jr z, .ghost_curse
+	jp z, .ghost_curse
 
-	call AICheckEnemyHalfHP
-	jr nc, .encourage
+	call IsAttackMaxed
+	jr nc, .continue
+	call IsDefenseMaxed
+	jr c, .discourage
 
-	ld a, [wEnemyAtkLevel]
-	cp BASE_STAT_LEVEL + 4
-	jr nc, .encourage
-	cp BASE_STAT_LEVEL + 2
-	ret nc
+.continue
+; if player is asleep or frozen and is physical we should boost
+	ld a, [wBattleMonStatus]
+	and SLP_MASK
+	jr z, .noStatus
+	call IsPlayerPhysicalOrSpecial
+	jr c, .encourage
+.noStatus
 
-	ld a, [wBattleMonType1]
-	cp GHOST
-	jr z, .greatly_encourage
-	call AI_80_20
-	ret c
-	dec [hl]
-	dec [hl]
-	ret
+; don't use curse if player can 2HKO as we will likely take 2 hits due to the speed drop
+	call CanPlayer2HKO
+	jr c, .discourage
 
-.approve
-	inc [hl]
-	inc [hl]
-.greatly_encourage
-	inc [hl]
+; encourage to +2 - strong encourage if player is physical
+    ld a, [wEnemyAtkLevel]
+    cp BASE_STAT_LEVEL + 2
+    jp nc, .atPlus2
+    call IsPlayerPhysicalOrSpecial
+    jr nc, .special
+    jr .strongEncourage
+.special
+    jr .encourage
+
+.atPlus2
+; discourage after boost if afflicted with toxic
+    call IsAIToxified
+    jr c, .discourage
+    ret
+
+.strongEncourage
+    dec [hl]
 .encourage
-	inc [hl]
+	dec [hl]
+	dec [hl]
 	ret
+.discourage
+    inc [hl]
+    inc [hl]
+    inc [hl]
+    inc [hl]
+    ret
 
 .ghost_curse
 	ld a, [wPlayerSubStatus1]
@@ -2320,7 +2340,7 @@ AI_Smart_Curse:
 	push hl
 	call AICheckLastPlayerMon
 	pop hl
-	jr nz, .approve
+	jr nz, .encourage
 
 	jr .ghost_continue
 
@@ -2332,10 +2352,10 @@ AI_Smart_Curse:
 
 .ghost_continue
 	call AICheckEnemyQuarterHP
-	jp nc, .approve
+	jp nc, .encourage
 
 	call AICheckEnemyHalfHP
-	jr nc, .greatly_encourage
+	jr nc, .encourage
 
 	call AICheckEnemyMaxHP
 	ret nc
