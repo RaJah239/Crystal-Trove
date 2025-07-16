@@ -1,5 +1,22 @@
 AIScoring: ; used only for BANK(AIScoring)
 
+SubstituteImmuneEffects:
+	db $01 ; unused sleep effect
+	db EFFECT_SLEEP
+	db EFFECT_POISON
+	db EFFECT_PARALYZE
+	db EFFECT_CONFUSE
+	db EFFECT_LEECH_SEED
+	db EFFECT_ACCURACY_DOWN
+	db EFFECT_DEFENSE_DOWN
+	db EFFECT_DEFENSE_DOWN_2
+	db EFFECT_ATTACK_DOWN
+	db EFFECT_SPEED_DOWN_2
+	db EFFECT_TRANSFORM
+	db EFFECT_TOXIC
+	db EFFECT_BURN
+	db $FF
+
 AI_MagicGuardPokemon:
     db CLEFAIRY
     db CLEFABLE
@@ -157,15 +174,28 @@ AI_Basic:
 	jp z, .discourage
 
 .checkSub
-; Dismiss status moves if the player has a Substitute.
-	ld a, [wPlayerSubStatus4]
-	bit SUBSTATUS_SUBSTITUTE, a
-	jr nz, .discourage
+; dismiss moves blocked by sub if sub is up
+    ld a, [wPlayerSubStatus4]
+	bit SUBSTATUS_SUBSTITUTE, a	;check for substitute bit
+	jr z, .checkLevitate	;if the substitute bit is not set, then skip out of this block
+	ld a, [wEnemyMoveStruct + MOVE_EFFECT]
+	push hl
+	push de
+	push bc
+	ld hl, SubstituteImmuneEffects
+	ld de, 1
+	call IsInArray	;see if a is found in the hl array (carry flag set if true)
+	pop bc
+	pop de
+	pop hl
+	jp c, .discourage ; discourage if sub is up and blocks move - loop back to check move
+
+.checkLevitate
 
 ; Dismiss Safeguard if it's already active.
 	ld a, [wPlayerScreens]
 	bit SCREENS_SAFEGUARD, a
-	jr z, .checkmove
+	jp z, .checkmove
 
 .discourage
 	call AIDiscourageMove
