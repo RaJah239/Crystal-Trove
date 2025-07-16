@@ -704,7 +704,8 @@ AI_Smart_EffectHandlers:
 	dbw EFFECT_SP_DEF_UP_2,      AI_Smart_SpDefenseUp2 ; updated
 	dbw EFFECT_REFLECT,          AI_Smart_Reflect ; updated
 	dbw EFFECT_PARALYZE,         AI_Smart_Paralyze ; updated
-	dbw EFFECT_SPEED_DOWN_HIT,   AI_Smart_SpeedDownHit
+	dbw EFFECT_SPEED_DOWN_HIT,   AI_Smart_SpeedDownHit ; updated
+	dbw EFFECT_SPEED_UP_HIT,     AI_Smart_SpeedUpHit ; added
 	dbw EFFECT_SUBSTITUTE,       AI_Smart_Substitute
 	dbw EFFECT_HYPER_BEAM,       AI_Smart_HyperBeam
 	dbw EFFECT_RAGE,             AI_Smart_Rage
@@ -1783,30 +1784,16 @@ endr
     inc [hl]
     ret
 
+AI_Smart_SpeedUpHit:
 AI_Smart_SpeedDownHit:
-; Icy Wind
-
-; Almost 90% chance to greatly encourage this move if the following conditions all meet:
-; Enemy's HP is higher than 25%.
-; It's the first turn of player's Pokemon.
-; Player is faster than enemy.
-
-	ld a, [wEnemyMoveStruct + MOVE_ANIM]
-	cp ICY_WIND
-	ret nz
-	call AICheckEnemyQuarterHP
-	ret nc
-	ld a, [wPlayerTurnsTaken]
-	and a
-	ret nz
-	call AICompareSpeed
+	call DoesAIOutSpeedPlayer
 	ret c
-	call Random
-	cp 12 percent
-	ret c
-	dec [hl]
-	dec [hl]
-	ret
+
+    ld a, [wBattleMonSpecies]
+    call DoesPokemonHaveClearBody
+	jp c, StandardDiscourage
+
+	jp StandardEncourage
 
 AI_Smart_Substitute:
 ; Dismiss this move if enemy's HP is below 50%.
