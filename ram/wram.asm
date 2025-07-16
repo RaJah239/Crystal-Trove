@@ -3216,11 +3216,13 @@ wDayCareSceneID::                                 db
 wRoute38EcruteakGateSceneID::                     db
 wRoute42EcruteakGateSceneID::                     db
 wRoute30SceneID::                                 db
-	ds 173
+	ds 172
 
 wAbilityPageMode:: db
 
 wLevelCap:: db
+
+wBattlePoints:: ds 1
 
 wEventFlags:: flag_array NUM_EVENTS
 
