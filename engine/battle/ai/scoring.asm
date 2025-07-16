@@ -718,7 +718,7 @@ AI_Smart_EffectHandlers:
 	dbw EFFECT_DESTINY_BOND,     AI_Smart_DestinyBond ; updated
 	dbw EFFECT_REVERSAL,         AI_Smart_Reversal
 	dbw EFFECT_SPITE,            AI_Smart_Spite
-	dbw EFFECT_HEAL_BELL,        AI_Smart_HealBell
+	dbw EFFECT_HEAL_BELL,        AI_Smart_HealBell ; updated
 	dbw EFFECT_PRIORITY_HIT,     AI_Smart_PriorityHit
 	dbw EFFECT_THIEF,            AI_Smart_Thief
 	dbw EFFECT_MEAN_LOOK,        AI_Smart_MeanLook
@@ -2024,7 +2024,7 @@ AI_Smart_Reversal:
 AI_Smart_HealBell:
 ; Dismiss this move if none of the opponent's Pokemon is statused.
 ; Encourage this move if the enemy is statused.
-; 50% chance to greatly encourage this move if the enemy is fast asleep.
+; 50% chance to greatly encourage this move if the enemy is fast asleep or frozen.
 
 	push hl
 	ld a, [wOTPartyCount]
@@ -2076,7 +2076,6 @@ AI_Smart_HealBell:
 	and a
 	ret nz
 	jp AIDiscourageMove
-
 
 AI_Smart_PriorityHit:
 	call AICompareSpeed
