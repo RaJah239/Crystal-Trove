@@ -42,13 +42,10 @@ AI_Redundant:
 	dbw EFFECT_WEATHER_HEAL, .Heal
 	dbw EFFECT_SWAGGER,      .Swagger
 	dbw EFFECT_HAIL,         .Hail
+	dbw EFFECT_STEALTH_ROCK, .StealthRock
+	dbw EFFECT_TOXIC_SPIKES, .ToxicSpikes
+	dbw EFFECT_STICKY_WEB,   .StickyWeb
 	db -1
-
-.Hail:
-	ld a, [wBattleWeather]
-	cp WEATHER_HAIL
-	jp z, .Redundant
-	jp .NotRedundant
 
 .LightScreen:
 	ld a, [wEnemyScreens]
@@ -188,6 +185,27 @@ AI_Redundant:
 .Heal:
 	farcall AICheckEnemyMaxHP
 	jr nc, .NotRedundant
+
+.Hail:
+	ld a, [wBattleWeather]
+	cp WEATHER_HAIL
+	jp z, .Redundant
+	jp .NotRedundant
+
+.StealthRock:
+	ld a, [wPlayerScreens]
+	bit SCREENS_STEALTH_ROCK, a
+	ret
+
+.ToxicSpikes:
+	ld a, [wPlayerScreens]
+	bit SCREENS_TOXIC_SPIKES, a
+	ret
+
+.StickyWeb:
+	ld a, [wPlayerScreens]
+	bit SCREENS_STICKY_WEB, a
+	ret
 
 .Teleport:
 .Redundant:

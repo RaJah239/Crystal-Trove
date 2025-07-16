@@ -108,7 +108,6 @@ AI_Basic:
     jp .checkmove
 
 .checkRedundant
-
 	push hl
 	push de
 	push bc
