@@ -755,7 +755,21 @@ AI_Smart_EffectHandlers:
 	dbw EFFECT_HEX,              AI_Smart_Hex
 	dbw EFFECT_HURRICANE,        AI_Smart_Hurricane
 	dbw EFFECT_BULK_UP,          AI_Smart_BulkUp
+	dbw EFFECT_SP_ATK_UP,        AI_Smart_Growth ; added
 	db -1 ; end
+
+AI_Smart_Growth:
+	call IsSpecialAttackMaxed
+	jp c, StandardDiscourage
+
+    call ShouldAIBoost
+    jp nc, StandardDiscourage
+
+; encourage if we have no reason not to
+rept 6
+    dec [hl]
+endr
+    ret
 
 AI_Smart_Barrier:
 	call IsDefenseMaxed
