@@ -711,7 +711,7 @@ AI_Smart_EffectHandlers:
 	dbw EFFECT_LEECH_SEED,       AI_Smart_LeechSeed ; updated
 	dbw EFFECT_DISABLE,          AI_Smart_Disable ; updated
 	dbw EFFECT_COUNTER,          AI_Smart_Counter ; updated
-	dbw EFFECT_ENCORE,           AI_Smart_Encore
+	dbw EFFECT_ENCORE,           AI_Smart_Encore ; updated
 	dbw EFFECT_PAIN_SPLIT,       AI_Smart_PainSplit
 	dbw EFFECT_SNORE,            AI_Smart_Snore
 	dbw EFFECT_CONVERSION2,      AI_Smart_Conversion2
@@ -1801,15 +1801,46 @@ AI_Smart_HyperBeam:
 	ret
 
 AI_Smart_Encore:
-	call AICompareSpeed
+    ld a, [wEnemyMonSpecies]
+;	cp COTTONEE
+;	jr z, .skipSpeedCheck
+;	cp WHIMSICOTT
+;	jr z, .skipSpeedCheck
+;	cp KLEFKI
+;	jr z, .skipSpeedCheck
+;	cp RIOLU
+;	jr z, .skipSpeedCheck
+	cp MURKROW
+	jr z, .skipSpeedCheck
+	cp WOBBUFFET
+	jr z, .skipSpeedCheck
+
+; don't use if we are slower
+	call DoesAIOutSpeedPlayer
 	jr nc, .discourage
 
+; don't use if we can be koed
+.skipSpeedCheck
+    call ShouldAIBoost
+    jr nc, .discourage
+
+; don't use if player already encored
+	ld a, [wPlayerSubStatus5]
+	bit SUBSTATUS_ENCORED, a
+	jr nz, .discourage
+
+; don't use on Uber Pokemon as they are immune
+    ld a, [wBattleMonSpecies]
+    call DoesPokemonHaveUberImmunity
+   	jr c, .discourage
+
+; don't use if no last move recorded
 	ld a, [wLastPlayerMove]
 	and a
 	jp z, AIDiscourageMove
 
+; never encore a super effective move
 	call AIGetEnemyMove
-
 	ld a, [wEnemyMoveStruct + MOVE_POWER]
 	and a
 	jr z, .weakmove
@@ -1830,6 +1861,11 @@ AI_Smart_Encore:
 	jr .encourage
 
 .weakmove
+; if we are wobbuffet just use encore here
+	ld a, [wEnemyMonSpecies]
+	cp WOBBUFFET
+	jr z, .encourage
+; encore if it is an encore move, discourage otherwise
 	push hl
 	ld a, [wLastPlayerCounterMove]
 	ld hl, EncoreMoves
@@ -1839,9 +1875,7 @@ AI_Smart_Encore:
 	jr nc, .discourage
 
 .encourage
-	call Random
-	cp 28 percent - 1
-	ret c
+	dec [hl]
 	dec [hl]
 	dec [hl]
 	ret
