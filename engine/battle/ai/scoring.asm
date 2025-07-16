@@ -696,7 +696,7 @@ AI_Smart_EffectHandlers:
 	dbw EFFECT_FORCE_SWITCH,     AI_Smart_ForceSwitch ; updated
 	dbw EFFECT_HEAL,             AI_Smart_Heal ; updated
 	dbw EFFECT_TOXIC,            AI_Smart_Toxic ; updated
-	dbw EFFECT_LIGHT_SCREEN,     AI_Smart_LightScreen
+	dbw EFFECT_LIGHT_SCREEN,     AI_Smart_LightScreen ; updated
 	dbw EFFECT_OHKO,             AI_Smart_Ohko
 	dbw EFFECT_RAZOR_WIND,       AI_Smart_RazorWind
 	dbw EFFECT_SUPER_FANG,       AI_Smart_SuperFang
@@ -704,7 +704,7 @@ AI_Smart_EffectHandlers:
 	dbw EFFECT_UNUSED_2B,        AI_Smart_Unused2B
 	dbw EFFECT_CONFUSE,          AI_Smart_Confuse
 	dbw EFFECT_SP_DEF_UP_2,      AI_Smart_SpDefenseUp2
-	dbw EFFECT_REFLECT,          AI_Smart_Reflect
+	dbw EFFECT_REFLECT,          AI_Smart_Reflect ; updated
 	dbw EFFECT_PARALYZE,         AI_Smart_Paralyze
 	dbw EFFECT_SPEED_DOWN_HIT,   AI_Smart_SpeedDownHit
 	dbw EFFECT_SUBSTITUTE,       AI_Smart_Substitute
@@ -1496,16 +1496,22 @@ endr
 ; DevNote - functions which check if the player can KO the AI and decide to use boosting moves
 
 AI_Smart_LightScreen:
-AI_Smart_Reflect:
-; Over 90% chance to discourage this move unless enemy's HP is full.
+    call ShouldAIBoost
+    jp nc, StandardDiscourage
 
-	call AICheckEnemyMaxHP
-	ret c
-	call Random
-	cp 8 percent
-	ret c
-	inc [hl]
-	ret
+	call IsPlayerPhysicalOrSpecial
+	jp nc, StandardEncourage
+
+	jp StandardDiscourage
+
+AI_Smart_Reflect:
+    call ShouldAIBoost
+    jp nc, StandardDiscourage
+
+	call IsPlayerPhysicalOrSpecial
+	jp c, StandardEncourage
+
+	jp StandardDiscourage
 
 AI_Smart_Ohko:
 ; Dismiss this move if player's level is higher than enemy's level.
@@ -3320,6 +3326,26 @@ AIHasMoveInArray:
 	pop de
 	pop hl
 	ret
+
+DoIt:
+rept 7
+    dec [hl]
+endr
+StrongEncourage:
+	dec [hl]
+StandardEncourage:
+    dec [hl]
+    dec [hl]
+    ret
+
+StandardDiscourage:
+    inc [hl]
+    inc [hl]
+    inc [hl]
+    inc [hl]
+    inc [hl]
+    inc [hl]
+    ret
 
 INCLUDE "data/battle/ai/useful_moves.asm"
 
