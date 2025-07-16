@@ -115,26 +115,48 @@ AI_Basic:
 	pop bc
 	pop de
 	pop hl
-	jr nz, .discourage
+	jr nz, .discourage ; discourage if AI_Redundant - loop bck to check move
+
+; DevNote - Taunt - Check enemy is taunted or holding assault vest and discourage 0 power moves
+    ld a, [wEnemyTauntCount]
+    and a
+    jr nz, .discourageNonDamagingMoves
+    ld a, [wEnemyMonItem]
+    cp ASSAULT_VEST
+    jr nz, .checkStatusImmunity
+.discourageNonDamagingMoves
+    ld a, [wEnemyMoveStruct + MOVE_POWER]
+    and a
+    jp z, .discourage
 
 ; Dismiss status-only moves if the player can't be statused.
+.checkStatusImmunity
 	ld a, [wEnemyMoveStruct + MOVE_EFFECT]
 	push hl
 	push de
 	push bc
 	ld hl, StatusOnlyEffects
 	ld de, 1
-	call IsInArray
-
+	call IsInArray ; is the move status only
 	pop bc
 	pop de
 	pop hl
-	jr nc, .checkmove
+	jr nc, .checkSub ; if not skip following
 
 	ld a, [wBattleMonStatus]
 	and a
-	jr nz, .discourage
+	jp nz, .discourage ; discourage if the player is already statused - loop back to check move
 
+; don't use if enemy is immune to status
+    ld a, [wBattleMonSpecies]
+;	cp ARCEUS
+;	jp z, .discourage
+;	cp SYLVEON
+;	jp z, .discourage
+	cp DUNSPARCE
+	jp z, .discourage
+
+.checkSub
 ; Dismiss status moves if the player has a Substitute.
 	ld a, [wPlayerSubStatus4]
 	bit SUBSTATUS_SUBSTITUTE, a
@@ -147,7 +169,7 @@ AI_Basic:
 
 .discourage
 	call AIDiscourageMove
-	jr .checkmove
+	jp .checkmove
 
 INCLUDE "data/battle/ai/status_only_effects.asm"
 
