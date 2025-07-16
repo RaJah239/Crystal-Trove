@@ -757,9 +757,11 @@ AI_Smart_EffectHandlers:
     dbw EFFECT_DEFOG,            AI_Smart_Defog ; added
 	dbw EFFECT_SNORE,            AI_Smart_Snore ; updated
 
-	dbw EFFECT_PAIN_SPLIT,       AI_Smart_PainSplit
 	dbw EFFECT_THUNDER,          AI_Smart_Thunder
 	dbw EFFECT_GUST,             AI_Smart_Gust
+	dbw EFFECT_HURRICANE,        AI_Smart_Hurricane
+
+	dbw EFFECT_PAIN_SPLIT,       AI_Smart_PainSplit
 	dbw EFFECT_STOMP,            AI_Smart_Stomp
 	dbw EFFECT_HIDDEN_POWER,     AI_Smart_HiddenPower
 	dbw EFFECT_SWAGGER,          AI_Smart_Swagger
@@ -777,7 +779,7 @@ AI_Smart_EffectHandlers:
 	dbw EFFECT_HAIL,             AI_Smart_Hail
 	dbw EFFECT_FACADE,           AI_Smart_Facade
 	dbw EFFECT_HEX,              AI_Smart_Hex
-	dbw EFFECT_HURRICANE,        AI_Smart_Hurricane
+
 	db -1 ; end
 
 AI_Smart_StealthRock:
@@ -3755,27 +3757,28 @@ endr
 
 AI_Smart_Gust:
 ; Greatly encourage this move if the player is flying and the enemy is faster.
-	ld a, [wLastPlayerCounterMove]
-	cp FLY
-	ret nz
-
 	ld a, [wPlayerSubStatus3]
 	bit SUBSTATUS_FLYING, a
-	jr z, .couldFly
+	jr z, .checklastmove
 
 	call AICompareSpeed
-	ret nc
+	jr nc, .checklastmove
 
 	dec [hl]
 	dec [hl]
 	ret
 
-; Try to predict if the player will use Fly this turn.
-.couldFly
+.checklastmove
+; If Fly or Sky Attack was the player's last used move...
+	ld a, [wLastPlayerCounterMove]
+	cp FLY
+	ret nz
 
-; 50% chance to encourage this move if the enemy is slower than the player.
+; ...and the player is faster...
 	call AICompareSpeed
 	ret c
+; ...try to predict if the player will use Fly
+
 	call AI_50_50
 	ret c
 	dec [hl]
@@ -3821,20 +3824,20 @@ AI_Smart_Solarbeam:
 	dec [hl]
 	ret
 
-AI_Smart_Thunder:
 AI_Smart_Hurricane:
-; 90% chance to discourage this move when it's sunny.
-
+; greatly encourage this move in the rain.
 	ld a, [wBattleWeather]
-	cp WEATHER_SUN
+	cp WEATHER_RAIN
 	ret nz
 
-	call Random
-	cp 10 percent
-	ret c
-
-	inc [hl]
+	dec [hl]
+	dec [hl]
 	ret
+
+AI_Smart_Thunder:
+; Maybe encourage this move if the player is flying...
+	call AI_Smart_Gust
+	jp AI_Smart_Hurricane
 
 AICompareSpeed:
 ; Return carry if enemy is faster than player.
