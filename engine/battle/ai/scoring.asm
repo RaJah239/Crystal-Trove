@@ -759,7 +759,64 @@ AI_Smart_EffectHandlers:
 	dbw EFFECT_BULK_UP,          AI_Smart_BulkUp
 	dbw EFFECT_SP_ATK_UP,        AI_Smart_Growth ; added
 	dbw EFFECT_SP_ATK_UP_2,      AI_Smart_NastyPlot ; added
+	dbw EFFECT_DRAGON_DANCE,     AI_Smart_DragonDance ; added
 	db -1 ; end
+
+AI_Smart_DragonDance:
+	call IsAttackMaxed
+	jp c, StandardDiscourage
+
+.shouldBoost
+    call ShouldAIBoost
+    jp nc, StandardDiscourage
+
+; discourage if enemy is paralyzed
+    ld a, [wEnemyMonStatus]
+	and 1 << PAR
+	jp nz, StandardDiscourage
+
+; discourage if player speed is +2 or higher
+    ld a, [wPlayerSpdLevel]
+    cp BASE_STAT_LEVEL + 2
+    jp nc, StandardDiscourage
+
+; never use while in trick room
+    ld a, [wTrickRoomCount]
+    and a
+    jp nz, StandardDiscourage
+
+; discourage if players level is >10 higher than AI
+    ld a, [wBattleMonLevel]
+    ld b, a
+    ld a, [wEnemyMonLevel]
+    add 10
+    cp b
+    jp c, StandardDiscourage
+
+
+; Some Pokemon have double boost sets with DragonDance and BulkUp/SwordsDance
+; in such cases we want to use DragonDance first to get to +1 speed, then only use the other boost
+	ld b, EFFECT_BULK_UP
+	call AIHasMoveEffect
+	jr c, .useFirstAndNotAgain
+	ld b, EFFECT_ATTACK_UP_2
+	call AIHasMoveEffect
+	jr c, .useFirstAndNotAgain
+	jr .normalEncourage
+
+.useFirstAndNotAgain
+	ld a, [wEnemySpdLevel]
+	cp BASE_STAT_LEVEL + 1
+	jp c, StrongEncourage
+	jp StandardDiscourage
+
+.normalEncourage
+; discourage after boost if afflicted with toxic
+    call IsAIToxified
+    jp c, StandardDiscourage
+
+; encourage if we have no reason not to
+    jp StandardEncourage
 
 AI_Smart_CalmMind:
 	call IsSpecialAttackMaxed
@@ -770,7 +827,7 @@ AI_Smart_CalmMind:
 .continue
 ; if player is asleep or frozen and is special we should boost
 	ld a, [wBattleMonStatus]
-	and 1 << FRZ | SLP
+	and SLP_MASK
 	jr z, .noStatus
 	call IsPlayerPhysicalOrSpecial
 	jp nc, StandardEncourage
