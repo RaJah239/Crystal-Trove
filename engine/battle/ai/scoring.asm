@@ -321,6 +321,48 @@ INCLUDE "data/battle/ai/status_only_effects.asm"
 
 AI_Smart_Switch:
 ; Enemies can switch intelligently under certain conditions
+; switch if unboosted enemy is SLP and player sets up
+; 50% chance to switch if unboosted enemy is SLP and player sets up
+; switch if choice locked into a Not Very Effective move
+; switch if locked into a move with 0 pp
+; switch if enemy accuracy at -2 or lower
+; switch if enemy attack at -2 or lower and has unboosted special attack
+; switch if enemy is cursed
+; 50% chance to switch if enemy afflicted with toxic
+; 50% chance to switch if enemy afflicted with leech seed
+
+; possibly switch if enemy is setup bait
+	ld a, [wEnemyMonStatus]
+	and SLP_MASK
+	jp nz, .checkSetupAndSwitchIfPlayerSetsUp
+
+; switch if choice locked into a NVE move
+	ld hl, wEnemySubStatus5
+	bit SUBSTATUS_ENCORED, [hl]
+	jr z, .not_encored
+    push hl
+	ld a, 1
+	ldh [hBattleTurn], a
+	ld a, [wCurEnemyMove]
+	call AIGetEnemyMove
+	callfar BattleCheckTypeMatchup
+	pop hl
+	ld a, [wTypeMatchup]
+	cp EFFECTIVE
+	jp c, .switch
+	and a
+	jp z, .switch
+
+; switch if locked into a move with 0 pp
+	ld hl, wEnemyMonPP
+	ld a, [wCurEnemyMoveNum]
+	ld c, a
+	ld b, 0
+	add hl, bc
+	ld a, [hl]
+	and PP_MASK
+	jr z, .switch
+.not_encored
 
 ; don't switch if enemy is weakened, just let it die
 	call AICheckEnemyQuarterHP
@@ -340,10 +382,10 @@ AI_Smart_Switch:
     jr nc, .magicGuard
     ld a, [wEnemyAtkLevel]
 	cp BASE_STAT_LEVEL - 1
-	jr c, .switch
+	jr c, .checkSetupAndSwitchIfWeCantKO
     ld a, [wEnemySAtkLevel]
 	cp BASE_STAT_LEVEL - 1
-	jr c, .switch
+	jr c, .checkSetupAndSwitchIfWeCantKO
 
 .magicGuard
 ; Pokemon who are immune to residual damage (magic guard) should not be considered
@@ -354,7 +396,7 @@ AI_Smart_Switch:
 ; switch if enemy is cursed
     ld a, [wEnemySubStatus1]
 	bit SUBSTATUS_CURSE, a
-	jr nz, .switch
+	jr nz, .checkSetupAndSwitchIfWeCantKO
 
 ; if enemy afflicted with toxic
 ; 50% chance to switch when above 50% hp if not set up
@@ -363,10 +405,10 @@ AI_Smart_Switch:
 	bit SUBSTATUS_TOXIC, a
     jr z, .checkLeechSeed
 	call AICheckEnemyHalfHP
-	jr nc, .switch
+	jr nc, .checkSetupAndSwitchIfWeCantKO
 	call AI_50_50
 	jr c, .checkLeechSeed
-	jr .switch
+	jr .checkSetupAndSwitchIfWeCantKO
 
 .checkLeechSeed
 ; 30% chance to switch per turn if enemy afflicted with leech seed
@@ -376,15 +418,43 @@ AI_Smart_Switch:
 	call Random
 	cp 70 percent + 1
 	ret c
+	jr .checkSetupAndSwitchIfWeCantKO
 
+.checkSetupAndSwitchIfPlayerSetsUp
+; don't switch if enemy mon is already set up
+    call IsAISetup
+    ret c
+; switch if player attempts to set up
+	ld a, [wPlayerMoveStruct + MOVE_EFFECT]
+    push hl
+    push de
+	push bc
+	ld hl, BoostingMoveEffects
+	ld de, 1
+	call IsInArray
+	pop bc
+	pop de
+	pop hl
+	jr c, .switch
+	ret
+	
+.checkSetupAndSwitchIfWeCantKO
+    call CanAIKO
+    ret c
+    call IsAISetup
+    ret c
     ; fallthrough
 .switch
 ; can't switch if trapped
 	ld a, [wBattleMonSpecies]
 	cp WOBBUFFET
 	ret z
-;	cp GIRATINA
-;	ret z
+	cp CHANDELURE
+	ret z
+	cp SPIRITOMB
+	ret z
+	cp GIRATINA
+	ret z
 
     ld a, $1
     ld [wEnemyIsSwitching], a
