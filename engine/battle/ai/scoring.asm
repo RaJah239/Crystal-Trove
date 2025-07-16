@@ -60,6 +60,98 @@ AI_FireAbsorbPokemon:
     db ARCANINE
     db $FF
 
+AI_Basic:
+; Don't do anything redundant:
+;  -Using status-only moves if the player can't be statused
+;  -Using moves that fail if they've already been used
+
+	ld hl, wEnemyAIMoveScores - 1
+	ld de, wEnemyMonMoves
+	ld b, NUM_MOVES + 1
+.checkmove
+	dec b ; b is num moves on 1st pass
+	ret z ; if b os 0 return we are done
+
+	inc hl ; increment score to next move score
+	ld a, [de] ; load the move struct
+	and a
+	ret z ; return if no move
+
+	inc de ; increment to next move
+	call AIGetEnemyMove
+
+	ld a, [wEnemyMoveStruct + MOVE_EFFECT]
+	ld c, a ; load move effect into c
+
+; Dismiss moves with special effects if they are
+; useless or not a good choice right now.
+; For example, healing moves, weather moves, Dream Eater...
+
+; if move locked dismiss all moves except the last one used
+; this shouldn't be needed but for some reason AI enemies can switch moves when locked
+    push hl
+    ld hl, wEnemySubStatus5
+	bit SUBSTATUS_ENCORED, [hl]
+	pop hl
+	jr z, .checkRedundant
+    ld a, [wLastEnemyMove]
+    and a
+    jr z, .checkRedundant
+    push bc
+    ld b, a
+    ld a, [wEnemyMoveStruct + MOVE_ANIM]
+    cp b
+    pop bc
+    jp nz, .checkRedundant
+    xor a
+    ld [hl], a ; set priority for last used move to max - which is 0
+    jp .checkmove
+
+.checkRedundant
+
+	push hl
+	push de
+	push bc
+	farcall AI_Redundant
+	pop bc
+	pop de
+	pop hl
+	jr nz, .discourage
+
+; Dismiss status-only moves if the player can't be statused.
+	ld a, [wEnemyMoveStruct + MOVE_EFFECT]
+	push hl
+	push de
+	push bc
+	ld hl, StatusOnlyEffects
+	ld de, 1
+	call IsInArray
+
+	pop bc
+	pop de
+	pop hl
+	jr nc, .checkmove
+
+	ld a, [wBattleMonStatus]
+	and a
+	jr nz, .discourage
+
+; Dismiss status moves if the player has a Substitute.
+	ld a, [wPlayerSubStatus4]
+	bit SUBSTATUS_SUBSTITUTE, a
+	jr nz, .discourage
+
+; Dismiss Safeguard if it's already active.
+	ld a, [wPlayerScreens]
+	bit SCREENS_SAFEGUARD, a
+	jr z, .checkmove
+
+.discourage
+	call AIDiscourageMove
+	jr .checkmove
+
+INCLUDE "data/battle/ai/status_only_effects.asm"
+
 AI_Smart_Switch:
 ; Enemies can switch intelligently under certain conditions
 
@@ -130,76 +222,6 @@ AI_Smart_Switch:
     ld a, $1
     ld [wEnemyIsSwitching], a
 	ret
-
-AI_Basic:
-; Don't do anything redundant:
-;  -Using status-only moves if the player can't be statused
-;  -Using moves that fail if they've already been used
-
-	ld hl, wEnemyAIMoveScores - 1
-	ld de, wEnemyMonMoves
-	ld b, NUM_MOVES + 1
-.checkmove
-	dec b
-	ret z
-
-	inc hl
-	ld a, [de]
-	and a
-	ret z
-
-	inc de
-	call AIGetEnemyMove
-
-	ld a, [wEnemyMoveStruct + MOVE_EFFECT]
-	ld c, a
-
-; Dismiss moves with special effects if they are
-; useless or not a good choice right now.
-; For example, healing moves, weather moves, Dream Eater...
-	push hl
-	push de
-	push bc
-	farcall AI_Redundant
-	pop bc
-	pop de
-	pop hl
-	jr nz, .discourage
-
-; Dismiss status-only moves if the player can't be statused.
-	ld a, [wEnemyMoveStruct + MOVE_EFFECT]
-	push hl
-	push de
-	push bc
-	ld hl, StatusOnlyEffects
-	ld de, 1
-	call IsInArray
-
-	pop bc
-	pop de
-	pop hl
-	jr nc, .checkmove
-
-	ld a, [wBattleMonStatus]
-	and a
-	jr nz, .discourage
-
-; Dismiss status moves if the player has a Substitute.
-	ld a, [wPlayerSubStatus4]
-	bit SUBSTATUS_SUBSTITUTE, a
-	jr nz, .discourage
-
-; Dismiss Safeguard if it's already active.
-	ld a, [wPlayerScreens]
-	bit SCREENS_SAFEGUARD, a
-	jr z, .checkmove
-
-.discourage
-	call AIDiscourageMove
-	jr .checkmove
-
-INCLUDE "data/battle/ai/status_only_effects.asm"
-
 
 AI_Setup:
 ; Use stat-modifying moves on turn 1.
