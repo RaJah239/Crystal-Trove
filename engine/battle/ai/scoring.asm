@@ -693,8 +693,8 @@ AI_Smart_EffectHandlers:
     dbw EFFECT_DEFENSE_DOWN,     AI_Smart_StatDown ; newly added
     dbw EFFECT_DEFENSE_DOWN_2,   AI_Smart_StatDown ; newly added
 	dbw EFFECT_RESET_STATS,      AI_Smart_ResetStats ; updated
-	dbw EFFECT_FORCE_SWITCH,     AI_Smart_ForceSwitch
-	dbw EFFECT_HEAL,             AI_Smart_Heal
+	dbw EFFECT_FORCE_SWITCH,     AI_Smart_ForceSwitch ; updated
+	dbw EFFECT_HEAL,             AI_Smart_Heal ; updated
 	dbw EFFECT_TOXIC,            AI_Smart_Toxic
 	dbw EFFECT_LIGHT_SCREEN,     AI_Smart_LightScreen
 	dbw EFFECT_OHKO,             AI_Smart_Ohko
@@ -1284,24 +1284,113 @@ AI_Smart_ForceSwitch:
 	ret
 
 AI_Smart_Heal:
-; 90% chance to greatly encourage this move if enemy's HP is below 25%.
-; Discourage this move if enemy's HP is higher than 50%.
-; Do nothing otherwise.
+; don't use if choice locked
+    call DoesEnemyHaveChoiceItem
+    jp c, .discourage
 
-	call AICheckEnemyQuarterHP
-	jr nc, .encourage
-	call AICheckEnemyHalfHP
-	ret nc
-	inc [hl]
-	ret
+; if we have boosted evasion just heal below half
+	ld a, [wEnemyEvaLevel]
+	cp BASE_STAT_LEVEL + 2
+	jp nc, .healBelowHalf
+
+; if the player is using Smeargle just attack, kill it!
+    ;ld a, [wBattleMonSpecies]
+    ;cp SMEARGLE
+    ;jp z, .discourage
+
+; check if the move is Rest, it must be handled differently
+	ld a, [wEnemyMoveStruct + MOVE_ANIM]
+	cp REST
+	jr nz, .nonRestHeal
+
+; if it is Rest check if the enemy is afflicted with toxic
+; if so cancel any switching and heal below 1/2 hp
+    ld a, [wEnemySubStatus5]
+	bit SUBSTATUS_TOXIC, a
+    jr z, .restHeal
+    ld a, $0
+    ld [wEnemyIsSwitching], a
+    jr .nonRestHeal
+
+.restHeal
+; for rest don't heal if player can 3hko from max hp, unless AI also knows sleep talk
+; then don't use if player can 2hko from max hp
+	ld b, EFFECT_SLEEP_TALK
+	call AIHasMoveEffect
+	jr c, .nonRestHeal
+    call CanPlayer3HKOMaxHP
+    jr c, .discourage
+
+.nonRestHeal
+; don't heal if afflicted with toxic
+    call IsAIToxified
+    jr c, .discourage
+
+; don't heal if player can 2 shot from max hp, no point
+    call CanPlayer2HKOMaxHP
+    jr c, .discourage
+
+; if we are faster and player is flying or underground encourage heal if we can be 1HKO
+    call DoesAIOutSpeedPlayer
+    jr nc, .checkQuarter
+    call CanPlayerKO
+    jr nc, .checkQuarter
+	ld a, [wPlayerSubStatus3]
+	and 1 << SUBSTATUS_FLYING | 1 << SUBSTATUS_UNDERGROUND
+	jp nz, .bigEncourage
+
+.checkQuarter
+; always heal when below 1/4 hp
+    call AICheckEnemyQuarterHP
+    jr nc, .encourage
+
+; if faster than the player, heal if the player can 1hko
+    call DoesAIOutSpeedPlayer
+    jr nc, .playerMovesFirst
+    call CanPlayerKO
+    jr c, .encourage
+    jr .checkMewtwo
+
+; if slower than the player, heal if player can 2hko
+.playerMovesFirst
+    call CanPlayer2HKO
+    jr c, .encourage
+
+.checkMewtwo
+; Mewtwo always heal when below half
+; also heal below half if we have increased evasion
+    ld a, [wEnemyMonSpecies]
+    cp MEWTWO
+    jr z, .healBelowHalf
+;	cp ARCEUS
+;	jr z, .healBelowHalf
+    jr .discourage
+.healBelowHalf
+    call AICheckEnemyHalfHP
+    jr c, .discourage
+    ; fallthrough
 
 .encourage
-	call Random
-	cp 10 percent
-	ret c
+; MEWTWO should play defensively and prioritize healing above scoring KOs
+	ld a, [wEnemyMonSpecies]
+	cp MEWTWO
+	jr nz, .normalEncourage
+.bigEncourage
+rept 8
+	dec [hl]
+endr
+.normalEncourage
+	dec [hl]
+	dec [hl]
 	dec [hl]
 	dec [hl]
 	ret
+.discourage
+    inc [hl]
+    inc [hl]
+    inc [hl]
+    inc [hl]
+    ret
 
 AI_Smart_Toxic:
 ; never use if player has substitute
@@ -4762,4 +4851,157 @@ IsPlayerPhysicalOrSpecial:
     ret
 .yes
     scf
+    ret
+
+; return carry if the player has a move that can 2HKO the AI Pokemon from Max HP
+; used to decide if the AI should use recovery moves
+CanPlayer2HKOMaxHP:
+    ld de, wBattleMonMoves ; load player moves
+	ld b, NUM_MOVES + 1
+.loopPlayer2HKOMaxHPMoves
+	dec b ; b is num moves on 1st pass
+	jr z, .done ; if b is 0 return we are done
+	ld a, [de] ; load the move
+	and a
+	jr z, .done ; return if no move
+	inc de ; increment to next move
+	call AIGetPlayerMove
+	ld a, [wPlayerMoveStruct + MOVE_POWER]
+	and a
+	jr z, .loopPlayer2HKOMaxHPMoves ; skip moves with 0 power
+    ld a, 0
+	ldh [hBattleTurn], a
+	push hl
+	push de
+	push bc
+	callfar PlayerAttackDamage
+	callfar BattleCommand_DamageCalc
+	callfar BattleCommand_Stab
+; double current damage
+	ld hl, wCurDamage + 1
+	ld a, [hld]
+	ld h, [hl]
+	ld l, a
+	add hl, hl
+	ld a, h
+	ld [wCurDamage], a
+	ld a, l
+	ld [wCurDamage + 1], a
+; continue
+	ld a, [wCurDamage + 1]
+	ld c, a ; c is curDamage upper
+	ld a, [wCurDamage]
+	ld b, a ; b is curDamage lower
+	ld a, [wEnemyMonMaxHP + 1]
+	cp c ; compare upper
+	ld a, [wEnemyMonMaxHP]
+    sbc b ; compare lower and set flag
+	pop bc
+	pop de
+	pop hl
+    jp nc, .loopPlayer2HKOMaxHPMoves
+; skip moves that can't be used on consecutive turns - exception for Porygon2 which can use Hyper Beam consecutively
+    ld a, [wBattleMonSpecies]
+    cp PORYGON2
+    jr z, .setFlag
+;	cp URSALUNA_B
+;	jr z, .setFlag
+	ld a, [wPlayerMoveStruct + MOVE_EFFECT]
+	cp EFFECT_SELFDESTRUCT
+	jr z, .loopPlayer2HKOMaxHPMoves
+	cp EFFECT_HYPER_BEAM
+	jr z, .loopPlayer2HKOMaxHPMoves
+	cp EFFECT_SOLARBEAM
+	jr z, .loopPlayer2HKOMaxHPMoves
+.setFlag
+    scf
+    ret
+.done
+    xor a ; clear carry flag
+    ret
+
+IsAIToxified:
+    ld a, [wEnemyMonSpecies]
+    call DoesPokemonHaveMagicGuard
+   	jr c, .no
+
+    ld a, [wEnemySubStatus5]
+	bit SUBSTATUS_TOXIC, a
+    jr nz, .yes
+
+.no
+    xor a ; clear carry flag
+    ret
+.yes
+    scf
+    ret
+
+; return carry if the player has a move that can 3HKO the AI Pokemon from Max HP
+; used to decide if the AI should use rest
+CanPlayer3HKOMaxHP:
+    ld de, wBattleMonMoves ; load player moves
+	ld b, NUM_MOVES + 1
+.loopPlayer3HKOMaxHPMoves
+	dec b ; b is num moves on 1st pass
+	jr z, .done ; if b is 0 return we are done
+	ld a, [de] ; load the move
+	and a
+	jr z, .done ; return if no move
+	inc de ; increment to next move
+	call AIGetPlayerMove
+	ld a, [wPlayerMoveStruct + MOVE_POWER]
+	and a
+	jr z, .loopPlayer3HKOMaxHPMoves ; skip moves with 0 power
+    ld a, 0
+	ldh [hBattleTurn], a
+	push hl
+	push de
+	push bc
+	callfar PlayerAttackDamage
+	callfar BattleCommand_DamageCalc
+	callfar BattleCommand_Stab
+; triple current damage
+	ld hl, wCurDamage + 1
+	ld a, [hld]
+	ld h, [hl]
+	ld l, a
+	ld b, h
+	ld c, l
+	add hl, hl
+	add hl, bc
+	ld a, h
+	ld [wCurDamage], a
+	ld a, l
+	ld [wCurDamage + 1], a
+; continue
+	ld a, [wCurDamage + 1]
+	ld c, a ; c is curDamage upper
+	ld a, [wCurDamage]
+	ld b, a ; b is curDamage lower
+	ld a, [wEnemyMonMaxHP + 1]
+	cp c ; compare upper
+	ld a, [wEnemyMonMaxHP]
+    sbc b ; compare lower and set flag
+	pop bc
+	pop de
+	pop hl
+    jp nc, .loopPlayer3HKOMaxHPMoves
+; skip moves that can't be used on consecutive turns - exception for Porygon2 which can use Hyper Beam consecutively
+    ld a, [wBattleMonSpecies]
+    cp PORYGON2
+    jr z, .setFlag
+;	cp URSALUNA_B
+;	jr z, .setFlag
+	ld a, [wPlayerMoveStruct + MOVE_EFFECT]
+	cp EFFECT_SELFDESTRUCT
+	jr z, .loopPlayer3HKOMaxHPMoves
+	cp EFFECT_HYPER_BEAM
+	jr z, .loopPlayer3HKOMaxHPMoves
+	cp EFFECT_SOLARBEAM
+	jr z, .loopPlayer3HKOMaxHPMoves
+.setFlag
+	scf
+    ret
+.done
+    xor a ; clear carry flag
     ret
