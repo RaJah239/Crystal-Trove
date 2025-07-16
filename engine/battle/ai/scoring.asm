@@ -692,7 +692,7 @@ AI_Smart_EffectHandlers:
     dbw EFFECT_ATTACK_DOWN_2,    AI_Smart_AttackDown ; newly added
     dbw EFFECT_DEFENSE_DOWN,     AI_Smart_StatDown ; newly added
     dbw EFFECT_DEFENSE_DOWN_2,   AI_Smart_StatDown ; newly added
-	dbw EFFECT_RESET_STATS,      AI_Smart_ResetStats
+	dbw EFFECT_RESET_STATS,      AI_Smart_ResetStats ; updated
 	dbw EFFECT_FORCE_SWITCH,     AI_Smart_ForceSwitch
 	dbw EFFECT_HEAL,             AI_Smart_Heal
 	dbw EFFECT_TOXIC,            AI_Smart_Toxic
@@ -1237,7 +1237,7 @@ AI_Smart_ResetStats:
 	ret
 
 ; Discourage this move if neither:
-; Any of enemy's stat levels is lower than -2.
+; Any of enemy's stat levels is	lower than -2.
 ; Any of player's stat levels is higher than +2.
 .discourage
 	pop hl
