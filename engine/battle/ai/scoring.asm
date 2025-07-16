@@ -1112,16 +1112,12 @@ AI_Smart_AlwaysHit:
 	cp BASE_STAT_LEVEL - 2
 	jr c, .encourage
 
-; ...or player's evasion level has been raised three or more stages.
+; ...or player's evasion level has been raised two or more stages.
 	ld a, [wPlayerEvaLevel]
-	cp BASE_STAT_LEVEL + 3
+	cp BASE_STAT_LEVEL + 2
 	ret c
 
 .encourage
-	call AI_80_20
-	ret c
-
-	dec [hl]
 	dec [hl]
 	ret
 
