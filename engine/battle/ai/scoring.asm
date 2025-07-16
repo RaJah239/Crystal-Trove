@@ -749,12 +749,60 @@ AI_Smart_EffectHandlers:
 	dbw EFFECT_THUNDER,          AI_Smart_Thunder
 	dbw EFFECT_FLY,              AI_Smart_Fly ; updated
 	dbw EFFECT_ATTACK_UP_2,      AI_Smart_SwordsDance ; added
+	dbw EFFECT_DEFENSE_UP_2,     AI_Smart_Barrier ; added
 	dbw EFFECT_HAIL,             AI_Smart_Hail
 	dbw EFFECT_FACADE,           AI_Smart_Facade
 	dbw EFFECT_HEX,              AI_Smart_Hex
 	dbw EFFECT_HURRICANE,        AI_Smart_Hurricane
 	dbw EFFECT_BULK_UP,          AI_Smart_BulkUp
 	db -1 ; end
+
+AI_Smart_Barrier:
+	call IsDefenseMaxed
+	jp c, StandardDiscourage
+
+; if player special then don't use
+	call IsPlayerPhysicalOrSpecial
+	jp nc, StandardDiscourage
+
+	ld a, [wEnemyMonSpecies]
+	cp MEWTWO
+	jr z, .mewtwo
+
+; if not mewtwo boost if we can up to +2
+    call ShouldAIBoost
+    jp nc, StandardDiscourage
+
+    ld a, [wEnemyDefLevel]
+    cp BASE_STAT_LEVEL + 3
+    jp nc, StandardDiscourage
+    jr .toxic
+
+.mewtwo
+; if players last move was sucker punch - 50% chance to boost
+;	ld a, [wCurPlayerMove]
+;	call AIGetPlayerMove
+;	ld a, [wPlayerMoveStruct + MOVE_EFFECT]
+;	cp EFFECT_SUCKER_PUNCH
+;	jr nz, .notUsingSuckerPunch
+;	call AI_50_50
+;	jr c, .skipKOCheck
+;
+;.notUsingSuckerPunch
+; if player physical don't use only if they can outspeed and OHKO
+	call DoesAIOutSpeedPlayer
+	jr c, .skipKOCheck
+	call CanPlayerKO
+	jp c, StandardDiscourage
+.skipKOCheck
+
+.toxic
+; discourage if afflicted with toxic
+    call IsAIToxified
+    jp c, StandardDiscourage
+
+; encourage if we get here
+	jp StrongEncourage
 
 AI_Smart_SwordsDance:
     call IsAttackMaxed
