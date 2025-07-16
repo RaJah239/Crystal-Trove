@@ -723,8 +723,8 @@ AI_Smart_EffectHandlers:
 	dbw EFFECT_THIEF,            AI_Smart_Thief
 	dbw EFFECT_MEAN_LOOK,        AI_Smart_MeanLook ; updated
 	dbw EFFECT_NIGHTMARE,        AI_Smart_Nightmare
-	dbw EFFECT_CURSE,            AI_Smart_Curse updated
-	dbw EFFECT_PROTECT,          AI_Smart_Protect
+	dbw EFFECT_CURSE,            AI_Smart_Curse ; updated
+	dbw EFFECT_PROTECT,          AI_Smart_Protect ; updated
 	dbw EFFECT_FORESIGHT,        AI_Smart_Foresight
 	dbw EFFECT_PERISH_SONG,      AI_Smart_PerishSong
 	dbw EFFECT_SANDSTORM,        AI_Smart_Sandstorm
@@ -2286,7 +2286,7 @@ AI_Smart_Curse:
 	jr c, .discourage
 
 .continue
-; if player is asleep or frozen and is physical we should boost
+; if player is asleep and is physical we should boost
 	ld a, [wBattleMonStatus]
 	and SLP_MASK
 	jr z, .noStatus
@@ -2374,9 +2374,11 @@ AI_Smart_Curse:
 
 AI_Smart_Protect:
 ; Greatly discourage this move if the enemy already used Protect.
-	ld a, [wEnemyProtectCount]
-	and a
-	jr nz, .greatly_discourage
+	ld a, [wCurEnemyMove]
+	cp PROTECT
+	jr z, .greatly_discourage
+;	cp KINGS_SHIELD
+;	jr z, .greatly_discourage
 
 ; Discourage this move if the player is locked on.
 	ld a, [wPlayerSubStatus5]
@@ -2399,22 +2401,32 @@ AI_Smart_Protect:
 	bit SUBSTATUS_CURSE, a
 	jr nz, .encourage
 
-; Discourage this move if the player's Rollout count is not boosted enough.
-	bit SUBSTATUS_ROLLOUT, a
-	jr z, .discourage
-	ld a, [wPlayerRolloutCount]
-	cp 3
+; at this point if we aren't Zygarde just discourage
+;	ld a, [wEnemyMonSpecies]
+;	cp ZYGARDE
+;	jr nz, .discourage
+
+; discourage if at full HP
+	call AICheckEnemyMaxHP
 	jr c, .discourage
+
+; use for sure if below half HP
+	call AICheckEnemyHalfHP
+	jr nc, .use
 
 ; 80% chance to encourage this move otherwise.
 .encourage
 	call AI_80_20
 	ret c
-
+.use
+	dec [hl]
+	dec [hl]
 	dec [hl]
 	ret
 
 .greatly_discourage
+	inc [hl]
+	inc [hl]
 	inc [hl]
 
 .discourage
