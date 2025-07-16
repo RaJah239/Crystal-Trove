@@ -1,3 +1,10 @@
+;=============================
+;============NOTES============
+;=============================
+
+; If more space is needed, replace Rock Tomb's animation
+; with Vanilla Rock throws'. It's right next to it
+
 ;Poison Jab:
 ;	anim_2gfx BATTLE_ANIM_GFX_HIT, BATTLE_ANIM_GFX_POISON
 ;	anim_obj BATTLE_ANIM_OBJ_PUNCH_SHAKE, 136, 56, $43
@@ -2548,6 +2555,26 @@ BattleAnim_RockTomb:
 	anim_sound 0, 1, SFX_EGG_BOMB
 	anim_wait 48
 	anim_ret
+
+;BattleAnim_RockThrow:
+;	anim_1gfx BATTLE_ANIM_GFX_ROCKS
+;	anim_bgeffect BATTLE_BG_EFFECT_SHAKE_SCREEN_X, $60, $1, $0
+;	anim_sound 0, 1, SFX_STRENGTH
+;	anim_obj BATTLE_ANIM_OBJ_SMALL_ROCK, 128, 64, $40
+;	anim_wait 2
+;	anim_sound 0, 1, SFX_STRENGTH
+;	anim_obj BATTLE_ANIM_OBJ_BIG_ROCK, 120, 68, $30
+;	anim_wait 2
+;	anim_sound 0, 1, SFX_STRENGTH
+;	anim_obj BATTLE_ANIM_OBJ_SMALL_ROCK, 152, 68, $30
+;	anim_wait 2
+;	anim_sound 0, 1, SFX_STRENGTH
+;	anim_obj BATTLE_ANIM_OBJ_BIG_ROCK, 144, 64, $40
+;	anim_wait 2
+;	anim_sound 0, 1, SFX_STRENGTH
+;	anim_obj BATTLE_ANIM_OBJ_SMALL_ROCK, 136, 68, $30
+;	anim_wait 96
+;	anim_ret
 
 BattleAnim_PoisonSting:
 	anim_2gfx BATTLE_ANIM_GFX_HORN, BATTLE_ANIM_GFX_HIT
