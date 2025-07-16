@@ -727,7 +727,7 @@ AI_Smart_EffectHandlers:
 	dbw EFFECT_PROTECT,          AI_Smart_Protect ; updated
 	dbw EFFECT_FORESIGHT,        AI_Smart_Foresight
 	dbw EFFECT_PERISH_SONG,      AI_Smart_PerishSong ; updated
-	dbw EFFECT_SANDSTORM,        AI_Smart_Sandstorm
+	dbw EFFECT_SANDSTORM,        AI_Smart_Sandstorm ; updated
 	dbw EFFECT_ENDURE,           AI_Smart_Endure
 	dbw EFFECT_ROLLOUT,          AI_Smart_Rollout
 	dbw EFFECT_SWAGGER,          AI_Smart_Swagger
@@ -2513,6 +2513,37 @@ AI_Smart_PerishSong:
 	ret
 
 AI_Smart_Sandstorm:
+; don't use if already sandy
+	ld a, [wBattleWeather]
+	cp WEATHER_SANDSTORM
+	jr z, .discourage
+
+; don't boost if choice locked
+    call DoesEnemyHaveChoiceItem
+    jp c, .discourage
+
+; even if we benefit from weather, don't use if we will be koed
+    call DoesEnemyHaveIntactFocusSashOrSturdy
+    jr c, .skipKOCheck
+    call CanPlayerKO
+    jr c, .discourage
+.skipKOCheck
+
+; encourage if AI benefits from ability
+    ld a, [wEnemyMonSpecies]
+;	cp EXCADRILL
+;	jr z, .encourage
+    cp GOLEM
+	jr z, .encourage
+;	cp GARCHOMP
+;	jr z, .encourage
+;	cp GLISCOR
+;	jr z, .encourage
+
+; discourage if we will be koed
+    call ShouldAIBoost
+    jr nc, .discourage
+
 ; Greatly discourage this move if the player is immune to Sandstorm damage.
 	ld a, [wBattleMonType1]
 	push hl
@@ -2546,6 +2577,11 @@ AI_Smart_Sandstorm:
 .discourage
 	inc [hl]
 	ret
+.encourage
+    dec [hl]
+    dec [hl]
+    dec [hl]
+    ret
 
 .SandstormImmuneTypes:
 	db ROCK
