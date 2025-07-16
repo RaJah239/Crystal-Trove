@@ -729,7 +729,7 @@ AI_Smart_EffectHandlers:
 	dbw EFFECT_PERISH_SONG,      AI_Smart_PerishSong ; updated
 	dbw EFFECT_SANDSTORM,        AI_Smart_Sandstorm ; updated
 	dbw EFFECT_ENDURE,           AI_Smart_Endure
-	dbw EFFECT_ROLLOUT,          AI_Smart_Rollout
+	dbw EFFECT_ROLLOUT,          AI_Smart_Rollout ; updated
 	dbw EFFECT_SWAGGER,          AI_Smart_Swagger
 	dbw EFFECT_ATTRACT,          AI_Smart_Attract
 	dbw EFFECT_SAFEGUARD,        AI_Smart_Safeguard
@@ -2677,7 +2677,7 @@ AI_Smart_Endure:
 	ret
 
 AI_Smart_Rollout:
-; Rollout, Fury Cutter
+; Rollout
 
 ; 80% chance to discourage this move if the enemy is in love, confused, or paralyzed.
 	ld a, [wEnemySubStatus1]
@@ -2706,14 +2706,15 @@ AI_Smart_Rollout:
 
 ; If the mon has Defense Curl, and hasn't used it yet,
 ; don't encourage Rollout
-	ld b, EFFECT_DEFENSE_CURL
-	call AIHasMoveEffect
-	jr nc, .no_defense_curl
-	ld a, [wEnemySubStatus2]
-	bit SUBSTATUS_CURLED, a
-	ret z
+;	ld b, EFFECT_DEFENSE_CURL
+;	call AIHasMoveEffect
+;	jr nc, .no_defense_curl
+;	ld a, [wEnemySubStatus2]
+;	bit SUBSTATUS_CURLED, a
+;	ret z
+;
+;.no_defense_curl
 
-.no_defense_curl
 ; 80% chance to greatly encourage this move otherwise.
 	call Random
 	cp 79 percent - 1
