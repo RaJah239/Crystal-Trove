@@ -1246,40 +1246,41 @@ AI_Smart_ResetStats:
 
 AI_Smart_ForceSwitch:
 ; Whirlwind, Roar.
+; don't use on Uber Pokemon as they are immune
+    ld a, [wBattleMonSpecies]
+    call DoesPokemonHaveUberImmunity
+   	jr c, .discourage
 
-; Strongly encourage this move if the player has
-; a stat buff of at least 2 in any stat
+; don't use if player has only one pokemon left
 	push hl
-	ld hl, wPlayerAtkLevel
-	ld c, $8
-.check_next_stat
-	dec c
-	jr z, .no_stat_buff
-	ld a, [hli]
-	cp $9
-	jr c, .check_next_stat
+	call AICheckLastPlayerMon
 	pop hl
-; player has a stat buffed by at least 2
-	dec [hl]
-	cp $a
-	ret c
-; encourage more if buffed by >2
-	dec [hl]
-	ret
+	jr z, .discourage
 
-; Discourage this move if the player has not shown
-; a super-effective move against the enemy.
-; Consider player's type(s) if its moves are unknown.
+; encourage this move if the player's attack levels are boosted.
+	ld a, [wPlayerAtkLevel]
+	cp BASE_STAT_LEVEL + 2
+	jr nc, .encourage
+	ld a, [wPlayerSAtkLevel]
+	cp BASE_STAT_LEVEL + 2
+	jr nc, .encourage
 
-.no_stat_buff
-	pop hl
-	push hl
-	callfar CheckPlayerMoveTypeMatchups
-	ld a, [wEnemyAISwitchScore]
-	cp 10 ; neutral // forely BASE_AI_SWITCH_SCORE
-	pop hl
-	ret c
-	inc [hl]
+; discourage if non-boosted player can 2HKO from current HP
+    call CanPlayer2HKO
+    jr c, .discourage
+
+; encourage if player has spikes on the field
+	ld a, [wPlayerScreens]
+	bit SCREENS_SPIKES, a
+	jr nz, .encourage
+
+.discourage
+    inc [hl]
+    inc [hl]
+    inc [hl]
+    ret
+.encourage
+	dec [hl]
 	ret
 
 AI_Smart_Heal:
