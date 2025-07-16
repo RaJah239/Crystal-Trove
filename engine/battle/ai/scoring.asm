@@ -739,7 +739,7 @@ AI_Smart_EffectHandlers:
 	dbw EFFECT_WEATHER_HEAL,     AI_Smart_Heal ; updated
 	dbw EFFECT_HIDDEN_POWER,     AI_Smart_HiddenPower
 	dbw EFFECT_RAIN_DANCE,       AI_Smart_RainDance ; updated
-	dbw EFFECT_SUNNY_DAY,        AI_Smart_SunnyDay
+	dbw EFFECT_SUNNY_DAY,        AI_Smart_SunnyDay ; updated
 	dbw EFFECT_BELLY_DRUM,       AI_Smart_BellyDrum
 	dbw EFFECT_MIRROR_COAT,      AI_Smart_MirrorCoat
 	dbw EFFECT_EARTHQUAKE,       AI_Smart_Earthquake
@@ -2972,6 +2972,31 @@ AI_Smart_RainDance:
 INCLUDE "data/battle/ai/rain_dance_moves.asm"
 
 AI_Smart_SunnyDay:
+; don't use if already sunny
+	ld a, [wBattleWeather]
+	cp WEATHER_SUN
+	jr z, .discourage
+
+; don't boost if choice locked
+    call DoesEnemyHaveChoiceItem
+    jp c, .discourage
+
+; even if we benefit from weather, don't use if we will be koed
+    call DoesEnemyHaveIntactFocusSashOrSturdy
+    jr c, .skipKOCheck
+    call CanPlayerKO
+    jr c, .discourage
+.skipKOCheck
+
+; encourage if AI is a Chlorophyll mon
+    ld a, [wEnemyMonSpecies]
+    cp VENUSAUR
+    jp z, DoIt
+    cp EXEGGUTOR
+    jp z, DoIt
+; discourage if we will be koed
+    call ShouldAIBoost
+    jr nc, .discourage
 ; Greatly discourage this move if it would favour the player type-wise.
 ; Particularly, if the player is a Fire-type.
 	ld a, [wBattleMonType1]
@@ -2988,8 +3013,12 @@ AI_Smart_SunnyDay:
 
 	push hl
 	ld hl, SunnyDayMoves
-
-	; fallthrough
+	jp AI_Smart_WeatherMove
+.discourage
+    inc [hl]
+    inc [hl]
+    inc [hl]
+    ret
 
 AI_Smart_WeatherMove:
 ; Rain Dance, Sunny Day
@@ -3004,9 +3033,9 @@ AI_Smart_WeatherMove:
 	call AICheckPlayerHalfHP
 	jr nc, AIBadWeatherType
 
-; 50% chance to encourage this move otherwise.
-	call AI_50_50
-	ret c
+; encourage this move otherwise.
+	;call AI_50_50
+	;ret c
 
 	dec [hl]
 	ret

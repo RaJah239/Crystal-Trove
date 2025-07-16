@@ -10,4 +10,5 @@ SunnyDayMoves:
 	db FLAME_CHARGE
 	db SACRED_FIRE
 	db HEALING_LIGHT
+	db EGG_BOMB
 	db -1 ; end
