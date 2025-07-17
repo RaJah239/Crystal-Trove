@@ -67,33 +67,58 @@ if DEF(_DEBUG)
 	giveitem SHINY_CHARM
 
 	; good party
-	givepoke MEW, 99, LEFTOVERS
-	givepoke SMEARGLE, 99, FOCUS_BAND
-	givepoke AERODACTYL, 99, GOLD_BERRY
-	givepoke DIGLETT, 17, LIFE_ORB
-	givepoke DITTO, 5, FOCUS_SASH
-	givepoke ABRA, 5, EVERSTONE
+	givepoke KINGDRA, 50, MIRACLEBERRY
+	givepoke ENTEI, 50, CHOICE_BAND
+	givepoke SCIZOR, 50, FOCUS_SASH
+	givepoke GENGAR, 50, FOCUS_SASH
+	givepoke JOLTEON, 50, FOCUS_SASH
+	givepoke STARMIE, 50, FOCUS_SASH
 
 	; first mon shiny
-	loadmem wPartyMon1DVs+0, $ff
-	loadmem wPartyMon1DVs+1, $ff
+;	loadmem wPartyMon1DVs+0, $ff
+;	loadmem wPartyMon1DVs+1, $ff
 
 	; third mon shiny
-	loadmem wPartyMon3DVs+0, $ff
-	loadmem wPartyMon3DVs+1, $ff
+;	loadmem wPartyMon3DVs+0, $ff
+;	loadmem wPartyMon3DVs+1, $ff
 
-	; useful moves
-	loadmem wPartyMon1Moves+0, ZEN_HEADBUTT
-	loadmem wPartyMon1Moves+1, THUNDERBOLT
-	loadmem wPartyMon1Moves+2, POWER_GEM
-	; overworld moves
-	loadmem wPartyMon1Moves+3, RECOVER
-	loadmem wPartyMon3Moves+0, ROCK_SLIDE
-	loadmem wPartyMon3Moves+1, EARTHQUAKE
-	loadmem wPartyMon3Moves+2, SKY_ATTACK
-	loadmem wPartyMon3Moves+3, FLY
+	; 1st pokemon
+	loadmem wPartyMon1Moves+0, SURF
+	loadmem wPartyMon1Moves+1, RAIN_DANCE
+	loadmem wPartyMon1Moves+2, ICE_BEAM
+	loadmem wPartyMon1Moves+3, REST
+
+	; 2nd pokemon
+	loadmem wPartyMon2Moves+0, SACRED_FIRE
+	loadmem wPartyMon2Moves+1, EARTHQUAKE
+	loadmem wPartyMon2Moves+2, ROCK_SLIDE
+	loadmem wPartyMon2Moves+3, EXTREMESPEED
+
+	; 3rd pokemon
+	loadmem wPartyMon3Moves+0, SWORDS_DANCE
+	loadmem wPartyMon3Moves+1, BULLET_PUNCH
+	loadmem wPartyMon3Moves+2, X_SCISSOR
+	loadmem wPartyMon3Moves+3, HEALING_LIGHT
+
+	; 4th pokemon
+	loadmem wPartyMon4Moves+0, SHADOW_BALL
+	loadmem wPartyMon4Moves+1, GIGA_DRAIN
+	loadmem wPartyMon4Moves+2, THUNDER_WAVE
+	loadmem wPartyMon4Moves+3, HYPNOSIS
+
+	; 5th pokemon
+	loadmem wPartyMon5Moves+0, NASTY_PLOT
+	loadmem wPartyMon5Moves+1, THUNDERBOLT
+	loadmem wPartyMon5Moves+2, HYPER_BEAM
+	loadmem wPartyMon5Moves+3, FLASH_CANNON
+
+	; 6th pokemon
+	loadmem wPartyMon6Moves+0, PSYCHIC_M
+	loadmem wPartyMon6Moves+1, THUNDERBOLT
+	loadmem wPartyMon6Moves+2, ICE_BEAM
+	loadmem wPartyMon6Moves+3, SURF
+
 	closetext
-
 	; tms for party
 	giveitem TM_ROCK_SMASH, 50
 	giveitem TM_HEADBUTT, 50

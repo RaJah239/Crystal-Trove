@@ -44,46 +44,46 @@ RandomPartyLists::
 
 	; RANDOMLIST_1
 	db 6
-	db 50, LUGIA
-			db "PIKA@"		; Nickname
-			db $ff, $ff		; DVs - atk|def dv, spd|spc dv
+	db 50, TYRANITAR
+			db "TEST1@"		; Nickname
+			db $11, $11		; DVs - atk|def dv, spd|spc dv
 			ds 6, MAX_EV	; EVs - hp, atk, def, spd, sat, sdf 
-			db NO_ITEM	; ITEM/ NO_ITEM is a thing
-			db SPLASH, NO_MOVE, NO_MOVE, NO_MOVE ; Moveset - NO_MOVE is a thing
+			db FOCUS_SASH	; ITEM/ NO_ITEM is a thing
+			db EARTHQUAKE, ROCK_SLIDE, DRAGON_DANCE, THROAT_CHOP ; Moveset - NO_MOVE is a thing
 			db $fe ; End of Pokemon
-	db 50, LUGIA
-			db "PIKA@"		; Nickname
-			db $ff, $ff		; DVs - atk|def dv, spd|spc dv
+	db 50, MEWTWO
+			db "TEST2@"		; Nickname
+			db $11, $11		; DVs - atk|def dv, spd|spc dv
 			ds 6, MAX_EV	; EVs - hp, atk, def, spd, sat, sdf 
-			db NO_ITEM	; ITEM/ NO_ITEM is a thing
-			db SPLASH, NO_MOVE, NO_MOVE, NO_MOVE ; Moveset - NO_MOVE is a thing
+			db LEFTOVERS	; ITEM/ NO_ITEM is a thing
+			db DRAIN_PUNCH, ZEN_HEADBUTT, RECOVER, BULK_UP ; Moveset - NO_MOVE is a thing
 			db $fe ; End of Pokemon
-	db 50, LUGIA
-			db "PIKA@"		; Nickname
-			db $ff, $ff		; DVs - atk|def dv, spd|spc dv
+	db 50, SNORLAX
+			db "TEST3@"		; Nickname
+			db $11, $11		; DVs - atk|def dv, spd|spc dv
 			ds 6, MAX_EV	; EVs - hp, atk, def, spd, sat, sdf 
-			db NO_ITEM	; ITEM/ NO_ITEM is a thing
-			db SPLASH, NO_MOVE, NO_MOVE, NO_MOVE ; Moveset - NO_MOVE is a thing
+			db LEFTOVERS	; ITEM/ NO_ITEM is a thing
+			db SLEEP_TALK, REST, EARTHQUAKE, BODY_SLAM ; Moveset - NO_MOVE is a thing
 			db $fe ; End of Pokemon
-	db 50, LUGIA
-			db "PIKA@"		; Nickname
-			db $ff, $ff		; DVs - atk|def dv, spd|spc dv
+	db 50, RAIKOU
+			db "TEST4@"		; Nickname
+			db $11, $11		; DVs - atk|def dv, spd|spc dv
 			ds 6, MAX_EV	; EVs - hp, atk, def, spd, sat, sdf 
-			db NO_ITEM	; ITEM/ NO_ITEM is a thing
-			db SPLASH, NO_MOVE, NO_MOVE, NO_MOVE ; Moveset - NO_MOVE is a thing
+			db LEFTOVERS	; ITEM/ NO_ITEM is a thing
+			db SCALD, THUNDERBOLT, CRUNCH, EXTREMESPEED ; Moveset - NO_MOVE is a thing
 			db $fe ; End of Pokemon
-	db 50, LUGIA
-			db "PIKA@"		; Nickname
-			db $ff, $ff		; DVs - atk|def dv, spd|spc dv
+	db 50, DRAGONITE
+			db "TEST5@"		; Nickname
+			db $11, $11		; DVs - atk|def dv, spd|spc dv
 			ds 6, MAX_EV	; EVs - hp, atk, def, spd, sat, sdf 
-			db NO_ITEM	; ITEM/ NO_ITEM is a thing
-			db SPLASH, NO_MOVE, NO_MOVE, NO_MOVE ; Moveset - NO_MOVE is a thing
+			db LEFTOVERS	; ITEM/ NO_ITEM is a thing
+			db DRAGON_CLAW, WATERFALL, DRAGON_DANCE, FIRE_BLAST ; Moveset - NO_MOVE is a thing
 			db $fe ; End of Pokemon
-	db 50, LUGIA
-			db "PIKA@"		; Nickname
-			db $ff, $ff		; DVs - atk|def dv, spd|spc dv
+	db 50, AERODACTYL
+			db "TEST6@"		; Nickname
+			db $11, $11		; DVs - atk|def dv, spd|spc dv
 			ds 6, MAX_EV	; EVs - hp, atk, def, spd, sat, sdf 
-			db NO_ITEM	; ITEM/ NO_ITEM is a thing
-			db SPLASH, NO_MOVE, NO_MOVE, NO_MOVE ; Moveset - NO_MOVE is a thing
+			db CHOICE_BAND	; ITEM/ NO_ITEM is a thing
+			db EARTHQUAKE, IRON_HEAD, SKY_ATTACK, ROCK_SLIDE ; Moveset - NO_MOVE is a thing
 			db $fe ; End of Pokemon
 	db -1 ; end
