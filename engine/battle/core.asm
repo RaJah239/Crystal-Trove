@@ -2674,22 +2674,21 @@ PlayerPartyMonEntrance:
 	call SpikesDamage
 	jp SwitchInEffects
 
-; dummied out to save space
 CheckMobileBattleError:
-;	ld a, [wLinkMode]
-;	cp LINK_MOBILE
-;	jr nz, .not_mobile ; It's not a mobile battle
-;
-;	ld a, [wcd2b]
-;	and a
-;	jr z, .not_mobile
-;
+	ld a, [wLinkMode]
+	cp LINK_MOBILE
+	jr nz, .not_mobile ; It's not a mobile battle
+
+	ld a, [wcd2b]
+	and a
+	jr z, .not_mobile
+
 ; We have a mobile battle and something else happened
-;	scf
-;	ret
-;
-;.not_mobile
-;	xor a
+	scf
+	ret
+
+.not_mobile
+	xor a
 	ret
 
 IsMobileBattle:
@@ -2749,11 +2748,10 @@ ForcePickPartyMonInBattle:
 ; Can't back out.
 
 .pick
-; dummied out to save space
-;	call PickPartyMonInBattle
-;	ret nc
-;	call CheckMobileBattleError
-;	ret c
+	call PickPartyMonInBattle
+	ret nc
+	call CheckMobileBattleError
+	ret c
 
 	ld de, SFX_WRONG
 	call PlaySFX
@@ -2868,20 +2866,19 @@ LostBattle:
 	scf
 	ret
 
-; dummied out to save space
 .mobile
 ; Remove the enemy from the screen.
-;	hlcoord 0, 0
-;	lb bc, 8, 21
-;	call ClearBox
-;	call BattleWinSlideInEnemyTrainerFrontpic
-;
-;	ld c, 40
-;	call DelayFrames
-;
-;	ld c, $3 ; lost
-;	farcall Mobile_PrintOpponentBattleMessage
-;	scf
+	hlcoord 0, 0
+	lb bc, 8, 21
+	call ClearBox
+	call BattleWinSlideInEnemyTrainerFrontpic
+
+	ld c, 40
+	call DelayFrames
+
+	ld c, $3 ; lost
+	farcall Mobile_PrintOpponentBattleMessage
+	scf
 	ret
 
 EnemyMonFaintedAnimation:
