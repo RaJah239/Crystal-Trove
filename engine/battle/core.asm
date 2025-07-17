@@ -9397,19 +9397,11 @@ GetOpposingMonCore:
 Core_MoxiePokemon:
     db HERACROSS
     db TAUROS
-    db LARVITAR
-    db PUPITAR
-    db TYRANITAR
     db -1
 
 ; this list needs to be in core.asm
 Core_GrimPokemon:
-    db RAIKOU
-    db GENGAR
-    db KINGDRA
-    db CHARMANDER
-    db CHARMELEON
-    db CHARIZARD
+    db MEGANIUM
     db -1
 
 ; this list needs to be in core.asm
