@@ -594,12 +594,10 @@ wLastEnemyMove:: db
 wExpShare:: db
 wExpShareText:: db
 
-	ds 8
+	ds 10
 
 wPlayerFutureSightDamage:: dw ; unused
 wTrickRoomCount:: db
-wPlayerRageCounter:: db
-wEnemyRageCounter:: db
 
 wBeatUpHitAtLeastOnce:: db
 
