@@ -691,21 +691,20 @@ ParsePlayerAction:
 	bit SUBSTATUS_ENCORED, [hl]
 	jr z, .not_encored
 	ld a, [wLastPlayerMove]
+	and a
+	jr z, .not_encored
 	ld [wCurPlayerMove], a
 	jr .encored
 
 .not_encored
 	ld a, [wBattlePlayerAction]
 	cp BATTLEPLAYERACTION_SWITCH
-	jr z, .reset_rage
+	jr z, .reset_protect_count_and_wPlayerSubStatus4
 	and a
-	jr nz, .reset_bide
-	ld a, [wPlayerSubStatus3]
-	and 1 << SUBSTATUS_BIDE
-	jr nz, .locked_in
+	jr nz, .reset
 	xor a
 	ld [wMoveSelectionMenuType], a
-	inc a ; POUND
+	inc a ; TACKLE
 	ld [wFXAnimID], a
 	call MoveSelectionScreen
 	push af
@@ -727,15 +726,7 @@ ParsePlayerAction:
 	callfar UpdateMoveData
 	xor a
 	ld [wPlayerCharging], a
-	ld a, [wPlayerMoveStruct + MOVE_EFFECT]
-	cp EFFECT_RAGE
-	jr z, .continue_rage
-	ld hl, wPlayerSubStatus4
-	res SUBSTATUS_RAGE, [hl]
-	xor a
-	ld [wPlayerRageCounter], a
 
-.continue_rage
 	ld a, [wPlayerMoveStruct + MOVE_EFFECT]
 	cp EFFECT_PROTECT
 	jr z, .continue_protect
@@ -745,28 +736,23 @@ ParsePlayerAction:
 	ld [wPlayerProtectCount], a
 	jr .continue_protect
 
-.reset_bide
+.reset
 	ld hl, wPlayerSubStatus3
-	res SUBSTATUS_BIDE, [hl]
 
 .locked_in
 	xor a
 	ld [wPlayerProtectCount], a
-	ld [wPlayerRageCounter], a
 	ld hl, wPlayerSubStatus4
-	res SUBSTATUS_RAGE, [hl]
 
 .continue_protect
 	call ParseEnemyAction
 	xor a
 	ret
 
-.reset_rage
+.reset_protect_count_and_wPlayerSubStatus4
 	xor a
 	ld [wPlayerProtectCount], a
-	ld [wPlayerRageCounter], a
 	ld hl, wPlayerSubStatus4
-	res SUBSTATUS_RAGE, [hl]
 	xor a
 	ret
 
