@@ -44,7 +44,10 @@ DontSwitch:
 	call AI_TryItem
 	ret
 
+; DevNote - switch - this switches with probabilities - 50%, 80%, 96% depending on switch score
 SwitchOften:
+    call CheckSetUp
+    jp c, DontSwitch
 	callfar CheckAbleToSwitch
 	ld a, [wEnemySwitchMonParam]
 	and $f0
@@ -79,7 +82,10 @@ SwitchOften:
 	ld [wEnemySwitchMonIndex], a
 	jp AI_TrySwitch
 
+; DevNote - switch - this switches with probabilities - 8%, 12%, 80% depending on switch score
 SwitchRarely:
+    call CheckSetUp
+    jp c, DontSwitch
 	callfar CheckAbleToSwitch
 	ld a, [wEnemySwitchMonParam]
 	and $f0
@@ -113,7 +119,10 @@ SwitchRarely:
 	ld [wEnemySwitchMonIndex], a
 	jp AI_TrySwitch
 
+; DevNote - this switches with probabilities - 20%, 50%, 80% depending on switch score
 SwitchSometimes:
+    call CheckSetUp
+    jp c, DontSwitch
 	callfar CheckAbleToSwitch
 	ld a, [wEnemySwitchMonParam]
 	and $f0
@@ -147,6 +156,25 @@ SwitchSometimes:
 	ld [wEnemySwitchMonIndex], a
 	jp AI_TrySwitch
 
+CheckSetUp:
+; return carry if enemy mon has set up
+; don't switch if enemy mon is already set up
+; also dont switch if enemy mon low on health
+	farcall AICheckEnemyQuarterHP
+	jr nc, .dontSwitch
+    ld a, [wEnemyAtkLevel]
+	cp BASE_STAT_LEVEL + 2
+	jr nc, .switch
+    ld a, [wEnemySAtkLevel]
+	cp BASE_STAT_LEVEL + 2
+	jr nc, .switch
+.dontSwitch
+; not set up
+    xor a
+    ret
+.switch
+    scf
+    ret
 
 AI_TryItem:
 	; items are not allowed in the Battle Tower
@@ -217,15 +245,10 @@ AI_TryItem:
 	inc a
 	ld [wEnemyGoesFirst], a
 
-	ld hl, wEnemySubStatus3
-	res SUBSTATUS_BIDE, [hl]
-
 	xor a
 	ld [wEnemyProtectCount], a
-	ld [wEnemyRageCounter], a
 
 	ld hl, wEnemySubStatus4
-	res SUBSTATUS_RAGE, [hl]
 
 	xor a
 	ld [wLastEnemyCounterMove], a
@@ -269,7 +292,6 @@ AI_Items:
 	dbw X_ACCURACY,   .XAccuracy
 	dbw FULL_HEAL,    .FullHeal
 	dbw GUARD_SPEC,   .GuardSpec
-	dbw DIRE_HIT,     .DireHit
 	dbw X_ATTACK,     .XAttack
 	dbw X_DEFEND,     .XDefend
 	dbw X_SPEED,      .XSpeed
@@ -400,12 +422,6 @@ AI_Items:
 	call .XItem
 	jp c, .DontUse
 	call EnemyUsedGuardSpec
-	jp .Use
-
-.DireHit:
-	call .XItem
-	jp c, .DontUse
-	call EnemyUsedDireHit
 	jp .Use
 
 .XAttack:
@@ -585,7 +601,35 @@ EnemyPotionFinish:
 
 AI_TrySwitch:
 ; Determine whether the AI can switch based on how many Pokemon are still alive.
-; If it can switch, it will.
+
+; DevNote - switch, don't switch if trapped
+	ld a, [wBattleMonSpecies]
+	cp WOBBUFFET
+	ret z
+;	cp GIRATINA
+;	ret z
+
+    ld a, [wPlayerSubStatus5]
+	bit SUBSTATUS_CANT_RUN, a
+	ret nz
+
+; DevNote - switch, don't switch if already set up
+; there is a bit of an issue here
+; this prevents the AI from switching out a set up mon because there is another with a better type match - which is good
+; but this also prevents the ai from switching out a set up mon which has ran out of pp on a common mono-attacking move
+    ld a, [wEnemyAtkLevel]
+	cp BASE_STAT_LEVEL + 2
+	ret nc
+    ld a, [wEnemySAtkLevel]
+	cp BASE_STAT_LEVEL + 2
+	ret nc
+    ld a, [wEnemyDefLevel]
+	cp BASE_STAT_LEVEL + 2
+	ret nc
+    ld a, [wEnemySDefLevel]
+	cp BASE_STAT_LEVEL + 2
+	ret nc
+
 	ld a, [wOTPartyCount]
 	ld c, a
 	ld hl, wOTPartyMon1HP
@@ -616,7 +660,6 @@ AI_Switch:
 	ld [wEnemyIsSwitching], a
 	ld [wEnemyGoesFirst], a
 	ld hl, wEnemySubStatus4
-	res SUBSTATUS_RAGE, [hl]
 	xor a
 	ldh [hBattleTurn], a
 	callfar PursuitSwitch
@@ -638,14 +681,25 @@ AI_Switch:
 	call PrintText
 
 .skiptext
-	ld a, 1
-	ld [wBattleHasJustStarted], a
+; DevNote - switch - this assumed the ai will not switch during battle
+	;ld a, 1
+	;ld [wBattleHasJustStarted], a
 	callfar NewEnemyMonStatus
 	callfar ResetEnemyStatLevels
 	ld hl, wPlayerSubStatus1
 	res SUBSTATUS_IN_LOVE, [hl]
 	farcall EnemySwitch
 	farcall ResetBattleParticipants
+
+; DevNote - switch in effects for ai switching
+	ld a, [wLinkMode]
+	and a
+	jr nz, .linked
+	farcall SpikesDamage
+	farcall SetEnemyTurn
+	farcall SwitchInEffects
+	farcall ApplyStatusEffectOnEnemyStats
+.linked
 	xor a
 	ld [wBattleHasJustStarted], a
 	ld a, [wLinkMode]
@@ -666,11 +720,14 @@ AI_HealStatus:
 	xor a
 	ld [hl], a
 	ld [wEnemyMonStatus], a
+	; Bug: this should reset SUBSTATUS_NIGHTMARE
+	; Uncomment the 2 lines below to fix
 	ld hl, wEnemySubStatus1
- 	res SUBSTATUS_NIGHTMARE, [hl]
- 	ld [wEnemyConfuseCount], a
- 	ld hl, wEnemySubStatus3
- 	res SUBSTATUS_CONFUSED, [hl]	
+	res SUBSTATUS_NIGHTMARE, [hl]
+	; Bug: this should reset SUBSTATUS_CONFUSED
+	; Uncomment the 2 lines below to fix
+    ld hl, wEnemySubStatus3
+	res SUBSTATUS_CONFUSED, [hl]
 	ld hl, wEnemySubStatus5
 	res SUBSTATUS_TOXIC, [hl]
 	ret
