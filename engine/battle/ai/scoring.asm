@@ -1911,8 +1911,16 @@ AI_Smart_Heal:
     ld a, [wEnemyMonSpecies]
     cp MEWTWO
     jr z, .healBelowHalf
-;	cp ARCEUS
-;	jr z, .healBelowHalf
+	cp LUGIA
+	jr z, .healBelowHalf
+	cp HO_OH
+	jr z, .healBelowHalf
+	cp SNORLAX
+	jr z, .healBelowHalf
+	cp CHANSEY
+	jr z, .healBelowHalf
+	cp BLISSEY
+	jr z, .healBelowHalf
     jr .discourage
 .healBelowHalf
     call AICheckEnemyHalfHP
@@ -1923,6 +1931,16 @@ AI_Smart_Heal:
 ; MEWTWO should play defensively and prioritize healing above scoring KOs
 	ld a, [wEnemyMonSpecies]
 	cp MEWTWO
+	jr nz, .normalEncourage
+	cp LUGIA
+	jr nz, .normalEncourage
+	cp HO_OH
+	jr nz, .normalEncourage
+	cp SNORLAX
+	jr nz, .normalEncourage
+	cp CHANSEY
+	jr nz, .normalEncourage
+	cp BLISSEY
 	jr nz, .normalEncourage
 .bigEncourage
 rept 8
