@@ -6743,8 +6743,6 @@ ResetTurn:
 	call DoMove
 	jp EndMoveEffect
 
-INCLUDE "engine/battle/move_effects/thief.asm"
-
 BattleCommand_ArenaTrap:
 ; Doesn't work on an absent opponent.
 
