@@ -102,7 +102,7 @@ MoveDescriptions::
 	dw IronHeadDescription
 	dw TeleportDescription
 	dw NightShadeDescription
-	dw MimicDescription
+	dw AirSlashDescription
 	dw ScreechDescription
 	dw GunkShotDescription
 	dw RecoverDescription
@@ -341,6 +341,7 @@ StickyWebDescription:
 	db   "Slows foes when"
 	line "they switch in.@"
 
+AirSlashDescription:
 IcicleCrashDescription:
 ZenHeadbuttDescription:
 IronHeadDescription:
@@ -642,10 +643,6 @@ TeleportDescription:
 NightShadeDescription:
 	db   "The user's level"
 	line "equals damage HP.@"
-
-MimicDescription:
-	db   "Copies a move used"
-	line "by the foe.@"
 
 ScreechDescription:
 	db   "Sharply reduces"

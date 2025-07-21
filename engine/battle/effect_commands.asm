@@ -1072,7 +1072,7 @@ BattleCommand_DoTurn:
 
 	ld hl, wPartyMon1PP
 	ld a, [wCurBattleMon]
-	jr z, .player
+	jr z, .consume_pp
 
 ; mimic this part entirely if wildbattle
 	ld a, [wBattleMode]
@@ -1081,13 +1081,6 @@ BattleCommand_DoTurn:
 
 	ld hl, wOTPartyMon1PP
 	ld a, [wCurOTMon]
-
-.player
-	call GetPartyLocation
-	push hl
-	call CheckMimicUsed
-	pop hl
-	ret c
 
 .consume_pp
 	ldh a, [hBattleTurn]
@@ -1113,18 +1106,9 @@ BattleCommand_DoTurn:
 	ld c, a
 	ld b, 0
 	add hl, bc
-	ld a, [hl]
-	cp MIMIC
-	jr z, .mimic
+
 	ld hl, wWildMonMoves
 	add hl, bc
-	ld a, [hl]
-	cp MIMIC
-	ret z
-
-.mimic
-	ld hl, wWildMonPP
-	call .consume_pp
 	ret
 
 .out_of_pp
@@ -1155,36 +1139,6 @@ BattleCommand_DoTurn:
 	db EFFECT_ROLLOUT
 	db EFFECT_RAMPAGE
 	db -1
-
-CheckMimicUsed:
-	ldh a, [hBattleTurn]
-	and a
-	ld a, [wCurMoveNum]
-	jr z, .player
-	ld a, [wCurEnemyMoveNum]
-
-.player
-	ld c, a
-	ld a, MON_MOVES
-	call UserPartyAttr
-
-	ld a, BATTLE_VARS_MOVE
-	call GetBattleVar
-	cp MIMIC
-	jr z, .mimic
-
-	ld b, 0
-	add hl, bc
-	ld a, [hl]
-	cp MIMIC
-	jr nz, .mimic
-
-	scf
-	ret
-
-.mimic
-	and a
-	ret
 
 BattleCommand_Critical:
 ; Determine whether this attack's hit will be critical.
@@ -6580,9 +6534,6 @@ PrintButItFailed:
 
 FailMove:
 	call AnimateFailedMove
-	; fallthrough
-
-FailMimic:
 	ld hl, ButItFailedText ; 'but it failed!'
 	ld de, ItFailedText    ; 'it failed!'
 	jp FailText_CheckOpponentProtect

@@ -2152,7 +2152,6 @@ AzumarillEvosAttacks:
 SudowoodoEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, ROCK_THROW
-	db 1, MIMIC
 	db 10, FLAIL
 	db 19, LOW_KICK
 	db 28, ROCK_SLIDE

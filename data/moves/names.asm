@@ -101,7 +101,7 @@ MoveNames::
 	li "Iron Head"
 	li "Teleport"
 	li "Night Shade"
-	li "Mimic"
+	li "Air Slash"
 	li "Screech"
 	li "Gunk Shot"
 	li "Recover"

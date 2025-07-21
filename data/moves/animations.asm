@@ -280,7 +280,7 @@ BattleAnimations::
 	dw BattleAnim_IronHead
 	dw BattleAnim_Teleport
 	dw BattleAnim_NightShade
-	dw BattleAnim_Mimic
+	dw BattleAnim_AirSlash
 	dw BattleAnim_Screech
 	dw BattleAnim_GunkShot
 	dw BattleAnim_Recover
@@ -464,6 +464,33 @@ BattleAnimations::
 	assert_table_length NUM_BATTLE_ANIMS + 1
 
 BattleAnim_Dummy:
+	anim_ret
+
+BattleAnim_AirSlash:
+	anim_2gfx BATTLE_ANIM_GFX_WHIP, BATTLE_ANIM_GFX_CUT
+.loop
+	anim_sound 3, 0, SFX_RAZOR_WIND
+	anim_obj BATTLE_ANIM_OBJ_SONICBOOM_JP, 64, 80, $3
+	anim_wait 4
+	anim_sound 3, 0, SFX_RAZOR_WIND
+	anim_obj BATTLE_ANIM_OBJ_SONICBOOM_JP, 64, 88, $2
+	anim_wait 4
+	anim_sound 3, 0, SFX_RAZOR_WIND
+	anim_obj BATTLE_ANIM_OBJ_SONICBOOM_JP, 64, 96, $4
+	anim_wait 4
+	anim_loop 2, .loop
+	anim_wait 16
+	anim_incobj 1
+	anim_incobj 2
+	anim_incobj 3
+	anim_incobj 4
+	anim_incobj 5
+	anim_incobj 6
+	anim_sound 0, 1, SFX_CUT
+	anim_obj BATTLE_ANIM_OBJ_CUT_LONG_DOWN_LEFT, 150, 30, $0
+	anim_obj BATTLE_ANIM_OBJ_CUT_LONG_DOWN_RIGHT, 120, 30, $0
+	anim_wait 32
+	anim_ret
 
 BattleAnim_Bulldoze:
 	anim_1gfx BATTLE_ANIM_GFX_HIT
@@ -2714,22 +2741,6 @@ BattleAnim_EarthPower:
 	anim_loop 3, .loop
 	anim_wait 32
 	anim_call BattleAnim_ShowMon_1
-	anim_ret
-
-BattleAnim_Mimic:
-	anim_1gfx BATTLE_ANIM_GFX_SPEED
-	anim_obp0 $fc
-	anim_sound 63, 3, SFX_LICK
-	anim_obj BATTLE_ANIM_OBJ_MIMIC, 132, 44, $0
-	anim_obj BATTLE_ANIM_OBJ_MIMIC, 132, 44, $8
-	anim_obj BATTLE_ANIM_OBJ_MIMIC, 132, 44, $10
-	anim_obj BATTLE_ANIM_OBJ_MIMIC, 132, 44, $18
-	anim_obj BATTLE_ANIM_OBJ_MIMIC, 132, 44, $20
-	anim_obj BATTLE_ANIM_OBJ_MIMIC, 132, 44, $28
-	anim_obj BATTLE_ANIM_OBJ_MIMIC, 132, 44, $30
-	anim_obj BATTLE_ANIM_OBJ_MIMIC, 132, 44, $38
-	anim_wait 128
-	anim_wait 48
 	anim_ret
 
 BattleAnim_LovelyKiss:
@@ -5480,4 +5491,20 @@ BattleAnimSub_SpeedLines:
 ;	anim_sound 0, 1, SFX_MOVE_PUZZLE_PIECE
 ;	anim_obj BATTLE_ANIM_OBJ_HIT_YFIX, 136, 56, $0
 ;	anim_wait 24
+;	anim_ret
+
+;BattleAnim_Mimic:
+;	anim_1gfx BATTLE_ANIM_GFX_SPEED
+;	anim_obp0 $fc
+;	anim_sound 63, 3, SFX_LICK
+;	anim_obj BATTLE_ANIM_OBJ_MIMIC, 132, 44, $0
+;	anim_obj BATTLE_ANIM_OBJ_MIMIC, 132, 44, $8
+;	anim_obj BATTLE_ANIM_OBJ_MIMIC, 132, 44, $10
+;	anim_obj BATTLE_ANIM_OBJ_MIMIC, 132, 44, $18
+;	anim_obj BATTLE_ANIM_OBJ_MIMIC, 132, 44, $20
+;	anim_obj BATTLE_ANIM_OBJ_MIMIC, 132, 44, $28
+;	anim_obj BATTLE_ANIM_OBJ_MIMIC, 132, 44, $30
+;	anim_obj BATTLE_ANIM_OBJ_MIMIC, 132, 44, $38
+;	anim_wait 128
+;	anim_wait 48
 ;	anim_ret

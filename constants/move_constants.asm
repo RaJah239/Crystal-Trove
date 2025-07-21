@@ -107,7 +107,7 @@
 	const IRON_HEAD    ; 63
 	const TELEPORT     ; 64
 	const NIGHT_SHADE  ; 65
-	const MIMIC        ; 66
+	const AIR_SLASH    ; 66
 	const SCREECH      ; 67
 	const GUNK_SHOT    ; 68
 	const RECOVER      ; 69
