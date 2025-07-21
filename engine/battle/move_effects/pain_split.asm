@@ -2,9 +2,9 @@ BattleCommand_PainSplit:
 	ld a, [wAttackMissed]
 	and a
 	jp nz, .ButItFailed
-	call CheckSubstituteOpp
+	farcall CheckSubstituteOpp
 	jp nz, .ButItFailed
-	call AnimateCurrentMove
+	farcall AnimateCurrentMove
 	ld hl, wBattleMonMaxHP + 1
 	ld de, wEnemyMonMaxHP + 1
 	call .PlayerShareHP
@@ -24,7 +24,7 @@ BattleCommand_PainSplit:
 	call .EnemyShareHP
 	xor a
 	ld [wWhichHPBar], a
-	call ResetDamage
+	farcall ResetDamage
 	hlcoord 2, 2
 	predef AnimateHPBar
 	farcall _UpdateBattleHUDs
@@ -88,4 +88,5 @@ BattleCommand_PainSplit:
 	ret
 
 .ButItFailed:
-	jp PrintDidntAffect2
+	farcall PrintDidntAffect2
+	ret
