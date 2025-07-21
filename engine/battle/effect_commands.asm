@@ -2201,8 +2201,6 @@ BattleCommand_MoveAnimNoSub:
 	call GetBattleVar
 	cp EFFECT_MULTI_HIT
 	jr z, .alternate_anim
-	cp EFFECT_CONVERSION
-	jr z, .alternate_anim
 	cp EFFECT_DOUBLE_HIT
 	jr z, .alternate_anim
 	cp EFFECT_POISON_MULTI_HIT
@@ -3217,9 +3215,6 @@ BattleCommand_DamageCalc:
 
 ; Variable-hit moves and Conversion can have a power of 0.
 	cp EFFECT_MULTI_HIT
-	jr z, .skip_zero_damage_check
-
-	cp EFFECT_CONVERSION
 	jr z, .skip_zero_damage_check
 
 ; No damage if move power is 0.
@@ -7430,6 +7425,4 @@ INCLUDE "engine/battle/move_effects/beat_up.asm"
 INCLUDE "engine/battle/move_effects/triple_kick.asm"
 INCLUDE "engine/battle/move_effects/mimic.asm"
 INCLUDE "engine/battle/move_effects/lock_on.asm"
-INCLUDE "engine/battle/move_effects/conversion.asm"
 INCLUDE "engine/battle/move_effects/rage.asm"
-INCLUDE "engine/battle/move_effects/conversion2.asm"
