@@ -760,6 +760,8 @@ AI_Smart_EffectHandlers:
 	dbw EFFECT_HURRICANE,        AI_Smart_Hurricane ; updated
 	dbw EFFECT_THIEF,            AI_Smart_Thief ; updated
 	dbw EFFECT_SUCKER_PUNCH,     AI_Smart_SuckerPunch
+	dbw EFFECT_BODY_PRESS,       AI_Smart_BodyPress
+	dbw EFFECT_AVALANCHE,        AI_Smart_Avalanche
 
 	dbw EFFECT_PAIN_SPLIT,       AI_Smart_PainSplit
 	dbw EFFECT_HIDDEN_POWER,     AI_Smart_HiddenPower
@@ -780,6 +782,42 @@ AI_Smart_EffectHandlers:
 
 	dbw EFFECT_STOMP,            AI_Smart_Stomp
 	db -1 ; end
+
+AI_Smart_BodyPress:
+; Encourage this move if enemy's defense level is at least +1.
+	ld a, [wEnemyDefLevel]
+	cp BASE_STAT_LEVEL + 1
+	ret c
+	dec [hl]
+	ret
+
+AI_Smart_Avalanche:
+; Discourage this move if the enemy has less than 25% HP left.
+	call AICheckEnemyQuarterHP
+	jr nc, .discourage
+
+; 80% chance to encourage this move if the player used
+; a damaging move last.
+	ld a, [wLastPlayerCounterMove]
+	and a
+	jr z, .done
+
+	call AIGetEnemyMove
+
+	ld a, [wEnemyMoveStruct + MOVE_POWER]
+	and a
+	jr z, .done
+
+	call AI_80_20
+	jr c, .done
+	dec [hl]
+	dec [hl]
+	ret
+
+.discourage
+	inc [hl]
+.done
+	ret
 
 AI_Smart_SuckerPunch:
 ; if the players last move had no power - 50% chance to discourage.
