@@ -710,11 +710,6 @@ TookDownWithItText:
 	cont "<USER>!"
 	prompt
 
-RageBuildingText:
-	text "<USER>'s"
-	line "RAGE is building!"
-	prompt
-
 GotAnEncoreText:
 	text "<TARGET>"
 	line "got an ENCORE!"

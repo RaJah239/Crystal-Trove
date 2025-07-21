@@ -7365,4 +7365,3 @@ BattleCommand_FlameOrb:
 
 ;to remove fully eventually but thier code is commented out for now
 INCLUDE "engine/battle/move_effects/mimic.asm"
-INCLUDE "engine/battle/move_effects/rage.asm"

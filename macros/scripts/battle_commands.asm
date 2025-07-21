@@ -22,7 +22,6 @@ ENDM
 	command criticaltext            ; 0f
 	command supereffectivetext      ; 10
 	command checkfaint              ; 11
-	command buildopponentrage       ; 12
 	command poisontarget            ; 13
 	command sleeptarget             ; 14
 	command draintarget             ; 15
@@ -133,14 +132,12 @@ ENDM
 	command switchturn              ; 93
 	command fakeout                 ; 94
 	command bellydrum               ; 95
-	command rage                    ; 97
 	command doubleflyingdamage      ; 98
 	command doubleundergrounddamage ; 99
 	command mirrorcoat              ; 9a
 	command doubleminimizedamage    ; 9d
 	command skipsuncharge           ; 9e
 	command teleport                ; a0
-	command ragedamage              ; a2
 	command resettypematchup        ; a3
 	command allstatsup              ; a4
 	command raisesubnoanim          ; a6

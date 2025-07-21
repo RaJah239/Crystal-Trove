@@ -6020,16 +6020,8 @@ ParseEnemyAction:
 	call SetEnemyTurn
 	callfar UpdateMoveData
 	call CheckEnemyLockedIn
-	jr nz, .raging
 	xor a
 	ld [wEnemyCharging], a
-
-.raging
-	ld a, [wEnemyMoveStruct + MOVE_EFFECT]
-	cp EFFECT_RAGE
-	jr z, .no_rage
-
-.no_rage
 	ld a, [wEnemyMoveStruct + MOVE_EFFECT]
 	cp EFFECT_PROTECT
 	ret z

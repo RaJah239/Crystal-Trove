@@ -1,2 +1,0 @@
-BattleCommand_Rage:
-	ret
