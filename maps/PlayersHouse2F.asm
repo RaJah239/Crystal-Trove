@@ -67,12 +67,12 @@ if DEF(_DEBUG)
 	giveitem SHINY_CHARM
 
 	; good party
-	givepoke KINGDRA, 50, MIRACLEBERRY
-	givepoke ENTEI, 50, CHOICE_BAND
-	givepoke SCIZOR, 50, FOCUS_SASH
-	givepoke GENGAR, 50, FOCUS_SASH
-	givepoke JOLTEON, 50, FOCUS_SASH
-	givepoke STARMIE, 50, FOCUS_SASH
+	givepoke KINGDRA, 60, MIRACLEBERRY
+	givepoke ENTEI, 60, CHOICE_BAND
+	givepoke SCIZOR, 60, FOCUS_BAND
+	givepoke CHANSEY, 60, EVERSTONE
+	givepoke HERACROSS, 60, FOCUS_SASH
+	givepoke STARMIE, 60, FOCUS_SASH
 
 	; first mon shiny
 ;	loadmem wPartyMon1DVs+0, $ff
@@ -83,9 +83,9 @@ if DEF(_DEBUG)
 ;	loadmem wPartyMon3DVs+1, $ff
 
 	; 1st pokemon
-	loadmem wPartyMon1Moves+0, SURF
-	loadmem wPartyMon1Moves+1, RAIN_DANCE
-	loadmem wPartyMon1Moves+2, ICE_BEAM
+	loadmem wPartyMon1Moves+0, RAIN_DANCE
+	loadmem wPartyMon1Moves+1, SURF
+	loadmem wPartyMon1Moves+2, DRAGON_PULSE
 	loadmem wPartyMon1Moves+3, REST
 
 	; 2nd pokemon
@@ -98,19 +98,19 @@ if DEF(_DEBUG)
 	loadmem wPartyMon3Moves+0, SWORDS_DANCE
 	loadmem wPartyMon3Moves+1, BULLET_PUNCH
 	loadmem wPartyMon3Moves+2, X_SCISSOR
-	loadmem wPartyMon3Moves+3, HEALING_LIGHT
+	loadmem wPartyMon3Moves+3, IRON_HEAD
 
 	; 4th pokemon
-	loadmem wPartyMon4Moves+0, SHADOW_BALL
-	loadmem wPartyMon4Moves+1, GIGA_DRAIN
-	loadmem wPartyMon4Moves+2, THUNDER_WAVE
-	loadmem wPartyMon4Moves+3, HYPNOSIS
+	loadmem wPartyMon4Moves+0, SOFTBOILED
+	loadmem wPartyMon4Moves+1, SEISMIC_TOSS
+	loadmem wPartyMon4Moves+2, TOXIC
+	loadmem wPartyMon4Moves+3, PROTECT
 
 	; 5th pokemon
-	loadmem wPartyMon5Moves+0, NASTY_PLOT
-	loadmem wPartyMon5Moves+1, THUNDERBOLT
-	loadmem wPartyMon5Moves+2, HYPER_BEAM
-	loadmem wPartyMon5Moves+3, FLASH_CANNON
+	loadmem wPartyMon5Moves+0, MEGAHORN
+	loadmem wPartyMon5Moves+1, EARTHQUAKE
+	loadmem wPartyMon5Moves+2, DRAIN_PUNCH
+	loadmem wPartyMon5Moves+3, ROCK_SLIDE
 
 	; 6th pokemon
 	loadmem wPartyMon6Moves+0, PSYCHIC_M

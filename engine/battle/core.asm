@@ -8,7 +8,9 @@ Core_RegeneratorPokemon:
     db WOBBUFFET
     db HO_OH
     db VENUSAUR
+    db QUAGSIRE
     db MEW
+    db MEGANIUM
     db -1
 
 DoBattle:
@@ -9237,6 +9239,8 @@ SwitchInEffects:
 	jp z, .trickroom
 
     cp MR__MIME
+    jp z, .bothScreens
+    cp MEGANIUM
     jp z, .bothScreens
 
     cp ARTICUNO

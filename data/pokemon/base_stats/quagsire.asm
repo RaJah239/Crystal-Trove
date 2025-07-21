@@ -1,6 +1,6 @@
 	db QUAGSIRE ; 195
 
-	db  95,  85,  85,  35,  65,  65
+	db 105,  95,  75,  74,  85,  75
 	evs  2,   0,   0,   0,   0,   0
 	;   hp  atk  def  spd  sat  sdf
 
