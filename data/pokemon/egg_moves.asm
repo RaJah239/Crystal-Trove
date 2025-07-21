@@ -44,7 +44,6 @@ RattataEggMoves:
 	db FLAME_CHARGE
 	db BITE
 	db COUNTER
-	db REVERSAL
 	db -1 ; end
 
 SpearowEggMoves:
@@ -281,7 +280,6 @@ KoffingEggMoves:
 
 RhyhornEggMoves:
 	db CRUNCH
-	db REVERSAL
 	db ROCK_SLIDE
 	db PURSUIT
 	db COUNTER
@@ -328,7 +326,6 @@ ScytherEggMoves:
 	db SAFEGUARD
 	db BATON_PASS
 	db RAZOR_WIND
-	db REVERSAL
 	db LIGHT_SCREEN
 	db -1 ; end
 
@@ -389,7 +386,6 @@ ChikoritaEggMoves:
 
 CyndaquilEggMoves:
 	db QUICK_ATTACK
-	db REVERSAL
 	db FORESIGHT
 	db CLOSE_COMBAT
 	db -1 ; end
@@ -407,7 +403,6 @@ SentretEggMoves:
 	db PURSUIT
 	db SLASH
 	db FOCUS_ENERGY
-	db REVERSAL
 	db -1 ; end
 
 HoothootEggMoves:
@@ -481,7 +476,6 @@ AipomEggMoves:
 
 YanmaEggMoves:
 	db WHIRLWIND
-	db REVERSAL
 	db LEECH_LIFE
 	db -1 ; end
 
@@ -604,7 +598,6 @@ HoundourEggMoves:
 	db PURSUIT
 	db COUNTER
 	db SPITE
-	db REVERSAL
 	db -1 ; end
 
 PhanpyEggMoves:

@@ -179,7 +179,7 @@ MoveDescriptions::
 	dw HurricaneDescription
 	dw AeroblastDescription
 	dw CottonSporeDescription
-	dw ReversalDescription
+	dw IronBashDescription
 	dw SpiteDescription
 	dw PowderSnowDescription
 	dw ProtectDescription
@@ -203,7 +203,7 @@ MoveDescriptions::
 	dw OutrageDescription
 	dw SandstormDescription
 	dw GigaDrainDescription
-	dw EndureDescription
+	dw IronBashDescription
 	dw CharmDescription
 	dw RolloutDescription
 	dw FalseSwipeDescription
@@ -868,10 +868,6 @@ CottonSporeDescription:
 	db   "Sharply reduces"
 	line "the foe's SPEED.@"
 
-ReversalDescription:
-	db   "Stronger if the"
-	line "user's HP is low.@"
-
 SpiteDescription:
 	db   "Cuts the PP of the"
 	line "foe's last move.@"
@@ -1066,6 +1062,7 @@ WillOWispDescription:
 	db   "A move that may"
 	line "cause a burn.@"
 
+IronBashDescription:
 BodyPressDescription:
 	db   "Deals damage based"
 	line "on user's Defense.@"
