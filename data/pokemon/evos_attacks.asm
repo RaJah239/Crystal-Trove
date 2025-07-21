@@ -2490,8 +2490,7 @@ SneaselEvosAttacks:
 	db 25, FAINT_ATTACK
 	db 41, AGILITY
 	db 49, SLASH
-	db 57, BEAT_UP
-	db 65, METAL_CLAW
+	db 57, METAL_CLAW
 	db 0 ; no more level-up moves
 
 TeddiursaEvosAttacks:

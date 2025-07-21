@@ -23,7 +23,6 @@ CharmanderEggMoves:
 	db ROCK_SLIDE
 	db BITE
 	db OUTRAGE
-	db BEAT_UP
 	db -1 ; end
 
 SquirtleEggMoves:
@@ -59,7 +58,6 @@ SpearowEggMoves:
 EkansEggMoves:
 	db PURSUIT
 	db SPITE
-	db BEAT_UP
 	db CRUNCH
 	db -1 ; end
 
@@ -131,7 +129,6 @@ DiglettEggMoves:
 	db SCREECH
 	db ANCIENTPOWER
 	db PURSUIT
-	db BEAT_UP
 	db -1 ; end
 
 MeowthEggMoves:
@@ -488,7 +485,6 @@ AipomEggMoves:
 	db PURSUIT
 	db AGILITY
 	db SPITE
-	db BEAT_UP
 	db -1 ; end
 
 YanmaEggMoves:
@@ -617,7 +613,6 @@ HoundourEggMoves:
 	db COUNTER
 	db SPITE
 	db REVERSAL
-	db BEAT_UP
 	db -1 ; end
 
 PhanpyEggMoves:

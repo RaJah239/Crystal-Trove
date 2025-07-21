@@ -157,4 +157,5 @@ MoveEffectsPointers:
 	dw Hurricane
 	dw SpAtkUpHit
 	dw NormalHit
+	dw FlareBlitz
 	assert_table_length NUM_MOVE_EFFECTS

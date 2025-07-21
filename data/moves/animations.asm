@@ -437,7 +437,7 @@ BattleAnimations::
 	dw BattleAnim_StealthRock
 	dw BattleAnim_RockSmash
 	dw BattleAnim_Whirlpool
-	dw BattleAnim_BeatUp
+	dw BattleAnim_FlareBlitz
 	dw BattleAnim_UTurn
 	dw BattleAnim_VoltSwitch
 	assert_table_length NUM_ATTACKS + 1
@@ -4474,6 +4474,7 @@ BattleAnim_PainSplit:
 	anim_wait 1
 	anim_ret
 
+BattleAnim_FlareBlitz:
 BattleAnim_SacredFire:
 	anim_1gfx BATTLE_ANIM_GFX_FIRE
 	anim_bgeffect BATTLE_BG_EFFECT_CYCLE_OBPALS_GRAY_AND_YELLOW, $0, $2, $0
@@ -5004,9 +5005,6 @@ BattleAnim_Whirlpool:
 	anim_wait 64
 	anim_incbgeffect BATTLE_BG_EFFECT_WHIRLPOOL
 	anim_wait 1
-	anim_ret
-
-BattleAnim_BeatUp:
 	anim_ret
 
 BattleAnimSub_Drain:

@@ -250,7 +250,7 @@ MoveNames::
 	li "Stealth Rock"
 	li "Rock Smash"
 	li "Whirlpool"
-	li "Beat Up"
+	li "Flare Blitz"
 	li "U-Turn"
 	li "Volt Switch"
 	assert_list_length NUM_ATTACKS
