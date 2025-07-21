@@ -233,7 +233,7 @@ MoveDescriptions::
 	dw WillOWispDescription
 	dw SilverWindDescription
 	dw MetalClawDescription
-	dw VitalThrowDescription
+	dw BodyPressDescription
 	dw HealingLightDescription
 	dw HailDescription
 	dw XScissorDescription
@@ -1069,9 +1069,9 @@ WillOWispDescription:
 	db   "A move that may"
 	line "cause a burn.@"
 
-VitalThrowDescription:
-	db   "A 2nd-strike move"
-	line "that never misses.@"
+BodyPressDescription:
+	db   "Deals damage based"
+	line "on user's Defense.@"
 
 HealingLightDescription:
 	db   "Restores HP based"

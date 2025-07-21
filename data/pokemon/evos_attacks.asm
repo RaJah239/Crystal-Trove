@@ -762,8 +762,7 @@ MachopEvosAttacks:
 	db 13, KARATE_CHOP
 	db 19, SEISMIC_TOSS
 	db 25, FORESIGHT
-	db 31, VITAL_THROW
-	db 37, CROSS_CHOP
+	db 31, CROSS_CHOP
 	db 43, SCARY_FACE
 	db 49, CLOSE_COMBAT
 	db 0 ; no more level-up moves
@@ -778,8 +777,7 @@ MachokeEvosAttacks:
 	db 15, KARATE_CHOP
 	db 19, SEISMIC_TOSS
 	db 25, FORESIGHT
-	db 34, VITAL_THROW
-	db 43, CROSS_CHOP
+	db 34, CROSS_CHOP
 	db 52, SCARY_FACE
 	db 61, CLOSE_COMBAT
 	db 0 ; no more level-up moves
@@ -793,8 +791,7 @@ MachampEvosAttacks:
 	db 15, KARATE_CHOP
 	db 19, SEISMIC_TOSS
 	db 25, FORESIGHT
-	db 34, VITAL_THROW
-	db 43, CROSS_CHOP
+	db 34, CROSS_CHOP
 	db 52, SCARY_FACE
 	db 61, CLOSE_COMBAT
 	db 0 ; no more level-up moves

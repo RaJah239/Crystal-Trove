@@ -2745,7 +2745,13 @@ PlayerAttackDamage:
 	sla c
 	rl b
 
+; Body Press uses the user's defense stat instead of its attack.
 .physicalcrit
+	ld a, BATTLE_VARS_MOVE_EFFECT
+	call GetBattleVar
+	cp EFFECT_BODY_PRESS
+	jp z, .body_press
+
 	ld hl, wBattleMonAttack
 	call CheckDamageStatsCritical
 	jr c, .thickcluborlightball
@@ -2755,6 +2761,19 @@ PlayerAttackDamage:
 	ld b, a
 	ld c, [hl]
 	ld hl, wPlayerAttack
+	jr .thickcluborlightball
+
+.body_press
+; Use player's defense instead of attack for Body Press
+	ld hl, wBattleMonDefense
+	call CheckDamageStatsCritical
+	jr c, .thickcluborlightball ; Use boosted stats
+
+	ld hl, wEnemyDefense
+	ld a, [hli]
+	ld b, a
+	ld c, [hl]
+	ld hl, wPlayerDefense
 	jr .thickcluborlightball
 
 .special
@@ -3037,7 +3056,13 @@ EnemyAttackDamage:
 	sla c
 	rl b
 
+; Body Press uses the user's defense stat instead of its attack.
 .physicalcrit
+	ld a, BATTLE_VARS_MOVE_EFFECT
+	call GetBattleVar
+	cp EFFECT_BODY_PRESS
+	jp z, .body_press
+
 	ld hl, wEnemyMonAttack
 	call CheckDamageStatsCritical
 	jr c, .thickcluborlightball
@@ -3048,6 +3073,19 @@ EnemyAttackDamage:
 	ld c, [hl]
 	ld hl, wEnemyAttack
 	jr c, .thickcluborlightball
+
+.body_press
+; Use enemy's defense instead of attack for Body Press
+	ld hl, wEnemyMonDefense
+	call CheckDamageStatsCritical
+	jr c, .thickcluborlightball ; Use boosted stats
+
+	ld hl, wPlayerDefense
+	ld a, [hli]
+	ld b, a
+	ld c, [hl]
+	ld hl, wEnemyDefense
+	jr .thickcluborlightball
 
 .special
 ; Psyshock is a special move, but targets the player's defense stat.
