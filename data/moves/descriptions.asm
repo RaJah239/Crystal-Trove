@@ -167,7 +167,7 @@ MoveDescriptions::
 	dw SubstituteDescription
 	dw StruggleDescription
 	dw SketchDescription
-	dw TripleKickDescription
+	dw AerialAceDescriptionDescription
 	dw ThiefDescription
 	dw SpiderWebDescription
 	dw DragonDanceDescription
@@ -623,6 +623,7 @@ AgilityDescription:
 	db   "Sharply increases"
 	line "the user's SPEED.@"
 
+AerialAceDescriptionDescription:
 ShadowSneakDescription:
 BulletPunchDescription:
 AquaJetDescription:
@@ -828,10 +829,6 @@ StruggleDescription:
 SketchDescription:
 	db   "Copies the foe's"
 	line "move permanently.@"
-
-TripleKickDescription:
-	db   "Hits three times"
-	line "with rising power.@"
 
 BugBiteDescription:
 ThiefDescription:
