@@ -318,7 +318,6 @@ KangaskhanEggMoves:
 HorseaEggMoves:
 	db FLAIL
 	db AURORA_BEAM
-	db OCTAZOOKA
 	db DISABLE
 	db SPLASH
 	db DRAGON_RAGE
@@ -591,7 +590,6 @@ CorsolaEggMoves:
 
 RemoraidEggMoves:
 	db AURORA_BEAM
-	db OCTAZOOKA
 	db SUPERSONIC
 	db HAZE
 	db SCREECH
