@@ -78,7 +78,6 @@ MoveEffectsPointers:
 	dw NormalHit
 	dw Substitute
 	dw HyperBeam
-	dw Mimic
 	dw Metronome
 	dw LeechSeed
 	dw Splash

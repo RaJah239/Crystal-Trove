@@ -1030,14 +1030,6 @@ HyperBeam:
 	rechargenextturn
 	endmove
 
-Mimic:
-	checkobedience
-	usedmovetext
-	doturn
-	checkhit
-	mimic
-	endmove
-
 Metronome:
 	checkobedience
 	usedmovetext
