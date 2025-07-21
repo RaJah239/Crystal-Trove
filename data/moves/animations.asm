@@ -832,14 +832,6 @@ BattleAnim_BugBite:
 	anim_wait 32
 	anim_ret
 
-.alternate:
-	anim_sound 0, 1, SFX_DOUBLESLAP
-	anim_obj BATTLE_ANIM_OBJ_PALM, 120, 48, $0
-	anim_wait 6
-	anim_obj BATTLE_ANIM_OBJ_HIT_YFIX, 120, 48, $0
-	anim_wait 8
-	anim_ret
-
 BattleAnim_CometPunch:
 	anim_1gfx BATTLE_ANIM_GFX_HIT
 	anim_if_param_equal $1, .alternate
@@ -917,6 +909,37 @@ BattleAnim_HiJumpKick:
 	anim_ret
 
 BattleAnim_Psyshock:
+	anim_2gfx BATTLE_ANIM_GFX_PSYCHIC, BATTLE_ANIM_GFX_HIT
+	anim_bgeffect BATTLE_BG_EFFECT_ALTERNATE_HUES, $0, $2, $0
+	anim_bgeffect BATTLE_BG_EFFECT_PSYCHIC, $0, $0, $0
+	anim_call BattleAnim_UserObj_1Row
+	anim_sound 0, 1, SFX_PSYCHIC
+	anim_call BattleAnim_ThreeHitSub
+	anim_call BattleAnim_ShowMon_1
+	anim_incbgeffect BATTLE_BG_EFFECT_PSYCHIC
+	anim_wait 4
+	anim_ret
+
+BattleAnim_Flail:
+	anim_1gfx BATTLE_ANIM_GFX_HIT
+	anim_call BattleAnim_TargetObj_1Row
+	anim_sound 0, 0, SFX_SUBMISSION
+	anim_bgeffect BATTLE_BG_EFFECT_FLAIL, $0, BG_EFFECT_USER, $0
+	anim_call BattleAnim_ThreeHitSub
+	anim_incbgeffect BATTLE_BG_EFFECT_FLAIL
+	anim_call BattleAnim_ShowMon_0
+	anim_ret
+
+BattleAnim_ThreeHitSub:
+	anim_wait 16
+	anim_obj BATTLE_ANIM_OBJ_HIT_YFIX, 120, 48, $0
+	anim_wait 16
+	anim_obj BATTLE_ANIM_OBJ_HIT_YFIX, 152, 48, $0
+	anim_wait 16
+	anim_obj BATTLE_ANIM_OBJ_HIT_BIG_YFIX, 136, 48, $0
+	anim_wait 16
+	anim_ret
+
 BattleAnim_FocusBlast:
 	anim_2gfx BATTLE_ANIM_GFX_SPEED, BATTLE_ANIM_GFX_BEAM
 	anim_call BattleAnim_TargetObj_1Row
@@ -3660,22 +3683,6 @@ BattleAnim_Curse:
 	anim_loop 2, .loop
 	anim_wait 8
 	anim_incbgeffect BATTLE_BG_EFFECT_FADE_MON_TO_LIGHT
-	anim_ret
-
-BattleAnim_Flail:
-	anim_1gfx BATTLE_ANIM_GFX_HIT
-	anim_call BattleAnim_TargetObj_1Row
-	anim_sound 0, 0, SFX_SUBMISSION
-	anim_bgeffect BATTLE_BG_EFFECT_FLAIL, $0, BG_EFFECT_USER, $0
-	anim_wait 8
-	anim_obj BATTLE_ANIM_OBJ_HIT_YFIX, 120, 48, $0
-	anim_wait 8
-	anim_obj BATTLE_ANIM_OBJ_HIT_YFIX, 152, 48, $0
-	anim_wait 8
-	anim_obj BATTLE_ANIM_OBJ_HIT_YFIX, 136, 48, $0
-	anim_wait 8
-	anim_incbgeffect BATTLE_BG_EFFECT_FLAIL
-	anim_call BattleAnim_ShowMon_0
 	anim_ret
 
 BattleAnim_Hex:
