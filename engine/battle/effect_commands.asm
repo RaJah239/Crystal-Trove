@@ -7447,5 +7447,4 @@ BattleCommand_PsychUp:
 BattleCommand_FuryCutter:
 BattleCommand_Foresight:
 BattleCommand_FrustrationPower:
-BattleCommand_Present:
 	ret
