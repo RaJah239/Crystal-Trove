@@ -51,7 +51,7 @@ BattleCommand_Disable:
 	swap c
 	add c
 	ld [de], a
-	call AnimateCurrentMove
+	farcall AnimateCurrentMove
 	ld hl, wDisabledMove
 	ldh a, [hBattleTurn]
 	and a
@@ -67,4 +67,5 @@ BattleCommand_Disable:
 	jp StdBattleTextbox
 
 .failed
-	jp FailMove
+	farcall FailMove
+	ret

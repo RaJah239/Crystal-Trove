@@ -6462,8 +6462,6 @@ INCLUDE "engine/battle/move_effects/leech_seed.asm"
 
 INCLUDE "engine/battle/move_effects/splash.asm"
 
-INCLUDE "engine/battle/move_effects/disable.asm"
-
 INCLUDE "engine/battle/move_effects/taunt.asm"
 
 BattleCommand_ResetStats:
