@@ -14,7 +14,6 @@ BulbasaurEggMoves:
 	db LIGHT_SCREEN
 	db SAFEGUARD
 	db RAZOR_WIND
-	db PETAL_DANCE
 	db -1 ; end
 
 CharmanderEggMoves:

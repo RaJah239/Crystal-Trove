@@ -489,7 +489,6 @@ OddishEvosAttacks:
 	db 18, SLEEP_POWDER
 	db 23, ACID
 	db 32, HEALING_LIGHT
-	db 39, PETAL_DANCE
 	db 0 ; no more level-up moves
 
 GloomEvosAttacks:
@@ -503,14 +502,12 @@ GloomEvosAttacks:
 	db 18, SLEEP_POWDER
 	db 24, ACID
 	db 35, HEALING_LIGHT
-	db 44, PETAL_DANCE
 	db 0 ; no more level-up moves
 
 VileplumeEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, ABSORB
 	db 1, STUN_SPORE
-	db 1, PETAL_DANCE
 	db 0 ; no more level-up moves
 
 ParasEvosAttacks:
@@ -2099,8 +2096,7 @@ BellossomEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, ABSORB
 	db 1, STUN_SPORE
-	db 1, PETAL_DANCE
-	db 55, SOLARBEAM
+	db 1, SOLARBEAM
 	db 0 ; no more level-up moves
 
 MarillEvosAttacks:
@@ -2227,8 +2223,7 @@ SunfloraEvosAttacks:
 	db 1, GROWTH
 	db 10, RAZOR_LEAF
 	db 19, SUNNY_DAY
-	db 31, PETAL_DANCE
-	db 46, SOLARBEAM
+	db 31, SOLARBEAM
 	db 0 ; no more level-up moves
 
 YanmaEvosAttacks:
