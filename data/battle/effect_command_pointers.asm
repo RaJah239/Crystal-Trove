@@ -169,7 +169,6 @@ BattleCommandPointers:
 	dw BattleCommand_StartLoop
 	dw BattleCommand_Curl
 	dw BattleCommand_HitAndSwitch
-	dw BattleCommand_StartHail
 	dw BattleCommand_StealthRock
 	dw BattleCommand_StickyWeb
 	dw BattleCommand_Defog

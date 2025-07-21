@@ -6999,8 +6999,6 @@ BattleCommand_SkipSunCharge:
 	ld b, charge_command
 	jp SkipToBattleCommand
 
-INCLUDE "engine/battle/move_effects/hail.asm"
-
 CheckHiddenOpponent:
 	ld a, BATTLE_VARS_SUBSTATUS5_OPP
  	call GetBattleVar
