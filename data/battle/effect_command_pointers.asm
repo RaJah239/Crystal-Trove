@@ -174,7 +174,6 @@ BattleCommandPointers:
 	dw BattleCommand_StealthRock
 	dw BattleCommand_ToxicSpikes
 	dw BattleCommand_StickyWeb
-	dw BattleCommand_TrickRoom
 	dw BattleCommand_Defog
 	dw BattleCommand_FlameOrb
 	dw BattleCommand_Taunt

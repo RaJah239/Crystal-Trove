@@ -2025,7 +2025,7 @@ TrickRoom:
 	checkobedience
 	usedmovetext
 	doturn
-	trickroom
+	farcommand
 	endmove
 
 Defog:

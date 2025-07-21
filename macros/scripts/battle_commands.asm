@@ -174,7 +174,6 @@ ENDM
 	command stealthrock             ; b3
 	command toxicspikes             ; b4
 	command stickyweb               ; b5
-	command trickroom               ; b6
 	command defog                   ; b7
 	command flameorb                ; b8
 	command taunt                   ; b6
