@@ -7424,5 +7424,4 @@ BattleCommand_FlameOrb:
 INCLUDE "engine/battle/move_effects/beat_up.asm"
 INCLUDE "engine/battle/move_effects/triple_kick.asm"
 INCLUDE "engine/battle/move_effects/mimic.asm"
-INCLUDE "engine/battle/move_effects/lock_on.asm"
 INCLUDE "engine/battle/move_effects/rage.asm"
