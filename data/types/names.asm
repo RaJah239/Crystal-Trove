@@ -28,6 +28,7 @@ endr
 	dw Dragon
 	dw Dark
 	dw Fairy
+	dw Ice2
 	dw Bird
 	assert_table_length TYPES_END
 
@@ -50,4 +51,5 @@ Ice:       db "Ice@"
 Dragon:    db "Dragon@"
 Dark:      db "Dark@"
 Fairy:     db "Fairy@"
+Ice2:      db "Ice@"
 Bird:      db "Bird@"

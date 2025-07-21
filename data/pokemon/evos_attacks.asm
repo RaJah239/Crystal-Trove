@@ -959,7 +959,6 @@ MagnemiteEvosAttacks:
 	db 6, THUNDERSHOCK
 	db 11, SUPERSONIC
 	db 21, THUNDER_WAVE
-	db 27, LOCK_ON
 	db 33, SWIFT
 	db 39, SCREECH
 	db 45, ZAP_CANNON
@@ -971,7 +970,6 @@ MagnetonEvosAttacks:
 	db 1, THUNDERSHOCK
 	db 1, SUPERSONIC
 	db 21, THUNDER_WAVE
-	db 27, LOCK_ON
 	db 35, SCREECH
 	db 53, ZAP_CANNON
 	db 0 ; no more level-up moves
@@ -1571,7 +1569,6 @@ PorygonEvosAttacks:
 	db 1, AGILITY
 	db 12, PSYBEAM
 	db 20, RECOVER
-	db 32, LOCK_ON
 	db 36, ZAP_CANNON
 	db 0 ; no more level-up moves
 
@@ -2576,7 +2573,6 @@ RemoraidEvosAttacks:
 	db EVOLVE_LEVEL, 25, OCTILLERY
 	db 0 ; no more evolutions
 	db 1, WATER_GUN
-	db 11, LOCK_ON
 	db 22, PSYBEAM
 	db 22, AURORA_BEAM
 	db 22, BUBBLEBEAM
@@ -2678,7 +2674,6 @@ Porygon2EvosAttacks:
 	db 12, PSYBEAM
 	db 20, RECOVER
 	db 24, DEFENSE_CURL
-	db 32, LOCK_ON
 	db 36, ZAP_CANNON
 	db 0 ; no more level-up moves
 

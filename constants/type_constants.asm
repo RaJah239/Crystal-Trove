@@ -30,6 +30,7 @@ DEF UNUSED_TYPES_END EQU const_value
 	const DRAGON
 	const DARK
 	const FAIRY
+	const ICE2
 	const BIRD
 DEF TYPES_END EQU const_value
 

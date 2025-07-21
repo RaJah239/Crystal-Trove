@@ -35,6 +35,14 @@ TypeMatchups:
 	db GRASS,        ROCK,         SUPER_EFFECTIVE
 	db GRASS,        DRAGON,       NOT_VERY_EFFECTIVE
 	db GRASS,        STEEL,        NOT_VERY_EFFECTIVE
+	db ICE2,         WATER,        SUPER_EFFECTIVE
+	db ICE2,         GRASS,        SUPER_EFFECTIVE
+	db ICE2,         ICE,          NOT_VERY_EFFECTIVE
+	db ICE2,         GROUND,       SUPER_EFFECTIVE
+	db ICE2,         FLYING,       SUPER_EFFECTIVE
+	db ICE2,         DRAGON,       SUPER_EFFECTIVE
+	db ICE2,         STEEL,        NOT_VERY_EFFECTIVE
+	db ICE2,         FIRE,         NOT_VERY_EFFECTIVE
 	db ICE,          WATER,        NOT_VERY_EFFECTIVE
 	db ICE,          GRASS,        SUPER_EFFECTIVE
 	db ICE,          ICE,          NOT_VERY_EFFECTIVE
@@ -170,6 +178,14 @@ InverseTypeMatchups:
    db GRASS,        ROCK,         NOT_VERY_EFFECTIVE
    db GRASS,        DRAGON,       SUPER_EFFECTIVE
    db GRASS,        STEEL,        SUPER_EFFECTIVE
+   db ICE2,         WATER,        NOT_VERY_EFFECTIVE
+   db ICE2,         GRASS,        NOT_VERY_EFFECTIVE
+   db ICE2,         ICE,          SUPER_EFFECTIVE
+   db ICE2,         GROUND,       NOT_VERY_EFFECTIVE
+   db ICE2,         FLYING,       NOT_VERY_EFFECTIVE
+   db ICE2,         DRAGON,       NOT_VERY_EFFECTIVE
+   db ICE2,         STEEL,        SUPER_EFFECTIVE
+   db ICE2,         FIRE,         SUPER_EFFECTIVE
    db ICE,          WATER,        SUPER_EFFECTIVE
    db ICE,          GRASS,        NOT_VERY_EFFECTIVE
    db ICE,          ICE,          SUPER_EFFECTIVE
