@@ -172,7 +172,6 @@ ENDM
 	command hitandswitch            ; b1
 	command starthail               ; b2
 	command stealthrock             ; b3
-	command toxicspikes             ; b4
 	command stickyweb               ; b5
 	command defog                   ; b7
 	command flameorb                ; b8

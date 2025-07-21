@@ -6816,8 +6816,6 @@ INCLUDE "engine/battle/move_effects/quiver_dance.asm"
 
 INCLUDE "engine/battle/move_effects/stealth_rock.asm"
 
-INCLUDE "engine/battle/move_effects/toxic_spikes.asm"
-
 INCLUDE "engine/battle/move_effects/sticky_web.asm"
 
 INCLUDE "engine/battle/move_effects/defog.asm"

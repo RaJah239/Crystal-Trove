@@ -2011,7 +2011,7 @@ ToxicSpikes:
 	checkobedience
 	usedmovetext
 	doturn
-	toxicspikes
+	farcommand
 	endmove
 
 StickyWeb:

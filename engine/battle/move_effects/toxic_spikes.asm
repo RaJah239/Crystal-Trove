@@ -15,9 +15,10 @@ BattleCommand_ToxicSpikes:
 
 	set SCREENS_TOXIC_SPIKES, [hl]
 
-	call AnimateCurrentMove
+	farcall AnimateCurrentMove
 	ld hl, ToxicSpikesText
 	jp StdBattleTextbox
 
 .failed
-	jp FailMove
+	farcall FailMove
+	ret
