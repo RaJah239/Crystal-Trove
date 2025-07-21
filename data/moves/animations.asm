@@ -268,7 +268,7 @@ BattleAnimations::
 	dw BattleAnim_Thunder
 	dw BattleAnim_RockBlast
 	dw BattleAnim_Earthquake
-	dw BattleAnim_Fissure
+	dw BattleAnim_PsychoCut
 	dw BattleAnim_Dig
 	dw BattleAnim_Toxic
 	dw BattleAnim_Confusion
@@ -2146,15 +2146,6 @@ BattleAnim_Earthquake:
 	anim_loop 4, .loop
 	anim_ret
 
-BattleAnim_Fissure:
-	anim_bgeffect BATTLE_BG_EFFECT_FLASH_INVERTED, $0, $8, $40
-	anim_bgeffect BATTLE_BG_EFFECT_SHAKE_SCREEN_X, $60, $4, $0
-.loop
-	anim_sound 0, 1, SFX_EMBER
-	anim_wait 24
-	anim_loop 4, .loop
-	anim_ret
-
 BattleAnim_Growl:
 	anim_1gfx BATTLE_ANIM_GFX_NOISE
 	anim_bgeffect BATTLE_BG_EFFECT_CYCLE_OBPALS_GRAY_AND_YELLOW, $0, $2, $0
@@ -2802,6 +2793,8 @@ BattleAnim_FairyFlash:
 	anim_wait 5
 	anim_wait 32
 	anim_ret
+
+BattleAnim_PsychoCut:
 
 BattleAnim_NightSlash:
 	anim_1gfx BATTLE_ANIM_GFX_CUT
