@@ -26,4 +26,5 @@ FarCommand_BattleCommands:
 	dbw EFFECT_THUNDER,			BattleCommand_ThunderAccuracy
 	dbw EFFECT_HAIL,			BattleCommand_StartHail
 	dbw EFFECT_FORESIGHT,       BattleCommand_Foresight
+	dbw EFFECT_SUCKER_PUNCH,    BattleCommand_SuckerPunch
 	db -1 ; end

@@ -37,7 +37,7 @@ MoveDescriptions::
 	dw BodySlamDescription
 	dw WrapDescription
 	dw TauntDescription
-	dw ThrashDescription
+	dw SuckerPunchDescription
 	dw DoubleEdgeDescription
 	dw DrainPunchDescription
 	dw PoisonStingDescription
@@ -386,9 +386,9 @@ TauntDescription:
 	db   "Provokes enemy"
 	line "into attacking.@"
 
-ThrashDescription:
-	db   "Works 2-3 turns"
-	line "and confuses user.@"
+SuckerPunchDescription:
+	db   "Attacks first if"
+	line "the foe attacks.@"
 
 DoubleEdgeDescription:
 	db   "A tackle that also"

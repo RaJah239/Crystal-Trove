@@ -387,7 +387,6 @@ NidokingEvosAttacks:
 	db 1, HORN_ATTACK
 	db 1, DOUBLE_KICK
 	db 1, POISON_STING
-	db 23, THRASH
 	db 0 ; no more level-up moves
 
 ClefairyEvosAttacks:
@@ -649,7 +648,6 @@ MankeyEvosAttacks:
 	db 33, SEISMIC_TOSS
 	db 39, CROSS_CHOP
 	db 45, SCREECH
-	db 51, THRASH
 	db 0 ; no more level-up moves
 
 PrimeapeEvosAttacks:
@@ -663,7 +661,6 @@ PrimeapeEvosAttacks:
 	db 36, SEISMIC_TOSS
 	db 45, CROSS_CHOP
 	db 54, SCREECH
-	db 63, THRASH
 	db 0 ; no more level-up moves
 
 GrowlitheEvosAttacks:
@@ -1203,7 +1200,6 @@ CuboneEvosAttacks:
 	db 17, LEER
 	db 21, FOCUS_ENERGY
 	db 25, FALSE_SWIPE
-	db 37, THRASH
 	db 0 ; no more level-up moves
 
 MarowakEvosAttacks:
@@ -1216,7 +1212,6 @@ MarowakEvosAttacks:
 	db 17, LEER
 	db 21, FOCUS_ENERGY
 	db 25, FALSE_SWIPE
-	db 46, THRASH
 	db 0 ; no more level-up moves
 
 HitmonleeEvosAttacks:
@@ -1458,7 +1453,6 @@ TaurosEvosAttacks:
 	db 19, SCARY_FACE
 	db 26, PURSUIT
 	db 34, REST
-	db 43, THRASH
 	db 0 ; no more level-up moves
 
 MagikarpEvosAttacks:
@@ -1471,8 +1465,7 @@ MagikarpEvosAttacks:
 
 GyaradosEvosAttacks:
 	db 0 ; no more evolutions
-	db 1, THRASH
-	db 20, BITE
+	db 1, BITE
 	db 25, DRAGON_RAGE
 	db 30, LEER
 	db 40, HYDRO_PUMP
@@ -2490,7 +2483,6 @@ TeddiursaEvosAttacks:
 	db 29, REST
 	db 36, SLASH
 	db 43, SNORE
-	db 50, THRASH
 	db 0 ; no more level-up moves
 
 UrsaringEvosAttacks:
@@ -2503,7 +2495,6 @@ UrsaringEvosAttacks:
 	db 29, REST
 	db 39, SLASH
 	db 49, SNORE
-	db 59, THRASH
 	db 0 ; no more level-up moves
 
 SlugmaEvosAttacks:
@@ -2822,7 +2813,6 @@ LarvitarEvosAttacks:
 	db 8, SANDSTORM
 	db 15, SCREECH
 	db 22, ROCK_SLIDE
-	db 29, THRASH
 	db 36, SCARY_FACE
 	db 43, CRUNCH
 	db 50, EARTHQUAKE
@@ -2839,7 +2829,6 @@ PupitarEvosAttacks:
 	db 8, SANDSTORM
 	db 15, SCREECH
 	db 22, ROCK_SLIDE
-	db 29, THRASH
 	db 38, SCARY_FACE
 	db 47, CRUNCH
 	db 56, EARTHQUAKE
@@ -2855,7 +2844,6 @@ TyranitarEvosAttacks:
 	db 8, SANDSTORM
 	db 15, SCREECH
 	db 22, ROCK_SLIDE
-	db 29, THRASH
 	db 38, SCARY_FACE
 	db 47, CRUNCH
 	db 61, EARTHQUAKE

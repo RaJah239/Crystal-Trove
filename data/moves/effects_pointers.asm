@@ -158,4 +158,5 @@ MoveEffectsPointers:
 	dw NormalHit
 	dw FlareBlitz
 	dw NormalHit              ; EFFECT_BODY_PRESS
+	dw SuckerPunch
 	assert_table_length NUM_MOVE_EFFECTS

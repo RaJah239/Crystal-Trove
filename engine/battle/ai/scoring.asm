@@ -759,6 +759,7 @@ AI_Smart_EffectHandlers:
 	dbw EFFECT_GUST,             AI_Smart_Gust ; updated
 	dbw EFFECT_HURRICANE,        AI_Smart_Hurricane ; updated
 	dbw EFFECT_THIEF,            AI_Smart_Thief ; updated
+	dbw EFFECT_SUCKER_PUNCH,     AI_Smart_SuckerPunch
 
 	dbw EFFECT_PAIN_SPLIT,       AI_Smart_PainSplit
 	dbw EFFECT_HIDDEN_POWER,     AI_Smart_HiddenPower
@@ -779,6 +780,20 @@ AI_Smart_EffectHandlers:
 
 	dbw EFFECT_STOMP,            AI_Smart_Stomp
 	db -1 ; end
+
+AI_Smart_SuckerPunch:
+; if the players last move had no power - 50% chance to discourage.
+    ld a, [wCurPlayerMove]
+	call AIGetPlayerMove
+	ld a, [wPlayerMoveStruct + MOVE_POWER]
+	and a
+	jp nz, AI_Smart_PriorityHit
+	call AI_50_50
+	jp c, AI_Smart_PriorityHit
+rept 12
+	inc [hl]
+endr
+	ret
 
 AI_Smart_StealthRock:
 ; don't use if already up
@@ -1331,15 +1346,15 @@ AI_Smart_Barrier:
 
 .mewtwo
 ; if players last move was sucker punch - 50% chance to boost
-;	ld a, [wCurPlayerMove]
-;	call AIGetPlayerMove
-;	ld a, [wPlayerMoveStruct + MOVE_EFFECT]
-;	cp EFFECT_SUCKER_PUNCH
-;	jr nz, .notUsingSuckerPunch
-;	call AI_50_50
-;	jr c, .skipKOCheck
-;
-;.notUsingSuckerPunch
+	ld a, [wCurPlayerMove]
+	call AIGetPlayerMove
+	ld a, [wPlayerMoveStruct + MOVE_EFFECT]
+	cp EFFECT_SUCKER_PUNCH
+	jr nz, .notUsingSuckerPunch
+	call AI_50_50
+	jr c, .skipKOCheck
+
+.notUsingSuckerPunch
 ; if player physical don't use only if they can outspeed and OHKO
 	call DoesAIOutSpeedPlayer
 	jr c, .skipKOCheck
@@ -5034,19 +5049,16 @@ ShouldAIBoost:
     call DoesEnemyHaveChoiceItem
     jp c, .dontBoost
 
-;================================
-;    Maybe add Sucker Punch?
-;================================
 ; if players last move was sucker punch - 50% chance to boost
-;	ld a, [wCurPlayerMove]
-;	call AIGetPlayerMove
-;   ld a, [wPlayerMoveStruct + MOVE_EFFECT]
-;    cp EFFECT_SUCKER_PUNCH
-;   jr nz, .notUsingSuckerPunch
-;	call AI_50_50
-;	ret c
-;
-;.notUsingSuckerPunch
+	ld a, [wCurPlayerMove]
+	call AIGetPlayerMove
+   ld a, [wPlayerMoveStruct + MOVE_EFFECT]
+    cp EFFECT_SUCKER_PUNCH
+   jr nz, .notUsingSuckerPunch
+	call AI_50_50
+	ret c
+
+.notUsingSuckerPunch
 ; if we are faster and player is flying or underground just boost
     call DoesAIOutSpeedPlayer
     jr nc, .checkEvasion

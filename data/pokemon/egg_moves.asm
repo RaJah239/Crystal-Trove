@@ -148,7 +148,6 @@ GrowlitheEggMoves:
 	db BODY_SLAM
 	db SAFEGUARD
 	db CRUNCH
-	db THRASH
 	db FIRE_SPIN
 	db -1 ; end
 
@@ -190,7 +189,6 @@ GeodudeEggMoves:
 
 PonytaEggMoves:
 	db FLAME_CHARGE
-	db THRASH
 	db DOUBLE_KICK
 	db HYPNOSIS
 	db CHARM
@@ -286,7 +284,6 @@ RhyhornEggMoves:
 	db CRUNCH
 	db REVERSAL
 	db ROCK_SLIDE
-	db THRASH
 	db PURSUIT
 	db COUNTER
 	db -1 ; end
@@ -394,14 +391,12 @@ ChikoritaEggMoves:
 CyndaquilEggMoves:
 	db QUICK_ATTACK
 	db REVERSAL
-	db THRASH
 	db FORESIGHT
 	db CLOSE_COMBAT
 	db -1 ; end
 
 TotodileEggMoves:
 	db CRUNCH
-	db THRASH
 	db HYDRO_PUMP
 	db ANCIENTPOWER
 	db RAZOR_WIND
