@@ -599,7 +599,7 @@ wExpShareText:: db
 wPlayerFutureSightDamage:: dw ; unused
 wTrickRoomCount:: db
 
-wBeatUpHitAtLeastOnce:: db
+	ds 1
 
 wPlayerTrappingMove:: db
 wEnemyTrappingMove:: db
@@ -2131,7 +2131,7 @@ SECTION UNION "Miscellaneous WRAM 1", WRAMX
 ; miscellaneous
 wTempDayOfWeek::
 wPrevPartyLevel::
-wCurBeatUpPartyMon::
+	ds 1
 wUnownPuzzleCornerTile::
 wKeepSevenBiasChance::
 wPokeFluteCuredSleep::
