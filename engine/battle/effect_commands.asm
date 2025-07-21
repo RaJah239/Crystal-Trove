@@ -1775,9 +1775,6 @@ BattleCommand_CheckHit:
 	call .DrainSub
 	jp z, .Miss
 
-	farcall LockOnMiss
-	ret nz
-
 	farcall FlyDigMovesMiss
 	jp nz, .Miss
 
@@ -6857,12 +6854,6 @@ BattleCommand_SkipSunCharge:
 	jp SkipToBattleCommand
 
 CheckHiddenOpponent:
-	ld a, BATTLE_VARS_SUBSTATUS5_OPP
- 	call GetBattleVar
- 	cpl
- 	and 1 << SUBSTATUS_LOCK_ON
- 	ret z
-
 	ld a, BATTLE_VARS_SUBSTATUS3_OPP
 	call GetBattleVar
 	and 1 << SUBSTATUS_FLYING | 1 << SUBSTATUS_UNDERGROUND
