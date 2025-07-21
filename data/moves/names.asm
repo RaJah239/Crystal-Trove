@@ -253,4 +253,5 @@ MoveNames::
 	li "Flare Blitz"
 	li "U-Turn"
 	li "Volt Switch"
+	li "Poison Jab"
 	assert_list_length NUM_ATTACKS

@@ -259,6 +259,7 @@
 	const FLARE_BLITZ  ; fb
 	const U_TURN       ; fc
 	const VOLT_SWITCH  ; fd
+	const POISON_JAB   ; fe
 DEF NUM_ATTACKS EQU const_value - 1
 
 ; Battle animations use the same constants as the moves up to this point

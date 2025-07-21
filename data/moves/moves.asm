@@ -267,4 +267,5 @@ Moves:
 	move FLARE_BLITZ,  EFFECT_FLARE_BLITZ,       120, FIRE,          PHYSICAL, 100, 24,  10
 	move U_TURN,       EFFECT_HIT_AND_SWITCH,     70, BUG,           PHYSICAL, 100, 20,   0
 	move VOLT_SWITCH,  EFFECT_HIT_AND_SWITCH,     70, ELECTRIC,      PHYSICAL, 100, 20,   0
+	move POISON_JAB,   EFFECT_POISON_HIT,         80, POISON,        PHYSICAL, 100, 32,  30
 	assert_table_length NUM_ATTACKS

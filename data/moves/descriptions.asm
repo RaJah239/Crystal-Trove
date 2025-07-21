@@ -254,13 +254,12 @@ MoveDescriptions::
 	dw FlareBlitzDescription
 	dw UTurnDescription
 	dw VoltSwitchDescription
+	dw PoisonJabDescription
 	assert_table_length NUM_ATTACKS
-	dw MoveFEDescription
 	dw MoveFFDescription
 	dw Move00Description
 	assert_table_length $100
 
-MoveFEDescription:
 MoveFFDescription:
 Move00Description:
 	db "?@"
@@ -708,6 +707,7 @@ SmogDescription:
 	db   "An attack that may"
 	line "poison the foe.@"
 
+PoisonJabDescription:
 GunkShotDescription:
 SludgeDescription:
 	db   "An attack that may"
