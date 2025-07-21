@@ -1912,7 +1912,7 @@ Thunder:
 	critical
 	damagestats
 	damagecalc
-	thunderaccuracy
+	farcommand
 	checkhit
 	effectchance
 	stab

@@ -6999,8 +6999,6 @@ BattleCommand_SkipSunCharge:
 	ld b, charge_command
 	jp SkipToBattleCommand
 
-INCLUDE "engine/battle/move_effects/thunder.asm"
-
 INCLUDE "engine/battle/move_effects/hail.asm"
 
 CheckHiddenOpponent:
