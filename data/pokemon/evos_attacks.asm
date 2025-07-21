@@ -1199,8 +1199,7 @@ CuboneEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, GROWL
 	db 5, DRAIN_PUNCH
-	db 9, BONE_CLUB
-	db 13, HEADBUTT
+	db 9, HEADBUTT
 	db 17, LEER
 	db 21, FOCUS_ENERGY
 	db 25, FALSE_SWIPE
@@ -1211,11 +1210,9 @@ MarowakEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, GROWL
 	db 1, DRAIN_PUNCH
-	db 1, BONE_CLUB
 	db 1, HEADBUTT
 	db 5, DRAIN_PUNCH
-	db 9, BONE_CLUB
-	db 13, HEADBUTT
+	db 9, HEADBUTT
 	db 17, LEER
 	db 21, FOCUS_ENERGY
 	db 25, FALSE_SWIPE
