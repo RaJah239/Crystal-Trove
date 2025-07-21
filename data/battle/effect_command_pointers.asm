@@ -191,4 +191,5 @@ BattleCommandPointers:
 	dw BattleCommand_Hex
 	dw BattleCommand_Facade
 	dw BattleCommand_HurricaneAccuracy
+	dw BattleCommand_FarCommand
 	assert_table_length NUM_EFFECT_COMMANDS

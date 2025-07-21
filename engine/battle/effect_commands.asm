@@ -2349,7 +2349,7 @@ BattleCommand_ApplyDamage:
 	bit SUBSTATUS_ENDURE, a
 	jr z, .sturdy
 
-	call BattleCommand_FalseSwipe
+	callfar BattleCommand_FalseSwipe
 	ld b, 0
 	jr nc, .damage
 	ld b, 1
@@ -2383,7 +2383,7 @@ BattleCommand_ApplyDamage:
 ; check if target is at full hp
 	farcall CheckOpponentFullHP
 	jr nz, .damage
-	call BattleCommand_FalseSwipe
+	callfar BattleCommand_FalseSwipe
 	ld b, 0
 	jr nc, .damage
 	ld b, 2
@@ -2393,7 +2393,7 @@ BattleCommand_ApplyDamage:
 	call BattleRandom
 	cp c
 	jr nc, .damage
-	call BattleCommand_FalseSwipe
+	callfar BattleCommand_FalseSwipe
 	ld b, 0
 	jr nc, .damage
 	ld b, 2
@@ -3914,8 +3914,6 @@ INCLUDE "engine/battle/move_effects/sleep_talk.asm"
 INCLUDE "engine/battle/move_effects/destiny_bond.asm"
 
 INCLUDE "engine/battle/move_effects/spite.asm"
-
-INCLUDE "engine/battle/move_effects/false_swipe.asm"
 
 INCLUDE "engine/battle/move_effects/heal_bell.asm"
 
@@ -6849,6 +6847,10 @@ INCLUDE "engine/battle/move_effects/attract.asm"
 INCLUDE "engine/battle/move_effects/return.asm"
 
 INCLUDE "engine/battle/move_effects/safeguard.asm"
+
+BattleCommand_FarCommand:
+	farcall Find_Command
+	ret
 
 SafeCheckSafeguard:
 	push hl
