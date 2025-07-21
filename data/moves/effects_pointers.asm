@@ -126,7 +126,6 @@ MoveEffectsPointers:
 	dw DefenseUpHit
 	dw AttackUpHit
 	dw AllUpHit
-	dw FakeOut
 	dw BellyDrum
 	dw MirrorCoat
 	dw Earthquake

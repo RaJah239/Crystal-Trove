@@ -5798,9 +5798,6 @@ BattleCommand_EndLoop:
 	ld [wBattleScriptBufferAddress], a
 	ret
 
-BattleCommand_FakeOut:
-	ret
-
 BattleCommand_FlinchTarget:
 	call CheckSubstituteOpp
 	ret nz

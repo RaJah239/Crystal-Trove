@@ -1541,16 +1541,6 @@ SunnyDay:
 	startsun
 	endmove
 
-FakeOut:
-	checkobedience
-	usedmovetext
-	doturn
-	checkhit
-	fakeout
-	moveanim
-	failuretext
-	endmove
-
 BellyDrum:
 	checkobedience
 	usedmovetext
