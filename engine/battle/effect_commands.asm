@@ -7443,6 +7443,5 @@ INCLUDE "engine/battle/move_effects/conversion2.asm"
 BattleCommand_CheckFutureSight:
 BattleCommand_FutureSight:
 BattleCommand_PsychUp:
-BattleCommand_Foresight:
 BattleCommand_FrustrationPower:
 	ret
