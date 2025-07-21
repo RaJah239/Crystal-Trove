@@ -2478,12 +2478,6 @@ GetFailureResultText:
 	ld a, [wTypeModifier]
 	and $7f
 	jr z, .got_text
-	ld a, BATTLE_VARS_MOVE_EFFECT
-	call GetBattleVar
-	cp EFFECT_FUTURE_SIGHT ; probably remove this evenutally
-	ld hl, ButItFailedText
-	ld de, ItFailedText
-	jr z, .got_text
 	farcall BattleMissAnim
 	ld hl, AttackMissedText
 	ld de, AttackMissed2Text
@@ -7439,7 +7433,3 @@ INCLUDE "engine/battle/move_effects/lock_on.asm"
 INCLUDE "engine/battle/move_effects/conversion.asm"
 INCLUDE "engine/battle/move_effects/rage.asm"
 INCLUDE "engine/battle/move_effects/conversion2.asm"
-
-BattleCommand_CheckFutureSight:
-BattleCommand_FutureSight:
-	ret

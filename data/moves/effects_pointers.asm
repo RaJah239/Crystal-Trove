@@ -137,7 +137,6 @@ MoveEffectsPointers:
 	dw BellyDrum
 	dw MirrorCoat
 	dw Earthquake
-	dw FutureSight
 	dw Gust
 	dw Stomp
 	dw Solarbeam
