@@ -7033,8 +7033,8 @@ AnimateFailedMove:
 	jp BattleCommand_RaiseSub
 
 BattleCommand_MoveDelay:
-; Wait 30 frames.
-	ld c, 30
+; Wait 10 frames.
+	ld c, 10
 	jp DelayFrames
 
 BattleCommand_ClearText:
