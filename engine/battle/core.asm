@@ -3504,6 +3504,10 @@ TryToRunAwayFromBattle:
 	cp BATTLETYPE_SUICUNE
 	jp z, .cant_escape
 
+	; can't run from Shiny Pokemon
+	call BattleCheckEnemyShininess
+	jr c, .cant_escape
+
 	ld a, [wLinkMode]
 	and a
 	jp nz, .can_escape
