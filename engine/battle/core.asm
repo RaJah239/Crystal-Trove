@@ -2054,8 +2054,12 @@ FaintEnemyPokemon:
 	hlcoord 1, 0
 	lb bc, 4, 10
 	call ClearBox
+	call CheckDialogueMode
+	jr z, .skip
 	ld hl, BattleText_EnemyMonFainted
 	jp StdBattleTextbox
+.skip
+	ret
 
 ; ==========================
 ; ==== Moxie and Grim ======
@@ -2993,7 +2997,10 @@ EnemySwitch:
 	call LoadEnemyMonToSwitchTo
 	push af
 	call ClearEnemyMonBox
+	call CheckDialogueMode
+	jr z, .skip2
 	call ShowBattleTextEnemySentOut
+.skip2
 	call ShowSetEnemyMonAndSendOutAnimation
 	pop af
 	ret c
@@ -3018,7 +3025,10 @@ EnemySwitch_SetMode:
 	ld a, 1
 	ld [wEnemyIsSwitching], a
 	call ClearEnemyMonBox
+	call CheckDialogueMode
+	jr z, .skip3
 	call ShowBattleTextEnemySentOut
+.skip3
 	jp ShowSetEnemyMonAndSendOutAnimation
 
 CheckWhetherSwitchmonIsPredetermined:
@@ -4090,7 +4100,7 @@ PursuitSwitch:
 	call GetMoveEffect
 	ld a, b
 	cp EFFECT_PURSUIT
-	jr nz, .done
+	jp nz, .done
 
 	ld a, [wCurBattleMon]
 	push af
@@ -4154,10 +4164,13 @@ PursuitSwitch:
 	call PlaySFX
 	call WaitSFX
 	call EnemyMonFaintedAnimation
+	call CheckDialogueMode
+	jr z, .skip
 	ld hl, BattleText_EnemyMonFainted
 
 .done_fainted
 	call StdBattleTextbox
+.skip
 	scf
 	ret
 
