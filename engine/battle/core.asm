@@ -8210,7 +8210,7 @@ StartBattle:
 	push af
 	call BattleIntro
 	call DoBattle
-	call ExitBattle
+	farcall ExitBattle
 	pop af
 	ld [wTimeOfDayPal], a
 	scf
@@ -8371,32 +8371,6 @@ InitEnemyWildmon:
 	hlcoord 12, 0
 	lb bc, 7, 7
 	predef PlaceGraphic
-	ret
-
-ExitBattle:
-	farcall UpdatePartyStats
-	call .HandleEndOfBattle
-	call CleanUpBattleRAM
-	ret
-
-.HandleEndOfBattle:
-	ld a, [wLinkMode]
-	and a
-	jr z, .not_linked
-	call ShowLinkBattleParticipantsAfterEnd
-	ld c, 150
-	call DelayFrames
-	call DisplayLinkBattleResult
-	ret
-
-.not_linked
-	ld a, [wBattleResult]
-	and $f
-	ret nz
-	xor a
-	ld [wForceEvolution], a
-	predef EvolveAfterBattle
-	farcall GivePokerusAndConvertBerries
 	ret
 
 ClearFailures:
