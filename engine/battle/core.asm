@@ -9098,8 +9098,8 @@ BattleStartMessage:
 	jr z, .PrintBattleStartText
 	ld hl, WildCelebiAppearedText
 	cp BATTLETYPE_CELEBI
-	jr z, .PrintBattleStartText
-	ld hl, WildPokemonAppearedText
+	ret ; Added to gain time at the start of battles.
+	;ld hl, WildPokemonAppearedText
 
 .PrintBattleStartText:
 	push hl
