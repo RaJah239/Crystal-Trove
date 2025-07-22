@@ -67,7 +67,7 @@ if DEF(_DEBUG)
 	giveitem SHINY_CHARM
 
 	; good party
-	givepoke KINGDRA, 60, MIRACLEBERRY
+	givepoke MEW, 100, MIRACLEBERRY
 	givepoke ENTEI, 60, CHOICE_BAND
 	givepoke SCIZOR, 60, FOCUS_BAND
 	givepoke CHANSEY, 60, EVERSTONE
@@ -83,10 +83,10 @@ if DEF(_DEBUG)
 ;	loadmem wPartyMon3DVs+1, $ff
 
 	; 1st pokemon
-	loadmem wPartyMon1Moves+0, RAIN_DANCE
-	loadmem wPartyMon1Moves+1, SURF
-	loadmem wPartyMon1Moves+2, DRAGON_PULSE
-	loadmem wPartyMon1Moves+3, REST
+	loadmem wPartyMon1Moves+0, PSYSHOCK
+	loadmem wPartyMon1Moves+1, CALM_MIND
+	loadmem wPartyMon1Moves+2, AURA_SPHERE
+	loadmem wPartyMon1Moves+3, FLY
 
 	; 2nd pokemon
 	loadmem wPartyMon2Moves+0, SACRED_FIRE
