@@ -11,11 +11,11 @@ ItemPocketNames:
 	dw .Loot
 	assert_table_length NUM_ITEM_TYPES
 
-.Item: db "ITEM POCKET@"
-.Key:  db "KEY POCKET@"
-.Ball: db "BALL POCKET@"
-.TM:   db "TM/HM POCKET@"
-.Fruit: db "FRUIT POCKET@"
-.Battle: db "BATTLE POCKET@"
-.Medicine: db "MED POCKET@"
-.Loot: db "LOOT POCKET@"
+.Item: db "Item Pocket@"
+.Key:  db "Key Pocket@"
+.Ball: db "Ball Pocket@"
+.TM:   db "TM/HM Pocket@"
+.Fruit: db "Fruit Pocket@"
+.Battle: db "Battle Pocket@"
+.Medicine: db "Med Pocket@"
+.Loot: db "Trove Pocket@"
