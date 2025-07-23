@@ -224,12 +224,12 @@ BattleText_SafeguardFaded:
 
 BattleText_MonsLightScreenFell:
 	text "The Light Screen"
-	line "faded faded away."
+	line "faded away."
 	prompt
 
 BattleText_MonsReflectFaded:
 	text "The Reflect wall"
-	line "faded faded away."
+	line "faded away."
 	prompt
 
 BattleText_RainContinuesToFall:

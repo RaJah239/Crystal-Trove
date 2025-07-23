@@ -147,7 +147,7 @@ ItemNameOrder:
 
 
 ; NEXT POCKET
-; Battle Pocket - 53 total
+; Battle Pocket - 54 total
 
 ; Stat altering Battle Items
 	db GUARD_SPEC
@@ -182,6 +182,7 @@ ItemNameOrder:
 	db LEFTOVERS
 	db LIFE_ORB
 	db LIGHT_BALL
+	db LIGHT_CLAY
 	db LUCKY_EGG
 	db LUCKY_PUNCH
 	db MAGNET
@@ -274,9 +275,8 @@ ItemNameOrder:
 
 
 ; UNUSED ITEMS
-; Unused Items - 7 total
+; Unused Items - 6 total
 	db EGG_TICKET
-	db POKE_FLUTE
 	db ITEM_2D
 	db ITEM_AB
 	db ITEM_BE

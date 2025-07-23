@@ -6507,8 +6507,6 @@ BattleCommand_Screen:
 	bit SCREENS_LIGHT_SCREEN, [hl]
 	jr nz, .failed
 	set SCREENS_LIGHT_SCREEN, [hl]
-	ld a, 5
-	ld [bc], a
 	ld hl, LightScreenEffectText
 	jr .good
 
@@ -6520,11 +6518,27 @@ BattleCommand_Screen:
 	; LightScreenCount -> ReflectCount
 	inc bc
 
-	ld a, 5
-	ld [bc], a
 	ld hl, ReflectEffectText
 
 .good
+; check for Light Clay
+	push hl
+	ld a, [hBattleTurn]
+	and a
+	ld hl, wBattleMonItem
+	jr z, .got_item
+	ld hl, wEnemyMonItem
+.got_item
+	ld a, [hl]
+	cp LIGHT_CLAY
+	ld a, 5
+	jr nz, .no_clay
+	inc a
+	inc a
+	inc a
+.no_clay
+	ld [bc], a
+	pop hl
 	call AnimateCurrentMove
 	jp StdBattleTextbox
 
