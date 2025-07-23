@@ -122,7 +122,7 @@ ItemNameOrder:
 
 
 ; NEXT POCKET
-; Fruit Pocket - 17 total
+; Fruit Pocket - 18 total
 ; Berries
 	db BERRY
 	db BITTER_BERRY
@@ -134,6 +134,7 @@ ItemNameOrder:
 	db MYSTERYBERRY
 	db PRZCUREBERRY
 	db PSNCUREBERRY
+	db SILVER_BERRY
 
 ; Apricorns
 	db BLU_APRICORN
@@ -275,9 +276,8 @@ ItemNameOrder:
 
 
 ; UNUSED ITEMS
-; Unused Items - 6 total
+; Unused Items - 5 total
 	db EGG_TICKET
-	db ITEM_2D
 	db ITEM_AB
 	db ITEM_BE
 	db ITEM_C3
