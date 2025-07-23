@@ -3258,6 +3258,14 @@ AI_Smart_Sandstorm:
     call ShouldAIBoost
     jr nc, .discourage
 
+; Encourage using the move when the Weather Rock is held.
+	ld a, [wEnemyMonItem]
+	cp WEATHER_ROCK
+	jr nz, .continue
+
+	dec [hl]
+
+.continue
 ; Greatly discourage this move if the player is immune to Sandstorm damage.
 	ld a, [wBattleMonType1]
 	push hl
@@ -3304,6 +3312,30 @@ AI_Smart_Sandstorm:
 	db -1 ; end
 
 AI_Smart_Hail:
+; don't use if already sandy
+	ld a, [wBattleWeather]
+	cp WEATHER_SANDSTORM
+	jr z, .discourage
+
+; don't boost if choice locked
+    call DoesEnemyHaveChoiceItem
+    jp c, .discourage
+
+; even if we benefit from weather, don't use if we will be koed
+    call DoesEnemyHaveIntactFocusSashOrSturdy
+    jr c, .skipKOCheck
+    call CanPlayerKO
+    jr c, .discourage
+.skipKOCheck
+
+; Encourage using the move when the Weather Rock is held.
+	ld a, [wEnemyMonItem]
+	cp WEATHER_ROCK
+	jr nz, .continue
+
+	dec [hl]
+
+.continue
 ; Greatly discourage this move if the player is immune to Hail damage.
 	ld a, [wBattleMonType1]
 	cp ICE
@@ -3705,6 +3737,14 @@ AI_Smart_WeatherMove:
 	pop hl
 	jr nc, AIBadWeatherType
 
+	; Encourage using the move when the Weather Rock is held.
+	ld a, [wEnemyMonItem]
+	cp WEATHER_ROCK
+	jr nz, .continue
+
+	dec [hl]
+
+.continue
 ; Greatly discourage this move if player's HP is below 50%.
 	call AICheckPlayerHalfHP
 	jr nc, AIBadWeatherType
@@ -3729,6 +3769,14 @@ AIGoodWeatherType:
 	call AICheckPlayerHalfHP
 	ret nc
 
+	; Encourage using the move when the Weather Rock is held.
+	ld a, [wEnemyMonItem]
+	cp WEATHER_ROCK
+	jr nz, .continue
+
+	dec [hl]
+
+.continue
 ; ...as long as one of the following conditions meet:
 ; It's the first turn of the player's Pokemon.
 	ld a, [wPlayerTurnsTaken]
