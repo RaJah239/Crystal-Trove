@@ -1781,6 +1781,9 @@ BattleCommand_CheckHit:
 	farcall ThunderRain
 	ret z
 
+	farcall ToxicPoison
+	ret z
+
 	farcall BlizzardHail
 	ret z
 
