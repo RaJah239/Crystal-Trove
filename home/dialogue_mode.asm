@@ -4,22 +4,18 @@ CheckDialogueMode::
 	ret
 
 SkipIntroMode::
-if DEF(_DEBUG)
- 	ld hl, wOptions2
-	set SKIP_INTRO, [hl]
-endc
 	ld a, [wOptions2]
-	bit SKIP_INTRO, a
+	bit FAST_BOOT, a
 	ret
 
 YesSkipIntroMode::
  	ld hl, wOptions2
-	set SKIP_INTRO, [hl]
+	set FAST_BOOT, [hl]
 	ret
 
 DontSkipIntroMode::
  	ld hl, wOptions2
-	res SKIP_INTRO, [hl]
+	res FAST_BOOT, [hl]
 	ret
 
 ; Used in most mandatory long texts, returns the result of the 'bit' operation,
