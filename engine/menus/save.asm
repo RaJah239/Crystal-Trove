@@ -4,9 +4,9 @@ SaveMenu:
 	call SpeechTextbox
 	call UpdateSprites
 	farcall SaveMenu_CopyTilemapAtOnce
-	ld hl, WouldYouLikeToSaveTheGameText
-	call SaveTheGame_yesorno
-	jr nz, .refused
+;	ld hl, WouldYouLikeToSaveTheGameText
+;	call SaveTheGame_yesorno
+;	jr nz, .refused
 	call AskOverwriteSaveFile
 	jr c, .refused
 	call PauseGameLogic
