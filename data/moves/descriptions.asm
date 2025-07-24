@@ -31,7 +31,7 @@ MoveDescriptions::
 	dw DrainKissDescription
 	dw HeadbuttDescription
 	dw HornAttackDescription
-	dw FuryAttackDescription
+	dw GigaImpactDescription
 	dw RockTombDescription
 	dw TackleDescription
 	dw BodySlamDescription
@@ -154,7 +154,7 @@ MoveDescriptions::
 	dw AcidArmorDescription
 	dw FairyFlashDescription
 	dw ExplosionDescription
-	dw FurySwipesDescription
+	dw FuryStrikesDescription
 	dw HiddenForceDescription
 	dw RestDescription
 	dw RockSlideDescription
@@ -358,10 +358,6 @@ HornAttackDescription:
 	db   "An attack using a"
 	line "horn to jab.@"
 
-FuryAttackDescription:
-	db   "Jabs the target"
-	line "2-5 times.@"
-
 TackleDescription:
 	db   "A full-body charge"
 	line "attack.@"
@@ -494,6 +490,7 @@ AuroraBeamDescription:
 	db   "An attack that may"
 	line "lower Attack.@"
 
+GigaImpactDescription:
 HyperBeamDescription:
     db "Attack, then skip"
     line "a turn if no KO.@"
@@ -783,8 +780,8 @@ ExplosionDescription:
 	db   "Very powerful but"
 	line "makes user faint.@"
 
-FurySwipesDescription:
-	db   "Quickly scratches"
+FuryStrikesDescription:
+	db   "Quickly attacks"
 	line "2-5 times.@"
 
 RestDescription:
@@ -829,8 +826,8 @@ SketchDescription:
 
 BugBiteDescription:
 ThiefDescription:
-	db   "An attack that may"
-	line "steal a held item.@"
+	db   "Steals foe's item"
+	line "if none is held.@"
 
 SpiderWebDescription:
 	db   "Prevents fleeing"
