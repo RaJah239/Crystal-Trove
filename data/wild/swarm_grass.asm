@@ -4,7 +4,7 @@ SwarmGrassWildMons:
 
 ; Bulbasaur swarm
 	map_id ROUTE_36
-	db 20 percent, 20 percent, 20 percent ; encounter rates: morn/day/nite
+	db 4 percent, 4 percent, 4 percent ; encounter rates: morn/day/nite
 	; morn
 	db 5, BULBASAUR
 	db 5, BULBASAUR
@@ -32,7 +32,7 @@ SwarmGrassWildMons:
 
 ; Charmander swarm
 	map_id BURNED_TOWER_1F
-	db 20 percent, 20 percent, 20 percent ; encounter rates: morn/day/nite
+	db 4 percent, 4 percent, 4 percent ; encounter rates: morn/day/nite
 	; morn
 	db 5, CHARMANDER
 	db 5, CHARMANDER
@@ -60,7 +60,7 @@ SwarmGrassWildMons:
 
 ; Squirtle swarm
 	map_id ROUTE_43
-	db 20 percent, 20 percent, 20 percent ; encounter rates: morn/day/nite
+	db 4 percent, 4 percent, 4 percent ; encounter rates: morn/day/nite
 	; morn
 	db 5, SQUIRTLE
 	db 5, SQUIRTLE
@@ -88,7 +88,7 @@ SwarmGrassWildMons:
 
 ; Chikorita swarm
 	map_id ROUTE_37
-	db 20 percent, 20 percent, 20 percent ; encounter rates: morn/day/nite
+	db 4 percent, 4 percent, 4 percent ; encounter rates: morn/day/nite
 	; morn
 	db 5, CHIKORITA
 	db 5, CHIKORITA
@@ -116,7 +116,7 @@ SwarmGrassWildMons:
 
 ; Cyndaquil swarm
 	map_id ROUTE_39
-	db 20 percent, 20 percent, 20 percent ; encounter rates: morn/day/nite
+	db 4 percent, 4 percent, 4 percent ; encounter rates: morn/day/nite
 	; morn
 	db 5, CYNDAQUIL
 	db 5, CYNDAQUIL
@@ -144,7 +144,7 @@ SwarmGrassWildMons:
 
 ; Totodile swarm
 	map_id ROUTE_42
-	db 20 percent, 20 percent, 20 percent ; encounter rates: morn/day/nite
+	db 4 percent, 4 percent, 4 percent ; encounter rates: morn/day/nite
 	; morn
 	db 5, TOTODILE
 	db 5, TOTODILE
@@ -172,7 +172,7 @@ SwarmGrassWildMons:
 
 ; Pichu swarm
 	map_id ROUTE_31
-	db 20 percent, 20 percent, 20 percent ; encounter rates: morn/day/nite
+	db 4 percent, 4 percent, 4 percent ; encounter rates: morn/day/nite
 	; morn
 	db 5, PICHU
 	db 5, PICHU
@@ -200,7 +200,7 @@ SwarmGrassWildMons:
 
 ; Cleffa swarm
 	map_id SLOWPOKE_WELL_B1F
-	db 20 percent, 20 percent, 20 percent ; encounter rates: morn/day/nite
+	db 4 percent, 4 percent, 4 percent ; encounter rates: morn/day/nite
 	; morn
 	db 5, CLEFFA
 	db 5, CLEFFA
@@ -228,7 +228,7 @@ SwarmGrassWildMons:
 
 ; Igglybuff swarm
 	map_id ROUTE_46
-	db 20 percent, 20 percent, 20 percent ; encounter rates: morn/day/nite
+	db 4 percent, 4 percent, 4 percent ; encounter rates: morn/day/nite
 	; morn
 	db 5, IGGLYBUFF
 	db 5, IGGLYBUFF
@@ -256,7 +256,7 @@ SwarmGrassWildMons:
 
 ; Togepi swarm
 	map_id ROUTE_34
-	db 20 percent, 20 percent, 20 percent ; encounter rates: morn/day/nite
+	db 4 percent, 4 percent, 4 percent ; encounter rates: morn/day/nite
 	; morn
 	db 5, TOGEPI
 	db 5, TOGEPI
@@ -284,7 +284,7 @@ SwarmGrassWildMons:
 
 ; Tyrogue swarm
 	map_id UNION_CAVE_1F
-	db 20 percent, 20 percent, 20 percent ; encounter rates: morn/day/nite
+	db 4 percent, 4 percent, 4 percent ; encounter rates: morn/day/nite
 	; morn
 	db 5, TYROGUE
 	db 5, TYROGUE
@@ -312,7 +312,7 @@ SwarmGrassWildMons:
 
 ; Ditto swarm
 	map_id ROUTE_35
-	db 20 percent, 20 percent, 20 percent ; encounter rates: morn/day/nite
+	db 4 percent, 4 percent, 4 percent ; encounter rates: morn/day/nite
 	; morn
 	db 5, DITTO
 	db 5, DITTO
@@ -337,4 +337,5 @@ SwarmGrassWildMons:
 	db 5, DITTO
 	db 5, DITTO
 	db 5, DITTO
+
 	db -1 ; end
