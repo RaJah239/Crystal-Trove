@@ -110,13 +110,6 @@ RockHeadPokemon:
     db ONIX
     db -1
 
-SniperPokemon:
-    db HORSEA
-    db SEADRA
-    db CROBAT
-    db VICTREEBEL
-    db -1
-
 ; Hax prevention
 InnerFocusPokemon:
     db MEWTWO

@@ -3644,40 +3644,14 @@ DEF DAMAGE_CAP EQU MAX_DAMAGE - MIN_DAMAGE
 	and a
 	ret z
 
-; ==== Berserk Gene ======
-    ldh a, [hBattleTurn]
-	and a
-	ld hl, wEnemyMonItem
-	ld a, [wEnemyMonSpecies]
-	jr nz, .checkMon
-	ld hl, wBattleMonItem
-	ld a, [wBattleMonSpecies]
-.checkMon
-    cp MEWTWO
-    jr z, .checkBerserkGene
-    push hl
-    push de
-	push bc
-    ld hl, SniperPokemon
-	ld de, 1
-	call IsInArray
-    pop bc
-	pop de
-	pop hl
-	jr c, .extraDamage
-	jr .FiftyPercent
-.checkBerserkGene
-    ld a, [hl]
-    cp BERSERK_GENE
-    jr nz, .FiftyPercent
+; x2
+	ldh a, [hQuotient + 3]
+	add a
+	ldh [hQuotient + 3], a
 
-; extra damage crits deal 1.5 x 1.5 = 2.25 x base damage
-.extraDamage
-    call FiftyPercentBoost
-
-; DevNote - crits now deal x1.5 damage rather than x2
-.FiftyPercent
-    call FiftyPercentBoost
+	ldh a, [hQuotient + 2]
+	rl a
+	ldh [hQuotient + 2], a
 
 ; Cap at $ffff.
 	ret nc
