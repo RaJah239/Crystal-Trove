@@ -1779,6 +1779,13 @@ QuiverDance:
 	quiverdance
 	endmove
 
+NaturalCure:
+	checkobedience
+	usedmovetext
+	doturn
+	farcommand
+	endmove
+
 DoBurn:
 	checkobedience
 	usedmovetext

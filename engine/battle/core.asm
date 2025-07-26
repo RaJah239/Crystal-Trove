@@ -9232,9 +9232,6 @@ SwitchInEffects:
     cp CROBAT
     jp z, .evasionUp
 
-    cp MEW
-    jp z, .randomStatUp
-
     cp AERODACTYL
     jp z, .airlock
 
@@ -9269,6 +9266,9 @@ SwitchInEffects:
 
     cp MOLTRES
     jp z, .safeguard
+
+    cp MEW
+    jp z, .natural_cure
     ret
 
 .rain
@@ -9388,6 +9388,9 @@ SwitchInEffects:
 
 .defenseMode
     farcall DefenseModeSwitch
+ 
+.natural_cure
+	farcall NaturalCureSwitch
     ret
 
 GetCurrentMonCore:

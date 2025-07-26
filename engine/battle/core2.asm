@@ -479,6 +479,12 @@ HasWildBattleBegun:
     xor a
     ret
 
+NaturalCureSwitch:
+    ld de, RECOVER
+    call PlayAnimationIfNotFirstTurn
+    callfar BattleCommand_NaturalCure
+	ret
+
 RainSwitch:
 	ld a, WEATHER_RAIN
 	ld [wBattleWeather], a

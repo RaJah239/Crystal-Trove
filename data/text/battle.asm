@@ -747,6 +747,11 @@ SpiteEffectText:
 	text "!"
 	prompt
 
+AllStatusEffectClearedText:
+	text "Status effects"
+	line "were eliminated!"
+	prompt
+
 BellChimedText:
 	text "A bell chimed!"
 	line ""

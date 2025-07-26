@@ -160,4 +160,5 @@ MoveEffectsPointers:
 	dw NormalHit              ; EFFECT_BODY_PRESS
 	dw SuckerPunch
 	dw Revenge
+	dw NaturalCure
 	assert_table_length NUM_MOVE_EFFECTS
