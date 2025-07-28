@@ -1072,7 +1072,7 @@ BattleCommand_DoTurn:
 
 	ld hl, wPartyMon1PP
 	ld a, [wCurBattleMon]
-	jr z, .consume_pp
+	jr z, .player
 
 ; mimic this part entirely if wildbattle
 	ld a, [wBattleMode]
@@ -1081,6 +1081,13 @@ BattleCommand_DoTurn:
 
 	ld hl, wOTPartyMon1PP
 	ld a, [wCurOTMon]
+
+.player
+	call GetPartyLocation
+	push hl
+	call CheckMimicUsed
+	pop hl
+	ret c
 
 .consume_pp
 	ldh a, [hBattleTurn]
@@ -1101,13 +1108,10 @@ BattleCommand_DoTurn:
 	ret
 
 .wild
-	ld hl, wEnemyMonMoves
+	ld hl, wWildMonMoves
 	ld a, [wCurEnemyMoveNum]
 	ld c, a
 	ld b, 0
-	add hl, bc
-
-	ld hl, wWildMonMoves
 	add hl, bc
 	ret
 
@@ -1137,6 +1141,9 @@ BattleCommand_DoTurn:
 	db EFFECT_ROLLOUT
 	db EFFECT_RAMPAGE
 	db -1
+
+CheckMimicUsed:
+	ret
 
 BattleCommand_Critical:
 ; Determine whether this attack's hit will be critical.
