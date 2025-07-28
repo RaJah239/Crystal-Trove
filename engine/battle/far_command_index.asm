@@ -29,4 +29,5 @@ FarCommand_BattleCommands:
 	dbw EFFECT_SUCKER_PUNCH,    BattleCommand_SuckerPunch
 	dbw EFFECT_AVALANCHE,       BattleCommand_Avalanche
 	dbw EFFECT_NATURAL_CURE,    BattleCommand_NaturalCure
+	dbw EFFECT_BARRIER,         BattleCommand_Barrier
 	db -1 ; end

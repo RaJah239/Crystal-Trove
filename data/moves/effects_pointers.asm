@@ -161,4 +161,5 @@ MoveEffectsPointers:
 	dw SuckerPunch
 	dw Revenge
 	dw NaturalCure
+	dw Barrier
 	assert_table_length NUM_MOVE_EFFECTS
