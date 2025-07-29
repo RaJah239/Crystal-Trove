@@ -48,9 +48,9 @@ if DEF(_DEBUG)
 	opentext
 	; key items
 	givemoney YOUR_MONEY, MAX_MONEY
-	giveitem EXP_SHARE
-	giveitem BICYCLE
 	giveitem TANGELA_CALL
+	giveitem BICYCLE
+	giveitem EXP_SHARE
 	giveitem COIN_CASE
 	givecoins MAX_COINS
 	giveitem OLD_ROD
@@ -178,9 +178,6 @@ if DEF(_DEBUG)
 	; all balls
 	giveitem SHINY_BALL, MAX_ITEM_STACK
 	giveitem MASTER_BALL, MAX_ITEM_STACK
-	giveitem POKE_BALL, MAX_ITEM_STACK
-	giveitem GREAT_BALL, MAX_ITEM_STACK
-	giveitem ULTRA_BALL, MAX_ITEM_STACK
 	giveitem HEAVY_BALL, MAX_ITEM_STACK
 	giveitem LURE_BALL, MAX_ITEM_STACK
 	giveitem FAST_BALL, MAX_ITEM_STACK
