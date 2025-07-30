@@ -848,7 +848,6 @@ ShinyBallGTable:
 	db $31 ; Dragon
 	db $10 ; Bug
 
-SafariBallMultiplier:
 GreatBallMultiplier:
 ParkBallMultiplier:
 ; multiply catch rate by 1.5
