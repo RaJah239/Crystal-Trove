@@ -1657,7 +1657,6 @@ BattleAnim_Thunder:
 	anim_ret
 
 BattleAnim_RazorWind:
-	anim_if_param_equal $1, BattleAnim_FocusEnergy
 	anim_1gfx BATTLE_ANIM_GFX_WHIP
 	anim_bgeffect BATTLE_BG_EFFECT_CYCLE_OBPALS_GRAY_AND_YELLOW, $0, $1, $0
 .loop
@@ -3002,7 +3001,6 @@ BattleAnim_Minimize:
 	anim_ret
 
 BattleAnim_SkyAttack:
-	anim_if_param_equal $1, BattleAnim_FocusEnergy
 	anim_1gfx BATTLE_ANIM_GFX_SKY_ATTACK
 	anim_bgeffect BATTLE_BG_EFFECT_REMOVE_MON, $0, BG_EFFECT_USER, $0
 	anim_wait 32

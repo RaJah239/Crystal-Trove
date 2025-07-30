@@ -967,29 +967,6 @@ DoParalyze:
 	paralyze
 	endmove
 
-SkyAttack:
-	checkcharge
-	checkobedience
-	doturn
-	charge
-	usedmovetext
-	critical
-	damagestats
-	damagecalc
-	stab
-	damagevariation
-	checkhit
-	effectchance
-	moveanim
-	failuretext
-	applydamage
-	criticaltext
-	supereffectivetext
-	checkfaint
-	flinchtarget
-	kingsrock
-	endmove
-
 Substitute:
 	checkobedience
 	usedmovetext
@@ -1044,27 +1021,6 @@ Disable:
 	doturn
 	checkhit
 	farcommand
-	endmove
-
-RazorWind:
-	checkcharge
-	checkobedience
-	doturn
-	charge
-	usedmovetext
-	critical
-	damagestats
-	damagecalc
-	stab
-	damagevariation
-	checkhit
-	moveanim
-	failuretext
-	applydamage
-	criticaltext
-	supereffectivetext
-	checkfaint
-	kingsrock
 	endmove
 
 Fly:
