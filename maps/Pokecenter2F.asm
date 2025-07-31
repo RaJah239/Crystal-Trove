@@ -897,9 +897,16 @@ Text_TimeCapsuleClosed:
 	done
 
 Text_TradeRoomClosed:
-	text "I'm sorry--the"
-	line "TRADE MACHINE is"
-	cont "being adjusted."
+	text "Haha--you wish!"
+
+	para "Come back after"
+	line "you become the"
+
+	para "champion to be"
+	line "able to trade your"
+
+	para "little pocket"
+	line "goblins."
 	done
 
 Text_BattleRoomClosed:
