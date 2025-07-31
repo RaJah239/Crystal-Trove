@@ -590,15 +590,20 @@ HOF_AnimatePlayerPic:
 	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
 	call PrintNum
 
+	; Check if Hard Mode is set on game's intro 
+	CheckEventFlag EVENT_HARD_MODE
+	jr z, .HardModeOn
+
 	ld a, [wOptions2]
 	bit HARD_MODE, a
 	jr z, .HardModeOff
 
-	hlcoord 0, 0
+.HardModeOn:
+	hlcoord 5, 0
 	lb bc, 1, 9
 	call Textbox
 
-	hlcoord 1, 1
+	hlcoord 6, 1
 	ld de, .HardMode
 	call PlaceString
 

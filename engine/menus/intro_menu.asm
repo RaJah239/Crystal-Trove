@@ -395,6 +395,10 @@ Continue:
 	ret
 
 .SpawnAfterE4:
+
+	; turn off Hard Mode
+	SetEventFlag EVENT_HARD_MODE
+
 	ld a, SPAWN_HOME
 	ld [wDefaultSpawnpoint], a
 	call PostCreditsSpawn

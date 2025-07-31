@@ -337,10 +337,15 @@ endr
 	lb bc, 3, 9
 	call Textbox
 
+	; Check if Hard Mode is set on game's intro 
+	CheckEventFlag EVENT_HARD_MODE
+	jr z, .display_hard_mode_text_box
+
 	ld a, [wOptions2]
 	bit HARD_MODE, a
 	ret z
 
+.display_hard_mode_text_box:
 	; place white box
 	hlcoord 0, 9
 	lb bc, 3, 10
@@ -407,10 +412,15 @@ endr
 	ld de, .ClearStr
 	call PlaceString
 .done:
+	; Check if Hard Mode is set on game's intro 
+	CheckEventFlag EVENT_HARD_MODE
+	jr z, .display_hard_mode_string
+
 	ld a, [wOptions2]
 	bit HARD_MODE, a
 	ret z
 
+.display_hard_mode_string:
 	hlcoord 1, 10
 	ld de, .HardModeString
 	jp PlaceString
