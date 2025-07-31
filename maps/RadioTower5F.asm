@@ -115,6 +115,12 @@ RadioTower5FRocketBossScript:
 	startbattle
 	reloadmapafterbattle
 	opentext
+
+	; Hard Mode's level scaling
+	readmem wBaseLevel
+	addval 1
+	writemem wBaseLevel
+
 	writetext RadioTower5FRocketBossAfterText
 	waitbutton
 	closetext

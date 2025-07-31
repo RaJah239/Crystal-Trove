@@ -46,6 +46,12 @@ EcruteakGymMortyScript:
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_MORTY
+
+	; Hard Mode's level scaling
+	readmem wBaseLevel
+	addval 1
+	writemem wBaseLevel
+
 	clearevent EVENT_ROUTE_42_ECRUTEAKGATE_OFFICER
 	setevent EVENT_ROUTE_42_ECRUTEAKGATE_OFFICER_BLOCKER
 	setmapscene ROUTE_42_ECRUTEAK_GATE, SCENE_ROUTE42ECRUTEAKGATE_NOOP

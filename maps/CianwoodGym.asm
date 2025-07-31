@@ -55,6 +55,12 @@ CianwoodGymChuckScript:
 	reloadmapafterbattle
 	setevent EVENT_BEAT_CHUCK
 	clearevent EVENT_GOLDENROD_CITY_MOVE_TUTOR
+
+	; Hard Mode's level scaling
+	readmem wBaseLevel
+	addval 1
+	writemem wBaseLevel
+
 	opentext
 	writetext GetStormBadgeText
 	playsound SFX_GET_BADGE

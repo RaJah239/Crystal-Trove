@@ -34,6 +34,12 @@ VioletGymFalknerScript:
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_FALKNER
+
+	; Hard Mode's level scaling
+	readmem wBaseLevel
+	addval 1
+	writemem wBaseLevel
+
 	opentext
 	writetext ReceivedZephyrBadgeText
 	playsound SFX_GET_BADGE

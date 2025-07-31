@@ -22,6 +22,12 @@ OlivineGymJasmineScript:
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_JASMINE
+
+	; Hard Mode's level scaling
+	readmem wBaseLevel
+	addval 1
+	writemem wBaseLevel
+
 	opentext
 	writetext Text_ReceivedMineralBadge
 	playsound SFX_GET_BADGE

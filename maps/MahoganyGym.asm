@@ -38,6 +38,12 @@ MahoganyGymPryceScript:
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_PRYCE
+
+	; Hard Mode's level scaling
+	readmem wBaseLevel
+	addval 1
+	writemem wBaseLevel
+
 	clearevent EVENT_ROUTE_38_ECRUTEAKGATE_OFFICER
 	setevent EVENT_ROUTE_38_ECRUTEAKGATE_OFFICER_BLOCKER
 	setmapscene ROUTE_38_ECRUTEAK_GATE, SCENE_ROUTE38ECRUTEAKGATE_NOOP

@@ -37,6 +37,12 @@ AzaleaGymBugsyScript:
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_BUGSY
+
+	; Hard Mode's level scaling
+	readmem wBaseLevel
+	addval 1
+	writemem wBaseLevel
+
 	opentext
 	writetext Text_ReceivedHiveBadge
 	playsound SFX_GET_BADGE
