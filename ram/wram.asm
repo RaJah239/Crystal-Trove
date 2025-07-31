@@ -1707,7 +1707,8 @@ wMenuSelectionQuantity:: db
 wWhichIndexSet:: db
 wScrollingMenuCursorPosition:: db
 wWindowStackSize:: db
-	ds 8
+wTempCursorPosition:: db
+	ds 7
 wMenuMetadataEnd::
 
 ; menu header

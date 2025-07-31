@@ -89,6 +89,7 @@ NewGame:
 	farcall ClearSavedObjPals
 	call NewGame_ClearTilemapEtc
 	call CheckVBA
+	call SelectDifficulty
 	call PlayerProfileSetup
 	call OakSpeech
 	call InitializeWorld
@@ -111,6 +112,17 @@ PlayerProfileSetup:
 .ok
 	ld c, 0
 	farcall InitMobileProfile
+	ret
+
+SelectDifficulty::
+	farcall CheckMobileAdapterStatus ; mobile
+	jr c, .ok
+	farcall InitDifficulty
+	ret
+
+.ok
+	ld c, 0
+	farcall InitMobileProfile ; mobile
 	ret
 
 if DEF(_DEBUG)

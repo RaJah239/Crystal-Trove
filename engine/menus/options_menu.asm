@@ -289,6 +289,11 @@ Options_RunningShoes:
 .On:  db "On @"
 
 Options_HardMode:
+
+	; Check if Hard Mode is set on game's intro 
+	CheckEventFlag EVENT_HARD_MODE
+	jr z, .done
+
 	ld hl, wOptions2
 	ldh a, [hJoyPressed]
 	bit D_LEFT_F, a
@@ -321,6 +326,7 @@ Options_HardMode:
 	hlcoord 11, 13
 	call PlaceString
 	and a
+.done:
 	ret
 
 .Off: db "Off@"

@@ -90,6 +90,143 @@ LoadGenderScreenPal:
 .Palette:
 INCLUDE "gfx/new_game/gender_screen.pal"
 
+InitDifficulty:
+	call InitGenderScreen
+	call LoadGenderScreenPal
+	call LoadGenderScreenLightBlueTile
+	call WaitBGMap2
+	call SetDefaultBGPAndOBP
+	ld hl, SelectDifficultyText
+	call PrintText
+	ld hl, .DifficultyMenuHeader
+	call LoadMenuHeader
+	call WaitBGMap2
+    call MenuCursorLoop ; VerticalMenu + yesnobox
+	call CloseWindow
+	ld a, [wMenuCursorY]
+    dec a
+	jr nz, .normalMode
+	SetEventFlag EVENT_HARD_MODE
+.normalMode
+	ld c, 10
+	call DelayFrames
+	ret
+
+.DifficultyMenuHeader:
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 3, 3, 17, 9
+	dw .DifficultyMenuData
+	db 1 ; default option
+
+.DifficultyMenuData:
+	db STATICMENU_CURSOR | STATICMENU_WRAP | STATICMENU_DISABLE_B ; flags
+	db 2 ; items
+	db "Normal Mode@"
+	db "Hard Mode@"
+
+MenuCursorLoop:
+	; VerticalMenu
+	xor a
+	ldh [hBGMapMode], a
+	call MenuBox
+	call UpdateSprites
+	call PlaceVerticalMenuItems
+	call ApplyTilemap
+	call CopyMenuData
+	ld a, [wMenuDataFlags]
+	bit 7, a
+	jr z, .cancel
+	call InitVerticalMenuCursor
+	call StaticMenuJoypad
+	call MenuClickSound
+	bit 1, a
+	jr z, .okay
+.cancel
+	scf
+	jr .done
+.okay
+	and a
+	ld a, [wMenuCursorY]
+	ld [wTempCursorPosition], a ; store temp cursor position because it will be overriten by the yesnobox
+	call UpdateDifficultyText
+	call YesNoBox
+	jr c, .no
+	ld a, [wTempCursorPosition]
+	ld [wMenuCursorY], a
+	ret
+.no
+	; reset cursor after yesnobox
+	ld a, [w2DMenuCursorInitY]
+	sub 3
+	ld [w2DMenuCursorInitY], a
+	ld a, [w2DMenuCursorInitX]
+	sub 8
+	ld [w2DMenuCursorInitX], a
+	ld a, [wTempCursorPosition]
+    ld [wMenuCursorY], a
+
+	call CloseWindow ; close old window
+	; open a new window and ask to reselect
+	call SetDefaultBGPAndOBP
+	ld hl, SelectDifficultyText
+	call PrintText
+	ld hl, .DifficultyMenuHeaderLoop
+	call LoadMenuHeader
+	call WaitBGMap2
+	xor a
+	ldh [hBGMapMode], a
+	call MenuBox
+	call UpdateSprites
+	call PlaceVerticalMenuItems
+	call ApplyTilemap
+	call CopyMenuData
+	ld a, [wMenuDataFlags]
+	call MenuCursorLoop
+.done
+	ret
+
+.DifficultyMenuHeaderLoop:
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 3, 3, 17, 9
+	dw .DifficultyMenuDataLoop
+
+.DifficultyMenuDataLoop:
+	db STATICMENU_CURSOR | STATICMENU_WRAP | STATICMENU_DISABLE_B ; flags
+	db 2 ; items
+	db "Normal Mode@"
+	db "Hard Mode@"
+
+UpdateDifficultyText:
+    ld a, [wMenuCursorY]
+	dec a
+    cp 0
+    jr z, .showNormalText
+    cp 1
+    jr z, .showHardText
+.showNormalText:
+    hlcoord x, y
+    ld hl, SelectDifficultyNormalText
+    jr .printText
+.showHardText:
+    hlcoord x, y
+    ld hl, SelectDifficultyHardText
+	jr .printText
+.printText:
+    call PrintText
+    ret
+
+SelectDifficultyText:
+    text_far _SelectDifficultyText
+	text_end
+
+SelectDifficultyNormalText:
+    text_far _SelectDifficultyNormalText
+	text_end
+
+SelectDifficultyHardText:
+    text_far _SelectDifficultyHardText
+	text_end
+
 LoadGenderScreenLightBlueTile:
 	ld de, .LightBlueTile
 	ld hl, vTiles2 tile $00

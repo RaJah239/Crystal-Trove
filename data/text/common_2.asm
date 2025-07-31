@@ -1349,6 +1349,44 @@ _MayRegisterItemText::
 	line "on SELECT Button."
 	done
 
+_SelectDifficultyText::
+	text "Select a mode."
+	done
+
+_SelectDifficultyNormalText::
+	text "Battle items off."
+	line "Set battle style."
+	cont "Level caps On."
+
+	para "No trading until"
+	line "becoming champion."
+
+	para "Are you sure?"
+	done
+
+_SelectDifficultyHardText::
+	text "Battle items off."
+	line "Set battle style."
+	cont "Level caps On."
+
+	para "No trading until"
+	line "becoming champion."
+
+	para "Hard Mode is set"
+	line "until becoming the"
+	cont "champion."
+
+	para "Trainers' level up"
+	line "by 1 post Gyms and"
+	cont "key fight points."
+
+	para "This will exceed"
+	line "the level cap as"
+	cont "an added trial."
+
+	para "Are you sure?"
+	done
+
 _OakText1::
 	text "Hello! Sorry to"
 	line "keep you waiting!"
