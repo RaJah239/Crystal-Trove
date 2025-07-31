@@ -3215,9 +3215,11 @@ wDayCareSceneID::                                 db
 wRoute38EcruteakGateSceneID::                     db
 wRoute42EcruteakGateSceneID::                     db
 wRoute30SceneID::                                 db
-	ds 172
+	ds 171
 
 wAbilityPageMode:: db
+
+wBaseLevel:: db 
 
 wLevelCap:: db
 

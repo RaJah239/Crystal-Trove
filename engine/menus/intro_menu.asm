@@ -247,6 +247,9 @@ endc
 	inc hl
 	ld [hl], LOW(MOM_MONEY)
 
+	ld a, 0
+	ld [wBaseLevel], a
+
 	ld a, 9
 	ld [wLevelCap], a
 
