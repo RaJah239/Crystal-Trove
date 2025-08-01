@@ -5029,6 +5029,7 @@ BattleMenu_Pack:
 	jp BattleMenu
 
 .ItemsCantBeUsed:
+	call ClearSprites
 	ld hl, BattleText_ItemsCantBeUsedHere
 	call StdBattleTextbox
 	jp BattleMenu

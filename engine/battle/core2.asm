@@ -491,6 +491,7 @@ PlayAnimationIfNotFirstTurn:
     ret
 
 ShouldPlayAnim:
+	call ClearSprites
 	ld a, [wBattleMode]
 	dec a
 	jr nz, .checkEnemyPresent
