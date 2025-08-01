@@ -347,12 +347,12 @@ endr
 
 .display_hard_mode_text_box:
 	; place white box
-	hlcoord 0, 9
+	hlcoord 0, 0
 	lb bc, 3, 10
 	call ClearBox
 
 	; hard mode's text box
-	hlcoord 0, 9
+	hlcoord 0, 0
 	lb bc, 1, 9
 	jp Textbox
 
@@ -421,7 +421,7 @@ endr
 	ret z
 
 .display_hard_mode_string:
-	hlcoord 1, 10
+	hlcoord 1, 1
 	ld de, .HardModeString
 	jp PlaceString
 
