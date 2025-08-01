@@ -777,3 +777,8 @@ SECTION "Fade System", ROMX
 
 INCLUDE "engine/gfx/fade.asm"
 INCLUDE "engine/events/poisonstep_pals.asm"
+
+
+SECTION "Time Of Day Images", ROMX
+
+INCLUDE "gfx/timeofday_images.asm"

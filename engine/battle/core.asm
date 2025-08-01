@@ -105,6 +105,7 @@ DoBattle:
 	call BreakAttraction
 	call SendOutPlayerMon
 	call EmptyBattleTextbox
+	farcall GetTimeOfDayImage
 	call LoadTilemapToTempTilemap
 	call SetPlayerTurn
 	call SpikesDamage
@@ -4893,6 +4894,7 @@ BattleMenu:
 	xor a
 	ldh [hBGMapMode], a
 	call LoadTempTilemapToTilemap
+	farcall GetTimeOfDayImage
 
 	ld a, [wBattleType]
 	cp BATTLETYPE_DEBUG
@@ -4937,6 +4939,7 @@ BattleMenu:
 	jr .loop
 
 BattleMenu_Fight:
+	call ClearSprites
 	xor a
 	ld [wNumFleeAttempts], a
 	call SafeLoadTempTilemapToTilemap
@@ -5003,6 +5006,7 @@ BattleMenu_Pack:
 	jr .got_item
 
 .contest
+	call ClearSprites
 	ld a, PARK_BALL
 	ld [wCurItem], a
 	call DoItemEffect
@@ -5021,6 +5025,7 @@ BattleMenu_Pack:
 	call WaitBGMap
 	call FinishBattleAnim
 	call LoadTilemapToTempTilemap
+	farcall GetTimeOfDayImage
 	jp BattleMenu
 
 .ItemsCantBeUsed:
@@ -5130,6 +5135,7 @@ BattleMenuPKMN_Loop:
 	call LoadTilemapToTempTilemap
 	call GetMemSGBLayout
 	call SetDefaultBGPAndOBP
+	farcall GetTimeOfDayImage
 	jp BattleMenu
 
 .GetMenu:
@@ -5328,6 +5334,7 @@ PassedBattleMonEntrance:
 	jp SwitchInEffects
 
 BattleMenu_Run:
+	call ClearSprites
 	call SafeLoadTempTilemapToTilemap
 	ld a, $3
 	ld [wMenuCursorY], a
