@@ -337,6 +337,11 @@ endr
 	lb bc, 3, 9
 	call Textbox
 
+	ld de, ENGINE_BUG_CONTEST_TIMER
+	ld b, CHECK_FLAG
+	farcall EngineFlagAction
+	jp nz, .finish
+
 	; Check if Hard Mode is set on game's intro 
 	CheckEventFlag EVENT_HARD_MODE
 	jr z, .display_hard_mode_text_box
@@ -421,9 +426,16 @@ endr
 	ret z
 
 .display_hard_mode_string:
+	ld de, ENGINE_BUG_CONTEST_TIMER
+	ld b, CHECK_FLAG
+	farcall EngineFlagAction
+	jr nz, .finish
+
 	hlcoord 1, 1
 	ld de, .HardModeString
-	jp PlaceString
+	call PlaceString
+.finish:
+	ret
 
 .RainingStr:
  	db "Raining@"
