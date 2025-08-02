@@ -1374,8 +1374,8 @@ ElmsLabPorygonPCScript:
 
 ElmsLab_MapEvents:
 	def_warp_events
-	warp_event  4, 11, NEW_BARK_TOWN, 1
-	warp_event  5, 11, NEW_BARK_TOWN, 1
+	warp_event  4, 11, NEW_BARK_TOWN, 2
+	warp_event  5, 11, NEW_BARK_TOWN, 2
 
 	def_coord_events
 	coord_event  4,  6, SCENE_ELMSLAB_CANT_LEAVE, LabTryToLeaveScript
