@@ -48,7 +48,7 @@ INCLUDE "engine/overworld/time.asm"
 INCLUDE "engine/items/tmhm2.asm"
 INCLUDE "engine/menus/naming_screen.asm"
 INCLUDE "engine/events/misc_scripts.asm"
-INCLUDE "engine/events/heal_machine_anim.asm"
+
 INCLUDE "engine/events/whiteout.asm"
 INCLUDE "engine/events/forced_movement.asm"
 INCLUDE "engine/menus/start_menu.asm"
@@ -782,3 +782,8 @@ INCLUDE "engine/events/poisonstep_pals.asm"
 SECTION "Time Of Day Images", ROMX
 
 INCLUDE "gfx/timeofday_images.asm"
+
+
+SECTION "Start Menu", ROMX
+
+INCLUDE "engine/events/heal_machine_anim.asm"
