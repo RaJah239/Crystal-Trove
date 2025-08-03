@@ -784,6 +784,6 @@ SECTION "Time Of Day Images", ROMX
 INCLUDE "gfx/timeofday_images.asm"
 
 
-SECTION "Start Menu", ROMX
+SECTION "Heal Machine Animation", ROMX
 
 INCLUDE "engine/events/heal_machine_anim.asm"
