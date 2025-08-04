@@ -76,10 +76,12 @@ StringOptions1:
 	db "        :<LF>"
 	db "Battle Scene<LF>"
 	db "        :<LF>"
+	db "Audio Mode<LF>"
+	db "        :<LF>"
+
 	db "Running Shoes<LF>"
 	db "        :<LF>"
-	db "Sound<LF>"
-	db "        :<LF>"
+
 	db "Casual Calls<LF>"
 	db "        :<LF>"
 	db "Frame<LF>"
@@ -117,8 +119,9 @@ GetOptionPointer:
 .Pointers:
 	dw Options_TextSpeed
 	dw Options_BattleScene
-	dw Options_RunningShoes
 	dw Options_Sound
+	dw Options_RunningShoes
+	
 	dw Options_CasualCalls
 	dw Options_Frame
 	dw Options_FastBoot
@@ -280,7 +283,7 @@ Options_RunningShoes:
 	ld de, .On
 
 .Display:
-	hlcoord 11, 7
+	hlcoord 11, 9
 	call PlaceString
 	and a
 	ret
@@ -369,7 +372,7 @@ Options_Sound:
 	ld de, .Stereo
 
 .Display:
-	hlcoord 11, 9
+	hlcoord 11, 7
 	call PlaceString
 	and a
 	ret
