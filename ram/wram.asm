@@ -1868,9 +1868,13 @@ wGBPrinterBrightness::
 ;   darkest:  $7F
 	db
 wOptions2::
-; bit 1: trival calls off/on
+; bit 1: casual calls off/on
 ; bit 2: running shoes off/on
 ; bit 3: minimal dialogue off/on
+; bit 4: auto bicycle off/on
+; bit 5: fast boot off/on
+; bit 6: hard mode off/on
+; bit 7: nurse heal normal/quick  
 	db
 	ds 2
 wOptionsEnd::
