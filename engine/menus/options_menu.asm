@@ -141,7 +141,6 @@ Options_QuickNurse:
 Options_QuickPokeCalls:
 Options_FasterBattles:
 Options_ExpShare:
-Options_FastBoot: ; place holder
 	ret
 
 Options_TextSpeed:
@@ -462,6 +461,44 @@ Options_CasualCalls:
  	and a
  	ret
  
+.On:  db "On @"
+.Off: db "Off@"
+
+Options_FastBoot:
+ 	ld hl, wOptions2
+ 	ldh a, [hJoyPressed]
+ 	bit D_LEFT_F, a
+ 	jr nz, .LeftPressed
+ 	bit D_RIGHT_F, a
+ 	jr z, .NonePressed
+ 	bit FAST_BOOT, [hl]
+ 	jr nz, .ToggleOff
+ 	jr .ToggleOn
+ 
+ .LeftPressed:
+ 	bit FAST_BOOT, [hl]
+ 	jr z, .ToggleOn
+ 	jr .ToggleOff
+ 
+ .NonePressed:
+ 	bit FAST_BOOT, [hl]
+ 	jr nz, .ToggleOn
+ 
+ .ToggleOff:
+ 	res FAST_BOOT, [hl]
+ 	ld de, .Off
+ 	jr .Display
+ 
+ .ToggleOn:
+ 	set FAST_BOOT, [hl]
+ 	ld de, .On
+ 
+ .Display:
+ 	hlcoord 11, 13
+ 	call PlaceString
+ 	and a
+ 	ret
+
 .On:  db "On @"
 .Off: db "Off@"
 
