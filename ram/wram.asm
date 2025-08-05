@@ -1874,7 +1874,8 @@ wOptions2::
 ; bit 4: auto bicycle off/on
 ; bit 5: fast boot off/on
 ; bit 6: hard mode off/on
-; bit 7: nurse heal normal/quick  
+; bit 7: nurse heal normal/quick
+; bit 8: exp share off/on
 	db
 	ds 2
 wOptionsEnd::

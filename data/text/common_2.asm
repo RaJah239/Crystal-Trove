@@ -11,7 +11,7 @@ _NameRaterHelloText::
 
 _TeamGainedExpText::
 	text "Remaining team got"
-	line "EXP via EXP.SHARE!"
+	line "Exp via Exp.Share!"
 	prompt
 
 _NameRaterWhichMonText::

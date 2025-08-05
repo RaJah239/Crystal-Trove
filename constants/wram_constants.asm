@@ -87,6 +87,7 @@ DEF GBPRINTER_DARKEST  EQU $7f
 	const HARD_MODE ; 4
 	const AUTO_BICYCLE ; 5
 	const NURSE_HEAL ; 6
+	const EXP_SHARE ; 7
 
 ; wWalkingDirection::
 	const_def -1

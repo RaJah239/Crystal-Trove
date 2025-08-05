@@ -139,7 +139,6 @@ GetOptionPointer:
 
 Options_QuickPokeCalls:
 Options_FasterBattles:
-Options_ExpShare:
 	ret
 
 Options_TextSpeed:
@@ -254,6 +253,44 @@ Options_BattleScene:
 
 .On:  db "On @"
 .Off: db "Off@"
+
+Options_ExpShare:
+	ld hl, wExpShareToggle
+	ldh a, [hJoyPressed]
+	bit D_LEFT_F, a
+	jr nz, .LeftPressed
+	bit D_RIGHT_F, a
+	jr z, .NonePressed
+	bit EXP_SHARE, [hl]
+	jr nz, .ToggleOff
+	jr .ToggleOn
+
+.LeftPressed:
+	bit EXP_SHARE, [hl]
+	jr z, .ToggleOn
+	jr .ToggleOff
+
+.NonePressed:
+	bit EXP_SHARE, [hl]
+	jr nz, .ToggleOn
+
+.ToggleOff:
+	res EXP_SHARE, [hl]
+	ld de, .Off
+	jr .Display
+
+.ToggleOn:
+	set EXP_SHARE, [hl]
+	ld de, .On
+
+.Display:
+	hlcoord 11, 9
+	call PlaceString
+	and a
+	ret
+
+.Off: db "Off@"
+.On:  db "On @"
 
 Options_RunningShoes:
 	ld hl, wOptions2

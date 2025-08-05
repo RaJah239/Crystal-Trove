@@ -503,9 +503,6 @@ AideScript_GiveYouBalls:
 	verbosegiveitem POKE_BALL, 5
 	writetext AideText_ExplainBalls
 	waitbutton
-	verbosegiveitem POKE_BALL
-	writetext AideText_ExplainExpShare
-	waitbutton
 	closetext
 	setscene SCENE_ELMSLAB_NOOP
 	end
@@ -1253,21 +1250,31 @@ AideText_GiveYouBalls:
 
 AideText_ExplainBalls:
 	text "To add to your"
-	line "#DEX, you have"
-	cont "to catch #MON."
+	line "#dex, you have"
+	cont "to catch #mon."
 
-	para "Throw # BALLS"
-	line "at wild #MON"
+	para "Throw # Balls"
+	line "at wild #mon"
 	cont "to get them."
 
-	para "Take this too!"
-	line "It's EXP.SHARE!"
-	done
+	para "More #mon means"
+	line "more training but"
+	
+	para "you have Exp.Share"
+	line "in your Options."
 
-AideText_ExplainExpShare:
-	text "Set it ON to share"
-	line "EXP. Points with"
-	cont "all your #MON."
+	para "Set it on to share"
+	line "Exp. Points with"
+	cont "all your #mon."
+
+	para "Each #mon that"
+	line "that participates"
+
+	para "in battles gain"
+	line "full Exp. and non"
+
+	para "participants get"
+	line "half as much."
 	done
 
 ElmsLabOfficerText1:
