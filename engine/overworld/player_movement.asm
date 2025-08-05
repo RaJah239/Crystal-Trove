@@ -899,7 +899,19 @@ ENDM
 
 .GetOutOfWater:
 	push bc
+
+	; check if Auto Bicycle is turned on
+	ld a, [wOptions2]
+	bit AUTO_BICYCLE, a
+	jr nz, .AutoBicycle
+
 	ld a, PLAYER_NORMAL
+	jr .WalkingState
+
+.AutoBicycle:
+	ld a, PLAYER_BIKE
+
+.WalkingState:
 	ld [wPlayerState], a
 	call UpdatePlayerSprite ; UpdateSprites
 	pop bc
