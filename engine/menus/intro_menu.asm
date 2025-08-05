@@ -674,6 +674,7 @@ OakSpeech:
 if DEF(_DEBUG)
  	ld hl, wOptions2
 	set FAST_BOOT, [hl]
+	set AUTO_BICYCLE, [hl]
 endc
 
 	farcall InitClock
