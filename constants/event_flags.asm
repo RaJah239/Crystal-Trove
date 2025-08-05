@@ -360,7 +360,8 @@
 	const EVENT_BATTLE_POINTS_UNLOCKED
 	const EVENT_HARD_MODE
 	const EVENT_NURSE_QUICK_HEAL
-; Unused: next 250 events
+	const EVENT_QUICK_FIELD_ACTION
+; Unused: next 249 events
 
 	const_next 600
 ; Kurt Apricorn events
