@@ -52,9 +52,6 @@ MahoganyPokecenter1FCooltrainerFText:
 	cont "more slowly."
 	done
 
-MahoganyPokecenterSkipIntro:
-	jumpstd SkipIntroScript
-
 MahoganyPokecenterChanseyScript:
 	jumpstd ChanseyPokeCenterScript
 
@@ -67,7 +64,6 @@ MahoganyPokecenter1F_MapEvents:
 	def_coord_events
 
 	def_bg_events
-	bg_event 5,  2, BGEVENT_READ, MahoganyPokecenterSkipIntro
 
 	def_object_events
 	object_event  3,  1, SPRITE_NURSE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, MahoganyPokecenter1FNurseScript, -1

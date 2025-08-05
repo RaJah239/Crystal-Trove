@@ -129,9 +129,6 @@ GoldenrodPokecenter1FPlayerGaveAwayTheEonMailText:
 	line "the EON MAIL."
 	done
 
-GoldenrodPokecenterSkipIntro:
-	jumpstd SkipIntroScript
-
 GoldenrodPokecenterChanseyScript:
 	jumpstd ChanseyPokeCenterScript
 
@@ -145,7 +142,6 @@ GoldenrodPokecenter1F_MapEvents:
 	def_coord_events
 
 	def_bg_events
-	bg_event 5,  2, BGEVENT_READ, GoldenrodPokecenterSkipIntro
 
 	def_object_events
 	object_event  3,  1, SPRITE_NURSE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodPokecenter1FNurseScript, -1

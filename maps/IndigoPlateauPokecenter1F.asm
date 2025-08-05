@@ -492,9 +492,6 @@ RematchPreventionOfficerText:
 	line "be issued now."
 	done
 
-IndigoPlateauPokecenterSkipIntro:
-	jumpstd SkipIntroScript
-
 IndigoPlateauPokecenterChanseyScript:
 	jumpstd ChanseyPokeCenterScript
 
@@ -510,7 +507,6 @@ IndigoPlateauPokecenter1F_MapEvents:
 	coord_event 17,  4, SCENE_INDIGOPLATEAUPOKECENTER1F_RIVAL_BATTLE, PlateauRivalBattle2
 
 	def_bg_events
-	bg_event  5,  8, BGEVENT_READ, IndigoPlateauPokecenterSkipIntro
 
 	def_object_events
 	object_event  3,  7, SPRITE_NURSE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, IndigoPlateauPokecenter1FNurseScript, -1
