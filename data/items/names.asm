@@ -134,7 +134,7 @@ ItemNames::
 	li "Star Piece"
 	li "Basement Key"
 	li "Shiny Ball"
-	li "Exp.Share"
+	li "?"
 	li "Shiny Charm"
 	li "Zinc"
 	li "Charcoal"

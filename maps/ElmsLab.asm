@@ -503,7 +503,7 @@ AideScript_GiveYouBalls:
 	verbosegiveitem POKE_BALL, 5
 	writetext AideText_ExplainBalls
 	waitbutton
-	verbosegiveitem EXP_SHARE
+	verbosegiveitem POKE_BALL
 	writetext AideText_ExplainExpShare
 	waitbutton
 	closetext

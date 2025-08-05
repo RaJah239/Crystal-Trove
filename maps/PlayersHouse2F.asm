@@ -49,7 +49,6 @@ if DEF(_DEBUG)
 	givemoney YOUR_MONEY, MAX_MONEY
 	giveitem TANGELA_CALL
 	giveitem BICYCLE
-	giveitem EXP_SHARE
 	giveitem COIN_CASE
 	givecoins MAX_COINS
 	giveitem OLD_ROD

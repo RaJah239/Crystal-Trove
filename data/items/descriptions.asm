@@ -135,7 +135,7 @@ ItemDescriptions:
 	dw StarPieceDesc
 	dw BasementKeyDesc
 	dw ShinyBallDesc
-	dw ExpShareDesc
+	dw TeruSama9Desc
 	dw ShinyCharmDesc
 	dw ZincDesc
 	dw CharcoalDesc
@@ -785,10 +785,6 @@ ShinyBallDesc:
 	db   "The caught #mon"
 	next "becomes shiny.@"
 
-ExpShareDesc:
-	db   "Shares battle EXP."
-	next "Points with Party.@"
-
 ShinyCharmDesc:
 	db "Raises chance of"
 	next "SHINY #MON.@"
@@ -1026,5 +1022,6 @@ TeruSama31Desc:
 TeruSama32Desc:
 	db   "?@"
 
+TeruSama9Desc:
 TeruSama33Desc:
 	db   "?@"

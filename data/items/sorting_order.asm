@@ -235,11 +235,10 @@ ItemNameOrder:
 	db OLD_AMBER
 
 ; NEXT POCKET
-; Key Items Pocket - 25 total
+; Key Items Pocket - 24 total
 ; Permanent Key Items
 ; Items that are possibly frequently used
 	db BICYCLE
-	db EXP_SHARE
 	db COIN_CASE
 	db ITEMFINDER
 	db BLUE_CARD
@@ -276,12 +275,13 @@ ItemNameOrder:
 
 
 ; UNUSED ITEMS
-; Unused Items - 5 total
+; Unused Items - 6 total
 	db EGG_TICKET
 	db ITEM_AB
 	db ITEM_BE
 	db ITEM_C3
  	db ITEM_DC
+ 	db ITEM_87
 
 	assert_table_length NUM_ITEMS + 1
 	db -1 ; end
