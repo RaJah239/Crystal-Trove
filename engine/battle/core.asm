@@ -9152,16 +9152,15 @@ BattleStartMessage:
 	call PlayStereoCry
 
 .skip_cry
+	; Skip PokemonAttacked text if fast battles is on
+	call CheckIfFastBattlesIsOn
+	jr nz, .PrintBattleStartText
+
 	ld a, [wBattleType]
 	cp BATTLETYPE_FISH
 	jr nz, .NotFishing
 
-	; Skip HookedPokemonAttacked text if fast battles is on
-	call CheckIfFastBattlesIsOn
-	jr nz, .skip1
 	ld hl, HookedPokemonAttackedText
-
-.skip1
 	jr .PrintBattleStartText
 
 .NotFishing:
@@ -9170,27 +9169,26 @@ BattleStartMessage:
 	jr z, .PrintBattleStartText
 	ld hl, WildCelebiAppearedText
 	cp BATTLETYPE_CELEBI
-	ret ; Added to gain time at the start of battles.
-	;ld hl, WildPokemonAppearedText
+	jr z, .PrintBattleStartText
+	ld hl, WildPokemonAppearedText
 
 .PrintBattleStartText:
 	push hl
 	farcall BattleStart_TrainerHuds
 	pop hl
 
-	; Skip HookedPokemonAttacked text if fast battles is on
+	; Skip PokemonAttacked text if fast battles is on
 	; need to do this or the game would crash
 	call CheckIfFastBattlesIsOn
-	jr nz, .skip2
+	jr nz, .skip
 	call StdBattleTextbox
 
-.skip2
+.skip
 	call IsMobileBattle2
 	ret nz
 
 	ld c, $2 ; start
 	farcall Mobile_PrintOpponentBattleMessage
-
 	ret
 
 FieldWeather:
