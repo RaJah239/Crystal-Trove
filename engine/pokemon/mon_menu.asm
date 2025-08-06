@@ -182,7 +182,7 @@ SwitchPartyMons:
 	call DelayFrame
 
 	farcall PartyMenuSelect
-	bit B_BUTTON_F, b
+	bit 1, b
 	jr c, .DontSwitch
 
 	farcall _SwitchPartyMons
