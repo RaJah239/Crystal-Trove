@@ -1970,8 +1970,11 @@ Script_GetOnBike:
 	refreshmap
 	special UpdateTimePals
 	loadvar VAR_MOVEMENT, PLAYER_BIKE
+	checkevent EVENT_QUICK_FIELD_ACTION
+	iftrue .skip
 	writetext GotOnBikeText
 	waitbutton
+.skip
 	closetext
 	special UpdatePlayerSprite
 	end
@@ -1986,8 +1989,12 @@ Script_GetOffBike:
 	refreshmap
 	special UpdateTimePals
 	loadvar VAR_MOVEMENT, PLAYER_NORMAL
+	checkevent EVENT_QUICK_FIELD_ACTION
+	iftrue .skip
 	writetext GotOffBikeText
 	waitbutton
+.skip
+	; fallthrough
 
 FinishGettingOffBike:
 	closetext
