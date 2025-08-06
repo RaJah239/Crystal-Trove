@@ -83,8 +83,8 @@ ChanseyHealsOWScript:
 	end
 
 PokecenterNurseScript:
-	checkevent EVENT_NURSE_QUICK_HEAL
-	iftrue .ok
+	isquicknurseset
+	iffalse .ok
 
 	checktime MORN
 	iftrue .morn
@@ -176,8 +176,8 @@ PokecenterNurseScript:
 	special CheckPokerus
 	iftrue .pokerus
 .no
-	checkevent EVENT_NURSE_QUICK_HEAL
-	iftrue .done
+	isquicknurseset
+	iffalse .done
 
 	checkevent EVENT_WELCOMED_TO_POKECOM_CENTER
 	iffalse .NurseReturnPokemonText
