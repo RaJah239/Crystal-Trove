@@ -1260,11 +1260,6 @@ _ItemCantUseOnEggText::
 	line "on an EGG."
 	prompt
 
-_ItemBelongsToSomeoneElseText::
-	text "That belongs to"
-	line "someone else!"
-	prompt
-
 _ItemWontHaveEffectText::
 	text "It won't have any"
 	line "effect."
@@ -1279,18 +1274,6 @@ _BallDontBeAThiefText::
 	text "Don't be a thief!"
 	prompt
 
-_NoCyclingText::
-	text "Cycling isn't"
-	line "allowed here."
-	prompt
-
-_ItemCantGetOnText::
-	text "Can't get on your"
-	line "@"
-	text_ram wStringBuffer1
-	text " now."
-	prompt
-
 _CurBoxFullText::
 	text "@"
 	text_ram wStringBuffer1
@@ -1301,15 +1284,6 @@ _StorageFullText::
 	text "The STORAGE SYSTEM"
 	line "is full. That"
 	cont "can't be used now."
-	prompt
-
-_DatabaseFullText::
-	; too technical? needs improvement
-	text "The STORAGE SYSTEM"
-	line "is overtaxed."
-
-	para "You need to save"
-	line "the game."
 	prompt
 
 _ItemUsedText::
