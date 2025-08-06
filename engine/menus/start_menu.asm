@@ -677,7 +677,7 @@ Fast_Travel_Warp_Strings:
 	dba Indigo_Map_Name2
 	assert_table_length NUM_FAST_TRAVEL_WARP_MAPS
 
-Fast_Travel_Warp::
+Fast_Travel_Warp:
 	xor a
 	ld [wMenuScrollPosition], a
 	ld a, $1
