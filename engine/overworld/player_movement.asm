@@ -324,7 +324,8 @@ endc
 	and B_BUTTON
 	jr nz, .walk
 
-	call RunningShoesState
+	ld a, [wOptions2]
+	bit RUNNING_SHOES, a
 	jr nz, .runningshoesareactive
 	ld a, STEP_WALK
 	jr .walkinstead
@@ -342,7 +343,8 @@ endc
 	ret
 
 .walk
-	call RunningShoesState
+	ld a, [wOptions2]
+	bit RUNNING_SHOES, a
 	jr nz, .runningshoesareinactive
 	ld a, STEP_RUN
 	jr .runinstead
@@ -1082,9 +1084,4 @@ StopPlayerForEvent::
 	ld [hl], a
 	ld a, 0
 	ld [wPlayerTurningDirection], a
-	ret
-
-RunningShoesState:
-	ld a, [wOptions2]
-	bit RUNNING_SHOES, a
 	ret
