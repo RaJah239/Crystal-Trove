@@ -129,12 +129,6 @@ NamingScreen:
 	hlcoord 1, 2
 	ld [hl], a
 .genderless
-	ld bc, wTempMonDVs
-	farcall CheckShininess
-	jr nz, .not_shiny
-	hlcoord 1, 4
-	ld [hl], "<⁂>"
-.not_shiny
 	call .StoreMonIconParams
 	ret
 
