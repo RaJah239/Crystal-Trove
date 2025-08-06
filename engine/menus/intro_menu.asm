@@ -675,6 +675,12 @@ if DEF(_DEBUG)
  	ld hl, wOptions2
 	set FAST_BOOT, [hl]
 	set AUTO_BICYCLE, [hl]
+	set NURSE_HEAL, [hl]
+	set RUNNING_SHOES, [hl]
+
+	ld hl, wOptions3
+	set FIELD_ACTIONS, [hl]
+	set FAST_BATTLES, [hl]
 endc
 
 	farcall InitClock
