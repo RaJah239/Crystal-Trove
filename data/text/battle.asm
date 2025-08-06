@@ -674,10 +674,6 @@ CriticalHitText:
 	text "A critical hit!"
 	prompt
 
-OneHitKOText:
-	text "It's a one-hit KO!"
-	prompt
-
 SuperEffectiveText:
 	text "It's super-"
 	line "effective!"
