@@ -319,17 +319,6 @@ endc
 	call .DoStep
 	scf
 	ret
-
-if DEF(_DEBUG)
-.run
-	ld a, [wCurInput]
-	and B_BUTTON
-	jr nz, .walk
-	ld a, STEP_RUN
-	call .DoStep
-	scf
-	ret
-else
 .run
 	ld a, [wCurInput]
 	and B_BUTTON
@@ -345,7 +334,6 @@ else
 	call .DoStep
 	scf
 	ret
-endc
 
 .ice
 	ld a, STEP_ICE
@@ -353,18 +341,6 @@ endc
 	scf
 	ret
 
-if DEF(_DEBUG)
-.walk
-	ld a, STEP_WALK
-	call .DoStep
-	push af
-	ld a, [wWalkingDirection]
-	cp STANDING
-	call nz, CheckTrainerRun
-	pop af
-	scf
-	ret
-else
 .walk
 	call RunningShoesState
 	jr nz, .runningshoesareinactive
@@ -381,7 +357,6 @@ else
 	pop af
 	scf
 	ret
-endc
 
 .bump
 	xor a
