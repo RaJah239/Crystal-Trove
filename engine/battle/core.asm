@@ -2041,6 +2041,11 @@ FaintYourPokemon:
 	hlcoord 9, 7
 	lb bc, 5, 11
 	call ClearBox
+	
+	; Skip player mon fainted text if fast battles is on
+	call CheckIfFastBattlesIsOn
+	ret nz
+
 	ld hl, BattleText_MonFainted
 	jp StdBattleTextbox
 
@@ -2055,12 +2060,13 @@ FaintEnemyPokemon:
 	hlcoord 1, 0
 	lb bc, 4, 10
 	call ClearBox
-	call CheckDialogueMode
-	jr z, .skip
+	
+	; Skip foe mon fainted text if fast battles is on
+	call CheckIfFastBattlesIsOn
+	ret nz
+
 	ld hl, BattleText_EnemyMonFainted
 	jp StdBattleTextbox
-.skip
-	ret
 
 ; ==========================
 ; ==== Moxie and Grim ======
@@ -2998,8 +3004,10 @@ EnemySwitch:
 	call LoadEnemyMonToSwitchTo
 	push af
 	call ClearEnemyMonBox
-	call CheckDialogueMode
-	jr z, .skip2
+	
+	; Skip ShowBattleTextEnemySentOut text if fast battles is on
+	call CheckIfFastBattlesIsOn
+	jr nz, .skip2
 	call ShowBattleTextEnemySentOut
 .skip2
 	call ShowSetEnemyMonAndSendOutAnimation
@@ -3026,10 +3034,13 @@ EnemySwitch_SetMode:
 	ld a, 1
 	ld [wEnemyIsSwitching], a
 	call ClearEnemyMonBox
-	call CheckDialogueMode
-	jr z, .skip3
+	
+	; Skip ShowBattleTextEnemySentOut text if fast battles is on
+	call CheckIfFastBattlesIsOn
+	jr nz, .send_out_animation
+
 	call ShowBattleTextEnemySentOut
-.skip3
+.send_out_animation:
 	jp ShowSetEnemyMonAndSendOutAnimation
 
 CheckWhetherSwitchmonIsPredetermined:
@@ -3580,8 +3591,10 @@ TryToRunAwayFromBattle:
 	call WaitPlaySFX
 	pop de
 	call WaitSFX
-	call CheckDialogueMode
-	jr z, .skip
+	
+	; Skip GotAwaySafely text if fast battles is on
+	call CheckIfFastBattlesIsOn
+	jr nz, .skip
 	ld hl, BattleText_GotAwaySafely
 	call StdBattleTextbox
 	call WaitSFX
@@ -4147,6 +4160,10 @@ PursuitSwitch:
  	pop af
  	ld [wCurBattleMon], a
 	call PlayerMonFaintedAnimation
+	
+	; Skip player mon fainted text if fast battles is on
+	call CheckIfFastBattlesIsOn
+	jr nz, .skip
 	ld hl, BattleText_MonFainted
 	jr .done_fainted
 
@@ -4163,8 +4180,10 @@ PursuitSwitch:
 	call PlaySFX
 	call WaitSFX
 	call EnemyMonFaintedAnimation
-	call CheckDialogueMode
-	jr z, .skip
+	
+	; Skip foe mon fainted text if fast battles is on
+	call CheckIfFastBattlesIsOn
+	jr nz, .skip
 	ld hl, BattleText_EnemyMonFainted
 
 .done_fainted
@@ -7274,11 +7293,19 @@ GiveExperiencePoints:
 	ld a, [wExpShare]
 	and a
 	jr nz, .ExpShareON
+	
+	; Skip regular exp text if fast battles is on
+	call CheckIfFastBattlesIsOn
+	jr nz, .ExpShareON
 	ld hl, Text_MonGainedExpPoint
 	jr .Text
 .ExpShareON
 	ld a, [wExpShareText]
 	and a
+	jr nz, .AfterText
+	
+	; Skip exp share text if fast battles is on
+	call CheckIfFastBattlesIsOn
 	jr nz, .AfterText
 	inc a
 	ld [wExpShareText], a
@@ -7465,14 +7492,23 @@ GiveExperiencePoints:
 	ld de, SFX_HIT_END_OF_EXP_BAR
 	call PlaySFX
 	call WaitSFX
+	
+	; Skip GrewToLevel text if fast battles is on
+	call CheckIfFastBattlesIsOn
+	jr nz, .next
 	ld hl, BattleText_StringBuffer1GrewToLevel
 	call StdBattleTextbox
+.next
 	call LoadTilemapToTempTilemap
 
 .skip_exp_bar_animation
 	xor a ; PARTYMON
 	ld [wMonType], a
 	predef CopyMonToTempMon
+
+	; Skip lv up stat text and textbox if fast battles is on
+	call CheckIfFastBattlesIsOn
+	jr nz, .skip
 	hlcoord 9, 0
 	ld b, 10
 	ld c, 9
@@ -7483,6 +7519,7 @@ GiveExperiencePoints:
 ;	ld c, 30
 ;	call DelayFrames
 	call WaitPressAorB_BlinkCursor
+.skip
 	call SafeLoadTempTilemapToTilemap
 	xor a ; PARTYMON
 	ld [wMonType], a
@@ -7778,8 +7815,13 @@ AnimateExpBar:
 	call PlaySFX
 	farcall AnimateEndOfExpBar
 	call WaitSFX
+	
+	; Skip GrewToLevel text if fast battles is on
+	call CheckIfFastBattlesIsOn
+	jr nz, .next2
 	ld hl, BattleText_StringBuffer1GrewToLevel
 	call StdBattleTextbox
+.next2
 	pop de
 	inc e
 	ld b, $0
