@@ -128,8 +128,6 @@ HandleAutoBicycle:
 	ld [wPlayerState], a
 	call UpdatePlayerSprite ; UpdateSprites
 	pop bc
-
-.done
 	ret
 
 IsOnWaterTile::
