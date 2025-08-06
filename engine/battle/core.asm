@@ -9156,7 +9156,12 @@ BattleStartMessage:
 	cp BATTLETYPE_FISH
 	jr nz, .NotFishing
 
+	; Skip HookedPokemonAttacked text if fast battles is on
+	call CheckIfFastBattlesIsOn
+	jr nz, .skip1
 	ld hl, HookedPokemonAttackedText
+
+.skip1
 	jr .PrintBattleStartText
 
 .NotFishing:
@@ -9172,8 +9177,14 @@ BattleStartMessage:
 	push hl
 	farcall BattleStart_TrainerHuds
 	pop hl
+
+	; Skip HookedPokemonAttacked text if fast battles is on
+	; need to do this or the game would crash
+	call CheckIfFastBattlesIsOn
+	jr nz, .skip2
 	call StdBattleTextbox
 
+.skip2
 	call IsMobileBattle2
 	ret nz
 
