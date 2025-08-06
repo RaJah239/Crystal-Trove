@@ -2429,10 +2429,6 @@ GetFailureResultText:
 	farcall BattleMissAnim
 	ld hl, AttackMissedText
 	ld de, AttackMissed2Text
-	ld a, [wCriticalHit]
-	cp -1
-	jr nz, .got_text
-	ld hl, UnaffectedText
 .got_text
 	call FailText_CheckOpponentProtect
 	xor a

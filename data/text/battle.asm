@@ -655,11 +655,6 @@ CrashedText:
 	cont "crashed!"
 	prompt
 
-UnaffectedText:
-	text "<TARGET>'s"
-	line "unaffected!"
-	prompt
-
 ClearFieldText:
 	text "The field was"
 	line "swept clear!"
