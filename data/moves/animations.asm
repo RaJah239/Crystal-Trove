@@ -1203,6 +1203,7 @@ BattleAnim_WillOWisp:
 	anim_ret
 
 BattleAnim_Ember:
+	anim_setobjpal PAL_BATTLE_OB_RED, PAL_BTLCUSTOM_FIRE
 	anim_1gfx BATTLE_ANIM_GFX_FIRE
 	anim_sound 6, 2, SFX_EMBER
 	anim_obj BATTLE_ANIM_OBJ_EMBER, 64, 96, $12
@@ -1224,6 +1225,7 @@ BattleAnim_Ember:
 	anim_ret
 
 BattleAnim_FirePunch:
+	anim_setobjpal PAL_BATTLE_OB_RED, PAL_BTLCUSTOM_FIRE
 	anim_2gfx BATTLE_ANIM_GFX_HIT, BATTLE_ANIM_GFX_FIRE
 	anim_obj BATTLE_ANIM_OBJ_PUNCH_SHAKE, 136, 56, $43
 	anim_call BattleAnimSub_Fire
@@ -1231,6 +1233,7 @@ BattleAnim_FirePunch:
 	anim_ret
 
 BattleAnim_FireSpin:
+	anim_setobjpal PAL_BATTLE_OB_RED, PAL_BTLCUSTOM_FIRE
 	anim_1gfx BATTLE_ANIM_GFX_FIRE
 .loop
 	anim_sound 6, 2, SFX_EMBER
@@ -1260,6 +1263,7 @@ BattleAnim_DragonRage:
 	anim_ret
 
 BattleAnim_Flamethrower:
+	anim_setobjpal PAL_BATTLE_OB_RED, PAL_BTLCUSTOM_FIRE
 	anim_1gfx BATTLE_ANIM_GFX_FIRE
 	anim_sound 6, 2, SFX_EMBER
 	anim_obj BATTLE_ANIM_OBJ_FLAMETHROWER, 64, 92, $3
@@ -1286,6 +1290,7 @@ BattleAnim_Flamethrower:
 	anim_ret
 
 BattleAnim_FireBlast:
+	anim_setobjpal PAL_BATTLE_OB_RED, PAL_BTLCUSTOM_FIRE
 	anim_1gfx BATTLE_ANIM_GFX_FIRE
 .loop1
 	anim_sound 6, 2, SFX_EMBER
@@ -3818,6 +3823,7 @@ BattleAnim_Nightmare:
 	anim_ret
 
 BattleAnim_FlameCharge:
+	anim_setobjpal PAL_BATTLE_OB_RED, PAL_BTLCUSTOM_FIRE
 	anim_1gfx BATTLE_ANIM_GFX_FIRE
 .loop
 	anim_sound 0, 0, SFX_EMBER
@@ -4636,6 +4642,7 @@ BattleAnim_PainSplit:
 
 BattleAnim_FlareBlitz:
 BattleAnim_SacredFire:
+	anim_setobjpal PAL_BATTLE_OB_RED, PAL_BTLCUSTOM_FIRE
 	anim_1gfx BATTLE_ANIM_GFX_FIRE
 	anim_bgeffect BATTLE_BG_EFFECT_CYCLE_OBPALS_GRAY_AND_YELLOW, $0, $2, $0
 	anim_bgeffect BATTLE_BG_EFFECT_ALTERNATE_HUES, $0, $2, $0
