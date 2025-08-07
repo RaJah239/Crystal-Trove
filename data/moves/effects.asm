@@ -3,7 +3,6 @@ INCLUDE "data/moves/effects_pointers.asm"
 MoveEffects: ; used only for BANK(MoveEffects)
 
 NormalHit:
-	checkobedience
 	usedmovetext
 	doturn
 	critical
@@ -22,7 +21,6 @@ NormalHit:
 	endmove
 
 DoSleep:
-	checkobedience
 	usedmovetext
 	doturn
 	checkhit
@@ -32,7 +30,6 @@ DoSleep:
 	endmove
 
 PoisonHit:
-	checkobedience
 	usedmovetext
 	doturn
 	critical
@@ -52,7 +49,6 @@ PoisonHit:
 	endmove
 
 LeechHit:
-	checkobedience
 	usedmovetext
 	doturn
 	critical
@@ -72,7 +68,6 @@ LeechHit:
 	endmove
 
 BurnHit:
-	checkobedience
 	usedmovetext
 	doturn
 	critical
@@ -92,7 +87,6 @@ BurnHit:
 	endmove
 
 FreezeHit:
-	checkobedience
 	usedmovetext
 	doturn
 	critical
@@ -112,7 +106,6 @@ FreezeHit:
 	endmove
 
 ParalyzeHit:
-	checkobedience
 	usedmovetext
 	doturn
 	critical
@@ -132,7 +125,6 @@ ParalyzeHit:
 	endmove
 
 Selfdestruct:
-	checkobedience
 	usedmovetext
 	doturn
 	critical
@@ -152,7 +144,6 @@ Selfdestruct:
 	endmove
 
 DreamEater:
-	checkobedience
 	usedmovetext
 	doturn
 	critical
@@ -171,7 +162,6 @@ DreamEater:
 	endmove
 
 AttackUp:
-	checkobedience
 	usedmovetext
 	doturn
 	attackup
@@ -183,7 +173,6 @@ AttackUp:
 	endmove
 
 DefenseUp:
-	checkobedience
 	usedmovetext
 	doturn
 	defenseup
@@ -195,7 +184,6 @@ DefenseUp:
 	endmove
 
 SpeedUp:
-	checkobedience
 	usedmovetext
 	doturn
 	speedup
@@ -207,7 +195,6 @@ SpeedUp:
 	endmove
 
 SpecialAttackUp:
-	checkobedience
 	usedmovetext
 	doturn
 	specialattackup
@@ -219,7 +206,6 @@ SpecialAttackUp:
 	endmove
 
 SpecialDefenseUp:
-	checkobedience
 	usedmovetext
 	doturn
 	specialdefenseup
@@ -231,7 +217,6 @@ SpecialDefenseUp:
 	endmove
 
 AccuracyUp:
-	checkobedience
 	usedmovetext
 	doturn
 	accuracyup
@@ -243,7 +228,6 @@ AccuracyUp:
 	endmove
 
 EvasionUp:
-	checkobedience
 	usedmovetext
 	doturn
 	lowersub
@@ -256,7 +240,6 @@ EvasionUp:
 	endmove
 
 AttackUp2:
-	checkobedience
 	usedmovetext
 	doturn
 	attackup2
@@ -268,7 +251,6 @@ AttackUp2:
 	endmove
 
 DefenseUp2:
-	checkobedience
 	usedmovetext
 	doturn
 	defenseup2
@@ -280,7 +262,6 @@ DefenseUp2:
 	endmove
 
 SpeedUp2:
-	checkobedience
 	usedmovetext
 	doturn
 	speedup2
@@ -292,7 +273,6 @@ SpeedUp2:
 	endmove
 
 SpecialAttackUp2:
-	checkobedience
 	usedmovetext
 	doturn
 	specialattackup2
@@ -304,7 +284,6 @@ SpecialAttackUp2:
 	endmove
 
 SpecialDefenseUp2:
-	checkobedience
 	usedmovetext
 	doturn
 	specialdefenseup2
@@ -316,7 +295,6 @@ SpecialDefenseUp2:
 	endmove
 
 AccuracyUp2:
-	checkobedience
 	usedmovetext
 	doturn
 	accuracyup2
@@ -328,7 +306,6 @@ AccuracyUp2:
 	endmove
 
 EvasionUp2:
-	checkobedience
 	usedmovetext
 	doturn
 	evasionup2
@@ -340,7 +317,6 @@ EvasionUp2:
 	endmove
 
 AttackDown:
-	checkobedience
 	usedmovetext
 	doturn
 	checkhit
@@ -353,7 +329,6 @@ AttackDown:
 	endmove
 
 DefenseDown:
-	checkobedience
 	usedmovetext
 	doturn
 	checkhit
@@ -366,7 +341,6 @@ DefenseDown:
 	endmove
 
 SpeedDown:
-	checkobedience
 	usedmovetext
 	doturn
 	checkhit
@@ -379,7 +353,6 @@ SpeedDown:
 	endmove
 
 SpecialAttackDown:
-	checkobedience
 	usedmovetext
 	doturn
 	checkhit
@@ -392,7 +365,6 @@ SpecialAttackDown:
 	endmove
 
 SpecialDefenseDown:
-	checkobedience
 	usedmovetext
 	doturn
 	checkhit
@@ -405,7 +377,6 @@ SpecialDefenseDown:
 	endmove
 
 AccuracyDown:
-	checkobedience
 	usedmovetext
 	doturn
 	checkhit
@@ -418,7 +389,6 @@ AccuracyDown:
 	endmove
 
 EvasionDown:
-	checkobedience
 	usedmovetext
 	doturn
 	checkhit
@@ -431,7 +401,6 @@ EvasionDown:
 	endmove
 
 AttackDown2:
-	checkobedience
 	usedmovetext
 	doturn
 	checkhit
@@ -444,7 +413,6 @@ AttackDown2:
 	endmove
 
 DefenseDown2:
-	checkobedience
 	usedmovetext
 	doturn
 	checkhit
@@ -457,7 +425,6 @@ DefenseDown2:
 	endmove
 
 SpeedDown2:
-	checkobedience
 	usedmovetext
 	doturn
 	checkhit
@@ -471,7 +438,6 @@ SpeedDown2:
 	endmove
 
 SpecialAttackDown2:
-	checkobedience
 	usedmovetext
 	doturn
 	checkhit
@@ -484,7 +450,6 @@ SpecialAttackDown2:
 	endmove
 
 SpecialDefenseDown2:
-	checkobedience
 	usedmovetext
 	doturn
 	checkhit
@@ -497,7 +462,6 @@ SpecialDefenseDown2:
 	endmove
 
 AccuracyDown2:
-	checkobedience
 	usedmovetext
 	doturn
 	checkhit
@@ -510,7 +474,6 @@ AccuracyDown2:
 	endmove
 
 EvasionDown2:
-	checkobedience
 	usedmovetext
 	doturn
 	checkhit
@@ -523,7 +486,6 @@ EvasionDown2:
 	endmove
 
 AttackDownHit:
-	checkobedience
 	usedmovetext
 	doturn
 	critical
@@ -544,7 +506,6 @@ AttackDownHit:
 	endmove
 
 DefenseDownHit:
-	checkobedience
 	usedmovetext
 	doturn
 	critical
@@ -565,7 +526,6 @@ DefenseDownHit:
 	endmove
 
 SpeedDownHit:
-	checkobedience
 	usedmovetext
 	doturn
 	critical
@@ -586,7 +546,6 @@ SpeedDownHit:
 	endmove
 
 SpecialAttackDownHit:
-	checkobedience
 	usedmovetext
 	doturn
 	critical
@@ -607,7 +566,6 @@ SpecialAttackDownHit:
 	endmove
 
 SpecialDefenseDownHit:
-	checkobedience
 	usedmovetext
 	doturn
 	critical
@@ -628,7 +586,6 @@ SpecialDefenseDownHit:
 	endmove
 
 AccuracyDownHit:
-	checkobedience
 	usedmovetext
 	doturn
 	critical
@@ -649,7 +606,6 @@ AccuracyDownHit:
 	endmove
 
 EvasionDownHit:
-	checkobedience
 	usedmovetext
 	doturn
 	critical
@@ -670,7 +626,6 @@ EvasionDownHit:
 	endmove
 
 DefenseUpHit:
-	checkobedience
 	usedmovetext
 	doturn
 	critical
@@ -691,7 +646,6 @@ DefenseUpHit:
 	endmove
 
 AttackUpHit:
-	checkobedience
 	usedmovetext
 	doturn
 	critical
@@ -712,7 +666,6 @@ AttackUpHit:
 	endmove
 
 AllUpHit:
-	checkobedience
 	usedmovetext
 	doturn
 	critical
@@ -732,7 +685,6 @@ AllUpHit:
 	endmove
 
 ResetStats:
-	checkobedience
 	usedmovetext
 	doturn
 	resetstats
@@ -740,7 +692,6 @@ ResetStats:
 
 Rampage:
 	checkrampage
-	checkobedience
 	doturn
 	rampage
 	usedmovetext
@@ -761,7 +712,6 @@ Rampage:
 	endmove
 
 ForceSwitch:
-	checkobedience
 	usedmovetext
 	doturn
 	checkhit
@@ -769,7 +719,6 @@ ForceSwitch:
 	endmove
 
 MultiHit:
-	checkobedience
 	usedmovetext
 	doturn
 	startloop
@@ -794,7 +743,6 @@ MultiHit:
 	endmove
 
 PoisonMultiHit:
-	checkobedience
 	usedmovetext
 	doturn
 	startloop
@@ -821,7 +769,6 @@ PoisonMultiHit:
 	endmove
 
 FlinchHit:
-	checkobedience
 	usedmovetext
 	doturn
 	critical
@@ -841,7 +788,6 @@ FlinchHit:
 	endmove
 
 RecoilHit:
-	checkobedience
 	usedmovetext
 	doturn
 	critical
@@ -861,21 +807,18 @@ RecoilHit:
 	endmove
 
 Mist:
-	checkobedience
 	usedmovetext
 	doturn
 	mist
 	endmove
 
 FocusEnergy:
-	checkobedience
 	usedmovetext
 	doturn
 	focusenergy
 	endmove
 
 DoConfuse:
-	checkobedience
 	usedmovetext
 	doturn
 	checkhit
@@ -884,7 +827,6 @@ DoConfuse:
 	endmove
 
 ConfuseHit:
-	checkobedience
 	usedmovetext
 	doturn
 	critical
@@ -904,14 +846,12 @@ ConfuseHit:
 	endmove
 
 Heal:
-	checkobedience
 	usedmovetext
 	doturn
 	heal
 	endmove
 
 Transform:
-	checkobedience
 	usedmovetext
 	doturn
 	transform
@@ -919,14 +859,12 @@ Transform:
 
 LightScreen:
 Reflect:
-	checkobedience
 	usedmovetext
 	doturn
 	screen
 	endmove
 
 TriAttack:
-	checkobedience
 	usedmovetext
 	doturn
 	critical
@@ -946,7 +884,6 @@ TriAttack:
 
 Toxic:
 DoPoison:
-	checkobedience
 	usedmovetext
 	doturn
 	checkhit
@@ -957,7 +894,6 @@ DoPoison:
 	endmove
 
 DoParalyze:
-	checkobedience
 	usedmovetext
 	doturn
 	stab
@@ -968,14 +904,12 @@ DoParalyze:
 	endmove
 
 Substitute:
-	checkobedience
 	usedmovetext
 	doturn
 	substitute
 	endmove
 
 HyperBeam:
-	checkobedience
 	usedmovetext
 	doturn
 	critical
@@ -994,14 +928,12 @@ HyperBeam:
 	endmove
 
 Metronome:
-	checkobedience
 	usedmovetext
 	doturn
 	metronome
 	endmove
 
 LeechSeed:
-	checkobedience
 	usedmovetext
 	doturn
 	checkhit
@@ -1009,14 +941,12 @@ LeechSeed:
 	endmove
 
 Splash:
-	checkobedience
 	usedmovetext
 	doturn
 	splash
 	endmove
 
 Disable:
-	checkobedience
 	usedmovetext
 	doturn
 	checkhit
@@ -1025,7 +955,6 @@ Disable:
 
 Fly:
 	checkcharge
-	checkobedience
 	doturn
 	charge
 	usedmovetext
@@ -1046,7 +975,6 @@ Fly:
 	endmove
 
 TrapTarget:
-	checkobedience
 	usedmovetext
 	doturn
 	checkhit
@@ -1067,7 +995,6 @@ TrapTarget:
 
 SuperFang:
 StaticDamage:
-	checkobedience
 	usedmovetext
 	doturn
 	constantdamage
@@ -1081,7 +1008,6 @@ StaticDamage:
 	endmove
 
 Reversal:
-	checkobedience
 	usedmovetext
 	doturn
 	constantdamage
@@ -1096,7 +1022,6 @@ Reversal:
 	endmove
 
 Counter:
-	checkobedience
 	usedmovetext
 	doturn
 	counter
@@ -1108,7 +1033,6 @@ Counter:
 	endmove
 
 Encore:
-	checkobedience
 	usedmovetext
 	doturn
 	checkhit
@@ -1116,7 +1040,6 @@ Encore:
 	endmove
 
 PainSplit:
-	checkobedience
 	usedmovetext
 	doturn
 	checkhit
@@ -1124,7 +1047,6 @@ PainSplit:
 	endmove
 
 Snore:
-	checkobedience
 	usedmovetext
 	doturn
 	critical
@@ -1146,35 +1068,30 @@ Snore:
 	endmove
 
 Sketch:
-	checkobedience
 	usedmovetext
 	doturn
 	sketch
 	endmove
 
 DefrostOpponent:
-	checkobedience
 	usedmovetext
 	doturn
 	defrostopponent
 	endmove
 
 SleepTalk:
-	checkobedience
 	usedmovetext
 	doturn
 	sleeptalk
 	endmove
 
 DestinyBond:
-	checkobedience
 	usedmovetext
 	doturn
 	destinybond
 	endmove
 
 Spite:
-	checkobedience
 	usedmovetext
 	doturn
 	checkhit
@@ -1182,7 +1099,6 @@ Spite:
 	endmove
 
 FalseSwipe:
-	checkobedience
 	usedmovetext
 	doturn
 	critical
@@ -1202,14 +1118,12 @@ FalseSwipe:
 	endmove
 
 HealBell:
-	checkobedience
 	usedmovetext
 	doturn
 	healbell
 	endmove
 
 Thief:
-	checkobedience
 	usedmovetext
 	doturn
 	critical
@@ -1230,21 +1144,18 @@ Thief:
 	endmove
 
 MeanLook:
-	checkobedience
 	usedmovetext
 	doturn
 	arenatrap
 	endmove
 
 Nightmare:
-	checkobedience
 	usedmovetext
 	doturn
 	nightmare
 	endmove
 
 FlameWheel:
-	checkobedience
 	usedmovetext
 	doturn
 	critical
@@ -1265,28 +1176,24 @@ FlameWheel:
 	endmove
 
 Curse:
-	checkobedience
 	usedmovetext
 	doturn
 	curse
 	endmove
 
 Protect:
-	checkobedience
 	usedmovetext
 	doturn
 	protect
 	endmove
 
 Spikes:
-	checkobedience
 	usedmovetext
 	doturn
 	spikes
 	endmove
 
 Foresight:
-	checkobedience
 	usedmovetext
 	doturn
 	checkhit
@@ -1294,21 +1201,18 @@ Foresight:
 	endmove
 
 PerishSong:
-	checkobedience
 	usedmovetext
 	doturn
 	perishsong
 	endmove
 
 Sandstorm:
-	checkobedience
 	usedmovetext
 	doturn
 	startsandstorm
 	endmove
 
 Endure:
-	checkobedience
 	usedmovetext
 	doturn
 	endure
@@ -1316,7 +1220,6 @@ Endure:
 
 Rollout:
 	checkcurl
-	checkobedience
 	doturn
 	usedmovetext
 	critical
@@ -1336,7 +1239,6 @@ Rollout:
 	endmove
 
 Swagger:
-	checkobedience
 	usedmovetext
 	doturn
 	checkhit
@@ -1354,7 +1256,6 @@ Swagger:
 	endmove
 
 Attract:
-	checkobedience
 	usedmovetext
 	doturn
 	checkhit
@@ -1362,7 +1263,6 @@ Attract:
 	endmove
 
 Return:
-	checkobedience
 	usedmovetext
 	doturn
 	critical
@@ -1382,14 +1282,12 @@ Return:
 	endmove
 
 Safeguard:
-	checkobedience
 	usedmovetext
 	doturn
 	safeguard
 	endmove
 
 SacredFire:
-	checkobedience
 	usedmovetext
 	doturn
 	critical
@@ -1410,14 +1308,12 @@ SacredFire:
 	endmove
 
 BatonPass:
-	checkobedience
 	usedmovetext
 	doturn
 	batonpass
 	endmove
 
 Pursuit:
-	checkobedience
 	usedmovetext
 	doturn
 	critical
@@ -1437,7 +1333,6 @@ Pursuit:
 	endmove
 
 RapidSpin:
-	checkobedience
 	usedmovetext
 	doturn
 	critical
@@ -1457,14 +1352,12 @@ RapidSpin:
 	endmove
 
 WeatherHeal:
-	checkobedience
 	usedmovetext
 	doturn
 	weatherheal
 	endmove
 
 HiddenPower:
-	checkobedience
 	usedmovetext
 	doturn
 	critical
@@ -1483,28 +1376,24 @@ HiddenPower:
 	endmove
 
 RainDance:
-	checkobedience
 	usedmovetext
 	doturn
 	startrain
 	endmove
 
 SunnyDay:
-	checkobedience
 	usedmovetext
 	doturn
 	startsun
 	endmove
 
 BellyDrum:
-	checkobedience
 	usedmovetext
 	doturn
 	bellydrum
 	endmove
 
 MirrorCoat:
-	checkobedience
 	usedmovetext
 	doturn
 	mirrorcoat
@@ -1516,7 +1405,6 @@ MirrorCoat:
 	endmove
 
 Earthquake:
-	checkobedience
 	usedmovetext
 	doturn
 	critical
@@ -1536,7 +1424,6 @@ Earthquake:
 	endmove
 
 Gust:
-	checkobedience
 	usedmovetext
 	doturn
 	critical
@@ -1555,7 +1442,6 @@ Gust:
 	endmove
 
 Stomp:
-	checkobedience
 	usedmovetext
 	doturn
 	critical
@@ -1577,7 +1463,6 @@ Stomp:
 
 Solarbeam:
 	checkcharge
-	checkobedience
 	doturn
 	skipsuncharge
 	charge
@@ -1598,7 +1483,6 @@ Solarbeam:
 	endmove
 
 Thunder:
-	checkobedience
 	usedmovetext
 	doturn
 	critical
@@ -1619,14 +1503,12 @@ Thunder:
 	endmove
 
 Teleport:
-	checkobedience
 	usedmovetext
 	doturn
 	teleport
 	endmove
 
 DefenseCurl:
-	checkobedience
 	usedmovetext
 	doturn
 	defenseup
@@ -1658,49 +1540,42 @@ HitAndSwitch:
 	endmove
 
 Hail:
-	checkobedience
 	usedmovetext
 	doturn
 	farcommand
 	endmove
 
 StealthRock:
-	checkobedience
 	usedmovetext
 	doturn
 	stealthrock
 	endmove
 
 ToxicSpikes:
-	checkobedience
 	usedmovetext
 	doturn
 	farcommand
 	endmove
 
 StickyWeb:
-	checkobedience
 	usedmovetext
 	doturn
 	stickyweb
 	endmove
 
 TrickRoom:
-	checkobedience
 	usedmovetext
 	doturn
 	farcommand
 	endmove
 
 Defog:
-	checkobedience
 	usedmovetext
 	doturn
 	defog
 	endmove
 
 Taunt:
-	checkobedience
 	usedmovetext
 	doturn
 	checkhit
@@ -1708,42 +1583,36 @@ Taunt:
 	endmove
 
 BulkUp:
-	checkobedience
 	usedmovetext
 	doturn
 	bulkup
 	endmove
 
 CalmMind:
-	checkobedience
 	usedmovetext
 	doturn
 	calmmind
 	endmove
 
 DragonDance:
-	checkobedience
 	usedmovetext
 	doturn
 	dragondance
 	endmove
 
 QuiverDance:
-	checkobedience
 	usedmovetext
 	doturn
 	quiverdance
 	endmove
 
 NaturalCure:
-	checkobedience
 	usedmovetext
 	doturn
 	farcommand
 	endmove
 
 DoBurn:
-	checkobedience
 	usedmovetext
 	doturn
 	stab
@@ -1753,7 +1622,6 @@ DoBurn:
 	endmove
 
 CloseCombat:
-	checkobedience
 	usedmovetext
 	doturn
 	critical
@@ -1774,7 +1642,6 @@ CloseCombat:
 	endmove
 
 SpeedUpHit:
-	checkobedience
 	usedmovetext
 	doturn
 	critical
@@ -1795,7 +1662,6 @@ SpeedUpHit:
 	endmove
 
 Hex:
-	checkobedience
 	usedmovetext
 	doturn
 	critical
@@ -1815,7 +1681,6 @@ Hex:
 	endmove
 
 Facade:
-	checkobedience
 	usedmovetext
 	doturn
 	critical
@@ -1835,7 +1700,6 @@ Facade:
 	endmove
 
 Hurricane:
-	checkobedience
 	usedmovetext
 	doturn
 	critical
@@ -1857,7 +1721,6 @@ Hurricane:
 	endmove
 
 SpAtkUpHit:
-	checkobedience
 	usedmovetext
 	doturn
 	critical
@@ -1878,7 +1741,6 @@ SpAtkUpHit:
 	endmove
 
 FlareBlitz:
-	checkobedience
 	usedmovetext
 	doturn
 	critical
@@ -1901,7 +1763,6 @@ FlareBlitz:
 	endmove
 
 SuckerPunch:
-	checkobedience
 	usedmovetext
 	doturn
 	farcommand
@@ -1921,7 +1782,6 @@ SuckerPunch:
 	endmove
 
 Revenge:
-	checkobedience
 	usedmovetext
 	doturn
 	critical
@@ -1941,7 +1801,6 @@ Revenge:
 	endmove
 
 Barrier:
-	checkobedience
 	usedmovetext
 	doturn
 	farcommand
