@@ -3227,7 +3227,7 @@ wDayCareSceneID::                                 db
 wRoute38EcruteakGateSceneID::                     db
 wRoute42EcruteakGateSceneID::                     db
 wRoute30SceneID::                                 db
-	ds 171
+	ds 144
 
 wAbilityPageMode:: db
 
