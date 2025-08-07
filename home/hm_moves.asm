@@ -15,4 +15,5 @@ IsHMMove::
 	jp IsInArray
 
 .HMMoves:
+	db FLY
 	db -1 ; end
