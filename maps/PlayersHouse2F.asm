@@ -48,12 +48,12 @@ if DEF(_DEBUG)
 	; key items
 	givemoney YOUR_MONEY, MAX_MONEY
 	giveitem TANGELA_CALL
-	giveitem BICYCLE
-	giveitem COIN_CASE
-	givecoins MAX_COINS
 	giveitem OLD_ROD
 	giveitem GOOD_ROD
 	giveitem SUPER_ROD
+	giveitem BICYCLE
+	giveitem COIN_CASE
+	givecoins MAX_COINS
 	giveitem MAREEP_CALL
 	giveitem SCYTHER_CALL
 	giveitem DONPHAN_CALL
@@ -234,13 +234,7 @@ else
 endc
 
 PlayersHouseBookshelfScript:
-if DEF(_DEBUG)
-	special FadeOutToWhite
-	warp CHERRYGROVE_CITY, 29,  4 ; Map, coordinates via Polished Map
-	end
-else
 	jumpstd PictureBookshelfScript
-endc
 
 PlayersHousePCScript:
 	opentext
@@ -316,5 +310,5 @@ PlayersHouse2F_MapEvents:
 	object_event  0,  1, SPRITE_BIG_DOLL, SPRITEMOVEDATA_BIGDOLL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, PlayersHouseBigDollScript, EVENT_PLAYERS_HOUSE_2F_BIG_DOLL
 if DEF(_DEBUG)
 	object_event  4,  2, SPRITE_RED, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, TestScript, -1
-	object_event  6,  2, SPRITE_BLUE, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, TestWarpScript, -1
+	object_event  7,  5, SPRITE_BLUE, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, TestWarpScript, -1
 endc
