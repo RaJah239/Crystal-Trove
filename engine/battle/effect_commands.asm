@@ -1,10 +1,8 @@
 DoPlayerTurn:
 	call SetPlayerTurn
-
 	ld a, [wBattlePlayerAction]
 	and a ; BATTLEPLAYERACTION_USEMOVE?
 	ret nz
-
 	jr DoTurn
 
 DoEnemyTurn:
@@ -1012,7 +1010,7 @@ BattleCommand_Stab:
 	ld [wCurDamage + 1], a
 
 	ld hl, wTypeModifier
-	set 7, [hl]
+	set STAB_DAMAGE_F, [hl]
 
 .SkipStab:
 	ld a, BATTLE_VARS_MOVE_TYPE
@@ -1064,7 +1062,7 @@ BattleCommand_Stab:
 	push bc
 	inc hl
 	ld a, [wTypeModifier]
-	and %10000000
+	and STAB_DAMAGE
 	ld b, a
 ; If the target is immune to the move, treat it as a miss and calculate the damage as 0
 	call GetNextTypeMatchupsByte
@@ -1116,7 +1114,7 @@ BattleCommand_Stab:
 	jr nz, .solidRock
 
 	ld a, [wTypeModifier]
-	and $7f
+	and EFFECTIVENESS_MASK
     cp EFFECTIVE
 	jr nc, .applyExpertBelt
 	jr .solidRock
@@ -1144,7 +1142,7 @@ BattleCommand_Stab:
 
 .checkSolidRock
     ld a, [wTypeModifier]
-	and $7f
+	and EFFECTIVENESS_MASK
     cp EFFECTIVE
 	jr nc, .applySolidRock
 	jr .continue
@@ -1192,7 +1190,7 @@ BattleCommand_Stab:
 	ld a, [wTypeMatchup]
 	ld b, a
 	ld a, [wTypeModifier]
-	and %10000000
+	and STAB_DAMAGE
 	or b
 	ld [wTypeModifier], a
 	ret
@@ -1327,7 +1325,7 @@ BattleCommand_Burn:
 	bit BRN, a
 	jr nz, .burn
 	ld a, [wTypeModifier]
-	and $7f
+	and EFFECTIVENESS_MASK
 	jr z, .didnt_affect
 
 	ld a, BATTLE_VARS_STATUS_OPP
@@ -2094,7 +2092,7 @@ GetFailureResultText:
 	ld hl, DoesntAffectText
 	ld de, DoesntAffectText
 	ld a, [wTypeModifier]
-	and $7f
+	and EFFECTIVENESS_MASK
 	jr z, .got_text
 	farcall BattleMissAnim
 	ld hl, AttackMissedText
@@ -2110,7 +2108,7 @@ GetFailureResultText:
 	ret nz
 
 	ld a, [wTypeModifier]
-	and $7f
+	and EFFECTIVENESS_MASK
 	ret z
 
 	ld hl, wCurDamage
@@ -2189,19 +2187,32 @@ BattleCommand_SuperEffectiveLoopText:
 	; fallthrough
 
 BattleCommand_SuperEffectiveText:
-	ld a, [wTypeModifier]
-	and $7f
-	cp EFFECTIVE
-	ret z
-	
 	; Skip effectiveness text if fast battles is on
 	call CheckIfFastBattlesIsOn
 	ret nz
 
+	ld a, [wTypeModifier]
+	and EFFECTIVENESS_MASK
+	cp EFFECTIVE
+	ret z
+
+	; 4x damage
+	cp EXTREMELY_EFFECTIVE
+	ld hl, ExtremelyEffectiveText
+	jp z, StdBattleTextbox
+
+	; 2x damage
+	cp SUPER_EFFECTIVE
 	ld hl, SuperEffectiveText
-	jr nc, .print
+	jp z, StdBattleTextbox
+
+	; 0.5x damage
+	cp NOT_VERY_EFFECTIVE
 	ld hl, NotVeryEffectiveText
-.print
+	jp z, StdBattleTextbox
+
+	; 0.25x damage
+	ld hl, MostlyIneffectiveText
 	jp StdBattleTextbox
 
 BattleCommand_CheckFaint:
@@ -3835,7 +3846,7 @@ BattleCommand_PoisonTarget:
 	and a
 	ret nz
 	ld a, [wTypeModifier]
-	and $7f
+	and EFFECTIVENESS_MASK
 	ret z
 	ld a, POISON ; Don't poison a Poison-type
 	call CheckIfTargetIsGivenType
@@ -3867,7 +3878,7 @@ BattleCommand_PoisonTarget:
 BattleCommand_Poison:
 	ld hl, DoesntAffectText
 	ld a, [wTypeModifier]
-	and $7f
+	and EFFECTIVENESS_MASK
 	jp z, .failed
 
 	ld a, POISON
@@ -4087,7 +4098,7 @@ BattleCommand_BurnTarget:
 	and a
 	jp nz, Defrost
 	ld a, [wTypeModifier]
-	and $7f
+	and EFFECTIVENESS_MASK
 	ret z
 	ld a, FIRE ; Don't burn a Fire-type
 	call CheckIfTargetIsGivenType
@@ -4152,7 +4163,7 @@ BattleCommand_FreezeTarget:
 	and a
 	ret nz
 	ld a, [wTypeModifier]
-	and $7f
+	and EFFECTIVENESS_MASK
 	ret z
 	ld a, [wBattleWeather]
 	cp WEATHER_SUN
@@ -4195,7 +4206,7 @@ BattleCommand_ParalyzeTarget:
 	and a
 	ret nz
 	ld a, [wTypeModifier]
-	and $7f
+	and EFFECTIVENESS_MASK
 	ret z
 	call GetOpponentItem
 	ld a, b
@@ -5873,7 +5884,7 @@ BattleCommand_Paralyze:
 	call CheckForStatusIfAlreadyHasAny
 	jr nz, .paralyzed
 	ld a, [wTypeModifier]
-	and $7f
+	and EFFECTIVENESS_MASK
 	jr z, .didnt_affect
 	call GetOpponentItem
 	ld a, b
