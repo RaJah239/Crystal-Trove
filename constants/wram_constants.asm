@@ -381,3 +381,11 @@ DEF NUM_UNLOCKED_UNOWN_SETS EQU const_value
 	const SCAN_OBJECTS_FIRST_F ; 1
 	const USE_DAYTIME_PAL_F    ; 2
 	const DISABLE_DYN_PAL_F    ; 3
+
+; wTrainerStars
+	const_def
+	const TRAINER_STAR_HALLOFFAME_F
+	const TRAINER_STAR_POKEDEX_F
+	const TRAINER_STAR_3_F
+	const TRAINER_STAR_4_F
+	const TRAINER_STAR_5_F

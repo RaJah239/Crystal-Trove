@@ -188,4 +188,12 @@
 ; wSwarmFlags ; can have 8 daily swarm flags which are really daily flags
 	const ENGINE_DUNSPARCE_SWARM ; presently unused in Crystal Trove
 	const ENGINE_YANMA_SWARM ; presently unused in Crystal Trove
+
+; wTrainerStars
+	const ENGINE_TRAINER_STAR_HALLOFFAME
+	const ENGINE_TRAINER_STAR_POKEDEX
+	const ENGINE_TRAINER_STAR_3
+	const ENGINE_TRAINER_STAR_4
+	const ENGINE_TRAINER_STAR_5
+
 DEF NUM_ENGINE_FLAGS EQU const_value

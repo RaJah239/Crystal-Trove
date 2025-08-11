@@ -773,3 +773,8 @@ INCLUDE "gfx/timeofday_images.asm"
 SECTION "Heal Machine Animation", ROMX
 
 INCLUDE "engine/events/heal_machine_anim.asm"
+
+
+SECTION "Trainer Stars", ROMX
+
+INCLUDE "engine/events/trainer_stars.asm"

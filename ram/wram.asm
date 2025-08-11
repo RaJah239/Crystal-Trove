@@ -3320,8 +3320,8 @@ wYanmaMapNumber:: db
 wPlayerMonSelection:: ds 3
 wdc5f:: db
 wdc60:: db
-
-	ds 19
+wTrainerStars:: db
+	ds 18
 
 wStepCount:: db
 wStepCountHi:: db

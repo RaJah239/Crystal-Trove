@@ -198,4 +198,10 @@ EngineFlags:
 	engine_flag wSwarmFlags, SWARMFLAGS_DUNSPARCE_SWARM_F
 	engine_flag wSwarmFlags, SWARMFLAGS_YANMA_SWARM_F
 
+	engine_flag wTrainerStars, TRAINER_STAR_HALLOFFAME_F
+	engine_flag wTrainerStars, TRAINER_STAR_POKEDEX_F
+	engine_flag wTrainerStars, TRAINER_STAR_3_F
+	engine_flag wTrainerStars, TRAINER_STAR_4_F
+	engine_flag wTrainerStars, TRAINER_STAR_5_F
+
 	assert_table_length NUM_ENGINE_FLAGS
