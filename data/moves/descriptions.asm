@@ -1046,8 +1046,8 @@ PursuitDescription:
 	line "switching #MON.@"
 
 RapidSpinDescription:
-	db   "A high-speed"
-	line "spinning attack.@"
+	db   "Removes Spikes and"
+	line "boosts Speed.@"
 
 WillOWispDescription:
 	db   "A move that may"

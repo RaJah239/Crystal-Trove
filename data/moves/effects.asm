@@ -1341,6 +1341,7 @@ RapidSpin:
 	stab
 	damagevariation
 	checkhit
+	effectchance
 	moveanim
 	failuretext
 	applydamage
@@ -1348,6 +1349,8 @@ RapidSpin:
 	supereffectivetext
 	clearhazards
 	checkfaint
+	speedup
+	statupmessage
 	kingsrock
 	endmove
 
