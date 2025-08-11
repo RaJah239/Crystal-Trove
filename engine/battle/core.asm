@@ -4908,6 +4908,7 @@ Battle_DummyFunction:
 
 BattleMenu:
 	xor a
+	ld [wCurrentBattleWindow], a
 	ldh [hBGMapMode], a
 	call LoadTempTilemapToTilemap
 	farcall GetTimeOfDayImage
@@ -4937,6 +4938,7 @@ BattleMenu:
 	jr z, .skip_dude_pack_select
 	farcall _DudeAutoInput_DownA
 .skip_dude_pack_select
+	farcall PlaceSelectIcon
 	call LoadBattleMenu2
 	ret c
 
@@ -4955,6 +4957,8 @@ BattleMenu:
 	jr .loop
 
 BattleMenu_Fight:
+	ld a, 1
+	ld [wCurrentBattleWindow], a
 	call ClearSprites
 	xor a
 	ld [wNumFleeAttempts], a
@@ -5008,6 +5012,8 @@ BattleMenu_Pack:
 	cp BATTLETYPE_CONTEST
 	jr z, .contest
 
+	ld a, 2
+	ld [wCurrentBattleWindow], a
 	farcall BattlePack
 	ld a, [wBattlePlayerAction]
 	and a ; BATTLEPLAYERACTION_USEMOVE?
@@ -5095,6 +5101,8 @@ BattleMenu_Pack:
 	ret
 
 BattleMenu_PKMN:
+	ld a, 3
+	ld [wCurrentBattleWindow], a
 	call LoadStandardMenuHeader
 BattleMenuPKMN_ReturnFromStats:
 	call ExitMenu
@@ -5355,6 +5363,8 @@ BattleMenu_Run:
 	call SafeLoadTempTilemapToTilemap
 	ld a, $3
 	ld [wMenuCursorY], a
+	inc a
+	ld [wCurrentBattleWindow], a
 	ld hl, wBattleMonSpeed
 	ld de, wEnemyMonSpeed
 	call TryToRunAwayFromBattle

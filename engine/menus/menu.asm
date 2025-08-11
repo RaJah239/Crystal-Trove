@@ -371,6 +371,9 @@ Menu_WasButtonPressed:
 	callfar PlaySpriteAnimationsAndDelayFrame
 
 .skip_to_joypad
+	ldh a, [hJoyPressed]
+	cp SELECT
+	call z, DisplayEnemyTypes
 	call JoyTextDelay
 	call GetMenuJoypad
 	and a
@@ -667,6 +670,11 @@ _PushWindow::
 	ret
 
 _ExitMenu::
+	; remove select icon when exiting bag
+	ld de, RemoveSelectIndicationText
+	hlcoord 5, 15
+	call PlaceString
+
 	xor a
 	ldh [hBGMapMode], a
 
@@ -704,6 +712,9 @@ _ExitMenu::
 	ld hl, wWindowStackSize
 	dec [hl]
 	ret
+
+RemoveSelectIndicationText:
+ 	db "   @"
 
 RestoreOverworldMapTiles: ; unreferenced
 	ld a, [wStateFlags]
@@ -816,3 +827,38 @@ _InitVerticalMenuCursor::
 	ld [hli], a
 	ld [hli], a
 	ret
+
+DisplayEnemyTypes:
+	ld a, [wBattleMode]
+	and a
+	ret z
+	ld a, [wCurrentBattleWindow]
+	and a
+	ret nz ; Only do this on the main menu of a battle
+
+	; play sound effect
+	ld de, SFX_MENU
+	call PlaySFX
+
+	; place white box
+	hlcoord 1, 0
+	lb bc, 4, 9
+	call ClearBox
+
+	; text box
+	hlcoord 1, 0
+	lb bc, 2, 9
+	call Textbox
+
+	; coordinates of types
+	hlcoord 2, 1 
+	predef PrintEnemyMonTypes
+	; needed to instantly display types 
+	call ApplyTilemap
+
+	ld de, SelectIndicationTextRemoval
+	hlcoord 5, 15
+	jp PlaceString
+
+SelectIndicationTextRemoval:
+    db "   @"

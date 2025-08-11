@@ -75,3 +75,4 @@ PredefPointers::
 	add_predef HOF_AnimateFrontpic
 	add_predef GetMonTypeIndex
 	add_predef GetStatusConditionIndex
+	add_predef PrintEnemyMonTypes
