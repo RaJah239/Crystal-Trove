@@ -670,11 +670,6 @@ _PushWindow::
 	ret
 
 _ExitMenu::
-	; remove select icon when exiting bag
-	ld de, RemoveSelectIndicationText
-	hlcoord 5, 15
-	call PlaceString
-
 	xor a
 	ldh [hBGMapMode], a
 
@@ -712,9 +707,6 @@ _ExitMenu::
 	ld hl, wWindowStackSize
 	dec [hl]
 	ret
-
-RemoveSelectIndicationText:
- 	db "   @"
 
 RestoreOverworldMapTiles: ; unreferenced
 	ld a, [wStateFlags]
@@ -854,11 +846,4 @@ DisplayEnemyTypes:
 	hlcoord 2, 1 
 	predef PrintEnemyMonTypes
 	; needed to instantly display types 
-	call ApplyTilemap
-
-	ld de, SelectIndicationTextRemoval
-	hlcoord 5, 15
-	jp PlaceString
-
-SelectIndicationTextRemoval:
-    db "   @"
+	jp ApplyTilemap

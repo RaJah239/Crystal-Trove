@@ -1133,15 +1133,6 @@ SetUpSelfDVs:
 .notSelf
     ret
 
-PlaceSelectIcon:
-	hlcoord 5, 15
-	ld [hl], "<se>"
-	hlcoord 6, 15
-	ld [hl], "<le>"
-	hlcoord 7, 15
-	ld [hl], "<ct>"
-	ret
-
 TrainerBattleInfo::
 	push hl
 	push de
