@@ -139,6 +139,8 @@
 	charmap "└",         $be
 	charmap "┘",         $bf
 
+	charmap "<in>",      $c1
+	charmap "<fo>",      $c2
 	charmap "<se>",      $c3
 	charmap "<le>",      $c4
 	charmap "<ct>",      $c5
