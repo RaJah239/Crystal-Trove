@@ -5621,22 +5621,6 @@ BattleAnimSub_SpeedLines:
 ;	anim_wait 24
 ;	anim_ret
 
-;BattleAnim_Mimic:
-;	anim_1gfx BATTLE_ANIM_GFX_SPEED
-;	anim_obp0 $fc
-;	anim_sound 63, 3, SFX_LICK
-;	anim_obj BATTLE_ANIM_OBJ_MIMIC, 132, 44, $0
-;	anim_obj BATTLE_ANIM_OBJ_MIMIC, 132, 44, $8
-;	anim_obj BATTLE_ANIM_OBJ_MIMIC, 132, 44, $10
-;	anim_obj BATTLE_ANIM_OBJ_MIMIC, 132, 44, $18
-;	anim_obj BATTLE_ANIM_OBJ_MIMIC, 132, 44, $20
-;	anim_obj BATTLE_ANIM_OBJ_MIMIC, 132, 44, $28
-;	anim_obj BATTLE_ANIM_OBJ_MIMIC, 132, 44, $30
-;	anim_obj BATTLE_ANIM_OBJ_MIMIC, 132, 44, $38
-;	anim_wait 128
-;	anim_wait 48
-;	anim_ret
-
 ;BattleAnim_LockOn:
 ;	anim_1gfx BATTLE_ANIM_GFX_MISC
 ;	anim_sound 0, 1, SFX_MIND_READER

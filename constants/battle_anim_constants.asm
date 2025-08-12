@@ -132,7 +132,6 @@ DEF BATTLEANIM_BASE_TILE EQU 7 * 7  ; Maximum size of a pokemon picture
 	const BATTLE_ANIM_OBJ_SLUDGE_BOMB         ; 62
 	const BATTLE_ANIM_OBJ_PAY_DAY             ; 63
 	const BATTLE_ANIM_OBJ_SONICBOOM_JP_UNUSED ; 64
-	const BATTLE_ANIM_OBJ_MIMIC               ; 65
 	const BATTLE_ANIM_OBJ_ATTRACT             ; 66
 	const BATTLE_ANIM_OBJ_BONEMERANG          ; 67
 	const BATTLE_ANIM_OBJ_BONE_CLUB           ; 68
