@@ -9204,8 +9204,8 @@ FieldWeather:
 	cp WEATHER_NONE
 	jr nz, .doWeather
 
-; set weather and count to 255 turns
-    ld a, 255
+; set weather and count to 8 turns
+    ld a, 8
 	ld [wWeatherCount], a
 	ld a, [wFieldWeather]
     ld [wBattleWeather], a
