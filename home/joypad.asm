@@ -271,7 +271,7 @@ JoyWaitAorB::
 	call UpdateTimeAndPals
 	jr .loop
 
-JoyWaitAorBorDown::
+JoyWaitAorBorHoldBDown::
 	.loop
 		call DelayFrame
 		call GetJoypad
@@ -291,7 +291,7 @@ WaitButton::
 	ld a, 1
 	ldh [hOAMUpdate], a
 	call WaitBGMap
-	call JoyWaitAorBorDown
+	call JoyWaitAorBorHoldBDown
 	pop af
 	ldh [hOAMUpdate], a
 	ret
