@@ -896,6 +896,8 @@ ENDM
 	push bc
 
 	; check if Auto Bicycle is turned on
+	; no need to check if we have the Bicycle item
+	; since we have it due to the Goldenrod check implemented
 	ld a, [wOptions2]
 	bit AUTO_BICYCLE, a
 	jr nz, .AutoBicycle
