@@ -4507,7 +4507,7 @@ BattleCommand_StatDown:
 	add hl, bc
 	ld b, [hl]
 	dec b
-	jp z, .CantLower
+	jr z, .CantLower
 
 ; Sharply lower the stat if applicable.
 	ld a, [wLoweredStat]
