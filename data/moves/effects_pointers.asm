@@ -160,4 +160,5 @@ MoveEffectsPointers:
 	dw Revenge
 	dw NaturalCure
 	dw Barrier
+	dw FakeOut
 	assert_table_length NUM_MOVE_EFFECTS

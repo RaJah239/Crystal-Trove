@@ -45,6 +45,7 @@ AI_Redundant:
 	dbw EFFECT_STEALTH_ROCK, .StealthRock
 	dbw EFFECT_TOXIC_SPIKES, .ToxicSpikes
 	dbw EFFECT_STICKY_WEB,   .StickyWeb
+	dbw EFFECT_FAKE_OUT,     .FakeOut
 	db -1
 
 .LightScreen:
@@ -215,4 +216,9 @@ AI_Redundant:
 
 .NotRedundant:
 	xor a
+	ret
+
+.FakeOut:
+	ld a, [wEnemyTurnsTaken]
+	and a
 	ret

@@ -779,9 +779,22 @@ AI_Smart_EffectHandlers:
 	dbw EFFECT_HAIL,             AI_Smart_Hail
 	dbw EFFECT_FACADE,           AI_Smart_Facade
 	dbw EFFECT_HEX,              AI_Smart_Hex
+	dbw EFFECT_FAKE_OUT,         AI_Smart_FakeOut
 
 	dbw EFFECT_STOMP,            AI_Smart_Stomp
 	db -1 ; end
+
+AI_Smart_FakeOut:
+; Always encourage this on our first turn.
+	; Discouraging is done as part of redundancy checks already.
+	ld a, [wEnemyTurnsTaken]
+	and a
+	ret nz
+
+	dec [hl]
+	dec [hl]
+	dec [hl]
+	ret
 
 AI_Smart_BodyPress:
 ; Encourage this move if enemy's defense level is at least +1.
