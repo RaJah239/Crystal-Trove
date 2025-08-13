@@ -2033,10 +2033,13 @@ FaintYourPokemon:
 	call KOBoost
 	call StopDangerSound
 	call WaitSFX
+	
+	; plays player mon's cry when fainting
 	ld a, $f0
 	ld [wCryTracks], a
 	ld a, [wBattleMonSpecies]
 	call PlayStereoCry
+	
 	call PlayerMonFaintedAnimation
 	hlcoord 9, 7
 	lb bc, 5, 11
@@ -2052,6 +2055,13 @@ FaintYourPokemon:
 FaintEnemyPokemon:
 	call KOBoost
 	call WaitSFX
+
+	; plays enemy mon's cry when fainting
+	ld a, $f
+	ld [wCryTracks], a
+	ld a, [wTempEnemyMonSpecies]
+	call PlayStereoCry
+
 	ld de, SFX_KINESIS
 	call PlaySFX
 	call EnemyMonFaintedAnimation
