@@ -553,7 +553,7 @@ NaturalCureSwitch:
 RainSwitch:
 	ld a, WEATHER_RAIN
 	ld [wBattleWeather], a
-	ld a, 8
+	ld a, 255
 	ld [wWeatherCount], a
     ld a, [wBattleHasJustStarted]
     and a
@@ -566,7 +566,7 @@ RainSwitch:
 SunSwitch:
     ld a, WEATHER_SUN
 	ld [wBattleWeather], a
-	ld a, 8
+	ld a, 255
 	ld [wWeatherCount], a
     ld a, [wBattleHasJustStarted]
     and a
@@ -579,7 +579,7 @@ SunSwitch:
 SandSwitch:
     ld a, WEATHER_SANDSTORM
 	ld [wBattleWeather], a
-	ld a, 8
+	ld a, 255
 	ld [wWeatherCount], a
     ld a, [wBattleHasJustStarted]
     and a
@@ -1140,7 +1140,7 @@ TrainerBattleInfo::
 	xor a
 	ld [wTrainerInfoPage], a
 	call UpdatePageText
-	call StatChangesInfoBox
+	call StatsInfoBox ; StatChangesInfoBox
 	call WaitButtonInfoTrainer
 	pop bc
 	pop de
@@ -1283,6 +1283,34 @@ StatsInfoBox:
 	call StatsInfoBoxLoop
 	ret
 
+FoeAbilityPageInfoBox:
+	hlcoord 0, 0
+	ld b, 14
+	ld c, 18
+	call Textbox
+	ld b, 14
+	ld c, 18
+
+	hlcoord 0, 0
+	ld b, 2
+	ld c, 18
+	call Textbox
+
+	farcall DisplayFoeAbility
+
+	ld de, .FoeString
+	hlcoord 1, 1
+	call PlaceString
+
+	ld de, .AbilitiesString
+	hlcoord 1, 5
+	jp PlaceString
+
+.FoeString:
+	db "Foe:@"
+.AbilitiesString:
+	db "Ability Info:@"
+
 StatsInfoBoxLoop:
 	push hl
 	call CoordsBCtoHL
@@ -1320,7 +1348,7 @@ StatsInfoBoxLoop:
 	pop hl
 	ret
 
-FieldInfoBox:
+FieldStatusPagesLayout:
 	hlcoord 0, 0
 	ld b, 2
 	ld c, 18
@@ -1359,6 +1387,10 @@ FieldInfoBox:
 	jr z, .skip_weather_turns
 	ld de, wStringBuffer5
 	ld a, [wWeatherCount]
+	cp 10
+	ld de, FieldTexts.infinite
+	jr nc, .not_1_turn
+	ld a, [wWeatherCount]
 	add "0"
 	ld [de], a
 	ld a, TX_END
@@ -1383,68 +1415,131 @@ FieldInfoBox:
 	ld de, MainText.enemy
 	call PlaceString
 	lb bc, 1, 5
-	call FieldInfoBoxReflect
-	lb bc, 1, 7
-	call FieldInfoBoxLScreen
-	lb bc, 1, 9
+	ret
+
+FieldInfoBox1:
+	call FieldStatusPagesLayout
+
+; spikes
+	lb bc, 1, 5
 	ld de, FieldTexts.spikes
-	call FieldInfoBoxSpikes
-.player_confuse
+	call FieldInfoBox1Spikes
+
+; toxic spikes
+	lb bc, 1, 6
+	ld de, FieldTexts.toxicspikes
+	call FieldInfoBox1ToxicSpikes
+
+; sticky web
+	lb bc, 1, 7
+	ld de, FieldTexts.stickyweb
+	call FieldInfoBox1StickyWeb
+
+; stealth rock
+	lb bc, 1, 8
+	ld de, FieldTexts.stealthrock
+	call FieldInfoBox1StealthRock
+
+; toxic
+.player_toxic
+	ld a, [wPlayerSubStatus5]
+	bit SUBSTATUS_TOXIC, a
+	jr z, .enemy_toxic
+	lb bc, 1, 9
+	ld de, wPlayerToxicCount
+	call FieldInfoBox1Toxic
+.enemy_toxic
+	ld a, [wEnemySubStatus5]
+	bit SUBSTATUS_TOXIC, a
+	jr z, .handle_reflect
+	lb bc, 11, 9
+	ld de, wEnemyToxicCount
+	call FieldInfoBox1Toxic
+
+.handle_reflect
+; reflect
+	lb bc, 1, 11
+	call FieldInfoBox1Reflect
+; light screen
+	lb bc, 1, 13
+	jp FieldInfoBox1LScreen
+
+FieldInfoBox2: ; just for testing when flipping pages
+	call FieldStatusPagesLayout
+
+; trick room
+	lb bc, 1, 5
+	call FieldInfoBox2TrickRoom
+
+; safeguard
+	lb bc, 1, 7
+	call FieldInfoBox2Safeguard
+
+; confused
 	ld de, FieldTexts.confused
 	ld a, [wPlayerSubStatus3]
 	bit SUBSTATUS_CONFUSED, a
 	jr z, .enemy_confuse
-	lb bc, 1, 10
+	lb bc, 1, 9
 	call FieldInfoBoxStatus
 .enemy_confuse
 	ld a, [wEnemySubStatus3]
 	bit SUBSTATUS_CONFUSED, a
 	jr z, .player_encore
-	lb bc, 11, 10
+	lb bc, 11, 9
 	call FieldInfoBoxStatus
+
+; encored
 .player_encore
 	ld de, FieldTexts.encored
 	ld a, [wPlayerSubStatus5]
 	bit SUBSTATUS_ENCORED, a
 	jr z, .enemy_encore
-	lb bc, 1, 11
+	lb bc, 1, 10
 	call FieldInfoBoxStatus
 .enemy_encore
 	ld a, [wEnemySubStatus5]
 	bit SUBSTATUS_ENCORED, a
 	jr z, .player_disable
-	lb bc, 11, 11
+	lb bc, 11, 10
 	call FieldInfoBoxStatus
+
+; disabled
 .player_disable
 	ld de, FieldTexts.disabled
 	ld a, [wDisabledMove]
 	and a
 	jr z, .enemy_disable
-	lb bc, 1, 14
+	lb bc, 1, 11
 	call FieldInfoBoxStatus
 .enemy_disable
 	ld a, [wEnemyDisabledMove]
 	and a
-	jr z, .player_toxic
-	lb bc, 11, 14
+	jr z, .player_destiny_bond
+	lb bc, 11, 11
 	call FieldInfoBoxStatus
-.player_toxic
-	ld a, [wPlayerSubStatus5]
-	bit SUBSTATUS_TOXIC, a
-	jr z, .enemy_toxic
-	lb bc, 1, 12
-	ld de, wPlayerToxicCount
-	call FieldInfoBoxToxic
-.enemy_toxic
-	ld a, [wEnemySubStatus5]
-	bit SUBSTATUS_TOXIC, a
-	ret z
-	lb bc, 11, 12
-	ld de, wEnemyToxicCount
-	call FieldInfoBoxToxic
-	ret
 
-FieldInfoBoxReflect: ; input: bc -> coords
+; destiny bond
+.player_destiny_bond
+	ret
+	
+	; not working..need to fix	
+;	ld de, FieldTexts.destinybond
+;	ld a, [wPlayerSubStatus5]
+;	bit SUBSTATUS_DESTINY_BOND, a
+;	and a
+;	jr z, .enemy_destiny_bond
+;	lb bc, 1, 12
+;	call FieldInfoBoxStatus
+;.enemy_destiny_bond
+;	ld a, [wEnemySubStatus5]
+;	bit SUBSTATUS_DESTINY_BOND, a
+;	and a
+;	ret z
+;	lb bc, 11, 12
+;	jp FieldInfoBoxStatus
+
+FieldInfoBox1Reflect: ; input: bc -> coords
 	ld hl, wPlayerScreens
 	ld de, wPlayerReflectCount
 	bit 4, [hl]
@@ -1465,12 +1560,12 @@ FieldInfoBoxReflect: ; input: bc -> coords
 	call FieldInfoBoxPlaceElement
 	ret
 	
-FieldInfoBoxLScreen: ; input: bc -> coords
+FieldInfoBox1LScreen: ; input: bc -> coords
 	ld hl, wPlayerScreens
 	ld de, wPlayerLightScreenCount
 	bit 3, [hl]
 	jr z, .enemy
-	ld hl, FieldTexts.lightScreen
+	ld hl, FieldTexts.lightscreen
 	push bc
 	call FieldInfoBoxPlaceElement
 	pop bc
@@ -1482,11 +1577,11 @@ FieldInfoBoxLScreen: ; input: bc -> coords
 	ld a, b
 	add 10
 	ld b, a
-	ld hl, FieldTexts.lightScreen
+	ld hl, FieldTexts.lightscreen
 	call FieldInfoBoxPlaceElement
 	ret
 
-FieldInfoBoxSpikes: ; input: bc -> coords
+FieldInfoBox1Spikes: ; input: bc -> coords
 	ld hl, wPlayerScreens
 	bit 0, [hl]
 	jr z, .enemy
@@ -1506,7 +1601,109 @@ FieldInfoBoxSpikes: ; input: bc -> coords
 	call CoordsBCtoHL
 	call PlaceString
 	ret
-	
+
+FieldInfoBox1ToxicSpikes: ; input: bc -> coords
+	ld hl, wPlayerScreens
+	bit 6, [hl]
+	jr z, .enemy
+	push de
+	call CoordsBCtoHL
+	push bc
+	call PlaceString
+	pop bc
+	pop de
+.enemy
+	ld hl, wEnemyScreens
+	bit 6, [hl]
+	ret z
+	ld a, b
+	add 10
+	ld b, a
+	call CoordsBCtoHL
+	call PlaceString
+	ret
+
+FieldInfoBox1StickyWeb: ; input: bc -> coords
+	ld hl, wPlayerScreens
+	bit 7, [hl]
+	jr z, .enemy
+	push de
+	call CoordsBCtoHL
+	push bc
+	call PlaceString
+	pop bc
+	pop de
+.enemy
+	ld hl, wEnemyScreens
+	bit 7, [hl]
+	ret z
+	ld a, b
+	add 10
+	ld b, a
+	call CoordsBCtoHL
+	call PlaceString
+	ret
+
+FieldInfoBox1StealthRock: ; input: bc -> coords
+	ld hl, wPlayerScreens
+	bit 5, [hl]
+	jr z, .enemy
+	push de
+	call CoordsBCtoHL
+	push bc
+	call PlaceString
+	pop bc
+	pop de
+.enemy
+	ld hl, wEnemyScreens
+	bit 5, [hl]
+	ret z
+	ld a, b
+	add 10
+	ld b, a
+	call CoordsBCtoHL
+	call PlaceString
+	ret
+
+FieldInfoBox2TrickRoom: ; input: bc -> coords
+	ld de, wTrickRoomCount
+	ld a, [de]
+    and a
+	ret z
+	ld hl, FieldTexts.trickroom
+	push bc
+	call FieldInfoBoxPlaceElement
+	pop bc
+.enemy
+	ld a, b
+	add 10
+	ld b, a
+	ld de, wTrickRoomCount
+	ld hl, FieldTexts.trickroom
+	call FieldInfoBoxPlaceElement
+	ret
+
+FieldInfoBox2Safeguard:
+	ld hl, wPlayerScreens
+	ld de, wPlayerSafeguardCount
+	bit 2, [hl]
+	jr z, .enemy
+	ld hl, FieldTexts.safeguard
+	push bc
+	call FieldInfoBoxPlaceElement
+	pop bc
+.enemy
+	ld hl, wEnemyScreens
+	ld de, wEnemySafeguardCount
+	bit 2, [hl]
+	ret z
+	ld a, b
+	add 10
+	ld b, a
+	ld hl, FieldTexts.safeguard
+	call FieldInfoBoxPlaceElement
+	ret
+
 FieldInfoBoxStatus: ; input: bc -> coords, de -> text
 	push de
 	call CoordsBCtoHL
@@ -1514,7 +1711,7 @@ FieldInfoBoxStatus: ; input: bc -> coords, de -> text
 	pop de
 	ret
 	
-FieldInfoBoxToxic: ; input: bc -> coords , de -> count
+FieldInfoBox1Toxic: ; input: bc -> coords , de -> count
 	ld hl, FieldTexts.toxic
 	push hl
 	push bc
@@ -1560,22 +1757,29 @@ FieldInfoBoxPlaceElement: ; input: bc -> coords, hl -> Field text, de -> Count
 
 MainText:
 .page1:
-	db "  Page 1/3 ▶@"
-
+	db "  Page 1/5 ▶@" ; first page has no ◀
 .page1_content:
-	db "Stat Changes@"
+	db " Stat Changes @"
 
 .page2:
-	db "◀ Page 2/3 ▶@"
-
+	db "◀ Page 2/5 ▶@"
 .page2_content:
-	db "Actual Stats@"
-	
-.page3:
-	db "◀ Page 3/3  @"
+	db " Actual Stats @"
 
+.page3:
+	db "◀ Page 3/5 ▶@"
 .page3_content:
-	db "Field/Status@"
+	db "Field/Status 1@"
+
+.page4:
+	db "◀ Page 4/5 ▶@"
+.page4_content:
+	db "Field/Status 2@"
+
+.page5:
+	db "◀ Page 5/5  @" ; last page has no ▶
+.page5_content:
+	db " Ability Info @"
 
 .player:
 	db " Player @"
@@ -1627,32 +1831,53 @@ FieldTexts:
 .hail:
 	db "Hail@"
 	
+.spikes:
+	db "Spikes@"
+
+.toxicspikes:
+	db "T.Spikes@"
+
+.stickyweb:
+	db "S.Web@"
+
+.stealthrock:
+	db "S.Rock@"
+
+.toxic:
+	db "Toxic@"
+
 .reflect:
 	db "Reflect@"
 	
-.lightScreen:
+.lightscreen:
 	db "L.Screen@"
-	
-.spikes:
-	db "Spikes@"
-	
+
+.trickroom:
+	db "T.Room@"
+
+.safeguard:
+	db "S.Guard@"
+
 .confused:
 	db "Confused@"
 	
 .encored:
 	db "Encored@"
 	
-.toxic:
-	db "Toxic@"
-	
 .disabled:
 	db "Disabled@"
-	
+
+.destinybond:
+	db "D.Bonded@"
+
 .turnsleft:
 	db " turns left@"
 
 .turnleft:
 	db " turn left@"
+
+.infinite:
+	db "@"
 	
 .turns:
 	db " turns@"
@@ -1687,63 +1912,141 @@ WaitButtonInfoTrainer:
 	ldh [hOAMUpdate], a
 	ret
 	
+; ========================
+; Left button navigation
+; ========================
 InfoBoxLeftPress:
 	ld a, [wTrainerInfoPage]
+	cp 0
+	ret z                    ; On page 1, pressing left does nothing
 	cp 1
-	ret c					; We're on page 1, pressing left shouldn't do anything
-	jr z, .jump_to_page_1	; We're on page 2, jump to page 1
-	call DecreasePage		; We're on page 3, jump to page 2
+	jr z, .jump_to_page_1
+	cp 2
+	jr z, .jump_to_page_2
+	cp 3
+	jr z, .jump_to_page_3
+	cp 4
+	ret nz
+	call DecreasePage
 	call UpdatePageText
-	jp StatsInfoBox	
+	jp FieldInfoBox2
+
 .jump_to_page_1
 	call DecreasePage
 	call UpdatePageText
+	jp StatsInfoBox
+
+.jump_to_page_2
+	call DecreasePage
+	call UpdatePageText
 	jp StatChangesInfoBox
-	
+
+.jump_to_page_3
+	call DecreasePage
+	call UpdatePageText
+	jp FieldInfoBox1
+
+; ========================
+; Right button navigation
+; ========================
 InfoBoxRightPress:
 	ld a, [wTrainerInfoPage]
+	cp 0
+	jr z, .jump_to_page_2
 	cp 1
-	jr z, .jump_to_page_3	; We're on page 2, jump to page 3
-	ret nc					; We're on page 3, pressing right shouldn't do anything
-	call IncreasePage		; We're on page 1, jump to page 2
+	jr z, .jump_to_page_3
+	cp 2
+	jr z, .jump_to_page_4
+	cp 3
+	ret nz
+	call IncreasePage
 	call UpdatePageText
-	jp StatsInfoBox
+	jp FoeAbilityPageInfoBox		; On page 5, pressing right does nothing
+
+.jump_to_page_2
+	call IncreasePage
+	call UpdatePageText
+	jp StatChangesInfoBox
+
 .jump_to_page_3
 	call IncreasePage
 	call UpdatePageText
-	jp FieldInfoBox
+	jp FieldInfoBox1
+
+.jump_to_page_4
+	call IncreasePage
+	call UpdatePageText
+	jp FieldInfoBox2
 	
+; ========================
+; Page counter functions
+; ========================
 IncreasePage:
 	ld a, [wTrainerInfoPage]
 	inc a
+	cp 5                     ; Pages 0..5 (inclusive)
+	jr c, .store
+	xor a                    ; Wrap to page 0
+.store
 	ld [wTrainerInfoPage], a
 	ret
 
 DecreasePage:
 	ld a, [wTrainerInfoPage]
+	or a
+	jr nz, .dec
+	ld a, 5                  ; Wrap to last page
+.dec
 	dec a
 	ld [wTrainerInfoPage], a
 	ret
 
+; ========================
+; Update text for each page
+; ========================
 UpdatePageText:
 	hlcoord 4, 17
-	ld de, MainText.page1
 	ld a, [wTrainerInfoPage]
+
 	cp 1
 	jr z, .page_2
-	jr nc, .page_3
+	cp 2
+	jr z, .page_3
+	cp 3
+	jr z, .page_4
+	cp 4
+	jr z, .page_5
+
+; Default: page 0
+	ld de, MainText.page1
 	call PlaceString
 	ld de, MainText.page1_content
 	jr .done
+
 .page_2
 	ld de, MainText.page2
 	call PlaceString
 	ld de, MainText.page2_content
 	jr .done
+
 .page_3
 	ld de, MainText.page3
 	call PlaceString
 	ld de, MainText.page3_content
+	jr .done
+
+.page_4
+	ld de, MainText.page4
+	call PlaceString
+	ld de, MainText.page4_content
+	jr .done
+
+.page_5
+	ld de, MainText.page5
+	call PlaceString
+	ld de, MainText.page5_content
+	jr .done
+
 .done
 	hlcoord 4, 16
 	call PlaceString

@@ -421,7 +421,7 @@ wPlayerDisableCount:: db
 wPlayerEncoreCount:: db
 wPlayerPerishCount:: db
 wPlayerProtectCount:: db
-wPlayerTauntCount:: db ; DevNote - this is not used
+wPlayerTauntCount:: db
 
 wEnemyRolloutCount:: db
 wEnemyConfuseCount:: db

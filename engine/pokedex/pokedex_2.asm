@@ -274,7 +274,7 @@ DisplayDexEntry:
 
 ; DevNote - Stats Page - code to display ability
 ; NOTE:
-; This must stay in tis file
+; This must stay in this file
 ; for some reason viewing the ability stats page while in battle
 ; will break the game if the Pokemons weight is between
 ; 563.2 - 588.7
@@ -333,6 +333,70 @@ DisplayAbility:
 	inc de
 	pop af
 	hlcoord 1, 11
+	call PlaceFarString
+	ret
+
+; This must stay in this file
+DisplayFoeAbility:
+	ld a, [wCurSpecies]
+	ld b, a
+	call GetDexEntryPointer
+	ld a, b
+	push af
+
+; place species
+	hlcoord 1, 11
+	call PlaceFarString
+
+; clear area
+	push de
+	lb bc, 4, SCREEN_WIDTH - 2
+	hlcoord 1, 11
+	call ClearBox
+	pop de
+
+; do stuff?
+	push de
+	pop hl
+	pop bc
+	ld a, [wEnemyMonSpecies]
+	ld [wCurSpecies], a
+	ld a, b
+	push af
+	push de
+	pop af
+	inc hl
+	inc hl
+	inc hl
+	inc hl
+	push hl
+	dec hl
+
+; place pokedex page 1
+	pop de
+	pop af
+	hlcoord 1, 7
+	push af
+	call PlaceFarString
+
+; clear area
+	push de
+	lb bc, 5, SCREEN_WIDTH - 2
+	hlcoord 1, 7
+	call ClearBox
+	pop de
+
+; place pokedex page 2
+	inc de
+	pop af
+	hlcoord 1, 7
+	call PlaceFarString
+
+; print mon species	
+	ld a, [wCurSpecies]
+	ld [wNamedObjectIndex], a
+	call GetPokemonName
+	hlcoord 2, 2
 	call PlaceFarString
 	ret
 
