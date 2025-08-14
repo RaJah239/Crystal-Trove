@@ -1123,14 +1123,13 @@ ToxicPoison:
 SetUpSelfDVs:
     ld a, [wOtherTrainerClass]
     cp CAL
-    jr nz, .notSelf
+    ret nz
     ld a, [wCurPartyMon]
 	ld hl, wOTPartyMon1DVs
 	call GetPartyLocation
 	ld b, [hl]
 	inc hl
 	ld c, [hl]
-.notSelf
     ret
 
 TrainerBattleInfo::
@@ -1173,7 +1172,7 @@ StatChangesInfoBox:
 	ld b, 11
 	ld c, 2
 	ld hl, wEnemyStatLevels
-	call StatChangesInfoBoxLoop
+	; fallthrough
 	
 StatChangesInfoBoxLoop:
 	push hl
@@ -1280,8 +1279,7 @@ StatsInfoBox:
 	ld b, 11
 	ld c, 2
 	ld hl, wEnemyMonMaxHP
-	call StatsInfoBoxLoop
-	ret
+	jp StatsInfoBoxLoop
 
 FoeAbilityPageInfoBox:
 	hlcoord 0, 0
@@ -1296,7 +1294,7 @@ FoeAbilityPageInfoBox:
 	ld c, 18
 	call Textbox
 
-	farcall DisplayFoeAbility
+	farcall DisplayFoeNameAndAbility
 
 	ld de, .FoeString
 	hlcoord 1, 1
@@ -1464,7 +1462,7 @@ FieldInfoBox1:
 	lb bc, 1, 13
 	jp FieldInfoBox1LScreen
 
-FieldInfoBox2: ; just for testing when flipping pages
+FieldInfoBox2:
 	call FieldStatusPagesLayout
 
 ; trick room
@@ -1515,12 +1513,13 @@ FieldInfoBox2: ; just for testing when flipping pages
 .enemy_disable
 	ld a, [wEnemyDisabledMove]
 	and a
-	jr z, .player_destiny_bond
+	ret z
+;	jr z, .player_destiny_bond
 	lb bc, 11, 11
 	call FieldInfoBoxStatus
 
 ; destiny bond
-.player_destiny_bond
+;.player_destiny_bond
 	ret
 	
 	; not working..need to fix	
@@ -1557,8 +1556,7 @@ FieldInfoBox1Reflect: ; input: bc -> coords
 	add 10
 	ld b, a
 	ld hl, FieldTexts.reflect
-	call FieldInfoBoxPlaceElement
-	ret
+	jp FieldInfoBoxPlaceElement
 	
 FieldInfoBox1LScreen: ; input: bc -> coords
 	ld hl, wPlayerScreens
@@ -1578,8 +1576,7 @@ FieldInfoBox1LScreen: ; input: bc -> coords
 	add 10
 	ld b, a
 	ld hl, FieldTexts.lightscreen
-	call FieldInfoBoxPlaceElement
-	ret
+	jp FieldInfoBoxPlaceElement
 
 FieldInfoBox1Spikes: ; input: bc -> coords
 	ld hl, wPlayerScreens
@@ -1599,8 +1596,7 @@ FieldInfoBox1Spikes: ; input: bc -> coords
 	add 10
 	ld b, a
 	call CoordsBCtoHL
-	call PlaceString
-	ret
+	jp PlaceString
 
 FieldInfoBox1ToxicSpikes: ; input: bc -> coords
 	ld hl, wPlayerScreens
@@ -1620,8 +1616,7 @@ FieldInfoBox1ToxicSpikes: ; input: bc -> coords
 	add 10
 	ld b, a
 	call CoordsBCtoHL
-	call PlaceString
-	ret
+	jp PlaceString
 
 FieldInfoBox1StickyWeb: ; input: bc -> coords
 	ld hl, wPlayerScreens
@@ -1641,8 +1636,7 @@ FieldInfoBox1StickyWeb: ; input: bc -> coords
 	add 10
 	ld b, a
 	call CoordsBCtoHL
-	call PlaceString
-	ret
+	jp PlaceString
 
 FieldInfoBox1StealthRock: ; input: bc -> coords
 	ld hl, wPlayerScreens
@@ -1662,8 +1656,7 @@ FieldInfoBox1StealthRock: ; input: bc -> coords
 	add 10
 	ld b, a
 	call CoordsBCtoHL
-	call PlaceString
-	ret
+	jp PlaceString
 
 FieldInfoBox2TrickRoom: ; input: bc -> coords
 	ld de, wTrickRoomCount
@@ -1680,8 +1673,7 @@ FieldInfoBox2TrickRoom: ; input: bc -> coords
 	ld b, a
 	ld de, wTrickRoomCount
 	ld hl, FieldTexts.trickroom
-	call FieldInfoBoxPlaceElement
-	ret
+	jp FieldInfoBoxPlaceElement
 
 FieldInfoBox2Safeguard:
 	ld hl, wPlayerScreens
@@ -1701,8 +1693,7 @@ FieldInfoBox2Safeguard:
 	add 10
 	ld b, a
 	ld hl, FieldTexts.safeguard
-	call FieldInfoBoxPlaceElement
-	ret
+	jp FieldInfoBoxPlaceElement
 
 FieldInfoBoxStatus: ; input: bc -> coords, de -> text
 	push de
@@ -1752,8 +1743,7 @@ FieldInfoBoxPlaceElement: ; input: bc -> coords, hl -> Field text, de -> Count
 .not_1_turn
 	inc b
 	call CoordsBCtoHL
-	call PlaceString
-	ret
+	jp PlaceString
 
 MainText:
 .page1:
@@ -1779,7 +1769,7 @@ MainText:
 .page5:
 	db "◀ Page 5/5  @" ; last page has no ▶
 .page5_content:
-	db " Ability Info @"
+	db "   Ability    @"
 
 .player:
 	db " Player @"
@@ -1867,8 +1857,8 @@ FieldTexts:
 .disabled:
 	db "Disabled@"
 
-.destinybond:
-	db "D.Bonded@"
+;.destinybond:
+;	db "D.Bonded@"
 
 .turnsleft:
 	db " turns left@"
@@ -2045,12 +2035,9 @@ UpdatePageText:
 	ld de, MainText.page5
 	call PlaceString
 	ld de, MainText.page5_content
-	jr .done
-
 .done
 	hlcoord 4, 16
-	call PlaceString
-	ret
+	jp PlaceString
 
 CoordsBCtoHL:
 	ld hl, wTilemap

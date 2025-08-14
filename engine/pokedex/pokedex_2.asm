@@ -333,11 +333,10 @@ DisplayAbility:
 	inc de
 	pop af
 	hlcoord 1, 11
-	call PlaceFarString
-	ret
+	jp PlaceFarString
 
 ; This must stay in this file
-DisplayFoeAbility:
+DisplayFoeNameAndAbility:
 	ld a, [wCurSpecies]
 	ld b, a
 	call GetDexEntryPointer
@@ -397,8 +396,7 @@ DisplayFoeAbility:
 	ld [wNamedObjectIndex], a
 	call GetPokemonName
 	hlcoord 2, 2
-	call PlaceFarString
-	ret
+	jp PlaceFarString
 
 String_pokemon:
 	db " #MON @"
