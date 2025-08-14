@@ -1513,30 +1513,41 @@ FieldInfoBox2:
 .enemy_disable
 	ld a, [wEnemyDisabledMove]
 	and a
-	ret z
-;	jr z, .player_destiny_bond
+	jr z, .player_destiny_bond
 	lb bc, 11, 11
 	call FieldInfoBoxStatus
 
 ; destiny bond
-;.player_destiny_bond
-	ret
-	
-	; not working..need to fix	
-;	ld de, FieldTexts.destinybond
-;	ld a, [wPlayerSubStatus5]
-;	bit SUBSTATUS_DESTINY_BOND, a
-;	and a
-;	jr z, .enemy_destiny_bond
-;	lb bc, 1, 12
-;	call FieldInfoBoxStatus
-;.enemy_destiny_bond
-;	ld a, [wEnemySubStatus5]
-;	bit SUBSTATUS_DESTINY_BOND, a
-;	and a
-;	ret z
-;	lb bc, 11, 12
-;	jp FieldInfoBoxStatus
+.player_destiny_bond
+    ld de, FieldTexts.destinybond
+    ld a, [wPlayerSubStatus5]
+    bit SUBSTATUS_DESTINY_BOND, a
+    and a
+    jr z, .enemy_destiny_bond
+    lb bc, 11, 12
+    call FieldInfoBoxStatus
+.enemy_destiny_bond
+    ld a, [wEnemySubStatus5]
+    bit SUBSTATUS_DESTINY_BOND, a
+    and a
+    jr z, .player_taunt
+    lb bc, 1, 12
+    call FieldInfoBoxStatus
+
+; taunt
+.player_taunt
+    ld de, FieldTexts.taunt
+    ld a, [wPlayerTauntCount]
+    and a
+    jr z, .enemy_taunt
+    lb bc, 1, 13
+    call FieldInfoBoxStatus
+.enemy_taunt
+    ld a, [wEnemyTauntCount]
+    and a
+    ret z
+    lb bc, 11, 13
+    jp FieldInfoBoxStatus
 
 FieldInfoBox1Reflect: ; input: bc -> coords
 	ld hl, wPlayerScreens
@@ -1857,8 +1868,11 @@ FieldTexts:
 .disabled:
 	db "Disabled@"
 
-;.destinybond:
-;	db "D.Bonded@"
+.destinybond:
+	db "D.Bonded@"
+
+.taunt:
+	db "Taunt@"
 
 .turnsleft:
 	db " turns left@"
