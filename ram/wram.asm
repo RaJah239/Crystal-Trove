@@ -501,7 +501,7 @@ wLinkBattleRNCount::
 	db
 
 wEnemyItemState:: db
-	ds 1
+wTypeChartInBattle:: db
 wTrainerInfoPage:: db
 wCurEnemyMoveNum:: db
 

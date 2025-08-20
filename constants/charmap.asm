@@ -139,6 +139,7 @@
 	charmap "└",         $be
 	charmap "┘",         $bf
 
+	charmap "<half>",    $c0
 	charmap "<in>",      $c1
 	charmap "<fo>",      $c2
 	charmap "<se>",      $c3

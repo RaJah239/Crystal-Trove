@@ -391,11 +391,6 @@ BattleText_UsersStringBuffer1Activated:
 	cont "activated!"
 	prompt
 
-BattleText_ItemsCantBeUsedHere:
-	text "Items forbidden in"
-	line "trainer battles!"
-	prompt
-
 BattleText_MonIsAlreadyOut:
 	text_ram wBattleMonNickname
 	text_start

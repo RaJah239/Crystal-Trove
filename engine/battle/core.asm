@@ -5013,15 +5013,15 @@ LoadBattleMenu2:
 BattleMenu_Pack:
 	ld a, [wLinkMode]
 	and a
-	jp nz, .ItemsCantBeUsed
+	jp nz, .PokemonTypeChart
 
 	ld a, [wInBattleTowerBattle]
 	and a
-	jp nz, .ItemsCantBeUsed
+	jp nz, .PokemonTypeChart
 
 	ld a, [wBattleMode]
 	bit WILD_BATTLE, a
-	jp nz, .ItemsCantBeUsed
+	jp nz, .PokemonTypeChart
 
 	call LoadStandardMenuHeader
 
@@ -5069,10 +5069,9 @@ BattleMenu_Pack:
 	farcall GetTimeOfDayImage
 	jp BattleMenu
 
-.ItemsCantBeUsed:
+.PokemonTypeChart:
 	call ClearSprites
-	ld hl, BattleText_ItemsCantBeUsedHere
-	call StdBattleTextbox
+	farcall TypeChart
 	jp BattleMenu
 
 .UseItem:
