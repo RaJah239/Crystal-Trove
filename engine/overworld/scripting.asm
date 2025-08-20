@@ -264,6 +264,7 @@ ScriptCommandTable:
 	dw Script_writetextcheckdialogue	 ; ab
 	dw Script_isquicknurseset            ; ac
 	dw Script_isfieldactionsset          ; ad
+	dw Script_nooryes                    ; ae
 	assert_table_length NUM_EVENT_COMMANDS
 
 StartScript:
@@ -2254,8 +2255,14 @@ Script_writeunusedbyte:
 	ld [wUnusedScriptByte], a
 	ret
 
-UnusedClosetextScript: ; unreferenced
-	closetext
+Script_nooryes:
+	call NoYesBox
+	ld a, FALSE
+	jr c, .no
+	ld a, TRUE
+.no
+	ld [wScriptVar], a
+	ret
 
 Script_closetext:
 	call HDMATransferTilemapAndAttrmap_Menu
