@@ -1758,7 +1758,7 @@ FieldInfoBoxPlaceElement: ; input: bc -> coords, hl -> Field text, de -> Count
 
 MainText:
 .page1:
-	db "  Page 1/5 ▶@" ; first page has no ◀
+	db "◀ Page 1/5 ▶@" ; first page has no ◀
 .page1_content:
 	db " Stat Changes @"
 
@@ -1778,7 +1778,7 @@ MainText:
 	db "Field/Status 2@"
 
 .page5:
-	db "◀ Page 5/5  @" ; last page has no ▶
+	db "◀ Page 5/5 ▶@"
 .page5_content:
 	db "   Ability    @"
 
@@ -1920,9 +1920,13 @@ WaitButtonInfoTrainer:
 ; Left button navigation
 ; ========================
 InfoBoxLeftPress:
+	; play switching pockets SFX	
+	ld de, SFX_SWITCH_POCKETS
+	call PlaySFX
+
 	ld a, [wTrainerInfoPage]
 	cp 0
-	ret z                    ; On page 1, pressing left does nothing
+	jr z, .jump_to_page_5
 	cp 1
 	jr z, .jump_to_page_1
 	cp 2
@@ -1931,6 +1935,7 @@ InfoBoxLeftPress:
 	jr z, .jump_to_page_3
 	cp 4
 	ret nz
+.jump_to_page_4
 	call DecreasePage
 	call UpdatePageText
 	jp FieldInfoBox2
@@ -1950,10 +1955,19 @@ InfoBoxLeftPress:
 	call UpdatePageText
 	jp FieldInfoBox1
 
+.jump_to_page_5
+	call DecreasePage
+	call UpdatePageText
+	jp FoeAbilityPageInfoBox
+
 ; ========================
 ; Right button navigation
 ; ========================
 InfoBoxRightPress:
+	; play switching pockets SFX	
+	ld de, SFX_SWITCH_POCKETS
+	call PlaySFX
+
 	ld a, [wTrainerInfoPage]
 	cp 0
 	jr z, .jump_to_page_2
@@ -1962,10 +1976,20 @@ InfoBoxRightPress:
 	cp 2
 	jr z, .jump_to_page_4
 	cp 3
-	ret nz
+	jr z, .jump_to_page_5
 	call IncreasePage
 	call UpdatePageText
-	jp FoeAbilityPageInfoBox		; On page 5, pressing right does nothing
+	jp StatsInfoBox
+
+.jump_to_page_5
+	call IncreasePage
+	call UpdatePageText
+	jp FoeAbilityPageInfoBox
+
+.jump_to_page_1
+	call IncreasePage
+	call UpdatePageText
+	jp StatsInfoBox
 
 .jump_to_page_2
 	call IncreasePage
@@ -1981,7 +2005,7 @@ InfoBoxRightPress:
 	call IncreasePage
 	call UpdatePageText
 	jp FieldInfoBox2
-	
+
 ; ========================
 ; Page counter functions
 ; ========================
