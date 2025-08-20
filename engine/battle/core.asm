@@ -200,9 +200,6 @@ BattleTurn:
 
 	call IsMobileBattle
 	jr nz, .not_disconnected
-	farcall Function100da5
-	farcall StartMobileInactivityTimer
-	farcall Function100dd8
 	jp c, .quit
 .not_disconnected
 

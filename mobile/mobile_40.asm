@@ -952,13 +952,6 @@ AdvanceMobileInactivityTimerAndCheckExpired:
 	scf
 	ret
 
-StartMobileInactivityTimer:
-	xor a
-	ld [wMobileInactivityTimerMinutes], a
-	ld [wMobileInactivityTimerSeconds], a
-	ld [wMobileInactivityTimerFrames], a
-	ret
-
 IncrementMobileInactivityTimerBy1Frame:
 	ld c, 1
 IncrementMobileInactivityTimerByCFrames:
@@ -1537,7 +1530,6 @@ _LinkBattleSendReceiveAction:
 	jr nz, .not_mobile
 
 	call .MobileBattle_SendReceiveAction
-	call Function100da5
 	farcall FinishBattleAnim
 	jr .done
 
@@ -1620,7 +1612,6 @@ endc
 
 .MobileBattle_SendReceiveAction:
 	call Function100acf
-	call StartMobileInactivityTimer
 	ld a, 0
 	ld [wcd27], a
 .asm_100a92
@@ -2029,13 +2020,6 @@ Function100d67:
 	db "つよさをみる@" ; STATS
 	db "キャンセル@"  ; CANCEL
 
-Function100da5:
-	ld hl, wcd2a
-	res 3, [hl]
-	ld hl, wcd29
-	res 0, [hl]
-	ret
-
 Function100db0:
 	ld hl, wcd2a
 	bit 3, [hl]
@@ -2069,23 +2053,6 @@ Mobile_SetOverworldDelay:
 	ret
 
 Function100dd8:
-	ld c, $01
-	ld b, $03
-	farcall AdvanceMobileInactivityTimerAndCheckExpired
-	jr c, .asm_100dfb
-	ld c, $3c
-	ld b, $01
-	call Function10079c
-	jr c, .asm_100dfb
-	farcall Function10032e
-	ld a, [wcd2b]
-	and a
-	jr nz, .asm_100dfb
-	xor a
-	ret
-
-.asm_100dfb
-	scf
 	ret
 
 MobileComms_CheckInactivityTimer:
@@ -3096,7 +3063,6 @@ Function1014b7:
 
 Function1014ce:
 	farcall Function100720
-	farcall StartMobileInactivityTimer
 	ld a, [wMobileCommsJumptableIndex]
 	inc a
 	ld [wMobileCommsJumptableIndex], a
@@ -3149,7 +3115,6 @@ Function101537:
 	ret
 
 Function101544:
-	farcall StartMobileInactivityTimer
 	ld a, MOBILEAPI_09
 	call MobileAPI
 	ld a, [wMobileCommsJumptableIndex]
@@ -3158,7 +3123,6 @@ Function101544:
 	ret
 
 Function101557:
-	farcall StartMobileInactivityTimer
 	ld hl, wcd53
 	ld a, MOBILEAPI_04
 	call MobileAPI
@@ -5754,7 +5718,6 @@ Function1028e8:
 	ld hl, wcd4b
 	res 6, [hl]
 	ld [wcd50], a
-	farcall StartMobileInactivityTimer
 	ld a, 0
 	ld [wcd4a], a
 	ret
