@@ -545,10 +545,29 @@ HasWildBattleBegun:
     ret
 
 NaturalCureSwitch:
+ 	ldh a, [hBattleTurn]
+ 	and a
+ 	jr z, .player
+    ld hl, wEnemyMonStatus
+    call NaturalCure
+  	farcall CalcEnemyStats
+  	ret
+.player
+    ld hl, wBattleMonStatus
+    call NaturalCure
+ 	farcall CalcPlayerStats
+ 	ret
+
+NaturalCure:
+    ld a, [hl]
+    and a
+    ret z
+    xor a
+    ld [hl], a
     ld de, RECOVER
     call PlayAnimationIfNotFirstTurn
-    callfar BattleCommand_NaturalCure
-	ret
+    ld hl, NaturalCureText
+    jp StdBattleTextbox
 
 RainSwitch:
 	ld a, WEATHER_RAIN

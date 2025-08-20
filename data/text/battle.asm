@@ -695,10 +695,10 @@ SpiteEffectText:
 	text "!"
 	prompt
 
-AllStatusEffectClearedText:
-	text "Status effects"
-	line "were eliminated!"
-	prompt
+NaturalCureText:
+    text "Natural Cure"
+    line "heals status."
+    prompt
 
 BellChimedText:
 	text "A bell chimed!"

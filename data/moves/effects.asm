@@ -1609,12 +1609,6 @@ QuiverDance:
 	quiverdance
 	endmove
 
-NaturalCure:
-	usedmovetext
-	doturn
-	farcommand
-	endmove
-
 DoBurn:
 	usedmovetext
 	doturn
