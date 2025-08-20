@@ -2,6 +2,35 @@
 ;============NOTES============
 ;=============================
 
+; To replace Dig??
+;BattleAnim_DrillRun:
+;	anim_3gfx ANIM_GFX_HIT, ANIM_GFX_HORN, ANIM_GFX_ROCKS
+;	anim_obj ANIM_OBJ_HORN, 72, 80, $1
+;	anim_sound 0, 1, SFX_HORN_ATTACK
+;	anim_wait 8
+;	anim_sound 0, 1, SFX_KARATE_CHOP
+;	anim_obj ANIM_OBJ_HIT_BIG_YFIX, 136, 56, $0
+;	anim_wait 16
+;.loop
+;	anim_wait 4
+;	anim_sound 0, 1, SFX_PECK
+;	anim_obj ANIM_OBJ_HIT_SMALL_YFIX, 124, 56, $0
+;	anim_wait 4
+;	anim_sound 0, 1, SFX_PECK
+;	anim_obj ANIM_OBJ_HIT_SMALL_YFIX, 132, 48, $0
+;	anim_wait 4
+;	anim_sound 0, 1, SFX_PECK
+;	anim_obj ANIM_OBJ_HIT_SMALL_YFIX, 140, 56, $0
+;	anim_wait 4
+;	anim_sound 0, 1, SFX_PECK
+;	anim_obj ANIM_OBJ_HIT_SMALL_YFIX, 132, 64, $0
+;	anim_sound 0, 0, SFX_RAZOR_WIND
+;	anim_obj ANIM_OBJ_DEBRIS, 146, 64, $0
+;	anim_wait 4
+;	anim_loop 3, .loop
+;	anim_wait 16
+;	anim_ret
+
 ; If more space is needed, replace Rock Tomb's animation
 ; with Vanilla Rock throws'. It's right next to it
 ; Add this
