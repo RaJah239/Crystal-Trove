@@ -152,7 +152,7 @@ ItemDescriptions:
 	dw HelixFossilDesc
 	dw MysteryBerryDesc
 	dw DragonScaleDesc
-	dw BerserkGeneDesc
+	dw TypeCodexDesc
 	dw MuscleBandDesc
 	dw WiseGlassesDesc
 	dw ExpertBeltDesc
@@ -843,9 +843,9 @@ DragonScaleDesc:
 	db   "A rare dragon-type"
 	next "item.@"
 
-BerserkGeneDesc:
-	db   "Boosts critical"
-	next "damage for Mewtwo.@"
+TypeCodexDesc:
+	db   "Summarizes all"
+	next "type advantages.@"
 
 MuscleBandDesc:
 	db   "Slightly boosts"

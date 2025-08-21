@@ -160,10 +160,10 @@ ItemNameOrder:
 	db X_SPEED
 
 ; Battle related Held Items
+	db TYPE_CODEX
 	db AMULET_COIN
 	db ASSAULT_VEST
 	db BERRY_JUICE
-	db BERSERK_GENE
 	db BLACKBELT_I
 	db BLACKGLASSES
 	db BRIGHTPOWDER

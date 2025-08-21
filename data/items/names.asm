@@ -151,7 +151,7 @@ ItemNames::
 	li "Helix Fossil"
 	li "MysteryBerry"
 	li "Dragon Scale"
-	li "Berserk Gene"
+	li "Type Codex"
 	li "Muscle Band"
 	li "Wise Glasses"
 	li "Expert Belt"

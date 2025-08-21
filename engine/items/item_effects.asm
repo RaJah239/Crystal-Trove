@@ -165,7 +165,7 @@ ItemEffects:
 	dw NoEffect            ; HELIX_FOSSIL
 	dw RestorePPEffect     ; MYSTERYBERRY
 	dw NoEffect            ; DRAGON_SCALE
-	dw NoEffect            ; BERSERK_GENE
+	dw TypeCodexEffect     ; TYPE_CODEX
 	dw NoEffect            ; MUSCLE_BAND
 	dw NoEffect            ; WISE_GLASSES
 	dw NoEffect            ; EXPERT_BELT
@@ -3168,4 +3168,19 @@ ItemEffects_GetThirdMaxHP:
 	ld e, a
 	ret nz
 	inc e ; At least 1.
+	ret
+
+TypeCodexEffect:
+	farcall LoadFontsBattleExtra
+	call FadeToMenu
+	farcall BlankScreen
+	farcall LoadOW_BGPal7
+	call FadePalettes
+	farcall TypeChart
+	call Call_ExitMenu
+	xor a
+	ldh [hBGMapMode], a
+	farcall Pack_InitGFX
+	farcall WaitBGMap_DrawPackGFX
+	farcall Pack_InitColors
 	ret

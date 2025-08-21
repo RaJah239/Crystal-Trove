@@ -47,6 +47,7 @@ if DEF(_DEBUG)
 	opentext
 	; key items
 	givemoney YOUR_MONEY, MAX_MONEY
+	giveitem TYPE_CODEX
 	giveitem TANGELA_CALL
 	giveitem OLD_ROD
 	giveitem GOOD_ROD
