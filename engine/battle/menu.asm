@@ -63,7 +63,7 @@ BattleMenuHeaderTrainer:
 .Text:
 	db "Fight@"
 	db "<PKMN>@"
-	db "Types@"
+	db "Codex@"
 	db "<in><fo>@"
 
 SafariBattleMenuHeader:
