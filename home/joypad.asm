@@ -99,7 +99,7 @@ endr
 ; For example, soft reset:
 	and SELECT | B_BUTTON
 	cp  SELECT | B_BUTTON
-	jp z, Reset
+	jmp z, Reset
 
 	ret
 
@@ -382,7 +382,7 @@ PromptButton::
 
 .link
 	ld c, 65
-	jp DelayFrames
+	jmp DelayFrames
 
 .wait_input
 	ldh a, [hOAMUpdate]

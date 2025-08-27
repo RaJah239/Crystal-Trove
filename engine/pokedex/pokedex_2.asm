@@ -216,7 +216,7 @@ DisplayDexEntry:
 	call CheckCaughtMon
 	pop hl ; dex entry ptr
  	pop bc ; bank?
-	jp z, UncaughtMon_Info_Erase_PageNum ; ret z ; leave if we havent caught
+	jmp z, UncaughtMon_Info_Erase_PageNum ; ret z ; leave if we havent caught
 ; Get the height of the Pokemon.
 	ld a, [wCurPartySpecies]
 	ld [wCurSpecies], a
@@ -333,7 +333,7 @@ DisplayAbility:
 	inc de
 	pop af
 	hlcoord 1, 11
-	jp PlaceFarString
+	jmp PlaceFarString
 
 ; This must stay in this file
 DisplayFoeNameAndAbility:
@@ -396,7 +396,7 @@ DisplayFoeNameAndAbility:
 	ld [wNamedObjectIndex], a
 	call GetPokemonName
 	hlcoord 2, 2
-	jp PlaceFarString
+	jmp PlaceFarString
 
 String_pokemon:
 	db " #MON @"
@@ -577,7 +577,7 @@ DEX_NO_CUSTOM_GFX_PrintType_Short:
  	ld d, h
  	ld e, l
  	pop hl
- 	jp PlaceString
+ 	jmp PlaceString
  
 .Types
  	db "NORM@"

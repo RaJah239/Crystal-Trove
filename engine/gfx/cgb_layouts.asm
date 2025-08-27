@@ -14,7 +14,7 @@ LoadSGBLayoutCGB:
 	ld a, [wDefaultSGBLayout]
 .not_default
 	cp SCGB_PARTY_MENU_HP_BARS
-	jp z, CGB_ApplyPartyMenuHPPals
+	jmp z, CGB_ApplyPartyMenuHPPals
 	call ResetBGPals
 	ld l, a
 	ld h, 0
@@ -82,7 +82,7 @@ _CGB_BattleGrayscale:
 	ld de, wOBPals1
 	ld c, 2
 	call CopyPalettes
-	jp _CGB_FinishBattleScreenLayout
+	jmp _CGB_FinishBattleScreenLayout
 
 SetDefaultBattlePalette:
 	ldh a, [rSVBK]
@@ -128,11 +128,11 @@ SetDefaultBattlePalette:
 
 SetBattlePal_Player:
 	call GetBattlemonBackpicPalettePointer
-	jp LoadPalette_White_Col1_Col2_Black
+	jmp LoadPalette_White_Col1_Col2_Black
 
 SetBattlePal_Enemy:
 	call GetEnemyFrontpicPalettePointer
-	jp LoadPalette_White_Col1_Col2_Black
+	jmp LoadPalette_White_Col1_Col2_Black
 
 SetBattlePal_EnemyHP:
 	ld a, [wEnemyHPPal]
@@ -148,15 +148,15 @@ SetBattlePal_HP:
 	add hl, hl
 	ld bc, HPBarPals
 	add hl, bc
-	jp LoadPalette_White_Col1_Col2_Black
+	jmp LoadPalette_White_Col1_Col2_Black
 
 SetBattlePal_Exp:
 	ld hl, ExpBarPalette
-	jp LoadPalette_White_Col1_Col2_Black
+	jmp LoadPalette_White_Col1_Col2_Black
 
 SetBattlePal_Icons:
     ld hl, BattleIconsPalette
-	jp LoadPalette_White_Col1_Col2_Black
+	jmp LoadPalette_White_Col1_Col2_Black
 
 SetBattlePal_Text:
 	; Mobile Adapter connectivity changes bg pal 7.
@@ -167,7 +167,7 @@ SetBattlePal_Text:
 .got_pal
 	ld bc, 1 palettes
 	ld a, BANK(wBGPals1)
-	jp FarCopyWRAM
+	jmp FarCopyWRAM
 
 _CGB_BattleColors:
 	ld de, wBGPals1
@@ -750,7 +750,7 @@ BillsPC_PreviewTheme:
 	call LoadHLPaletteIntoDE
 	ld hl, BillsPC_WhitePalette
 	ld de, wOBPals1 palette 6
-	jp LoadHLPaletteIntoDE
+	jmp LoadHLPaletteIntoDE
 .apply_pals
 	newfarjp BillsPC_SetPals
 
@@ -1557,7 +1557,7 @@ _CGB_Plain:
 	call LoadHLBytesIntoDE
 
 	call WipeAttrmap
-	jp ApplyAttrmap
+	jmp ApplyAttrmap
 
 Gen1DiplomaPalette:
 INCLUDE "gfx/diploma/plain.pal" ; todo: replace this polished port

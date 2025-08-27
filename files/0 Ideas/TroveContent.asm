@@ -380,7 +380,7 @@ Moved this down:
 	call GetWorldMapLocation
 	cp LANDMARK_BATTLE_TOWER
 	ld de, MUSIC_UNOVA_ELITE_FOUR_BATTLE
-	jp z, .done
+	jmp z, .done
 
 Add a check event for inverse battles event set to play the puzzle theme here, add it from Ambrosia in battlestart.asm for the code above
 

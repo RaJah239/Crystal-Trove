@@ -605,10 +605,10 @@ StartTrainerBattle_SpeckleToBlack:
 StartTrainerBattle_LoadPokeBallGraphics:
     ld a, [wOtherTrainerID]
     cp FIELD_MON
-    jp z, .nextscene
+    jmp z, .nextscene
 	ld a, [wOtherTrainerClass]
 	and a
-	jp z, .nextscene ; don't need to be here if wild
+	jmp z, .nextscene ; don't need to be here if wild
 
 	xor a
 	ldh [hBGMapMode], a
@@ -676,53 +676,53 @@ StartTrainerBattle_LoadPokeBallGraphics:
 	ldh [hBGMapMode], a
 	call DelayFrame
 	call DelayFrame
-	jp .nextscene
+	jmp .nextscene
 
 .cgb
     ; rockets
 	ld hl, .rocketpals
 	ld a, [wOtherTrainerID]
     cp FIELD_MON
-	jp z, .load_pals
+	jmp z, .load_pals
 	ld a, [wOtherTrainerClass]
 	cp GRUNTM
-	jp z, .load_pals
+	jmp z, .load_pals
 	cp GRUNTF
-	jp z, .load_pals
+	jmp z, .load_pals
 	cp EXECUTIVEM
-	jp z, .load_pals
+	jmp z, .load_pals
 	cp EXECUTIVEF
-	jp z, .load_pals
+	jmp z, .load_pals
 	cp SCIENTIST
-	jp z, .load_pals
+	jmp z, .load_pals
 	cp INVADER
-	jp z, .load_pals
+	jmp z, .load_pals
 
     ; hoen
     ld hl, .hoenpals
 	ld a, [wOtherTrainerClass]
     cp SOLDIER
-	jp z, .load_pals
+	jmp z, .load_pals
 	cp WALLACE
-	jp z, .load_pals
+	jmp z, .load_pals
 
    ; gym leaders
     ld hl, .gymleaderpals
 	ld a, [wOtherTrainerClass]
     cp FALKNER
-	jp z, .load_pals
+	jmp z, .load_pals
     cp BUGSY
-	jp z, .load_pals
+	jmp z, .load_pals
     cp WHITNEY
-	jp z, .load_pals
+	jmp z, .load_pals
     cp MORTY
-	jp z, .load_pals
+	jmp z, .load_pals
     cp CHUCK
-	jp z, .load_pals
+	jmp z, .load_pals
     cp JASMINE
-	jp z, .load_pals
+	jmp z, .load_pals
     cp PRYCE
-	jp z, .load_pals
+	jmp z, .load_pals
     cp CLAIR
 	jr z, .load_pals
     cp BROCK

@@ -416,7 +416,7 @@ FlashFunction:
 
 UseFlash:
 	ld hl, Script_UseFlash
-	jp QueueScript
+	jmp QueueScript
 
 Script_UseFlash:
 	refreshmap

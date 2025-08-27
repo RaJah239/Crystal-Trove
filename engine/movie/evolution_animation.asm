@@ -166,7 +166,7 @@ EvolutionAnimation:
 
 .GetSGBLayout:
 	ld b, SCGB_EVOLUTION
-	jp GetSGBLayout
+	jmp GetSGBLayout
 
 .AnimationSequence:
 	call ClearJoypad

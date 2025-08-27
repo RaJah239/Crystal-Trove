@@ -14,7 +14,7 @@ HandleTrickRoom:
 	dec [hl]
 	ret nz
 	ld hl, TrickRoomEndedText
-	jp StdBattleTextbox
+	jmp StdBattleTextbox
 
 HandleLeftovers:
 	ldh a, [hSerialConnectionStatus]
@@ -23,7 +23,7 @@ HandleLeftovers:
 	call SetPlayerTurn
 	call .do_it
 	call SetEnemyTurn
-	jp .do_it
+	jr .do_it
 
 .DoEnemyFirst:
 	call SetEnemyTurn
@@ -63,7 +63,7 @@ HandleLeftovers:
 	farcall SwitchTurnCore
 	farcall RestoreHP
 	ld hl, BattleText_TargetRecoveredWithItem
-	jp StdBattleTextbox
+	jmp StdBattleTextbox
 
 HandleMysteryberry:
 	ldh a, [hSerialConnectionStatus]
@@ -72,7 +72,7 @@ HandleMysteryberry:
 	call SetPlayerTurn
 	call .do_it
 	call SetEnemyTurn
-	jp .do_it
+	jr .do_it
 
 .DoEnemyFirst:
 	call SetEnemyTurn
@@ -199,7 +199,7 @@ HandleMysteryberry:
 	call GetItemName
 	farcall SwitchCoreItemRecoveryAnim
 	ld hl, BattleText_UserRecoveredPPUsing
-	jp StdBattleTextbox
+	jmp StdBattleTextbox
 
 CheckAmuletCoin:
 	ld a, [wBattleMonItem]
@@ -365,7 +365,7 @@ HandleSafeguard:
 .print
 	ldh [hBattleTurn], a
 	ld hl, BattleText_SafeguardFaded
-	jp StdBattleTextbox
+	jmp StdBattleTextbox
 
 HandleScreens:
 	ldh a, [hSerialConnectionStatus]
@@ -401,7 +401,7 @@ HandleScreens:
 
 .Copy:
 	ld hl, wStringBuffer1
-	jp CopyName2
+	jmp CopyName2
 
 .Your:
 	db "Your@"
@@ -432,7 +432,7 @@ HandleScreens:
 	res SCREENS_REFLECT, [hl]
 	farcall SwitchTurnCore
 	ld hl, BattleText_MonsReflectFaded
-	jp StdBattleTextbox
+	jmp StdBattleTextbox
 
 ExitBattle:
 	farcall UpdatePartyStats
@@ -567,7 +567,7 @@ NaturalCure:
     ld de, RECOVER
     call PlayAnimationIfNotFirstTurn
     ld hl, NaturalCureText
-    jp StdBattleTextbox
+    jmp StdBattleTextbox
 
 RainSwitch:
 	ld a, WEATHER_RAIN
@@ -580,7 +580,7 @@ RainSwitch:
     ld de, RAIN_DANCE
 	farcall Call_PlayBattleAnim
 	ld hl, DownpourText
-	jp StdBattleTextbox
+	jmp StdBattleTextbox
 
 SunSwitch:
     ld a, WEATHER_SUN
@@ -593,7 +593,7 @@ SunSwitch:
     ld de, SUNNY_DAY
 	farcall Call_PlayBattleAnim
 	ld hl, SunGotBrightText
-	jp StdBattleTextbox
+	jmp StdBattleTextbox
 
 SandSwitch:
     ld a, WEATHER_SANDSTORM
@@ -606,13 +606,13 @@ SandSwitch:
     ld de, ANIM_IN_SANDSTORM
 	farcall Call_PlayBattleAnim
 	ld hl, SandstormBrewedText
-	jp StdBattleTextbox
+	jmp StdBattleTextbox
 
 AirLockSwitch:
 	ld a, WEATHER_NONE
 	ld [wBattleWeather], a
 	ld hl, WeatherClearedUpText
-	jp StdBattleTextbox
+	jmp StdBattleTextbox
 
 StickyWebSwitch:
 	ld hl, wEnemyScreens
@@ -627,7 +627,7 @@ StickyWebSwitch:
     ld de, STICKY_WEB
     call PlayAnimationIfNotFirstTurn
 	ld hl, StickyWebText
-	jp StdBattleTextbox
+	jmp StdBattleTextbox
 
 SpikesSwitch:
 	ld hl, wEnemyScreens
@@ -642,7 +642,7 @@ SpikesSwitch:
     ld de, SPIKES
     call PlayAnimationIfNotFirstTurn
 	ld hl, SpikesText
-	jp StdBattleTextbox
+	jmp StdBattleTextbox
 
 StealthRockSwitch:
 	ld hl, wEnemyScreens
@@ -657,7 +657,7 @@ StealthRockSwitch:
     ld de, STEALTH_ROCK
     call PlayAnimationIfNotFirstTurn
 	ld hl, StealthRockText
-	jp StdBattleTextbox
+	jmp StdBattleTextbox
 
 ToxicSpikesSwitch:
 	ld hl, wEnemyScreens
@@ -672,7 +672,7 @@ ToxicSpikesSwitch:
     ld de, TOXIC_SPIKES
     call PlayAnimationIfNotFirstTurn
 	ld hl, ToxicSpikesText
-	jp StdBattleTextbox
+	jmp StdBattleTextbox
 
 DefogSwitch:
     ld de, DEFOG
@@ -686,7 +686,7 @@ TrickRoomSwitch:
     ld de, TRICK_ROOM
     call PlayAnimationIfNotFirstTurn
 	ld hl, TrickRoomText
-	jp StdBattleTextbox
+	jmp StdBattleTextbox
 
 ReflectSwitch:
     ld hl, wPlayerScreens
@@ -703,7 +703,7 @@ ReflectSwitch:
     ld de, REFLECT
     call PlayAnimationIfNotFirstTurn
     ld hl, ReflectEffectText
-	jp StdBattleTextbox
+	jmp StdBattleTextbox
 
 LightScreenSwitch:
     ld hl, wPlayerScreens
@@ -720,7 +720,7 @@ LightScreenSwitch:
     ld de, LIGHT_SCREEN
     call PlayAnimationIfNotFirstTurn
     ld hl, LightScreenEffectText
-	jp StdBattleTextbox
+	jmp StdBattleTextbox
 
 SafeguardSwitch:
     ld hl, wPlayerScreens
@@ -737,7 +737,7 @@ SafeguardSwitch:
     ld de, SAFEGUARD
     call PlayAnimationIfNotFirstTurn
     ld hl, CoveredByVeilText
-	jp StdBattleTextbox
+	jmp StdBattleTextbox
 
 SpecialAttackUpSwitch:
     call PlayBoostAnimation
@@ -809,7 +809,7 @@ PrintAttackUpMessage:
 	ret
 .wild
     ld hl, WildAttackUpText
-    jp BattleTextbox
+    jmp BattleTextbox
 
 WildAttackUpText:
     text "<TARGET>'s"
@@ -823,7 +823,7 @@ PrintDefenseUpMessage:
 	ret
 .wild
     ld hl, WildDefenseUpText
-    jp BattleTextbox
+    jmp BattleTextbox
 
 WildDefenseUpText:
     text "<TARGET>'s"
@@ -837,7 +837,7 @@ PrintSpeedUpMessage:
 	ret
 .wild
     ld hl, WildSpeedUpText
-    jp BattleTextbox
+    jmp BattleTextbox
 
 WildSpeedUpText:
     text "<TARGET>'s"
@@ -851,7 +851,7 @@ PrintSpecialAttackUpMessage:
 	ret
 .wild
     ld hl, WildSpecialAttackUpText
-    jp BattleTextbox
+    jmp BattleTextbox
 
 WildSpecialAttackUpText:
     text "<TARGET>'s"
@@ -865,7 +865,7 @@ PrintSpecialDefenseUpMessage:
 	ret
 .wild
     ld hl, WildSpecialDefenseUpText
-    jp BattleTextbox
+    jmp BattleTextbox
 
 WildSpecialDefenseUpText:
     text "<TARGET>'s"
@@ -879,7 +879,7 @@ PrintEvasionUpMessage:
 	ret
 .wild
     ld hl, WildEvasionUpText
-    jp BattleTextbox
+    jmp BattleTextbox
 
 WildEvasionUpText:
     text "<TARGET>'s"
@@ -1298,7 +1298,7 @@ StatsInfoBox:
 	ld b, 11
 	ld c, 2
 	ld hl, wEnemyMonMaxHP
-	jp StatsInfoBoxLoop
+	jr StatsInfoBoxLoop
 
 FoeAbilityPageInfoBox:
 	hlcoord 0, 0
@@ -1321,7 +1321,7 @@ FoeAbilityPageInfoBox:
 
 	ld de, .AbilitiesString
 	hlcoord 1, 5
-	jp PlaceString
+	jmp PlaceString
 
 .FoeString:
 	db "Foe:@"
@@ -1479,7 +1479,7 @@ FieldInfoBox1:
 	call FieldInfoBox1Reflect
 ; light screen
 	lb bc, 1, 13
-	jp FieldInfoBox1LScreen
+	jmp FieldInfoBox1LScreen
 
 FieldInfoBox2:
 	call FieldStatusPagesLayout
@@ -1566,7 +1566,7 @@ FieldInfoBox2:
     and a
     ret z
     lb bc, 11, 12
-    jp FieldInfoBoxStatus
+    jmp FieldInfoBoxStatus
 
 FieldInfoBox1Reflect: ; input: bc -> coords
 	ld hl, wPlayerScreens
@@ -1586,7 +1586,7 @@ FieldInfoBox1Reflect: ; input: bc -> coords
 	add 10
 	ld b, a
 	ld hl, FieldTexts.reflect
-	jp FieldInfoBoxPlaceElement
+	jmp FieldInfoBoxPlaceElement
 	
 FieldInfoBox1LScreen: ; input: bc -> coords
 	ld hl, wPlayerScreens
@@ -1606,7 +1606,7 @@ FieldInfoBox1LScreen: ; input: bc -> coords
 	add 10
 	ld b, a
 	ld hl, FieldTexts.lightscreen
-	jp FieldInfoBoxPlaceElement
+	jmp FieldInfoBoxPlaceElement
 
 FieldInfoBox1Spikes: ; input: bc -> coords
 	ld hl, wPlayerScreens
@@ -1626,7 +1626,7 @@ FieldInfoBox1Spikes: ; input: bc -> coords
 	add 10
 	ld b, a
 	call CoordsBCtoHL
-	jp PlaceString
+	jmp PlaceString
 
 FieldInfoBox1ToxicSpikes: ; input: bc -> coords
 	ld hl, wPlayerScreens
@@ -1646,7 +1646,7 @@ FieldInfoBox1ToxicSpikes: ; input: bc -> coords
 	add 10
 	ld b, a
 	call CoordsBCtoHL
-	jp PlaceString
+	jmp PlaceString
 
 FieldInfoBox1StickyWeb: ; input: bc -> coords
 	ld hl, wPlayerScreens
@@ -1666,7 +1666,7 @@ FieldInfoBox1StickyWeb: ; input: bc -> coords
 	add 10
 	ld b, a
 	call CoordsBCtoHL
-	jp PlaceString
+	jmp PlaceString
 
 FieldInfoBox1StealthRock: ; input: bc -> coords
 	ld hl, wPlayerScreens
@@ -1686,7 +1686,7 @@ FieldInfoBox1StealthRock: ; input: bc -> coords
 	add 10
 	ld b, a
 	call CoordsBCtoHL
-	jp PlaceString
+	jmp PlaceString
 
 FieldInfoBox2TrickRoom: ; input: bc -> coords
 	ld de, wTrickRoomCount
@@ -1703,7 +1703,7 @@ FieldInfoBox2TrickRoom: ; input: bc -> coords
 	ld b, a
 	ld de, wTrickRoomCount
 	ld hl, FieldTexts.trickroom
-	jp FieldInfoBoxPlaceElement
+	jr FieldInfoBoxPlaceElement
 
 FieldInfoBox2Safeguard:
 	ld hl, wPlayerScreens
@@ -1723,7 +1723,7 @@ FieldInfoBox2Safeguard:
 	add 10
 	ld b, a
 	ld hl, FieldTexts.safeguard
-	jp FieldInfoBoxPlaceElement
+	jr FieldInfoBoxPlaceElement
 
 FieldInfoBoxStatus: ; input: bc -> coords, de -> text
 	push de
@@ -1773,7 +1773,7 @@ FieldInfoBoxPlaceElement: ; input: bc -> coords, hl -> Field text, de -> Count
 .not_1_turn
 	inc b
 	call CoordsBCtoHL
-	jp PlaceString
+	jmp PlaceString
 
 MainText:
 .page1:
@@ -1957,27 +1957,27 @@ InfoBoxLeftPress:
 .jump_to_page_4
 	call DecreasePage
 	call UpdatePageText
-	jp FieldInfoBox2
+	jmp FieldInfoBox2
 
 .jump_to_page_1
 	call DecreasePage
 	call UpdatePageText
-	jp StatsInfoBox
+	jmp StatsInfoBox
 
 .jump_to_page_2
 	call DecreasePage
 	call UpdatePageText
-	jp StatChangesInfoBox
+	jmp StatChangesInfoBox
 
 .jump_to_page_3
 	call DecreasePage
 	call UpdatePageText
-	jp FieldInfoBox1
+	jmp FieldInfoBox1
 
 .jump_to_page_5
 	call DecreasePage
 	call UpdatePageText
-	jp FoeAbilityPageInfoBox
+	jmp FoeAbilityPageInfoBox
 
 ; ========================
 ; Right button navigation
@@ -1998,32 +1998,32 @@ InfoBoxRightPress:
 	jr z, .jump_to_page_5
 	call IncreasePage
 	call UpdatePageText
-	jp StatsInfoBox
+	jmp StatsInfoBox
 
 .jump_to_page_5
 	call IncreasePage
 	call UpdatePageText
-	jp FoeAbilityPageInfoBox
+	jmp FoeAbilityPageInfoBox
 
 .jump_to_page_1
 	call IncreasePage
 	call UpdatePageText
-	jp StatsInfoBox
+	jmp StatsInfoBox
 
 .jump_to_page_2
 	call IncreasePage
 	call UpdatePageText
-	jp StatChangesInfoBox
+	jmp StatChangesInfoBox
 
 .jump_to_page_3
 	call IncreasePage
 	call UpdatePageText
-	jp FieldInfoBox1
+	jmp FieldInfoBox1
 
 .jump_to_page_4
 	call IncreasePage
 	call UpdatePageText
-	jp FieldInfoBox2
+	jmp FieldInfoBox2
 
 ; ========================
 ; Page counter functions
@@ -2094,7 +2094,7 @@ UpdatePageText:
 	ld de, MainText.page5_content
 .done
 	hlcoord 4, 16
-	jp PlaceString
+	jmp PlaceString
 
 CoordsBCtoHL:
 	ld hl, wTilemap
@@ -2164,128 +2164,128 @@ UpdateChartPageText:
 	cp 6
 	jr z, .page_7
 	cp 7
-	jp z, .page_8
+	jmp z, .page_8
 	cp 8
-	jp z, .page_9
+	jmp z, .page_9
 	cp 9
-	jp z, .page_10
+	jmp z, .page_10
 	cp 10
-	jp z, .page_11
+	jmp z, .page_11
 	cp 11
-	jp z, .page_12
+	jmp z, .page_12
 	cp 12
-	jp z, .page_13
+	jmp z, .page_13
 	cp 13
-	jp z, .page_14
+	jmp z, .page_14
 	cp 14
-	jp z, .page_15
+	jmp z, .page_15
 	cp 15
-	jp z, .page_16
+	jmp z, .page_16
 	cp 16
-	jp z, .page_17
+	jmp z, .page_17
 	cp 17
-	jp z, .page_18
+	jmp z, .page_18
 ; Default: page 1
 	ld de, TypeChartMainText.page1
 	call PlaceString
 	ld de, TypeChartMainText.page1_content
-	jp .done
+	jmp .done
 
 .page_2
 	ld de, TypeChartMainText.page2
 	call PlaceString
 	ld de, TypeChartMainText.page2_content
-	jp .done
+	jmp .done
 
 .page_3
 	ld de, TypeChartMainText.page3
 	call PlaceString
 	ld de, TypeChartMainText.page3_content
-	jp .done
+	jmp .done
 
 .page_4
 	ld de, TypeChartMainText.page4
 	call PlaceString
 	ld de, TypeChartMainText.page4_content
-	jp .done
+	jmp .done
 
 .page_5
 	ld de, TypeChartMainText.page5
 	call PlaceString
 	ld de, TypeChartMainText.page5_content
-	jp .done
+	jmp .done
 
 .page_6
 	ld de, TypeChartMainText.page6
 	call PlaceString
 	ld de, TypeChartMainText.page6_content
-	jp .done
+	jmp .done
 
 .page_7
 	ld de, TypeChartMainText.page7
 	call PlaceString
 	ld de, TypeChartMainText.page7_content
-	jp .done
+	jr .done
 
 .page_8
 	ld de, TypeChartMainText.page8
 	call PlaceString
 	ld de, TypeChartMainText.page8_content
-	jp .done
+	jr .done
 
 .page_9
 	ld de, TypeChartMainText.page9
 	call PlaceString
 	ld de, TypeChartMainText.page9_content
-	jp .done
+	jr .done
 
 .page_10
 	ld de, TypeChartMainText.page10
 	call PlaceString
 	ld de, TypeChartMainText.page10_content
-	jp .done
+	jr .done
 
 .page_11
 	ld de, TypeChartMainText.page11
 	call PlaceString
 	ld de, TypeChartMainText.page11_content
-	jp .done
+	jr .done
 
 .page_12
 	ld de, TypeChartMainText.page12
 	call PlaceString
 	ld de, TypeChartMainText.page12_content
-	jp .done
+	jr .done
 
 .page_13
 	ld de, TypeChartMainText.page13
 	call PlaceString
 	ld de, TypeChartMainText.page13_content
-	jp .done
+	jr .done
 
 .page_14
 	ld de, TypeChartMainText.page14
 	call PlaceString
 	ld de, TypeChartMainText.page14_content
-	jp .done
+	jr .done
 
 .page_15
 	ld de, TypeChartMainText.page15
 	call PlaceString
 	ld de, TypeChartMainText.page15_content
-	jp .done
+	jr .done
 
 .page_16
 	ld de, TypeChartMainText.page16
 	call PlaceString
 	ld de, TypeChartMainText.page16_content
-	jp .done
+	jr .done
 
 .page_17
 	ld de, TypeChartMainText.page17
 	call PlaceString
 	ld de, TypeChartMainText.page17_content
-	jp .done
+	jr .done
 
 .page_18
 	ld de, TypeChartMainText.page18
@@ -2293,7 +2293,7 @@ UpdateChartPageText:
 	ld de, TypeChartMainText.page18_content
 .done
 	hlcoord 4, 16
-	jp PlaceString
+	jmp PlaceString
 
 TypeChartMainText:
 .page1:
@@ -2443,112 +2443,112 @@ ChartBoxLeftPress:
 	cp 9
 	jr z, .jump_to_page_9
 	cp 10
-	jp z, .jump_to_page_10
+	jmp z, .jump_to_page_10
 	cp 11
-	jp z, .jump_to_page_11
+	jmp z, .jump_to_page_11
 	cp 12
-	jp z, .jump_to_page_12
+	jmp z, .jump_to_page_12
 	cp 13
-	jp z, .jump_to_page_13
+	jmp z, .jump_to_page_13
 	cp 14
-	jp z, .jump_to_page_14
+	jmp z, .jump_to_page_14
 	cp 15
-	jp z, .jump_to_page_15
+	jmp z, .jump_to_page_15
 	cp 16
-	jp z, .jump_to_page_16
+	jmp z, .jump_to_page_16
 	cp 17
-	jp z, .jump_to_page_17
+	jmp z, .jump_to_page_17
 	cp 18
 	ret nz
 .jump_to_page_18:
 	call DecreaseTypeChartPage
 	call UpdateChartPageText
-	jp WaterTypeChart
+	jmp WaterTypeChart
 
 .jump_to_page_1
 	call DecreaseTypeChartPage
 	call UpdateChartPageText
-	jp BugTypeChart
+	jmp BugTypeChart
 
 .jump_to_page_2
 	call DecreaseTypeChartPage
 	call UpdateChartPageText
-	jp DarkTypeChart
+	jmp DarkTypeChart
 
 .jump_to_page_3
 	call DecreaseTypeChartPage
 	call UpdateChartPageText
-	jp DragonTypeChart
+	jmp DragonTypeChart
 
 .jump_to_page_4
 	call DecreaseTypeChartPage
 	call UpdateChartPageText
-	jp ElectricTypeChart
+	jmp ElectricTypeChart
 
 .jump_to_page_5
 	call DecreaseTypeChartPage
 	call UpdateChartPageText
-	jp FairyTypeChart
+	jmp FairyTypeChart
 
 .jump_to_page_6
 	call DecreaseTypeChartPage
 	call UpdateChartPageText
-	jp FightingTypeChart
+	jmp FightingTypeChart
 
 .jump_to_page_7
 	call DecreaseTypeChartPage
 	call UpdateChartPageText
-	jp FireTypeChart
+	jmp FireTypeChart
 
 .jump_to_page_8
 	call DecreaseTypeChartPage
 	call UpdateChartPageText
-	jp FlyingTypeChart
+	jmp FlyingTypeChart
 
 .jump_to_page_9
 	call DecreaseTypeChartPage
 	call UpdateChartPageText
-	jp GhostTypeChart
+	jmp GhostTypeChart
 
 .jump_to_page_10
 	call DecreaseTypeChartPage
 	call UpdateChartPageText
-	jp GrassTypeChart
+	jmp GrassTypeChart
 
 .jump_to_page_11
 	call DecreaseTypeChartPage
 	call UpdateChartPageText
-	jp GroundTypeChart
+	jmp GroundTypeChart
 
 .jump_to_page_12
 	call DecreaseTypeChartPage
 	call UpdateChartPageText
-	jp IceTypeChart
+	jmp IceTypeChart
 
 .jump_to_page_13
 	call DecreaseTypeChartPage
 	call UpdateChartPageText
-	jp NormalTypeChart
+	jmp NormalTypeChart
 
 .jump_to_page_14
 	call DecreaseTypeChartPage
 	call UpdateChartPageText
-	jp PoisonTypeChart
+	jmp PoisonTypeChart
 
 .jump_to_page_15
 	call DecreaseTypeChartPage
 	call UpdateChartPageText
-	jp PsychicTypeChart
+	jmp PsychicTypeChart
 
 .jump_to_page_16
 	call DecreaseTypeChartPage
 	call UpdateChartPageText
-	jp RockTypeChart
+	jmp RockTypeChart
 
 .jump_to_page_17
 	call DecreaseTypeChartPage
 	call UpdateChartPageText
-	jp SteelTypeChart
+	jmp SteelTypeChart
 
 ; ========================
 ; Right button navigation
@@ -2578,112 +2578,112 @@ ChartBoxRightPress:
 	cp 8
 	jr z, .jump_to_page_10
 	cp 9
-	jp z, .jump_to_page_11
+	jmp z, .jump_to_page_11
 	cp 10
-	jp z, .jump_to_page_12
+	jmp z, .jump_to_page_12
 	cp 11
-	jp z, .jump_to_page_13
+	jmp z, .jump_to_page_13
 	cp 12
-	jp z, .jump_to_page_14
+	jmp z, .jump_to_page_14
 	cp 13
-	jp z, .jump_to_page_15
+	jmp z, .jump_to_page_15
 	cp 14
-	jp z, .jump_to_page_16
+	jmp z, .jump_to_page_16
 	cp 15
-	jp z, .jump_to_page_17
+	jmp z, .jump_to_page_17
 	cp 16
-	jp z, .jump_to_page_18
+	jmp z, .jump_to_page_18
 	cp 17
 	ret nz
 .jump_to_page_1:
 	call IncreaseTypeChartPage
 	call UpdateChartPageText
-	jp BugTypeChart
+	jmp BugTypeChart
 
 .jump_to_page_2
 	call IncreaseTypeChartPage
 	call UpdateChartPageText
-	jp DarkTypeChart
+	jmp DarkTypeChart
 
 .jump_to_page_3
 	call IncreaseTypeChartPage
 	call UpdateChartPageText
-	jp DragonTypeChart
+	jmp DragonTypeChart
 
 .jump_to_page_4
 	call IncreaseTypeChartPage
 	call UpdateChartPageText
-	jp ElectricTypeChart
+	jmp ElectricTypeChart
 
 .jump_to_page_5
 	call IncreaseTypeChartPage
 	call UpdateChartPageText
-	jp FairyTypeChart
+	jmp FairyTypeChart
 
 .jump_to_page_6
 	call IncreaseTypeChartPage
 	call UpdateChartPageText
-	jp FightingTypeChart
+	jmp FightingTypeChart
 
 .jump_to_page_7
 	call IncreaseTypeChartPage
 	call UpdateChartPageText
-	jp FireTypeChart
+	jmp FireTypeChart
 
 .jump_to_page_8
 	call IncreaseTypeChartPage
 	call UpdateChartPageText
-	jp FlyingTypeChart
+	jmp FlyingTypeChart
 
 .jump_to_page_9
 	call IncreaseTypeChartPage
 	call UpdateChartPageText
-	jp GhostTypeChart
+	jmp GhostTypeChart
 
 .jump_to_page_10
 	call IncreaseTypeChartPage
 	call UpdateChartPageText
-	jp GrassTypeChart
+	jmp GrassTypeChart
 
 .jump_to_page_11
 	call IncreaseTypeChartPage
 	call UpdateChartPageText
-	jp GroundTypeChart
+	jmp GroundTypeChart
 
 .jump_to_page_12
 	call IncreaseTypeChartPage
 	call UpdateChartPageText
-	jp IceTypeChart
+	jmp IceTypeChart
 
 .jump_to_page_13
 	call IncreaseTypeChartPage
 	call UpdateChartPageText
-	jp NormalTypeChart
+	jmp NormalTypeChart
 
 .jump_to_page_14
 	call IncreaseTypeChartPage
 	call UpdateChartPageText
-	jp PoisonTypeChart
+	jmp PoisonTypeChart
 
 .jump_to_page_15
 	call IncreaseTypeChartPage
 	call UpdateChartPageText
-	jp PsychicTypeChart
+	jmp PsychicTypeChart
 
 .jump_to_page_16
 	call IncreaseTypeChartPage
 	call UpdateChartPageText
-	jp RockTypeChart
+	jmp RockTypeChart
 
 .jump_to_page_17
 	call IncreaseTypeChartPage
 	call UpdateChartPageText
-	jp SteelTypeChart
+	jmp SteelTypeChart
 
 .jump_to_page_18
 	call IncreaseTypeChartPage
 	call UpdateChartPageText
-	jp WaterTypeChart
+	jmp WaterTypeChart
 	
 ; ========================
 ; Page counter functions
@@ -2748,7 +2748,7 @@ BugTypeChart:
 
 	ld de, .DefenderStringDoubleDamage
 	hlcoord 1, 11
-	jp PlaceString
+	jmp PlaceString
 
 .TypeString:
 	db "Bug Type@"
@@ -2810,7 +2810,7 @@ DarkTypeChart:
 
 	ld de, .DefenderStringDoubleDamage
 	hlcoord 1, 11
-	jp PlaceString
+	jmp PlaceString
 
 .TypeString:
 	db "Dark Type@"
@@ -2877,7 +2877,7 @@ DragonTypeChart:
 
 	ld de, .DefenderStringDoubleDamage2
 	hlcoord 1, 12
-	jp PlaceString
+	jmp PlaceString
 
 .TypeString:
 	db "Dragon Type@"
@@ -2945,7 +2945,7 @@ ElectricTypeChart:
 
 	ld de, .DefenderStringDoubleDamage
 	hlcoord 1, 12
-	jp PlaceString
+	jmp PlaceString
 
 .TypeString:
 	db "Electric Type@"
@@ -3018,7 +3018,7 @@ FairyTypeChart:
 	ld de, .DefenderStringDoubleDamage2
 	hlcoord 1, 13
 	call PlaceString
-	jp PlaceString
+	jmp PlaceString
 
 .TypeString:
 	db "Fairy Type@"
@@ -3092,7 +3092,7 @@ FightingTypeChart:
 
 	ld de, .DefenderStringDoubleDamage2
 	hlcoord 1, 13
-	jp PlaceString
+	jmp PlaceString
 
 .TypeString:
 	db "Fighting Type@"
@@ -3166,7 +3166,7 @@ FireTypeChart:
 
 	ld de, .DefenderStringDoubleDamage2
 	hlcoord 1, 13
-	jp PlaceString
+	jmp PlaceString
 
 .TypeString:
 	db "Fire Type@"
@@ -3244,7 +3244,7 @@ FlyingTypeChart:
 
 	ld de, .DefenderStringDoubleDamage2
 	hlcoord 1, 14
-	jp PlaceString
+	jmp PlaceString
 
 .TypeString:
 	db "Flying Type@"
@@ -3312,7 +3312,7 @@ GhostTypeChart:
 
 	ld de, .DefenderStringDoubleDamage
 	hlcoord 1, 11
-	jp PlaceString
+	jmp PlaceString
 
 .TypeString:
 	db "Ghost Type@"
@@ -3386,7 +3386,7 @@ GrassTypeChart:
 
 	ld de, .DefenderStringDoubleDamage2
 	hlcoord 1, 14
-	jp PlaceString
+	jmp PlaceString
 
 .TypeString:
 	db "Grass Type@"
@@ -3462,7 +3462,7 @@ GroundTypeChart:
 
 	ld de, .DefenderStringDoubleDamage
 	hlcoord 1, 13
-	jp PlaceString
+	jmp PlaceString
 
 .TypeString:
 	db "Ground Type@"
@@ -3536,7 +3536,7 @@ IceTypeChart:
 
 	ld de, .DefenderStringDoubleDamage2
 	hlcoord 1, 13
-	jp PlaceString
+	jmp PlaceString
 
 .TypeString:
 	db "Ice Type@"
@@ -3594,7 +3594,7 @@ NormalTypeChart:
 
 	ld de, .DefenderStringDoubleDamage
 	hlcoord 1, 9
-	jp PlaceString
+	jmp PlaceString
 
 .TypeString:
 	db "Normal Type@"
@@ -3665,7 +3665,7 @@ PoisonTypeChart:
 
 	ld de, .DefenderStringDoubleDamage
 	hlcoord 1, 14
-	jp PlaceString
+	jmp PlaceString
 
 .TypeString:
 	db "Poison Type@"
@@ -3733,7 +3733,7 @@ PsychicTypeChart:
 
 	ld de, .DefenderStringDoubleDamage
 	hlcoord 1, 11
-	jp PlaceString
+	jmp PlaceString
 
 .TypeString:
 	db "Psychic Type@"
@@ -3807,7 +3807,7 @@ RockTypeChart:
 
 	ld de, .DefenderStringDoubleDamage3
 	hlcoord 1, 14
-	jp PlaceString
+	jmp PlaceString
 
 .TypeString:
 	db "Rock Type@"
@@ -3970,7 +3970,7 @@ WaterTypeChart:
 
 	ld de, .DefenderStringDoubleDamage2
 	hlcoord 1, 13
-	jp PlaceString
+	jmp PlaceString
 
 .TypeString:
 	db "Water Type@"

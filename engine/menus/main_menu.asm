@@ -163,7 +163,7 @@ MainMenu_PrintCurrentVersion:
 	hlcoord 15, 12
 .no_save_file
 	ld de, .VersionString
-	jp PlaceString
+	jmp PlaceString
 
 .VersionString
 	db "v0.1"	; Version number goes here
@@ -194,10 +194,10 @@ MainMenu_PrintCurrentTimeAndDay:
 	hlcoord 0, 14
 	ld b, 2
 	ld c, 18
-	jp Textbox
+	jmp Textbox
 
 .TimeFail:
-	jp SpeechTextbox
+	jmp SpeechTextbox
 
 .PlaceTime:
 	ld a, [wSaveFileExists]
@@ -205,7 +205,7 @@ MainMenu_PrintCurrentTimeAndDay:
 	ret z
 	call CheckRTCStatus
 	and $80
-	jp nz, .PrintSetTime
+	jr nz, .PrintSetTime
 	call UpdateTime
 
 	; day
@@ -231,12 +231,12 @@ MainMenu_PrintCurrentTimeAndDay:
 	inc hl
 	ld de, hSeconds
 	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
-	jp PrintNum
+	jmp PrintNum
 
 .PrintSetTime:
 	hlcoord 1, 14
 	ld de, .SetTimeString
-	jp PlaceString
+	jmp PlaceString
 
 .SetTimeString:
 	db "Select Continue to"
@@ -254,7 +254,7 @@ MainMenu_PrintCurrentTimeAndDay:
 	ld h, b
 	ld l, c
 	ld de, .Day
-	jp PlaceString
+	jmp PlaceString
 
 .Days:
 	db "Sun@"
@@ -273,7 +273,7 @@ ClearTilemapEtc:
 	call ClearTilemap
 	call LoadFontsExtra
 	call LoadStandardFont
-	jp ClearWindowData
+	jmp ClearWindowData
 
 MainMenu_NewGame:
 	farcall NewGame

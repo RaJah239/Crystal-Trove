@@ -28,4 +28,4 @@ BattleCommand_Defog:
 
 ; print message
 	ld hl, ClearFieldText
-	jp StdBattleTextbox
+	jmp StdBattleTextbox

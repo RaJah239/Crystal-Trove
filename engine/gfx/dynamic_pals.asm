@@ -72,7 +72,7 @@ CheckForUsedObjPals::
 .done
 	pop af
 	ldh [rSVBK], a
-	jp PopAFBCDEHL
+	jmp PopAFBCDEHL
 
 ScanObjectStructPals:
 	ld de, wObjectStructs
@@ -199,4 +199,4 @@ MarkUsedPal:
 
 	scf
 .done
-	jp PopBCDEHL
+	jmp PopBCDEHL

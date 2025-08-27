@@ -6,7 +6,7 @@ AI_Redundant:
 	ld de, 3
 	ld hl, .Moves
 	call IsInArray
-	jp nc, .NotRedundant
+	jmp nc, .NotRedundant
 	inc hl
 	ld a, [hli]
 	ld h, [hl]
@@ -111,8 +111,8 @@ AI_Redundant:
 .SleepTalk:
 	ld a, [wEnemyMonStatus]
 	and SLP_MASK
-	jp z, .Redundant
-	jp .NotRedundant
+	jmp z, .Redundant
+	jmp .NotRedundant
 
 .MeanLook:
 	ld a, [wEnemySubStatus5]
@@ -190,8 +190,8 @@ AI_Redundant:
 .Hail:
 	ld a, [wBattleWeather]
 	cp WEATHER_HAIL
-	jp z, .Redundant
-	jp .NotRedundant
+	jr z, .Redundant
+	jr .NotRedundant
 
 .StealthRock:
 	ld a, [wPlayerScreens]

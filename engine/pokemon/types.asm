@@ -24,7 +24,7 @@ PrintMonTypes:
 
 .Print:
 	ld b, a
-	jp PrintType
+	jmp PrintType
 
 .hide_type_2
 	; Erase any type name that was here before.
@@ -36,7 +36,7 @@ PrintMonTypes:
 	inc bc
 	add hl, bc
 	ld bc, NAME_LENGTH_JAPANESE - 1
-	jp ByteFill
+	jmp ByteFill
 
 PrintEnemyMonTypes:
 ; Print one or both types of [wCurSpecies]
@@ -66,7 +66,7 @@ PrintEnemyMonTypes:
 
 .Print:
 	ld b, a
-	jp PrintType
+	jmp PrintType
 
 GetHiddenPowerType:
 	ld hl, wPartyMon1DVs
@@ -129,13 +129,13 @@ PrintBattleMoveType:
     pop hl
 
     ld b, a
-    jp PrintType
+    jr PrintType
 
 .print_hidden_power
     call GetHiddenPowerBattleType
     pop hl
     ld b, a
-    jp PrintType
+    jr PrintType
 
 PrintMoveType:
 ; Print the type of move b at hl.
@@ -181,7 +181,7 @@ PrintType:
 	ld d, [hl]
 	pop hl
 
-	jp PlaceString
+	jmp PlaceString
 
 GetTypeName:
 ; Copy the name of type [wNamedObjectIndex] to wStringBuffer1.
@@ -197,6 +197,6 @@ GetTypeName:
 	ld l, a
 	ld de, wStringBuffer1
 	ld bc, MOVE_NAME_LENGTH
-	jp CopyBytes
+	jmp CopyBytes
 
 INCLUDE "data/types/names.asm"

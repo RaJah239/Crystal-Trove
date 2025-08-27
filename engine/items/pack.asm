@@ -606,7 +606,7 @@ RegisterItem:
 GiveItem:
 	ld a, [wPartyCount]
 	and a
-	jp z, .NoPokemon
+	jmp z, .NoPokemon
 	ld a, [wOptions]
 	push af
 	res NO_TEXT_SCROLL, a
@@ -1337,7 +1337,7 @@ TutorialPack:
 .Items:
 	xor a ; ITEM_POCKET
 	ld hl, .ItemsMenuHeader
-	jp .DisplayPocket
+	jmp .DisplayPocket
 
 .ItemsMenuHeader:
 	db MENU_BACKUP_TILES ; flags
@@ -1360,7 +1360,7 @@ TutorialPack:
 .KeyItems:
 	ld a, KEY_ITEM_POCKET
 	ld hl, .KeyItemsMenuHeader
-	jp .DisplayPocket
+	jmp .DisplayPocket
 
 .KeyItemsMenuHeader:
 	db MENU_BACKUP_TILES ; flags
@@ -1392,7 +1392,7 @@ TutorialPack:
 .Medicine:
 	ld a, MEDICINE_POCKET
 	ld hl, .MedicineMenuHeader
-	jp .DisplayPocket
+	jmp .DisplayPocket
 
 .MedicineMenuHeader:
 	db MENU_BACKUP_TILES ; flags
@@ -1594,7 +1594,7 @@ Pack_InterpretJoypad:
 	ld hl, wMenuJoypad
 	ld a, [wSwitchItem]
 	and a
-	jp nz, .switching_item
+	jmp nz, .switching_item
 	ld a, [hl]
 	and A_BUTTON
 	jr nz, .a_button

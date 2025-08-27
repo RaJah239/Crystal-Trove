@@ -17,7 +17,7 @@ BattleCommand_ToxicSpikes:
 
 	farcall AnimateCurrentMove
 	ld hl, ToxicSpikesText
-	jp StdBattleTextbox
+	jmp StdBattleTextbox
 
 .failed
 	farcall FailMove

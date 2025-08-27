@@ -25,4 +25,4 @@ BattleCommand_Selfdestruct:
 	farcall DrawPlayerHUD
 	farcall DrawEnemyHUD
 	call WaitBGMap
-	jp RefreshBattleHuds
+	jmp RefreshBattleHuds

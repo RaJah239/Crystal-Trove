@@ -23,7 +23,7 @@ DelCellNum::
 	ret
 
 CheckCellNum::
-	jp _CheckCellNum ; useless
+	jr _CheckCellNum ; useless
 
 _CheckCellNum:
 	ld hl, wPhoneList
@@ -439,7 +439,7 @@ Script_SpecialBillCall::
 
 .LoadBillScript:
 	ld e, PHONE_BILL
-	jp LoadCallerScript
+	jr LoadCallerScript
 
 Script_SpecialElmCall: ; unreferenced
 	callasm .LoadElmScript
@@ -448,7 +448,7 @@ Script_SpecialElmCall: ; unreferenced
 
 .LoadElmScript:
 	ld e, PHONE_ELM
-	jp LoadCallerScript
+	jr LoadCallerScript
 
 RingTwice_StartCall:
 	call .Ring

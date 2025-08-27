@@ -97,7 +97,7 @@ MoveRelearner:
 ; This ends the dialogue.
 .cancel
 	ld hl, MoveReminderCancelText
-	jp PrintText
+	jmp PrintText
 
 ; Loads and prints the "MoveReminderEggText" text and then waits for
 ; the player to press a button for the text to progress. Then
@@ -127,7 +127,7 @@ MoveRelearner:
 ; This will end the dialogue.
 .not_enough_money
 	ld hl, MoveReminderNotEnoughMoneyText
-	jp PrintText
+	jmp PrintText
 
 ; Exits the menu and goes back to the map with a
 ; speech text box open and then loads and prints
@@ -464,7 +464,7 @@ ChooseMoveToLearn:
 	ld [wNamedObjectIndex], a
 	call GetMoveName
 	pop hl
-	jp PlaceString
+	jmp PlaceString
 
 ; This prints the move's pp offset by one
 ; line with some spacing from the left.
@@ -672,7 +672,7 @@ ChooseMoveToLearn:
 	ld de, wBuffer1
 	lb bc, 1, 3
 	hlcoord 5, 10
-	jp PrintNum
+	jmp PrintNum
 
 ; This prints "---" if the move has an attack of "0".
 ; This means that the move does not initially cause
@@ -681,7 +681,7 @@ ChooseMoveToLearn:
 	hlcoord 5, 10
 	ld de, MoveNullValueString
 	ld bc, 3
-	jp PlaceString
+	jmp PlaceString
 
 ; This converts values out of 256 into a value
 ; out of 100. It achieves this by multiplying

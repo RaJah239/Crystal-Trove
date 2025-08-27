@@ -8,7 +8,7 @@ BattleCommand_HitAndSwitch:
 
 	ldh a, [hBattleTurn]
 	and a
-	jp nz, .Enemy
+	jr nz, .Enemy
 
 ; Need something to switch to
 	call CheckAnyOtherAlivePartyMons
@@ -28,7 +28,7 @@ BattleCommand_HitAndSwitch:
 	ld hl, SwitchPlayerMon
 	call CallBattleCore
 	ld hl, SpikesDamage
-	jp CallBattleCore
+	jmp CallBattleCore
 
 .Enemy:
 ; Wildmons don't have anything to switch to
@@ -44,7 +44,7 @@ BattleCommand_HitAndSwitch:
 ; Passed enemy PartyMon entrance
 	farcall EnemyUTurnSwitch
 	ld hl, SpikesDamage
-	jp CallBattleCore
+	jmp CallBattleCore
 
 SwitchMoveTransitionIntoMenu:
 	call LoadStandardMenuHeader
@@ -62,4 +62,4 @@ SwitchMoveReturnToBattleScene:
 	call ClearBox
 	ld b, SCGB_BATTLE_COLORS
 	call GetSGBLayout
-	jp SetDefaultBGPAndOBP
+	jmp SetDefaultBGPAndOBP

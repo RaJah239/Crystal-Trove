@@ -24,7 +24,7 @@ BeastsCheck:
 
 	ld de, EVENT_THREE_BEASTS_CAUGHT
 	ld b, SET_FLAG
-	jp EventFlagAction
+	jmp EventFlagAction
 
 .notexist
 	xor a

@@ -7,4 +7,4 @@ BattleCommand_Hex:
 	and a
 	ret z
 ; it's not 0, so double damage
-	jp DoubleDamage
+	jmp DoubleDamage

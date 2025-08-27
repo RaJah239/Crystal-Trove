@@ -5,7 +5,7 @@ LoadPokemonPalette:
 	; load palette into de (set by caller)
 	ld bc, PAL_COLOR_SIZE * 2
 	ld a, BANK(wBGPals1)
-	jp FarCopyWRAM
+	jmp FarCopyWRAM
 
 DEF SHINY_ATK_MASK EQU %0010
 DEF SHINY_DEF_DV EQU 15
@@ -140,7 +140,7 @@ LoadMonBaseTypePal:
  	ld b, 0
  	add hl, bc
  	ld bc, 2
- 	jp FarCopyColorWRAM
+ 	jmp FarCopyColorWRAM
  
  LoadSingleBlackPal:
  	; Destination address of the Palette and Slot is passed in 'de'
@@ -634,7 +634,7 @@ SetFirstOBJPalette::
 	call FarCopyWRAM
 	ld a, TRUE
 	ldh [hCGBPalUpdate], a
-	jp ApplyPals
+	jmp ApplyPals
 
 SetSecondOBJPalette::
 ; input: e must contain the offset of the selected palette from PartyMenuOBPals
@@ -647,7 +647,7 @@ SetSecondOBJPalette::
 	call FarCopyWRAM
 	ld a, TRUE
 	ldh [hCGBPalUpdate], a
-	jp ApplyPals
+	jmp ApplyPals
 
 GetBattlemonBackpicPalettePointer:
 	push de
@@ -671,7 +671,7 @@ GetEnemyFrontpicPalettePointer:
 
 GetPlayerOrMonPalettePointer:
 	and a
-	jp nz, GetMonNormalOrShinyPalettePointer
+	jr nz, GetMonNormalOrShinyPalettePointer
 	ld a, [wPlayerSpriteSetupFlags]
 	bit PLAYERSPRITESETUP_FEMALE_TO_MALE_F, a
 	jr nz, .male
@@ -687,7 +687,7 @@ GetPlayerOrMonPalettePointer:
 
 GetFrontpicPalettePointer:
 	and a
-	jp nz, GetMonNormalOrShinyPalettePointer
+	jr nz, GetMonNormalOrShinyPalettePointer
 	ld a, [wTrainerClass]
 
 GetTrainerPalettePointer:
@@ -966,7 +966,7 @@ endr
 	ld hl, MltReq1Packet
 	call _PushSGBPals
 	vc_hook Unknown_network_reset ; Unknown why this hook is here, doesn't seem to be needed
-	jp SGBDelayCycles
+	jmp SGBDelayCycles
 
 SGBBorder_PushBGPals:
 	call DisableLCD

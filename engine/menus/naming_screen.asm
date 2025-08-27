@@ -691,7 +691,7 @@ MailComposition_TryAddCharacter:
 
 	ld c, 0
 	cp c
-	jp nz,.skipLowercase
+	jr nz,.skipLowercase
 
 	push de
 	ld de, NameInputLower
@@ -743,7 +743,7 @@ NamingScreen_DeleteCharacter:
 	inc hl
 	ld a, [hl]
 	cp NAMINGSCREEN_UNDERLINE
-	jp nz,.middleline
+	jr nz,.middleline
 	ld [hl], NAMINGSCREEN_MIDDLELINE
 .middleline
 	ld hl, wNamingScreenCurNameLength
@@ -1351,7 +1351,7 @@ ComposeMail_GetCursorPosition:
 
 MailComposition_TryAddLastCharacter:
 	ld a, [wNamingScreenLastCharacter]
-	jp MailComposition_TryAddCharacter
+	jmp MailComposition_TryAddCharacter
 
 .one_back
 	push hl
@@ -1365,7 +1365,7 @@ MailComposition_TryAddLastCharacter:
 .loop
 	ld a, [hli]
 	cp -1 ; end?
-	jp z, NamingScreen_AdvanceCursor_CheckEndOfString
+	jmp z, NamingScreen_AdvanceCursor_CheckEndOfString
 	cp c
 	jr z, .done
 	inc hl
@@ -1373,6 +1373,6 @@ MailComposition_TryAddLastCharacter:
 
 .done
 	ld a, [hl]
-	jp NamingScreen_LoadNextCharacter
+	jmp NamingScreen_LoadNextCharacter
 
 INCLUDE "data/text/mail_input_chars.asm"

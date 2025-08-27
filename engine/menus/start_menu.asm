@@ -153,7 +153,7 @@ StartMenu::
 	call .DrawBugContestStatus
 	call UpdateSprites
 	call FinishExitMenu
-	jp .Reopen
+	jmp .Reopen
 
 .MenuHeader:
 	db MENU_BACKUP_TILES ; flags
@@ -359,7 +359,7 @@ endr
 	ld de, ENGINE_BUG_CONTEST_TIMER
 	ld b, CHECK_FLAG
 	farcall EngineFlagAction
-	jp nz, .finish
+	jmp nz, .finish
 
 	; Check if Hard Mode is set on game's intro 
 	CheckEventFlag EVENT_HARD_MODE
@@ -378,7 +378,7 @@ endr
 	; hard mode's text box
 	hlcoord 0, 0
 	lb bc, 1, 9
-	jp Textbox
+	jmp Textbox
 
 .PrintDayTime:
 	call .DrawDayTimeBox
