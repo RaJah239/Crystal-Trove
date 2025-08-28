@@ -848,9 +848,8 @@ TryEnemyFlee:
 	jr nz, .Stay
 
 	ld a, [wTempEnemyMonSpecies]
-	ld de, 1
 	ld hl, AlwaysFleeMons
-	call IsInArray
+	call IsInByteArray
 	jr c, .Flee
 
 .Stay:
@@ -1152,8 +1151,7 @@ ResidualDamage:
 ; Pokemon who are immune to residual damage (magic guard) take no damage
     call GetCurrentMonCore
 	ld hl, Core_MagicGuardPokemon
-	ld de, 1
-	call IsInArray
+	call IsInByteArray
 	jmp c, .check_fainted
 
 ; Return z if the user fainted before
@@ -1496,8 +1494,7 @@ HandleWeather:
 ; Pokemon who are immune to residual damage (magic guard) take no damage
     call GetCurrentMonCore
 	ld hl, Core_MagicGuardPokemon
-	ld de, 1
-	call IsInArray
+	call IsInByteArray
 	ret c
 
 	ld a, BATTLE_VARS_SUBSTATUS3
@@ -2106,14 +2103,12 @@ KOBoost:
     ld a, b
     pop bc
 	ld hl, Core_MoxiePokemon
-	ld de, 1
-	call IsInArray
+	call IsInByteArray
 	jr c, .moxie
 
     call GetCurrentMonCore
 	ld hl, Core_GrimPokemon
-	ld de, 1
-	call IsInArray
+	call IsInByteArray
 	jr c, .grim
 
     ret
@@ -3930,8 +3925,7 @@ SpikesDamage:
 	push bc
 	call GetCurrentMonCore
 	ld hl, Core_SpikesImmunePokemon
-	ld de, 1
-	call IsInArray
+	call IsInByteArray
 	pop bc
 	pop de
 	pop hl
@@ -3958,8 +3952,7 @@ SpikesDamage:
 	push bc
 	call GetCurrentMonCore
 	ld hl, Core_MagicGuardPokemon
-	ld de, 1
-	call IsInArray
+	call IsInByteArray
 	pop bc
 	pop de
 	pop hl
@@ -4005,8 +3998,7 @@ SpikesDamage:
 	push bc
 	call GetCurrentMonCore
 	ld hl, Core_LevitatePokemon
-	ld de, 1
-	call IsInArray
+	call IsInByteArray
 	pop bc
 	pop de
 	pop hl
@@ -4091,8 +4083,7 @@ SpikesDamage:
 	push bc
 	call GetCurrentMonCore
 	ld hl, Core_LevitatePokemon
-	ld de, 1
-	call IsInArray
+	call IsInByteArray
 	pop bc
 	pop de
 	pop hl
@@ -4246,8 +4237,7 @@ HandleRegenerator:
 	ld a, [wBattleMonSpecies]
 .do_it
 	ld hl, Core_RegeneratorPokemon
-	ld de, 1
-	call IsInArray
+	call IsInByteArray
 	ret nc
 
     ld hl, wBattleMonHP
@@ -6713,8 +6703,7 @@ CheckSleepingTreeMon:
 
 .Check:
 	ld a, [wTempEnemyMonSpecies]
-	ld de, 1 ; length of species id
-	call IsInArray
+	call IsInByteArray
 ; If it's a match, the opponent is asleep
 	ret c
 
@@ -6746,9 +6735,8 @@ CheckUnownLetter:
 
 	push de
 	ld a, [wUnownLetter]
-	ld de, 1
 	push bc
-	call IsInArray
+	call IsInByteArray
 	pop bc
 	pop de
 
