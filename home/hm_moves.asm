@@ -11,8 +11,7 @@ IsHM::
 
 IsHMMove::
 	ld hl, .HMMoves
-	ld de, 1
-	jmp IsInArray
+	jmp IsInByteArray
 
 .HMMoves:
 	db FLY

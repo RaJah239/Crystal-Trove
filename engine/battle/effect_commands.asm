@@ -790,8 +790,7 @@ BattleCommand_DoTurn:
 	call GetBattleVar
 ; continuous?
 	ld hl, .continuousmoves
-	ld de, 1
-	call IsInArray
+	call IsInByteArray
 
 ; 'has no pp left for [move]'
 	ld hl, HasNoPPLeftText
@@ -876,8 +875,7 @@ BattleCommand_Critical:
     push de
 	push bc
     ld hl, SuperLuckPokemon
-	ld de, 1
-	call IsInArray
+	call IsInByteArray
     pop bc
 	pop de
 	pop hl
@@ -898,10 +896,9 @@ BattleCommand_Critical:
 .continue
 	ld a, BATTLE_VARS_MOVE_ANIM
 	call GetBattleVar
-	ld de, 1
 	ld hl, CriticalHitMoves
 	push bc
-	call IsInArray
+	call IsInByteArray
 	pop bc
 	jr nc, .ScopeLens
 
@@ -1133,8 +1130,7 @@ BattleCommand_Stab:
 	push de
 	push hl
 	ld hl, SolidRockPokemon
-	ld de, 1
-	call IsInArray
+	call IsInByteArray
 	pop hl
 	pop de
 	pop bc
@@ -1716,8 +1712,7 @@ BattleCommand_EffectChance:
 	push de
 	push hl
 	ld hl, SereneGracePokemon
-	ld de, 1
-	call IsInArray
+	call IsInByteArray
 	pop hl
 	pop de
 	pop bc
@@ -1980,8 +1975,7 @@ BattleCommand_ApplyDamage:
     call GetOpposingMon
 	push bc
 	ld hl, SturdyPokemon
-	ld de, 1
-	call IsInArray
+	call IsInByteArray
 	pop bc
 	jr c, .focusSash
 
@@ -3010,8 +3004,7 @@ ConfusionDamageCalc:
     push de
 	push bc
 	ld hl, GutsPokemon
-	ld de, 1
-	call IsInArray
+	call IsInByteArray
 	pop bc
 	pop de
     jr nc, .choiceBand
@@ -3107,8 +3100,7 @@ ConfusionDamageCalc:
     push de
 	push bc
 	ld hl, RivalryPokemon
-	ld de, 1
-	call IsInArray
+	call IsInByteArray
 	pop bc
 	pop de
 	jr nc, .continue
@@ -3140,8 +3132,7 @@ ConfusionDamageCalc:
     push de
 	push bc
 	ld hl, MultiScalePokemon
-	ld de, 1
-	call IsInArray
+	call IsInByteArray
 	pop bc
 	pop de
 	jr c, .multiscaleReduction
@@ -3158,8 +3149,7 @@ ConfusionDamageCalc:
     push de
 	push bc
 	ld hl, ThickFatPokemon
-	ld de, 1
-	call IsInArray
+	call IsInByteArray
 	pop bc
 	pop de
 	jr nc, .finishThickFat
@@ -3215,8 +3205,7 @@ ConfusionDamageCalc:
     push de
 	push bc
 	ld hl, TechnicianPokemon
-	ld de, 1
-	call IsInArray
+	call IsInByteArray
 	pop bc
 	pop de
 	jr c, .loadMovePower
@@ -4492,8 +4481,7 @@ BattleCommand_StatDown:
     push de
 	push bc
 	ld hl, ClearBodyPokemon
-	ld de, 1
-	call IsInArray
+	call IsInByteArray
 	pop bc
 	pop de
 	pop hl
@@ -5440,8 +5428,7 @@ BattleCommand_FlinchTarget:
     call GetOpposingMon
 	push bc
 	ld hl, InnerFocusPokemon
-	ld de, 1
-	call IsInArray
+	call IsInByteArray
 	pop bc
 	jr c, .noFlinch
     jr FlinchTarget
@@ -5704,8 +5691,7 @@ BattleCommand_Recoil:
 	push de
 	push hl
 	ld hl, RockHeadPokemon
-	ld de, 1
-	call IsInArray
+	call IsInByteArray
 	pop hl
 	pop de
 	pop bc

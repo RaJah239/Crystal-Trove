@@ -200,8 +200,7 @@ AI_Basic:
 	push de
 	push bc
 	ld hl, StatusOnlyEffects
-	ld de, 1
-	call IsInArray ; is the move status only
+	call IsInByteArray ; is the move status only
 	pop bc
 	pop de
 	pop hl
@@ -230,8 +229,7 @@ AI_Basic:
 	push de
 	push bc
 	ld hl, SubstituteImmuneEffects
-	ld de, 1
-	call IsInArray	;see if a is found in the hl array (carry flag set if true)
+	call IsInByteArray	;see if a is found in the hl array (carry flag set if true)
 	pop bc
 	pop de
 	pop hl
@@ -476,8 +474,7 @@ AI_Smart_Switch:
     push de
 	push bc
 	ld hl, BoostingMoveEffects
-	ld de, 1
-	call IsInArray
+	call IsInByteArray
 	pop bc
 	pop de
 	pop hl
@@ -2590,8 +2587,7 @@ AI_Smart_Encore:
 	push hl
 	ld a, [wLastPlayerCounterMove]
 	ld hl, EncoreMoves
-	ld de, 1
-	call IsInArray
+	call IsInByteArray
 	pop hl
 	jr nc, .discourage
 
@@ -3283,16 +3279,14 @@ AI_Smart_Sandstorm:
 	ld a, [wBattleMonType1]
 	push hl
 	ld hl, .SandstormImmuneTypes
-	ld de, 1
-	call IsInArray
+	call IsInByteArray
 	pop hl
 	jr c, .greatly_discourage
 
 	ld a, [wBattleMonType2]
 	push hl
 	ld hl, .SandstormImmuneTypes
-	ld de, 1
-	call IsInArray
+	call IsInByteArray
 	pop hl
 	jr c, .greatly_discourage
 
@@ -4190,8 +4184,7 @@ AI_Final_Attack:
 	push de
 	push bc
 	ld hl, StallMoves
-	ld de, 1
-	call IsInArray
+	call IsInByteArray
 
 	pop bc
 	pop de
@@ -4317,8 +4310,7 @@ AI_Aggressive:
 	push bc
 	ld a, [wEnemyMoveStruct + MOVE_EFFECT]
 	ld hl, RecklessMoves
-	ld de, 1
-	call IsInArray
+	call IsInByteArray
 	pop bc
 	pop de
 	pop hl
@@ -4340,9 +4332,8 @@ AIDamageCalc:
 	ld a, 1
 	ldh [hBattleTurn], a
 	ld a, [wEnemyMoveStruct + MOVE_EFFECT]
-	ld de, 1
 	ld hl, ConstantDamageEffects
-	call IsInArray
+	call IsInByteArray
 	jr nc, .notconstant
 	callfar BattleCommand_ConstantDamage
 	ret
@@ -4379,8 +4370,7 @@ AI_Cautious:
 	push de
 	push bc
 	ld hl, ResidualMoves
-	ld de, 1
-	call IsInArray
+	call IsInByteArray
 
 	pop bc
 	pop de
@@ -4606,8 +4596,7 @@ DoesPokemonHaveMagicGuard:
     push de
    	push bc
    	ld hl, AI_MagicGuardPokemon
-   	ld de, 1
-   	call IsInArray
+	call IsInByteArray
    	pop bc
    	pop de
    	pop hl
@@ -4637,8 +4626,7 @@ Levitate:
 	ld a, [wBattleMonSpecies]
 .checkLevitate
 	ld hl, AI_LevitatePokemon
-	ld de, 1
-	call IsInArray
+	call IsInByteArray
     jr c, .found
     ret
 .found
@@ -4651,8 +4639,7 @@ DoesPokemonHaveLevitate:
     push de
    	push bc
    	ld hl, AI_LevitatePokemon
-   	ld de, 1
-   	call IsInArray
+	call IsInByteArray
    	pop bc
    	pop de
    	pop hl
@@ -4668,8 +4655,7 @@ DoesPokemonHaveClearBody:
     push de
    	push bc
    	ld hl, AI_ClearBodyPokemon
-   	ld de, 1
-   	call IsInArray
+	call IsInByteArray
    	pop bc
    	pop de
    	pop hl
@@ -4699,8 +4685,7 @@ WaterAbsorb:
 	ld a, [wBattleMonSpecies]
 .check
 	ld hl, AI_WaterAbsorbPokemon
-	ld de, 1
-	call IsInArray
+	call IsInByteArray
     jr c, .found
     ret
 .found
@@ -4713,8 +4698,7 @@ DoesPokemonHaveWaterAbsorb:
     push de
    	push bc
    	ld hl, AI_WaterAbsorbPokemon
-   	ld de, 1
-   	call IsInArray
+	call IsInByteArray
    	pop bc
    	pop de
    	pop hl
@@ -4744,8 +4728,7 @@ VoltAbsorb:
 	ld a, [wBattleMonSpecies]
 .check
 	ld hl, AI_VoltAbsorbPokemon
-	ld de, 1
-	call IsInArray
+	call IsInByteArray
     jr c, .found
     ret
 .found
@@ -4758,8 +4741,7 @@ DoesPokemonHaveVoltAbsorb:
     push de
    	push bc
    	ld hl, AI_VoltAbsorbPokemon
-   	ld de, 1
-   	call IsInArray
+	call IsInByteArray
    	pop bc
    	pop de
    	pop hl
@@ -4789,8 +4771,7 @@ FireAbsorb:
 	ld a, [wBattleMonSpecies]
 .check
 	ld hl, AI_FireAbsorbPokemon
-	ld de, 1
-	call IsInArray
+	call IsInByteArray
     jr c, .found
     ret
 .found
@@ -4803,8 +4784,7 @@ DoesPokemonHaveFireAbsorb:
     push de
    	push bc
    	ld hl, AI_FireAbsorbPokemon
-   	ld de, 1
-   	call IsInArray
+	call IsInByteArray
    	pop bc
    	pop de
    	pop hl
@@ -5317,8 +5297,7 @@ ShouldAIBoost:
     push de
     push bc
 	ld hl, BoostingMoveEffects
-	ld de, 1
-	call IsInArray
+	call IsInByteArray
 	pop bc
 	pop de
 	pop hl
@@ -5534,8 +5513,7 @@ DoesEnemyHaveIntactFocusSashOrSturdy:
     push hl
     push de
 	ld hl, AI_SturdyPokemon
-	ld de, 1
-	call IsInArray
+	call IsInByteArray
 	pop de
 	pop hl
 	pop bc
@@ -5553,8 +5531,7 @@ DoesPokemonHaveUberImmunity:
     push de
    	push bc
    	ld hl, AI_UberImmunePokemon
-   	ld de, 1
-   	call IsInArray
+	call IsInByteArray
    	pop bc
    	pop de
    	pop hl
