@@ -816,14 +816,12 @@ HandleEncore:
 QuickClawActivationAnimationAndText:
 	call SwitchCoreItemRecoveryAnim
 	ld hl, BattleText_QuickClaw
-	call StdBattleTextbox
-	ret
+	jmp StdBattleTextbox
 
 SwitchCoreItemRecoveryAnim:
 	call SwitchTurnCore
 	call ItemRecoveryAnim
-	call SwitchTurnCore
-	ret
+	jmp SwitchTurnCore
 
 TryEnemyFlee:
 	ld a, [wBattleMode]
@@ -2109,19 +2107,16 @@ KOBoost:
     call GetCurrentMonCore
 	ld hl, Core_GrimPokemon
 	call IsInByteArray
-	jr c, .grim
+	ret nc
+.grim:
+    call ClearFailures
+    ld [wNumHits], a
+    newfarjp SpecialAttackUpSwitch
 
-    ret
-.grim
+.moxie:
     call ClearFailures
     ld [wNumHits], a
-    farcall SpecialAttackUpSwitch
-    ret
-.moxie
-    call ClearFailures
-    ld [wNumHits], a
-    farcall AttackUpSwitch
-    ret
+    newfarjp AttackUpSwitch
 
 CheckEnemyTrainerDefeated:
 	ld a, [wOTPartyCount]
@@ -2257,8 +2252,7 @@ WinTrainerBattle:
 ;	ld c, 40
 ;	call DelayFrames
 	ld c, $4 ; win
-	farcall Mobile_PrintOpponentBattleMessage
-	ret
+	newfarjp Mobile_PrintOpponentBattleMessage
 
 .battle_tower
 	call BattleWinSlideInEnemyTrainerFrontpic
@@ -2275,8 +2269,7 @@ WinTrainerBattle:
 	or [hl]
 	ret nz
 	call ClearTilemap
-	call ClearBGPalettes
-	ret
+	jmp ClearBGPalettes
 
 .give_money
 	ld a, [wAmuletCoin]
@@ -2696,20 +2689,17 @@ SetUpBattlePartyMenu_Loop: ; switch to fullscreen menu?
 	farcall LoadPartyMenuGFX
 	farcall InitPartyMenuWithCancel
 	farcall InitPartyMenuBGPal7
-	farcall InitPartyMenuGFX
-	ret
+	newfarjp InitPartyMenuGFX
 
 JumpToPartyMenuAndPrintText:
 	farcall WritePartyMenuTilemap
 	farcall PlacePartyMenuText
 	call WaitBGMap
 	call SetDefaultBGPAndOBP
-	call DelayFrame
-	ret
+	jmp DelayFrame
 
 SelectBattleMon:
-	farcall PartyMenuSelect
-	ret
+	newfarjp PartyMenuSelect
 
 PickPartyMonInBattle:
 .loop
@@ -2823,8 +2813,7 @@ LostBattle:
 	farcall BattleTowerText
 	call WaitPressAorB_BlinkCursor
 	call ClearTilemap
-	call ClearBGPalettes
-	ret
+	jmp ClearBGPalettes
 
 .no_loss_text
 	ld a, [wLinkMode]
@@ -3002,8 +2991,7 @@ ForceEnemySwitch:
 	call ResetEnemyStatLevels
 	call ShowSetEnemyMonAndSendOutAnimation
 	call BreakAttraction
-	call ResetBattleParticipants
-	ret
+	jmp ResetBattleParticipants
 
 EnemySwitch:
 	call CheckWhetherToAskSwitch
@@ -3168,10 +3156,10 @@ LookUpTheEffectivenessOfEveryMove:
 	ld e, NUM_MOVES + 1
 .loop
 	dec e
-	jr z, .done
+	ret z
 	ld a, [hli]
 	and a
-	jr z, .done
+	ret z
 	push hl
 	push de
 	push bc
@@ -3192,8 +3180,6 @@ LookUpTheEffectivenessOfEveryMove:
 	jr c, .loop
 	ld hl, wEnemyEffectivenessVsPlayerMons
 	set 0, [hl]
-	ret
-.done
 	ret
 
 IsThePlayerMonTypesEffectiveAgainstOTMon:
@@ -3562,8 +3548,7 @@ TryToRunAwayFromBattle:
 	jr .print_inescapable_text
 
 .trainer_battle_info
-	farcall TrainerBattleInfo
-	ret
+	newfarjp TrainerBattleInfo
 
 .print_inescapable_text
 	call StdBattleTextbox
@@ -3668,8 +3653,7 @@ InitBattleMon:
 	ld de, wPlayerStats
 	ld bc, PARTYMON_STRUCT_LENGTH - MON_ATK
 	call CopyBytes
-	call ApplyStatusEffectOnPlayerStats
-	ret
+	jmp ApplyStatusEffectOnPlayerStats
 
 BattleCheckPlayerShininess:
 	call GetPartyMonDVs
@@ -4894,13 +4878,11 @@ DrawEnemyHUD:
 	ld [wWhichHPBar], a
 	hlcoord 2, 2
 	ld b, 0
-	call DrawBattleHPBar
-	ret
+	jmp DrawBattleHPBar
 
 UpdateEnemyHPPal:
 	ld hl, wEnemyHPPal
-	call UpdateHPPal
-	ret
+	; fallthrough
 
 UpdateHPPal:
 	ld b, [hl]
@@ -5037,8 +5019,7 @@ BattleMenu_Pack:
 	call DoItemEffect
 
 .got_item
-	call .UseItem
-	ret
+	jr .UseItem
 
 .didnt_use_item
 	call ClearPalettes
@@ -5166,8 +5147,7 @@ BattleMenuPKMN_Loop:
 	jmp BattleMenu
 
 .GetMenu:
-	farcall BattleMonMenu
-	ret
+	newfarjp BattleMonMenu
 
 Battle_StatsScreen:
 	call DisableLCD
@@ -5203,8 +5183,7 @@ Battle_StatsScreen:
 	ld bc, $31 tiles
 	call CopyBytes
 
-	call EnableLCD
-	ret
+	jmp EnableLCD
 
 TryPlayerSwitch:
 	ld a, [wCurBattleMon]
@@ -5278,8 +5257,7 @@ PlayerSwitch:
 	jr c, .switch
 	cp BATTLEACTION_FORFEIT
 	jr nz, .dont_run
-	call WildFled_EnemyFled_LinkBattleCanceled
-	ret
+	jmp WildFled_EnemyFled_LinkBattleCanceled
 
 .dont_run
 	ldh a, [hSerialConnectionStatus]
@@ -5876,8 +5854,7 @@ MoveInfoBox:
 	inc hl
 	ld de, wNamedObjectIndex
 	lb bc, 1, 2
-	call PrintNum
-	ret
+	jmp PrintNum
 
 ; This converts values out of 256 into a value
 ; out of 100. It achieves this by multiplying
@@ -6128,8 +6105,7 @@ CheckEnemyLockedIn:
 	ret
 
 LinkBattleSendReceiveAction:
-	farcall _LinkBattleSendReceiveAction
-	ret
+	newfarjp _LinkBattleSendReceiveAction
 
 LoadEnemyMon:
 ; Initialize enemy monster parameters
@@ -6674,8 +6650,7 @@ LoadEnemyMon:
 	ld bc, NUM_BATTLE_STATS * 2
 	call CopyBytes
 
-	call ApplyStatusEffectOnEnemyStats
-	ret
+	jmp ApplyStatusEffectOnEnemyStats
 
 CheckSleepingTreeMon:
 ; Return carry if species is in the list
@@ -8505,8 +8480,7 @@ CleanUpBattleRAM:
 	ld [hli], a
 	dec b
 	jr nz, .loop
-	call WaitSFX
-	ret
+	jmp WaitSFX
 
 ShowLinkBattleParticipantsAfterEnd:
 	farcall BackupGSBallFlag
@@ -8516,8 +8490,7 @@ ShowLinkBattleParticipantsAfterEnd:
 	ld a, [wEnemyMonStatus]
 	ld [hl], a
 	call ClearTilemap
-	farcall _ShowLinkBattleParticipants
-	ret
+	newfarjp _ShowLinkBattleParticipants
 
 DisplayLinkBattleResult:
 	farcall CheckMobileBattleError
@@ -8565,8 +8538,7 @@ DisplayLinkBattleResult:
 	call CloseSRAM
 
 	call WaitPressAorB_BlinkCursor
-	call ClearTilemap
-	ret
+	jmp ClearTilemap
 
 .YouWin:
 	db "YOU WIN@"
@@ -8581,8 +8553,7 @@ DisplayLinkBattleResult:
 	call PlaceString
 	ld c, 200
 	call DelayFrames
-	call ClearTilemap
-	ret
+	jmp ClearTilemap
 
 .InvalidBattle:
 	db "INVALID BATTLE@"
@@ -8609,8 +8580,7 @@ _DisplayLinkRecord:
 	call SetDefaultBGPAndOBP
 	ld c, 8
 	call DelayFrames
-	call WaitPressAorB_BlinkCursor
-	ret
+	jmp WaitPressAorB_BlinkCursor
 
 ReadAndPrintLinkBattleRecord:
 	call ClearTilemap
@@ -8699,7 +8669,7 @@ ReadAndPrintLinkBattleRecord:
 	hlcoord 6, 4
 	ld de, sLinkBattleWins
 	call .PrintZerosIfNoSaveFileExists
-	jr c, .quit
+	ret c
 
 	lb bc, 2, 4
 	call PrintNum
@@ -8716,10 +8686,7 @@ ReadAndPrintLinkBattleRecord:
 	call .PrintZerosIfNoSaveFileExists
 
 	lb bc, 2, 4
-	call PrintNum
-
-.quit
-	ret
+	jmp PrintNum
 
 .PrintZerosIfNoSaveFileExists:
 	ld a, [wSavedAtLeastOnce]
@@ -8828,8 +8795,7 @@ AddLastLinkBattleToLinkRecord:
 
 .done
 	call .StoreResult
-	call .FindOpponentAndAppendRecord
-	ret
+	jr .FindOpponentAndAppendRecord
 
 .StoreResult:
 	ld a, [wBattleResult]
@@ -8951,8 +8917,7 @@ AddLastLinkBattleToLinkRecord:
 	ld hl, wLinkBattleRecordBuffer
 	ld bc, LINK_BATTLE_RECORD_LENGTH
 	pop de
-	call CopyBytes
-	ret
+	jmp CopyBytes
 
 .LoadPointer:
 	ld e, $0
@@ -9047,10 +9012,9 @@ InitBattleDisplay:
 
 .InitBackPic:
 	farcall GetTrainerBackpic
-	call CopyBackpic
-	ret
+	; fallthrough
 
-CopyBackpic:
+;CopyBackpic:
 	ldh a, [rSVBK]
 	push af
 	ld a, BANK(wDecompressScratch)
@@ -9216,10 +9180,8 @@ FieldWeather:
     cp WEATHER_SANDSTORM
     jr z, .sand
     cp WEATHER_HAIL
-    jr z, .hail
-    ret
-
-.hail
+	ret nz
+;.hail
 	ld de, ANIM_IN_HAIL
 	call Call_PlayBattleAnim
 	ld hl, ItStartedToHailText
