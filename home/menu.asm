@@ -153,7 +153,7 @@ CopyMenuData::
 	ld de, wMenuData
 	ld bc, wMenuDataEnd - wMenuData
 	call CopyBytes
-	jp PopAFBCDEHL
+	jmp PopAFBCDEHL
 
 GetWindowStackTop::
 	ld hl, wWindowStackPointer
@@ -198,14 +198,14 @@ PlaceVerticalMenuItems::
 	inc de
 	ld b, 0
 	add hl, bc
-	jp PlaceString
+	jmp PlaceString
 
 MenuBox::
 	call MenuBoxCoord2Tile
 	call GetMenuBoxDims
 	dec b
 	dec c
-	jp Textbox
+	jmp Textbox
 
 GetMenuTextStartCoord::
 	ld a, [wMenuBorderTopCoord]
@@ -325,7 +325,7 @@ MenuTextbox::
 	push hl
 	call LoadMenuTextbox
 	pop hl
-	jp PrintText
+	jmp PrintText
 
 Menu_DummyFunction:: ; unreferenced
 	ret

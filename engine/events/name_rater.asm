@@ -3,7 +3,7 @@ _NameRater:
 	ld hl, NameRaterHelloText
 	call PrintText
 	call YesNoBox
-	jp c, .cancel
+	jmp c, .cancel
 ; Select a Pokemon from your party
 	ld hl, NameRaterWhichMonText
 	call PrintText
@@ -70,7 +70,7 @@ _NameRater:
 .egg
 	ld hl, NameRaterEggText
 	call PrintText
-	jp .loop_party_menu
+	jmp .loop_party_menu
 
 .done
 	call PrintText

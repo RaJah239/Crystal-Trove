@@ -12,9 +12,9 @@ BattleCommand_TrickRoom:
 ; If Trick Room is already up, remove Trick Room.
 	ld [hl], 0
 	ld hl, TrickRoomEndedText
-	jp StdBattleTextbox
+	jmp StdBattleTextbox
 
 .new_trick_room
 	ld [hl], 5
 	ld hl, TrickRoomText
-	jp StdBattleTextbox
+	jmp StdBattleTextbox

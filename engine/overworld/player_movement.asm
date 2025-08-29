@@ -298,9 +298,9 @@ endc
 ; Surfing actually calls .TrySurf directly instead of passing through here.
 	ld a, [wPlayerState]
 	cp PLAYER_SURF
-	jp z, .TrySurf
+	jr z, .TrySurf
 	cp PLAYER_SURF_PIKA
-	jp z, .TrySurf
+	jr z, .TrySurf
 
 	call .CheckLandPerms
 	jr c, .bump
@@ -557,7 +557,7 @@ endc
 	ld a, [wWalkingDirection]
 	ld e, a
 	cp STANDING
-	jp z, .StandInPlace
+	jr z, .StandInPlace
 
 	add hl, de
 	ld a, [hl]

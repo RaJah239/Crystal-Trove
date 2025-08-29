@@ -91,7 +91,7 @@ ApplyOBPals:
 	ld de, wOBPals2
 	ld bc, 8 palettes
 	ld a, BANK(wGBCPalettes)
-	jp FarCopyColorWRAM
+	jmp FarCopyColorWRAM
 
 MapObjectPals:
 	table_width 1 palettes, MapObjectPals

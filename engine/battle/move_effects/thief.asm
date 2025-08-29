@@ -115,7 +115,7 @@ BattleCommand_Thief:
 .not_choice_item
 	call GetItemName
 	ld hl, StoleText
-	jp StdBattleTextbox
+	jmp StdBattleTextbox
 
 .playeritem
 	ld a, MON_ITEM

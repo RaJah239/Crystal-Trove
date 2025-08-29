@@ -14,5 +14,5 @@ BattleCommand_CloseCombat:
 	call BattleCommand_SwitchTurn
 	call BattleCommand_StatDownMessage
 	call ResetMiss
-	jp BattleCommand_SwitchTurn
+	jmp BattleCommand_SwitchTurn
 	

@@ -41,4 +41,4 @@ BattleCommand_Barrier:
 	farcall GetStatName
 	farcall AnimateFailedMove
 	ld hl, WontRiseAnymoreText
-	jp StdBattleTextbox
+	jmp StdBattleTextbox

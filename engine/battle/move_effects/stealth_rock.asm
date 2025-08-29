@@ -17,7 +17,7 @@ BattleCommand_StealthRock:
 
 	call AnimateCurrentMove
 	ld hl, StealthRockText
-	jp StdBattleTextbox
+	jmp StdBattleTextbox
 
 .failed
-	jp FailMove
+	jmp FailMove

@@ -17,7 +17,7 @@ BattleCommand_StickyWeb:
 
 	call AnimateCurrentMove
 	ld hl, StickyWebText
-	jp StdBattleTextbox
+	jmp StdBattleTextbox
 
 .failed
-	jp FailMove
+	jmp FailMove

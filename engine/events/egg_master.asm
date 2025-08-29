@@ -43,7 +43,7 @@ EggMaster:
 
 .cancel
     ld hl, EggReminderCancelText
-    jp PrintText
+    jmp PrintText
 
 .is_an_egg
     ld hl, EggReminderEggText
@@ -64,7 +64,7 @@ EggMaster:
 ; This will end the dialogue.
 .not_enough_money
     ld hl, EggReminderNotEnoughMoneyText
-    jp PrintText
+    jmp PrintText
 
 .move_learned
     call ReturnToMapWithSpeechTextbox
@@ -278,7 +278,7 @@ ChooseEggMoveToLearn:
     ld [wNamedObjectIndex], a
     call GetMoveName
     pop hl
-    jp PlaceString
+    jmp PlaceString
 
 .print_pp
     ld hl, wStringBuffer1
@@ -449,13 +449,13 @@ ChooseEggMoveToLearn:
     ld de, wBuffer1
     lb bc, 1, 3
     hlcoord 5, 10
-    jp PrintNum
+    jmp PrintNum
  
 .print_move_null_attack
     hlcoord 5, 10
     ld de, MoveNullValueString
     ld bc, 3
-    jp PlaceString
+    jmp PlaceString
 
 EggConvertPercentages:
     ld l, a

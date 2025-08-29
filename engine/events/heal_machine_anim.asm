@@ -125,7 +125,7 @@ ENDM
 .PlayHealMusic:
 	ld de, MUSIC_HEAL
 	call PlayMusic
-	jp .FlashPalettes8Times
+	jmp .FlashPalettes8Times
 
 .HOF_PlaySFX:
 	ld de, SFX_GAME_FREAK_LOGO_GS

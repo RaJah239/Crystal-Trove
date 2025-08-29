@@ -2,7 +2,7 @@ BattleCommand_Taunt:
 ; taunt
 	ld a, [wEffectFailed] ; fail if uber enemy
 	and a
-	jp nz, .failed
+	jr nz, .failed
 
 ; are we dealing with enemy or player
     ldh a, [hBattleTurn]
@@ -25,7 +25,7 @@ BattleCommand_Taunt:
 .finish
 	call AnimateCurrentMove
 	ld hl, GotTauntedText
-	jp StdBattleTextbox
+	jmp StdBattleTextbox
 
 .failed
-	jp PrintDidntAffect2
+	jmp PrintDidntAffect2

@@ -26,7 +26,7 @@ GetMoveCategoryName:
 	ld l, a
 	ld de, wStringBuffer1
 	ld bc, MOVE_NAME_LENGTH
-	jp CopyBytes
+	jmp CopyBytes
 
 BattleGetMoveCategoryName:
 ; Copy the category name of move b to wStringBuffer1.
@@ -56,6 +56,6 @@ BattleGetMoveCategoryName:
 	ld l, a
 	ld de, wStringBuffer1
 	ld bc, MOVE_NAME_LENGTH
-	jp CopyBytes
+	jmp CopyBytes
 
 INCLUDE "data/types/category_names.asm"

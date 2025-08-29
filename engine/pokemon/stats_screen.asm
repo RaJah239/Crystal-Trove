@@ -210,7 +210,7 @@ if DEF(_DEBUG)
 	pop bc
 .skip
 	xor a
-	jp StatsScreen_JoypadAction
+	jr StatsScreen_JoypadAction
 
 .HatchSoonString:
 	db "▶Hatch Soon!@"
@@ -234,7 +234,7 @@ MonStatsJoypad:
 
 .next
 	and D_DOWN | D_UP | D_LEFT | D_RIGHT | A_BUTTON | B_BUTTON | SELECT
-	jp StatsScreen_JoypadAction
+	jr StatsScreen_JoypadAction
 
 StatsScreenWaitCry:
 ;	call IsSFXPlaying
@@ -285,9 +285,9 @@ StatsScreen_JoypadAction:
 	ld c, a
 	pop af
 	bit B_BUTTON_F, a
-	jp nz, .b_button
+	jmp nz, .b_button
 	bit D_LEFT_F, a
-	jp nz, .d_left
+	jmp nz, .d_left
 	bit D_RIGHT_F, a
 	jr nz, .d_right
 	bit A_BUTTON_F, a
@@ -298,7 +298,7 @@ StatsScreen_JoypadAction:
 	jr nz, .d_down
 	bit SELECT_F, a
 	jr nz, .select
-	jp .done
+	jmp .done
 
 .select
 	ld a, c
@@ -450,7 +450,7 @@ StatsScreen_InitUpperHalf:
 	call StatsScreen_PlaceHorizontalDivider
 	call StatsScreen_PlacePageSwitchArrows
 	call StatsScreen_PlaceShinyIcon
-	jp StatsScreen_PlaceFloatIcon
+	jr StatsScreen_PlaceFloatIcon
 
 .PlaceHPBar:
 	ld hl, wTempMonHP
@@ -1311,7 +1311,7 @@ StatsScreen_PrintAffection:
 	ld de, HighString
 .got_happiness
 	hlcoord 1, 16
-	jp PlaceString
+	jmp PlaceString
 
 AffectionString:
 	db "Condition/@"
@@ -1665,7 +1665,7 @@ GetNicknamePointer:
 	cp BUFFERMON
 	ret z
 	ld a, [wCurPartyMon]
-	jp SkipNames
+	jmp SkipNames
 
 CheckFaintedFrzSlp:
 	ld hl, MON_HP

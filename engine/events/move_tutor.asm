@@ -102,4 +102,4 @@ MoveTutor2:
 	ld [wItemAttributeValue], a
 	ld a, [wNamedObjectIndex]
 	ld [wPutativeTMHMMove], a
-	jp MoveTutor.Continue
+	jmp MoveTutor.Continue

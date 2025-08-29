@@ -354,7 +354,7 @@ CheckSwarmFlag::
 CheckPokerus:
 ; Check if a monster in your party has Pokerus
 	farcall _CheckPokerus
-	jp ScriptReturnCarry
+	jr ScriptReturnCarry
 
 ResetLuckyNumberShowFlag:
 	farcall LoadOrRegenerateLuckyIDNumber
@@ -417,7 +417,7 @@ SnorlaxAwake:
 
 PlayCurMonCry:
 	ld a, [wCurPartySpecies]
-	jp PlayMonCry
+	jmp PlayMonCry
 
 FadeOutMusic:
 	ld a, LOW(MUSIC_NONE)
@@ -445,7 +445,7 @@ TrainerHouse:
 	call OpenSRAM
 	ld a, [sMysteryGiftTrainerHouseFlag]
 	ld [wScriptVar], a
-	jp CloseSRAM
+	jmp CloseSRAM
 
 BackupPartyHeldItems:
 	ld hl, wPartyMon1Item

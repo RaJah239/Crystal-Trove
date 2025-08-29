@@ -7,7 +7,7 @@ Intro_MainMenu:
 	ld [wMapMusic], a
 	call PlayMusic
 	farcall MainMenu
-	jp StartTitleScreen
+	jmp StartTitleScreen
 
 AboutSpeech:
 	call ClearTilemap
@@ -30,7 +30,7 @@ AboutSpeech:
 
 	; Display text
 	ld hl, AboutText1
-	jp PrintText
+	jmp PrintText
 
 AboutText1:
 	text_far _AboutText
@@ -102,7 +102,7 @@ NewGame:
 
 	ld a, MAPSETUP_WARP
 	ldh [hMapEntryMethod], a
-	jp FinishContinueFunction
+	jmp FinishContinueFunction
 
 PlayerProfileSetup:
 	farcall CheckMobileAdapterStatus
@@ -354,7 +354,7 @@ LoadOrRegenerateLuckyIDNumber:
 	ld a, c
 	ld [wLuckyIDNumber + 1], a
 	ld [sLuckyIDNumber + 1], a
-	jp CloseSRAM
+	jmp CloseSRAM
 
 Continue:
 	farcall TryLoadSaveFile
@@ -401,7 +401,7 @@ Continue:
 	jr z, .SpawnAfterE4
 	ld a, MAPSETUP_CONTINUE
 	ldh [hMapEntryMethod], a
-	jp FinishContinueFunction
+	jmp FinishContinueFunction
 
 .FailToLoad:
 	ret
@@ -414,7 +414,7 @@ Continue:
 	ld a, SPAWN_HOME
 	ld [wDefaultSpawnpoint], a
 	call PostCreditsSpawn
-	jp FinishContinueFunction
+	jmp FinishContinueFunction
 
 SpawnAfterRed:
 	ld a, SPAWN_MT_SILVER
@@ -477,7 +477,7 @@ CheckVBA:
 	cp %01111100
 	ret z
 	ld hl, .WarnVBAText
-	jp PrintText
+	jmp PrintText
 
 .WarnVBAText:
 	text_jump _WarnVBAText
@@ -512,7 +512,7 @@ FinishContinueFunction:
 	ld a, [wSpawnAfterChampion]
 	cp SPAWN_RED
 	jr z, .AfterRed
-	jp Reset
+	jmp Reset
 
 .AfterRed:
 	call SpawnAfterRed
@@ -641,7 +641,7 @@ Continue_DisplayBadgeCount:
 	pop hl
 	ld de, wNumSetBits
 	lb bc, 1, 2
-	jp PrintNum
+	jmp PrintNum
 
 Continue_DisplayPokedexNumCaught:
 	ld a, [wStatusFlags]
@@ -658,7 +658,7 @@ endc
 	pop hl
 	ld de, wNumSetBits
 	lb bc, 1, 3
-	jp PrintNum
+	jmp PrintNum
 
 Continue_DisplayGameTime:
 	ld de, wGameTimeHours
@@ -668,7 +668,7 @@ Continue_DisplayGameTime:
 	inc hl
 	ld de, wGameTimeMinutes
 	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
-	jp PrintNum
+	jmp PrintNum
 
 OakSpeech:
 if DEF(_DEBUG)
@@ -1336,11 +1336,11 @@ TitleScreenEnd:
 
 DeleteSaveData:
 	farcall _DeleteSaveData
-	jp Init
+	jmp Init
 
 ResetClock:
 	farcall _ResetClock
-	jp Init
+	jmp Init
 
 Copyright:
 	call ClearTilemap
@@ -1351,7 +1351,7 @@ Copyright:
 	call Request2bpp
 	hlcoord 2, 7
 	ld de, CopyrightString
-	jp PlaceString
+	jmp PlaceString
 
 CopyrightString:
 	; ©1995-2001 Nintendo
@@ -1385,15 +1385,15 @@ GameInit::
 	call WaitBGMap
 	ld a, [wSaveFileExists]
 	and a
-	jp z, IntroSequence
+	jmp z, IntroSequence
 
 	ld a, [wOptions2]
 	bit FAST_BOOT, a
-	jp z, IntroSequence
+	jmp z, IntroSequence
 
 	; Fast boot.
 	farcall TryLoadSaveFile
-	jp c, IntroSequence ; If loading failed.
+	jmp c, IntroSequence ; If loading failed.
 
 	farcall _LoadData
-	jp Continue.Go
+	jmp Continue.Go

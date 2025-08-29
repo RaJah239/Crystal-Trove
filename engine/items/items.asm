@@ -1,6 +1,6 @@
 _ReceiveItem::
 	call DoesHLEqualNumItems
-	jp nz, PutItemInPocket
+	jmp nz, PutItemInPocket
 	push hl
 	call CheckItemPocket
 	pop de
@@ -24,32 +24,32 @@ _ReceiveItem::
 .Item:
 	ld h, d
 	ld l, e
-	jp PutItemInPocket
+	jmp PutItemInPocket
 
 .KeyItem:
 	ld h, d
 	ld l, e
-	jp ReceiveKeyItem
+	jmp ReceiveKeyItem
 
 .Ball:
 	ld hl, wNumBalls
-	jp PutItemInPocket
+	jmp PutItemInPocket
 
 .Fruit:
 	ld hl, wNumFruits
-	jp PutItemInPocket
+	jmp PutItemInPocket
 
 .Battle:
 	ld hl, wNumBattles
-	jp PutItemInPocket
+	jmp PutItemInPocket
 
 .Medince
 	ld hl, wNumMedicines
-	jp PutItemInPocket
+	jmp PutItemInPocket
 
 .Loot
 	ld hl, wNumLoot
-	jp PutItemInPocket
+	jmp PutItemInPocket
 
 .TMHM:
 	ld h, d
@@ -57,7 +57,7 @@ _ReceiveItem::
 	ld a, [wCurItem]
 	ld c, a
 	call GetTMHMNumber
-	jp ReceiveTMHM
+	jmp ReceiveTMHM
 
 _TossItem::
 	call DoesHLEqualNumItems
@@ -84,23 +84,23 @@ _TossItem::
 
 .Ball:
 	ld hl, wNumBalls
-	jp RemoveItemFromPocket
+	jmp RemoveItemFromPocket
 
 .Fruit:
 	ld hl, wNumFruits
-	jp RemoveItemFromPocket
+	jmp RemoveItemFromPocket
 
 .Battle:
 	ld hl, wNumBattles
-	jp RemoveItemFromPocket
+	jmp RemoveItemFromPocket
 
 .Medince
 	ld hl, wNumMedicines
-	jp RemoveItemFromPocket
+	jmp RemoveItemFromPocket
 
 .Loot:
 	ld hl, wNumLoot
-	jp RemoveItemFromPocket
+	jmp RemoveItemFromPocket
 
 .TMHM:
 	ld h, d
@@ -108,19 +108,19 @@ _TossItem::
 	ld a, [wCurItem]
 	ld c, a
 	call GetTMHMNumber
-	jp TossTMHM
+	jmp TossTMHM
 
 .KeyItem:
 	ld h, d
 	ld l, e
-	jp TossKeyItem
+	jmp TossKeyItem
 
 .Item:
 	ld h, d
 	ld l, e
 
 .remove
-	jp RemoveItemFromPocket
+	jmp RemoveItemFromPocket
 
 _CheckItem::
 	call DoesHLEqualNumItems
@@ -147,23 +147,23 @@ _CheckItem::
 
 .Ball:
 	ld hl, wNumBalls
-	jp CheckTheItem
+	jmp CheckTheItem
 
 .Fruit:
 	ld hl, wNumFruits
-	jp CheckTheItem
+	jmp CheckTheItem
 	
 .Battle:
 	ld hl, wNumBattles
-	jp CheckTheItem
+	jmp CheckTheItem
 
 .Medicine:
 	ld hl, wNumMedicines
-	jp CheckTheItem
+	jmp CheckTheItem
 
 .Loot:
 	ld hl, wNumLoot
-	jp CheckTheItem
+	jmp CheckTheItem
 
 .TMHM:
 	ld h, d
@@ -171,19 +171,19 @@ _CheckItem::
 	ld a, [wCurItem]
 	ld c, a
 	call GetTMHMNumber
-	jp CheckTMHM
+	jmp CheckTMHM
 
 .KeyItem:
 	ld h, d
 	ld l, e
-	jp CheckKeyItems
+	jmp CheckKeyItems
 
 .Item:
 	ld h, d
 	ld l, e
 
 .nope
-	jp CheckTheItem
+	jmp CheckTheItem
 
 DoesHLEqualNumItems:
 	ld a, l

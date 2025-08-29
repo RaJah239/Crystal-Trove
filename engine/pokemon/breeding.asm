@@ -1,7 +1,7 @@
 CheckBreedmonCompatibility:
 	call .CheckBreedingGroupCompatibility
 	ld c, $0
-	jp nc, .done
+	jmp nc, .done
 	ld a, [wBreedMon1Species]
 	ld [wCurPartySpecies], a
 	ld a, [wBreedMon1DVs]
@@ -252,7 +252,7 @@ OverworldHatchEgg::
 	call HatchEggs
 	call ExitAllMenus
 	call RestartMapMusic
-	jp CloseText
+	jmp CloseText
 
 HatchEggs:
 	ld de, wPartySpecies
@@ -264,14 +264,14 @@ HatchEggs:
 	ld a, [de]
 	inc de
 	cp -1
-	jp z, .done
+	jmp z, .done
 	push de
 	push hl
 	cp EGG
-	jp nz, .next
+	jmp nz, .next
 	ld a, [hl]
 	and a
-	jp nz, .next
+	jmp nz, .next
 	ld [hl], $78
 
 	push de
@@ -400,7 +400,7 @@ HatchEggs:
 	ld de, PARTYMON_STRUCT_LENGTH
 	add hl, de
 	pop de
-	jp .loop
+	jmp .loop
 
 .done
 	ret
@@ -712,7 +712,7 @@ Hatch_UpdateFrontpicBGMapCenter:
 	pop af
 	call Hatch_LoadFrontpicPal
 	call SetDefaultBGPAndOBP
-	jp WaitBGMap
+	jmp WaitBGMap
 
 EggHatch_DoAnimFrame:
 	push hl
@@ -819,7 +819,7 @@ Hatch_LoadFrontpicPal:
 	ld [wPlayerHPPal], a
 	ld b, SCGB_EVOLUTION
 	ld c, $0
-	jp GetSGBLayout
+	jmp GetSGBLayout
 
 EggHatch_CrackShell:
 	ld a, [wFrameCounter]
@@ -840,7 +840,7 @@ EggHatch_CrackShell:
 	add hl, bc
 	ld [hl], $0
 	ld de, SFX_EGG_CRACK
-	jp PlaySFX
+	jmp PlaySFX
 
 EggHatchGFX:
 INCBIN "gfx/evo/egg_hatch.2bpp"
@@ -925,7 +925,7 @@ DayCareMon1:
 	call PromptButton
 	ld hl, wBreedMon2Nickname
 	call DayCareMonCompatibilityText
-	jp PrintText
+	jmp PrintText
 
 DayCareMon2:
 	ld hl, LeftWithDayCareLadyText
@@ -938,10 +938,10 @@ DayCareMon2:
 	call PromptButton
 	ld hl, wBreedMon1Nickname
 	call DayCareMonCompatibilityText
-	jp PrintText
+	jmp PrintText
 
 DayCareMonCursor:
-	jp WaitPressAorB_BlinkCursor
+	jmp WaitPressAorB_BlinkCursor
 
 LeftWithDayCareLadyText:
 	text_far _LeftWithDayCareLadyText

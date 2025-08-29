@@ -294,7 +294,7 @@ BattleAnimFunction_PokeBall_BG:
 	dw DeinitBattleAnimation
 .zero
 	call GetBallAnimBGPal
-	jp BattleAnim_IncAnonJumptableIndex
+	jmp BattleAnim_IncAnonJumptableIndex
 
 BattleAnimFunc_PokeBall:
 	call BattleAnim_AnonJumptable
@@ -4346,7 +4346,7 @@ PowerGemFunction3:
 	cp $c0
 	ret nc
 	ld a, $8
-	jp BattleAnim_StepToTarget
+	jmp BattleAnim_StepToTarget
 
 BattleAnimFunc_RockTomb:
 	call BattleAnim_AnonJumptable
@@ -4377,7 +4377,7 @@ BattleAnimFunc_RockTomb:
 	ld a, [hl]
 	and $3f
 	ret nz
-	jp BattleAnim_IncAnonJumptableIndex
+	jmp BattleAnim_IncAnonJumptableIndex
 .two
 	ret
 
@@ -4394,7 +4394,7 @@ BattleAnimFunction_55:
 	add hl, bc
 	ld a, [hl]
 	inc [hl]
-	jp BattleAnim_StepCircle
+	jmp BattleAnim_StepCircle
 
 .one
 	call BattleAnim_IncAnonJumptableIndex
@@ -4406,11 +4406,11 @@ BattleAnimFunction_55:
 	add hl, bc
 	ld a, [hl]
 	cp 160
-	jp nc, DeinitBattleAnimation
+	jmp nc, DeinitBattleAnimation
 	ld d, a
 	add 3
 	ld [hl], a
 	ld hl, BATTLEANIMSTRUCT_PARAM
 	add hl, bc
 	ld a, [hl]
-	jp BattleAnim_StepCircle
+	jmp BattleAnim_StepCircle

@@ -73,7 +73,7 @@ BattleAnimRunScript:
 .disabled
 	ld a, [wNumHits]
 	and a
-	jp z, BattleAnim_RevertPals
+	jmp z, BattleAnim_RevertPals
 
 	ld l, a
 	ld h, 0
@@ -91,7 +91,7 @@ BattleAnimRunScript:
 
 	ld a, [wBattleAnimFlags]
 	bit BATTLEANIM_KEEPSPRITES_F, a
-	jp z, BattleAnim_RevertPals
+	jmp z, BattleAnim_RevertPals
 	; fallthrough
 
 BattleAnimDarkenObjPals:
@@ -232,7 +232,7 @@ BattleAnimRequestPals:
 	ld b, a
 	ld a, [wOBP0]
 	cp b
-	jp nz, BattleAnim_SetOBPals
+	jmp nz, BattleAnim_SetOBPals
 	ret
 
 ClearActorHud:
@@ -1122,7 +1122,7 @@ SetBattleAnimPal:
 	ld b, a
 .finish
 	call .SetPaletteData
-	jp SetDefaultBGPAndOBP
+	jmp SetDefaultBGPAndOBP
 
 .UserPal:
 	ldh a, [hBattleTurn]
@@ -1472,7 +1472,7 @@ ClearBattleAnims::
 	add hl, de
 	call GetBattleAnimPointer
 	call BattleAnimAssignPals
-	jp DelayFrame
+	jmp DelayFrame
 
 BattleAnim_RevertPals:
 	ld a, [wBattleAnimFlags]

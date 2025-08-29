@@ -1,9 +1,9 @@
 BattleCommand_PainSplit:
 	ld a, [wAttackMissed]
 	and a
-	jp nz, .ButItFailed
+	jmp nz, .ButItFailed
 	farcall CheckSubstituteOpp
-	jp nz, .ButItFailed
+	jmp nz, .ButItFailed
 	farcall AnimateCurrentMove
 	ld hl, wBattleMonMaxHP + 1
 	ld de, wEnemyMonMaxHP + 1
@@ -30,7 +30,7 @@ BattleCommand_PainSplit:
 	farcall _UpdateBattleHUDs
 
 	ld hl, SharedPainText
-	jp StdBattleTextbox
+	jmp StdBattleTextbox
 
 .PlayerShareHP:
 	ld a, [hld]

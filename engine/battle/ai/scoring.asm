@@ -166,10 +166,10 @@ AI_Basic:
     ld a, [wEnemyMoveStruct + MOVE_ANIM]
     cp b
     pop bc
-    jp nz, .checkRedundant
+    jr nz, .checkRedundant
     xor a
     ld [hl], a ; set priority for last used move to max - which is 0
-    jp .checkmove
+    jr .checkmove
 
 .checkRedundant
 	push hl
@@ -179,7 +179,7 @@ AI_Basic:
 	pop bc
 	pop de
 	pop hl
-	jp nz, .discourage ; discourage if AI_Redundant - loop bck to check move
+	jmp nz, .discourage ; discourage if AI_Redundant - loop bck to check move
 
 ; DevNote - Taunt - Check enemy is taunted or holding assault vest and discourage 0 power moves
     ld a, [wEnemyTauntCount]
@@ -191,7 +191,7 @@ AI_Basic:
 .discourageNonDamagingMoves
     ld a, [wEnemyMoveStruct + MOVE_POWER]
     and a
-    jp z, .discourage
+    jmp z, .discourage
 
 ; Dismiss status-only moves if the player can't be statused.
 .checkStatusImmunity
@@ -209,16 +209,16 @@ AI_Basic:
 
 	ld a, [wBattleMonStatus]
 	and a
-	jp nz, .discourage ; discourage if the player is already statused - loop back to check move
+	jmp nz, .discourage ; discourage if the player is already statused - loop back to check move
 
 ; don't use if enemy is immune to status
     ld a, [wBattleMonSpecies]
 ;	cp ARCEUS
-;	jp z, .discourage
+;	jmp z, .discourage
 ;	cp SYLVEON
-;	jp z, .discourage
+;	jmp z, .discourage
 	cp DUNSPARCE
-	jp z, .discourage
+	jmp z, .discourage
 
 .checkSub
 ; dismiss moves blocked by sub if sub is up
@@ -235,7 +235,7 @@ AI_Basic:
 	pop bc
 	pop de
 	pop hl
-	jp c, .discourage ; discourage if sub is up and blocks move - loop back to check move
+	jmp c, .discourage ; discourage if sub is up and blocks move - loop back to check move
 
 .checkLevitate
 ; Dismiss ground move if the player has levitate
@@ -245,7 +245,7 @@ AI_Basic:
 	jr nz, .checkWaterAbsorb
 	ld a, [wBattleMonSpecies]
     call DoesPokemonHaveLevitate
-    jp c, .discourage
+    jmp c, .discourage
 
 .checkWaterAbsorb
     cp WATER
@@ -253,38 +253,38 @@ AI_Basic:
 
 	ld a, [wBattleMonSpecies]
     call DoesPokemonHaveWaterAbsorb
-    jp c, .discourage
+    jmp c, .discourage
 
 .checkVoltAbsorb
     cp ELECTRIC
 	jr nz, .checkFireAbsorb
 	ld a, [wBattleMonSpecies]
     call DoesPokemonHaveVoltAbsorb
-    jp c, .discourage
+    jmp c, .discourage
 
 .checkFireAbsorb
     cp FIRE
-	jp nz, .checkKO
+	jr nz, .checkKO
 	ld a, [wBattleMonSpecies]
     call DoesPokemonHaveFireAbsorb
-    jp c, .discourage
+    jmp c, .discourage
 
 ; Dismiss Safeguard if it's already active.
 	ld a, [wPlayerScreens]
 	bit SCREENS_SAFEGUARD, a
-	jp z, .checkmove
+	jmp z, .checkmove
 
 .checkKO
 	ld a, [wEnemyMoveStruct + MOVE_POWER]
 	and a
-	jp z, .checkmove
+	jmp z, .checkmove
 
 ; if we are faster and player is flying or underground then don't encourage attacks
     call DoesAIOutSpeedPlayer
     jr nc, .calcDamage
 	ld a, [wPlayerSubStatus3]
 	and 1 << SUBSTATUS_FLYING | 1 << SUBSTATUS_UNDERGROUND
-	jp nz, .checkmove
+	jmp nz, .checkmove
 
 .calcDamage
     ld a, 1
@@ -306,7 +306,7 @@ AI_Basic:
 	pop bc
 	pop de
 	pop hl
-    jp nc, .checkmove
+    jmp nc, .checkmove
 
 ; don't encourage explosion as much
 	ld a, [wEnemyMoveStruct + MOVE_EFFECT]
@@ -357,11 +357,11 @@ AI_Basic:
     dec [hl]
     dec [hl]
     dec [hl]
-    jp .checkmove
+    jmp .checkmove
 
 .discourage
 	call AIDiscourageMove
-	jp .checkmove
+	jmp .checkmove
 
 INCLUDE "data/battle/ai/status_only_effects.asm"
 
@@ -380,7 +380,7 @@ AI_Smart_Switch:
 ; possibly switch if enemy is setup bait
 	ld a, [wEnemyMonStatus]
 	and SLP_MASK
-	jp nz, .checkSetupAndSwitchIfPlayerSetsUp
+	jmp nz, .checkSetupAndSwitchIfPlayerSetsUp
 
 ; switch if choice locked into a NVE move
 	ld hl, wEnemySubStatus5
@@ -395,9 +395,9 @@ AI_Smart_Switch:
 	pop hl
 	ld a, [wTypeMatchup]
 	cp EFFECTIVE
-	jp c, .switch
+	jmp c, .switch
 	and a
-	jp z, .switch
+	jmp z, .switch
 
 ; switch if locked into a move with 0 pp
 	ld hl, wEnemyMonPP
@@ -838,9 +838,9 @@ AI_Smart_SuckerPunch:
 	call AIGetPlayerMove
 	ld a, [wPlayerMoveStruct + MOVE_POWER]
 	and a
-	jp nz, AI_Smart_PriorityHit
+	jmp nz, AI_Smart_PriorityHit
 	call AI_50_50
-	jp c, AI_Smart_PriorityHit
+	jmp c, AI_Smart_PriorityHit
 rept 12
 	inc [hl]
 endr
@@ -850,67 +850,67 @@ AI_Smart_StealthRock:
 ; don't use if already up
 	ld a, [wPlayerScreens]
 	bit SCREENS_STEALTH_ROCK, a
-	jp nz, StandardDiscourage
+	jmp nz, StandardDiscourage
 
 ; don't use if player has only one pokemon left
 	push hl
 	call AICheckLastPlayerMon
 	pop hl
-	jp z, StandardDiscourage
+	jmp z, StandardDiscourage
 
 ; use otherwise
-    jp DoIt
+    jmp DoIt
 
 AI_Smart_ToxicSpikes:
 ; don't use if already up
 	ld a, [wPlayerScreens]
 	bit SCREENS_TOXIC_SPIKES, a
-	jp nz, StandardDiscourage
+	jmp nz, StandardDiscourage
 
 ; don't use if player has only one pokemon left
 	push hl
 	call AICheckLastPlayerMon
 	pop hl
-	jp z, StandardDiscourage
+	jmp z, StandardDiscourage
 
 ; use otherwise
-    jp StrongEncourage
+    jmp StrongEncourage
 
 AI_Smart_StickyWeb:
 ; don't use if already up
 	ld a, [wPlayerScreens]
 	bit SCREENS_STICKY_WEB, a
-	jp nz, StandardDiscourage
+	jmp nz, StandardDiscourage
 
 ; don't use if player has only one pokemon left
 	push hl
 	call AICheckLastPlayerMon
 	pop hl
-	jp z, StandardDiscourage
+	jmp z, StandardDiscourage
 
 ; use otherwise
-    jp DoIt
+    jmp DoIt
 
 AI_Smart_Defog:
 ; don't use if player has only one pokemon left
 	push hl
 	call AICheckLastPlayerMon
 	pop hl
-	jp z, StandardDiscourage
+	jmp z, StandardDiscourage
 
 ; use if player has any screens up
 	ld a, [wPlayerScreens]
 	bit SCREENS_STEALTH_ROCK, a
-	jp nz, StandardEncourage
+	jmp nz, StandardEncourage
 	bit SCREENS_SPIKES, a
-	jp nz, StandardEncourage
+	jmp nz, StandardEncourage
 	bit SCREENS_TOXIC_SPIKES, a
-	jp nz, StandardEncourage
+	jmp nz, StandardEncourage
 	bit SCREENS_STICKY_WEB, a
-	jp nz, StandardEncourage
+	jmp nz, StandardEncourage
 
 ; otherwise discourage
-    jp StandardDiscourage
+    jmp StandardDiscourage
 
 AI_Smart_Burn:
 ; if enemy is already statused - discourage
@@ -921,12 +921,12 @@ AI_Smart_Burn:
 ; never use if player has substitute
     ld a, [wPlayerSubStatus4]
 	bit SUBSTATUS_SUBSTITUTE, a
-	jp nz, .discourage
+	jr nz, .discourage
 
 ; never use if player has safeguard
 	ld a, [wPlayerScreens]
 	bit SCREENS_SAFEGUARD, a
-	jp nz, .discourage
+	jr nz, .discourage
 
 ; if enemy is fire type - discourage
     ld a, [wBattleMonType1]
@@ -939,14 +939,14 @@ AI_Smart_Burn:
 ; if enemy is immune to fire - discourage
 	ld a, [wBattleMonSpecies]
     call DoesPokemonHaveFireAbsorb
-    jp c, .discourage
+    jr c, .discourage
 
 ; if enemy is immune to status discourage
     ld a, [wBattleMonSpecies]
 ;	cp SYLVEON
 ;	jr z, .discourage
     cp DUNSPARCE
-    jp z, .discourage
+    jr z, .discourage
 
 ; strongly encourage if enemy is physical
     Call IsPlayerPhysicalOrSpecial
@@ -965,29 +965,29 @@ AI_Smart_Taunt:
 ; if player is already taunted - discourage
     ld a, [wPlayerTauntCount]
     and a
-    jp nz, .discourage
+    jmp nz, .discourage
 
 ; never use if player has safeguard
 	ld a, [wPlayerScreens]
 	bit SCREENS_SAFEGUARD, a
-	jp nz, .discourage
+	jmp nz, .discourage
 
 ; never use against uber immune Pokemon
     ld a, [wBattleMonSpecies]
     call DoesPokemonHaveUberImmunity
-   	jp c, .discourage
+   	jmp c, .discourage
 
 ; if player can KO - discourage
     call ShouldAIBoost
-    jp nc, .discourage
+    jmp nc, .discourage
 
 ; if player is already set up - discourage
     ld a, [wPlayerAtkLevel]
 	cp BASE_STAT_LEVEL + 2
-	jp nc, .discourage
+	jr nc, .discourage
     ld a, [wPlayerSAtkLevel]
 	cp BASE_STAT_LEVEL + 2
-	jp nc, .discourage
+	jr nc, .discourage
 
 ; if player has a setup move, status move, or healing move - encourage
     ld b, EFFECT_TAUNT
@@ -1142,50 +1142,50 @@ AI_Smart_Spikes:
 ; don't use if already up
 	ld a, [wPlayerScreens]
 	bit SCREENS_SPIKES, a
-	jp nz, StandardDiscourage
+	jmp nz, StandardDiscourage
 
 ; don't use if player has only one pokemon left
 	push hl
 	call AICheckLastPlayerMon
 	pop hl
-	jp z, StandardDiscourage
+	jmp z, StandardDiscourage
 
 ; use otherwise
-    jp StrongEncourage
+    jmp StrongEncourage
 
 AI_Smart_QuiverDance:
 	call IsSpecialAttackMaxed
 	jr nc, .shouldBoost
 	call IsSpecialDefenseMaxed
-	jp c, StandardDiscourage
+	jmp c, StandardDiscourage
 
 .shouldBoost
     call ShouldAIBoost
-    jp nc, StandardDiscourage
+    jmp nc, StandardDiscourage
 
 ; discourage if enemy is paralyzed
     ld a, [wEnemyMonStatus]
 	and 1 << PAR
-	jp nz, StandardDiscourage
+	jmp nz, StandardDiscourage
 
 ; discourage if player speed is +2 or higher
     ld a, [wPlayerSpdLevel]
     cp BASE_STAT_LEVEL + 2
-    jp nc, StandardDiscourage
+    jmp nc, StandardDiscourage
 
 ; never use while in trick room
     ld a, [wTrickRoomCount]
     and a
-    jp nz, StandardDiscourage
+    jmp nz, StandardDiscourage
 
 ; encourage to +2
 	ld a, [wEnemySAtkLevel]
 	cp BASE_STAT_LEVEL + 2
-	jp c, StandardEncourage
+	jmp c, StandardEncourage
 
 ; discourage after boost if afflicted with toxic
     call IsAIToxified
-    jp c, StandardDiscourage
+    jmp c, StandardDiscourage
     ret
 
 AI_Smart_DynamicPunch:
@@ -1213,26 +1213,26 @@ AI_Smart_DynamicPunch:
 
 AI_Smart_DragonDance:
 	call IsAttackMaxed
-	jp c, StandardDiscourage
+	jmp c, StandardDiscourage
 
 .shouldBoost
     call ShouldAIBoost
-    jp nc, StandardDiscourage
+    jmp nc, StandardDiscourage
 
 ; discourage if enemy is paralyzed
     ld a, [wEnemyMonStatus]
 	and 1 << PAR
-	jp nz, StandardDiscourage
+	jmp nz, StandardDiscourage
 
 ; discourage if player speed is +2 or higher
     ld a, [wPlayerSpdLevel]
     cp BASE_STAT_LEVEL + 2
-    jp nc, StandardDiscourage
+    jmp nc, StandardDiscourage
 
 ; never use while in trick room
     ld a, [wTrickRoomCount]
     and a
-    jp nz, StandardDiscourage
+    jmp nz, StandardDiscourage
 
 ; discourage if players level is >10 higher than AI
     ld a, [wBattleMonLevel]
@@ -1240,7 +1240,7 @@ AI_Smart_DragonDance:
     ld a, [wEnemyMonLevel]
     add 10
     cp b
-    jp c, StandardDiscourage
+    jmp c, StandardDiscourage
 
 
 ; Some Pokemon have double boost sets with DragonDance and BulkUp/SwordsDance
@@ -1256,22 +1256,22 @@ AI_Smart_DragonDance:
 .useFirstAndNotAgain
 	ld a, [wEnemySpdLevel]
 	cp BASE_STAT_LEVEL + 1
-	jp c, StrongEncourage
-	jp StandardDiscourage
+	jmp c, StrongEncourage
+	jmp StandardDiscourage
 
 .normalEncourage
 ; discourage after boost if afflicted with toxic
     call IsAIToxified
-    jp c, StandardDiscourage
+    jmp c, StandardDiscourage
 
 ; encourage if we have no reason not to
-    jp StandardEncourage
+    jmp StandardEncourage
 
 AI_Smart_CalmMind:
 	call IsSpecialAttackMaxed
 	jr nc, .continue
 	call IsSpecialDefenseMaxed
-	jp c, StandardDiscourage
+	jmp c, StandardDiscourage
 
 .continue
 ; if player is asleep or frozen and is special we should boost
@@ -1279,51 +1279,51 @@ AI_Smart_CalmMind:
 	and SLP_MASK
 	jr z, .noStatus
 	call IsPlayerPhysicalOrSpecial
-	jp nc, StandardEncourage
+	jmp nc, StandardEncourage
 .noStatus
 
 ; don't use if we are at risk of being KOd, just attack them
     call ShouldAIBoost
-    jp nc, StandardDiscourage
+    jmp nc, StandardDiscourage
 
 ; encourage to +2
     ld a, [wEnemySAtkLevel]
     cp BASE_STAT_LEVEL + 2
-    jp c, StandardEncourage
+    jmp c, StandardEncourage
 
 ; discourage after boost if afflicted with toxic
     call IsAIToxified
-    jp c, StandardDiscourage
+    jmp c, StandardDiscourage
 
 ; encourage if we have no reason not to
-    jp StandardEncourage
+    jmp StandardEncourage
 
 AI_Smart_TrickRoom:
     ld a, [wTrickRoomCount]
     and a
-    jp nz, StandardDiscourage
+    jmp nz, StandardDiscourage
     ; fallthrough
 
 AI_Smart_Agility:
 ; discourage if we are faster
     call DoesAIOutSpeedPlayer
-    jp c, StandardDiscourage
+    jmp c, StandardDiscourage
 
 ; discourage if enemy is paralyzed
     ld a, [wEnemyMonStatus]
 	and 1 << PAR
-	jp nz, StandardDiscourage
+	jmp nz, StandardDiscourage
 
 ; discourage if we will be KOd
     call CanPlayerKO
-    jp c, StandardDiscourage
+    jmp c, StandardDiscourage
 
 ; otherwise use
-    jp StrongEncourage
+    jmp StrongEncourage
 
 AI_Smart_NastyPlot:
 	call IsSpecialAttackMaxed
-	jp c, StandardDiscourage
+	jmp c, StandardDiscourage
 
 ; Deoxys should not use Nasty Plot against dark types
 ;	ld a, [wEnemyMonSpecies]
@@ -1331,10 +1331,10 @@ AI_Smart_NastyPlot:
 ;	jr nz, .notDeoxys
 ;	ld a, [wBattleMonType1]
 ;	cp DARK
-;	jp z, StandardDiscourage
+;	jmp z, StandardDiscourage
 ;	ld a, [wBattleMonType2]
 ;	cp DARK
-;	jp z, StandardDiscourage
+;	jmp z, StandardDiscourage
 ;
 ;.notDeoxys
 ; if we are boosted >=+2 and can 2hko, just attack
@@ -1342,31 +1342,31 @@ AI_Smart_NastyPlot:
 	cp BASE_STAT_LEVEL + 2
 	jr c, .notBoosted
 	call CanAI2HKO
-	jp c, StandardDiscourage
+	jmp c, StandardDiscourage
 .notBoosted
 
 ; don't use if we are at risk of being KOd, just attack them
     call ShouldAIBoost
-    jp nc, StandardDiscourage
+    jmp nc, StandardDiscourage
 
 ; encourage to +2
     ld a, [wEnemySAtkLevel]
     cp BASE_STAT_LEVEL + 2
-    jp c, StandardEncourage
+    jmp c, StandardEncourage
 
 ; discourage after boost if afflicted with toxic
     call IsAIToxified
-    jp c, StandardDiscourage
+    jmp c, StandardDiscourage
 
 ; encourage if we have no reason not to
-    jp StandardEncourage
+    jmp StandardEncourage
 
 AI_Smart_Growth:
 	call IsSpecialAttackMaxed
-	jp c, StandardDiscourage
+	jmp c, StandardDiscourage
 
     call ShouldAIBoost
-    jp nc, StandardDiscourage
+    jmp nc, StandardDiscourage
 
 ; encourage if we have no reason not to
 rept 6
@@ -1376,11 +1376,11 @@ endr
 
 AI_Smart_Barrier:
 	call IsDefenseMaxed
-	jp c, StandardDiscourage
+	jmp c, StandardDiscourage
 
 ; if player special then don't use
 	call IsPlayerPhysicalOrSpecial
-	jp nc, StandardDiscourage
+	jmp nc, StandardDiscourage
 
 	ld a, [wEnemyMonSpecies]
 	cp MEWTWO
@@ -1388,11 +1388,11 @@ AI_Smart_Barrier:
 
 ; if not mewtwo boost if we can up to +2
     call ShouldAIBoost
-    jp nc, StandardDiscourage
+    jmp nc, StandardDiscourage
 
     ld a, [wEnemyDefLevel]
     cp BASE_STAT_LEVEL + 3
-    jp nc, StandardDiscourage
+    jmp nc, StandardDiscourage
     jr .toxic
 
 .mewtwo
@@ -1410,42 +1410,42 @@ AI_Smart_Barrier:
 	call DoesAIOutSpeedPlayer
 	jr c, .skipKOCheck
 	call CanPlayerKO
-	jp c, StandardDiscourage
+	jmp c, StandardDiscourage
 .skipKOCheck
 
 .toxic
 ; discourage if afflicted with toxic
     call IsAIToxified
-    jp c, StandardDiscourage
+    jmp c, StandardDiscourage
 
 ; encourage if we get here
-	jp StrongEncourage
+	jmp StrongEncourage
 
 AI_Smart_SwordsDance:
     call IsAttackMaxed
-    jp c, StandardDiscourage
+    jmp c, StandardDiscourage
 
 ; don't use if we are at risk of being KOd, just attack them
     call ShouldAIBoost
-    jp nc, StandardDiscourage
+    jmp nc, StandardDiscourage
 
 ; encourage to +2
     ld a, [wEnemyAtkLevel]
     cp BASE_STAT_LEVEL + 2
-    jp c, StandardEncourage
+    jmp c, StandardEncourage
 
 ; discourage after boost if afflicted with toxic
     call IsAIToxified
-    jp c, StandardDiscourage
+    jmp c, StandardDiscourage
 
 ; encourage if we have no reason not to
-    jp StandardEncourage
+    jmp StandardEncourage
 
 AI_Smart_BulkUp:
 	call IsAttackMaxed
 	jr nc, .continue
 	call IsDefenseMaxed
-	jp c, StandardDiscourage
+	jmp c, StandardDiscourage
 
 .continue
 ; if player is asleep or frozen and is physical we should boost
@@ -1453,30 +1453,30 @@ AI_Smart_BulkUp:
 	and SLP_MASK
 	jr z, .noStatus
 	call IsPlayerPhysicalOrSpecial
-	jp c, StandardEncourage
+	jmp c, StandardEncourage
 .noStatus
 
 ; don't use if we are at risk of being KOd, just attack them
     call ShouldAIBoost
-    jp nc, StandardDiscourage
+    jmp nc, StandardDiscourage
 
 ; encourage to +2 - strong encourage if player is physical
     ld a, [wEnemyAtkLevel]
     cp BASE_STAT_LEVEL + 2
-    jp nc, .atPlus2
+    jr nc, .atPlus2
     call IsPlayerPhysicalOrSpecial
     jr nc, .special
-    jp StrongEncourage
+    jmp StrongEncourage
 .special
-    jp StandardEncourage
+    jmp StandardEncourage
 
 .atPlus2
 ; discourage after boost if afflicted with toxic
     call IsAIToxified
-    jp c, StandardDiscourage
+    jmp c, StandardDiscourage
 
 ; encourage if we have no reason not to
-    jp StandardEncourage
+    jmp StandardEncourage
 
 AI_Smart_Facade:
 ; Greatly encourage this move if the player has a status condition.
@@ -1549,12 +1549,12 @@ AI_Smart_Sleep:
 ; don't use if there already is a status
     ld a, [wBattleMonStatus]
     and a
-    jp nz, .discourage
+    jr nz, .discourage
 
 ; never use if player has substitute
     ld a, [wPlayerSubStatus4]
 	bit SUBSTATUS_SUBSTITUTE, a
-	jp nz, .discourage
+	jr nz, .discourage
 
 ; never use if player has safeguard
 	ld a, [wPlayerScreens]
@@ -1564,9 +1564,9 @@ AI_Smart_Sleep:
 ; don't use against status immune pokemon
     ld a, [wBattleMonSpecies]
     cp DUNSPARCE
-    jp z, .discourage
+    jr z, .discourage
     cp SMEARGLE
-    jp z, .discourage
+    jr z, .discourage
 
 ; does player have a held item that would heal sleep
 	push hl
@@ -1900,17 +1900,17 @@ AI_Smart_ForceSwitch:
 AI_Smart_Heal:
 ; don't use if choice locked
     call DoesEnemyHaveChoiceItem
-    jp c, .discourage
+    jmp c, .discourage
 
 ; if we have boosted evasion just heal below half
 	ld a, [wEnemyEvaLevel]
 	cp BASE_STAT_LEVEL + 2
-	jp nc, .healBelowHalf
+	jr nc, .healBelowHalf
 
 ; if the player is using Smeargle just attack, kill it!
     ;ld a, [wBattleMonSpecies]
     ;cp SMEARGLE
-    ;jp z, .discourage
+    ;jmp z, .discourage
 
 ; check if the move is Rest, it must be handled differently
 	ld a, [wEnemyMoveStruct + MOVE_ANIM]
@@ -1951,7 +1951,7 @@ AI_Smart_Heal:
     jr nc, .checkQuarter
 	ld a, [wPlayerSubStatus3]
 	and 1 << SUBSTATUS_FLYING | 1 << SUBSTATUS_UNDERGROUND
-	jp nz, .bigEncourage
+	jr nz, .bigEncourage
 
 .checkQuarter
 ; always heal when below 1/4 hp
@@ -2058,7 +2058,7 @@ AI_Smart_Toxic:
 ;	cp SYLVEON
 ;	jr z, .discourage
     cp DUNSPARCE
-    jp z, .discourage
+    jr z, .discourage
 
 ; never use against Pokemon with magic guard
     ld a, [wBattleMonSpecies]
@@ -2127,21 +2127,21 @@ endr
 
 AI_Smart_LightScreen:
     call ShouldAIBoost
-    jp nc, StandardDiscourage
+    jmp nc, StandardDiscourage
 
 	call IsPlayerPhysicalOrSpecial
-	jp nc, StandardEncourage
+	jmp nc, StandardEncourage
 
-	jp StandardDiscourage
+	jmp StandardDiscourage
 
 AI_Smart_Reflect:
     call ShouldAIBoost
-    jp nc, StandardDiscourage
+    jmp nc, StandardDiscourage
 
 	call IsPlayerPhysicalOrSpecial
-	jp c, StandardEncourage
+	jmp c, StandardEncourage
 
-	jp StandardDiscourage
+	jmp StandardDiscourage
 
 AI_Smart_TrapTarget:
 ; Wrap, Fire Spin
@@ -2200,7 +2200,7 @@ AI_Smart_Confuse:
 ;	cp SYLVEON
 ;	jr z, .discourage
     cp DUNSPARCE
-    jp z, .discourage
+    jr z, .discourage
     ret
 
 .continue
@@ -2293,22 +2293,22 @@ AI_Smart_Paralyze:
 ; never use if player already has a status
     ld a, [wBattleMonStatus]
     and a
-    jp nz, .discourage
+    jmp nz, .discourage
 
 ; never use if player has substitute
     ld a, [wPlayerSubStatus4]
 	bit SUBSTATUS_SUBSTITUTE, a
-	jp nz, .discourage
+	jr nz, .discourage
 
 ; never use if player has safeguard
 	ld a, [wPlayerScreens]
 	bit SCREENS_SAFEGUARD, a
-	jp nz, .discourage
+	jr nz, .discourage
 
 ; never use while in trick room
     ld a, [wTrickRoomCount]
     and a
-    jp nz, .discourage
+    jr nz, .discourage
 
 ; never use thunderwave against ground types or volt absorbers
 	ld a, [wEnemyMoveStruct + MOVE_ANIM]
@@ -2343,7 +2343,7 @@ AI_Smart_Paralyze:
 ;	cp SYLVEON
 ;	jr z, .discourage
     cp DUNSPARCE
-    jp z, .discourage
+    jr z, .discourage
 
 ; encourage if enemy is slower than player.
 ; 50% chance to discourage otherwise
@@ -2403,14 +2403,14 @@ AI_Smart_SpeedDownHit:
 
     ld a, [wBattleMonSpecies]
     call DoesPokemonHaveClearBody
-	jp c, StandardDiscourage
+	jmp c, StandardDiscourage
 
-	jp StandardEncourage
+	jmp StandardEncourage
 
 AI_Smart_Substitute:
 ; don't boost if choice locked
     call DoesEnemyHaveChoiceItem
-    jp c, .discourage
+    jr c, .discourage
 
 ; Prankster users
     ld a, [wEnemyMonSpecies]
@@ -2468,7 +2468,7 @@ AI_Smart_Substitute:
 	jr nz, .encourage
 	ld a, [wEnemyEvaLevel]
     cp BASE_STAT_LEVEL + 2
-    jp nc, .encourage
+    jr nc, .encourage
 
 ; otherwise 50% to encourage if above half hp, discourage otherwise
 	call AICheckEnemyHalfHP
@@ -2558,7 +2558,7 @@ AI_Smart_Encore:
 ; don't use if no last move recorded
 	ld a, [wLastPlayerMove]
 	and a
-	jp z, AIDiscourageMove
+	jmp z, AIDiscourageMove
 
 ; never encore a super effective move
 	call AIGetEnemyMove
@@ -2656,7 +2656,7 @@ AI_Smart_Spite:
 	jr nz, .usedmove
 
 	call AICompareSpeed
-	jp c, AIDiscourageMove
+	jmp c, AIDiscourageMove
 
 	call AI_50_50
 	ret c
@@ -2797,7 +2797,7 @@ AI_Smart_HealBell:
 	ld a, [wEnemyMonStatus]
 	and a
 	ret nz
-	jp AIDiscourageMove
+	jmp AIDiscourageMove
 
 AI_Smart_PriorityHit:
 ; never use extremespeed, mach punch or quick attack against a ghost type
@@ -2811,16 +2811,16 @@ AI_Smart_PriorityHit:
 .ghostImmune
     ld a, [wBattleMonType1]
 	cp GHOST
-	jp z, AIDiscourageMove
+	jmp z, AIDiscourageMove
 	ld a, [wBattleMonType2]
 	cp GHOST
-	jp z, AIDiscourageMove
+	jmp z, AIDiscourageMove
 
 .notGhostImmune
 ; Dismiss this move if the player is flying or underground.
 	ld a, [wPlayerSubStatus3]
 	and 1 << SUBSTATUS_FLYING | 1 << SUBSTATUS_UNDERGROUND
-	jp nz, AIDiscourageMove
+	jmp nz, AIDiscourageMove
 
 ; Greatly encourage this move if it will KO the player.
 	ld a, 1
@@ -2912,11 +2912,11 @@ AI_Smart_MeanLook:
 	push hl
 	call AICheckLastPlayerMon
 	pop hl
-	jp z, AIDiscourageMove
+	jmp z, AIDiscourageMove
 
 ; discourage if we will be koed
     call ShouldAIBoost
-    jp nz, AIDiscourageMove
+    jmp nz, AIDiscourageMove
 
 ; if we are Wobbuffet just encourage at this point
 	ld a, [wEnemyMonSpecies]
@@ -3002,10 +3002,10 @@ AI_Smart_Nightmare:
 AI_Smart_Curse:
 	ld a, [wEnemyMonType1]
 	cp GHOST
-	jp z, .ghost_curse
+	jr z, .ghost_curse
 	ld a, [wEnemyMonType2]
 	cp GHOST
-	jp z, .ghost_curse
+	jr z, .ghost_curse
 
 	call IsAttackMaxed
 	jr nc, .continue
@@ -3028,7 +3028,7 @@ AI_Smart_Curse:
 ; encourage to +2 - strong encourage if player is physical
     ld a, [wEnemyAtkLevel]
     cp BASE_STAT_LEVEL + 2
-    jp nc, .atPlus2
+    jr nc, .atPlus2
     call IsPlayerPhysicalOrSpecial
     jr nc, .special
     jr .strongEncourage
@@ -3057,7 +3057,7 @@ AI_Smart_Curse:
 .ghost_curse
 	ld a, [wPlayerSubStatus1]
 	bit SUBSTATUS_CURSE, a
-	jp nz, AIDiscourageMove
+	jmp nz, AIDiscourageMove
 
 	push hl
 	farcall FindAliveEnemyMons
@@ -3079,7 +3079,7 @@ AI_Smart_Curse:
 
 .ghost_continue
 	call AICheckEnemyQuarterHP
-	jp nc, .encourage
+	jr nc, .encourage
 
 	call AICheckEnemyHalfHP
 	jr nc, .encourage
@@ -3247,7 +3247,7 @@ AI_Smart_Sandstorm:
 
 ; don't boost if choice locked
     call DoesEnemyHaveChoiceItem
-    jp c, .discourage
+    jr c, .discourage
 
 ; even if we benefit from weather, don't use if we will be koed
     call DoesEnemyHaveIntactFocusSashOrSturdy
@@ -3332,7 +3332,7 @@ AI_Smart_Hail:
 
 ; don't boost if choice locked
     call DoesEnemyHaveChoiceItem
-    jp c, .discourage
+    jr c, .discourage
 
 ; even if we benefit from weather, don't use if we will be koed
     call DoesEnemyHaveIntactFocusSashOrSturdy
@@ -3644,7 +3644,7 @@ AI_Smart_RainDance:
 
 ; don't boost if choice locked
     call DoesEnemyHaveChoiceItem
-    jp c, .discourage
+    jr c, .discourage
 
 ; even if we benefit from weather, don't use if we will be koed
     call DoesEnemyHaveIntactFocusSashOrSturdy
@@ -3666,15 +3666,15 @@ AI_Smart_RainDance:
 ; Particularly, if the player is a Water-type.
 	ld a, [wBattleMonType1]
 	cp WATER
-	jp z, AIBadWeatherType
+	jmp z, AIBadWeatherType
 	cp FIRE
-	jp z, AIGoodWeatherType
+	jmp z, AIGoodWeatherType
 
 	ld a, [wBattleMonType2]
 	cp WATER
-	jp z, AIBadWeatherType
+	jr z, AIBadWeatherType
 	cp FIRE
-	jp z, AIGoodWeatherType
+	jr z, AIGoodWeatherType
 
 	push hl
 	ld hl, RainDanceMoves
@@ -3700,7 +3700,7 @@ AI_Smart_SunnyDay:
 
 ; don't boost if choice locked
     call DoesEnemyHaveChoiceItem
-    jp c, .discourage
+    jr c, .discourage
 
 ; even if we benefit from weather, don't use if we will be koed
     call DoesEnemyHaveIntactFocusSashOrSturdy
@@ -3712,9 +3712,9 @@ AI_Smart_SunnyDay:
 ; encourage if AI is a Chlorophyll mon
     ld a, [wEnemyMonSpecies]
     cp VENUSAUR
-    jp z, DoIt
+    jmp z, DoIt
     cp EXEGGUTOR
-    jp z, DoIt
+    jmp z, DoIt
 ; discourage if we will be koed
     call ShouldAIBoost
     jr nc, .discourage
@@ -3734,7 +3734,7 @@ AI_Smart_SunnyDay:
 
 	push hl
 	ld hl, SunnyDayMoves
-	jp AI_Smart_WeatherMove
+	jr AI_Smart_WeatherMove
 .discourage
     inc [hl]
     inc [hl]
@@ -3828,17 +3828,17 @@ AI_Smart_BellyDrum:
     call AICheckEnemyMaxHP
     jr nc, .slower
     call CanPlayer2HKO
-    jp nc, StandardEncourage
+    jmp nc, StandardEncourage
 
 .slower
 ; if we are above half HP and player can't 3HKO then encourage
     call AICheckEnemyHalfHP
     jr nc, .discourage
     call CanPlayer3HKOMaxHP
-    jp nc, StandardEncourage
+    jmp nc, StandardEncourage
 
 .discourage
-    jp StandardDiscourage
+    jmp StandardDiscourage
 	ret
 
 AI_Smart_MirrorCoat:
@@ -3939,7 +3939,7 @@ AI_Smart_Hurricane:
 AI_Smart_Thunder:
 ; Maybe encourage this move if the player is flying...
 	call AI_Smart_Gust
-	jp AI_Smart_Hurricane
+	jr AI_Smart_Hurricane
 
 AICompareSpeed:
 ; Return carry if enemy is faster than player.
@@ -4490,7 +4490,7 @@ AI_Status:
 
 .immune
 	call AIDiscourageMove
-	jp .checkmove
+	jmp .checkmove
 
 
 AI_Risky:
@@ -4819,7 +4819,7 @@ DoesAIOutSpeedPlayer:
 ; lots of extra logic for the weather speed boosting abilities since they don't actually increase speed
     ld a, [wEnemyMonStatus]
 	and 1 << PAR
-	jp nz, .checkPlayer
+	jr nz, .checkPlayer
     ld a, [wPlayerSpdLevel]
     cp BASE_STAT_LEVEL + 2
     jr nc, .checkPlayer
@@ -4831,9 +4831,9 @@ DoesAIOutSpeedPlayer:
 
 ; Swift Swimm users
 	cp POLIWRATH
-	jp z, .yes
+	jr z, .yes
 	cp KINGDRA
-	jp z, .yes
+	jr z, .yes
 .checkSun
 	ld a, [wBattleWeather]
 	cp WEATHER_SUN
@@ -4860,7 +4860,7 @@ DoesAIOutSpeedPlayer:
 .checkPlayer
     ld a, [wBattleMonStatus]
 	and 1 << PAR
-	jp nz, .speedCheck
+	jr nz, .speedCheck
     ld a, [wEnemySpdLevel]
     cp BASE_STAT_LEVEL + 2
     jr nc, .speedCheck
@@ -4965,7 +4965,7 @@ CanAIKO:
 	pop bc
 	pop de
 	pop hl
-    jp nc, .loopAIKOMoves
+    jr nc, .loopAIKOMoves
 ; skip moves that can't be used on consecutive turns, except hyper beam
 	ld a, [wPlayerMoveStruct + MOVE_EFFECT]
 	cp EFFECT_SELFDESTRUCT
@@ -5035,7 +5035,7 @@ CanPlayerKO:
 	pop bc
 	pop de
 	pop hl
-    jp nc, .loopPlayerKOMoves
+    jr nc, .loopPlayerKOMoves
 ; skip moves that can't be used on consecutive turns, except hyper beam
 	ld a, [wPlayerMoveStruct + MOVE_EFFECT]
 	cp EFFECT_SELFDESTRUCT
@@ -5094,7 +5094,7 @@ CanPlayer2HKO:
 	pop bc
 	pop de
 	pop hl
-    jp nc, .loopPlayer2HKOMoves
+    jr nc, .loopPlayer2HKOMoves
 ; skip moves that can't be used on consecutive turns - exception for Porygon2 which can use Hyper Beam consecutively
     ld a, [wBattleMonSpecies]
     cp PORYGON2
@@ -5140,13 +5140,13 @@ AIGetPlayerMove:
 ; returns carry if the AI can boost
 ShouldAIBoost:
     call IsAttackMaxed
-    jp c, .dontBoost
+    jmp c, .dontBoost
     call IsSpecialAttackMaxed
-    jp c, .dontBoost
+    jmp c, .dontBoost
 
 ; don't boost if choice locked
     call DoesEnemyHaveChoiceItem
-    jp c, .dontBoost
+    jmp c, .dontBoost
 
 ; if players last move was sucker punch - 50% chance to boost
 	ld a, [wCurPlayerMove]
@@ -5163,13 +5163,13 @@ ShouldAIBoost:
     jr nc, .checkEvasion
 	ld a, [wPlayerSubStatus3]
 	and 1 << SUBSTATUS_FLYING | 1 << SUBSTATUS_UNDERGROUND
-	jp nz, .boost
+	jmp nz, .boost
 
 .checkEvasion
 ; if AI evasion is >= +2 then go for the boost - only used by Patches
 	ld a, [wEnemyEvaLevel]
 	cp BASE_STAT_LEVEL + 2
-	jp nc, .boost
+	jmp nc, .boost
 
 .checkHaze
 ; if the player has roar/whirlwind/haze and we aren't immune to it then 50% to not boost
@@ -5181,7 +5181,7 @@ ShouldAIBoost:
 	call AIGetPlayerMove
     ld a, [wPlayerMoveStruct + MOVE_EFFECT]
     cp EFFECT_FORCE_SWITCH
-    jp z, .dontBoost
+    jmp z, .dontBoost
 
     ld b, EFFECT_FORCE_SWITCH
 	call PlayerHasMoveEffect
@@ -5193,7 +5193,7 @@ ShouldAIBoost:
 .maybeDontBoost
 	call Random
 	cp 50 percent
-	jp c, .decideNotToBoost
+	jr c, .decideNotToBoost
 .noForceSwitch
 
 ; if our offence is already at or over +1 and either side can 2HKO, just attack
@@ -5217,7 +5217,7 @@ ShouldAIBoost:
 ;.checkAsUsual
 
 	call CanAI2HKO
-	jp c, .decideNotToBoost
+	jr c, .decideNotToBoost
 	call CanPlayer2HKO
 	jr c, .decideNotToBoost
 
@@ -5235,12 +5235,12 @@ ShouldAIBoost:
 	jr c, .skipSturdySashCheck
 
     call DoesEnemyHaveIntactFocusSashOrSturdy
-    jp c, .boost
+    jmp c, .boost
 
 .skipSturdySashCheck
     call CanPlayerKO
     jr c, .decideNotToBoost
-    jp .boost
+    jmp .boost
 
 .playerMovesFirst
 ; does the boost increase speed, these moves are treated differently
@@ -5253,7 +5253,7 @@ ShouldAIBoost:
 ; if player moves first consider if they can 2HKO
     call CanPlayer2HKO
     jr c, .decideNotToBoost
-    jp .boost
+    jmp .boost
 
 .decideNotToBoost
 ; if player is SLP and we get more than one turn before they wake up, then boost
@@ -5422,7 +5422,7 @@ CanAI2HKOMaxHP:
 	pop bc
 	pop de
 	pop hl
-    jp nc, .loopMoves
+    jr nc, .loopMoves
 ; skip moves that can't be used on consecutive turns, except hyper beam
     ld a, [wEnemyMonSpecies]
     cp PORYGON2
@@ -5489,7 +5489,7 @@ CanAI2HKO:
 	pop bc
 	pop de
 	pop hl
-    jp nc, .loopMoves
+    jr nc, .loopMoves
 ; skip moves that can't be used on consecutive turns, except hyper beam
     ld a, [wEnemyMonSpecies]
     cp PORYGON2
@@ -5733,7 +5733,7 @@ CanPlayer2HKOMaxHP:
 	pop bc
 	pop de
 	pop hl
-    jp nc, .loopPlayer2HKOMaxHPMoves
+    jr nc, .loopPlayer2HKOMaxHPMoves
 ; skip moves that can't be used on consecutive turns - exception for Porygon2 which can use Hyper Beam consecutively
     ld a, [wBattleMonSpecies]
     cp PORYGON2
@@ -5819,7 +5819,7 @@ CanPlayer3HKOMaxHP:
 	pop bc
 	pop de
 	pop hl
-    jp nc, .loopPlayer3HKOMaxHPMoves
+    jr nc, .loopPlayer3HKOMaxHPMoves
 ; skip moves that can't be used on consecutive turns - exception for Porygon2 which can use Hyper Beam consecutively
     ld a, [wBattleMonSpecies]
     cp PORYGON2

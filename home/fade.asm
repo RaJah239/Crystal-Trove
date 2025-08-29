@@ -6,7 +6,7 @@ SetBlackPals::
 
 .Function:
 	xor a
-	jp DoSetPals
+	jr DoSetPals
 
 SetWhitePals::
 	ld a, BANK(wBGPals1)
@@ -34,7 +34,7 @@ FadeToWhite::
 	push bc
 	call SetWhitePals
 	pop bc
-	jp FadePalettes
+	jr FadePalettes
 
 FadeToBlack::
 	push bc

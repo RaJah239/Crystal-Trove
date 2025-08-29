@@ -532,9 +532,6 @@ DayCare_InitBreeding:
     set DAYCAREMAN_MONS_COMPATIBLE_F, [hl]
     ld a, 255	; number of steps to get egg
     ld [wStepsToEgg], a
-    jp .UselessJump
-
-.UselessJump:
 	xor a
 	ld hl, wEggMon
 	ld bc, BOXMON_STRUCT_LENGTH
