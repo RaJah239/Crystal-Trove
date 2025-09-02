@@ -422,7 +422,7 @@ PlaceGenericTwoOptionBox:: ; unreferenced
 	jr InterpretTwoOptionMenu
 
 NoYesBox::
-	newfarjp _NoYesBox
+	farjp _NoYesBox
 
 _YesNoBox::
 ; Return nc (yes) or c (no).

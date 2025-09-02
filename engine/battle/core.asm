@@ -2111,12 +2111,12 @@ KOBoost:
 .grim:
     call ClearFailures
     ld [wNumHits], a
-    newfarjp SpecialAttackUpSwitch
+    farjp SpecialAttackUpSwitch
 
 .moxie:
     call ClearFailures
     ld [wNumHits], a
-    newfarjp AttackUpSwitch
+    farjp AttackUpSwitch
 
 CheckEnemyTrainerDefeated:
 	ld a, [wOTPartyCount]
@@ -2252,7 +2252,7 @@ WinTrainerBattle:
 ;	ld c, 40
 ;	call DelayFrames
 	ld c, $4 ; win
-	newfarjp Mobile_PrintOpponentBattleMessage
+	farjp Mobile_PrintOpponentBattleMessage
 
 .battle_tower
 	call BattleWinSlideInEnemyTrainerFrontpic
@@ -2689,7 +2689,7 @@ SetUpBattlePartyMenu_Loop: ; switch to fullscreen menu?
 	farcall LoadPartyMenuGFX
 	farcall InitPartyMenuWithCancel
 	farcall InitPartyMenuBGPal7
-	newfarjp InitPartyMenuGFX
+	farjp InitPartyMenuGFX
 
 JumpToPartyMenuAndPrintText:
 	farcall WritePartyMenuTilemap
@@ -2699,7 +2699,7 @@ JumpToPartyMenuAndPrintText:
 	jmp DelayFrame
 
 SelectBattleMon:
-	newfarjp PartyMenuSelect
+	farjp PartyMenuSelect
 
 PickPartyMonInBattle:
 .loop
@@ -3548,7 +3548,7 @@ TryToRunAwayFromBattle:
 	jr .print_inescapable_text
 
 .trainer_battle_info
-	newfarjp TrainerBattleInfo
+	farjp TrainerBattleInfo
 
 .print_inescapable_text
 	call StdBattleTextbox
@@ -5147,7 +5147,7 @@ BattleMenuPKMN_Loop:
 	jmp BattleMenu
 
 .GetMenu:
-	newfarjp BattleMonMenu
+	farjp BattleMonMenu
 
 Battle_StatsScreen:
 	call DisableLCD
@@ -6105,7 +6105,7 @@ CheckEnemyLockedIn:
 	ret
 
 LinkBattleSendReceiveAction:
-	newfarjp _LinkBattleSendReceiveAction
+	farjp _LinkBattleSendReceiveAction
 
 LoadEnemyMon:
 ; Initialize enemy monster parameters
@@ -8490,7 +8490,7 @@ ShowLinkBattleParticipantsAfterEnd:
 	ld a, [wEnemyMonStatus]
 	ld [hl], a
 	call ClearTilemap
-	newfarjp _ShowLinkBattleParticipants
+	farjp _ShowLinkBattleParticipants
 
 DisplayLinkBattleResult:
 	farcall CheckMobileBattleError
@@ -9007,7 +9007,7 @@ InitBattleDisplay:
 
 .InitBackPic:
 	farcall GetTrainerBackpic
-	newfarjp CopyBackpic
+	farjp CopyBackpic
 
 BattleStartMessage:
 	ld a, [wBattleMode]
@@ -9098,7 +9098,7 @@ BattleStartMessage:
 	ret nz
 
 	ld c, $2 ; start
-	newfarjp Mobile_PrintOpponentBattleMessage
+	farjp Mobile_PrintOpponentBattleMessage
 
 FieldWeather:
 ; is weather already set up
@@ -9245,61 +9245,61 @@ SwitchInEffects:
     ret
 
 .rain
-    newfarjp RainSwitch
+    farjp RainSwitch
 
 .sun
-    newfarjp SunSwitch
+    farjp SunSwitch
 
 .sand
-    newfarjp SandSwitch
+    farjp SandSwitch
 
 .airlock
-	newfarjp AirLockSwitch
+	farjp AirLockSwitch
 
 .stickyweb
-	newfarjp StickyWebSwitch
+	farjp StickyWebSwitch
 
 .spikes
-    newfarjp SpikesSwitch
+    farjp SpikesSwitch
 
 .stealthrock
-	newfarjp StealthRockSwitch
+	farjp StealthRockSwitch
 
 .toxicspikes
-	newfarjp ToxicSpikesSwitch
+	farjp ToxicSpikesSwitch
 
 .trickroom
-	newfarjp TrickRoomSwitch
+	farjp TrickRoomSwitch
 
 .bothScreens
-    newfarjp ReflectSwitch
+    farjp ReflectSwitch
 
 .reflect
-    newfarjp ReflectSwitch
+    farjp ReflectSwitch
 
 .lightScreen
-    newfarjp LightScreenSwitch
+    farjp LightScreenSwitch
 
 .safeguard
-    newfarjp SafeguardSwitch
+    farjp SafeguardSwitch
 
 .spAtkUp
-    newfarjp SpecialAttackUpSwitch
+    farjp SpecialAttackUpSwitch
 
 .spDefUp
-    newfarjp SpecialDefenseUpSwitch
+    farjp SpecialDefenseUpSwitch
 
 .defUp
-    newfarjp DefenseUpSwitch
+    farjp DefenseUpSwitch
 
 .spdUp
-    newfarjp SpeedUpSwitch
+    farjp SpeedUpSwitch
 
 .atkUp
-    newfarjp AttackUpSwitch
+    farjp AttackUpSwitch
 
 .evasionUp
-    newfarjp EvasionUpSwitch
+    farjp EvasionUpSwitch
 
 .smeargle
     farcall SafeguardSwitch
@@ -9321,25 +9321,25 @@ SwitchInEffects:
     ret
 
 .atkDown
-    newfarjp AttackDownSwitch
+    farjp AttackDownSwitch
 
 .clearField
-	newfarjp DefogSwitch
+	farjp DefogSwitch
 
 .lapras
 	farcall DefogSwitch
 	; fallthrough
 .spAtkDown
-    newfarjp SpecialAttackDownSwitch
+    farjp SpecialAttackDownSwitch
 
 .accDown ; DevNote - only Weezing uses this, can remove it if more room needed
-    newfarjp AccuracyDownSwitch
+    farjp AccuracyDownSwitch
 
 .defenseMode
-    newfarjp DefenseModeSwitch
+    farjp DefenseModeSwitch
  
 .natural_cure
-	newfarjp NaturalCureSwitch
+	farjp NaturalCureSwitch
 
 GetCurrentMonCore:
     farcall HasWildBattleBegun
