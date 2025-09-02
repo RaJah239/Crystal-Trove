@@ -48,8 +48,7 @@ PrintDayOfWeek:
 	ld h, b
 	ld l, c
 	ld de, .Day
-	call PlaceString
-	ret
+	jmp PlaceString
 
 .Days:
 	db "Sun@"
@@ -69,18 +68,15 @@ NewGame_ClearTilemapEtc:
 	call ClearTilemap
 	call LoadFontsExtra
 	call LoadStandardFont
-	call ClearWindowData
-	ret
+	jmp ClearWindowData
 
 MysteryGift:
 	call UpdateTime
 	farcall DoMysteryGiftIfDayHasPassed
-	farcall DoMysteryGift
-	ret
+	farjp DoMysteryGift
 
 Option:
-	farcall _Option
-	ret
+	farjp _Option
 
 NewGame:
 	xor a
@@ -111,25 +107,21 @@ PlayerProfileSetup:
 	ret
 .ok
 	ld c, 0
-	farcall InitMobileProfile
-	ret
+	farjp InitMobileProfile
 
 SelectDifficulty::
 	farcall CheckMobileAdapterStatus ; mobile
 	jr c, .ok
-	farcall InitDifficulty
-	ret
+	farjp InitDifficulty
 
 .ok
 	ld c, 0
-	farcall InitMobileProfile ; mobile
-	ret
+	farjp InitMobileProfile ; mobile
 
 ResetWRAM:
 	xor a
 	ldh [hBGMapMode], a
-	call _ResetWRAM
-	ret
+	jr _ResetWRAM
 
 _ResetWRAM:
 	ld hl, wShadowOAM
@@ -267,8 +259,7 @@ endc
 
 	farcall ClearGSBallFlag
 
-	call ResetGameTime
-	ret
+	jmp ResetGameTime
 
 .InitList:
 ; Loads 0 in the count and -1 in the first item or mon slot.
@@ -285,11 +276,10 @@ InitializeMagikarpHouse:
 	ld a, $6
 	ld [hli], a
 	ld de, .Ralph
-	call CopyName2
-	ret
+	jmp CopyName2
 
 .Ralph:
-	db "RALPH@"
+	db "Ralph@"
 
 InitializeNPCNames:
 	ld hl, .Rival
@@ -309,8 +299,7 @@ InitializeNPCNames:
 
 .Copy:
 	ld bc, NAME_LENGTH
-	call CopyBytes
-	ret
+	jmp CopyBytes
 
 .Rival:  db "???@"
 .Red:    db "Red@"
@@ -321,8 +310,7 @@ InitializeWorld:
 	call ShrinkPlayer
 	farcall SpawnPlayer
 	farcall _InitializeStartDay
-	farcall InitializeEvents
-	ret
+	farjp InitializeEvents
 
 LoadOrRegenerateLuckyIDNumber:
 	ld a, BANK(sLuckyIDNumber)
@@ -517,13 +505,11 @@ DisplaySaveInfoOnContinue:
 	and %10000000
 	jr z, .clock_ok
 	lb de, 4, 8
-	call DisplayContinueDataWithRTCError
-	ret
+	jr DisplayContinueDataWithRTCError
 
 .clock_ok
 	lb de, 4, 8
-	call DisplayNormalContinueData
-	ret
+	jr DisplayNormalContinueData
 
 DisplaySaveInfoOnSave:
 	lb de, 4, 0
@@ -534,16 +520,14 @@ DisplayNormalContinueData:
 	call Continue_DisplayBadgesDexPlayerName
 	call Continue_PrintGameTime
 	call LoadFontsExtra
-	call UpdateSprites
-	ret
+	jmp UpdateSprites
 
 DisplayContinueDataWithRTCError:
 	call Continue_LoadMenuHeader
 	call Continue_DisplayBadgesDexPlayerName
 	call Continue_UnknownGameTime
 	call LoadFontsExtra
-	call UpdateSprites
-	ret
+	jmp UpdateSprites
 
 Continue_LoadMenuHeader:
 	xor a
@@ -557,8 +541,7 @@ Continue_LoadMenuHeader:
 .show_menu
 	call _OffsetMenuHeader
 	call MenuBox
-	call PlaceVerticalMenuItems
-	ret
+	jmp PlaceVerticalMenuItems
 
 .MenuHeader_Dex:
 	db MENU_BACKUP_TILES ; flags
@@ -614,15 +597,13 @@ Continue_DisplayBadgesDexPlayerName:
 Continue_PrintGameTime:
 	decoord 9, 8, 0
 	add hl, de
-	call Continue_DisplayGameTime
-	ret
+	jr Continue_DisplayGameTime
 
 Continue_UnknownGameTime:
 	decoord 9, 8, 0
 	add hl, de
 	ld de, .three_question_marks
-	call PlaceString
-	ret
+	jmp PlaceString
 
 .three_question_marks
 	db " ???@"
@@ -858,8 +839,7 @@ NamePlayer:
 	jr z, .NewName
 	call StorePlayerName
 	farcall ApplyMonOrTrainerPals
-	farcall MovePlayerPicLeft
-	ret
+	farjp MovePlayerPicLeft
 
 .NewName:
 	ld b, NAME_PLAYER
@@ -887,13 +867,12 @@ NamePlayer:
 	jr z, .Male
 	ld de, .Kris
 .Male:
-	call InitName
-	ret
+	jmp InitName
 
 .Chris:
-	db "GOLD@@@@@@@"
+	db "Gold@@@@@@@"
 .Kris:
-	db "CRYSTAL@@@@"
+	db "Crystal@@@@"
 
 StorePlayerName:
 	ld a, "@"
@@ -902,8 +881,7 @@ StorePlayerName:
 	call ByteFill
 	ld hl, wPlayerName
 	ld de, wStringBuffer2
-	call CopyName2
-	ret
+	jmp CopyName2
 
 ShrinkPlayer:
 	ldh a, [hROMBank]
@@ -954,8 +932,7 @@ ShrinkPlayer:
 
 	ld c, 15
 	call FadeToWhite
-	call ClearTilemap
-	ret
+	jmp ClearTilemap
 
 Intro_RotatePalettesLeftFrontpic:
 	ld hl, IntroFadePalettes
@@ -1144,8 +1121,7 @@ StartTitleScreen:
 	dw ResetClock
 
 .TitleScreen:
-	farcall _TitleScreen
-	ret
+	farjp _TitleScreen
 
 RunTitleScreen:
 	ld a, [wJumptableIndex]
@@ -1207,8 +1183,7 @@ TitleScreenEntrance:
 	dec b
 	jr nz, .loop
 
-	farcall AnimateTitleCrystal
-	ret
+	farjp AnimateTitleCrystal
 
 .done
 ; Next scene
