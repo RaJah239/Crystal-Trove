@@ -7,8 +7,7 @@ StartRTC:
 	ld a, [MBC3RTC]
 	res 6, a ; halt
 	ld [MBC3RTC], a
-	call CloseSRAM
-	ret
+	jmp CloseSRAM
 
 GetTimeOfDay::
 ; get time of day based on the current hour
@@ -69,8 +68,7 @@ SaveRTC:
 	ld [MBC3SRamBank], a
 	xor a
 	ld [sRTCStatusFlags], a
-	call CloseSRAM
-	ret
+	jmp CloseSRAM
 
 StartClock::
 	call GetClock
@@ -82,8 +80,7 @@ StartClock::
 	call RecordRTCStatus ; set flag on sRTCStatusFlags
 
 .skip_set
-	call StartRTC
-	ret
+	jr StartRTC
 
 _FixDays:
 	ld hl, hRTCDayHi
@@ -97,8 +94,7 @@ _FixDays:
 .set_bit_7
 	; Day count exceeds 16383
 	ld a, %10000000
-	call RecordRTCStatus ; set bit 7 on sRTCStatusFlags
-	ret
+	jmp RecordRTCStatus ; set bit 7 on sRTCStatusFlags
 
 ClockContinue:
 	call CheckRTCStatus
@@ -128,8 +124,7 @@ ClockContinue:
 	ld a, [s5_b2fa]
 	inc a
 	ld [s5_b2fa], a
-	call CloseSRAM
-	ret
+	jmp CloseSRAM
 
 .dont_update
 	xor a
