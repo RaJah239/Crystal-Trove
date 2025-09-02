@@ -129,7 +129,6 @@ SpecialsPointers::
 	add_special Function170114
 	add_special BattleTowerBattle
 	add_special Function1704e1
-	add_special UnusedBattleTowerDummySpecial1
 	add_special LoadOpponentTrainerAndPokemonWithOTSprite
 	add_special Function11ba38
 	add_special CheckForBattleTowerRules
@@ -159,7 +158,6 @@ SpecialsPointers::
 	add_special GiveDratini
 	add_special BeastsCheck
 	add_special MonCheck
-	add_special UnusedBattleTowerDummySpecial2
 	add_special Mobile_SelectThreeMons
 	add_special Function1037eb
 	add_special Function10383c
