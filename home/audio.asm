@@ -363,8 +363,7 @@ TryRestartMapMusic::
 	ret
 
 .restore
-	farcall RestoreMusic
-	ret
+	farjp RestoreMusic
 
 RestartMapMusic::
 	push hl
@@ -423,8 +422,7 @@ SpecialMapMusic::
 GetMapMusic_MaybeSpecial::
 	call SpecialMapMusic
 	ret c
-	call GetMapMusic
-	ret
+	jmp GetMapMusic
 
 CheckSFX::
 ; Return carry if any SFX channels are active.
