@@ -125,12 +125,6 @@ SelectDifficulty::
 	farcall InitMobileProfile ; mobile
 	ret
 
-if DEF(_DEBUG)
-DebugRoom: ; unreferenced
-	farcall _DebugRoom
-	ret
-endc
-
 ResetWRAM:
 	xor a
 	ldh [hBGMapMode], a
