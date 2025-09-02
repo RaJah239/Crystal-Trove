@@ -3964,12 +3964,8 @@ WaterTypeChart:
 	hlcoord 1, 11
 	call PlaceString
 
-	ld de, .DefenderStringDoubleDamage1
+	ld de, .DefenderStringDoubleDamage
 	hlcoord 1, 12
-	call PlaceString
-
-	ld de, .DefenderStringDoubleDamage2
-	hlcoord 1, 13
 	jmp PlaceString
 
 .TypeString:
@@ -3991,7 +3987,5 @@ WaterTypeChart:
 	db "<half>× Fire/Steel/Ice/@"
 .DefenderStringHalfDamage2:
 	db "   Water@"
-.DefenderStringDoubleDamage1:
-	db "2× Fire/Ground/@"
-.DefenderStringDoubleDamage2:
-	db "   Rock@"
+.DefenderStringDoubleDamage:
+	db "2× Grass/Electric@"
