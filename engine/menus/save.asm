@@ -33,8 +33,7 @@ SaveAfterLinkTrade:
 	call SaveBackupChecksum
 	farcall BackupPartyMonMail
 	farcall SaveRTC
-	call ResumeGameLogic
-	ret
+	jr ResumeGameLogic
 
 Link_SaveGame:
 	call AskOverwriteSaveFile
@@ -162,7 +161,7 @@ SavedTheGame:
 	jmp WaitSFX
 
 .saving_text
-	text "SAVING…"
+	text "Saving…"
 	done
 
 SaveGameData:
@@ -263,8 +262,7 @@ UpdateStackTop:
 	ld [sStackTop + 1], a
 
 .done
-	call CloseSRAM
-	ret
+	jmp CloseSRAM
 
 FindStackTop:
 ; Find the furthest point that sp has traversed to.
@@ -335,8 +333,7 @@ HallOfFame_InitSaveIfNeeded:
 	ld a, [wSavedAtLeastOnce]
 	and a
 	ret nz
-	call ErasePreviousSave
-	ret
+	jr ErasePreviousSave
 
 ValidateSave:
 	ld a, BANK(sCheckValue1) ; aka BANK(sCheckValue2)
@@ -379,8 +376,7 @@ SavePokemonData:
 	ld de, sPokemonData
 	ld bc, wPokemonDataEnd - wPokemonData
 	call CopyBytes
-	call CloseSRAM
-	ret
+	jmp CloseSRAM
 
 SaveChecksum:
 	ld hl, sGameData
@@ -392,8 +388,7 @@ SaveChecksum:
 	ld [sChecksum + 0], a
 	ld a, d
 	ld [sChecksum + 1], a
-	call CloseSRAM
-	ret
+	jmp CloseSRAM
 
 ValidateBackupSave:
 	ld a, BANK(sBackupCheckValue1) ; aka BANK(sBackupCheckValue2)
@@ -402,8 +397,8 @@ ValidateBackupSave:
 	ld [sBackupCheckValue1], a
 	ld a, SAVE_CHECK_VALUE_2
 	ld [sBackupCheckValue2], a
-	call CloseSRAM
-	ret
+	jmp CloseSRAM
+
 
 SaveBackupOptions:
 	ld a, BANK(sBackupOptions)
@@ -412,8 +407,7 @@ SaveBackupOptions:
 	ld de, sBackupOptions
 	ld bc, wOptionsEnd - wOptions
 	call CopyBytes
-	call CloseSRAM
-	ret
+	jmp CloseSRAM
 
 SaveBackupPlayerData:
 	ld a, BANK(sBackupPlayerData)
@@ -426,8 +420,7 @@ SaveBackupPlayerData:
 	ld de, sBackupCurMapData
 	ld bc, wCurMapDataEnd - wCurMapData
 	call CopyBytes
-	call CloseSRAM
-	ret
+	jmp CloseSRAM
 
 SaveBackupPokemonData:
 	ld a, BANK(sBackupPokemonData)
@@ -436,8 +429,7 @@ SaveBackupPokemonData:
 	ld de, sBackupPokemonData
 	ld bc, wPokemonDataEnd - wPokemonData
 	call CopyBytes
-	call CloseSRAM
-	ret
+	jmp CloseSRAM
 
 SaveBackupChecksum:
 	ld hl, sBackupGameData
@@ -449,8 +441,7 @@ SaveBackupChecksum:
 	ld [sBackupChecksum + 0], a
 	ld a, d
 	ld [sBackupChecksum + 1], a
-	call CloseSRAM
-	ret
+	jmp CloseSRAM
 
 WasMidSaveAborted:
 ; Returns z if the system was reset mid-saving.
@@ -530,8 +521,7 @@ TryLoadSaveData:
 	ld de, wStatusFlags
 	ld a, [hl]
 	ld [de], a
-	call CloseSRAM
-	ret
+	jmp CloseSRAM
 
 .backup
 	call CheckBackupSaveFile
@@ -549,16 +539,14 @@ TryLoadSaveData:
 	ld de, wStatusFlags
 	ld a, [hl]
 	ld [de], a
-	call CloseSRAM
-	ret
+	jmp CloseSRAM
 
 .corrupt
 	ld hl, DefaultOptions
 	ld de, wOptions
 	ld bc, wOptionsEnd - wOptions
 	call CopyBytes
-	call ClearClock
-	ret
+	jmp ClearClock
 
 INCLUDE "data/default_options.asm"
 
@@ -580,8 +568,7 @@ CheckPrimarySaveFile:
 	ld [wSaveFileExists], a
 
 .nope
-	call CloseSRAM
-	ret
+	jmp CloseSRAM
 
 CheckBackupSaveFile:
 	ld a, BANK(sBackupCheckValue1) ; aka BANK(sBackupCheckValue2)
@@ -600,8 +587,7 @@ CheckBackupSaveFile:
 	ld [wSaveFileExists], a
 
 .nope
-	call CloseSRAM
-	ret
+	jmp CloseSRAM
 
 LoadPlayerData:
 	ld a, BANK(sPlayerData)
@@ -623,8 +609,7 @@ LoadPlayerData:
 	ld a, BATTLETOWER_WON_CHALLENGE
 	ld [sBattleTowerChallengeState], a
 .not_4
-	call CloseSRAM
-	ret
+	jmp CloseSRAM
 
 LoadPokemonData:
 	ld a, BANK(sPokemonData)
@@ -633,8 +618,7 @@ LoadPokemonData:
 	ld de, wPokemonData
 	ld bc, wPokemonDataEnd - wPokemonData
 	call CopyBytes
-	call CloseSRAM
-	ret
+	jmp CloseSRAM
 
 VerifyChecksum:
 	ld hl, sGameData
@@ -664,8 +648,7 @@ LoadBackupPlayerData:
 	ld de, wCurMapData
 	ld bc, wCurMapDataEnd - wCurMapData
 	call CopyBytes
-	call CloseSRAM
-	ret
+	jmp CloseSRAM
 
 LoadBackupPokemonData:
 	ld a, BANK(sBackupPokemonData)
@@ -674,8 +657,7 @@ LoadBackupPokemonData:
 	ld de, wPokemonData
 	ld bc, wPokemonDataEnd - wPokemonData
 	call CopyBytes
-	call CloseSRAM
-	ret
+	jmp CloseSRAM
 
 VerifyBackupChecksum:
 	ld hl, sBackupGameData
