@@ -258,8 +258,7 @@ DisplayMinutesWithMinString:
 	call PrintTwoDigitNumberLeftAlign
 	inc hl
 	ld de, String_min
-	call PlaceString
-	ret
+	jmp PlaceString
 
 PrintTwoDigitNumberLeftAlign:
 	push hl
@@ -268,8 +267,7 @@ PrintTwoDigitNumberLeftAlign:
 	ld [hl], a
 	pop hl
 	lb bc, PRINTNUM_LEFTALIGN | 1, 2
-	call PrintNum
-	ret
+	jmp PrintNum
 
 OakTimeWokeUpText:
 	text_far _OakTimeWokeUpText
@@ -498,8 +496,7 @@ SetDayOfWeek:
 	ld d, [hl]
 	ld e, a
 	pop hl
-	call PlaceString
-	ret
+	jmp PlaceString
 
 .WeekdayStrings:
 ; entries correspond to wCurDay constants (see constants/wram_constants.asm)
@@ -543,8 +540,7 @@ InitialSetDSTFlag:
 	lb bc, 3, 18
 	call ClearBox
 	ld hl, .Text
-	call PrintTextboxTextAt
-	ret
+	jmp PrintTextboxTextAt
 
 .Text:
 	text_asm
@@ -570,8 +566,7 @@ InitialClearDSTFlag:
 	lb bc, 3, 18
 	call ClearBox
 	ld hl, .Text
-	call PrintTextboxTextAt
-	ret
+	jmp PrintTextboxTextAt
 
 .Text:
 	text_asm
@@ -602,8 +597,7 @@ PrintHour:
 	call AdjustHourForAMorPM
 	ld [wTextDecimalByte], a
 	ld de, wTextDecimalByte
-	call PrintTwoDigitNumberLeftAlign
-	ret
+	jmp PrintTwoDigitNumberLeftAlign
 
 GetTimeOfDayString:
 	ld a, c
@@ -624,7 +618,6 @@ GetTimeOfDayString:
 .day
 	ld de, .day_string
 	ret
-
 .eve
 	ld de, .eve_string
 	ret
