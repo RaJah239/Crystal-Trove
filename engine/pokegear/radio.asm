@@ -558,7 +558,7 @@ OaksPKMNTalk11:
 	jr PlaceRadioString
 
 .pokemon_string
-	db "#MON@"
+	db "#mon@"
 
 OaksPKMNTalk12:
 	ld hl, wRadioTextDelay
@@ -570,7 +570,7 @@ OaksPKMNTalk12:
 	jr PlaceRadioString
 
 .pokemon_channel_string
-	db "#MON Channel@"
+	db "#mon Channel@"
 
 OaksPKMNTalk13:
 	ld hl, wRadioTextDelay
@@ -737,8 +737,7 @@ CopyDexEntry:
 	call CopyRadioTextToRAM
 	pop hl
 	pop af
-	call CopyDexEntryPart2
-	ret
+	jr CopyDexEntryPart2
 
 CopyDexEntryPart1:
 	ld de, wPokedexShowPointerBank
@@ -1524,18 +1523,15 @@ GetBuenasPassword:
 
 .Mon:
 	call .GetTheIndex
-	call GetPokemonName
-	ret
+	jmp GetPokemonName
 
 .Item:
 	call .GetTheIndex
-	call GetItemName
-	ret
+	jmp GetItemName
 
 .Move:
 	call .GetTheIndex
-	call GetMoveName
-	ret
+	jmp GetMoveName
 
 .GetTheIndex:
 	ld h, 0
@@ -1693,7 +1689,7 @@ BuenasPasswordCheckTime:
 	ret
 
 BuenasPasswordChannelName:
-	db "BUENA'S PASSWORD@"
+	db "Buena's Password@"
 
 BuenaRadioText1:
 	text_far _BuenaRadioText1
