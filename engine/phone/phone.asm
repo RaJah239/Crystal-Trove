@@ -441,15 +441,6 @@ Script_SpecialBillCall::
 	ld e, PHONE_BILL
 	jr LoadCallerScript
 
-Script_SpecialElmCall: ; unreferenced
-	callasm .LoadElmScript
-	pause 30
-	sjump Script_ReceivePhoneCall
-
-.LoadElmScript:
-	ld e, PHONE_ELM
-	jr LoadCallerScript
-
 RingTwice_StartCall:
 	call .Ring
 	call .Ring
@@ -529,11 +520,6 @@ Phone_CallEnd:
 	call HangUp_Wait20Frames
 	call HangUp_BoopOff
 	call HangUp_Wait20Frames
-	ret
-
-HangUp_ShutDown: ; unreferenced
-	ld de, SFX_SHUT_DOWN_PC
-	call PlaySFX
 	ret
 
 HangUp_Beep:
@@ -721,12 +707,4 @@ PhoneScript_JustTalkToThem:
 
 PhoneJustTalkToThemText:
 	text_far _PhoneJustTalkToThemText
-	text_end
-
-PhoneThankYouTextScript: ; unreferenced
-	writetext PhoneThankYouText
-	end
-
-PhoneThankYouText:
-	text_far _PhoneThankYouText
 	text_end
