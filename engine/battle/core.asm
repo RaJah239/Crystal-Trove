@@ -3532,7 +3532,7 @@ TryToRunAwayFromBattle:
 
 	ld a, [wLinkMode]
 	and a
-	jr nz, .can_escape
+	jr nz, .trainer_battle_info
 
 	ld a, [wBattleMode]
 	dec a
