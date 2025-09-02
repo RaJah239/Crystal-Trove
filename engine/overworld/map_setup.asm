@@ -10,8 +10,7 @@ RunMapSetupScript::
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	call ReadMapSetupScript
-	ret
+	jmp ReadMapSetupScript
 
 INCLUDE "data/maps/setup_scripts.asm"
 
@@ -81,8 +80,7 @@ LoadMapObjects:
 	ld a, MAPCALLBACK_OBJECTS
 	call RunMapCallback
 	farcall LoadObjectMasks
-	farcall InitializeVisibleSprites
-	ret
+	farjp InitializeVisibleSprites
 
 HandleAutoBicycle:
 	; check if Auto Bicycle is turned on
@@ -205,8 +203,7 @@ CheckUpdatePlayerSprite:
 	ret
 
 .ok
-	call UpdatePlayerSprite
-	ret
+	jmp UpdatePlayerSprite
 
 .CheckForcedBiking:
 	and a
@@ -270,12 +267,10 @@ CheckUpdatePlayerSprite:
 
 FadeOutMapMusic:
 	ld a, 6
-	call SkipMusic
-	ret
+	jmp SkipMusic
 
 ApplyMapPalettes:
-	farcall _UpdateTimePals
-	ret
+	farjp _UpdateTimePals
 
 FadeMapMusicAndPalettes:
 	ld e, LOW(MUSIC_NONE)
@@ -284,8 +279,7 @@ FadeMapMusicAndPalettes:
 	ld a, [wMusicFadeID + 1]
 	ld a, $4
 	ld [wMusicFade], a
-	farcall FadeOutPalettes
-	ret
+	farjp FadeOutPalettes
 
 ForceMapMusic:
 	ld a, [wPlayerState]
@@ -295,5 +289,4 @@ ForceMapMusic:
 	ld a, $88
 	ld [wMusicFade], a
 .notbiking
-	call TryRestartMapMusic
-	ret
+	jmp TryRestartMapMusic
