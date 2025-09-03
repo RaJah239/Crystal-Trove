@@ -17,7 +17,6 @@ DoEnemyTurn:
 	jr z, DoTurn
 	cp BATTLEACTION_SWITCH1
 	ret nc
-
 	; fallthrough
 
 DoTurn:
@@ -34,6 +33,7 @@ DoTurn:
 	ret nz
 
 	call UpdateMoveData
+	; fallthrough
 
 DoMove:
 ; Get the user's move effect.
@@ -602,7 +602,6 @@ CheckEnemyTurn:
 	ld hl, FullyParalyzedText
 	call StdBattleTextbox
 	call CantMove
-
 	; fallthrough
 
 EndTurn:
@@ -654,8 +653,7 @@ HitConfusion:
 	jmp BattleCommand_RaiseSub
 
 BattleCommand_UsedMoveText:
-	farcall DisplayUsedMoveText
-	ret
+	farjp DisplayUsedMoveText
 
 CheckUserIsCharging:
 	ldh a, [hBattleTurn]
@@ -936,8 +934,7 @@ INCLUDE "data/battle/critical_hit_chances.asm"
 
 GetNextTypeMatchupsByte:
    ld a, BANK(TypeMatchups)
-   call GetFarByte
-   ret
+   jmp GetFarByte
 
 BattleCommand_Stab:
 ; STAB = Same Type Attack Bonus
@@ -1538,15 +1535,11 @@ BattleCommand_CheckHit:
 .skip_brightpowder
 	ld a, b
 	cp -1
-	jr z, .Hit
+	ret z
 
 	call BattleRandom
 	cp b
-	jr nc, .Miss
-
-.Hit:
-	ret
-
+	ret nc
 .Miss:
 ; Keep the damage value intact if we're using (Hi) Jump Kick.
 	ld a, BATTLE_VARS_MOVE_EFFECT
@@ -2178,7 +2171,6 @@ BattleCommand_SuperEffectiveLoopText:
 	call GetBattleVarAddr
 	bit SUBSTATUS_IN_LOOP, a
 	ret nz
-
 	; fallthrough
 
 BattleCommand_SuperEffectiveText:
@@ -3322,7 +3314,6 @@ DEF DAMAGE_CAP EQU MAX_DAMAGE - MIN_DAMAGE
 	ld a, $ff
 	ldh [hQuotient + 2], a
 	ldh [hQuotient + 3], a
-
 	ret
 
 FiftyPercentBoost:
@@ -3334,8 +3325,7 @@ HalfDamage:
 	ld a, 2
 	ldh [hDivisor], a
 	ld b, 4
-	call Divide
-	ret
+	jmp Divide
 
 FifteenPercentBoost:
     ld a, 23
@@ -3344,8 +3334,7 @@ FifteenPercentBoost:
 	ld a, 20
 	ldh [hDivisor], a
 	ld b, 4
-	call Divide
-	ret
+	jmp Divide
 
 TenPercentBoost:
     ld a, 11
@@ -3354,8 +3343,7 @@ TenPercentBoost:
 	ld a, 10
 	ldh [hDivisor], a
 	ld b, 4
-	call Divide
-	ret
+	jmp Divide
 
 INCLUDE "data/types/type_boost_items.asm"
 
@@ -3862,8 +3850,7 @@ BattleCommand_PoisonTarget:
 	ld hl, WasPoisonedText
 	call StdBattleTextbox
 
-	farcall UseHeldStatusHealingItem
-	ret
+	farjp UseHeldStatusHealingItem
 
 BattleCommand_Poison:
 	ld hl, DoesntAffectText
@@ -3925,8 +3912,7 @@ BattleCommand_Poison:
 	call StdBattleTextbox
 
 .finished
-	farcall UseHeldStatusHealingItem
-	ret
+	farjp UseHeldStatusHealingItem
 
 .failed
 	push hl
@@ -4115,8 +4101,7 @@ BattleCommand_BurnTarget:
 	ld hl, WasBurnedText
 	call StdBattleTextbox
 
-	farcall UseHeldStatusHealingItem
-	ret
+	farjp UseHeldStatusHealingItem
 
 Defrost:
 	ld a, [hl]
@@ -4183,8 +4168,7 @@ BattleCommand_FreezeTarget:
 	ld hl, GotAFrostbiteText
 	call StdBattleTextbox
 
-	farcall UseHeldStatusHealingItem
-	ret
+	farjp UseHeldStatusHealingItem
 
 BattleCommand_ParalyzeTarget:
 	xor a
@@ -4986,7 +4970,6 @@ CalcBattleStats:
 	pop af
 	dec a
 	jr nz, .loop
-
 	ret
 
 BattleCommand_CheckRampage:
@@ -5572,20 +5555,18 @@ BattleCommand_Charge:
 	call GetBattleVar
 	cp RAZOR_WIND
 	ld hl, .BattleMadeWhirlwindText
-	jr z, .done
+	ret z
 
 	cp SOLARBEAM
 	ld hl, .BattleTookSunlightText
-	jr z, .done
+	ret z
 
 	cp FLY
 	ld hl, .BattleFlewText
-	jr z, .done
+	ret z
 
 	cp DIG
 	ld hl, .BattleDugText
-
-.done
 	ret
 
 .BattleMadeWhirlwindText:
@@ -5603,10 +5584,6 @@ BattleCommand_Charge:
 .BattleDugText:
 	text_far _BattleDugText
 	text_end
-
-BattleCommand_Unused3C:
-; effect0x3c
-	ret
 
 BattleCommand_TrapTarget:
 	ld a, [wAttackMissed]
@@ -5673,8 +5650,8 @@ BattleCommand_Recoil:
 	cp STRUGGLE
 	jr nz, .begin
 	farcall GetQuarterMaxHP
-    farcall SubtractHPFromUser
-    ret
+    farjp SubtractHPFromUser
+
 .begin
 	ld hl, wBattleMonMaxHP
 	ldh a, [hBattleTurn]
@@ -5950,7 +5927,6 @@ BattleCommand_DoubleUndergroundDamage:
 	call GetBattleVar
 	bit SUBSTATUS_UNDERGROUND, a
 	ret z
-
 	; fallthrough
 
 DoubleDamage:
@@ -5958,12 +5934,11 @@ DoubleDamage:
 	sla [hl]
 	dec hl
 	rl [hl]
-	jr nc, .quit
+	ret nc
 
 	ld a, $ff
 	ld [hli], a
 	ld [hl], a
-.quit
 	ret
 
 INCLUDE "engine/battle/move_effects/leech_seed.asm"
@@ -6354,8 +6329,7 @@ INCLUDE "engine/battle/move_effects/return.asm"
 INCLUDE "engine/battle/move_effects/safeguard.asm"
 
 BattleCommand_FarCommand:
-	farcall Find_Command
-	ret
+	farjp Find_Command
 
 SafeCheckSafeguard:
 	push hl
@@ -6627,12 +6601,10 @@ LoadMoveAnim:
 	call GetBattleVar
 	and a
 	ret z
-
 	; fallthrough
 
 LoadAnim:
 	ld [wFXAnimID], a
-
 	; fallthrough
 
 PlayUserBattleAnim:
@@ -6728,16 +6700,13 @@ GetMoveByte:
 	jmp GetFarByte
 
 DisappearUser:
-	farcall _DisappearUser
-	ret
+	farjp _DisappearUser
 
 AppearUserLowerSub:
-	farcall _AppearUserLowerSub
-	ret
+	farjp _AppearUserLowerSub
 
 AppearUserRaiseSub:
-	farcall _AppearUserRaiseSub
-	ret
+	farjp _AppearUserRaiseSub
 
 _CheckBattleScene:
 ; Checks the options.  Returns carry if battle animations are disabled.
@@ -6801,7 +6770,7 @@ BattleCommand_CheckPowder:
 	ld a, [hl]
 	cp GRASS
 	ret nz
-	;fallthrough
+
 .Immune:
 	ld a, 1
 	ld [wAttackMissed], a
@@ -6881,9 +6850,8 @@ GetCurrentMon:
     ldh a, [hBattleTurn]
 	and a
 	ld a, [wBattleMonSpecies]
-	jr z, .done
+	ret z
 	ld a, [wEnemyMonSpecies]
-.done
     ret
 
 ; this needs to be in effect_commands.asm
@@ -6891,9 +6859,8 @@ GetOpposingMon:
     ldh a, [hBattleTurn]
 	and a
 	ld a, [wBattleMonSpecies]
-	jr nz, .done
+	ret nz
 	ld a, [wEnemyMonSpecies]
-.done
     ret
 
 BattleCommand_FlameOrb:
@@ -6920,5 +6887,4 @@ BattleCommand_FlameOrb:
 	call PlayOpponentBattleAnim
 	call RefreshBattleHuds
 .skipAnim
-	call BattleCommand_SwitchTurn
-    ret
+	jmp BattleCommand_SwitchTurn
