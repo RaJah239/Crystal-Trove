@@ -453,7 +453,7 @@ endr
 	pop hl
 	ld a, [wCurTrackVolumeEnvelope]
 	add a
-	sla a
+	add a
 	ldh [rNR32], a
 	ret
 
