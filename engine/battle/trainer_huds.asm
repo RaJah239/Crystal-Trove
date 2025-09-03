@@ -160,12 +160,11 @@ DrawEnemyHUDBorder:
 .CheckIfItemHeld
 	ld a, [wEnemyMonItem]
 	cp NO_ITEM
-	jr z, .NoItemHeld
+	ret z
 
 	; Draw the held item icon
 	hlcoord 1, 1 ; coordinates of held item
 	ld [hl], $70 ; battle held item icon
-.NoItemHeld:
 	ret
 
 .tiles
@@ -244,8 +243,7 @@ LoadBallIconGFX:
 	ld de, .gfx
 	ld hl, vTiles0 tile $31
 	lb bc, BANK(LoadBallIconGFX), 4
-	call Get2bppViaHDMA
-	ret
+	jmp Get2bppViaHDMA
 
 .gfx
 INCBIN "gfx/battle/balls.2bpp"
