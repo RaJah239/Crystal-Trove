@@ -18,6 +18,7 @@ _AppearUserRaiseSub:
 
 _AppearUserLowerSub:
 	farcall BattleCommand_LowerSubNoAnim
+	; fallthrough
 
 AppearUser:
 	xor a
@@ -34,6 +35,8 @@ AppearUser:
 .okay
 	ldh [hGraphicStartTile], a
 	predef PlaceGraphic
+	; fallthrough
+
 FinishAppearDisappearUser:
 	ld a, $1
 	ldh [hBGMapMode], a
@@ -85,7 +88,7 @@ DoWeatherModifiers:
 	ld a, [de]
 	inc de
 	cp -1
-	jr z, .done
+	ret z
 
 	cp b
 	jr nz, .NextWeatherMove
@@ -138,8 +141,6 @@ DoWeatherModifiers:
 	ld [wCurDamage], a
 	ld a, c
 	ld [wCurDamage + 1], a
-
-.done
 	ret
 
 INCLUDE "data/battle/weather_modifiers.asm"
