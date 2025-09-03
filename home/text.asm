@@ -49,7 +49,31 @@ Textbox::
 	call TextboxBorder
 	pop hl
 	pop bc
-	jr TextboxPalette
+	; fallthrough
+
+TextboxPalette::
+; Fill text box width c height b at hl with pal 7
+	ld de, wAttrmap - wTilemap
+	add hl, de
+	inc b
+	inc b
+	inc c
+	inc c
+	ld a, PAL_BG_TEXT
+.col
+	push bc
+	push hl
+.row
+	ld [hli], a
+	dec c
+	jr nz, .row
+	pop hl
+	ld de, SCREEN_WIDTH
+	add hl, de
+	pop bc
+	dec b
+	jr nz, .col
+	ret
 
 TextBoxCharacters:
 	db "┌─┐" ; top
@@ -59,6 +83,7 @@ TextBoxCharacters:
 TextboxBorder::
 	ld de, TextBoxCharacters
 	; fallthrough
+
 CreateBoxBorders::
 	ld a, SCREEN_WIDTH
 
@@ -108,30 +133,6 @@ CreateBoxBorders::
 	pop bc
 	ret
 
-TextboxPalette::
-; Fill text box width c height b at hl with pal 7
-	ld de, wAttrmap - wTilemap
-	add hl, de
-	inc b
-	inc b
-	inc c
-	inc c
-	ld a, PAL_BG_TEXT
-.col
-	push bc
-	push hl
-.row
-	ld [hli], a
-	dec c
-	jr nz, .row
-	pop hl
-	ld de, SCREEN_WIDTH
-	add hl, de
-	pop bc
-	dec b
-	jr nz, .col
-	ret
-
 SpeechTextbox::
 ; Standard textbox.
 	hlcoord TEXTBOX_X, TEXTBOX_Y
@@ -160,7 +161,18 @@ BuenaPrintText::
 
 PrintTextboxText::
 	bccoord TEXTBOX_INNERX, TEXTBOX_INNERY
-	call PrintTextboxTextAt
+	; fallthrough
+
+PrintTextboxTextAt::
+	ld a, [wTextboxFlags]
+	push af
+	set TEXT_DELAY_F, a
+	ld [wTextboxFlags], a
+
+	call DoTextUntilTerminator
+
+	pop af
+	ld [wTextboxFlags], a
 	ret
 
 SetUpTextbox::
@@ -210,6 +222,7 @@ FarPlaceString::
     ld bc, FarPlaceStringRet
     push bc
     ; fallthrough
+
 PlaceString::
 	push hl
 	; fallthrough
@@ -284,6 +297,8 @@ ENDM
 	dict "<USER>",    PlaceMoveUsersName
 	dict "<ENEMY>",   PlaceEnemysName
 	dict "<PLAY_G>",  PlaceGenderedPlayerName
+	; fallthrough
+
 	ld [hli], a
 	call PrintLetterDelay
 	jmp NextChar
@@ -395,7 +410,7 @@ PlaceGenderedPlayerName::
 	ld de, KunSuffixText
 	jr z, PlaceCommandCharacter
 	ld de, ChanSuffixText
-	jr PlaceCommandCharacter
+	; fallthrough
 
 PlaceCommandCharacter::
 	call PlaceString
@@ -621,8 +636,7 @@ TextScroll::
 	ld bc, TEXTBOX_INNERW
 	call ByteFill
 	ld c, 5
-	call DelayFrames
-	ret
+	jmp DelayFrames
 
 Text_WaitBGMap::
 	push bc
@@ -636,9 +650,6 @@ Text_WaitBGMap::
 	pop af
 	ldh [hOAMUpdate], a
 	pop bc
-	ret
-
-Diacritic::
 	ret
 
 LoadBlinkingCursor::
@@ -670,18 +681,6 @@ PokeFluteTerminator::
 
 .stop:
 	text_end
-
-PrintTextboxTextAt::
-	ld a, [wTextboxFlags]
-	push af
-	set TEXT_DELAY_F, a
-	ld [wTextboxFlags], a
-
-	call DoTextUntilTerminator
-
-	pop af
-	ld [wTextboxFlags], a
-	ret
 
 DoTextUntilTerminator::
 	ld a, [hli]
