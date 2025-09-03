@@ -2679,7 +2679,7 @@ IsntTheTimeMessage:
 
 WontHaveAnyEffectMessage:
 	ld hl, ItemWontHaveEffectText
-	jr CantUseItemMessage
+	; fallthrough
 
 CantUseItemMessage:
 ; Item couldn't be used.
