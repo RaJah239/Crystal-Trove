@@ -9203,7 +9203,7 @@ SwitchInEffects:
     jr z, .spDefUp
 
     cp CROBAT
-    jr z, .evasionUp
+    jmp z, .evasionUp
 
     cp AERODACTYL
     jr z, .airlock
@@ -9271,12 +9271,12 @@ SwitchInEffects:
 .trickroom
 	farjp TrickRoomSwitch
 
-.bothScreens
-    farjp ReflectSwitch
-
 .reflect
     farjp ReflectSwitch
 
+.bothScreens
+    farcall ReflectSwitch
+    ; fallthrough
 .lightScreen
     farjp LightScreenSwitch
 
