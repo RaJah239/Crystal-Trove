@@ -12,6 +12,7 @@ UpdateTimeAndPals::
 	ld a, [wStateFlags]
 	bit SPRITE_UPDATES_DISABLED_F, a ; obj update
 	ret z
+	; fallthrough
 
 TimeOfDayPals::
 	callfar _TimeOfDayPals
