@@ -9,6 +9,7 @@ UpdatePalsIfCGB::
 	ldh a, [hCGB]
 	and a
 	ret z
+	; fallthrough
 
 UpdateCGBPals::
 ; return carry if successful
@@ -299,9 +300,6 @@ ClearVBank1::
 	ldh [rVBK], a
 	ret
 
-GSReloadPalettes:: ; dummied out
-	ret
-
 ReloadSpritesNoPalettes::
 	ldh a, [hCGB]
 	and a
@@ -318,8 +316,7 @@ ReloadSpritesNoPalettes::
 	ldh [rSVBK], a
 	ld a, TRUE
 	ldh [hCGBPalUpdate], a
-	call DelayFrame
-	ret
+	jmp DelayFrame
 
 LoadOverworldAttrmapPals::
 	homecall _LoadOverworldAttrmapPals

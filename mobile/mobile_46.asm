@@ -5391,7 +5391,6 @@ Function11a9ce:
 	call Call_ExitMenu
 	farcall Stubbed_Function106462
 	farcall Function106464
-	call GSReloadPalettes
 	farcall FinishExitMenu
 	call UpdateSprites
 	ret
