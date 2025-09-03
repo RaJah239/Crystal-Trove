@@ -3,8 +3,7 @@ Core2_NewTurnEndEffects:
 	call HandleMysteryberry
 	call HandleSafeguard
 	call HandleScreens
-	call HandleTrickRoom
-	ret
+	; fallthrough
 
 HandleTrickRoom:
 	ld hl, wTrickRoomCount
@@ -83,7 +82,7 @@ HandleMysteryberry:
 	callfar GetUserItem
 	ld a, b
 	cp HELD_RESTORE_PP
-	jr nz, .quit
+	ret nz
 	ld hl, wPartyMon1PP
 	ld a, [wCurBattleMon]
 	call GetPartyLocation
@@ -114,7 +113,7 @@ HandleMysteryberry:
 .loop
 	ld a, [hl]
 	and a
-	jr z, .quit
+	ret z
 	ld a, [de]
 	and PP_MASK
 	jr z, .restore
@@ -124,8 +123,6 @@ HandleMysteryberry:
 	ld a, c
 	cp NUM_MOVES
 	jr nz, .loop
-
-.quit
 	ret
 
 .restore
@@ -493,8 +490,7 @@ HandleScreens:
 ExitBattle:
 	farcall UpdatePartyStats
 	call .HandleEndOfBattle
-	farcall CleanUpBattleRAM
-	ret
+	farjp CleanUpBattleRAM
 
 .HandleEndOfBattle:
 	ld a, [wLinkMode]
@@ -503,8 +499,7 @@ ExitBattle:
 	farcall ShowLinkBattleParticipantsAfterEnd
 	ld c, 150
 	call DelayFrames
-	farcall DisplayLinkBattleResult
-	ret
+	farjp DisplayLinkBattleResult
 
 .not_linked
 	ld a, [wBattleResult]
@@ -513,8 +508,7 @@ ExitBattle:
 	xor a
 	ld [wForceEvolution], a
 	predef EvolveAfterBattle
-	farcall GivePokerusAndConvertBerries
-	ret
+	farjp GivePokerusAndConvertBerries
 
 GetTrainerBackpic:
 ; Load the player character's backpic (6x6) into VRAM starting from vTiles2 tile $31.
@@ -535,8 +529,7 @@ GetTrainerBackpic:
 	jr z, .Chris
 
 ; It's a girl.
-	farcall GetKrisBackpic
-	ret
+	farjp GetKrisBackpic
 
 .Chris:
 ; It's a boy.
@@ -606,13 +599,12 @@ NaturalCureSwitch:
  	jr z, .player
     ld hl, wEnemyMonStatus
     call NaturalCure
-  	farcall CalcEnemyStats
-  	ret
+  	farjp CalcEnemyStats
+
 .player
     ld hl, wBattleMonStatus
     call NaturalCure
- 	farcall CalcPlayerStats
- 	ret
+ 	farjp CalcPlayerStats
 
 NaturalCure:
     ld a, [hl]
@@ -798,46 +790,39 @@ SafeguardSwitch:
 SpecialAttackUpSwitch:
     call PlayBoostAnimation
     callfar BattleCommand_SpecialAttackUp
-	call PrintSpecialAttackUpMessage
-	ret
+	jmp PrintSpecialAttackUpMessage
 
 AttackUpSwitch:
     call PlayBoostAnimation
     callfar BattleCommand_AttackUp
-	call PrintAttackUpMessage
-	ret
+	jr PrintAttackUpMessage
 
 SpecialDefenseUpSwitch:
     call PlayBoostAnimation
     callfar BattleCommand_SpecialDefenseUp
-	call PrintSpecialDefenseUpMessage
-	ret
+	jmp PrintSpecialDefenseUpMessage
 
 DefenseUpSwitch:
     call PlayBoostAnimation
     callfar BattleCommand_DefenseUp
-	call PrintDefenseUpMessage
-	ret
+	jr PrintDefenseUpMessage
 
 SpeedUpSwitch:
     call PlayBoostAnimation
     callfar BattleCommand_SpeedUp
-	call PrintSpeedUpMessage
-	ret
+	jmp PrintSpeedUpMessage
 
 DefenseModeSwitch:
     call PlayBoostAnimation
     callfar BattleCommand_DefenseUp2
     call PrintDefenseUpMessage
     callfar BattleCommand_SpecialDefenseUp2
-    call PrintSpecialDefenseUpMessage
-    ret
+    jmp PrintSpecialDefenseUpMessage
 
 EvasionUpSwitch:
     call PlayBoostAnimation
     callfar BattleCommand_EvasionUp
-	call PrintEvasionUpMessage
-	ret
+	jmp PrintEvasionUpMessage
 
 ; For all Stat Drop Abilities:
 ; Doesn't work on first turn on either side of the field in a wild battle
@@ -845,24 +830,21 @@ EvasionUpSwitch:
 ; Only the player's pokemon stat drops the opponent
 AttackDownSwitch:
     callfar BattleCommand_AttackDown
-    call PlayDropAnimation
-	ret
+    jmp PlayDropAnimation
 
 SpecialAttackDownSwitch:
     callfar BattleCommand_SpecialAttackDown
-    call PlayDropAnimation
-	ret
+    jmp PlayDropAnimation
 
 AccuracyDownSwitch:
     callfar BattleCommand_AccuracyDown
-    call PlayDropAnimation
-	ret
+    jmp PlayDropAnimation
 
 PrintAttackUpMessage:
     call HasWildBattleBegun
     jr c, .wild
-	farcall BattleCommand_StatUpMessage
-	ret
+	farjp BattleCommand_StatUpMessage
+
 .wild
     ld hl, WildAttackUpText
     jmp BattleTextbox
@@ -875,8 +857,8 @@ WildAttackUpText:
 PrintDefenseUpMessage:
     call HasWildBattleBegun
     jr c, .wild
-	farcall BattleCommand_StatUpMessage
-	ret
+	farjp BattleCommand_StatUpMessage
+
 .wild
     ld hl, WildDefenseUpText
     jmp BattleTextbox
@@ -889,8 +871,8 @@ WildDefenseUpText:
 PrintSpeedUpMessage:
     call HasWildBattleBegun
     jr c, .wild
-	farcall BattleCommand_StatUpMessage
-	ret
+	farjp BattleCommand_StatUpMessage
+
 .wild
     ld hl, WildSpeedUpText
     jmp BattleTextbox
@@ -903,8 +885,8 @@ WildSpeedUpText:
 PrintSpecialAttackUpMessage:
     call HasWildBattleBegun
     jr c, .wild
-	farcall BattleCommand_StatUpMessage
-	ret
+	farjp BattleCommand_StatUpMessage
+
 .wild
     ld hl, WildSpecialAttackUpText
     jmp BattleTextbox
@@ -917,8 +899,8 @@ WildSpecialAttackUpText:
 PrintSpecialDefenseUpMessage:
     call HasWildBattleBegun
     jr c, .wild
-	farcall BattleCommand_StatUpMessage
-	ret
+	farjp BattleCommand_StatUpMessage
+
 .wild
     ld hl, WildSpecialDefenseUpText
     jmp BattleTextbox
@@ -931,8 +913,8 @@ WildSpecialDefenseUpText:
 PrintEvasionUpMessage:
     call HasWildBattleBegun
     jr c, .wild
-	farcall BattleCommand_StatUpMessage
-	ret
+	farjp BattleCommand_StatUpMessage
+
 .wild
     ld hl, WildEvasionUpText
     jmp BattleTextbox
@@ -951,8 +933,7 @@ PlayDropAnimation:
 
 PlayBoostAnimation:
     ld de, ANIM_STAT_UP
-    call PlayAnimationIfNotFirstTurn
-    ret
+    jmp PlayAnimationIfNotFirstTurn
 
 ShadowTag:
 	ld a, [wEnemyMonSpecies]
@@ -3947,8 +3928,7 @@ SteelTypeChart:
 
 	ld de, .DefenderStringDoubleDamage2
 	hlcoord 1, 14
-	call PlaceString
-	ret
+	jmp PlaceString
 
 .TypeString:
 	db "Steel Type@"
