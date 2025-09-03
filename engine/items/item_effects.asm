@@ -799,8 +799,7 @@ ShinyBallMultiplier:
 	ld b, 0
 	add hl, bc
 	ld a, [hl]
-	call SetShinyDV
-	ret
+	; fallthrough
 
 ; Common DV handler
 SetShinyDV:
@@ -1025,10 +1024,9 @@ MoonBallMultiplier:
 	sla b
 	jr c, .max
 	sla b
-	jr nc, .done
+	ret nc
 .max
 	ld b, $ff
-.done
 	ret
 
 LoveBallMultiplier: ; Cath rate = x4
@@ -1186,12 +1184,10 @@ AskGiveNicknameText:
 	text_end
 
 ReturnToBattle_UseBall:
-	farcall _ReturnToBattle_UseBall
-	ret
+	farjp _ReturnToBattle_UseBall
 
 BicycleEffect:
-	farcall BikeFunction
-	ret
+	farjp BikeFunction
 
 EvoStoneEffect:
 	ld b, PARTYMENUACTION_EVO_STONE
@@ -1348,8 +1344,7 @@ RareCandy_StatBooster_GetParameters:
 	call GetBaseData
 	ld a, [wCurPartyMon]
 	ld hl, wPartyMonNicknames
-	call GetNickname
-	ret
+	jmp GetNickname
 
 RareCandyEffect:
 	ld b, PARTYMENUACTION_HEALING_ITEM
@@ -1603,7 +1598,7 @@ RevivalHerbEffect:
 .skip:
 	ld a, $0
 
-.not_used
+.not_used:
 	jr StatusHealer_Jumptable
 
 ReviveEffect:
@@ -1874,8 +1869,7 @@ ChooseMonToUseItemOn:
 	call WaitBGMap
 	call SetDefaultBGPAndOBP
 	call DelayFrame
-	farcall PartyMenuSelect
-	ret
+	farjp PartyMenuSelect
 
 ItemActionText:
 	ld [wPartyMenuActionText], a
@@ -1923,8 +1917,7 @@ StatusHealer_ExitMenu:
 	xor a
 	ld [wItemEffectSucceeded], a
 StatusHealer_ClearPalettes:
-	call ClearPalettes
-	ret
+	jmp ClearPalettes
 
 IsItemUsedOnBattleMon:
 	ld a, [wBattleMode]
@@ -1982,11 +1975,9 @@ RestoreHealth:
 	dec hl
 	ld a, [de]
 	sbc [hl]
-	jr c, .finish
+	ret c
 .full_hp
-	call ReviveFullHP
-.finish
-	ret
+	jr ReviveFullHP
 
 RemoveHP:
 	ld a, MON_HP + 1
@@ -2002,8 +1993,7 @@ RemoveHP:
 	ld [hld], a
 	ld [hl], a
 .okay
-	call LoadCurHPIntoBuffer3
-	ret
+	jr LoadCurHPIntoBuffer3
 
 IsMonFainted:
 	push de
@@ -2189,7 +2179,7 @@ EscapeRopeEffect:
 
 	ld a, [wItemEffectSucceeded]
 	cp 1
-	call z, UseDisposableItem
+	jp z, UseDisposableItem
 	ret
 
 SuperRepelEffect:
@@ -2286,8 +2276,7 @@ XItemEffect:
 	ld a, [wCurBattleMon]
 	ld [wCurPartyMon], a
 	ld c, HAPPINESS_USEDXITEM
-	farcall ChangeHappiness
-	ret
+	farjp ChangeHappiness
 
 INCLUDE "data/items/x_stats.asm"
 
@@ -2320,12 +2309,10 @@ SuperRodEffect:
 	jr UseRod
 
 UseRod:
-	farcall FishFunction
-	ret
+	farjp FishFunction
 
 ItemfinderEffect:
-	farcall ItemFinder
-	ret
+	farjp ItemFinder
 
 RestorePPEffect:
 	ld a, [wCurItem]
@@ -2441,7 +2428,7 @@ BattleRestorePP:
 .loop
 	ld a, [de]
 	and a
-	jr z, .done
+	ret z
 	cp [hl]
 	jr nz, .next
 	push hl
@@ -2463,8 +2450,6 @@ endr
 	inc de
 	dec b
 	jr nz, .loop
-
-.done
 	ret
 
 Not_PP_Up:
@@ -2577,24 +2562,20 @@ PPRestoredText:
 	text_end
 
 SquirtbottleEffect:
-	farcall _Squirtbottle
-	ret
+	farjp _Squirtbottle
 
 CardKeyEffect:
-	farcall _CardKey
-	ret
+	farjp _CardKey
 
 BasementKeyEffect:
-	farcall _BasementKey
-	ret
+	farjp _BasementKey
 
 SacredAshEffect:
 	farcall _SacredAsh
 	ld a, [wItemEffectSucceeded]
 	cp $1
 	ret nz
-	call UseDisposableItem
-	ret
+	jr UseDisposableItem
 
 NormalBoxEffect:
 	ld c, DECOFLAG_SILVER_TROPHY_DOLL
@@ -2962,6 +2943,7 @@ GetMaxPPOfMove:
 GetMthMoveOfNthPartymon:
 	ld a, [wCurPartyMon]
 	call AddNTimes
+	; fallthrough
 
 GetMthMoveOfCurrentMon:
 	ld a, [wMenuCursorY]
@@ -2973,44 +2955,37 @@ GetMthMoveOfCurrentMon:
 ScytherCallEffect:
 	ld a, 1
 	ld [wUsingHMItem], a
-	farcall CutFunction
-	ret
+	farjp CutFunction
 
 LanturnCallEffect:
 	ld a, 1
 	ld [wUsingHMItem], a
-	farcall SurfFunction
-	ret
+	farjp SurfFunction
 
 DonphanCallEffect:
 	ld a, 1
 	ld [wUsingHMItem], a
-	farcall StrengthFunction
-	ret
+	farjp StrengthFunction
 
 MareepCallEffect:
 	ld a, 1
 	ld [wUsingHMItem], a
-	farcall FlashFunction
-	ret
+	farjp FlashFunction
 
 KingdraCallEffect:
 	ld a, 1
 	ld [wUsingHMItem], a
-	farcall WhirlpoolFunction
-	ret
+	farjp WhirlpoolFunction
 
 SeakingCallEffect:
 	ld a, 1
 	ld [wUsingHMItem], a
-	farcall WaterfallFunction
-	ret
+	farjp WaterfallFunction
 
 TangelaCallEffect:
 	ld a, 1
 	ld [wUsingHMItem], a
-	farcall SweetScentFromMenu
-	ret
+	farjp SweetScentFromMenu
 
 ItemCheckPlayerMaxHP:
 	push hl
@@ -3118,8 +3093,7 @@ HyperEVUpStatIncrease:
 	add hl, bc
 	ld a, 252
 	ld [hl], a
-	call UpdateStatsAfterItem
-	ret
+	jmp UpdateStatsAfterItem
 
 HyperEVUpText:
 	text_far _HyperEVUpText
@@ -3182,8 +3156,7 @@ TypeCodexEffect:
 	ldh [hBGMapMode], a
 	farcall Pack_InitGFX
 	farcall WaitBGMap_DrawPackGFX
-	farcall Pack_InitColors
-	ret
+	farjp Pack_InitColors
 
 CheckFieldActions:
 	ld a, [wOptions3]
