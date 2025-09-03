@@ -260,8 +260,7 @@ UnmaskCopyMapObjectStruct::
 	call UnmaskObject
 	ldh a, [hMapObjectIndex]
 	call GetMapObject
-	farcall CopyObjectStruct
-	ret
+	farjp CopyObjectStruct
 
 ApplyDeletionToMapObject::
 	ldh [hMapObjectIndex], a
@@ -276,8 +275,7 @@ ApplyDeletionToMapObject::
 	call .CheckStopFollow
 	pop af
 	call GetObjectStruct
-	farcall DeleteMapObject
-	ret
+	farjp DeleteMapObject
 
 .CheckStopFollow:
 	ld hl, wObjectFollow_Leader
@@ -295,8 +293,7 @@ ApplyDeletionToMapObject::
 
 DeleteObjectStruct::
 	call ApplyDeletionToMapObject
-	call MaskObject
-	ret
+	jmp MaskObject
 
 CopyPlayerObjectTemplate::
 	push hl
@@ -308,8 +305,7 @@ CopyPlayerObjectTemplate::
 	inc de
 	pop hl
 	ld bc, MAPOBJECT_LENGTH - 1
-	call CopyBytes
-	ret
+	jmp CopyBytes
 
 LoadMovementDataPointer::
 ; Load the movement data pointer for object a.
@@ -416,7 +412,6 @@ CopySpriteMovementData::
 	pop bc
 	pop af
 	rst Bankswitch
-
 	ret
 
 .CopyData:
@@ -500,8 +495,7 @@ UpdateSprites::
 	ret z
 
 	farcall UpdateAllObjectsFrozen
-	farcall _UpdateSprites
-	ret
+	farjp _UpdateSprites
 
 GetObjectStruct::
 	ld bc, OBJECT_LENGTH
