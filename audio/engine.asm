@@ -452,7 +452,7 @@ endr
 	ldh [rWave_f], a
 	pop hl
 	ld a, [wCurTrackVolumeEnvelope]
-	add a
+	and $f0
 	add a
 	ldh [rNR32], a
 	ret
