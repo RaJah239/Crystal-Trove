@@ -110,6 +110,7 @@ TalkToTrainer::
 	ld [wSeenTrainerDistance], a
 	ld a, -1
 	ld [wSeenTrainerDirection], a
+	; fallthrough
 
 LoadTrainer_continue::
 	call GetMapScriptsBank
@@ -222,5 +223,4 @@ PrintWinLossText::
 	call GetMapScriptsBank
 	call FarPrintText
 	call WaitBGMap
-	call WaitPressAorB_BlinkCursor
-	ret
+	jmp WaitPressAorB_BlinkCursor
