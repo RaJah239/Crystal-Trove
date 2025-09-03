@@ -296,8 +296,7 @@ UpdateChannels:
 	and %10001110 ; ch1 off
 	ldh [rNR52], a
 	ld hl, rNR10
-	call ClearChannel
-	ret
+	jmp ClearChannel
 
 .ch1_noise_sampling
 	ld hl, wCurTrackDuty
@@ -349,8 +348,7 @@ UpdateChannels:
 	and %10001101 ; ch2 off
 	ldh [rNR52], a
 	ld hl, rNR21 - 1 ; there is no rNR20
-	call ClearChannel
-	ret
+	jmp ClearChannel
 
 .ch2_noise_sampling
 	ld hl, wCurTrackDuty
@@ -388,8 +386,7 @@ UpdateChannels:
 	and %10001011 ; ch3 off
 	ldh [rNR52], a
 	ld hl, rNR30
-	call ClearChannel
-	ret
+	jmp ClearChannel
 
 .ch3_noise_sampling
 	ld a, $3f ; sound length
@@ -475,8 +472,7 @@ endr
 	and %10000111 ; ch4 off
 	ldh [rNR52], a
 	ld hl, rNR41 - 1 ; there is no rNR40
-	call ClearChannel
-	ret
+	jmp ClearChannel
 
 .ch4_noise_sampling
 	ld a, $3f ; sound length
@@ -858,7 +854,7 @@ HandleTrackVibrato:
 	ld hl, CHANNEL_FLAGS2
 	add hl, bc
 	bit SOUND_VIBRATO, [hl] ; vibrato
-	jr z, .quit
+	ret z
 	; is vibrato active for this note yet?
 	; is the delay over?
 	ld hl, CHANNEL_VIBRATO_DELAY_COUNT
@@ -871,7 +867,7 @@ HandleTrackVibrato:
 	add hl, bc
 	ld a, [hl]
 	and a
-	jr z, .quit
+	ret z
 	; save it for later
 	ld d, a
 	; is it time to toggle vibrato up/down?
@@ -882,7 +878,7 @@ HandleTrackVibrato:
 	jr z, .toggle
 .subexit
 	dec [hl]
-	jr .quit
+	ret
 
 .toggle
 	; refresh count
@@ -929,7 +925,6 @@ HandleTrackVibrato:
 	ld hl, CHANNEL_NOTE_FLAGS
 	add hl, bc
 	set NOTE_VIBRATO_OVERRIDE, [hl]
-.quit
 	ret
 
 ApplyPitchSlide:
@@ -1066,7 +1061,6 @@ HandleNoise:
 	; is ch8 playing noise?
 	bit SOUND_NOISE, [hl]
 	ret nz ; quit if so
-	;
 .next
 	ld a, [wNoiseSampleDelay]
 	and a
@@ -1092,13 +1086,13 @@ ReadNoiseSample:
 	; is it empty?
 	ld a, e
 	or d
-	jr z, .quit
+	ret z
 
 	ld a, [de]
 	inc de
 
 	cp sound_ret_cmd
-	jr z, .quit
+	ret z
 
 	and $f
 	inc a
@@ -1120,9 +1114,6 @@ ReadNoiseSample:
 	ld hl, CHANNEL_NOTE_FLAGS
 	add hl, bc
 	set NOTE_NOISE_SAMPLING, [hl]
-	ret
-
-.quit
 	ret
 
 ParseMusic:
@@ -1895,8 +1886,7 @@ Music_NoteType:
 	cp CHAN4
 	ret z
 	; volume envelope
-	call Music_VolumeEnvelope
-	ret
+	jr Music_VolumeEnvelope
 
 Music_PitchSweep:
 ; update pitch sweep
@@ -1939,8 +1929,7 @@ Music_Tempo:
 	ld d, a
 	call GetMusicByte
 	ld e, a
-	call SetGlobalTempo
-	ret
+	jmp SetGlobalTempo
 
 Music_Octave8:
 Music_Octave7:
@@ -1976,8 +1965,7 @@ Music_StereoPanning:
 	bit STEREO, a
 	jr nz, Music_ForceStereoPanning
 	; skip param
-	call GetMusicByte
-	ret
+	jr GetMusicByte
 
 Music_ForceStereoPanning:
 ; force panning
@@ -2029,8 +2017,7 @@ Music_TempoRelative:
 	add hl, de
 	ld e, l
 	ld d, h
-	call SetGlobalTempo
-	ret
+	jmp SetGlobalTempo
 
 Music_SFXPriorityOn:
 ; turn sfx priority on
@@ -2340,8 +2327,7 @@ _PlayMusic::
 	ld [wNoiseSampleAddress + 1], a
 	ld [wNoiseSampleDelay], a
 	ld [wMusicNoiseSampleSet], a
-	call MusicOn
-	ret
+	jmp MusicOn
 
 _PlayCry::
 ; Play cry de using parameters:
@@ -2451,8 +2437,7 @@ _PlayCry::
 .end
 	ld a, 1 ; stop playing music
 	ld [wSFXPriority], a
-	call MusicOn
-	ret
+	jmp MusicOn
 
 _PlaySFX::
 ; clear channels if they aren't already
@@ -2651,8 +2636,7 @@ PlayStereoSFX::
 	jr nz, .loop
 
 ; we're done
-	call MusicOn
-	ret
+	jmp MusicOn
 
 LoadChannel:
 ; input: de = audio pointer
@@ -2833,5 +2817,4 @@ PlayTrainerEncounterMusic::
 	ld hl, TrainerEncounterMusic
 	add hl, de
 	ld e, [hl]
-	call PlayMusic
-	ret
+	jmp PlayMusic
