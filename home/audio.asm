@@ -159,7 +159,7 @@ endr
 
 WaitPlaySFX::
 	call WaitSFX
-
+	; fallthrough
 PlaySFX::
 ; Play sound effect de.
 ; Sound effects are ordered by priority (highest to lowest)
