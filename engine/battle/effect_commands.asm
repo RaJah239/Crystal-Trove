@@ -2607,15 +2607,13 @@ ThickClubOrLightBallBoost:
 	pop hl
 	cp PIKACHU
 	jr z, .lightball
-	ld b, CUBONE
-	ld c, MAROWAK
+	lb bc, CUBONE, MAROWAK
 	ld d, THICK_CLUB
 	call SpeciesItemBoost
 	jr .done
 
 .lightball
-	ld b, PIKACHU
-	ld c, PIKACHU
+	lb bc, PIKACHU, PIKACHU
 	ld d, LIGHT_BALL
 	call SpeciesItemBoost
 
@@ -2631,8 +2629,7 @@ LightBallBoost:
 ; holding a Light Ball, double it.
 	push bc
 	push de
-	ld b, PIKACHU
-	ld c, PIKACHU
+	lb bc, PIKACHU, PIKACHU
 	ld d, LIGHT_BALL
 	call SpeciesItemBoost
 	pop de
