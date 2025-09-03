@@ -3184,3 +3184,8 @@ TypeCodexEffect:
 	farcall WaitBGMap_DrawPackGFX
 	farcall Pack_InitColors
 	ret
+
+CheckFieldActions:
+	ld a, [wOptions3]
+	bit FIELD_ACTIONS, a
+	ret

@@ -9,8 +9,3 @@ CheckIfFastBattlesIsOn::
 	ld a, [wOptions3]
 	bit FAST_BATTLES, a
 	ret
-
-CheckFieldActions::
-	ld a, [wOptions3]
-	bit FIELD_ACTIONS, a
-	ret
