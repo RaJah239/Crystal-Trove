@@ -35,19 +35,7 @@ OpponentPartyAttr::
 	jr BattlePartyAttr
 .ot
 	pop af
-	jr OTPartyAttr
-
-BattlePartyAttr::
-; Get attribute a from the party struct of the active battle mon.
-	push bc
-	ld c, a
-	ld b, 0
-	ld hl, wPartyMons
-	add hl, bc
-	ld a, [wCurBattleMon]
-	call GetPartyLocation
-	pop bc
-	ret
+	; fallthrough
 
 OTPartyAttr::
 ; Get attribute a from the party struct of the active enemy mon.
@@ -57,6 +45,18 @@ OTPartyAttr::
 	ld hl, wOTPartyMon1Species
 	add hl, bc
 	ld a, [wCurOTMon]
+	call GetPartyLocation
+	pop bc
+	ret
+
+BattlePartyAttr::
+; Get attribute a from the party struct of the active battle mon.
+	push bc
+	ld c, a
+	ld b, 0
+	ld hl, wPartyMons
+	add hl, bc
+	ld a, [wCurBattleMon]
 	call GetPartyLocation
 	pop bc
 	ret
@@ -81,18 +81,13 @@ UpdateOpponentInParty::
 	ldh a, [hBattleTurn]
 	and a
 	jr z, UpdateEnemyMonInParty
-	jr UpdateBattleMonInParty
-
-UpdateUserInParty::
-	ldh a, [hBattleTurn]
-	and a
-	jr z, UpdateBattleMonInParty
-	jr UpdateEnemyMonInParty
+	; fallthrough
 
 UpdateBattleMonInParty::
 ; Update level, status, current HP
 
 	ld a, [wCurBattleMon]
+	; fallthrough
 
 UpdateBattleMon::
 	ld hl, wPartyMon1Level
@@ -103,6 +98,12 @@ UpdateBattleMon::
 	ld hl, wBattleMonLevel
 	ld bc, wBattleMonMaxHP - wBattleMonLevel
 	jmp CopyBytes
+
+UpdateUserInParty::
+	ldh a, [hBattleTurn]
+	and a
+	jr z, UpdateBattleMonInParty
+	; fallthrough
 
 UpdateEnemyMonInParty::
 ; Update level, status, current HP
