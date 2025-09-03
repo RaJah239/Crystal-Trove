@@ -281,9 +281,6 @@ MenuBoxCoord2Attr::
 	ld c, a
 	ld a, [wMenuBorderTopCoord]
 	ld b, a
-	; fallthrough
-
-Coord2Attr:: ; unreferenced
 ; Return the address of wAttrmap(c, b) in hl.
 	xor a
 	ld h, a
@@ -326,9 +323,6 @@ MenuTextbox::
 	call LoadMenuTextbox
 	pop hl
 	jmp PrintText
-
-Menu_DummyFunction:: ; unreferenced
-	ret
 
 LoadMenuTextbox::
 	ld hl, .MenuHeader
@@ -416,10 +410,6 @@ YesNoBox::
 
 PlaceYesNoBox::
 	jr _YesNoBox
-
-PlaceGenericTwoOptionBox:: ; unreferenced
-	call LoadMenuHeader
-	jr InterpretTwoOptionMenu
 
 NoYesBox::
 	farjp _NoYesBox
