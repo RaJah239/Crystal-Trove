@@ -130,8 +130,7 @@ RefreshBattleHuds::
 
 UpdateBattleHuds::
 	farcall UpdatePlayerHUD
-	farcall UpdateEnemyHUD
-	ret
+	farjp UpdateEnemyHUD
 
 INCLUDE "home/battle_vars.asm"
 
@@ -180,8 +179,7 @@ BattleTextbox::
 	call UpdateSprites
 	call ApplyTilemap
 	pop hl
-	call PrintTextboxText
-	ret
+	jmp PrintTextboxText
 
 StdBattleTextbox::
 ; Open a textbox and print battle text at 20:hl.
@@ -210,7 +208,6 @@ GetBattleAnimPointer::
 	; ClearBattleAnims is the only function that calls this...
 	ld a, BANK(ClearBattleAnims)
 	rst Bankswitch
-
 	ret
 
 GetBattleAnimByte::
