@@ -1204,11 +1204,9 @@ TrainerBattleInfo::
 	
 StatChangesInfoBox:
 	hlcoord 0, 0
-	ld b, 14
-	ld c, 8
+	lb bc, 14, 8
 	call Textbox
-	ld b, 14
-	ld c, 8
+	lb bc, 14, 8
 	hlcoord 10, 0
 	call Textbox
 	
@@ -1216,8 +1214,7 @@ StatChangesInfoBox:
 	ld de, MainText.player
 	call PlaceString
 	ld de, StatTexts.attack
-	ld b, 1
-	ld c, 2
+	lb bc, 1, 2
 	ld hl, wPlayerStatLevels
 	call StatChangesInfoBoxLoop
 	
@@ -1225,8 +1222,7 @@ StatChangesInfoBox:
 	ld de, MainText.enemy
 	call PlaceString
 	ld de, StatTexts.attack
-	ld b, 11
-	ld c, 2
+	lb bc, 11, 2
 	ld hl, wEnemyStatLevels
 	; fallthrough
 	
@@ -1311,11 +1307,9 @@ PrintStatChangeValue: ; Input is hl (either wPlayerStatX or wEnemyStatX) and bc 
 
 StatsInfoBox:
 	hlcoord 0, 0
-	ld b, 14
-	ld c, 8
+	lb bc, 14, 8
 	call Textbox
-	ld b, 14
-	ld c, 8
+	lb bc, 14, 8
 	hlcoord 10, 0
 	call Textbox
 
@@ -1323,8 +1317,7 @@ StatsInfoBox:
 	ld de, MainText.player
 	call PlaceString
 	ld de, StatTexts
-	ld b, 1
-	ld c, 2
+	lb bc, 1, 2
 	ld hl, wBattleMonMaxHP
 	call StatsInfoBoxLoop
 	
@@ -1332,22 +1325,18 @@ StatsInfoBox:
 	ld de, MainText.enemy
 	call PlaceString
 	ld de, StatTexts
-	ld b, 11
-	ld c, 2
+	lb bc, 11, 2
 	ld hl, wEnemyMonMaxHP
 	jr StatsInfoBoxLoop
 
 FoeAbilityPageInfoBox:
 	hlcoord 0, 0
-	ld b, 14
-	ld c, 18
+	lb bc, 14, 18
 	call Textbox
-	ld b, 14
-	ld c, 18
+	lb bc, 14, 18
 
 	hlcoord 0, 0
-	ld b, 2
-	ld c, 18
+	lb bc, 2, 18
 	call Textbox
 
 	farcall DisplayFoeNameAndAbility
@@ -1404,15 +1393,12 @@ StatsInfoBoxLoop:
 
 FieldStatusPagesLayout:
 	hlcoord 0, 0
-	ld b, 2
-	ld c, 18
+	lb bc, 2, 18
 	call Textbox
-	ld b, 10
-	ld c, 8
+	lb bc, 10, 8
 	hlcoord 0, 4
 	call Textbox
-	ld b, 10
-	ld c, 8
+	lb bc, 10, 8
 	hlcoord 10, 4
 	call Textbox
 .weather
@@ -2747,8 +2733,7 @@ DecreaseTypeChartPage:
 
 BugTypeChart:
 	hlcoord 0, 0
-	ld b, 14
-	ld c, 18
+	lb bc, 14, 18
 	call Textbox
 
 	ld de, .TypeString
@@ -2809,8 +2794,7 @@ BugTypeChart:
 
 DarkTypeChart:
 	hlcoord 0, 0
-	ld b, 14
-	ld c, 18
+	lb bc, 14, 18
 	call Textbox
 
 	ld de, .TypeString
@@ -2872,8 +2856,7 @@ DarkTypeChart:
 
 DragonTypeChart:
 	hlcoord 0, 0
-	ld b, 14
-	ld c, 18
+	lb bc, 14, 18
 	call Textbox
 
 	ld de, .TypeString
@@ -2940,8 +2923,7 @@ DragonTypeChart:
 
 ElectricTypeChart:
 	hlcoord 0, 0
-	ld b, 14
-	ld c, 18
+	lb bc, 14, 18
 	call Textbox
 
 	ld de, .TypeString
@@ -3008,8 +2990,7 @@ ElectricTypeChart:
 
 FairyTypeChart:
 	hlcoord 0, 0
-	ld b, 14
-	ld c, 18
+	lb bc, 14, 18
 	call Textbox
 
 	ld de, .TypeString
@@ -3083,8 +3064,7 @@ FairyTypeChart:
 
 FightingTypeChart:
 	hlcoord 0, 0
-	ld b, 14
-	ld c, 18
+	lb bc, 14, 18
 	call Textbox
 
 	ld de, .TypeString
@@ -3157,8 +3137,7 @@ FightingTypeChart:
 
 FireTypeChart:
 	hlcoord 0, 0
-	ld b, 14
-	ld c, 18
+	lb bc, 14, 18
 	call Textbox
 
 	ld de, .TypeString
@@ -3231,8 +3210,7 @@ FireTypeChart:
 
 FlyingTypeChart:
 	hlcoord 0, 0
-	ld b, 14
-	ld c, 18
+	lb bc, 14, 18
 	call Textbox
 
 	ld de, .TypeString
@@ -3311,8 +3289,7 @@ FlyingTypeChart:
 
 GhostTypeChart:
 	hlcoord 0, 0
-	ld b, 14
-	ld c, 18
+	lb bc, 14, 18
 	call Textbox
 
 	ld de, .TypeString
@@ -3373,8 +3350,7 @@ GhostTypeChart:
 
 GrassTypeChart:
 	hlcoord 0, 0
-	ld b, 14
-	ld c, 18
+	lb bc, 14, 18
 	call Textbox
 
 	ld de, .TypeString
@@ -3453,8 +3429,7 @@ GrassTypeChart:
 
 GroundTypeChart:
 	hlcoord 0, 0
-	ld b, 14
-	ld c, 18
+	lb bc, 14, 18
 	call Textbox
 
 	ld de, .TypeString
@@ -3527,8 +3502,7 @@ GroundTypeChart:
 
 IceTypeChart:
 	hlcoord 0, 0
-	ld b, 14
-	ld c, 18
+	lb bc, 14, 18
 	call Textbox
 
 	ld de, .TypeString
@@ -3601,8 +3575,7 @@ IceTypeChart:
 
 NormalTypeChart:
 	hlcoord 0, 0
-	ld b, 14
-	ld c, 18
+	lb bc, 14, 18
 	call Textbox
 
 	ld de, .TypeString
@@ -3651,8 +3624,7 @@ NormalTypeChart:
 
 PoisonTypeChart:
 	hlcoord 0, 0
-	ld b, 14
-	ld c, 18
+	lb bc, 14, 18
 	call Textbox
 
 	ld de, .TypeString
@@ -3732,8 +3704,7 @@ PoisonTypeChart:
 
 PsychicTypeChart:
 	hlcoord 0, 0
-	ld b, 14
-	ld c, 18
+	lb bc, 14, 18
 	call Textbox
 
 	ld de, .TypeString
@@ -3794,8 +3765,7 @@ PsychicTypeChart:
 
 RockTypeChart:
 	hlcoord 0, 0
-	ld b, 14
-	ld c, 18
+	lb bc, 14, 18
 	call Textbox
 
 	ld de, .TypeString
@@ -3874,8 +3844,7 @@ RockTypeChart:
 
 SteelTypeChart:
 	hlcoord 0, 0
-	ld b, 14
-	ld c, 18
+	lb bc, 14, 18
 	call Textbox
 
 	ld de, .TypeString
@@ -3960,8 +3929,7 @@ SteelTypeChart:
 
 WaterTypeChart:
 	hlcoord 0, 0
-	ld b, 14
-	ld c, 18
+	lb bc, 14, 18
 	call Textbox
 
 	ld de, .TypeString
