@@ -468,6 +468,10 @@ GetDecorationFlag:
 	ld e, a
 	ret
 
+DecorationFlagAction_c:
+	ld a, c
+	; fallthrough
+
 DecorationFlagAction:
 	push bc
 	call GetDecorationFlag
@@ -895,10 +899,6 @@ GetDecorationName_c_de:
 	ld h, d
 	ld l, e
 	jmp GetDecorationName
-
-DecorationFlagAction_c:
-	ld a, c
-	jmp DecorationFlagAction
 
 GetDecorationName_c:
 	ld a, c
