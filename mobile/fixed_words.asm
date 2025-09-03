@@ -28,8 +28,7 @@ Function11c075:
 	call Function11c254
 	pop de
 	ld bc, wcd36
-	call Function11c08f
-	ret
+	; fallthrough
 
 Function11c08f:
 	ld l, e
@@ -325,8 +324,7 @@ Function11c1b9:
 	pop af
 	ldh [rSVBK], a
 	call EZChat_GetCategoryWordsByKana
-	call EZChat_GetSeenPokemonByKana
-	ret
+	jmp EZChat_GetSeenPokemonByKana
 
 Function11c254:
 	push af
@@ -345,15 +343,13 @@ Function11c254:
 	ld de, wcd36
 	ld bc, EASY_CHAT_MESSAGE_LENGTH
 	call CopyBytes
-	call CloseSRAM
-	ret
+	jmp CloseSRAM
 
 EZChat_ClearBottom12Rows:
 	ld a, "　"
 	hlcoord 0, 6
 	ld bc, (SCREEN_HEIGHT - 6) * SCREEN_WIDTH
-	call ByteFill
-	ret
+	jmp ByteFill
 
 EZChat_MasterLoop:
 .loop
@@ -370,8 +366,7 @@ EZChat_MasterLoop:
 
 .exit
 	farcall ClearSpriteAnims
-	call ClearSprites
-	ret
+	jmp ClearSprites
 
 .DoJumptableFunction:
 	jumptable .Jumptable, wJumptableIndex
@@ -630,8 +625,7 @@ Function11c3ed:
 	call Function11c4a5
 .asm_11c475
 	ld [wJumptableIndex], a
-	call PlayClickSFX
-	ret
+	jmp PlayClickSFX
 
 .asm_11c47c
 	ld a, [hl]
@@ -698,14 +692,14 @@ Function11c4be:
 	ret
 
 String_11c4db:
-	db   "６つのことば<WO>くみあわせます"
-	next "かえたいところ<WO>えらぶと　でてくる"
-	next "ことばのグループから　いれかえたい"
-	next "たんご<WO>えらんでください"
+	db   "!"
+	next "!"
+	next "!"
+	next "!"
 	db   "@"
 
 String_11c51b:
-	db "ぜんぶけす　やめる　　　けってい@"
+	db "!@"
 
 Function11c52c:
 	call EZChat_ClearBottom12Rows
@@ -793,14 +787,12 @@ Function11c53d:
 	ld hl, wcd24
 	set 1, [hl]
 	ld [wJumptableIndex], a
-	call PlayClickSFX
-	ret
+	jmp PlayClickSFX
 
 .done
 	ld a, [wcd20]
 	call Function11ca6a
-	call PlayClickSFX
-	ret
+	jmp PlayClickSFX
 
 .up
 	ld a, [hl]
@@ -881,19 +873,17 @@ EZChat_PlaceCategoryNames:
 	jr nz, .loop
 	hlcoord 1, 17
 	ld de, EZChatString_Stop_Mode_Cancel
-	call PlaceString
-	ret
+	jmp PlaceString
 
 Function11c618:
 	ld a, $2
 	hlcoord 0, 6, wAttrmap
 	ld bc, $c8
 	call ByteFill
-	farcall HDMATransferTilemapAndAttrmap_Overworld
-	ret
+	farjp HDMATransferTilemapAndAttrmap_Overworld
 
 EZChatString_Stop_Mode_Cancel:
-	db "けす　　　　モード　　　やめる@"
+	db "!@"
 
 Coords_11c63a:
 	dwcoord  1,  7
@@ -974,8 +964,7 @@ Function11c675:
 .asm_11c6c4
 	call Function11c992
 	call Function11c7bc
-	call Function11c86e
-	ret
+	jmp Function11c86e
 
 .select
 	ld de, hJoyLast
@@ -1010,8 +999,7 @@ Function11c675:
 	ld [wJumptableIndex], a
 	ld hl, wcd24
 	set 3, [hl]
-	call PlayClickSFX
-	ret
+	jmp PlayClickSFX
 
 .asm_11c708
 	ld a, [hl]
@@ -1464,8 +1452,7 @@ Function11c9ab:
 	hlcoord 0, 6, wAttrmap
 	ld bc, $c8
 	call ByteFill
-	farcall HDMATransferTilemapAndAttrmap_Overworld
-	ret
+	farjp HDMATransferTilemapAndAttrmap_Overworld
 
 Function11c9bd:
 	ld de, String_11ca38
@@ -1500,8 +1487,7 @@ Function11c9c3:
 	set 4, [hl]
 	ld a, $4
 	ld [wJumptableIndex], a
-	call PlayClickSFX
-	ret
+	jmp PlayClickSFX
 
 .asm_11c9f7
 	ld a, [hl]
@@ -1554,16 +1540,15 @@ Function11ca19:
 	add hl, de
 	dec c
 	jr nz, .asm_11ca22
-	farcall HDMATransferTilemapAndAttrmap_Overworld
-	ret
+	farjp HDMATransferTilemapAndAttrmap_Overworld
 
 String_11ca38:
-	db   "とうろくちゅう<NO>あいさつ<WO>ぜんぶ"
-	next "けしても　よろしいですか？@"
+	db   "!"
+	next "!@"
 
 String_11ca57:
-	db   "はい"
-	next "いいえ@"
+	db   "!"
+	next "!@"
 
 Function11ca5e:
 	xor a
@@ -1587,8 +1572,7 @@ Function11ca6a:
 	ld [hl], b
 	call Function11c95d
 	ld de, String_11c3bc
-	call PlaceString
-	ret
+	jmp PlaceString
 
 Function11ca7f:
 	push de
@@ -1607,8 +1591,7 @@ Function11ca7f:
 	ld [wcd2a], a
 	ld hl, wcd24
 	res 4, [hl]
-	call Function11cfb5
-	ret
+	jmp Function11cfb5
 
 Function11caad:
 	ld de, String_11cb1c
@@ -1684,12 +1667,12 @@ Function11cab3:
 	ret
 
 String_11cb1c:
-	db   "あいさつ<NO>とうろく<WO>ちゅうし"
-	next "しますか？@"
+	db   "!"
+	next "!@"
 
 String_11cb31:
-	db   "とうろくちゅう<NO>あいさつ<WA>ほぞん"
-	next "されません<GA>よろしい　ですか？@"
+	db   "!"
+	next "!@"
 
 Function11cb52:
 	ld hl, Unknown_11cc01
@@ -1817,20 +1800,20 @@ Unknown_11cc01:
 	dw String_11cc60
 
 String_11cc09:
-	db   "じこしょうかい　は"
-	next "この　あいさつで　いいですか？@"
+	db   "!"
+	next "!@"
 
 String_11cc23:
-	db   "たいせん　<GA>はじまるとき　は"
-	next "この　あいさつで　いいですか？@"
+	db   "!"
+	next "!@"
 
 String_11cc42:
-	db   "たいせん　<NI>かったとき　は"
-	next "この　あいさつで　いいですか？@"
+	db   "!"
+	next "!@"
 
 String_11cc60:
-	db   "たいせん　<NI>まけたとき　は"
-	next "この　あいさつで　いいですか？@"
+	db   "!"
+	next "!@"
 
 Unknown_11cc7e:
 	dw String_11cc86
@@ -1839,20 +1822,20 @@ Unknown_11cc7e:
 	dw String_11ccd4
 
 String_11cc86:
-	db   "じこしょうかい　の"
-	next "あいさつ<WO>とうろくした！@"
+	db   "!"
+	next "!@"
 
 String_11cc9d:
-	db   "たいせん　<GA>はじまるとき　の"
-	next "あいさつ<WO>とうろくした！@"
+	db   "!"
+	next "!@"
 
 String_11ccb9:
-	db   "たいせん　<NI>かったとき　の"
-	next "あいさつ<WO>とうろくした！@"
+	db   "!"
+	next "!@"
 
 String_11ccd4:
-	db   "たいせん　<NI>まけたとき　の"
-	next "あいさつ<WO>とうろくした！@"
+	db   "!"
+	next "!@"
 
 Function11ccef:
 	ld de, Unknown_11cfc6
@@ -1873,7 +1856,7 @@ Function11cd04:
 	ret
 
 String_11cd10:
-	db "なにか　ことば<WO>いれてください@"
+	db "!@"
 
 Function11cd20:
 	call EZChat_ClearBottom12Rows
@@ -1931,8 +1914,7 @@ Function11cd54:
 	ld [wJumptableIndex], a
 	ld hl, wcd24
 	set 5, [hl]
-	call PlayClickSFX
-	ret
+	jmp PlayClickSFX
 
 .asm_11cd8b
 	ld a, [hl]
@@ -1954,8 +1936,7 @@ Function11cd54:
 	call Function11cfce
 	pop de
 	hlcoord 1, 14
-	call PlaceString
-	ret
+	jmp PlaceString
 
 Function11cdaa:
 	ld a, $2
@@ -1966,22 +1947,21 @@ Function11cdaa:
 	hlcoord 0, 12, wAttrmap
 	ld bc, 4 * SCREEN_WIDTH
 	call ByteFill
-	farcall HDMATransferTilemapAndAttrmap_Overworld
-	ret
+	farjp HDMATransferTilemapAndAttrmap_Overworld
 
 String_11cdc7:
 ; Words will be displayed by category
-	db   "ことば<WO>しゅるいべつに"
-	next "えらべます@"
+	db   "!"
+	next "!@"
 
 String_11cdd9:
 ; Words will be displayed in alphabetical order
-	db   "ことば<WO>アイウエオ　の"
-	next "じゅんばんで　ひょうじ　します@"
+	db   "!"
+	next "!@"
 
 String_11cdf5:
-	db   "しゅるいべつ　モード"  ; Category mode
-	next "アイウエオ　　モード@" ; ABC mode
+	db   "!"  ; Category mode
+	next "!@" ; ABC mode
 
 Function11ce0b:
 	call EZChat_ClearBottom12Rows
@@ -2071,14 +2051,12 @@ Function11ce2b:
 	ld [wJumptableIndex], a
 	ld hl, wcd24
 	set 2, [hl]
-	call PlayClickSFX
-	ret
+	jmp PlayClickSFX
 
 .done
 	ld a, [wcd20]
 	call Function11ca6a
-	call PlayClickSFX
-	ret
+	jmp PlayClickSFX
 
 .left
 	inc hl
@@ -2194,10 +2172,10 @@ Unknown_11ceb9:
 
 String_11cf79:
 ; Hiragana table
-	db   "あいうえお　なにぬねの　や　ゆ　よ"
-	next "かきくけこ　はひふへほ　わ"
-	next "さしすせそ　まみむめも　そのた"
-	next "たちつてと　らりるれろ"
+	db   "!"
+	next "!"
+	next "!"
+	next "!"
 	db   "@"
 
 Function11cfb5:
@@ -2488,8 +2466,7 @@ AnimateEZChatCursor:
 	ld [hl], a
 	pop de
 	ld a, e
-	call .UpdateObjectFlags
-	ret
+	jmp .UpdateObjectFlags
 
 .four
 	ld a, SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_2
@@ -2527,8 +2504,7 @@ AnimateEZChatCursor:
 
 	ld a, $1
 	ld e, a
-	call .UpdateObjectFlags
-	ret
+	jmp .UpdateObjectFlags
 
 .seven
 	ld a, [wEZChatCursorYCoord]
@@ -2563,8 +2539,7 @@ AnimateEZChatCursor:
 	ld [hl], a
 	ld a, $2
 	ld e, a
-	call .UpdateObjectFlags
-	ret
+	jmp .UpdateObjectFlags
 
 .asm_11d1b1
 	; X = [wEZChatCursorXCoord] * 40 + 24
@@ -2585,8 +2560,7 @@ AnimateEZChatCursor:
 	ld [hl], a
 	ld a, $2
 	ld e, a
-	call .UpdateObjectFlags
-	ret
+	jmp .UpdateObjectFlags
 
 .nine
 	ld d, -13 * TILE_WIDTH
@@ -2614,8 +2588,7 @@ AnimateEZChatCursor:
 	ld [hl], a
 	ld a, $4
 	ld e, a
-	call .UpdateObjectFlags
-	ret
+	jmp .UpdateObjectFlags
 
 .ten
 	ld a, SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_1
