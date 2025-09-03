@@ -17,18 +17,7 @@ SetWhitePals::
 DoSetPals:
 	ld hl, wBGPals1
 	ld bc, 16 palettes
-	call ByteFill
-	ret
-
-;FadeBGPalettes::
-;	ld a, PALFADE_BG
-;	ld [wPalFadeMode], a
-;	jr DoFadePalettes
-
-;FadeOBPalettes::
-;	ld a, PALFADE_OBJ
-;	ld [wPalFadeMode], a
-;	jr DoFadePalettes
+	jmp ByteFill
 
 FadeToWhite::
 	push bc
@@ -47,5 +36,4 @@ FadePalettes::
 	xor a
 	ld [wPalFadeMode], a
 DoFadePalettes::
-	farcall _DoFadePalettes
-	ret
+	farjp _DoFadePalettes
