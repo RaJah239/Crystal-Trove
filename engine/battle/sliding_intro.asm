@@ -76,8 +76,7 @@ BattleIntroSlidingPics:
 	ld hl, wLYOverrides
 	ld a, $90
 	ld bc, SCREEN_HEIGHT_PX
-	call ByteFill
-	ret
+	jmp ByteFill
 
 .subfunction5
 	ld hl, wLYOverrides
