@@ -1,5 +1,7 @@
 ClearBGPalettes::
 	call ClearPalettes
+	; fallthrough
+
 WaitBGMap::
 ; Tell VBlank to update BG Map
 	ld a, 1 ; BG Map 0 tiles
@@ -62,6 +64,7 @@ CGBOnly_CopyTilemapAtOnce::
 	ldh a, [hCGB]
 	and a
 	jr z, WaitBGMap
+	; fallthrough
 
 CopyTilemapAtOnce::
 	jr _CopyTilemapAtOnce
@@ -205,6 +208,8 @@ ClearPalettes::
 
 GetMemSGBLayout::
 	ld b, SCGB_DEFAULT
+	; fallthrough
+
 GetSGBLayout::
 ; load sgb packets unless dmg
 
