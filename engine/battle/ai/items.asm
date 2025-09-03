@@ -41,8 +41,7 @@ AI_SwitchOrTryItem:
 	; fallthrough
 
 DontSwitch:
-	call AI_TryItem
-	ret
+	jmp AI_TryItem
 
 ; DevNote - switch - this switches with probabilities - 50%, 80%, 96% depending on switch score
 SwitchOften:
