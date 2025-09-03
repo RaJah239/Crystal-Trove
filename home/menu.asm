@@ -61,16 +61,6 @@ HideCursor::
 	ld [hl], " "
 	ret
 
-PushWindow::
-	callfar _PushWindow
-	ret
-
-ExitMenu::
-	push af
-	farcall _ExitMenu
-	pop af
-	ret
-
 InitVerticalMenuCursor::
 	callfar _InitVerticalMenuCursor
 	ret
@@ -392,6 +382,7 @@ CopyNameFromMenu::
 
 YesNoBox::
 	lb bc, SCREEN_WIDTH - 6, 7
+	; fallthrough
 
 PlaceYesNoBox::
 	jr _YesNoBox
@@ -423,6 +414,7 @@ _YesNoBox::
 	add 4
 	ld [wMenuBorderBottomCoord], a
 	call PushWindow
+	; fallthrough
 
 InterpretTwoOptionMenu::
 	call VerticalMenu
@@ -458,7 +450,11 @@ YesNoMenuHeader::
 
 OffsetMenuHeader::
 	call _OffsetMenuHeader
-	jmp PushWindow
+	; fallthrough
+
+PushWindow::
+	callfar _PushWindow
+	ret
 
 _OffsetMenuHeader::
 	push de
@@ -490,7 +486,19 @@ DoNthMenu::
 	call InitMenuCursorAndButtonPermissions
 	call GetStaticMenuJoypad
 	call GetMenuJoypad
-	jmp MenuClickSound
+	; fallthrough
+
+MenuClickSound::
+	push af
+	and A_BUTTON | B_BUTTON
+	jr z, .nosound
+	ld hl, wMenuFlags
+	bit 3, [hl]
+	jr nz, .nosound
+	call PlayClickSFX
+.nosound
+	pop af
+	ret
 
 SetUpMenu::
 	call DrawVariableLengthMenuBox
@@ -747,18 +755,6 @@ ClearWindowData::
 	xor a
 	jmp ByteFill
 
-MenuClickSound::
-	push af
-	and A_BUTTON | B_BUTTON
-	jr z, .nosound
-	ld hl, wMenuFlags
-	bit 3, [hl]
-	jr nz, .nosound
-	call PlayClickSFX
-.nosound
-	pop af
-	ret
-
 PlayClickSFX::
 	push de
 	ld de, SFX_READ_TEXT_2
@@ -769,7 +765,13 @@ PlayClickSFX::
 MenuTextboxWaitButton::
 	call MenuTextbox
 	call WaitButton
-	jmp ExitMenu
+	; fallthrough
+
+ExitMenu::
+	push af
+	farcall _ExitMenu
+	pop af
+	ret
 
 Place2DMenuItemName::
 	ldh [hTempBank], a
