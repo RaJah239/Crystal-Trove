@@ -4,8 +4,7 @@ PlaceMenuItemName:
 	ld [wNamedObjectIndex], a
 	call GetItemName
 	pop hl
-	call PlaceString
-	ret
+	jmp PlaceString
 
 PlaceMartMenuItemName:
 	push de
@@ -23,8 +22,7 @@ PlaceMartMenuItemName:
 	ld de, wStringBuffer4
 .place_string:
 	pop hl
-	call PlaceString
-	ret
+	jmp PlaceString
 
 PlaceMenuItemQuantity:
 	push de
@@ -34,23 +32,19 @@ PlaceMenuItemQuantity:
 	ld a, [wItemAttributeValue]
 	pop hl
 	and a
-	jr nz, .done
+	ret nz
 	ld de, $15
 	add hl, de
 	ld [hl], "×"
 	inc hl
 	ld de, wMenuSelectionQuantity
 	lb bc, 1, 2
-	call PrintNum
-
-.done
-	ret
+	jmp PrintNum
 
 PlaceItemInBagQuantity:
 	; Place a text box of size 1x7 at 0, 0.
 	hlcoord 0, 0
-	ld b, 1
-	ld c, 7
+	lb bc, 1, 7
 	call Textbox
 	hlcoord 1, 1
 	ld de, .InBagString
@@ -65,8 +59,7 @@ PlaceItemInBagQuantity:
 	inc hl
 	ld de, wMenuSelectionQuantity
 	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
-	call PrintNum
-	ret
+	jmp PrintNum
 
 .no_selection
 	jr ClearItemInBagQuantitysBox
@@ -76,13 +69,11 @@ PlaceItemInBagQuantity:
 
 ClearItemInBagQuantitysBox:
 	hlcoord 0, 0
-	ld b, 3
-	ld c, 9
+	lb bc, 3, 9
 	call ClearBox
 	hlcoord 1, 1
 	ld de, .BlankString
-	call PlaceString
-	ret
+	jmp PlaceString
 
 .BlankString:
 	db "@"
@@ -109,8 +100,7 @@ PlaceMoneyTextbox:
 	add hl, de
 	ld de, wMoney
 	lb bc, PRINTNUM_MONEY | 3, 6
-	call PrintNum
-	ret
+	jmp PrintNum
 
 MoneyTopRightMenuHeader:
 	db MENU_BACKUP_TILES ; flags
@@ -127,8 +117,7 @@ MoneyBottomLeftMenuHeader:
 DisplayCoinCaseBalance:
 	; Place a text box of size 1x7 at 11, 0.
 	hlcoord 11, 0
-	ld b, 1
-	ld c, 7
+	lb bc, 1, 7
 	call Textbox
 	hlcoord 12, 0
 	ld de, CoinString
@@ -139,13 +128,11 @@ DisplayCoinCaseBalance:
 	ld de, wCoins
 	lb bc, 2, 4
 	hlcoord 13, 1
-	call PrintNum
-	ret
+	jmp PrintNum
 
 DisplayMoneyAndCoinBalance:
 	hlcoord 5, 0
-	ld b, 3
-	ld c, 13
+	lb bc, 3, 13
 	call Textbox
 	hlcoord 6, 1
 	ld de, MoneyString
@@ -160,8 +147,7 @@ DisplayMoneyAndCoinBalance:
 	hlcoord 15, 3
 	ld de, wCoins
 	lb bc, 2, 4
-	call PrintNum
-	ret
+	jmp PrintNum
 
 MoneyString:
 	db "Money@"
@@ -176,8 +162,7 @@ StartMenu_PrintSafariGameStatus: ; unreferenced
 	push af
 	set NO_TEXT_SCROLL, [hl]
 	hlcoord 0, 0
-	ld b, 3
-	ld c, 7
+	lb bc, 3, 7
 	call Textbox
 	hlcoord 1, 1
 	ld de, wSafariTimeRemaining
@@ -204,10 +189,8 @@ StartMenu_PrintSafariGameStatus: ; unreferenced
 
 StartMenu_DrawBugContestStatusBox:
 	hlcoord 0, 0
-	ld b, 5
-	ld c, 17
-	call Textbox
-	ret
+	lb bc, 5, 17
+	jmp Textbox
 
 StartMenu_PrintBugContestStatus:
 	ld hl, wOptions
