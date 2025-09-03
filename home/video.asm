@@ -368,6 +368,7 @@ Serve2bppRequest_VBlank::
 	ld a, [wRequested2bppSize]
 	and a
 	ret z
+	; fallthrough
 
 _Serve2bppRequest::
 ; Copy [wRequested2bppSize] 2bpp tiles from [wRequested2bppSource] to [wRequested2bppDest]
