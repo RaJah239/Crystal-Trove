@@ -3006,7 +3006,7 @@ ConfusionDamageCalc:
 	jr z, .checkStatus
 	ld a, [wEnemyMonStatus]
 .checkStatus
-	cp 0
+	and a
 	jr z, .choiceBand
 	and 1 << BRN
 	jr z, .notBurn

@@ -105,7 +105,7 @@ Pokedex_Calc_LvlMovesPtr:
 	ld a, BANK("Evolutions and Attacks")
 	call GetFarByte
 	inc hl
-	and a ; cp 0
+	and a
 	jr nz, .SkipEvoBytes
 .CalcPageoffset
 	call Pokedex_PrintPageNum ; page num is also returned in a
