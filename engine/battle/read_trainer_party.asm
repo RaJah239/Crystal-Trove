@@ -846,32 +846,29 @@ ReadPlayerPartyAsTrainerPartyPieces:
     ld [wOTPartyMon6PP + 2], a
     ld a, [wPartyMon6PP + 3]
     ld [wOTPartyMon6PP + 3], a
-
     ret
 
 IncrementToCurrentMon:
     ld a, b
 .incrementLoop
     dec a
-    jr z, .incrementDone
+    ret z
 rept 48
     inc hl
 endr
     jr .incrementLoop
-.incrementDone
     ret
 
 IncrementMovesToCurrentMon:
     ld a, b
 .incrementLoop
     dec a
-    jr z, .incrementDone
+    ret z
     inc hl
     inc hl
     inc hl
     inc hl
     jr .incrementLoop
-.incrementDone
     ret
 
 ComputeTrainerReward:
