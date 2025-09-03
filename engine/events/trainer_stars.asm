@@ -25,8 +25,7 @@ UpdateTrainerStars:
 
 CountTrainerStars:
 	ld a, [wTrainerStars]
-	ld c, 0
-	ld b, 5
+	lb bc, 0, 5
 .loop
 	srl a
 	jr nc, .no_carry
