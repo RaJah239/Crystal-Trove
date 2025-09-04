@@ -262,6 +262,7 @@ ScriptCommandTable:
 	dw Script_isquicknurseset            ; ac
 	dw Script_isfieldactionsset          ; ad
 	dw Script_nooryes                    ; ae
+	dw Script_writetextend               ; af
 	assert_table_length NUM_EVENT_COMMANDS
 
 StartScript:
@@ -333,6 +334,17 @@ Script_memcallasm:
 	rst FarCall
 	ret
 
+Script_writetextend:
+	ld a, [wScriptBank]
+	ld [wScriptTextBank], a
+	call GetScriptByte
+	ld [wScriptTextAddr], a
+	call GetScriptByte
+	ld [wScriptTextAddr + 1], a
+	ld b, BANK(WriteTextWaitButtonClosetextEnd)
+	ld hl, WriteTextWaitButtonClosetextEnd
+	jmp ScriptJump
+
 Script_jumptextfaceplayer:
 	ld a, [wScriptBank]
 	ld [wScriptTextBank], a
@@ -359,6 +371,7 @@ JumpTextFacePlayerScript:
 	faceplayer
 JumpTextScript:
 	opentext
+WriteTextWaitButtonClosetextEnd:
 	repeattext -1, -1
 	waitbutton
 	closetext
