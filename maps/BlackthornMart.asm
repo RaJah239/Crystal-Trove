@@ -1,7 +1,21 @@
+BlackthornMart_MapEvents:
+	def_warp_events
+	warp_event  2,  7, BLACKTHORN_CITY, 5
+	warp_event  3,  7, BLACKTHORN_CITY, 5
+
+	def_coord_events
+
+	def_bg_events
+
 	object_const_def
 	const BLACKTHORNMART_CLERK
 	const BLACKTHORNMART_COOLTRAINER_M
 	const BLACKTHORNMART_BLACK_BELT
+
+	def_object_events
+	object_event  1,  3, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BlackthornMartClerkScript, -1
+	object_event  7,  6, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 2, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BlackthornMartCooltrainerMScript, -1
+	object_event  5,  2, SPRITE_BLACK_BELT, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, BlackthornMartBlackBeltScript, -1
 
 BlackthornMart_MapScripts:
 	def_scene_scripts
@@ -17,9 +31,6 @@ BlackthornMartClerkScript:
 BlackthornMartCooltrainerMScript:
 	jumptextfaceplayer BlackthornMartCooltrainerMText
 
-BlackthornMartBlackBeltScript:
-	jumptextfaceplayer BlackthornMartBlackBeltText
-
 BlackthornMartCooltrainerMText:
 	text "You can't buy MAX"
 	line "REVIVE, but it"
@@ -34,6 +45,9 @@ BlackthornMartCooltrainerMText:
 	line "needed for moves."
 	done
 
+BlackthornMartBlackBeltScript:
+	jumptextfaceplayer BlackthornMartBlackBeltText
+
 BlackthornMartBlackBeltText:
 	text "MAX REPEL keeps"
 	line "weak #MON away"
@@ -43,17 +57,3 @@ BlackthornMartBlackBeltText:
 	line "lasting of the"
 	cont "REPEL sprays."
 	done
-
-BlackthornMart_MapEvents:
-	def_warp_events
-	warp_event  2,  7, BLACKTHORN_CITY, 5
-	warp_event  3,  7, BLACKTHORN_CITY, 5
-
-	def_coord_events
-
-	def_bg_events
-
-	def_object_events
-	object_event  1,  3, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BlackthornMartClerkScript, -1
-	object_event  7,  6, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 2, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BlackthornMartCooltrainerMScript, -1
-	object_event  5,  2, SPRITE_BLACK_BELT, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, BlackthornMartBlackBeltScript, -1

@@ -1,5 +1,19 @@
+BlackthornEmysHouse_MapEvents:
+	def_warp_events
+	warp_event  2,  7, BLACKTHORN_CITY, 4
+	warp_event  3,  7, BLACKTHORN_CITY, 4
+
+	def_coord_events
+
+	def_bg_events
+	bg_event  0,  1, BGEVENT_READ, EmysHouseBookshelf
+	bg_event  1,  1, BGEVENT_READ, EmysHouseBookshelf
+
 	object_const_def
 	const BLACKTHORNEMYSHOUSE_EMY
+
+	def_object_events
+	object_event  2,  3, SPRITE_LASS, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, Emy, -1
 
 BlackthornEmysHouse_MapScripts:
 	def_scene_scripts
@@ -16,17 +30,3 @@ Emy:
 
 EmysHouseBookshelf:
 	jumpstd MagazineBookshelfScript
-
-BlackthornEmysHouse_MapEvents:
-	def_warp_events
-	warp_event  2,  7, BLACKTHORN_CITY, 4
-	warp_event  3,  7, BLACKTHORN_CITY, 4
-
-	def_coord_events
-
-	def_bg_events
-	bg_event  0,  1, BGEVENT_READ, EmysHouseBookshelf
-	bg_event  1,  1, BGEVENT_READ, EmysHouseBookshelf
-
-	def_object_events
-	object_event  2,  3, SPRITE_LASS, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, Emy, -1

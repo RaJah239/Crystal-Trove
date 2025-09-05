@@ -1,9 +1,26 @@
+BlackthornPokecenter1F_MapEvents:
+	def_warp_events
+	warp_event  3,  7, BLACKTHORN_CITY, 1
+	warp_event  4,  7, BLACKTHORN_CITY, 1
+	warp_event  0,  7, POKECENTER_2F, 1
+
+	def_coord_events
+
+	def_bg_events
+
 	object_const_def
 	const BLACKTHORNPOKECENTER1F_NURSE
 	const BLACKTHORNPOKECENTER1F_GENTLEMAN
 	const BLACKTHORNPOKECENTER1F_TWIN
 	const BLACKTHORNPOKECENTER1F_COOLTRAINER_M
 	const BLACKTHORNPOKECENTER1F_CHANSEY
+
+	def_object_events
+	object_event  3,  1, SPRITE_NURSE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BlackthornPokecenter1FNurseScript, -1
+	object_event  5,  3, SPRITE_GENTLEMAN, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BlackthornPokecenter1FGentlemanScript, -1
+	object_event  1,  4, SPRITE_TWIN, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, BlackthornPokecenter1FTwinScript, -1
+	object_event  7,  6, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, BlackthornPokecenter1FCooltrainerMScript, -1
+	object_event  4,  1, SPRITE_CHANSEY, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BlackthornPokecenterChanseyScript, -1
 
 BlackthornPokecenter1F_MapScripts:
 	def_scene_scripts
@@ -13,14 +30,14 @@ BlackthornPokecenter1F_MapScripts:
 BlackthornPokecenter1FNurseScript:
 	jumpstd PokecenterNurseScript
 
-BlackthornPokecenter1FGentlemanScript:
-	jumptextfaceplayer BlackthornPokecenter1FGentlemanText
-
-BlackthornPokecenter1FTwinScript:
-	jumptextfaceplayer BlackthornPokecenter1FTwinText
+BlackthornPokecenterChanseyScript:
+	jumpstd ChanseyPokeCenterScript
 
 BlackthornPokecenter1FCooltrainerMScript:
 	jumpstd HappinessCheckScript
+
+BlackthornPokecenter1FGentlemanScript:
+	jumptextfaceplayer BlackthornPokecenter1FGentlemanText
 
 BlackthornPokecenter1FGentlemanText:
 	text "Deep inside far-"
@@ -36,6 +53,9 @@ BlackthornPokecenter1FGentlemanText:
 	line "the country."
 	done
 
+BlackthornPokecenter1FTwinScript:
+	jumptextfaceplayer BlackthornPokecenter1FTwinText
+
 BlackthornPokecenter1FTwinText:
 	text "There was this"
 	line "move I just had"
@@ -47,23 +67,3 @@ BlackthornPokecenter1FTwinText:
 	line "DELETER to make it"
 	cont "forget an HM move."
 	done
-
-BlackthornPokecenterChanseyScript:
-	jumpstd ChanseyPokeCenterScript
-
-BlackthornPokecenter1F_MapEvents:
-	def_warp_events
-	warp_event  3,  7, BLACKTHORN_CITY, 1
-	warp_event  4,  7, BLACKTHORN_CITY, 1
-	warp_event  0,  7, POKECENTER_2F, 1
-
-	def_coord_events
-
-	def_bg_events
-
-	def_object_events
-	object_event  3,  1, SPRITE_NURSE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BlackthornPokecenter1FNurseScript, -1
-	object_event  5,  3, SPRITE_GENTLEMAN, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BlackthornPokecenter1FGentlemanScript, -1
-	object_event  1,  4, SPRITE_TWIN, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, BlackthornPokecenter1FTwinScript, -1
-	object_event  7,  6, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, BlackthornPokecenter1FCooltrainerMScript, -1
-	object_event  4,  1, SPRITE_CHANSEY, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BlackthornPokecenterChanseyScript, -1

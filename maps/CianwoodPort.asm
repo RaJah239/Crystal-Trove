@@ -1,11 +1,3 @@
-	object_const_def
-
-CianwoodPort_MapScripts:
-	def_scene_scripts
-
-	def_callbacks
-
-
 CianwoodPort_MapEvents:
 	def_warp_events
 	warp_event  9,  5, CIANWOOD_PORT_PASSAGE, 5
@@ -16,5 +8,11 @@ CianwoodPort_MapEvents:
 
 	def_bg_events
 
+	object_const_def
 
 	def_object_events
+
+CianwoodPort_MapScripts:
+	def_scene_scripts
+
+	def_callbacks

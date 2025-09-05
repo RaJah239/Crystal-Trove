@@ -1,8 +1,23 @@
+DragonShrine_MapEvents:
+	def_warp_events
+	warp_event  4,  9, DRAGONS_DEN_B1F, 2
+	warp_event  5,  9, DRAGONS_DEN_B1F, 2
+
+	def_coord_events
+
+	def_bg_events
+
 	object_const_def
 	const DRAGONSHRINE_ELDER1
 	const DRAGONSHRINE_ELDER2
 	const DRAGONSHRINE_ELDER3
 	const DRAGONSHRINE_CLAIR
+
+	def_object_events
+	object_event  5,  1, SPRITE_ELDER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, DragonShrineElder1Script, EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
+	object_event  2,  4, SPRITE_ELDER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, DragonShrineElder2Script, EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
+	object_event  7,  4, SPRITE_ELDER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, DragonShrineElder3Script, EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
+	object_event  4,  8, SPRITE_CLAIR, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_DRAGON_SHRINE_CLAIR
 
 DragonShrine_MapScripts:
 	def_scene_scripts
@@ -13,8 +28,7 @@ DragonShrine_MapScripts:
 
 DragonShrineTakeTestScene:
 	sdefer DragonShrineTakeTestScript
-	end
-
+	; fallthrough
 DragonShrineNoopScene:
 	end
 
@@ -201,10 +215,7 @@ DragonShrineElder1Script:
 	iffalse .GiveDratini
 	checkevent EVENT_BEAT_CHAMPION_LANCE
 	iftrue .BeatRivalInMtMoon
-	writetext DragonShrineClairsGrandfatherText
-	waitbutton
-	closetext
-	end
+	writetextend DragonShrineClairsGrandfatherText
 
 .GiveDratini:
 	writetext DragonShrineTakeThisDratiniText
@@ -219,50 +230,19 @@ DragonShrineElder1Script:
 	special GiveDratini
 	setevent EVENT_GOT_DRATINI
 	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_7
-	writetext DragonShrineSymbolicDragonText
-	waitbutton
-	closetext
-	end
+	writetextend DragonShrineSymbolicDragonText
 
 .PartyFull:
-	writetext DragonShrinePartyFullText
-	waitbutton
-	closetext
-	end
+	writetextend DragonShrinePartyFullText
 
 .BeatRivalInMtMoon:
-	writetext DragonShrineRivalIsInTrainingText
-	waitbutton
-	closetext
-	end
+	writetextend DragonShrineRivalIsInTrainingText
 
 .DontGiveDratiniYet:
-	writetext DragonShrineComeAgainText
-	waitbutton
-	closetext
-	end
+	writetextend DragonShrineComeAgainText
 
 .ReceivedDratini:
-	writetext DragonShrineSymbolicDragonText
-	waitbutton
-	closetext
-	end
-
-DragonShrineElder2Script:
-	faceplayer
-	opentext
-	writetext DragonShrineElder2Text
-	waitbutton
-	closetext
-	end
-
-DragonShrineElder3Script:
-	faceplayer
-	opentext
-	writetext DragonShrineElder3Text
-	waitbutton
-	closetext
-	end
+	writetextend DragonShrineSymbolicDragonText
 
 DragonShrineQuestion1_MenuHeader:
 	db MENU_BACKUP_TILES ; flags
@@ -570,30 +550,6 @@ DragonShrineRightAnswerText:
 	text "Oh, I understand…"
 	done
 
-DragonShrineElder2Text:
-	text "It's been quite"
-	line "some time since a"
-
-	para "trainer has gained"
-	line "our MASTER's rare"
-	cont "approval."
-
-	para "In fact, not since"
-	line "Master LANCE."
-	done
-
-DragonShrineElder3Text:
-	text "You know young"
-	line "Master LANCE?"
-
-	para "He looks so much"
-	line "like our MASTER"
-	cont "did in his youth."
-
-	para "It's in their"
-	line "blood."
-	done
-
 DragonShrineClairYouPassedText:
 	text "So how did it go?"
 
@@ -656,17 +612,32 @@ DragonShrineSpeechlessText:
 	text "<……><……><……><……><……><……>"
 	done
 
-DragonShrine_MapEvents:
-	def_warp_events
-	warp_event  4,  9, DRAGONS_DEN_B1F, 2
-	warp_event  5,  9, DRAGONS_DEN_B1F, 2
+DragonShrineElder2Script:
+	jumptextfaceplayer DragonShrineElder2Text
 
-	def_coord_events
+DragonShrineElder2Text:
+	text "It's been quite"
+	line "some time since a"
 
-	def_bg_events
+	para "trainer has gained"
+	line "our MASTER's rare"
+	cont "approval."
 
-	def_object_events
-	object_event  5,  1, SPRITE_ELDER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, DragonShrineElder1Script, EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
-	object_event  2,  4, SPRITE_ELDER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, DragonShrineElder2Script, EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
-	object_event  7,  4, SPRITE_ELDER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, DragonShrineElder3Script, EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
-	object_event  4,  8, SPRITE_CLAIR, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_DRAGON_SHRINE_CLAIR
+	para "In fact, not since"
+	line "Master LANCE."
+	done
+
+DragonShrineElder3Script:
+	jumptextfaceplayer DragonShrineElder3Text
+
+DragonShrineElder3Text:
+	text "You know young"
+	line "Master LANCE?"
+
+	para "He looks so much"
+	line "like our MASTER"
+	cont "did in his youth."
+
+	para "It's in their"
+	line "blood."
+	done

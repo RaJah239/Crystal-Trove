@@ -1,23 +1,33 @@
+ElmsHouse_MapEvents:
+	def_warp_events
+	warp_event  2,  7, NEW_BARK_TOWN, 4
+	warp_event  3,  7, NEW_BARK_TOWN, 4
+
+	def_coord_events
+
+	def_bg_events
+	bg_event  0,  1, BGEVENT_READ, ElmsHousePC
+	bg_event  6,  1, BGEVENT_READ, ElmsHouseBookshelf
+	bg_event  7,  1, BGEVENT_READ, ElmsHouseBookshelf
+
 	object_const_def
 	const ELMSHOUSE_ELMS_WIFE
 	const ELMSHOUSE_ELMS_SON
+
+	def_object_events
+	object_event  1,  5, SPRITE_TEACHER, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, ElmsWife, -1
+	object_event  5,  4, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ElmsSon, -1
 
 ElmsHouse_MapScripts:
 	def_scene_scripts
 
 	def_callbacks
 
-ElmsWife:
-	jumptextfaceplayer ElmsWifeText
-
-ElmsSon:
-	jumptextfaceplayer ElmsSonText
-
-ElmsHousePC:
-	jumptext ElmsHousePCText
-
 ElmsHouseBookshelf:
 	jumpstd DifficultBookshelfScript
+
+ElmsWife:
+	jumptextfaceplayer ElmsWifeText
 
 ElmsWifeText:
 	text "Hi, <PLAY_G>! My"
@@ -33,6 +43,9 @@ ElmsWifeText:
 	line "forgets to eat."
 	done
 
+ElmsSon:
+	jumptextfaceplayer ElmsSonText
+
 ElmsSonText:
 	text "When I grow up,"
 	line "I'm going to help"
@@ -42,6 +55,9 @@ ElmsSonText:
 	line "great #MON"
 	cont "professor!"
 	done
+
+ElmsHousePC:
+	jumptext ElmsHousePCText
 
 ElmsHousePCText:
 	text "#MON. Where do"
@@ -66,19 +82,3 @@ ElmsHousePCText:
 	line "PROF.ELM's re-"
 	cont "search papers."
 	done
-
-ElmsHouse_MapEvents:
-	def_warp_events
-	warp_event  2,  7, NEW_BARK_TOWN, 4
-	warp_event  3,  7, NEW_BARK_TOWN, 4
-
-	def_coord_events
-
-	def_bg_events
-	bg_event  0,  1, BGEVENT_READ, ElmsHousePC
-	bg_event  6,  1, BGEVENT_READ, ElmsHouseBookshelf
-	bg_event  7,  1, BGEVENT_READ, ElmsHouseBookshelf
-
-	def_object_events
-	object_event  1,  5, SPRITE_TEACHER, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, ElmsWife, -1
-	object_event  5,  4, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ElmsSon, -1

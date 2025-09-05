@@ -1,8 +1,28 @@
+EcruteakTinTowerEntrance_MapEvents:
+	def_warp_events
+	warp_event  4, 17, ECRUTEAK_CITY, 4
+	warp_event  5, 17, ECRUTEAK_CITY, 4
+	warp_event  5,  3, ECRUTEAK_TIN_TOWER_ENTRANCE, 4
+	warp_event 17, 15, ECRUTEAK_TIN_TOWER_ENTRANCE, 3
+	warp_event 17,  3, WISE_TRIOS_ROOM, 3
+
+	def_coord_events
+	coord_event  4,  7, SCENE_ECRUTEAKTINTOWERENTRANCE_SAGE_BLOCKS, EcruteakTinTowerEntranceSageBlocksLeft
+	coord_event  5,  7, SCENE_ECRUTEAKTINTOWERENTRANCE_SAGE_BLOCKS, EcruteakTinTowerEntranceSageBlocksRight
+
+	def_bg_events
+
 	object_const_def
 	const ECRUTEAKTINTOWERENTRANCE_SAGE1
 	const ECRUTEAKTINTOWERENTRANCE_SAGE2
 	const ECRUTEAKTINTOWERENTRANCE_SAGE3
 	const ECRUTEAKTINTOWERENTRANCE_GRAMPS
+
+	def_object_events
+	object_event  4,  6, SPRITE_SAGE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, EcruteakTinTowerEntranceSageScript, EVENT_RANG_CLEAR_BELL_1
+	object_event  5,  6, SPRITE_SAGE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, EcruteakTinTowerEntranceSageScript, EVENT_RANG_CLEAR_BELL_2
+	object_event  6,  9, SPRITE_SAGE, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, EcruteakTinTowerEntranceWanderingSageScript, EVENT_ECRUTEAK_TIN_TOWER_ENTRANCE_WANDERING_SAGE
+	object_event  3, 11, SPRITE_GRAMPS, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, EcruteakTinTowerEntranceGrampsScript, EVENT_ECRUTEAK_TIN_TOWER_ENTRANCE_WANDERING_SAGE
 
 EcruteakTinTowerEntrance_MapScripts:
 	def_scene_scripts
@@ -13,8 +33,7 @@ EcruteakTinTowerEntrance_MapScripts:
 	callback MAPCALLBACK_OBJECTS, EcruteakTinTowerEntranceInitializeSagesCallback
 
 EcruteakTinTowerEntranceNoop1Scene:
-	end
-
+	; fallthrough
 EcruteakTinTowerEntranceNoop2Scene:
 	end
 
@@ -73,16 +92,10 @@ EcruteakTinTowerEntranceSageScript:
 	iftrue .CheckForClearBell
 	checkflag ENGINE_FOGBADGE
 	iftrue .BlockPassage_GotFogBadge
-	writetext EcruteakTinTowerEntranceSageText
-	waitbutton
-	closetext
-	end
+	writetextend EcruteakTinTowerEntranceSageText
 
 .BlockPassage_GotFogBadge:
-	writetext EcruteakTinTowerEntranceSageText_GotFogBadge
-	waitbutton
-	closetext
-	end
+	writetextend EcruteakTinTowerEntranceSageText_GotFogBadge
 
 .CheckForClearBell:
 	checkevent EVENT_KOJI_ALLOWS_YOU_PASSAGE_TO_TIN_TOWER
@@ -91,51 +104,30 @@ EcruteakTinTowerEntranceSageScript:
 	iftrue .RangClearBell
 	checkitem CLEAR_BELL
 	iftrue .GotClearBell
-	writetext EcruteakTinTowerEntranceSageText_NoClearBell
-	waitbutton
-	closetext
-	end
+	writetextend EcruteakTinTowerEntranceSageText_NoClearBell
 
 .GotClearBell:
-	writetext EcruteakTinTowerEntranceSageText_HearsClearBell
-	waitbutton
-	closetext
 	setscene SCENE_ECRUTEAKTINTOWERENTRANCE_NOOP
 	setevent EVENT_RANG_CLEAR_BELL_2
 	clearevent EVENT_RANG_CLEAR_BELL_1
 	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
-	end
+	writetextend EcruteakTinTowerEntranceSageText_HearsClearBell
 
 .AllowedThrough:
-	writetext EcruteakTinTowerEntranceSageText_PleaseDoGoOn
-	waitbutton
-	closetext
-	end
+	writetextend EcruteakTinTowerEntranceSageText_PleaseDoGoOn
 
 .RangClearBell:
-	writetext EcruteakTinTowerEntranceSageText_HeardClearBell
-	waitbutton
-	closetext
-	end
+	writetextend EcruteakTinTowerEntranceSageText_HeardClearBell
 
 EcruteakTinTowerEntranceWanderingSageScript:
 	faceplayer
 	opentext
 	checkevent EVENT_GOT_CLEAR_BELL
 	iftrue .GotClearBell
-	writetext EcruteakTinTowerEntranceWanderingSageText
-	waitbutton
-	closetext
-	end
+	writetextend EcruteakTinTowerEntranceWanderingSageText
 
 .GotClearBell:
-	writetext EcruteakTinTowerEntranceWanderingSageText_GotClearBell
-	waitbutton
-	closetext
-	end
-
-EcruteakTinTowerEntranceGrampsScript:
-	jumptextfaceplayer EcruteakTinTowerEntranceGrampsText
+	writetextend EcruteakTinTowerEntranceWanderingSageText_GotClearBell
 
 EcruteakTinTowerEntranceSageBlocksLeftMovement:
 	fix_facing
@@ -266,6 +258,9 @@ EcruteakTinTowerEntranceWanderingSageText_GotClearBell:
 	line "to the top!"
 	done
 
+EcruteakTinTowerEntranceGrampsScript:
+	jumptextfaceplayer EcruteakTinTowerEntranceGrampsText
+
 EcruteakTinTowerEntranceGrampsText:
 	text "Two towers…"
 	line "Two #MON…"
@@ -276,23 +271,3 @@ EcruteakTinTowerEntranceGrampsText:
 	para "#MON flew away,"
 	line "never to return."
 	done
-
-EcruteakTinTowerEntrance_MapEvents:
-	def_warp_events
-	warp_event  4, 17, ECRUTEAK_CITY, 4
-	warp_event  5, 17, ECRUTEAK_CITY, 4
-	warp_event  5,  3, ECRUTEAK_TIN_TOWER_ENTRANCE, 4
-	warp_event 17, 15, ECRUTEAK_TIN_TOWER_ENTRANCE, 3
-	warp_event 17,  3, WISE_TRIOS_ROOM, 3
-
-	def_coord_events
-	coord_event  4,  7, SCENE_ECRUTEAKTINTOWERENTRANCE_SAGE_BLOCKS, EcruteakTinTowerEntranceSageBlocksLeft
-	coord_event  5,  7, SCENE_ECRUTEAKTINTOWERENTRANCE_SAGE_BLOCKS, EcruteakTinTowerEntranceSageBlocksRight
-
-	def_bg_events
-
-	def_object_events
-	object_event  4,  6, SPRITE_SAGE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, EcruteakTinTowerEntranceSageScript, EVENT_RANG_CLEAR_BELL_1
-	object_event  5,  6, SPRITE_SAGE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, EcruteakTinTowerEntranceSageScript, EVENT_RANG_CLEAR_BELL_2
-	object_event  6,  9, SPRITE_SAGE, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, EcruteakTinTowerEntranceWanderingSageScript, EVENT_ECRUTEAK_TIN_TOWER_ENTRANCE_WANDERING_SAGE
-	object_event  3, 11, SPRITE_GRAMPS, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, EcruteakTinTowerEntranceGrampsScript, EVENT_ECRUTEAK_TIN_TOWER_ENTRANCE_WANDERING_SAGE

@@ -1,3 +1,28 @@
+CianwoodCity_MapEvents:
+	def_warp_events
+	warp_event 23, 43, CIANWOOD_POKECENTER_1F, 1
+	warp_event 17, 41, MANIAS_HOUSE, 1
+	warp_event  8, 43, CIANWOOD_GYM, 1
+	warp_event 15, 47, CIANWOOD_PHARMACY, 1
+	warp_event  9, 31, CIANWOOD_PHOTO_STUDIO, 1
+	warp_event 15, 37, CIANWOOD_LUGIA_SPEECH_HOUSE, 1
+	warp_event  5, 17, POKE_SEERS_HOUSE, 1
+	warp_event 15, 51, CIANWOOD_PORT_PASSAGE, 1
+	warp_event 16, 51, CIANWOOD_PORT_PASSAGE, 2
+
+	def_coord_events
+	coord_event 11, 16, SCENE_CIANWOODCITY_SUICUNE_AND_EUSINE, CianwoodCitySuicuneAndEusine
+
+	def_bg_events
+	bg_event 20, 34, BGEVENT_READ, CianwoodCitySign
+	bg_event  7, 45, BGEVENT_READ, CianwoodGymSign
+	bg_event 24, 43, BGEVENT_READ, CianwoodPokecenterSign
+	bg_event 19, 47, BGEVENT_READ, CianwoodPharmacySign
+	bg_event  8, 32, BGEVENT_READ, CianwoodPhotoStudioSign
+	bg_event  8, 24, BGEVENT_READ, CianwoodPokeSeerSign
+	bg_event  4, 19, BGEVENT_ITEM, CianwoodCityHiddenRevive
+	bg_event  5, 29, BGEVENT_ITEM, CianwoodCityHiddenMaxEther
+
 	object_const_def
 	const CIANWOODCITY_STANDING_YOUNGSTER
 	const CIANWOODCITY_POKEFAN_M
@@ -13,6 +38,21 @@
 	const CIANWOODCITY_SUICUNE
 	const CIANWOODCITY_GYM_SAILOR
 
+	def_object_events
+	object_event 21, 37, SPRITE_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CianwoodCityYoungster, -1
+	object_event 17, 33, SPRITE_POKEFAN_M, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CianwoodCityPokefanM, -1
+	object_event 14, 42, SPRITE_LASS, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 2, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CianwoodCityLass, -1
+	object_event  8, 16, SPRITE_ROCK, SPRITEMOVEDATA_SMASHABLE_ROCK, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CianwoodCityRock, -1
+	object_event  9, 17, SPRITE_ROCK, SPRITEMOVEDATA_SMASHABLE_ROCK, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CianwoodCityRock, -1
+	object_event  4, 25, SPRITE_ROCK, SPRITEMOVEDATA_SMASHABLE_ROCK, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CianwoodCityRock, -1
+	object_event  5, 29, SPRITE_ROCK, SPRITEMOVEDATA_SMASHABLE_ROCK, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CianwoodCityRock, -1
+	object_event 10, 27, SPRITE_ROCK, SPRITEMOVEDATA_SMASHABLE_ROCK, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CianwoodCityRock, -1
+	object_event  4, 19, SPRITE_ROCK, SPRITEMOVEDATA_SMASHABLE_ROCK, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CianwoodCityRock, -1
+	object_event 10, 46, SPRITE_POKEFAN_F, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CianwoodCityChucksWife, -1
+	object_event 11, 21, SPRITE_EUSINE, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_CIANWOOD_CITY_EUSINE
+	object_event 10, 14, SPRITE_SUICUNE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_SAW_SUICUNE_AT_CIANWOOD_CITY
+	object_event  8, 44, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CianWoodGymSailorScript, EVENT_CIANWOOD_GYM_BLOCKER
+
 CianwoodCity_MapScripts:
 	def_scene_scripts
 	scene_script CianwoodCityNoop1Scene, SCENE_CIANWOODCITY_NOOP
@@ -22,10 +62,15 @@ CianwoodCity_MapScripts:
 	callback MAPCALLBACK_NEWMAP, CianwoodCityFlypointAndSuicuneCallback
 
 CianwoodCityNoop1Scene:
-	end
-
+	; fallthrough
 CianwoodCityNoop2Scene:
 	end
+
+CianwoodPokecenterSign:
+	jumpstd PokecenterSignScript
+
+CianwoodCityRock:
+	jumpstd SmashRockScript
 
 CianwoodCityFlypointAndSuicuneCallback:
 	setflag ENGINE_FLYPOINT_CIANWOOD
@@ -82,71 +127,6 @@ CianwoodCitySuicuneAndEusine:
 .Done:
 	end
 
-CianwoodCityChucksWife:
-	faceplayer
-	opentext
-	checkevent EVENT_GOT_HM01_FLY
-	iftrue .GotFly
-	writetext ChucksWifeEasierToFlyText
-	promptbutton
-	checkevent EVENT_BEAT_CHUCK
-	iftrue .BeatChuck
-	writetext ChucksWifeBeatChuckText
-	waitbutton
-	closetext
-	end
-
-.BeatChuck:
-	writetext ChucksWifeGiveHMText
-	promptbutton
-	verbosegiveitem HM_FLY
-	iffalse .Done
-	setevent EVENT_GOT_HM01_FLY
-	writetext ChucksWifeFlySpeechText
-	promptbutton
-.GotFly:
-	writetext ChucksWifeChubbyText
-	waitbutton
-.Done:
-	closetext
-	end
-
-CianwoodCityYoungster:
-	jumptextfaceplayer CianwoodCityYoungsterText
-
-CianwoodCityPokefanM:
-	jumptextfaceplayer CianwoodCityPokefanMText
-
-CianwoodCityLass:
-	jumptextfaceplayer CianwoodCityLassText
-
-CianwoodCitySign:
-	jumptext CianwoodCitySignText
-
-CianwoodGymSign:
-	jumptext CianwoodGymSignText
-
-CianwoodPharmacySign:
-	jumptext CianwoodPharmacySignText
-
-CianwoodPhotoStudioSign:
-	jumptext CianwoodPhotoStudioSignText
-
-CianwoodPokeSeerSign:
-	jumptext CianwoodPokeSeerSignText
-
-CianwoodPokecenterSign:
-	jumpstd PokecenterSignScript
-
-CianwoodCityRock:
-	jumpstd SmashRockScript
-
-CianwoodCityHiddenRevive:
-	hiddenitem REVIVE, EVENT_CIANWOOD_CITY_HIDDEN_REVIVE
-
-CianwoodCityHiddenMaxEther:
-	hiddenitem MAX_ETHER, EVENT_CIANWOOD_CITY_HIDDEN_MAX_ETHER
-
 CianwoodCitySuicuneApproachMovement:
 	set_sliding
 	fast_jump_step DOWN
@@ -163,169 +143,6 @@ CianwoodCitySuicuneDepartMovement:
 	fast_jump_step RIGHT
 	remove_sliding
 	step_end
-
-CianwoodCityEusineApproachMovement:
-	step UP
-	step UP
-	step UP
-	step UP
-	step_end
-
-CianwoodCityEusineDepartMovement:
-	step DOWN
-	step DOWN
-	step DOWN
-	step DOWN
-	step_end
-
-CianWoodGymSailorScript:
-	faceplayer
-	opentext
-	checkevent EVENT_FOUGHT_EUSINE
-	iftrue .AllowInGym
-	writetext BlueBlurText
-	waitbutton
-	closetext
-	end
-
-.AllowInGym
-	writetext MissedMyChanceText
-	waitbutton
-	closetext
-	applymovement CIANWOODCITY_GYM_SAILOR, CIANWOODCITY_GYM_SAILOR_WALKS_INSIDE_GYM
-	playsound SFX_ENTER_DOOR
-	disappear CIANWOODCITY_GYM_SAILOR
-	end
-
-CIANWOODCITY_GYM_SAILOR_WALKS_INSIDE_GYM:
-	step UP
-	step_end
-
-BlueBlurText:
-    text "W-what was that!?"
-    
-	para "Some kind of blue"
-	line "blur? It raced up"
-	cont "North!"
-	
-	para "I'm a bit dizzy"
-	line "from training."
-	
-	para "Can you check it"
-	line "out for me?"
-    done 
-
-MissedMyChanceText:
-	text "T-that was the"
-	line "legendary #MON"
-	cont "SUICUNE!"
-	
-	para "I missed a once in"
-	line "lifetime chance!"
-	
-	para "Uh…"
-	
-	para "I better get back"
-	line "to GYM before I"
-	cont "get yelled at…"
-	
-	para "See ya."
-	done
-
-ChucksWifeEasierToFlyText:
-	text "You crossed the"
-	line "sea to get here?"
-
-	para "That must have"
-	line "been hard."
-
-	para "It would be much"
-	line "easier if your"
-
-	para "#MON knew how"
-	line "to FLY…"
-	done
-
-ChucksWifeBeatChuckText:
-	text "But you can't use"
-	line "FLY without this"
-	cont "city's GYM BADGE."
-
-	para "If you beat the"
-	line "GYM LEADER here,"
-	cont "come see me."
-
-	para "I'll have a nice"
-	line "gift for you."
-	done
-
-ChucksWifeGiveHMText:
-	text "That's CIANWOOD's"
-	line "GYM BADGE!"
-
-	para "Then you should"
-	line "take this HM."
-	done
-
-ChucksWifeFlySpeechText:
-	text "Teach FLY to your"
-	line "#MON."
-
-	para "You will be able"
-	line "to FLY instantly"
-
-	para "to anywhere you "
-	line "have visited."
-	done
-
-ChucksWifeChubbyText:
-	text "My husband lost to"
-	line "you, so he needs"
-	cont "to train harder."
-
-	para "That's good, since"
-	line "he was getting a"
-	cont "little chubby."
-	done
-
-CianwoodCityYoungsterText:
-	text "If you use FLY,"
-	line "you can get back"
-
-	para "to OLIVINE in-"
-	line "stantly."
-	done
-
-CianwoodCityPokefanMText:
-	text "Boulders to the"
-	line "north of town can"
-	cont "be crushed."
-
-	para "They may be hiding"
-	line "something."
-
-	para "Your #MON could"
-	line "use ROCK SMASH to"
-	cont "break them."
-	done
-
-CianwoodCityLassText:
-	text "CHUCK, the GYM"
-	line "LEADER, spars with"
-
-	para "his fighting #-"
-	line "MON."
-	done
-
-CianwoodCityUnusedText:
-	text "There are several"
-	line "islands between"
-	cont "here and OLIVINE."
-
-	para "A mythical sea"
-	line "creature supposed-"
-	cont "ly lives there."
-	done
 
 EusineSuicuneText:
 	text "EUSINE: Yo,"
@@ -389,12 +206,152 @@ EusineAfterText:
 	para "See you around!"
 	done
 
+CianwoodCityEusineApproachMovement:
+	step UP
+	step UP
+	step UP
+	step UP
+	step_end
+
+CianwoodCityEusineDepartMovement:
+	step DOWN
+	step DOWN
+	step DOWN
+	step DOWN
+	step_end
+
+CianwoodCityChucksWife:
+	faceplayer
+	opentext
+	checkevent EVENT_GOT_HM01_FLY
+	iftrue .GotFly
+	writetext ChucksWifeEasierToFlyText
+	promptbutton
+	checkevent EVENT_BEAT_CHUCK
+	iftrue .BeatChuck
+	writetextend ChucksWifeBeatChuckText
+
+.BeatChuck:
+	writetext ChucksWifeGiveHMText
+	promptbutton
+	verbosegiveitem HM_FLY
+	iffalse .Done
+	setevent EVENT_GOT_HM01_FLY
+	writetext ChucksWifeFlySpeechText
+	promptbutton
+.GotFly:
+	writetext ChucksWifeChubbyText
+	waitbutton
+.Done:
+	closetext
+	end
+
+ChucksWifeEasierToFlyText:
+	text "You crossed the"
+	line "sea to get here?"
+
+	para "That must have"
+	line "been hard."
+
+	para "It would be much"
+	line "easier if your"
+
+	para "#MON knew how"
+	line "to FLY…"
+	done
+
+ChucksWifeBeatChuckText:
+	text "But you can't use"
+	line "FLY without this"
+	cont "city's GYM BADGE."
+
+	para "If you beat the"
+	line "GYM LEADER here,"
+	cont "come see me."
+
+	para "I'll have a nice"
+	line "gift for you."
+	done
+
+ChucksWifeGiveHMText:
+	text "That's CIANWOOD's"
+	line "GYM BADGE!"
+
+	para "Then you should"
+	line "take this HM."
+	done
+
+ChucksWifeFlySpeechText:
+	text "Teach FLY to your"
+	line "#MON."
+
+	para "You will be able"
+	line "to FLY instantly"
+
+	para "to anywhere you "
+	line "have visited."
+	done
+
+ChucksWifeChubbyText:
+	text "My husband lost to"
+	line "you, so he needs"
+	cont "to train harder."
+
+	para "That's good, since"
+	line "he was getting a"
+	cont "little chubby."
+	done
+
+CianwoodCityYoungster:
+	jumptextfaceplayer CianwoodCityYoungsterText
+
+CianwoodCityYoungsterText:
+	text "If you use FLY,"
+	line "you can get back"
+
+	para "to OLIVINE in-"
+	line "stantly."
+	done
+
+CianwoodCityPokefanM:
+	jumptextfaceplayer CianwoodCityPokefanMText
+
+CianwoodCityPokefanMText:
+	text "Boulders to the"
+	line "north of town can"
+	cont "be crushed."
+
+	para "They may be hiding"
+	line "something."
+
+	para "Your #MON could"
+	line "use ROCK SMASH to"
+	cont "break them."
+	done
+
+CianwoodCityLass:
+	jumptextfaceplayer CianwoodCityLassText
+
+CianwoodCityLassText:
+	text "CHUCK, the GYM"
+	line "LEADER, spars with"
+
+	para "his fighting #-"
+	line "MON."
+	done
+
+CianwoodCitySign:
+	jumptext CianwoodCitySignText
+
 CianwoodCitySignText:
 	text "CIANWOOD CITY"
 
 	para "A Port Surrounded"
 	line "by Rough Seas"
 	done
+
+CianwoodGymSign:
+	jumptext CianwoodGymSignText
 
 CianwoodGymSignText:
 	text "CIANWOOD CITY"
@@ -405,6 +362,9 @@ CianwoodGymSignText:
 	para "His Roaring Fists"
 	line "Do the Talking"
 	done
+
+CianwoodPharmacySign:
+	jumptext CianwoodPharmacySignText
 
 CianwoodPharmacySignText:
 	text "500 Years of"
@@ -417,6 +377,9 @@ CianwoodPharmacySignText:
 	line "Medicinal Queries"
 	done
 
+CianwoodPhotoStudioSign:
+	jumptext CianwoodPhotoStudioSignText
+
 CianwoodPhotoStudioSignText:
 	text "CIANWOOD CITY"
 	line "PHOTO STUDIO"
@@ -425,47 +388,67 @@ CianwoodPhotoStudioSignText:
 	line "with a picture!"
 	done
 
+CianwoodPokeSeerSign:
+	jumptext CianwoodPokeSeerSignText
+
 CianwoodPokeSeerSignText:
 	text "THE # SEER"
 	line "AHEAD"
 	done
 
-CianwoodCity_MapEvents:
-	def_warp_events
-	warp_event 23, 43, CIANWOOD_POKECENTER_1F, 1
-	warp_event 17, 41, MANIAS_HOUSE, 1
-	warp_event  8, 43, CIANWOOD_GYM, 1
-	warp_event 15, 47, CIANWOOD_PHARMACY, 1
-	warp_event  9, 31, CIANWOOD_PHOTO_STUDIO, 1
-	warp_event 15, 37, CIANWOOD_LUGIA_SPEECH_HOUSE, 1
-	warp_event  5, 17, POKE_SEERS_HOUSE, 1
-	warp_event 15, 51, CIANWOOD_PORT_PASSAGE, 1
-	warp_event 16, 51, CIANWOOD_PORT_PASSAGE, 2
+CianwoodCityHiddenRevive:
+	hiddenitem REVIVE, EVENT_CIANWOOD_CITY_HIDDEN_REVIVE
 
-	def_coord_events
-	coord_event 11, 16, SCENE_CIANWOODCITY_SUICUNE_AND_EUSINE, CianwoodCitySuicuneAndEusine
+CianwoodCityHiddenMaxEther:
+	hiddenitem MAX_ETHER, EVENT_CIANWOOD_CITY_HIDDEN_MAX_ETHER
 
-	def_bg_events
-	bg_event 20, 34, BGEVENT_READ, CianwoodCitySign
-	bg_event  7, 45, BGEVENT_READ, CianwoodGymSign
-	bg_event 24, 43, BGEVENT_READ, CianwoodPokecenterSign
-	bg_event 19, 47, BGEVENT_READ, CianwoodPharmacySign
-	bg_event  8, 32, BGEVENT_READ, CianwoodPhotoStudioSign
-	bg_event  8, 24, BGEVENT_READ, CianwoodPokeSeerSign
-	bg_event  4, 19, BGEVENT_ITEM, CianwoodCityHiddenRevive
-	bg_event  5, 29, BGEVENT_ITEM, CianwoodCityHiddenMaxEther
+CianWoodGymSailorScript:
+	faceplayer
+	opentext
+	checkevent EVENT_FOUGHT_EUSINE
+	iftrue .AllowInGym
+	writetextend BlueBlurText
 
-	def_object_events
-	object_event 21, 37, SPRITE_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CianwoodCityYoungster, -1
-	object_event 17, 33, SPRITE_POKEFAN_M, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CianwoodCityPokefanM, -1
-	object_event 14, 42, SPRITE_LASS, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 2, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CianwoodCityLass, -1
-	object_event  8, 16, SPRITE_ROCK, SPRITEMOVEDATA_SMASHABLE_ROCK, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CianwoodCityRock, -1
-	object_event  9, 17, SPRITE_ROCK, SPRITEMOVEDATA_SMASHABLE_ROCK, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CianwoodCityRock, -1
-	object_event  4, 25, SPRITE_ROCK, SPRITEMOVEDATA_SMASHABLE_ROCK, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CianwoodCityRock, -1
-	object_event  5, 29, SPRITE_ROCK, SPRITEMOVEDATA_SMASHABLE_ROCK, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CianwoodCityRock, -1
-	object_event 10, 27, SPRITE_ROCK, SPRITEMOVEDATA_SMASHABLE_ROCK, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CianwoodCityRock, -1
-	object_event  4, 19, SPRITE_ROCK, SPRITEMOVEDATA_SMASHABLE_ROCK, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CianwoodCityRock, -1
-	object_event 10, 46, SPRITE_POKEFAN_F, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CianwoodCityChucksWife, -1
-	object_event 11, 21, SPRITE_EUSINE, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_CIANWOOD_CITY_EUSINE
-	object_event 10, 14, SPRITE_SUICUNE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_SAW_SUICUNE_AT_CIANWOOD_CITY
-	object_event  8, 44, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CianWoodGymSailorScript, EVENT_CIANWOOD_GYM_BLOCKER
+.AllowInGym
+	writetext MissedMyChanceText
+	waitbutton
+	closetext
+	applymovement CIANWOODCITY_GYM_SAILOR, CIANWOODCITY_GYM_SAILOR_WALKS_INSIDE_GYM
+	playsound SFX_ENTER_DOOR
+	disappear CIANWOODCITY_GYM_SAILOR
+	end
+
+CIANWOODCITY_GYM_SAILOR_WALKS_INSIDE_GYM:
+	step UP
+	step_end
+
+BlueBlurText:
+    text "W-what was that!?"
+    
+	para "Some kind of blue"
+	line "blur? It raced up"
+	cont "North!"
+	
+	para "I'm a bit dizzy"
+	line "from training."
+	
+	para "Can you check it"
+	line "out for me?"
+    done 
+
+MissedMyChanceText:
+	text "T-that was the"
+	line "legendary #MON"
+	cont "SUICUNE!"
+	
+	para "I missed a once in"
+	line "lifetime chance!"
+	
+	para "Uh…"
+	
+	para "I better get back"
+	line "to GYM before I"
+	cont "get yelled at…"
+	
+	para "See ya."
+	done

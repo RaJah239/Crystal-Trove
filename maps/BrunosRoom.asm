@@ -1,5 +1,19 @@
+BrunosRoom_MapEvents:
+	def_warp_events
+	warp_event  4, 17, KOGAS_ROOM, 3
+	warp_event  5, 17, KOGAS_ROOM, 4
+	warp_event  4,  2, KARENS_ROOM, 1
+	warp_event  5,  2, KARENS_ROOM, 2
+
+	def_coord_events
+
+	def_bg_events
+
 	object_const_def
 	const BRUNOSROOM_BRUNO
+
+	def_object_events
+	object_event  5,  7, SPRITE_BRUNO, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, BrunoScript_Battle, -1
 
 BrunosRoom_MapScripts:
 	def_scene_scripts
@@ -11,8 +25,7 @@ BrunosRoom_MapScripts:
 
 BrunosRoomLockDoorScene:
 	sdefer BrunosRoomDoorLocksBehindYouScript
-	end
-
+	; fallthrough
 BrunosRoomNoopScene:
 	end
 
@@ -66,10 +79,7 @@ BrunoScript_Battle:
 	end
 
 BrunoScript_AfterBattle:
-	writetext BrunoScript_BrunoDefeatText
-	waitbutton
-	closetext
-	end
+	writetextend BrunoScript_BrunoDefeatText
 
 BrunosRoom_EnterMovement:
 	step UP
@@ -121,17 +131,3 @@ BrunoScript_BrunoDefeatText:
 	para "Go face your next"
 	line "challenge!"
 	done
-
-BrunosRoom_MapEvents:
-	def_warp_events
-	warp_event  4, 17, KOGAS_ROOM, 3
-	warp_event  5, 17, KOGAS_ROOM, 4
-	warp_event  4,  2, KARENS_ROOM, 1
-	warp_event  5,  2, KARENS_ROOM, 2
-
-	def_coord_events
-
-	def_bg_events
-
-	def_object_events
-	object_event  5,  7, SPRITE_BRUNO, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, BrunoScript_Battle, -1

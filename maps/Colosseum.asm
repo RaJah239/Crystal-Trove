@@ -1,12 +1,26 @@
+Colosseum_MapEvents:
+	def_warp_events
+	warp_event  4,  7, POKECENTER_2F, 3
+	warp_event  5,  7, POKECENTER_2F, 3
+
+	def_coord_events
+
+	def_bg_events
+	bg_event  4,  4, BGEVENT_RIGHT, ColosseumConsoleScript
+	bg_event  5,  4, BGEVENT_LEFT, ColosseumConsoleScript
+
 	object_const_def
 	const COLOSSEUM_LINK_TRAINER1
 	const COLOSSEUM_LINK_TRAINER2
+
+	def_object_events
+	object_event  3,  4, SPRITE_LINK_TRAINER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CableClubFriendScript, EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
+	object_event  6,  4, SPRITE_LINK_TRAINER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CableClubFriendScript, EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
 
 Colosseum_MapScripts:
 	def_scene_scripts
 	scene_script ColosseumInitializeScene, SCENE_COLOSSEUM_INITIALIZE
 	scene_script ColosseumNoop1Scene,      SCENE_COLOSSEUM_NOOP
-	scene_script ColosseumNoop2Scene ; unused
 
 	def_callbacks
 	callback MAPCALLBACK_OBJECTS, ColosseumSetWhichChrisCallback
@@ -17,9 +31,6 @@ ColosseumInitializeScene:
 	end
 
 ColosseumNoop1Scene:
-	end
-
-ColosseumNoop2Scene:
 	end
 
 ColosseumSetWhichChrisCallback:
@@ -49,29 +60,9 @@ ColosseumConsoleScript:
 	end
 
 CableClubFriendScript:
-	opentext
-	writetext .FriendReadyText
-	waitbutton
-	closetext
-	end
+	jumptext FriendReadyText
 
-.FriendReadyText:
+FriendReadyText:
 	text "Your friend is"
 	line "ready."
 	done
-
-Colosseum_MapEvents:
-	def_warp_events
-	warp_event  4,  7, POKECENTER_2F, 3
-	warp_event  5,  7, POKECENTER_2F, 3
-
-	def_coord_events
-
-	def_bg_events
-	bg_event  4,  4, BGEVENT_RIGHT, ColosseumConsoleScript
-	bg_event  5,  4, BGEVENT_LEFT, ColosseumConsoleScript
-
-	def_object_events
-	object_event  3,  4, SPRITE_LINK_TRAINER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CableClubFriendScript, EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
-	object_event  6,  4, SPRITE_LINK_TRAINER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CableClubFriendScript, EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
-	

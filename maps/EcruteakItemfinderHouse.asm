@@ -1,11 +1,28 @@
+EcruteakItemfinderHouse_MapEvents:
+	def_warp_events
+	warp_event  3,  7, ECRUTEAK_CITY, 11
+	warp_event  4,  7, ECRUTEAK_CITY, 11
+
+	def_coord_events
+
+	def_bg_events
+	bg_event  2,  1, BGEVENT_READ, ItemFinderHouseRadio
+
 	object_const_def
 	const ECRUTEAKITEMFINDERHOUSE_COOLTRAINER_M
 	const ECRUTEAKITEMFINDERHOUSE_POKEDEX
+
+	def_object_events
+	object_event  2,  3, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, EcruteakItemfinderGuy, -1
+	object_event  3,  3, SPRITE_POKEDEX, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, EcruteakHistoryBook, -1
 
 EcruteakItemfinderHouse_MapScripts:
 	def_scene_scripts
 
 	def_callbacks
+
+ItemFinderHouseRadio:
+	jumpstd Radio2Script
 
 EcruteakItemfinderGuy:
 	faceplayer
@@ -20,40 +37,10 @@ EcruteakItemfinderGuy:
 	verbosegiveitem ITEMFINDER
 	setevent EVENT_GOT_ITEMFINDER
 .itemfinder:
-	writetext ItemfinderExplanationText
-	waitbutton
-	closetext
-	end
+	writetextend ItemfinderExplanationText
 
 .no:
-	writetext EcruteakItemfinderToEachHisOwnText
-	waitbutton
-	closetext
-	end
-
-EcruteakHistoryBook:
-	opentext
-	writetext EcruteakHistoryBookText
-	yesorno
-	iftrue .ReadBook
-	closetext
-	end
-
-.ReadBook:
-	writetext EcruteakTwoTowersText
-	yesorno
-	iftrue .KeepReading
-	closetext
-	end
-
-.KeepReading:
-	writetext EcruteakThreeMonText
-	waitbutton
-	closetext
-	end
-
-ItemFinderHouseRadio:
-	jumpstd Radio2Script
+	writetextend EcruteakItemfinderToEachHisOwnText
 
 EcruteakItemfinderAdventureText:
 	text "Ah. You're on an"
@@ -110,6 +97,24 @@ EcruteakItemfinderToEachHisOwnText:
 	line "own, I suppose…"
 	done
 
+EcruteakHistoryBook:
+	opentext
+	writetext EcruteakHistoryBookText
+	yesorno
+	iftrue .ReadBook
+	closetext
+	end
+
+.ReadBook:
+	writetext EcruteakTwoTowersText
+	yesorno
+	iftrue .KeepReading
+	closetext
+	end
+
+.KeepReading:
+	writetextend EcruteakThreeMonText
+
 EcruteakHistoryBookText:
 	text "HISTORY OF"
 	line "ECRUTEAK"
@@ -159,17 +164,3 @@ EcruteakThreeMonText:
 	para "wind off into the"
 	line "grassland."
 	done
-
-EcruteakItemfinderHouse_MapEvents:
-	def_warp_events
-	warp_event  3,  7, ECRUTEAK_CITY, 11
-	warp_event  4,  7, ECRUTEAK_CITY, 11
-
-	def_coord_events
-
-	def_bg_events
-	bg_event  2,  1, BGEVENT_READ, ItemFinderHouseRadio
-
-	def_object_events
-	object_event  2,  3, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, EcruteakItemfinderGuy, -1
-	object_event  3,  3, SPRITE_POKEDEX, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, EcruteakHistoryBook, -1

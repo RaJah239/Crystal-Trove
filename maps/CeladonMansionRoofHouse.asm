@@ -1,5 +1,17 @@
+CeladonMansionRoofHouse_MapEvents:
+	def_warp_events
+	warp_event  2,  7, CELADON_MANSION_ROOF, 3
+	warp_event  3,  7, CELADON_MANSION_ROOF, 3
+
+	def_coord_events
+
+	def_bg_events
+
 	object_const_def
 	const CELADONMANSIONROOFHOUSE_PHARMACIST
+
+	def_object_events
+	object_event  3,  2, SPRITE_PHARMACIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 2, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CeladonMansionRoofHousePharmacistScript, -1
 
 CeladonMansionRoofHouse_MapScripts:
 	def_scene_scripts
@@ -15,10 +27,7 @@ CeladonMansionRoofHousePharmacistScript:
 	promptbutton
 	checktime NITE
 	iftrue .Night
-	writetext CeladonMansionRoofHousePharmacistNotNightText
-	waitbutton
-	closetext
-	end
+	writetextend CeladonMansionRoofHousePharmacistNotNightText
 
 .Night:
 	writetext CeladonMansionRoofHousePharmacistStoryText
@@ -113,15 +122,3 @@ CeladonMansionRoofHousePharmacistCurseText:
 	para "whittles down the"
 	line "victim's HP."
 	done
-
-CeladonMansionRoofHouse_MapEvents:
-	def_warp_events
-	warp_event  2,  7, CELADON_MANSION_ROOF, 3
-	warp_event  3,  7, CELADON_MANSION_ROOF, 3
-
-	def_coord_events
-
-	def_bg_events
-
-	def_object_events
-	object_event  3,  2, SPRITE_PHARMACIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 2, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CeladonMansionRoofHousePharmacistScript, -1

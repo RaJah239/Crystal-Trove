@@ -1,5 +1,26 @@
+GoldenrodBikeShop_MapEvents:
+	def_warp_events
+	warp_event  2,  7, GOLDENROD_CITY, 3
+	warp_event  3,  7, GOLDENROD_CITY, 3
+
+	def_coord_events
+
 	object_const_def
 	const GOLDENRODBIKESHOP_CLERK
+
+	def_bg_events
+	bg_event  1,  2, BGEVENT_READ, GoldenrodBikeShopBicycle
+	bg_event  0,  3, BGEVENT_READ, GoldenrodBikeShopBicycle
+	bg_event  1,  3, BGEVENT_READ, GoldenrodBikeShopBicycle
+	bg_event  0,  5, BGEVENT_READ, GoldenrodBikeShopBicycle
+	bg_event  1,  5, BGEVENT_READ, GoldenrodBikeShopBicycle
+	bg_event  0,  6, BGEVENT_READ, GoldenrodBikeShopBicycle
+	bg_event  1,  6, BGEVENT_READ, GoldenrodBikeShopBicycle
+	bg_event  6,  6, BGEVENT_READ, GoldenrodBikeShopBicycle
+	bg_event  7,  6, BGEVENT_READ, GoldenrodBikeShopBicycle
+
+	def_object_events
+	object_event  7,  2, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, GoldenrodBikeShopClerkScript, -1
 
 GoldenrodBikeShop_MapScripts:
 	def_scene_scripts
@@ -26,16 +47,10 @@ GoldenrodBikeShopClerkScript:
 	setevent EVENT_GOT_BICYCLE
 	setmapscene DAY_CARE, SCENE_DAYCARE_NOOP
 .GotBicycle:
-	writetext GoldenrodBikeShopClerkFirstRateBikesText
-	waitbutton
-	closetext
-	end
+	writetextend GoldenrodBikeShopClerkFirstRateBikesText
 
 .Refused:
-	writetext GoldenrodBikeShopClerkRefusedText
-	waitbutton
-	closetext
-	end
+	writetextend GoldenrodBikeShopClerkRefusedText
 
 GoldenrodBikeShopBicycle:
 	jumptext GoldenrodBikeShopBicycleText
@@ -99,24 +114,3 @@ GoldenrodBikeShopBicycleText:
 	text "It's a shiny new"
 	line "Bicycle!"
 	done
-
-GoldenrodBikeShop_MapEvents:
-	def_warp_events
-	warp_event  2,  7, GOLDENROD_CITY, 3
-	warp_event  3,  7, GOLDENROD_CITY, 3
-
-	def_coord_events
-
-	def_bg_events
-	bg_event  1,  2, BGEVENT_READ, GoldenrodBikeShopBicycle
-	bg_event  0,  3, BGEVENT_READ, GoldenrodBikeShopBicycle
-	bg_event  1,  3, BGEVENT_READ, GoldenrodBikeShopBicycle
-	bg_event  0,  5, BGEVENT_READ, GoldenrodBikeShopBicycle
-	bg_event  1,  5, BGEVENT_READ, GoldenrodBikeShopBicycle
-	bg_event  0,  6, BGEVENT_READ, GoldenrodBikeShopBicycle
-	bg_event  1,  6, BGEVENT_READ, GoldenrodBikeShopBicycle
-	bg_event  6,  6, BGEVENT_READ, GoldenrodBikeShopBicycle
-	bg_event  7,  6, BGEVENT_READ, GoldenrodBikeShopBicycle
-
-	def_object_events
-	object_event  7,  2, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, GoldenrodBikeShopClerkScript, -1

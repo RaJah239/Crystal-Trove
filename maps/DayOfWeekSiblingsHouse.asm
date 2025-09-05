@@ -1,5 +1,17 @@
+DayOfWeekSiblingsHouse_MapEvents:
+	def_warp_events
+	warp_event  2,  7, ROUTE_26, 3
+	warp_event  3,  7, ROUTE_26, 3
+
+	def_coord_events
+
+	def_bg_events
+
 	object_const_def
 	const DAYOFWEEKSIBLINGSHOUSE_POKEDEX
+
+	def_object_events
+	object_event  3,  3, SPRITE_POKEDEX, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, DayOfWeekSiblingsHousePokedexScript, -1
 
 DayOfWeekSiblingsHouse_MapScripts:
 	def_scene_scripts
@@ -67,15 +79,3 @@ DayOfWeekSiblingsHousePokedexText3:
 	para "Sunday, SUNNY"
 	line "ROUTE 37"
 	done
-
-DayOfWeekSiblingsHouse_MapEvents:
-	def_warp_events
-	warp_event  2,  7, ROUTE_26, 3
-	warp_event  3,  7, ROUTE_26, 3
-
-	def_coord_events
-
-	def_bg_events
-
-	def_object_events
-	object_event  3,  3, SPRITE_POKEDEX, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, DayOfWeekSiblingsHousePokedexScript, -1

@@ -1,6 +1,19 @@
+GoldenrodFlowerShop_MapEvents:
+	def_warp_events
+	warp_event  2,  7, GOLDENROD_CITY, 7
+	warp_event  3,  7, GOLDENROD_CITY, 7
+
+	def_coord_events
+
+	def_bg_events
+
 	object_const_def
 	const GOLDENRODFLOWERSHOP_TEACHER
 	const GOLDENRODFLOWERSHOP_FLORIA
+
+	def_object_events
+	object_event  2,  4, SPRITE_TEACHER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, FlowerShopTeacherScript, -1
+	object_event  5,  6, SPRITE_LASS, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, FlowerShopFloriaScript, EVENT_FLORIA_AT_FLOWER_SHOP
 
 GoldenrodFlowerShop_MapScripts:
 	def_scene_scripts
@@ -31,11 +44,7 @@ FlowerShopTeacherScript:
 
 .Lalala:
 	turnobject GOLDENRODFLOWERSHOP_TEACHER, LEFT
-	opentext
-	writetext GoldenrodFlowerShopTeacherLalalaHavePlentyOfWaterText
-	waitbutton
-	closetext
-	end
+	jumptext GoldenrodFlowerShopTeacherLalalaHavePlentyOfWaterText
 
 .GotSquirtbottle:
 	jumptextfaceplayer GoldenrodFlowerShopTeacherDontDoAnythingDangerousText
@@ -46,32 +55,36 @@ FlowerShopTeacherScript:
 .HaventMetFloria:
 	jumptextfaceplayer GoldenrodFlowerShopTeacherMySisterWentToSeeWigglyTreeRoute36Text
 
-FlowerShopFloriaScript:
-	faceplayer
-	opentext
-	checkevent EVENT_FOUGHT_SUDOWOODO
-	iftrue .FoughtSudowoodo
-	checkevent EVENT_GOT_SQUIRTBOTTLE
-	iftrue .GotSquirtbottle
-	writetext GoldenrodFlowerShopFloriaWonderIfSisWillLendWaterBottleText
-	waitbutton
-	closetext
-	setevent EVENT_TALKED_TO_FLORIA_AT_FLOWER_SHOP
-	setevent EVENT_FLORIA_AT_FLOWER_SHOP
-	clearevent EVENT_FLORIA_AT_SUDOWOODO
-	end
+GoldenrodFlowerShopTeacherHeresTheSquirtbottleText:
+	text "Oh, you're better"
+	line "than WHITNEY…"
 
-.GotSquirtbottle:
-	writetext GoldenrodFlowerShopFloriaYouBeatWhitneyText
-	waitbutton
-	closetext
-	end
+	para "You'll be OK,"
+	line "then. Here's the"
+	cont "SQUIRTBOTTLE!"
+	done
 
-.FoughtSudowoodo:
-	writetext GoldenrodFlowerShopFloriaItReallyWasAMonText
-	waitbutton
-	closetext
-	end
+GoldenrodFlowerShopTeacherLalalaHavePlentyOfWaterText:
+	text "Lalala lalalala."
+	line "Have plenty of"
+	cont "water, my lovely!"
+	done
+
+GoldenrodFlowerShopTeacherAskWantToBorrowWaterBottleText:
+	text "Do you want to"
+	line "borrow the water"
+
+	para "bottle too?"
+	line "I don't want you"
+
+	para "doing anything"
+	line "dangerous with it."
+	done
+
+GoldenrodFlowerShopTeacherDontDoAnythingDangerousText:
+	text "Don't do anything"
+	line "too dangerous!"
+	done
 
 GoldenrodFlowerShopTeacherMySisterWentToSeeWigglyTreeRoute36Text:
 	text "Have you seen that"
@@ -90,36 +103,23 @@ GoldenrodFlowerShopTeacherMySisterWentToSeeWigglyTreeRoute36Text:
 	line "it dangerous?"
 	done
 
-GoldenrodFlowerShopTeacherAskWantToBorrowWaterBottleText:
-	text "Do you want to"
-	line "borrow the water"
+FlowerShopFloriaScript:
+	faceplayer
+	opentext
+	checkevent EVENT_FOUGHT_SUDOWOODO
+	iftrue .FoughtSudowoodo
+	checkevent EVENT_GOT_SQUIRTBOTTLE
+	iftrue .GotSquirtbottle
+	setevent EVENT_TALKED_TO_FLORIA_AT_FLOWER_SHOP
+	setevent EVENT_FLORIA_AT_FLOWER_SHOP
+	clearevent EVENT_FLORIA_AT_SUDOWOODO
+	writetextend GoldenrodFlowerShopFloriaWonderIfSisWillLendWaterBottleText
 
-	para "bottle too?"
-	line "I don't want you"
+.GotSquirtbottle:
+	writetextend GoldenrodFlowerShopFloriaYouBeatWhitneyText
 
-	para "doing anything"
-	line "dangerous with it."
-	done
-
-GoldenrodFlowerShopTeacherHeresTheSquirtbottleText:
-	text "Oh, you're better"
-	line "than WHITNEY…"
-
-	para "You'll be OK,"
-	line "then. Here's the"
-	cont "SQUIRTBOTTLE!"
-	done
-
-GoldenrodFlowerShopTeacherDontDoAnythingDangerousText:
-	text "Don't do anything"
-	line "too dangerous!"
-	done
-
-GoldenrodFlowerShopTeacherLalalaHavePlentyOfWaterText:
-	text "Lalala lalalala."
-	line "Have plenty of"
-	cont "water, my lovely!"
-	done
+.FoughtSudowoodo:
+	writetextend GoldenrodFlowerShopFloriaItReallyWasAMonText
 
 GoldenrodFlowerShopFloriaWonderIfSisWillLendWaterBottleText:
 	text "When I told my sis"
@@ -144,16 +144,3 @@ GoldenrodFlowerShopFloriaItReallyWasAMonText:
 	text "So it really was a"
 	line "#MON!"
 	done
-
-GoldenrodFlowerShop_MapEvents:
-	def_warp_events
-	warp_event  2,  7, GOLDENROD_CITY, 7
-	warp_event  3,  7, GOLDENROD_CITY, 7
-
-	def_coord_events
-
-	def_bg_events
-
-	def_object_events
-	object_event  2,  4, SPRITE_TEACHER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, FlowerShopTeacherScript, -1
-	object_event  5,  6, SPRITE_LASS, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, FlowerShopFloriaScript, EVENT_FLORIA_AT_FLOWER_SHOP

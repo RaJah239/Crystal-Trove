@@ -1,12 +1,32 @@
+DarkCaveBlackthornEntrance_MapEvents:
+	def_warp_events
+	warp_event 23,  3, ROUTE_45, 1
+	warp_event  3, 25, DARK_CAVE_VIOLET_ENTRANCE, 2
+
+	def_coord_events
+
+	def_bg_events
+
 	object_const_def
 	const DARKCAVEBLACKTHORNENTRANCE_PHARMACIST
 	const DARKCAVEBLACKTHORNENTRANCE_POKE_BALL1
 	const DARKCAVEBLACKTHORNENTRANCE_POKE_BALL2
 
+	def_object_events
+	object_event  7,  3, SPRITE_PHARMACIST, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, DarkCaveBlackthornEntrancePharmacistScript, -1
+	object_event 21, 24, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, DarkCaveBlackthornEntranceRevive, EVENT_DARK_CAVE_BLACKTHORN_ENTRANCE_REVIVE
+	object_event  7, 22, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, DarkCaveBlackthornEntranceTMSnore, EVENT_DARK_CAVE_BLACKTHORN_ENTRANCE_TM_SNORE
+
 DarkCaveBlackthornEntrance_MapScripts:
 	def_scene_scripts
 
 	def_callbacks
+
+DarkCaveBlackthornEntranceRevive:
+	itemball REVIVE
+
+DarkCaveBlackthornEntranceTMSnore:
+	itemball TM_SNORE
 
 DarkCaveBlackthornEntrancePharmacistScript:
 	faceplayer
@@ -24,12 +44,6 @@ DarkCaveBlackthornEntrancePharmacistScript:
 .PackFull:
 	closetext
 	end
-
-DarkCaveBlackthornEntranceRevive:
-	itemball REVIVE
-
-DarkCaveBlackthornEntranceTMSnore:
-	itemball TM_SNORE
 
 DarkCaveBlackthornEntrancePharmacistText1:
 	text "Whoa! You startled"
@@ -58,17 +72,3 @@ DarkCaveBlackthornEntrancePharmacistText2:
 	line "the power of dark-"
 	cont "type moves."
 	done
-
-DarkCaveBlackthornEntrance_MapEvents:
-	def_warp_events
-	warp_event 23,  3, ROUTE_45, 1
-	warp_event  3, 25, DARK_CAVE_VIOLET_ENTRANCE, 2
-
-	def_coord_events
-
-	def_bg_events
-
-	def_object_events
-	object_event  7,  3, SPRITE_PHARMACIST, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, DarkCaveBlackthornEntrancePharmacistScript, -1
-	object_event 21, 24, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, DarkCaveBlackthornEntranceRevive, EVENT_DARK_CAVE_BLACKTHORN_ENTRANCE_REVIVE
-	object_event  7, 22, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, DarkCaveBlackthornEntranceTMSnore, EVENT_DARK_CAVE_BLACKTHORN_ENTRANCE_TM_SNORE

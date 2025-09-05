@@ -1,7 +1,22 @@
+ BattleTowerMart_MapEvents:
+    def_warp_events
+    warp_event  4,  9, BATTLE_TOWER_1F, 4
+    warp_event 12,  9, BATTLE_TOWER_1F, 5
+    warp_event  3,  9, BATTLE_TOWER_1F, 4
+    warp_event 11,  9, BATTLE_TOWER_1F, 5
+    def_coord_events
+
+    def_bg_events
+
     object_const_def
     const BATTLETOWERMART_CLERK_ALL_TMS
     const BATTLETOWERMART_PORYGON_PC
     const BATTLETOWERMART_TUTOR
+
+    def_object_events
+    object_event 12,  1, SPRITE_GENTLEMAN, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, BattleTowerMartTMCoinTraderScript, -1
+    object_event 10,  1, SPRITE_PORYGON_OW, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, BattleTowerMartPorygonPCScript, -1
+    object_event 13,  1, SPRITE_LINK_RECEPTIONIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_TEAL, OBJECTTYPE_SCRIPT, 0, BattleTowerMartTutorReceptionistScript, -1
 
 BattleTowerMart_MapScripts:
     def_scene_scripts
@@ -335,16 +350,10 @@ BattleTowerMartTMCoinTraderScript:
     sjump .ConcludeTransaction
 
 .Refused:
-    writetext WeAreOpenAlways
-    waitbutton
-    closetext
-    end
+    writetextend WeAreOpenAlways
 
 .NotEnoughCoins:
-    writetext NotEnoughCoinsText
-    waitbutton
-    closetext
-    end
+    writetextend NotEnoughCoinsText
 
 .ConcludeTransaction:
     special DisplayCoinCaseBalance
@@ -352,17 +361,10 @@ BattleTowerMartTMCoinTraderScript:
     waitsfx
     playsound SFX_TRANSACTION
     special DisplayCoinCaseBalance
-    writetext ReturnAnytimeText
-    waitbutton
-    closetext
-    end 
+    writetextend ReturnAnytimeText
 
 CancelBuyingTMsScript:
-    opentext
-    writetext ComeAgainAgainText
-    waitbutton
-    closetext
-    end
+    writetextend ComeAgainAgainText
 
 ComeAgainAgainText:
     text "Please come again!"
@@ -407,7 +409,7 @@ YoureACollectorText:
 BattleTowerMartPorygonPCScript:
     jumpstd PorygonPCScript
 
-BattleTowerMartTutorScientistScript:
+BattleTowerMartTutorReceptionistScript:
     faceplayer
     opentext
     special CrystalCountInBag
@@ -500,8 +502,7 @@ BattleTowerMartTutorScientistScript:
     jr nz, .display_needed_amount
 
     ld de, .ExitString
-    call PlaceString
-    jr .done
+    jmp PlaceString
 
 .display_needed_amount
     ld de, .CrystalText
@@ -509,9 +510,7 @@ BattleTowerMartTutorScientistScript:
     hlcoord 6, 1
     ld de, wMenuSelectionQuantity
     lb bc, PRINTNUM_LEADINGZEROS | 1, 2
-    call PrintNum
-.done
-    ret
+    jmp PrintNum
 
 .CrystalText:
     db "Cost×@"
@@ -621,8 +620,7 @@ BattleTowerMartTutorScientistScript:
     ld a, -1
     ld [wCurItemQuantity], a
     ld hl, wNumItems
-    call TossItem
-    ret
+    jmp TossItem
 
 BattleTowerMartTutorWantMeToTeachText:
     text "Welcome! I'm am"
@@ -674,19 +672,3 @@ BattleTowerMartTutorExcellentText:
 BattleTowerMartTutorMoveText:
     text_start
     done
-
-BattleTowerMart_MapEvents:
-
-    def_warp_events
-    warp_event  4,  9, BATTLE_TOWER_1F, 4
-    warp_event 12,  9, BATTLE_TOWER_1F, 5
-    warp_event  3,  9, BATTLE_TOWER_1F, 4
-    warp_event 11,  9, BATTLE_TOWER_1F, 5
-    def_coord_events
-
-    def_bg_events
-
-    def_object_events
-    object_event 12,  1, SPRITE_GENTLEMAN, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, BattleTowerMartTMCoinTraderScript, -1
-    object_event 10,  1, SPRITE_PORYGON_OW, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, BattleTowerMartPorygonPCScript, -1
-    object_event 13,  1, SPRITE_LINK_RECEPTIONIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_TEAL, OBJECTTYPE_SCRIPT, 0, BattleTowerMartTutorScientistScript, -1

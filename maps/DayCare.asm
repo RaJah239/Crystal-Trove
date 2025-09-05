@@ -1,7 +1,27 @@
+DayCare_MapEvents:
+	def_warp_events
+	warp_event  0,  5, ROUTE_34, 3
+	warp_event  0,  6, ROUTE_34, 4
+	warp_event  2,  7, ROUTE_34, 5
+	warp_event  3,  7, ROUTE_34, 5
+
+	def_coord_events
+	coord_event  2,  7, SCENE_DAYCARE_GRANDMA_PREVENTS_ENTRY, DayCareGrandsonBlocksPreventsAcess
+	coord_event  3,  7, SCENE_DAYCARE_GRANDMA_PREVENTS_ENTRY, DayCareGrandsonBlocksPreventsAcess
+
+	def_bg_events
+	bg_event  0,  1, BGEVENT_READ, DayCareBookshelf
+	bg_event  1,  1, BGEVENT_READ, DayCareBookshelf
+
 	object_const_def
 	const DAYCARE_GRAMPS
 	const DAYCARE_GRANNY
 	const DAYCARE_GRANDDAUGHTER
+
+	def_object_events
+	object_event  2,  4, SPRITE_GRAMPS, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, DayCareManScript_Inside, EVENT_DAY_CARE_MAN_IN_DAY_CARE
+	object_event  5,  4, SPRITE_GRANNY, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, DayCareLadyScript, -1
+	object_event  6,  5, SPRITE_TWIN, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, DayCareGrandDaughterScript, -1
 
 DayCare_MapScripts:
 	def_scene_scripts
@@ -12,8 +32,7 @@ DayCare_MapScripts:
 	callback MAPCALLBACK_OBJECTS, DayCareEggCheckCallback
 
 DayCareNoop1Scene:
-	end
-
+	; fallthrough
 DayCareNoop2Scene:
 	end
 
@@ -28,6 +47,9 @@ DayCareEggCheckCallback:
 	setevent EVENT_DAY_CARE_MAN_IN_DAY_CARE
 	clearevent EVENT_DAY_CARE_MAN_ON_ROUTE_34
 	endcallback
+
+DayCareBookshelf:
+	jumpstd DifficultBookshelfScript
 
 DayCareManScript_Inside:
 	faceplayer
@@ -44,18 +66,11 @@ DayCareManScript_Inside:
 	writetext DayCareText_GotOddEgg
 	playsound SFX_KEY_ITEM
 	waitsfx
-	writetext DayCareText_DescribeOddEgg
-	waitbutton
-	closetext
 	setevent EVENT_GOT_ODD_EGG
-	end
+	writetextend DayCareText_DescribeOddEgg
 
 .PartyFull:
-	opentext
-	writetext DayCareText_PartyFull
-	waitbutton
-	closetext
-	end
+	jumptext DayCareText_PartyFull
 
 .AlreadyHaveOddEgg:
 	special DayCareMan
@@ -63,28 +78,23 @@ DayCareManScript_Inside:
 	closetext
 	end
 
-DayCareLadyScript:
-	faceplayer
-	opentext
-	checkflag ENGINE_DAY_CARE_MAN_HAS_EGG
-	iftrue .HusbandWasLookingForYou
-	special DayCareLady
-	waitbutton
-	closetext
-	end
+DayCareText_PartyFull:
+	text "You've no room for"
+	line "this."
+	done
 
-.HusbandWasLookingForYou:
-	writetext Text_GrampsLookingForYou
-	waitbutton
-	closetext
-	end
+DayCareText_DescribeOddEgg:
+	text "I found that when"
+	line "I was caring for"
 
-DayCareBookshelf:
-	jumpstd DifficultBookshelfScript
+	para "someone's #MON"
+	line "before."
 
-Text_GrampsLookingForYou:
-	text "Gramps was looking"
-	line "for you."
+	para "But the trainer"
+	line "didn't want the"
+
+	para "EGG, so I'd kept"
+	line "it around."
 	done
 
 DayCareManText_GiveOddEgg:
@@ -123,23 +133,22 @@ DayCareText_GotOddEgg:
 	line "ODD EGG!"
 	done
 
-DayCareText_DescribeOddEgg:
-	text "I found that when"
-	line "I was caring for"
+DayCareLadyScript:
+	faceplayer
+	opentext
+	checkflag ENGINE_DAY_CARE_MAN_HAS_EGG
+	iftrue .HusbandWasLookingForYou
+	special DayCareLady
+	waitbutton
+	closetext
+	end
 
-	para "someone's #MON"
-	line "before."
+.HusbandWasLookingForYou:
+	writetextend Text_GrampsLookingForYou
 
-	para "But the trainer"
-	line "didn't want the"
-
-	para "EGG, so I'd kept"
-	line "it around."
-	done
-
-DayCareText_PartyFull:
-	text "You've no room for"
-	line "this."
+Text_GrampsLookingForYou:
+	text "Gramps was looking"
+	line "for you."
 	done
 
 DayCareGrandsonBlocksPreventsAcess:
@@ -212,34 +221,22 @@ DayCareGrandDaughterScript:
 	end
 
 .DontHaveAnEggThatNeedsAdopting:
-	writetext DayCareDaughterHappyYourEggsHaveAGreatHomeText
-	waitbutton
-	closetext
-	end
+	writetextend DayCareDaughterHappyYourEggsHaveAGreatHomeText
 
 .ThisIsNotAnEgg:
-	writetext DayCareDaughterThisIsNotAnEggText
-	waitbutton
-	closetext
-	end
+	writetextend DayCareDaughterThisIsNotAnEggText
 
 .YouDontHaveSpace:
 	setevent EVENT_DAY_CARE_GRANDDAUGHTER_HAS_A_TINYMUSHROOM_FOR_PLAYER
-	writetext DayCareDaughterYouDontHaveSpaceText
-	waitbutton
-	closetext
-	end
+	writetextend DayCareDaughterYouDontHaveSpaceText
 
 .DayCareGrandDaughterGiveATinyMushroom:
 	writetext DayCareDaughterHaveYouMadeSpaceText
 	promptbutton
 	verbosegiveitem TINYMUSHROOM
 	iffalse .YouDontHaveSpace
-	writetext DayCareDaughterImAlwaysHereToHelpText
 	clearevent EVENT_DAY_CARE_GRANDDAUGHTER_HAS_A_TINYMUSHROOM_FOR_PLAYER
-	waitbutton
-	closetext
-	end
+	writetextend DayCareDaughterImAlwaysHereToHelpText
 
 DayCareDaughterIntroText:
 	text "Salutations!"
@@ -323,23 +320,3 @@ DayCareDaughterHaveYouMadeSpaceText:
 	text "Are you ready for"
 	line "a Tiny Mushroom?"
 	done
-
-DayCare_MapEvents:
-	def_warp_events
-	warp_event  0,  5, ROUTE_34, 3
-	warp_event  0,  6, ROUTE_34, 4
-	warp_event  2,  7, ROUTE_34, 5
-	warp_event  3,  7, ROUTE_34, 5
-
-	def_coord_events
-	coord_event  2,  7, SCENE_DAYCARE_GRANDMA_PREVENTS_ENTRY, DayCareGrandsonBlocksPreventsAcess
-	coord_event  3,  7, SCENE_DAYCARE_GRANDMA_PREVENTS_ENTRY, DayCareGrandsonBlocksPreventsAcess
-
-	def_bg_events
-	bg_event  0,  1, BGEVENT_READ, DayCareBookshelf
-	bg_event  1,  1, BGEVENT_READ, DayCareBookshelf
-
-	def_object_events
-	object_event  2,  4, SPRITE_GRAMPS, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, DayCareManScript_Inside, EVENT_DAY_CARE_MAN_IN_DAY_CARE
-	object_event  5,  4, SPRITE_GRANNY, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, DayCareLadyScript, -1
-	object_event  6,  5, SPRITE_TWIN, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, DayCareGrandDaughterScript, -1

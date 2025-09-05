@@ -1,5 +1,17 @@
+CianwoodPhotoStudio_MapEvents:
+	def_warp_events
+	warp_event  2,  7, CIANWOOD_CITY, 5
+	warp_event  3,  7, CIANWOOD_CITY, 5
+
+	def_coord_events
+
+	def_bg_events
+
 	object_const_def
 	const CIANWOODPHOTOSTUDIO_FISHING_GURU
+
+	def_object_events
+	object_event  2,  3, SPRITE_FISHING_GURU, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CianwoodPhotoStudioFishingGuruScript, -1
 
 CianwoodPhotoStudio_MapScripts:
 	def_scene_scripts
@@ -38,34 +50,19 @@ CianwoodPhotoStudioFishingGuruScript:
 	opentext
 	writetext PhotoStudioPrestoText
 	special PlayCurMonCry
-	writetext PhotoStudioComeAgainText
-	waitbutton
-	closetext
-	end
+	writetextend PhotoStudioComeAgainText
 
 .Refused:
-	writetext CianwoodPhotoStudioFishingGuruText_No
-	waitbutton
-	closetext
-	end
+	writetextend CianwoodPhotoStudioFishingGuruText_No
 
 .AlreadyDone
-	writetext PhotoStudioAlreadyDoneText
-	waitbutton
-	closetext
-	end
+	writetextend PhotoStudioAlreadyDoneText
 
 .NoPicture:
-	writetext PhotoStudioNoPictureText
-	waitbutton
-	closetext
-	end
+	writetextend PhotoStudioNoPictureText
 
 .EggPicture:
-	writetext PhotoStudioEggPictureText
-    waitbutton
-	closetext
-	end
+	writetextend PhotoStudioEggPictureText
 
 CianwoodPhotoStudioFishingGuruText_Question:
 	text "You have magnifi-"
@@ -129,15 +126,3 @@ PhotoStudioEggPictureText:
 PhotoStudioComeAgainText:
 	text "Come again, OK?"
 	done
-
-CianwoodPhotoStudio_MapEvents:
-	def_warp_events
-	warp_event  2,  7, CIANWOOD_CITY, 5
-	warp_event  3,  7, CIANWOOD_CITY, 5
-
-	def_coord_events
-
-	def_bg_events
-
-	def_object_events
-	object_event  2,  3, SPRITE_FISHING_GURU, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CianwoodPhotoStudioFishingGuruScript, -1

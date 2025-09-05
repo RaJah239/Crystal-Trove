@@ -298,9 +298,7 @@ Script_TimeCapsuleClosed:
 	end
 
 LinkReceptionistScript_TimeCapsule:
-	checkevent EVENT_MET_BILL
-	iftrue Script_TimeCapsuleClosed
-	checkflag ENGINE_TIME_CAPSULE
+	checkevent EVENT_BEAT_MORTY
 	iftrue Script_TimeCapsuleClosed
 	special SetBitsForTimeCapsuleRequest
 	faceplayer

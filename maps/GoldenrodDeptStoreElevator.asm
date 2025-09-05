@@ -1,3 +1,15 @@
+GoldenrodDeptStoreElevator_MapEvents:
+	def_warp_events
+	warp_event  1,  3, GOLDENROD_DEPT_STORE_1F, -1
+	warp_event  2,  3, GOLDENROD_DEPT_STORE_1F, -1
+
+	def_coord_events
+
+	def_bg_events
+	bg_event  3,  0, BGEVENT_READ, GoldenrodDeptStoreElevatorScript
+
+	def_object_events
+
 GoldenrodDeptStoreElevator_MapScripts:
 	def_scene_scripts
 
@@ -51,15 +63,3 @@ GoldenrodDeptStoreElevatorData:
 	elevfloor FLOOR_5F,  3, GOLDENROD_DEPT_STORE_5F
 	elevfloor FLOOR_6F,  2, GOLDENROD_DEPT_STORE_6F
 	db -1 ; end
-
-GoldenrodDeptStoreElevator_MapEvents:
-	def_warp_events
-	warp_event  1,  3, GOLDENROD_DEPT_STORE_1F, -1
-	warp_event  2,  3, GOLDENROD_DEPT_STORE_1F, -1
-
-	def_coord_events
-
-	def_bg_events
-	bg_event  3,  0, BGEVENT_READ, GoldenrodDeptStoreElevatorScript
-
-	def_object_events

@@ -1,7 +1,24 @@
+BillsFamilysHouse_MapEvents:
+	def_warp_events
+	warp_event  2,  7, GOLDENROD_CITY, 5
+	warp_event  3,  7, GOLDENROD_CITY, 5
+
+	def_coord_events
+
+	def_bg_events
+	bg_event  0,  1, BGEVENT_READ, BillsHouseBookshelf2
+	bg_event  1,  1, BGEVENT_READ, BillsHouseBookshelf1
+	bg_event  7,  1, BGEVENT_READ, BillsHouseRadio
+
 	object_const_def
 	const BILLSFAMILYSHOUSE_BILL
 	const BILLSFAMILYSHOUSE_POKEFAN_F
 	const BILLSFAMILYSHOUSE_TWIN
+
+	def_object_events
+	object_event  2,  3, SPRITE_BILL, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BillScript, -1
+	object_event  5,  3, SPRITE_POKEFAN_F, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BillsMomScript, -1
+	object_event  5,  4, SPRITE_TWIN, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, BillsSisterScript, -1
 
 BillsFamilysHouse_MapScripts:
 	def_scene_scripts
@@ -26,61 +43,16 @@ BillScript:
 	waitsfx
 	givepoke EEVEE, 20
 	setevent EVENT_GOT_EEVEE
-	writetext BillEeveeMayEvolveText
-	waitbutton
-	closetext
-	end
+	writetextend BillEeveeMayEvolveText
 
 .NoRoom:
-	writetext BillPartyFullText
-	waitbutton
-	closetext
-	end
+	writetextend BillPartyFullText
 
 .Refused:
-	writetext BillNoEeveeText
-	waitbutton
-	closetext
-	end
+	writetextend BillNoEeveeText
 
 .GotEevee:
-	writetext BillPopWontWorkText
-	waitbutton
-	closetext
-	end
-
-BillsMomScript:
-	faceplayer
-	opentext
-	checkevent EVENT_MET_BILL
-	iffalse .HaventMetBill
-	writetext BillsMomText_BeforeEcruteak
-	waitbutton
-	closetext
-	end
-
-.HaventMetBill:
-	writetext BillsMomText_AfterEcruteak
-	waitbutton
-	closetext
-	end
-
-BillsSisterScript:
-	faceplayer
-	opentext
-	writetext BillsSisterStorageSystemText
-	waitbutton
-	closetext
-	end
-
-BillsHouseBookshelf1:
-	jumpstd PictureBookshelfScript
-
-BillsHouseBookshelf2:
-	jumpstd MagazineBookshelfScript
-
-BillsHouseRadio:
-	jumpstd Radio2Script
+	writetextend BillPopWontWorkText
 
 BillTakeThisEeveeText:
 	text "BILL: Hi, <PLAYER>!"
@@ -151,25 +123,14 @@ BillPopWontWorkText:
 	line "a real headache…"
 	done
 
-BillsMomText_BeforeEcruteak:
+BillsMomScript:
+	jumptextfaceplayer BillsMomText
+
+BillsMomText:
 	text "Oh, you collect"
 	line "#MON? My son"
 	cont "BILL is an expert."
 
-	para "He just got called"
-	line "to the #MON"
-
-	para "CENTER in ECRUTEAK"
-	line "CITY."
-
-	para "My husband went"
-	line "off to the GAME"
-
-	para "CORNER without"
-	line "being called…"
-	done
-
-BillsMomText_AfterEcruteak:
 	text "My husband was"
 	line "once known as a"
 
@@ -180,6 +141,9 @@ BillsMomText_AfterEcruteak:
 	line "father."
 	done
 
+BillsSisterScript:
+	jumptextfaceplayer BillsSisterStorageSystemText
+
 BillsSisterStorageSystemText:
 	text "My big brother,"
 	line "BILL, made the PC"
@@ -188,19 +152,11 @@ BillsSisterStorageSystemText:
 	line "system."
 	done
 
-BillsFamilysHouse_MapEvents:
-	def_warp_events
-	warp_event  2,  7, GOLDENROD_CITY, 5
-	warp_event  3,  7, GOLDENROD_CITY, 5
+BillsHouseBookshelf1:
+	jumpstd PictureBookshelfScript
 
-	def_coord_events
+BillsHouseBookshelf2:
+	jumpstd MagazineBookshelfScript
 
-	def_bg_events
-	bg_event  0,  1, BGEVENT_READ, BillsHouseBookshelf2
-	bg_event  1,  1, BGEVENT_READ, BillsHouseBookshelf1
-	bg_event  7,  1, BGEVENT_READ, BillsHouseRadio
-
-	def_object_events
-	object_event  2,  3, SPRITE_BILL, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BillScript, EVENT_MET_BILL
-	object_event  5,  3, SPRITE_POKEFAN_F, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BillsMomScript, -1
-	object_event  5,  4, SPRITE_TWIN, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, BillsSisterScript, -1
+BillsHouseRadio:
+	jumpstd Radio2Script

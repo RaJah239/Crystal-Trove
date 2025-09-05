@@ -1,9 +1,30 @@
+BurnedTower1F_MapEvents:
+	def_warp_events
+	warp_event  9, 15, ECRUTEAK_CITY, 13
+	warp_event 10, 15, ECRUTEAK_CITY, 13
+	warp_event 10,  9, BURNED_TOWER_B1F, 1
+	warp_event  7, 15, BURNED_TOWER_B1F, 2
+
+	def_coord_events
+	coord_event 11,  9, SCENE_BURNEDTOWER1F_RIVAL_BATTLE, BurnedTowerRivalBattleScript
+
+	def_bg_events
+	bg_event  8,  7, BGEVENT_ITEM, BurnedTower1FHiddenEther
+	bg_event 13, 11, BGEVENT_ITEM, BurnedTower1FHiddenUltraBall
+
 	object_const_def
 	const BURNEDTOWER1F_ROCK
 	const BURNEDTOWER1F_EUSINE
 	const BURNEDTOWER1F_RIVAL
 	const BURNEDTOWER1F_MORTY
 	const BURNEDTOWER1F_POKE_BALL
+
+	def_object_events
+	object_event 15,  4, SPRITE_ROCK, SPRITEMOVEDATA_SMASHABLE_ROCK, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BurnedTower1FRock, -1
+	object_event 12, 12, SPRITE_EUSINE, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, BurnedTower1FEusineScript, EVENT_BURNED_TOWER_1F_EUSINE
+	object_event  8,  9, SPRITE_RIVAL, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 3, ObjectEvent, EVENT_RIVAL_BURNED_TOWER
+	object_event 14, 14, SPRITE_MORTY, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, BurnedTower1FMortyScript, EVENT_BURNED_TOWER_MORTY
+	object_event 14,  2, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, BurnedTower1FHPUp, EVENT_BURNED_TOWER_1F_HP_UP
 
 BurnedTower1F_MapScripts:
 	def_scene_scripts
@@ -16,11 +37,9 @@ BurnedTower1F_MapScripts:
 
 BurnedTower1FMeetEusineScene:
 	sdefer BurnedTower1FMeetEusineScript
-	end
-
+	; fallthrough
 BurnedTower1FNoop1Scene:
-	end
-
+	; fallthrough
 BurnedTower1FNoop2Scene:
 	end
 
@@ -46,6 +65,29 @@ BurnedTower1FMeetEusineScript:
 	moveobject BURNEDTOWER1F_EUSINE, 9, 14
 	setscene SCENE_BURNEDTOWER1F_RIVAL_BATTLE
 	end
+
+BurnedTower1FEusineIntroText:
+	text "EUSINE: My name's"
+	line "EUSINE."
+
+	para "I'm on the trail"
+	line "of a #MON named"
+	cont "SUICUNE."
+
+	para "And you are…?"
+
+	para "<PLAYER>? Glad to"
+	line "meet you!"
+
+	para "I heard rumors"
+	line "that SUICUNE is in"
+
+	para "this BURNED TOWER,"
+	line "so I came to look."
+
+	para "But where exactly"
+	line "could it be?"
+	done
 
 BurnedTowerRivalBattleScript:
 	showemote EMOTE_SHOCK, BURNEDTOWER1F_RIVAL, 15
@@ -120,44 +162,6 @@ BurnedTowerRivalBattleScript:
 	warpcheck
 	end
 
-BurnedTower1FEusineScript:
-	jumptextfaceplayer BurnedTower1FEusineText
-
-BurnedTower1FMortyScript:
-	jumptextfaceplayer BurnedTower1FMortyText
-
-BurnedTower1FRock:
-	jumpstd SmashRockScript
-
-BurnedTower1FHiddenEther:
-	hiddenitem ETHER, EVENT_BURNED_TOWER_1F_HIDDEN_ETHER
-
-BurnedTower1FHiddenUltraBall:
-	hiddenitem ULTRA_BALL, EVENT_BURNED_TOWER_1F_HIDDEN_ULTRA_BALL
-
-BurnedTower1FHPUp:
-	itemball HP_UP
-
-BurnedTowerMovement_PlayerWalksToRival:
-	step LEFT
-	step_end
-
-BurnedTowerMovement_RivalWalksToPlayer:
-	step RIGHT
-	step_end
-
-BurnedTower1FMovement_PlayerStartsToFall:
-	skyfall_top
-	step_end
-
-BurnedTower1FEusineMovement:
-	step DOWN
-	step LEFT
-	step LEFT
-	step LEFT
-	step DOWN
-	step_end
-
 BurnedTowerRival_BeforeText:
 	text "<……> <……> <……>"
 
@@ -224,28 +228,40 @@ BurnedTowerRival_AfterText2:
 	para "Serves you right!"
 	done
 
-BurnedTower1FEusineIntroText:
-	text "EUSINE: My name's"
-	line "EUSINE."
+BurnedTowerMovement_PlayerWalksToRival:
+	step LEFT
+	step_end
 
-	para "I'm on the trail"
-	line "of a #MON named"
-	cont "SUICUNE."
+BurnedTowerMovement_RivalWalksToPlayer:
+	step RIGHT
+	step_end
 
-	para "And you are…?"
+BurnedTower1FMovement_PlayerStartsToFall:
+	skyfall_top
+	step_end
 
-	para "<PLAYER>? Glad to"
-	line "meet you!"
+BurnedTower1FEusineMovement:
+	step DOWN
+	step LEFT
+	step LEFT
+	step LEFT
+	step DOWN
+	step_end
 
-	para "I heard rumors"
-	line "that SUICUNE is in"
+BurnedTower1FHiddenEther:
+	hiddenitem ETHER, EVENT_BURNED_TOWER_1F_HIDDEN_ETHER
 
-	para "this BURNED TOWER,"
-	line "so I came to look."
+BurnedTower1FHiddenUltraBall:
+	hiddenitem ULTRA_BALL, EVENT_BURNED_TOWER_1F_HIDDEN_ULTRA_BALL
 
-	para "But where exactly"
-	line "could it be?"
-	done
+BurnedTower1FHPUp:
+	itemball HP_UP
+
+BurnedTower1FRock:
+	jumpstd SmashRockScript
+
+BurnedTower1FEusineScript:
+	jumptextfaceplayer BurnedTower1FEusineText
 
 BurnedTower1FEusineText:
 	text "EUSINE: I heard"
@@ -257,6 +273,9 @@ BurnedTower1FEusineText:
 	para "But where exactly"
 	line "could it be?"
 	done
+
+BurnedTower1FMortyScript:
+	jumptextfaceplayer BurnedTower1FMortyText
 
 BurnedTower1FMortyText:
 	text "MORTY: ECRUTEAK's"
@@ -275,34 +294,3 @@ BurnedTower1FMortyText:
 	para "investigate the"
 	line "TOWER with him."
 	done
-
-BurnedTower1F_MapEvents:
-	def_warp_events
-	warp_event  9, 15, ECRUTEAK_CITY, 13
-	warp_event 10, 15, ECRUTEAK_CITY, 13
-	warp_event 10,  9, BURNED_TOWER_B1F, 1
-	warp_event  5,  5, BURNED_TOWER_B1F, 1 ; inaccessible, left over from G/S
-	warp_event  5,  6, BURNED_TOWER_B1F, 1 ; inaccessible, left over from G/S
-	warp_event  4,  6, BURNED_TOWER_B1F, 1 ; inaccessible, left over from G/S
-	warp_event 15,  4, BURNED_TOWER_B1F, 2 ; inaccessible, left over from G/S
-	warp_event 15,  5, BURNED_TOWER_B1F, 2 ; inaccessible, left over from G/S
-	warp_event 10,  7, BURNED_TOWER_B1F, 3 ; inaccessible, left over from G/S
-	warp_event  5, 14, BURNED_TOWER_B1F, 4 ; inaccessible, left over from G/S
-	warp_event  4, 14, BURNED_TOWER_B1F, 4 ; inaccessible, left over from G/S
-	warp_event 14, 14, BURNED_TOWER_B1F, 5 ; inaccessible, left over from G/S
-	warp_event 15, 14, BURNED_TOWER_B1F, 5 ; inaccessible, left over from G/S
-	warp_event  7, 15, BURNED_TOWER_B1F, 6 ; inaccessible, left over from G/S
-
-	def_coord_events
-	coord_event 11,  9, SCENE_BURNEDTOWER1F_RIVAL_BATTLE, BurnedTowerRivalBattleScript
-
-	def_bg_events
-	bg_event  8,  7, BGEVENT_ITEM, BurnedTower1FHiddenEther
-	bg_event 13, 11, BGEVENT_ITEM, BurnedTower1FHiddenUltraBall
-
-	def_object_events
-	object_event 15,  4, SPRITE_ROCK, SPRITEMOVEDATA_SMASHABLE_ROCK, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BurnedTower1FRock, -1
-	object_event 12, 12, SPRITE_EUSINE, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, BurnedTower1FEusineScript, EVENT_BURNED_TOWER_1F_EUSINE
-	object_event  8,  9, SPRITE_RIVAL, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 3, ObjectEvent, EVENT_RIVAL_BURNED_TOWER
-	object_event 14, 14, SPRITE_MORTY, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, BurnedTower1FMortyScript, EVENT_BURNED_TOWER_MORTY
-	object_event 14,  2, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, BurnedTower1FHPUp, EVENT_BURNED_TOWER_1F_HP_UP
