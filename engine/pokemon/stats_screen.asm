@@ -174,8 +174,7 @@ endc
 
 .quit
 	ld h, 7
-	call StatsScreen_SetJumptableIndex
-	ret
+	jr StatsScreen_SetJumptableIndex
 
 if DEF(_DEBUG)
 .hatch
@@ -696,7 +695,7 @@ LoadPinkPage:
 	db "To@"
 
 .PkrsStr:
-	db "#RUS@"
+	db "#rus@"
 
 LoadGreenPage:
 	ld de, .Item
@@ -1340,8 +1339,6 @@ StatsScreen_PlaceFrontpic:
 .unownegg
 	xor a
 	ld [wBoxAlignment], a
-	; fallthrough
-
 .get_animation
 	ld a, [wCurPartySpecies]
 	call IsAPokemon
