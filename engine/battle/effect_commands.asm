@@ -1539,7 +1539,9 @@ BattleCommand_CheckHit:
 
 	call BattleRandom
 	cp b
-	ret nc
+	jr nc, .Miss
+	ret
+
 .Miss:
 ; Keep the damage value intact if we're using (Hi) Jump Kick.
 	ld a, BATTLE_VARS_MOVE_EFFECT
