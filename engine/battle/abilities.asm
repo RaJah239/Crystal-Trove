@@ -29,7 +29,6 @@ TechnicianPokemon:
     db PERSIAN
     db PORYGON
     db PORYGON2
-    db BULBASAUR
     db IVYSAUR
     db VENUSAUR
     db MARILL

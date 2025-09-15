@@ -1,6 +1,6 @@
 BadEgg:
 ; Failsafe if there is a checksum error
-	db BULBASAUR
+	db MEW
 	db NO_ITEM
 	db TACKLE, NO_MOVE, NO_MOVE, NO_MOVE
 	dw 0 ; OT ID

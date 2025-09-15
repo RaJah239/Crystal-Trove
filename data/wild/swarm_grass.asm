@@ -6,29 +6,29 @@ SwarmGrassWildMons:
 	map_id ROUTE_36
 	db 4 percent, 4 percent, 4 percent ; encounter rates: morn/day/nite
 	; morn
-	db 5, BULBASAUR
-	db 5, BULBASAUR
-	db 5, BULBASAUR
-	db 5, BULBASAUR
-	db 5, BULBASAUR
-	db 5, BULBASAUR
-	db 5, BULBASAUR
+	db 5, CHARMANDER
+	db 5, CHARMANDER
+	db 5, CHARMANDER
+	db 5, CHARMANDER
+	db 5, CHARMANDER
+	db 5, CHARMANDER
+	db 5, CHARMANDER
 	; day
-	db 5, BULBASAUR
-	db 5, BULBASAUR
-	db 5, BULBASAUR
-	db 5, BULBASAUR
-	db 5, BULBASAUR
-	db 5, BULBASAUR
-	db 5, BULBASAUR
+	db 5, CHARMANDER
+	db 5, CHARMANDER
+	db 5, CHARMANDER
+	db 5, CHARMANDER
+	db 5, CHARMANDER
+	db 5, CHARMANDER
+	db 5, CHARMANDER
 	; nite
-	db 5, BULBASAUR
-	db 5, BULBASAUR
-	db 5, BULBASAUR
-	db 5, BULBASAUR
-	db 5, BULBASAUR
-	db 5, BULBASAUR
-	db 5, BULBASAUR
+	db 5, CHARMANDER
+	db 5, CHARMANDER
+	db 5, CHARMANDER
+	db 5, CHARMANDER
+	db 5, CHARMANDER
+	db 5, CHARMANDER
+	db 5, CHARMANDER
 
 ; Charmander swarm
 	map_id BURNED_TOWER_1F
