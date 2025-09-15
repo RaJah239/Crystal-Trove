@@ -18,7 +18,6 @@ AlphabeticalPokedexOrder:
 	db BELLSPROUT
 	db BLASTOISE
 	db BLISSEY
-	db BULBASAUR
 	db BUTTERFREE
 	db CATERPIE
 	db CELEBI
@@ -228,6 +227,7 @@ AlphabeticalPokedexOrder:
 	db TENTACRUEL
 	db TOGEPI
 	db TOGETIC
+	db TORCHIC
 	db TOTODILE
 	db TYPHLOSION
 	db TYRANITAR

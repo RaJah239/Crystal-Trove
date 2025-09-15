@@ -1,6 +1,6 @@
 PokemonNames::
 	table_width NAME_LENGTH - 1, PokemonNames
-	db "Bulbasaur@"
+	db "Torchic@@@"
 	db "Ivysaur@@@"
 	db "Venusaur@@"
 	db "Charmander"

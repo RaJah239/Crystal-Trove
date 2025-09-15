@@ -1,6 +1,6 @@
 AnimationIdlePointers:
 	table_width 2, AnimationIdlePointers
-	dw BulbasaurAnimationIdle
+	dw TorchicAnimationIdle
 	dw IvysaurAnimationIdle
 	dw VenusaurAnimationIdle
 	dw CharmanderAnimationIdle

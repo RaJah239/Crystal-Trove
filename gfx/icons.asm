@@ -1,7 +1,7 @@
 SECTION "Mon Icons 1", ROMX
 
 NullIcon::
-BulbasaurIcon::  INCBIN "gfx/icons/bulbasaur.2bpp"
+TorchicIcon::  INCBIN "gfx/icons/torchic.2bpp"
 IvysaurIcon::    INCBIN "gfx/icons/ivysaur.2bpp"
 VenusaurIcon::   INCBIN "gfx/icons/venusaur.2bpp"
 CharmanderIcon:: INCBIN "gfx/icons/charmander.2bpp"
@@ -256,5 +256,5 @@ TyranitarIcon::  INCBIN "gfx/icons/tyranitar.2bpp"
 LugiaIcon::      INCBIN "gfx/icons/lugia.2bpp"
 HoOhIcon::       INCBIN "gfx/icons/ho_oh.2bpp"
 CelebiIcon::     INCBIN "gfx/icons/celebi.2bpp"
-GholdengoIcon::  INCBIN "gfx/icons/gholdengo.2bpp" ; temporary
+GholdengoIcon::  INCBIN "gfx/icons/gholdengo.2bpp"
 EggIcon::        INCBIN "gfx/icons/egg.2bpp"

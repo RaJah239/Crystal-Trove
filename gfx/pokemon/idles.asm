@@ -1,4 +1,4 @@
-BulbasaurAnimationIdle:  INCLUDE "gfx/pokemon/bulbasaur/anim_idle.asm"
+TorchicAnimationIdle:    INCLUDE "gfx/pokemon/torchic/anim_idle.asm"
 IvysaurAnimationIdle:    INCLUDE "gfx/pokemon/ivysaur/anim_idle.asm"
 VenusaurAnimationIdle:   INCLUDE "gfx/pokemon/venusaur/anim_idle.asm"
 CharmanderAnimationIdle: INCLUDE "gfx/pokemon/charmander/anim_idle.asm"

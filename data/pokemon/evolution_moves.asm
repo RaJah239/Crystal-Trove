@@ -1,6 +1,6 @@
 EvolutionMoves::
  table_width 1, EvolutionMoves
-    db NO_MOVE      ; BULBASAUR
+    db NO_MOVE      ; TORCHIC
     db NO_MOVE      ; IVYSAUR
     db NO_MOVE      ; VENUSAUR
     db NO_MOVE      ; CHARMANDER
@@ -10,7 +10,7 @@ EvolutionMoves::
     db NO_MOVE      ; WARTORTLE
     db NO_MOVE      ; BLASTOISE
     db NO_MOVE      ; CATERPIE
-    db HARDEN	    ; METAPOD
+    db HARDEN	     ; METAPOD
     db NO_MOVE      ; BUTTERFREE
     db NO_MOVE      ; WEEDLE
     db NO_MOVE      ; KAKUNA

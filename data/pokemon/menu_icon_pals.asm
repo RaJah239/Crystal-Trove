@@ -6,7 +6,7 @@ ENDM
 MonMenuIconPals:
 	table_width 1, MonMenuIconPals
 	;         normal, shiny
-	icon_pals TEAL,   GREEN  ; BULBASAUR
+	icon_pals RED,    BROWN  ; TORCHIC
 	icon_pals TEAL,   GREEN  ; IVYSAUR
 	icon_pals TEAL,   GREEN  ; VENUSAUR
 	icon_pals RED,    BROWN  ; CHARMANDER

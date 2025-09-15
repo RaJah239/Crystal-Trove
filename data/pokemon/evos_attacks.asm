@@ -17,18 +17,10 @@ INCLUDE "data/pokemon/evos_attacks_pointers.asm"
 
 EvosAttacks::
 
-BulbasaurEvosAttacks:
-	db EVOLVE_LEVEL, 16, IVYSAUR
+TorchicEvosAttacks:
+;	db EVOLVE_LEVEL, 16, IVYSAUR
 	db 0 ; no more evolutions
 	db 1, GROWL
-	db 7, LEECH_SEED
-	db 10, VINE_WHIP
-	db 15, POISONPOWDER
-	db 15, SLEEP_POWDER
-	db 20, RAZOR_LEAF
-	db 32, GROWTH
-	db 39, HEALING_LIGHT
-	db 46, SOLARBEAM
 	db 0 ; no more level-up moves
 
 IvysaurEvosAttacks:

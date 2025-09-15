@@ -368,8 +368,7 @@ BeedrillBackpic:     INCBIN "gfx/pokemon/beedrill/back.2bpp.lz"
 ArcanineBackpic:     INCBIN "gfx/pokemon/arcanine/back.2bpp.lz"
 FlareonBackpic:      INCBIN "gfx/pokemon/flareon/back.2bpp.lz"
 GoldeenBackpic:      INCBIN "gfx/pokemon/goldeen/back.2bpp.lz"
-BulbasaurFrontpic:   INCBIN "gfx/pokemon/bulbasaur/front.animated.2bpp.lz"
-StarmieBackpic:      INCBIN "gfx/pokemon/starmie/back.2bpp.lz"
+TorchicFrontpic:   INCBIN "gfx/pokemon/torchic/front.animated.2bpp.lz"
 
 
 SECTION "Pics 13", ROMX
@@ -585,7 +584,7 @@ ParasBackpic:        INCBIN "gfx/pokemon/paras/back.2bpp.lz"
 VaporeonBackpic:     INCBIN "gfx/pokemon/vaporeon/back.2bpp.lz"
 TentacoolBackpic:    INCBIN "gfx/pokemon/tentacool/back.2bpp.lz"
 ExecutivefPic:       INCBIN "gfx/trainers/executive_f.2bpp.lz"
-BulbasaurBackpic:    INCBIN "gfx/pokemon/bulbasaur/back.2bpp.lz"
+TorchicBackpic:    INCBIN "gfx/pokemon/torchic/back.2bpp.lz"
 SmoochumBackpic:     INCBIN "gfx/pokemon/smoochum/back.2bpp.lz"
 PichuBackpic:        INCBIN "gfx/pokemon/pichu/back.2bpp.lz"
 HoundoomBackpic:     INCBIN "gfx/pokemon/houndoom/back.2bpp.lz"
@@ -722,6 +721,7 @@ ArcherPic:           INCBIN "gfx/trainers/archer.2bpp.lz"
 MaximaPic:           INCBIN "gfx/trainers/maxima.2bpp.lz"
 GholdengoFrontpic:   INCBIN "gfx/pokemon/gholdengo/front.animated.2bpp.lz"
 GholdengoBackpic:    INCBIN "gfx/pokemon/gholdengo/back.2bpp.lz"
+StarmieBackpic:      INCBIN "gfx/pokemon/starmie/back.2bpp.lz"
 
 SECTION "Pics 20", ROMX
 
