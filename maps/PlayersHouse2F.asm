@@ -69,9 +69,9 @@ if DEF(_DEBUG)
 	givepoke MEW, 100, MIRACLEBERRY
 	givepoke ENTEI, 60, CHOICE_BAND
 	givepoke SCIZOR, 60, FOCUS_BAND
-	givepoke CHANSEY, 60, EVERSTONE
-	givepoke HERACROSS, 60, FOCUS_SASH
-	givepoke STARMIE, 60, FOCUS_SASH
+;	givepoke CHANSEY, 60, EVERSTONE
+;	givepoke HERACROSS, 60, FOCUS_SASH
+;	givepoke STARMIE, 60, FOCUS_SASH
 
 	; first mon shiny
 ;	loadmem wPartyMon1DVs+0, $ff
@@ -100,22 +100,22 @@ if DEF(_DEBUG)
 	loadmem wPartyMon3Moves+3, IRON_HEAD
 
 	; 4th pokemon
-	loadmem wPartyMon4Moves+0, SOFTBOILED
-	loadmem wPartyMon4Moves+1, SEISMIC_TOSS
-	loadmem wPartyMon4Moves+2, TOXIC
-	loadmem wPartyMon4Moves+3, PROTECT
+;	loadmem wPartyMon4Moves+0, SOFTBOILED
+;	loadmem wPartyMon4Moves+1, SEISMIC_TOSS
+;	loadmem wPartyMon4Moves+2, TOXIC
+;	loadmem wPartyMon4Moves+3, PROTECT
 
 	; 5th pokemon
-	loadmem wPartyMon5Moves+0, MEGAHORN
-	loadmem wPartyMon5Moves+1, EARTHQUAKE
-	loadmem wPartyMon5Moves+2, DRAIN_PUNCH
-	loadmem wPartyMon5Moves+3, ROCK_SLIDE
+;	loadmem wPartyMon5Moves+0, MEGAHORN
+;	loadmem wPartyMon5Moves+1, EARTHQUAKE
+;	loadmem wPartyMon5Moves+2, DRAIN_PUNCH
+;	loadmem wPartyMon5Moves+3, ROCK_SLIDE
 
 	; 6th pokemon
-	loadmem wPartyMon6Moves+0, PSYCHIC_M
-	loadmem wPartyMon6Moves+1, THUNDERBOLT
-	loadmem wPartyMon6Moves+2, ICE_BEAM
-	loadmem wPartyMon6Moves+3, SURF
+;	loadmem wPartyMon6Moves+0, PSYCHIC_M
+;	loadmem wPartyMon6Moves+1, THUNDERBOLT
+;	loadmem wPartyMon6Moves+2, ICE_BEAM
+;	loadmem wPartyMon6Moves+3, SURF
 
 	closetext
 	; tms for party
