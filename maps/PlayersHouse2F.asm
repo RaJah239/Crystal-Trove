@@ -6,6 +6,8 @@
 if DEF(_DEBUG)
 	const PLAYERSHOUSE2F_TEST
 	const PLAYERSHOUSE2F_KANTO_WARP
+	const PLAYERSHOUSE2F_TEST_MON_REGULAR
+	const PLAYERSHOUSE2F_TEST_MON_SHINY
 endc
 
 PlayersHouse2F_MapScripts:
@@ -290,6 +292,26 @@ TestText:
 	text "<……>"
 	line "<……>"
 	done
+
+
+RegularMon:
+	faceplayer
+	special HealParty
+	loadwildmon TORCHIC, 5
+	startbattle
+	reloadmap
+	special HealParty
+	end
+
+ShinyMon:
+	faceplayer
+	special HealParty
+	loadwildmon TORCHIC, 5
+	loadvar VAR_BATTLETYPE, BATTLETYPE_FORCESHINY
+	startbattle
+	reloadmap
+	special HealParty
+	end
 endc
 
 PlayersHouse2F_MapEvents:
@@ -312,4 +334,6 @@ PlayersHouse2F_MapEvents:
 if DEF(_DEBUG)
 	object_event  4,  2, SPRITE_RED, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, TestScript, -1
 	object_event  7,  5, SPRITE_BLUE, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, TestWarpScript, -1
+	object_event  2,  5, SPRITE_MONSTER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, RegularMon, -1
+	object_event  3,  5, SPRITE_MONSTER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ShinyMon, -1
 endc
