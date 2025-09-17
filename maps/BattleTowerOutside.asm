@@ -1,14 +1,14 @@
 BattleTowerOutside_MapEvents:
 	def_warp_events
-	warp_event  8,  9, BATTLE_TOWER_1F, 1
-	warp_event  8, 21, ROUTE_40_BATTLE_TOWER_GATE, 3
-	warp_event  9, 21, ROUTE_40_BATTLE_TOWER_GATE, 4
-	warp_event  9,  9, BATTLE_TOWER_1F, 2
+	warp_event 18,  9, BATTLE_TOWER_1F, 1
+	warp_event 34, 29, ROUTE_40_BATTLE_TOWER_GATE, 3
+	warp_event 35, 29, ROUTE_40_BATTLE_TOWER_GATE, 4
+	warp_event 19,  9, BATTLE_TOWER_1F, 2
 
 	def_coord_events
 
 	def_bg_events
-	bg_event 10, 10, BGEVENT_READ, BattleTowerOutsideSign
+	bg_event 24,  8, BGEVENT_READ, BattleTowerOutsideSign
 
 	object_const_def
 	const BATTLETOWEROUTSIDE_STANDING_YOUNGSTER
@@ -17,10 +17,10 @@ BattleTowerOutside_MapEvents:
 	const BATTLETOWEROUTSIDE_LASS
 
 	def_object_events
-	object_event  6, 12, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, BattleTowerOutsideYoungsterScript, -1
-	object_event 13, 11, SPRITE_BEAUTY, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, BattleTowerOutsideBeautyScript, -1
-	object_event 12, 18, SPRITE_SAILOR, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BattleTowerOutsideSailorScript, -1
-	object_event 12, 24, SPRITE_LASS, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, ObjectEvent, -1
+	object_event 45, 10, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, BattleTowerOutsideYoungsterScript, -1
+	object_event 56, 11, SPRITE_BEAUTY, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, BattleTowerOutsideBeautyScript, -1
+	object_event 14, 10, SPRITE_SAILOR, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BattleTowerOutsideSailorScript, -1
+	object_event 22, 11, SPRITE_LASS, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, ObjectEvent, -1
 
 BattleTowerOutside_MapScripts:
 	def_scene_scripts

@@ -323,7 +323,7 @@ ENDM
 	map_const BATTLE_TOWER_ELEVATOR,                        2,  2 ; 13
 	map_const BATTLE_TOWER_HALLWAY,                        11,  2 ; 14
 	map_const ROUTE_40_BATTLE_TOWER_GATE,                   5,  4 ; 15
-	map_const BATTLE_TOWER_OUTSIDE,                        10, 14 ; 16
+	map_const BATTLE_TOWER_OUTSIDE,                        35, 18 ; 16
 	map_const CIANWOOD_PORT,                               10, 18 ; 17
 	map_const CIANWOOD_PORT_PASSAGE,                       10,  9 ; 18
 	map_const BATTLE_TOWER_MART,                            8,  5 ; 19	
