@@ -634,6 +634,7 @@ StartMenu_Pokemon:
 ; map_constants.asm
 Fast_Travel_Warp_Locations:
 	table_width 2
+	map_id BATTLE_TOWER_OUTSIDE
 	map_id NEW_BARK_TOWN
 	map_id CHERRYGROVE_CITY
 	map_id VIOLET_CITY
@@ -645,7 +646,6 @@ Fast_Travel_Warp_Locations:
 	map_id ECRUTEAK_CITY
 	map_id SILVER_CAVE_OUTSIDE
 	map_id OLIVINE_CITY
-	map_id BATTLE_TOWER_OUTSIDE
 	map_id CIANWOOD_CITY
 	map_id MAHOGANY_TOWN
 	map_id LAKE_OF_RAGE
@@ -657,6 +657,7 @@ DEF NUM_FAST_TRAVEL_WARP_MAPS EQU (@ - {CURRENT_TABLE_START}) / CURRENT_TABLE_WI
 ; map_names.asm
 Fast_Travel_Warp_Strings:
 	table_width 3
+	dba Cianwood_Map_Name16
 	dba New_Bark_Map_Name4
 	dba Cherrygrove_Map_Name3
 	dba Violet_Map_Name5
@@ -668,7 +669,6 @@ Fast_Travel_Warp_Strings:
 	dba Ecruteak_Map_Name9
 	dba Silver_Map_Name1
 	dba Olivine_Map_Name14
-	dba Cianwood_Map_Name16
 	dba Cianwood_Map_Name3
 	dba Mahogany_Map_Name7
 	dba Lake_of_Rage_Map_Name6
