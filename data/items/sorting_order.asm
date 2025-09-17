@@ -160,7 +160,6 @@ ItemNameOrder:
 	db X_SPEED
 
 ; Battle related Held Items
-	db TYPE_CODEX
 	db AMULET_COIN
 	db ASSAULT_VEST
 	db BERRY_JUICE
@@ -238,6 +237,7 @@ ItemNameOrder:
 ; Key Items Pocket - 24 total
 ; Permanent Key Items
 ; Items that are possibly frequently used
+	db TYPE_CODEX
 	db BICYCLE
 	db COIN_CASE
 	db ITEMFINDER
