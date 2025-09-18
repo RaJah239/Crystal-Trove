@@ -11,6 +11,8 @@ BattleTowerOutside_MapEvents:
 	warp_event 19, 21, GOLDENROD_NAME_RATER, 1
 	warp_event  6, 26, ROUTE_38_ECRUTEAK_GATE, 3
 	warp_event  6, 27, ROUTE_38_ECRUTEAK_GATE, 4
+	warp_event 63, 27, ROUTE_42_ECRUTEAK_GATE, 2
+	warp_event 63, 26, ROUTE_42_ECRUTEAK_GATE, 1
 
 	def_coord_events
 

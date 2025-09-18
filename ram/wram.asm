@@ -3225,9 +3225,8 @@ wMountMoonSquareSceneID::                         db
 wMobileTradeRoomSceneID::                         db
 wMobileBattleRoomSceneID::                        db
 wDayCareSceneID::                                 db
-wRoute42EcruteakGateSceneID::                     db
 wRoute30SceneID::                                 db
-	ds 150
+	ds 151
 
 wAbilityPageMode:: db
 

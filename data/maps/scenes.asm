@@ -68,6 +68,5 @@ MapScenes::
 	scene_var MOBILE_TRADE_ROOM,                           wMobileTradeRoomSceneID
 	scene_var MOBILE_BATTLE_ROOM,                          wMobileBattleRoomSceneID
 	scene_var DAY_CARE,                                    wDayCareSceneID
-	scene_var ROUTE_42_ECRUTEAK_GATE,                      wRoute42EcruteakGateSceneID
 	scene_var ROUTE_30,                                    wRoute30SceneID
 	db -1 ; end
