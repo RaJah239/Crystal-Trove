@@ -55,13 +55,10 @@ LinkReceptionistScript_Trade:
 	writetext Text_TradeReceptionistIntro
 	yesorno
 	iffalse .Cancel
-	special CheckMobileAdapterStatusSpecial
-	iffalse .NoMobile
 	writetext Text_TradeReceptionistMobile
 	special AskMobileOrCable
 	iffalse .Cancel
 	ifequal $1, .Mobile
-.NoMobile:
 	special SetBitsForLinkTradeRequest
 	writetext Text_PleaseWait
 	special WaitForLinkedFriend
@@ -156,13 +153,10 @@ LinkReceptionistScript_Battle:
 	writetext Text_BattleReceptionistIntro
 	yesorno
 	iffalse .Cancel
-	special CheckMobileAdapterStatusSpecial
-	iffalse .NoMobile
 	writetext Text_BattleReceptionistMobile
 	special AskMobileOrCable
 	iffalse .Cancel
 	ifequal $1, .Mobile
-.NoMobile:
 	special SetBitsForBattleRequest
 	writetext Text_PleaseWait
 	special WaitForLinkedFriend

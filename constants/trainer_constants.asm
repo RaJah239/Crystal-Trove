@@ -302,8 +302,6 @@ DEF KRIS EQU __trainer_class__
 	const TULLY4
 
 	trainerclass SWIMMERM ; 26
-	const SIMON
-	const RANDALL
 	const CHARLIE
 	const GEORGE
 	const BERKE
@@ -311,8 +309,6 @@ DEF KRIS EQU __trainer_class__
 	const MATHEW
 
 	trainerclass SWIMMERF ; 27
-	const ELAINE
-	const PAULA
 	const KAYLEE
 	const SUSIE
 	const DENISE
