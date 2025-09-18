@@ -5,11 +5,13 @@ BattleTowerOutside_MapEvents:
 	warp_event 34, 29, ROUTE_40_BATTLE_TOWER_GATE, 3
 	warp_event 35, 29, ROUTE_40_BATTLE_TOWER_GATE, 4
 	warp_event 19,  9, BATTLE_TOWER_1F, 2
+	warp_event 44, 21, OAKS_LAB, 1
 
 	def_coord_events
 
 	def_bg_events
 	bg_event  7, 21, BGEVENT_READ, PlayersHouseSign
+	bg_event 41, 21, BGEVENT_READ, OaksLabSign
 	bg_event 24,  8, BGEVENT_READ, BattleTowerOutsideSign
 
 	object_const_def
@@ -39,6 +41,14 @@ PlayersHouseSign:
 
 PlayersHouseSignText:
 	text "<PLAYER>'s House"
+	done
+
+OaksLabSign:
+	jumptext OaksLabSignText
+
+OaksLabSignText:
+	text "Professor Oak's"
+	line "Research Lab"
 	done
 
 BattleTowerOutsideYoungsterScript:
