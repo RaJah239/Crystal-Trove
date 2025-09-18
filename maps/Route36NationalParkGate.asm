@@ -836,8 +836,8 @@ Route36NationalParkGate_MapEvents:
 	def_warp_events
 	warp_event  0,  4, NATIONAL_PARK, 2
 	warp_event  0,  5, NATIONAL_PARK, 3
-	warp_event  9,  4, ROUTE_36, 1
-	warp_event  9,  5, ROUTE_36, 2
+	warp_event  9,  4, ROUTE_34, 10
+	warp_event  9,  5, ROUTE_34, 11
 
 	def_coord_events
 
