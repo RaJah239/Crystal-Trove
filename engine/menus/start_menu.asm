@@ -639,6 +639,7 @@ StartMenu_Pokemon:
 Fast_Travel_Warp_Locations:
 	table_width 2
 	map_id BATTLE_TOWER_OUTSIDE
+	map_id ROUTE_40
 	map_id NEW_BARK_TOWN
 	map_id CHERRYGROVE_CITY
 	map_id VIOLET_CITY
@@ -662,6 +663,7 @@ DEF NUM_FAST_TRAVEL_WARP_MAPS EQU (@ - {CURRENT_TABLE_START}) / CURRENT_TABLE_WI
 Fast_Travel_Warp_Strings:
 	table_width 3
 	dba Cianwood_Map_Name16
+	dba Cianwood_Map_Name1
 	dba New_Bark_Map_Name4
 	dba Cherrygrove_Map_Name3
 	dba Violet_Map_Name5

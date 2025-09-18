@@ -855,7 +855,7 @@ Celadon_Map_Name16: ; map_const CELADON_MANSION_ROOF_HOUSE ; 16
                                       ; 22
 
 Cianwood_Map_Name1: ; map_const ROUTE_40,  1
-	db "Route 40@"
+	db "Driftsea@"
 Cianwood_Map_Name2: ; map_const ROUTE_41, ;  2
 	db "Route 41@"
 Cianwood_Map_Name3: ; map_const CIANWOOD_CITY ;  3
