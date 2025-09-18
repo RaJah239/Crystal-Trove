@@ -10,16 +10,10 @@ CherrygrovePokecenter1F_MapEvents:
 
 	object_const_def
 	const CHERRYGROVEPOKECENTER1F_NURSE
-	const CHERRYGROVEPOKECENTER1F_FISHER
-	const CHERRYGROVEPOKECENTER1F_GENTLEMAN
-	const CHERRYGROVEPOKECENTER1F_TEACHER
 	const CHERRYGROVEPOKECENTER1F_CHANSEY
 
 	def_object_events
 	object_event  3,  1, SPRITE_NURSE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CherrygrovePokecenter1FNurseScript, -1
-	object_event  2,  3, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CherrygrovePokecenter1FFisherScript, -1
-	object_event  8,  6, SPRITE_GENTLEMAN, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CherrygrovePokecenter1FGentlemanScript, -1
-	object_event  1,  6, SPRITE_TEACHER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CherrygrovePokecenter1FTeacherScript, -1
 	object_event  4,  1, SPRITE_CHANSEY, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CherrygrovePokecenterChanseyScript, -1
 
 CherrygrovePokecenter1F_MapScripts:
@@ -32,51 +26,3 @@ CherrygrovePokecenter1FNurseScript:
 
 CherrygrovePokecenterChanseyScript:
 	jumpstd ChanseyPokeCenterScript
-
-CherrygrovePokecenter1FFisherScript:
-	jumptextfaceplayer CherrygrovePokecenter1FFisherText
-
-CherrygrovePokecenter1FFisherText:
-	text "It's great. I can"
-	line "store any number"
-
-	para "of #MON, and"
-	line "it's all free."
-	done
-
-CherrygrovePokecenter1FGentlemanScript:
-	jumptextfaceplayer CherrygrovePokecenter1FGentlemanText
-
-CherrygrovePokecenter1FGentlemanText:
-	text "That PC is free"
-	line "for any trainer"
-	cont "to use."
-	done
-
-CherrygrovePokecenter1FTeacherScript:
-	faceplayer
-	opentext
-	checkevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
-	iftrue .CommCenterOpen
-	writetextend CherrygrovePokecenter1FTeacherText
-
-.CommCenterOpen:
-	writetextend CherrygrovePokecenter1FTeacherText_CommCenterOpen
-
-CherrygrovePokecenter1FTeacherText:
-	text "The COMMUNICATION"
-	line "CENTER upstairs"
-	cont "was just built."
-
-	para "But they're still"
-	line "finishing it up."
-	done
-
-CherrygrovePokecenter1FTeacherText_CommCenterOpen:
-	text "The COMMUNICATION"
-	line "CENTER upstairs"
-	cont "was just built."
-
-	para "I traded #MON"
-	line "there already!"
-	done
