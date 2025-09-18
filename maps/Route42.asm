@@ -1,5 +1,7 @@
 Route42_MapEvents:
 	def_warp_events
+	warp_event  9, 13, VIOLET_POKECENTER_1F, 1
+
 	warp_event  4,  8, ROUTE_42_ECRUTEAK_GATE, 3
 	warp_event  4,  9, ROUTE_42_ECRUTEAK_GATE, 4
 	warp_event 10,  5, MOUNT_MORTAR_1F_OUTSIDE, 1
@@ -8,7 +10,7 @@ Route42_MapEvents:
 	warp_event 53,  6, ROUTE_32_RUINS_OF_ALPH_GATE, 1
 	warp_event 53,  7, ROUTE_32_RUINS_OF_ALPH_GATE, 2
 
-	warp_event  9, 13, VIOLET_POKECENTER_1F, 1
+
 
 	def_coord_events
 	coord_event 24, 14, SCENE_ROUTE42_SUICUNE, Route42SuicuneScript

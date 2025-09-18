@@ -2,8 +2,8 @@ Route42EcruteakGate_MapEvents:
 	def_warp_events
 	warp_event  0,  4, BATTLE_TOWER_OUTSIDE, 13
 	warp_event  0,  5, BATTLE_TOWER_OUTSIDE, 12
-	warp_event  9,  4, ROUTE_42, 1
-	warp_event  9,  5, ROUTE_42, 2
+	warp_event  9,  4, ROUTE_42, 2
+	warp_event  9,  5, ROUTE_42, 3
 
 	def_coord_events
 
