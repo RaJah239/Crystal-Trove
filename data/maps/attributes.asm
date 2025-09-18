@@ -110,16 +110,14 @@ ENDM
 	connection west, Route36, ROUTE_36, 0
 	connection east, Route31, ROUTE_31, 9
 
-	map_attributes AzaleaTown, AZALEA_TOWN, $05, WEST | EAST
-	connection west, Route34, ROUTE_34, -18
+	map_attributes AzaleaTown, AZALEA_TOWN, $05, EAST
 	connection east, Route33, ROUTE_33, 0
 
 	map_attributes CianwoodCity, CIANWOOD_CITY, $35, EAST
 	connection east, Route41, ROUTE_41, 0
 
-	map_attributes GoldenrodCity, GOLDENROD_CITY, $35, NORTH | SOUTH
+	map_attributes GoldenrodCity, GOLDENROD_CITY, $35, NORTH
 	connection north, Route35, ROUTE_35, 5
-	connection south, Route34, ROUTE_34, 5
 
 	map_attributes OlivineCity, OLIVINE_CITY, $35, NORTH | WEST
 	connection north, Route39, ROUTE_39, 5
@@ -169,10 +167,6 @@ ENDM
 	map_attributes Route33, ROUTE_33, $05, NORTH | WEST
 	connection north, Route32, ROUTE_32, 0
 	connection west, AzaleaTown, AZALEA_TOWN, 0
-
-	map_attributes Route34, ROUTE_34, $05, NORTH | EAST
-	connection north, GoldenrodCity, GOLDENROD_CITY, -5
-	connection east, AzaleaTown, AZALEA_TOWN, 18
 
 	map_attributes Route35, ROUTE_35, $05, NORTH | SOUTH
 	connection north, Route36, ROUTE_36, 0
@@ -447,3 +441,4 @@ ENDM
 	map_attributes PalletTown, PALLET_TOWN, $0f, 0
 	map_attributes CianwoodPort, CIANWOOD_PORT, $0a, 0
 	map_attributes CianwoodPortPassage, CIANWOOD_PORT_PASSAGE, $00, 0
+	map_attributes Route34, ROUTE_34, $00, 0

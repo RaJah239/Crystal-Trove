@@ -1,26 +1,26 @@
 Route34_MapEvents:
 	def_warp_events
-	warp_event 13, 37, ROUTE_34_ILEX_FOREST_GATE, 1
-	warp_event 14, 37, ROUTE_34_ILEX_FOREST_GATE, 2
-	warp_event 11, 14, DAY_CARE, 1
-	warp_event 11, 15, DAY_CARE, 2
-	warp_event 13, 15, DAY_CARE, 3
-	warp_event 19, 16, HATCH_ROOM, 2
-	warp_event 19, 17, HATCH_ROOM, 2
+	warp_event 13, 29, ROUTE_34_ILEX_FOREST_GATE, 1
+	warp_event 14, 29, ROUTE_34_ILEX_FOREST_GATE, 2
+	warp_event 17, 16, DAY_CARE, 1
+	warp_event 17, 17, DAY_CARE, 2
+	warp_event 19, 17, DAY_CARE, 3
+	warp_event 25, 18, HATCH_ROOM, 2
+	warp_event 25, 19, HATCH_ROOM, 2
 	def_coord_events
 
 	def_bg_events
-	bg_event 12,  6, BGEVENT_READ, Route34Sign
-	bg_event 13, 33, BGEVENT_READ, Route34TrainerTips
-	bg_event 10, 13, BGEVENT_READ, DayCareSign
+	bg_event  7,  7, BGEVENT_READ, Route34Sign
+	bg_event 16, 27, BGEVENT_READ, Route34TrainerTips
+	bg_event 16, 15, BGEVENT_READ, DayCareSign
 
 	object_const_def
 	const ROUTE34_DAY_CARE_MON_1
 	const ROUTE34_DAY_CARE_MON_2
 
 	def_object_events
-	object_event 13, 18, SPRITE_DAY_CARE_MON_1, SPRITEMOVEDATA_POKEMON, 2, 2, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, DayCareMon1Script, EVENT_DAY_CARE_MON_1
-	object_event 16, 18, SPRITE_DAY_CARE_MON_2, SPRITEMOVEDATA_POKEMON, 2, 2, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, DayCareMon2Script, EVENT_DAY_CARE_MON_2
+	object_event 19, 20, SPRITE_DAY_CARE_MON_1, SPRITEMOVEDATA_POKEMON, 2, 2, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, DayCareMon1Script, EVENT_DAY_CARE_MON_1
+	object_event 22, 20, SPRITE_DAY_CARE_MON_2, SPRITEMOVEDATA_POKEMON, 2, 2, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, DayCareMon2Script, EVENT_DAY_CARE_MON_2
 
 Route34_MapScripts:
 	def_scene_scripts
