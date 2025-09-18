@@ -1,7 +1,7 @@
 EarlsPokemonAcademy_MapEvents:
 	def_warp_events
-	warp_event  3, 15, VIOLET_CITY, 4
-	warp_event  4, 15, VIOLET_CITY, 4
+	warp_event  3, 15, BATTLE_TOWER_OUTSIDE, 7
+	warp_event  4, 15, BATTLE_TOWER_OUTSIDE, 7
 
 	def_coord_events
 

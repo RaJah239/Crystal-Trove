@@ -6,12 +6,14 @@ BattleTowerOutside_MapEvents:
 	warp_event 35, 29, ROUTE_40_BATTLE_TOWER_GATE, 4
 	warp_event 19,  9, BATTLE_TOWER_1F, 2
 	warp_event 44, 21, OAKS_LAB, 1
+	warp_event 26, 23, EARLS_POKEMON_ACADEMY, 1
 
 	def_coord_events
 
 	def_bg_events
 	bg_event  7, 21, BGEVENT_READ, PlayersHouseSign
 	bg_event 41, 21, BGEVENT_READ, OaksLabSign
+	bg_event 30, 23, BGEVENT_READ, EarlsPokemonAcademySign
 	bg_event 24,  8, BGEVENT_READ, BattleTowerOutsideSign
 
 	object_const_def
@@ -41,6 +43,17 @@ PlayersHouseSign:
 
 PlayersHouseSignText:
 	text "<PLAYER>'s House"
+	done
+
+EarlsPokemonAcademySign:
+	jumptext EarlsPokemonAcademySignText
+
+EarlsPokemonAcademySignText:
+	text "Earl's #mon"
+	line "Academy"
+	
+	para "Learn more than"
+	line "just the basics!"
 	done
 
 OaksLabSign:

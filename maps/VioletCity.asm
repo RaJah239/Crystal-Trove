@@ -68,9 +68,6 @@ VioletGymSign:
 SproutTowerSign:
 	jumptext SproutTowerSignText
 
-EarlsPokemonAcademySign:
-	jumptext EarlsPokemonAcademySignText
-
 VioletCityPokecenterSign:
 	jumpstd PokecenterSignScript
 
@@ -217,11 +214,6 @@ SproutTowerSignText:
 	line "Way of #MON"
 	done
 
-EarlsPokemonAcademySignText:
-	text "EARL'S #MON"
-	line "ACADEMY"
-	done
-
 VioletCityBerryTree1:
 	opentext
 	getitemname STRING_BUFFER_3, PRZCUREBERRY
@@ -343,7 +335,6 @@ VioletCity_MapEvents:
 	bg_event 24, 20, BGEVENT_READ, VioletCitySign
 	bg_event 15, 17, BGEVENT_READ, VioletGymSign
 	bg_event 24,  8, BGEVENT_READ, SproutTowerSign
-	bg_event 27, 17, BGEVENT_READ, EarlsPokemonAcademySign
 	bg_event 32, 25, BGEVENT_READ, VioletCityPokecenterSign
 	bg_event 10, 17, BGEVENT_READ, VioletCityMartSign
 	bg_event 37, 14, BGEVENT_ITEM, VioletCityHiddenHyperPotion
