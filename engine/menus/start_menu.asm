@@ -641,6 +641,9 @@ Fast_Travel_Warp_Locations:
 	map_id BATTLE_TOWER_OUTSIDE
 	map_id ROUTE_40
 	map_id ROUTE_34
+	map_id ILEX_FOREST
+
+; old warp points
 	map_id NEW_BARK_TOWN
 	map_id CHERRYGROVE_CITY
 	map_id VIOLET_CITY
@@ -666,6 +669,9 @@ Fast_Travel_Warp_Strings:
 	dba Cianwood_Map_Name16
 	dba Cianwood_Map_Name1
 	dba Goldenrod_Map_Name1
+	dba Dungeons_Map_Name52
+
+; old warp points
 	dba New_Bark_Map_Name4
 	dba Cherrygrove_Map_Name3
 	dba Violet_Map_Name5
