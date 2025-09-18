@@ -6,8 +6,6 @@ DayCare_MapEvents:
 	warp_event  3,  7, ROUTE_34, 5
 
 	def_coord_events
-	coord_event  2,  7, SCENE_DAYCARE_GRANDMA_PREVENTS_ENTRY, DayCareGrandsonBlocksPreventsAcess
-	coord_event  3,  7, SCENE_DAYCARE_GRANDMA_PREVENTS_ENTRY, DayCareGrandsonBlocksPreventsAcess
 
 	def_bg_events
 	bg_event  0,  1, BGEVENT_READ, DayCareBookshelf
@@ -21,20 +19,13 @@ DayCare_MapEvents:
 	def_object_events
 	object_event  2,  4, SPRITE_GRAMPS, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, DayCareManScript_Inside, EVENT_DAY_CARE_MAN_IN_DAY_CARE
 	object_event  5,  4, SPRITE_GRANNY, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, DayCareLadyScript, -1
-	object_event  6,  5, SPRITE_TWIN, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, DayCareGrandDaughterScript, -1
+	object_event  7,  5, SPRITE_TWIN, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, DayCareGrandDaughterScript, -1
 
 DayCare_MapScripts:
 	def_scene_scripts
-	scene_script DayCareNoop1Scene, SCENE_DAYCARE_GRANDMA_PREVENTS_ENTRY
-	scene_script DayCareNoop2Scene, SCENE_DAYCARE_NOOP
 
 	def_callbacks
 	callback MAPCALLBACK_OBJECTS, DayCareEggCheckCallback
-
-DayCareNoop1Scene:
-	; fallthrough
-DayCareNoop2Scene:
-	end
 
 DayCareEggCheckCallback:
 	checkflag ENGINE_DAY_CARE_MAN_HAS_EGG
@@ -150,44 +141,6 @@ Text_GrampsLookingForYou:
 	text "Gramps was looking"
 	line "for you."
 	done
-
-DayCareGrandsonBlocksPreventsAcess:
-	showemote EMOTE_SHOCK, DAYCARE_GRANNY, 15
-	turnobject DAYCARE_GRANNY, DOWN
-	opentext
-	writetext DayCareGrandmaCantLetYouInTheBackText
-	waitbutton
-	closetext
-	applymovement PLAYER, DayCareMovePlayerWalkUp
-	turnobject DAYCARE_GRANNY, LEFT
-	end
-
-DayCareGrandmaCantLetYouInTheBackText:
-	text "Sorry! I can't let"
-	line "you enter back."
-	
-	para "We've a new hatch-"
-	line "ing room there."
-	
-	para "Only bicycle own-"
-	line "ers are allowed."
-	
-	para "GOLDENROD CITY now"
-	line "has bicycle shop."
-	
-	para "If you get one, I"
-	line "will let you pass."
-	
-	para "Also, if gramps is"
-	line "not around, he'd"
-
-	para "be in the hatching"
-	line "room."
-	done
-
-DayCareMovePlayerWalkUp:
-	step UP
-	step_end
 
 DayCareGrandDaughterScript:
 	faceplayer
