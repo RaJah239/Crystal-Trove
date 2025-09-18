@@ -8,6 +8,8 @@ Route42_MapEvents:
 	warp_event 53,  6, ROUTE_32_RUINS_OF_ALPH_GATE, 1
 	warp_event 53,  7, ROUTE_32_RUINS_OF_ALPH_GATE, 2
 
+	warp_event  9, 13, VIOLET_POKECENTER_1F, 1
+
 	def_coord_events
 	coord_event 24, 14, SCENE_ROUTE42_SUICUNE, Route42SuicuneScript
 
