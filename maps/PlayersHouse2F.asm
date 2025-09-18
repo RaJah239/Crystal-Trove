@@ -118,6 +118,9 @@ if DEF(_DEBUG)
 ;	loadmem wPartyMon6Moves+3, SURF
 
 	closetext
+	; heal team
+	special HealParty
+	
 	; tms for party
 	giveitem TM_ROCK_SMASH, 50
 	giveitem TM_HEADBUTT, 50
@@ -200,10 +203,9 @@ if DEF(_DEBUG)
 
 	; intro events
 	addcellnum PHONE_MOM
-	setmapscene PLAYERS_HOUSE_1F, $1
-	setevent EVENT_PLAYERS_HOUSE_MOM_1
-	clearevent EVENT_PLAYERS_HOUSE_MOM_2
-	special HealParty
+	setevent EVENT_MET_MOM
+	setevent EVENT_PLAYERS_MOM_INITIAL
+	clearevent EVENT_PLAYERS_HOUSE_MOM
 	end
 else
 	checkevent EVENT_GOT_A_POKEMON_FROM_ELM

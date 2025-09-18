@@ -1357,59 +1357,16 @@ _NPCTradeAfterText4::
 	done
 
 _MomLeavingText1::
-	text "Wow, that's a cute"
-	line "#MON."
-
-	para "Where did you get"
-	line "it?"
-
-	para "…"
-
-	para "So, you're leaving"
-	line "on an adventure…"
-
-	para "OK!"
-	line "I'll help too."
-
-	para "But what can I do"
-	line "for you?"
-
-	para "I know! I'll save"
-	line "money for you."
-
-	para "On a long journey,"
-	line "money's important."
-
-	para "Do you want me to"
-	line "save your money?"
+	text "Save some of your"
+	line "battle earnings?"
 	done
 
 _MomLeavingText2::
-	text "OK, I'll take care"
-	line "of your money."
-
-	para "<……><……><……>"
+	text "Will do!"
 	prompt
 
-_MomLeavingText3::
-	text "Be careful."
-
-	para "#MON are your"
-	line "friends. You need"
-	cont "to work as a team."
-
-	para "Now, go on!"
-	done
-
 _MomIsThisAboutYourMoneyText::
-	text "Hi! Welcome home!"
-	line "You're trying very"
-	cont "hard, I see."
-
-	para "I've kept your"
-	line "room tidy."
-
-	para "Or is this about"
+	text "Is this about"
 	line "your money?"
 	done
 
@@ -1455,10 +1412,7 @@ _MomNotEnoughRoomInBankText::
 
 _MomStartSavingMoneyText::
 	text "OK, I'll save your"
-	line "money. Trust me!"
-
-	para "<PLAYER>, stick"
-	line "with it!"
+	line "money."
 	done
 
 _MomStoredMoneyText::
@@ -1474,7 +1428,7 @@ _MomTakenMoneyText::
 _MomJustDoWhatYouCanText::
 	text "Just do what"
 	line "you can."
-	done
+	prompt
 
 _DayCareManIntroText::
 	text "I'm the DAY-CARE"

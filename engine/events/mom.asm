@@ -62,8 +62,6 @@ BankOfMom:
 
 .done_1
 	ld [wMomSavingMoney], a
-	ld hl, MomLeavingText3
-	call PrintText
 	ld a, $8
 	ld [wJumptableIndex], a
 	ret
@@ -579,10 +577,6 @@ MomLeavingText1:
 
 MomLeavingText2:
 	text_far _MomLeavingText2
-	text_end
-
-MomLeavingText3:
-	text_far _MomLeavingText3
 	text_end
 
 MomIsThisAboutYourMoneyText:

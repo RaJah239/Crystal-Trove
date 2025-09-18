@@ -3178,7 +3178,6 @@ wHallOfFameSceneID::                              db
 wRoute27SceneID::                                 db
 wNewBarkTownSceneID::                             db
 wElmsLabSceneID::                                 db
-wPlayersHouse1FSceneID::                          db
 wRoute29SceneID::                                 db
 wCherrygroveCitySceneID::                         db
 wMrPokemonsHouseSceneID::                         db
@@ -3229,7 +3228,7 @@ wDayCareSceneID::                                 db
 wRoute38EcruteakGateSceneID::                     db
 wRoute42EcruteakGateSceneID::                     db
 wRoute30SceneID::                                 db
-	ds 148
+	ds 149
 
 wAbilityPageMode:: db
 
