@@ -13,6 +13,7 @@ BattleTowerOutside_MapEvents:
 	warp_event  6, 27, ROUTE_38_ECRUTEAK_GATE, 4
 	warp_event 63, 27, ROUTE_42_ECRUTEAK_GATE, 2
 	warp_event 63, 26, ROUTE_42_ECRUTEAK_GATE, 1
+	warp_event 34,  5, ROUTE_39_SILVER_CAVE_GATE, 1
 
 	def_coord_events
 

@@ -13,8 +13,8 @@ OaksLab_MapScripts:
 Oak:
 	faceplayer
 	opentext
-	checkevent EVENT_OPENED_MT_SILVER
-	iftrue .CheckPokedex
+;	checkevent EVENT_OPENED_MT_SILVER
+;	iftrue .CheckPokedex
 	checkevent EVENT_TALKED_TO_OAK_IN_KANTO
 	iftrue .CheckBadges
 	writetext OakWelcomeKantoText
@@ -38,7 +38,7 @@ Oak:
 .OpenMtSilver:
 	writetext OakOpenMtSilverText
 	promptbutton
-	setevent EVENT_OPENED_MT_SILVER
+;	setevent EVENT_OPENED_MT_SILVER
 	sjump .CheckPokedex
 
 .Complain:
