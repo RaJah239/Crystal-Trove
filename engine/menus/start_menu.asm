@@ -638,22 +638,25 @@ StartMenu_Pokemon:
 ; map_constants.asm
 Fast_Travel_Warp_Locations:
 	table_width 2
-	map_id BATTLE_TOWER_OUTSIDE
-	map_id ROUTE_40
-	map_id ROUTE_34
-	map_id ILEX_FOREST
+	map_id BATTLE_TOWER_OUTSIDE ; Battle Plaza
+	map_id ROUTE_34 ; The Old Road/ Day Care
+	map_id ROUTE_40 ; Driftsea
+	map_id NATIONAL_PARK ; National Park
+	map_id ILEX_FOREST ; Ilex Forest
+
+	map_id RUINS_OF_ALPH_OUTSIDE ; Ruins of Alph
+	map_id SILVER_CAVE_OUTSIDE ; Silver Cave
+
 
 ; old warp points
 	map_id NEW_BARK_TOWN
 	map_id CHERRYGROVE_CITY
 	map_id VIOLET_CITY
-	map_id RUINS_OF_ALPH_OUTSIDE
 	map_id ROUTE_32
 	map_id AZALEA_TOWN
 	map_id GOLDENROD_CITY
-	map_id NATIONAL_PARK
+
 	map_id ECRUTEAK_CITY
-	map_id SILVER_CAVE_OUTSIDE
 	map_id OLIVINE_CITY
 	map_id CIANWOOD_CITY
 	map_id MAHOGANY_TOWN
@@ -666,22 +669,24 @@ DEF NUM_FAST_TRAVEL_WARP_MAPS EQU (@ - {CURRENT_TABLE_START}) / CURRENT_TABLE_WI
 ; map_names.asm
 Fast_Travel_Warp_Strings:
 	table_width 3
-	dba Cianwood_Map_Name16
-	dba Cianwood_Map_Name1
-	dba Goldenrod_Map_Name1
-	dba Dungeons_Map_Name52
+	dba Cianwood_Map_Name16 ; Battle Plaza
+	dba Goldenrod_Map_Name1 ; The Old Road/ Day Care
+	dba Cianwood_Map_Name1 ; Driftsea
+	dba Dungeons_Map_Name15 ; National Park
+	dba Dungeons_Map_Name52 ; Ilex Forest
+
+	dba Dungeons_Map_Name22 ; Ruins of Alph
+	dba Silver_Map_Name1 ; Silver Cave
+
 
 ; old warp points
 	dba New_Bark_Map_Name4
 	dba Cherrygrove_Map_Name3
 	dba Violet_Map_Name5
-	dba Dungeons_Map_Name22
 	dba Violet_Map_Name1
 	dba Azalea_Map_Name7
 	dba Goldenrod_Map_Name2
-	dba Dungeons_Map_Name15
 	dba Ecruteak_Map_Name9
-	dba Silver_Map_Name1
 	dba Olivine_Map_Name14
 	dba Cianwood_Map_Name3
 	dba Mahogany_Map_Name7
