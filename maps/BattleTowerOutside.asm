@@ -8,6 +8,7 @@ BattleTowerOutside_MapEvents:
 	warp_event 44, 21, OAKS_LAB, 1
 	warp_event 26, 23, EARLS_POKEMON_ACADEMY, 1
 	warp_event 58, 21, GOLDENROD_GAME_CORNER, 1
+	warp_event 19, 21, GOLDENROD_NAME_RATER, 1
 
 	def_coord_events
 
@@ -17,6 +18,7 @@ BattleTowerOutside_MapEvents:
 	bg_event 30, 23, BGEVENT_READ, EarlsPokemonAcademySign
 	bg_event 62, 21, BGEVENT_READ, GameCornerSign
 	bg_event 24,  8, BGEVENT_READ, BattleTowerOutsideSign
+	bg_event 22, 21, BGEVENT_READ, PokeBrosSign
 
 	object_const_def
 	const BATTLETOWEROUTSIDE_STANDING_YOUNGSTER
@@ -74,6 +76,16 @@ GameCornerSignText:
 
 	para "Dare to Risk,"
 	line "Dare to Win!"
+	done
+
+PokeBrosSign:
+	jumptext PokeBrosSignText
+
+PokeBrosSignText:
+	text "#-Bros."
+
+	para "We can help you"
+	line "and your friends!"
 	done
 
 BattleTowerOutsideYoungsterScript:

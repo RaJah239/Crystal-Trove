@@ -1,9 +1,28 @@
+GoldenrodNameRater_MapEvents:
+	def_warp_events
+	warp_event  2,  7, BATTLE_TOWER_OUTSIDE, 9
+	warp_event  3,  7, BATTLE_TOWER_OUTSIDE, 9
+
+	def_coord_events
+
+	def_bg_events
+	bg_event  0,  1, BGEVENT_READ, GoldenrodNameRaterBookshelf
+	bg_event  1,  1, BGEVENT_READ, GoldenrodNameRaterBookshelf
+	bg_event  7,  1, BGEVENT_READ, GoldenrodNameRaterRadio
+
 	object_const_def
 	const GOLDENRODNAMERATER_NAME_RATER
 	const GOLDENRODNAMERATER_SWARM_GRAMPS
 	const GOLDENRODNAMERATER_MOVE_RELEARNER
 	const GOLDENRODNAMERATER_MOVE_DELETER
 	const GOLDENRODNAMERATER_HELP_GUY
+
+	def_object_events
+	object_event  5,  3, SPRITE_GENTLEMAN, SPRITEMOVEDATA_STANDING_LEFT, 2, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, GoldenrodNameRater, -1
+	object_event  2,  4, SPRITE_GRAMPS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_PINK, OBJECTTYPE_SCRIPT, 0, SwarmGrampsScript, -1
+	object_event  2,  3, SPRITE_SAGE, SPRITEMOVEDATA_STANDING_RIGHT, 2, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, MoveRelearnerScript, -1
+	object_event  5,  4, SPRITE_BLACK_BELT, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodNameRaterMoveDeleterScript, -1
+	object_event  0,  5, SPRITE_FISHER, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, HelpGuyScript, -1
 
 GoldenrodNameRater_MapScripts:
 	def_scene_scripts
@@ -243,22 +262,3 @@ IHelpText:
 	para "And me? I'm here"
 	line "to help too!"
 	done
-
-GoldenrodNameRater_MapEvents:
-	def_warp_events
-	warp_event  2,  7, GOLDENROD_CITY, 9
-	warp_event  3,  7, GOLDENROD_CITY, 9
-
-	def_coord_events
-
-	def_bg_events
-	bg_event  0,  1, BGEVENT_READ, GoldenrodNameRaterBookshelf
-	bg_event  1,  1, BGEVENT_READ, GoldenrodNameRaterBookshelf
-	bg_event  7,  1, BGEVENT_READ, GoldenrodNameRaterRadio
-
-	def_object_events
-	object_event  5,  3, SPRITE_GENTLEMAN, SPRITEMOVEDATA_STANDING_LEFT, 2, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, GoldenrodNameRater, -1
-	object_event  2,  4, SPRITE_GRAMPS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_PINK, OBJECTTYPE_SCRIPT, 0, SwarmGrampsScript, -1
-	object_event  2,  3, SPRITE_SAGE, SPRITEMOVEDATA_STANDING_RIGHT, 2, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, MoveRelearnerScript, -1
-	object_event  5,  4, SPRITE_BLACK_BELT, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodNameRaterMoveDeleterScript, -1
-	object_event  0,  5, SPRITE_FISHER, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, HelpGuyScript, -1
