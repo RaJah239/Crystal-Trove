@@ -7,6 +7,7 @@ Route40_MapEvents:
 
 	def_bg_events
 	bg_event 12,  5, BGEVENT_READ, SeaSign
+	bg_event 28,  7, BGEVENT_READ, DriftseaPokecenterSign
 
 	def_object_events
 	object_event  6, 10, SPRITE_ROCK, SPRITEMOVEDATA_SMASHABLE_ROCK, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route40Rock, -1
@@ -24,6 +25,9 @@ Route40_MapScripts:
 	def_scene_scripts
 
 	def_callbacks
+
+DriftseaPokecenterSign:
+	jumpstd PokecenterSignScript
 
 Route40Rock:
 	jumpstd SmashRockScript
