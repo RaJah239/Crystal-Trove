@@ -1,15 +1,16 @@
 Route34_MapEvents:
 	def_warp_events
+	warp_event 19, 17, DAY_CARE, 3
+
 	warp_event 13, 29, ROUTE_34_ILEX_FOREST_GATE, 1
 	warp_event 14, 29, ROUTE_34_ILEX_FOREST_GATE, 2
 	warp_event 17, 16, DAY_CARE, 1
 	warp_event 17, 17, DAY_CARE, 2
-	warp_event 19, 17, DAY_CARE, 3
+
 	warp_event 25, 18, HATCH_ROOM, 2
 	warp_event 25, 19, HATCH_ROOM, 2
 	warp_event 21,  8, ROUTE_38_ECRUTEAK_GATE, 1
 	warp_event 21,  9, ROUTE_38_ECRUTEAK_GATE, 2
-
 	warp_event  6,  8, ROUTE_36_NATIONAL_PARK_GATE, 3
 	warp_event  6,  9, ROUTE_36_NATIONAL_PARK_GATE, 4
 

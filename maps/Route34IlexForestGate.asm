@@ -140,8 +140,8 @@ Route34IlexForestGatePorygonPCScript:
 
 Route34IlexForestGate_MapEvents:
 	def_warp_events
-	warp_event  4,  0, ROUTE_34, 1
-	warp_event  5,  0, ROUTE_34, 2
+	warp_event  4,  0, ROUTE_34, 2
+	warp_event  5,  0, ROUTE_34, 3
 	warp_event  4,  7, ROUTE_40, 2
 	warp_event  5,  7, ROUTE_40, 2
 

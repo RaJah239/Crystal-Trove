@@ -737,7 +737,7 @@ Violet_Map_Name17: ; map_const ROUTE_36_NATIONAL_PARK_GATE ; 17
 	db "Route 36-Park Gate@"
 
 Goldenrod_Map_Name1: ; map_const ROUTE_34,;  1
-	db "Route 34@"
+	db "Day Care@"
 Goldenrod_Map_Name2: ; map_const GOLDENROD_CITY;  2
 	db "Goldenrod City@"
 Goldenrod_Map_Name3: ; map_const GOLDENROD_GYM,;  3
