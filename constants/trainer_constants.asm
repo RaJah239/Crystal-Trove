@@ -114,8 +114,7 @@ DEF KRIS EQU __trainer_class__
 	const MIKEY
 	const ALBERT
 	const GORDON
-	const SAMUEL
-	const IAN
+	const SAMUEL ; used for a trainer in bug contest
 	const JOEY2
 	const JOEY3
 	const JOEY4
@@ -189,8 +188,6 @@ DEF KRIS EQU __trainer_class__
 	const LOIS
 	const FRAN
 	const LOLA
-	const KATE
-	const IRENE
 	const KELLY
 	const JOYCE
 	const BETH1
@@ -199,7 +196,6 @@ DEF KRIS EQU __trainer_class__
 	const BETH2
 	const EMMA
 	const CYBIL
-	const JENN
 	const BETH3
 	const REENA2
 	const REENA3
@@ -414,14 +410,12 @@ DEF KRIS EQU __trainer_class__
 
 	trainerclass PICNICKER ; 35
 	const LIZ1
-	const GINA1
+	const GINA1 ; used for a phoen number only
 	const BROOKE
 	const KIM
-	const GINA2
 	const ERIN1
 	const LIZ2
 	const LIZ3
-	const GINA3
 	const TIFFANY1
 	const TIFFANY2
 	const ERIN2
@@ -429,21 +423,15 @@ DEF KRIS EQU __trainer_class__
 	const ERIN3
 	const LIZ4
 	const LIZ5
-	const GINA4
-	const GINA5
 	const TIFFANY4
 
 	trainerclass CAMPER ; 36
 	const ROLAND
-	const TODD1
+	const TODD1 ; used for a phoen number only
 	const IVAN
 	const ELLIOT
 	const TED
-	const TODD2
-	const TODD3
 	const SPENCER
-	const TODD4
-	const TODD5
 	const QUENTIN
 
 	trainerclass EXECUTIVEF ; 37
@@ -476,7 +464,6 @@ DEF KRIS EQU __trainer_class__
 	trainerclass POKEFANM ; 3b
 	const WILLIAM
 	const DEREK1
-	const BRANDON
 
 	trainerclass KIMONO_GIRL ; 3c
 	const NAOKO
