@@ -575,7 +575,7 @@ Dungeons_Map_Name55: ; map_const GOLDENROD_DEPT_STORE_B1F,; 55
 Dungeons_Map_Name56: ; map_const GOLDENROD_UNDERGROUND_WAREHOUSE,; 56
 	db "Golden. Dept. Ware@"
 Dungeons_Map_Name57: ; map_const MOUNT_MORTAR_1F_OUTSIDE,; 57
-	db "Mt. Mortar Outside@"
+	db "Mt. Mortar@"
 Dungeons_Map_Name58: ; map_const MOUNT_MORTAR_1F_INSIDE,; 58
 	db "Mt. Mortar 1F@"
 Dungeons_Map_Name59: ; map_const MOUNT_MORTAR_2F_INSIDE,; 59
