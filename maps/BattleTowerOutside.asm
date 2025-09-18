@@ -7,6 +7,7 @@ BattleTowerOutside_MapEvents:
 	warp_event 19,  9, BATTLE_TOWER_1F, 2
 	warp_event 44, 21, OAKS_LAB, 1
 	warp_event 26, 23, EARLS_POKEMON_ACADEMY, 1
+	warp_event 58, 21, GOLDENROD_GAME_CORNER, 1
 
 	def_coord_events
 
@@ -14,6 +15,7 @@ BattleTowerOutside_MapEvents:
 	bg_event  7, 21, BGEVENT_READ, PlayersHouseSign
 	bg_event 41, 21, BGEVENT_READ, OaksLabSign
 	bg_event 30, 23, BGEVENT_READ, EarlsPokemonAcademySign
+	bg_event 62, 21, BGEVENT_READ, GameCornerSign
 	bg_event 24,  8, BGEVENT_READ, BattleTowerOutsideSign
 
 	object_const_def
@@ -62,6 +64,16 @@ OaksLabSign:
 OaksLabSignText:
 	text "Professor Oak's"
 	line "Research Lab"
+	done
+
+GameCornerSign:
+	jumptext GameCornerSignText
+
+GameCornerSignText:
+	text "Game Corner"
+
+	para "Dare to Risk,"
+	line "Dare to Win!"
 	done
 
 BattleTowerOutsideYoungsterScript:
