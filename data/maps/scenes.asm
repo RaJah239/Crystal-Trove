@@ -33,8 +33,6 @@ MapScenes::
 	scene_var GOLDENROD_GYM,                               wGoldenrodGymSceneID
 	scene_var GOLDENROD_MAGNET_TRAIN_STATION,              wGoldenrodMagnetTrainStationSceneID
 	scene_var OLIVINE_CITY,                                wOlivineCitySceneID
-	scene_var ROUTE_34,                                    wRoute34SceneID ; unused
-	scene_var ROUTE_34_ILEX_FOREST_GATE,                   wRoute34IlexForestGateSceneID ; unused
 	scene_var ECRUTEAK_TIN_TOWER_ENTRANCE,                 wEcruteakTinTowerEntranceSceneID
 	scene_var WISE_TRIOS_ROOM,                             wWiseTriosRoomSceneID
 	scene_var ECRUTEAK_GYM,                                wEcruteakGymSceneID
@@ -45,7 +43,6 @@ MapScenes::
 	scene_var BATTLE_TOWER_BATTLE_ROOM,                    wBattleTowerBattleRoomSceneID
 	scene_var BATTLE_TOWER_ELEVATOR,                       wBattleTowerElevatorSceneID
 	scene_var BATTLE_TOWER_HALLWAY,                        wBattleTowerHallwaySceneID
-	scene_var BATTLE_TOWER_OUTSIDE,                        wBattleTowerOutsideSceneID ; unused
 	scene_var ROUTE_43_GATE,                               wRoute43GateSceneID
 	scene_var SPROUT_TOWER_3F,                             wSproutTower3FSceneID
 	scene_var TIN_TOWER_1F,                                wTinTower1FSceneID

@@ -3190,8 +3190,6 @@ wAzaleaTownSceneID::                              db
 wGoldenrodGymSceneID::                            db
 wGoldenrodMagnetTrainStationSceneID::             db
 wOlivineCitySceneID::                             db
-wRoute34SceneID::                                 db
-wRoute34IlexForestGateSceneID::                   db
 wEcruteakTinTowerEntranceSceneID::                db
 wWiseTriosRoomSceneID::                           db
 wEcruteakGymSceneID::                             db
@@ -3202,7 +3200,6 @@ wBattleTower1FSceneID::                           db
 wBattleTowerBattleRoomSceneID::                   db
 wBattleTowerElevatorSceneID::                     db
 wBattleTowerHallwaySceneID::                      db
-wBattleTowerOutsideSceneID::                      db
 wRoute43GateSceneID::                             db
 wSproutTower3FSceneID::                           db
 wTinTower1FSceneID::                              db
@@ -3232,7 +3229,7 @@ wDayCareSceneID::                                 db
 wRoute38EcruteakGateSceneID::                     db
 wRoute42EcruteakGateSceneID::                     db
 wRoute30SceneID::                                 db
-	ds 145
+	ds 148
 
 wAbilityPageMode:: db
 
