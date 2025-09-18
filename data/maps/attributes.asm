@@ -123,22 +123,18 @@ ENDM
 	connection north, Route39, ROUTE_39, 5
 	connection west, Route40, ROUTE_40, 9
 
-	map_attributes EcruteakCity, ECRUTEAK_CITY, $05, SOUTH | WEST | EAST
+	map_attributes EcruteakCity, ECRUTEAK_CITY, $05, SOUTH | WEST
 	connection south, Route37, ROUTE_37, 5
 	connection west, Route38, ROUTE_38, 5
-	connection east, Route42, ROUTE_42, 9
 
-	map_attributes MahoganyTown, MAHOGANY_TOWN, $71, NORTH | WEST | EAST
+	map_attributes MahoganyTown, MAHOGANY_TOWN, $71, NORTH
 	connection north, Route43, ROUTE_43, 0
-	connection west, Route42, ROUTE_42, 0
-	connection east, Route44, ROUTE_44, 0
 
 	map_attributes LakeOfRage, LAKE_OF_RAGE, $05, SOUTH
 	connection south, Route43, ROUTE_43, 5
 
-	map_attributes BlackthornCity, BLACKTHORN_CITY, $71, SOUTH | WEST
+	map_attributes BlackthornCity, BLACKTHORN_CITY, $71, SOUTH
 	connection south, Route45, ROUTE_45, 0
-	connection west, Route44, ROUTE_44, 9
 
 	map_attributes Route26, ROUTE_26, $05, WEST
 	connection west, Route27, ROUTE_27, 45
@@ -197,17 +193,9 @@ ENDM
 	connection north, Route40, ROUTE_40, 15
 	connection west, CianwoodCity, CIANWOOD_CITY, 0
 
-	map_attributes Route42, ROUTE_42, $05, WEST | EAST
-	connection west, EcruteakCity, ECRUTEAK_CITY, -9
-	connection east, MahoganyTown, MAHOGANY_TOWN, 0
-
 	map_attributes Route43, ROUTE_43, $05, NORTH | SOUTH
 	connection north, LakeOfRage, LAKE_OF_RAGE, -5
 	connection south, MahoganyTown, MAHOGANY_TOWN, 0
-
-	map_attributes Route44, ROUTE_44, $71, WEST | EAST
-	connection west, MahoganyTown, MAHOGANY_TOWN, 0
-	connection east, BlackthornCity, BLACKTHORN_CITY, -9
 
 	map_attributes Route45, ROUTE_45, $71, NORTH | WEST
 	connection north, BlackthornCity, BLACKTHORN_CITY, 0
@@ -442,3 +430,5 @@ ENDM
 	map_attributes CianwoodPort, CIANWOOD_PORT, $0a, 0
 	map_attributes CianwoodPortPassage, CIANWOOD_PORT_PASSAGE, $00, 0
 	map_attributes Route34, ROUTE_34, $00, 0
+	map_attributes Route42, ROUTE_42, $05, 0
+	map_attributes Route44, ROUTE_44, $71, 0

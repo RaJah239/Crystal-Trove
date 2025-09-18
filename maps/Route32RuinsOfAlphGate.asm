@@ -1,8 +1,8 @@
 Route32RuinsOfAlphGate_MapEvents:	def_warp_events
 	warp_event  0,  4, ROUTE_42, 6
 	warp_event  0,  5, ROUTE_42, 7
-	warp_event  9,  4, ROUTE_32, 2
-	warp_event  9,  5, ROUTE_32, 3
+	warp_event  9,  4, ROUTE_44, 2
+	warp_event  9,  5, ROUTE_44, 3
 
 	def_coord_events
 

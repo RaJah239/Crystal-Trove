@@ -1,7 +1,7 @@
 Route42_MapEvents:
 	def_warp_events
-	warp_event  0,  8, ROUTE_42_ECRUTEAK_GATE, 3
-	warp_event  0,  9, ROUTE_42_ECRUTEAK_GATE, 4
+	warp_event  4,  8, ROUTE_42_ECRUTEAK_GATE, 3
+	warp_event  4,  9, ROUTE_42_ECRUTEAK_GATE, 4
 	warp_event 10,  5, MOUNT_MORTAR_1F_OUTSIDE, 1
 	warp_event 28,  9, MOUNT_MORTAR_1F_OUTSIDE, 2
 	warp_event 46,  7, MOUNT_MORTAR_1F_OUTSIDE, 3
@@ -15,7 +15,7 @@ Route42_MapEvents:
 	bg_event  4, 10, BGEVENT_READ, Route42Sign1
 	bg_event  7,  5, BGEVENT_READ, MtMortarSign1
 	bg_event 45,  9, BGEVENT_READ, MtMortarSign2
-	bg_event 52, 10, BGEVENT_READ, Route42Sign2
+	bg_event 50, 10, BGEVENT_READ, Route42Sign2
 	bg_event 16, 11, BGEVENT_ITEM, Route42HiddenMaxPotion
 	bg_event 27, 16, BGEVENT_READ, Route42NoBerryOrApricorn
 	bg_event 28, 16, BGEVENT_READ, Route42NoBerryOrApricorn
