@@ -243,8 +243,6 @@ MeowthFrontpic:      INCBIN "gfx/pokemon/meowth/front.animated.2bpp.lz"
 Porygon2Frontpic:    INCBIN "gfx/pokemon/porygon2/front.animated.2bpp.lz"
 SandshrewFrontpic:   INCBIN "gfx/pokemon/sandshrew/front.animated.2bpp.lz"
 NidoranFFrontpic:    INCBIN "gfx/pokemon/nidoran_f/front.animated.2bpp.lz"
-PidgeyFrontpic:      INCBIN "gfx/pokemon/pidgey/front.animated.2bpp.lz"
-ParasectBackpic:     INCBIN "gfx/pokemon/parasect/back.2bpp.lz"
 
 
 SECTION "Pics 10", ROMX
@@ -722,6 +720,8 @@ MaximaPic:           INCBIN "gfx/trainers/maxima.2bpp.lz"
 GholdengoFrontpic:   INCBIN "gfx/pokemon/gholdengo/front.animated.2bpp.lz"
 GholdengoBackpic:    INCBIN "gfx/pokemon/gholdengo/back.2bpp.lz"
 StarmieBackpic:      INCBIN "gfx/pokemon/starmie/back.2bpp.lz"
+ParasectBackpic:     INCBIN "gfx/pokemon/parasect/back.2bpp.lz"
+PidgeyFrontpic:      INCBIN "gfx/pokemon/pidgey/front.animated.2bpp.lz"
 
 SECTION "Pics 20", ROMX
 
