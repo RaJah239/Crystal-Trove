@@ -1,5 +1,6 @@
 BattleTowerOutside_MapEvents:
 	def_warp_events
+	warp_event  9, 21, PLAYERS_HOUSE_1F, 1
 	warp_event 18,  9, BATTLE_TOWER_1F, 1
 	warp_event 34, 29, ROUTE_40_BATTLE_TOWER_GATE, 3
 	warp_event 35, 29, ROUTE_40_BATTLE_TOWER_GATE, 4
@@ -8,6 +9,7 @@ BattleTowerOutside_MapEvents:
 	def_coord_events
 
 	def_bg_events
+	bg_event  7, 21, BGEVENT_READ, PlayersHouseSign
 	bg_event 24,  8, BGEVENT_READ, BattleTowerOutsideSign
 
 	object_const_def
@@ -31,6 +33,13 @@ BattleTowerOutside_MapScripts:
 BattleTowerOutsideFlypointCallback:
 	setflag ENGINE_FLYPOINT_BATTLE_TOWER
 	endcallback
+
+PlayersHouseSign:
+	jumptext PlayersHouseSignText
+
+PlayersHouseSignText:
+	text "<PLAYER>'s House"
+	done
 
 BattleTowerOutsideYoungsterScript:
 	jumptextfaceplayer BattleTowerOutsideYoungsterText

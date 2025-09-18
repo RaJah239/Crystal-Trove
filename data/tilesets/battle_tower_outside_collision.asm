@@ -66,7 +66,7 @@
 	tilecoll WALL, WALL, DOOR, WALL ; 41
 	tilecoll WALL, WALL, WALL, WALL ; 42
 	tilecoll WALL, WALL, WALL, DOOR ; 43
-	tilecoll WALL, WALL, WALL, WALL ; 44
+	tilecoll FLOOR, FLOOR, FLOOR, WALL ; 44
 	tilecoll WALL, WALL, WALL, WALL ; 45
 	tilecoll WALL, WALL, WALL, WALL ; 46
 	tilecoll FLOOR, WARP_CARPET_RIGHT, FLOOR, WARP_CARPET_RIGHT ; 47

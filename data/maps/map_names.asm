@@ -885,7 +885,7 @@ Cianwood_Map_Name14: ; map_const BATTLE_TOWER_HALLWAY, ; 14
 Cianwood_Map_Name15: ; map_const ROUTE_40_BATTLE_TOWER_GATE ; 15
 	db "Route 40 Gate@"
 Cianwood_Map_Name16: ; map_const BATTLE_TOWER_OUTSIDE ; 16
-	db "Battle Tower@"
+	db "Battle Plaza@"
 Cianwood_Map_Name17: ; map_const CIANWOOD_PORT, ; 17
 	db "Cianwood Marina@"
 Cianwood_Map_Name18: ; map_const CIANWOOD_PORT_PASSAGE, ; 18
