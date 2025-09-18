@@ -644,6 +644,7 @@ Fast_Travel_Warp_Locations:
 	map_id NATIONAL_PARK ; National Park
 	map_id ILEX_FOREST ; Ilex Forest
 	map_id ROUTE_42 ; Mt. Mortar
+	map_id ROUTE_44 ; Frost Path
 
 	map_id RUINS_OF_ALPH_OUTSIDE ; Ruins of Alph
 	map_id SILVER_CAVE_OUTSIDE ; Silver Cave
@@ -676,6 +677,7 @@ Fast_Travel_Warp_Strings:
 	dba Dungeons_Map_Name15 ; National Park
 	dba Dungeons_Map_Name52 ; Ilex Forest
 	dba Dungeons_Map_Name57 ; Mt. Mortar
+	dba Mahogany_Map_Name6 ; Frost Path
 
 	dba Dungeons_Map_Name22 ; Ruins of Alph
 	dba Silver_Map_Name1 ; Silver Cave

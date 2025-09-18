@@ -460,7 +460,7 @@ Mahogany_Map_Name4: ; map_const ROUTE_42_ECRUTEAK_GATE ;  4
 Mahogany_Map_Name5: ; map_const ROUTE_42,  ;  5
 	db "Route 42@"
 Mahogany_Map_Name6: ; map_const ROUTE_44, ;  6
-	db "Route 44@"
+	db "Frost Path@"
 Mahogany_Map_Name7: ; map_const MAHOGANY_TOWN,  ;  7
 	db "Mahogany Town@"
 Mahogany_Map_Name8:

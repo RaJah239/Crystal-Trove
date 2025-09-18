@@ -1,10 +1,9 @@
 Route44_MapEvents:
 	def_warp_events
+	warp_event 15,  5, MAHOGANY_POKECENTER_1F, 1
 	warp_event 56,  7, ICE_PATH_1F, 1
 	warp_event  6,  8, ROUTE_32_RUINS_OF_ALPH_GATE, 3
 	warp_event  6,  9, ROUTE_32_RUINS_OF_ALPH_GATE, 4
-
-	warp_event 15,  5, MAHOGANY_POKECENTER_1F, 1
 
 	def_coord_events
 
