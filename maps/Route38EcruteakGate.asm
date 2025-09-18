@@ -1,87 +1,28 @@
-	object_const_def
-	const ROUTE38ECRUTEAKGATE_OFFICER
-	const ROUTE38ECRUTEAKGATE_OFFICER_BLOCKER
-
-Route38EcruteakGate_MapScripts:
-	def_scene_scripts
-	scene_script Route38EcruteakGateScene1, SCENE_ROUTE38ECRUTEAKGATE_OFFICER_BLOCKER
-	scene_script Route38EcruteakGateFNoop1, SCENE_ROUTE38ECRUTEAKGATE_NOOP
-
-	def_callbacks
-
-Route38EcruteakGateScene1:
-	end
-
-Route38EcruteakGateFNoop1:
-	end
-
-Route38EcruteakGateOfficerSceneScript:
-	showemote EMOTE_SHOCK, ROUTE38ECRUTEAKGATE_OFFICER_BLOCKER, 15
-	applymovement ROUTE38ECRUTEAKGATE_OFFICER_BLOCKER, Route38EcruteakGateOfficerWalksBackInSpot
-	follow PLAYER, ROUTE38ECRUTEAKGATE_OFFICER_BLOCKER
-	applymovement PLAYER, PlayerTakesAStepRight
-	stopfollow
-	turnobject PLAYER, LEFT
-
-	opentext
-	writetext Route38EcruteakGateOfficerBlockerText
-	waitbutton
-	closetext
-
-	applymovement ROUTE38ECRUTEAKGATE_OFFICER_BLOCKER, Route38EcruteakGateOfficerWalksBackInPlace
-	turnobject ROUTE38ECRUTEAKGATE_OFFICER_BLOCKER, DOWN
-	end
-
-Route38EcruteakGateOfficerWalksBackInPlace:
-	step UP
-	step_end
-
-PlayerTakesAStepRight:
-	step RIGHT
-	step_end
-
-Route38EcruteakGateOfficerWalksBackInSpot:
-	step LEFT
-	step DOWN
-	turn_head RIGHT
-	step_end
-
-Route38EcruteakGateOfficerScript:
-	jumptextfaceplayer Route38EcruteakGateOfficerText
-
-Route38EcruteakGateOfficerBlockerScript:
-	jumptextfaceplayer Route38EcruteakGateOfficerBlockerText
-
-Route38EcruteakGateOfficerBlockerText:
-	text "It's unsafe to go"
-	line "this way."
-	
-	para "There's a drove of"
-	line "TAUROS rampaging"
-	cont "out there."
-	
-	para "Come back when"
-	line "things cool down."
-	done
-
-Route38EcruteakGateOfficerText:
-	text "All's clear now."
-	line "Go on through."
-	done
-
 Route38EcruteakGate_MapEvents:
 	def_warp_events
-	warp_event  0,  4, ROUTE_38, 1
-	warp_event  0,  5, ROUTE_38, 2
-	warp_event  9,  4, ECRUTEAK_CITY, 14
-	warp_event  9,  5, ECRUTEAK_CITY, 15
+	warp_event  0,  4, ROUTE_34, 8
+	warp_event  0,  5, ROUTE_34, 9
+	warp_event  9,  4, BATTLE_TOWER_OUTSIDE, 10
+	warp_event  9,  5, BATTLE_TOWER_OUTSIDE, 11
 
 	def_coord_events
-	coord_event  5,  5, SCENE_ROUTE38ECRUTEAKGATE_OFFICER_BLOCKER, Route38EcruteakGateOfficerSceneScript
-
 
 	def_bg_events
 
+	object_const_def
+	const ROUTE38ECRUTEAKGATE_OFFICER
+
 	def_object_events
-	object_event  5,  2, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Route38EcruteakGateOfficerScript, EVENT_ROUTE_38_ECRUTEAKGATE_OFFICER
-	object_event  5,  4, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Route38EcruteakGateOfficerBlockerScript, EVENT_ROUTE_38_ECRUTEAKGATE_OFFICER_BLOCKER
+	object_event  5,  2, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Route38EcruteakGateOfficerScript, -1
+
+Route38EcruteakGate_MapScripts:
+	def_scene_scripts
+
+	def_callbacks
+
+Route38EcruteakGateOfficerScript:
+	jumptext Route38EcruteakGateOfficerText
+
+Route38EcruteakGateOfficerText:
+	text "Go on through."
+	done

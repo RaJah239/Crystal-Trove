@@ -7,6 +7,9 @@ Route34_MapEvents:
 	warp_event 19, 17, DAY_CARE, 3
 	warp_event 25, 18, HATCH_ROOM, 2
 	warp_event 25, 19, HATCH_ROOM, 2
+	warp_event 21,  8, ROUTE_38_ECRUTEAK_GATE, 1
+	warp_event 21,  9, ROUTE_38_ECRUTEAK_GATE, 2
+
 	def_coord_events
 
 	def_bg_events

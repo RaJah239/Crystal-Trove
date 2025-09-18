@@ -9,6 +9,8 @@ BattleTowerOutside_MapEvents:
 	warp_event 26, 23, EARLS_POKEMON_ACADEMY, 1
 	warp_event 58, 21, GOLDENROD_GAME_CORNER, 1
 	warp_event 19, 21, GOLDENROD_NAME_RATER, 1
+	warp_event  6, 26, ROUTE_38_ECRUTEAK_GATE, 3
+	warp_event  6, 27, ROUTE_38_ECRUTEAK_GATE, 4
 
 	def_coord_events
 
