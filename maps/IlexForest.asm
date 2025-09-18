@@ -1077,7 +1077,7 @@ IlexForestChanseyScript:
 
 IlexForest_MapEvents:
 	def_warp_events
-	warp_event  1,  5, ROUTE_34_ILEX_FOREST_GATE, 3
+	warp_event  1,  5, ROUTE_35_NATIONAL_PARK_GATE, 3
 	warp_event  3, 42, ILEX_FOREST_AZALEA_GATE, 1
 	warp_event  3, 43, ILEX_FOREST_AZALEA_GATE, 2
 

@@ -443,8 +443,8 @@ Route35NationalParkGate_MapEvents:
 	def_warp_events
 	warp_event  3,  0, NATIONAL_PARK, 1
 	warp_event  4,  0, NATIONAL_PARK, 4
-	warp_event  3,  7, ROUTE_35, 3
-	warp_event  4,  7, ROUTE_35, 3
+	warp_event  3,  7, ILEX_FOREST, 1
+	warp_event  4,  7, ILEX_FOREST, 1
 
 	def_coord_events
 

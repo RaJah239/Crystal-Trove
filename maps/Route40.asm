@@ -311,7 +311,7 @@ Route40SignText:
 
 Route40_MapEvents:
 	def_warp_events
-	warp_event  9,  5, ROUTE_40_BATTLE_TOWER_GATE, 1
+	warp_event  9,  5, ROUTE_34_ILEX_FOREST_GATE, 3
 
 	def_coord_events
 
