@@ -416,7 +416,7 @@ Route39_MapEvents:
 	warp_event  1, 17, ROUTE_39_BARN, 1
 	warp_event  5, 17, ROUTE_39_FARMHOUSE, 1
 	warp_event  1, 17, ROUTE_39_BARN, 1
-	warp_event  9,  5, ROUTE_39_SILVER_CAVE_GATE, 1
+	warp_event  9,  5, BATTLE_PLAZA_SCALD_RIFT_GATE, 1
 
 	def_coord_events
 

@@ -13,7 +13,7 @@ BattlePlazaScaldRiftGate_MapEvents:
 	const BATTLEPLAZASCALDRIFTGATE_OFFICER
 
 	def_object_events
-	object_event  0,  4, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, BattlePlazaScaldRiftGateOfficerScript, -1
+	object_event  0,  4, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, BattlePlazaScaldRiftGateGateOfficerScript, -1
 
 BattlePlazaScaldRiftGate_MapScripts:
 	def_scene_scripts
@@ -21,8 +21,8 @@ BattlePlazaScaldRiftGate_MapScripts:
 	def_callbacks
 
 BattlePlazaScaldRiftGateGateOfficerScript:
-	jumptext MtSilverIsOpenedForYouText
+	jumptext BattlePlazaScaldRiftGateGateOfficerScriptText
 
-MtSilverIsOpenedForYouText:
+BattlePlazaScaldRiftGateGateOfficerScriptText:
 	text "Go on through!" 
 	done	

@@ -341,7 +341,7 @@ INCLUDE "maps/Route33.asm"
 INCLUDE "maps/PalletTown.asm"
 INCLUDE "maps/Route23.asm"
 INCLUDE "maps/SilverCavePokecenter1F.asm"
-INCLUDE "maps/Route39_SilverCaveGate.asm"
+INCLUDE "maps_battle_nexus/BattlePlazaScaldRiftGate.asm"
 
 
 SECTION "Map Scripts 25", ROMX

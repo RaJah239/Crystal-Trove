@@ -373,7 +373,7 @@ ENDM
 	map_attributes LancesRoom, LANCES_ROOM, $00, 0
 	map_attributes HallOfFame, HALL_OF_FAME, $00, 0
 	map_attributes SilverCavePokecenter1F, SILVER_CAVE_POKECENTER_1F, $00, 0
-	map_attributes Route39_SilverCaveGate, ROUTE_39_SILVER_CAVE_GATE, $00, 0
+	map_attributes BattlePlazaScaldRiftGate, BATTLE_PLAZA_SCALD_RIFT_GATE, $00, 0
 	map_attributes Pokecenter2F, POKECENTER_2F, $00, 0
 	map_attributes TradeCenter, TRADE_CENTER, $00, 0
 	map_attributes Colosseum, COLOSSEUM, $00, 0

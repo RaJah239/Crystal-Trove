@@ -92,7 +92,9 @@ Route35GoldenrodGate_Blocks:
 Route36RuinsOfAlphGate_Blocks:
 Route40BattleTowerGate_Blocks:
 Route29Route46Gate_Blocks:
-Route39_SilverCaveGate_Blocks:
+
+; Battle Nexus maps
+BattlePlazaScaldRiftGate_Blocks:
 	INCBIN "maps/NorthSouthGate.blk"
 
 TrailwayDriftseaGate_Blocks:
@@ -122,6 +124,7 @@ IlexForestAzaleaGate_Blocks:
 Route31VioletGate_Blocks:
 	INCBIN "maps/EastWestGate.blk"
 
+; Battle Nexus maps
 BattlePlazaTrailwayGate_Blocks:
 	INCBIN "maps_battle_nexus/EastWestGate.blk"
 

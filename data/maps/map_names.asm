@@ -328,7 +328,7 @@ Silver_Map_Names: ;newgroup SILVER
 	table_width 2, Silver_Map_Names                                              ; 19
 	dw Silver_Map_Name1 ; map_const SILVER_CAVE_OUTSIDE                   
 	dw Silver_Map_Name2 ; map_const SILVER_CAVE_POKECENTER_1F
-	dw Silver_Map_Name3 ; map_const ROUTE_39_SILVER_CAVE_GATE
+	dw Silver_Map_Name3 ; map_const BATTLE_PLAZA_SCALD_RIFT_GATE
 	assert_table_length NUM_SILVER_MAPS
 
 Cable_Club_Map_Names: ;newgroup CABLE_CLUB
@@ -825,8 +825,8 @@ Silver_Map_Name1: ; map_const SILVER_CAVE_OUTSIDE;  1
 	db "Mt. Silver@"
 Silver_Map_Name2: ; map_const SILVER_CAVE_POKECENTER_1F ;  2
 	db "Silver Cave Center@"
-Silver_Map_Name3: ; map_const ROUTE_39_SILVER_CAVE_GATE ; 3
-	db "Route 39 Gate@"
+Silver_Map_Name3: ; map_const BATTLE_PLAZA_SCALD_RIFT_GATE ; 3
+	db "Plaza-Ridge Gate@"
 
 Cable_Club_Map_Name1: ; map_const POKECENTER_2F ;  1
 	db "<PKMN> CEnter 2F@"

@@ -286,7 +286,7 @@ ENDM
 	newgroup SILVER                                               ; 19
 	map_const SILVER_CAVE_OUTSIDE,                         20, 18 ;  2
 	map_const SILVER_CAVE_POKECENTER_1F,                    5,  4 ;  3
-	map_const ROUTE_39_SILVER_CAVE_GATE,                    5,  4 ;  4
+	map_const BATTLE_PLAZA_SCALD_RIFT_GATE,                 5,  4 ;  4
 	endgroup
 
 	newgroup CABLE_CLUB                                           ; 20
