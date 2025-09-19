@@ -211,7 +211,6 @@ DEF KRIS EQU __trainer_class__
 	const LARRY
 	const ANDREW
 	const CALVIN
-	const SHANE
 	const BEN
 	const BRENT1
 	const RON
@@ -351,7 +350,6 @@ DEF KRIS EQU __trainer_class__
 	const PHILLIP
 	const LEONARD
 	const ANTHONY2
-	const BENJAMIN
 	const ERIK
 	const MICHAEL
 	const PARRY1

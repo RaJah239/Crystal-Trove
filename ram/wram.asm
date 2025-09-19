@@ -3193,7 +3193,6 @@ wEcruteakTinTowerEntranceSceneID::                db
 wWiseTriosRoomSceneID::                           db
 wEcruteakGymSceneID::                             db
 wMahoganyTownSceneID::                            db
-wRoute42SceneID::                                 db
 wCianwoodCitySceneID::                            db
 wBattleTower1FSceneID::                           db
 wBattleTowerBattleRoomSceneID::                   db
@@ -3224,7 +3223,7 @@ wMountMoonSquareSceneID::                         db
 wMobileTradeRoomSceneID::                         db
 wMobileBattleRoomSceneID::                        db
 wRoute30SceneID::                                 db
-	ds 153
+	ds 154
 
 wAbilityPageMode:: db
 
