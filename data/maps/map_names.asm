@@ -412,7 +412,7 @@ Cherrygrove_Map_Names:
 	dw Cherrygrove_Map_Name2 ; map_const ROUTE_31         ;  2
 	dw Cherrygrove_Map_Name3 ; map_const CHERRYGROVE_CITY ;  3
 	dw Cherrygrove_Map_Name4 ; map_const CHERRYGROVE_MART ;  4
-	dw Cherrygrove_Map_Name5 ; map_const CHERRYGROVE_POKECENTER_1F ;  5
+	dw DriftSea_Map_Centre ; map_const DRIFTSEA_POKECENTER_1F ;  5
 	dw Cherrygrove_Map_Name6 ; map_const CHERRYGROVE_GYM_SPEECH_HOUSE ;  6
 	dw Cherrygrove_Map_Name7 ; map_const GUIDE_GENTS_HOUSE ;  7
 	dw Cherrygrove_Map_Name8 ; map_const CHERRYGROVE_EVOLUTION_SPEECH_HOUSE ;  8
@@ -936,8 +936,8 @@ Cherrygrove_Map_Name3: ; map_const CHERRYGROVE_CITY ;  3
 	db "Cherrygrove City@"
 Cherrygrove_Map_Name4: ; map_const CHERRYGROVE_MART ;  4
 	db "Cherrygrove Mart@"
-Cherrygrove_Map_Name5: ; map_const CHERRYGROVE_POKECENTER_1F ;  5
-	db "Cherrygrove Center@"
+DriftSea_Map_Centre: ; map_const DRIFTSEA_POKECENTER_1F ;  5
+	db "Driftsea's Center@"
 Cherrygrove_Map_Name6: ; map_const CHERRYGROVE_GYM_SPEECH_HOUSE ;  6
 	db "Cherrygrove House1@"
 Cherrygrove_Map_Name7: ; map_const GUIDE_GENTS_HOUSE ;  7

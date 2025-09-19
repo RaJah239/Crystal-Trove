@@ -412,7 +412,7 @@ ENDM
 	map_attributes Route27SandstormHouse, ROUTE_27_SANDSTORM_HOUSE, $00, 0
 	map_attributes Route29Route46Gate, ROUTE_29_ROUTE_46_GATE, $00, 0
 	map_attributes CherrygroveMart, CHERRYGROVE_MART, $00, 0
-	map_attributes CherrygrovePokecenter1F, CHERRYGROVE_POKECENTER_1F, $00, 0
+	map_attributes DriftseaPokecenter1F, DRIFTSEA_POKECENTER_1F, $00, 0
 	map_attributes CherrygroveGymSpeechHouse, CHERRYGROVE_GYM_SPEECH_HOUSE, $00, 0
 	map_attributes GuideGentsHouse, GUIDE_GENTS_HOUSE, $00, 0
 	map_attributes CherrygroveEvolutionSpeechHouse, CHERRYGROVE_EVOLUTION_SPEECH_HOUSE, $00, 0

@@ -145,8 +145,10 @@ Route32Pokecenter1F_Blocks:
 GoldenrodPokecenter1F_Blocks:
 SilverCavePokecenter1F_Blocks:
 CianwoodPokecenter1F_Blocks:
-CherrygrovePokecenter1F_Blocks:
 	INCBIN "maps/Pokecenter1F.blk"
+
+DriftseaPokecenter1F_Blocks:
+	INCBIN "maps_battle_nexus/Pokecenter1F.blk"
 
 EarlsPokemonAcademy_Blocks:
 	INCBIN "maps/EarlsPokemonAcademy.blk"
