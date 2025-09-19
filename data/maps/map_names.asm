@@ -494,7 +494,7 @@ Dungeons_Map_Name13: ; map_const BURNED_TOWER_1F, ; 13
 Dungeons_Map_Name14: ; map_const BURNED_TOWER_B1F, ; 14
 	db "Burned Tower B1F@"
 Dungeons_Map_Name15: ; map_const NATIONAL_PARK, ; 15
-	db "National Park@"
+	db "Park@"
 Dungeons_Map_Name16: ; map_const NATIONAL_PARK_BUG_CONTEST,; 16
 	db "Park: Bug Contest@"
 Dungeons_Map_Name17: ; map_const RADIO_TOWER_1F ; 17
@@ -737,7 +737,7 @@ Violet_Map_Name17: ; map_const TRAILWAY_PARK_GATE ; 17
 	db "Park Gate-North@"
 
 Goldenrod_Map_Name1: ; map_const TRAILWAY,;  1
-	db "Day Care@"
+	db "Trailway@"
 Goldenrod_Map_Name2: ; map_const GOLDENROD_CITY;  2
 	db "Goldenrod City@"
 Goldenrod_Map_Name3: ; map_const GOLDENROD_GYM,;  3
@@ -783,7 +783,7 @@ Goldenrod_Map_Name22: ; map_const ILEX_FOREST_AZALEA_GATE ; 22
 TrailwayDriftseaGate: ; map_const TRAILWAY_DRIFTSEA_GATE ; 23
 	db "Trail-Drift Gate@"
 Goldenrod_Map_Name24: ; map_const DAY_CARE ; 24 ; 12
-	db "Route 34 Day Care@"
+	db "Day Care@"
 Goldenrod_Map_Name96: ; map_const HATCH_ROOM ; 24 ; 12
 	db "Hatch Room@"
 
