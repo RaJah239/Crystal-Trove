@@ -82,7 +82,7 @@ INCLUDE "maps/Route32Pokecenter1F.asm"
 INCLUDE "maps/Route35GoldenrodGate.asm"
 INCLUDE "maps/Route35NationalParkGate.asm"
 INCLUDE "maps/Route36RuinsOfAlphGate.asm"
-INCLUDE "maps/Route36NationalParkGate.asm"
+INCLUDE "maps_battle_nexus/TrailwayParkGate.asm"
 
 
 SECTION "Map Scripts 6", ROMX

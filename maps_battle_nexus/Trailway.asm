@@ -9,8 +9,8 @@ Trailway_MapEvents:
 	warp_event 25, 19, HATCH_ROOM, 2
 	warp_event 21,  8, ROUTE_38_ECRUTEAK_GATE, 1
 	warp_event 21,  9, ROUTE_38_ECRUTEAK_GATE, 2
-	warp_event  6,  8, ROUTE_36_NATIONAL_PARK_GATE, 3
-	warp_event  6,  9, ROUTE_36_NATIONAL_PARK_GATE, 4
+	warp_event  6,  8, TRAILWAY_PARK_GATE, 3
+	warp_event  6,  9, TRAILWAY_PARK_GATE, 4
 
 	def_coord_events
 

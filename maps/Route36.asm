@@ -703,8 +703,8 @@ Route36NoRoomInBagText:
 
 Route36_MapEvents:
 	def_warp_events
-	warp_event 18,  8, ROUTE_36_NATIONAL_PARK_GATE, 3
-	warp_event 18,  9, ROUTE_36_NATIONAL_PARK_GATE, 4
+	warp_event 18,  8, TRAILWAY_PARK_GATE, 3
+	warp_event 18,  9, TRAILWAY_PARK_GATE, 4
 	warp_event 47, 13, ROUTE_36_RUINS_OF_ALPH_GATE, 1
 	warp_event 48, 13, ROUTE_36_RUINS_OF_ALPH_GATE, 2
 

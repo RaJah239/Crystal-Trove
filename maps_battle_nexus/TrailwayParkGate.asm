@@ -1,4 +1,4 @@
-Route36NationalParkGate_MapEvents:
+TrailwayParkGate_MapEvents:
 	def_warp_events
 	warp_event  0,  4, NATIONAL_PARK, 1
 	warp_event  0,  5, NATIONAL_PARK, 3
@@ -11,21 +11,21 @@ Route36NationalParkGate_MapEvents:
 	bg_event  6,  0, BGEVENT_READ, BugCatchingContestExplanationSign
 
 	object_const_def
-	const ROUTE36NATIONALPARKGATE_OFFICER1
-	const ROUTE36NATIONALPARKGATE_YOUNGSTER1
-	const ROUTE36NATIONALPARKGATE_YOUNGSTER2
-	const ROUTE36NATIONALPARKGATE_ROCKER
-	const ROUTE36NATIONALPARKGATE_POKEFAN_M
-	const ROUTE36NATIONALPARKGATE_YOUNGSTER3
-	const ROUTE36NATIONALPARKGATE_YOUNGSTER4
-	const ROUTE36NATIONALPARKGATE_LASS
-	const ROUTE36NATIONALPARKGATE_YOUNGSTER5
-	const ROUTE36NATIONALPARKGATE_YOUNGSTER6
-	const ROUTE36NATIONALPARKGATE_YOUNGSTER7
-	const ROUTE36NATIONALPARKGATE_OFFICER2
+	const TRAILWAYPARKGATE_OFFICER1
+	const TRAILWAYPARKGATE_YOUNGSTER1
+	const TRAILWAYPARKGATE_YOUNGSTER2
+	const TRAILWAYPARKGATE_ROCKER
+	const TRAILWAYPARKGATE_POKEFAN_M
+	const TRAILWAYPARKGATE_YOUNGSTER3
+	const TRAILWAYPARKGATE_YOUNGSTER4
+	const TRAILWAYPARKGATE_LASS
+	const TRAILWAYPARKGATE_YOUNGSTER5
+	const TRAILWAYPARKGATE_YOUNGSTER6
+	const TRAILWAYPARKGATE_YOUNGSTER7
+	const TRAILWAYPARKGATE_OFFICER2
 
 	def_object_events
-	object_event  0,  3, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, Route36OfficerScriptContest, EVENT_ROUTE_36_NATIONAL_PARK_GATE_OFFICER_CONTEST_DAY
+	object_event  0,  3, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, Route36OfficerScriptContest, EVENT_TRAILWAY_PARK_GATE_OFFICER_CONTEST_DAY
 	object_event  2,  5, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, BugCatchingContestant1BScript, EVENT_BUG_CATCHING_CONTESTANT_1B
 	object_event  4,  5, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, BugCatchingContestant2BScript, EVENT_BUG_CATCHING_CONTESTANT_2B
 	object_event  2,  6, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, BugCatchingContestant3BScript, EVENT_BUG_CATCHING_CONTESTANT_3B
@@ -36,38 +36,38 @@ Route36NationalParkGate_MapEvents:
 	object_event  4,  7, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, BugCatchingContestant8BScript, EVENT_BUG_CATCHING_CONTESTANT_8B
 	object_event  6,  7, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, BugCatchingContestant9BScript, EVENT_BUG_CATCHING_CONTESTANT_9B
 	object_event  6,  6, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, BugCatchingContestant10BScript, EVENT_BUG_CATCHING_CONTESTANT_10B
-	object_event  3,  2, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, Route36NationalParkGateOfficerScript, EVENT_ROUTE_36_NATIONAL_PARK_GATE_OFFICER_NOT_CONTEST_DAY
+	object_event  3,  2, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, TrailwayParkGateOfficerScript, EVENT_TRAILWAY_PARK_GATE_OFFICER_NOT_CONTEST_DAY
 
-Route36NationalParkGate_MapScripts:
+TrailwayParkGate_MapScripts:
 	def_scene_scripts
-	scene_script Route36NationalParkGateNoop1Scene,             SCENE_ROUTE36NATIONALPARKGATE_NOOP
-	scene_script Route36NationalParkGateNoop2Scene,             SCENE_ROUTE36NATIONALPARKGATE_UNUSED
-	scene_script Route36NationalParkGateLeaveContestEarlyScene, SCENE_ROUTE36NATIONALPARKGATE_LEAVE_CONTEST_EARLY
+	scene_script TrailwayParkGateNoop1Scene,             SCENE_TRAILWAYPARKGATE_NOOP
+	scene_script TrailwayParkGateNoop2Scene,             SCENE_TRAILWAYPARKGATE_UNUSED
+	scene_script TrailwayParkGateLeaveContestEarlyScene, SCENE_TRAILWAYPARKGATE_LEAVE_CONTEST_EARLY
 
 	def_callbacks
-	callback MAPCALLBACK_NEWMAP, Route36NationalParkGateCheckIfContestRunningCallback
-	callback MAPCALLBACK_OBJECTS, Route36NationalParkGateCheckIfContestAvailableCallback
+	callback MAPCALLBACK_NEWMAP, TrailwayParkGateCheckIfContestRunningCallback
+	callback MAPCALLBACK_OBJECTS, TrailwayParkGateCheckIfContestAvailableCallback
 
-Route36NationalParkGateNoop1Scene:
+TrailwayParkGateNoop1Scene:
 	; fallthrough
-Route36NationalParkGateNoop2Scene:
+TrailwayParkGateNoop2Scene:
 	end
 
-Route36NationalParkGateLeaveContestEarlyScene:
-	sdefer Route36NationalParkGateLeavingContestEarlyScript
+TrailwayParkGateLeaveContestEarlyScene:
+	sdefer TrailwayParkGateLeavingContestEarlyScript
 	end
 
-Route36NationalParkGateCheckIfContestRunningCallback:
+TrailwayParkGateCheckIfContestRunningCallback:
 	checkflag ENGINE_BUG_CONTEST_TIMER
 	iftrue .BugContestIsRunning
-	setscene SCENE_ROUTE36NATIONALPARKGATE_NOOP
+	setscene SCENE_TRAILWAYPARKGATE_NOOP
 	endcallback
 
 .BugContestIsRunning:
-	setscene SCENE_ROUTE36NATIONALPARKGATE_LEAVE_CONTEST_EARLY
+	setscene SCENE_TRAILWAYPARKGATE_LEAVE_CONTEST_EARLY
 	endcallback
 
-Route36NationalParkGateCheckIfContestAvailableCallback:
+TrailwayParkGateCheckIfContestAvailableCallback:
 	checkevent EVENT_WARPED_FROM_ROUTE_35_NATIONAL_PARK_GATE
 	iftrue .Return
 	readvar VAR_WEEKDAY
@@ -76,40 +76,40 @@ Route36NationalParkGateCheckIfContestAvailableCallback:
 	ifequal SATURDAY, .SetContestOfficer
 	checkflag ENGINE_BUG_CONTEST_TIMER
 	iftrue .SetContestOfficer
-	disappear ROUTE36NATIONALPARKGATE_OFFICER1
-	appear ROUTE36NATIONALPARKGATE_OFFICER2
+	disappear TRAILWAYPARKGATE_OFFICER1
+	appear TRAILWAYPARKGATE_OFFICER2
 	endcallback
 
 .SetContestOfficer:
-	appear ROUTE36NATIONALPARKGATE_OFFICER1
-	disappear ROUTE36NATIONALPARKGATE_OFFICER2
+	appear TRAILWAYPARKGATE_OFFICER1
+	disappear TRAILWAYPARKGATE_OFFICER2
 .Return:
 	endcallback
 
-Route36NationalParkGateLeavingContestEarlyScript:
+TrailwayParkGateLeavingContestEarlyScript:
 	turnobject PLAYER, UP
 	opentext
 	readvar VAR_CONTESTMINUTES
 	addval 1
 	getnum STRING_BUFFER_3
-	writetext Route36NationalParkGateOfficer1WantToFinishText
+	writetext TrailwayParkGateOfficer1WantToFinishText
 	yesorno
 	iffalse .GoBackToContest
-	writetext Route36NationalParkGateOfficer1WaitHereForAnnouncementText
+	writetext TrailwayParkGateOfficer1WaitHereForAnnouncementText
 	waitbutton
 	closetext
 	special FadeOutToBlack
 	special ReloadSpritesNoPalettes
 	scall .CopyContestants
-	disappear ROUTE36NATIONALPARKGATE_OFFICER1
-	appear ROUTE36NATIONALPARKGATE_OFFICER2
-	applymovement PLAYER, Route36NationalParkGatePlayerWaitWithContestantsMovement
+	disappear TRAILWAYPARKGATE_OFFICER1
+	appear TRAILWAYPARKGATE_OFFICER2
+	applymovement PLAYER, TrailwayParkGatePlayerWaitWithContestantsMovement
 	pause 15
 	special FadeInFromBlack
 	jumpstd BugContestResultsScript
 
 .GoBackToContest:
-	writetext Route36NationalParkGateOfficer1OkGoFinishText
+	writetext TrailwayParkGateOfficer1OkGoFinishText
 	waitbutton
 	closetext
 	turnobject PLAYER, LEFT
@@ -122,43 +122,43 @@ Route36NationalParkGateLeavingContestEarlyScript:
 .CopyContestants:
 	checkevent EVENT_BUG_CATCHING_CONTESTANT_1A
 	iftrue .Not1
-	appear ROUTE36NATIONALPARKGATE_YOUNGSTER1
+	appear TRAILWAYPARKGATE_YOUNGSTER1
 .Not1:
 	checkevent EVENT_BUG_CATCHING_CONTESTANT_2A
 	iftrue .Not2
-	appear ROUTE36NATIONALPARKGATE_YOUNGSTER2
+	appear TRAILWAYPARKGATE_YOUNGSTER2
 .Not2:
 	checkevent EVENT_BUG_CATCHING_CONTESTANT_3A
 	iftrue .Not3
-	appear ROUTE36NATIONALPARKGATE_ROCKER
+	appear TRAILWAYPARKGATE_ROCKER
 .Not3:
 	checkevent EVENT_BUG_CATCHING_CONTESTANT_4A
 	iftrue .Not4
-	appear ROUTE36NATIONALPARKGATE_POKEFAN_M
+	appear TRAILWAYPARKGATE_POKEFAN_M
 .Not4:
 	checkevent EVENT_BUG_CATCHING_CONTESTANT_5A
 	iftrue .Not5
-	appear ROUTE36NATIONALPARKGATE_YOUNGSTER3
+	appear TRAILWAYPARKGATE_YOUNGSTER3
 .Not5:
 	checkevent EVENT_BUG_CATCHING_CONTESTANT_6A
 	iftrue .Not6
-	appear ROUTE36NATIONALPARKGATE_YOUNGSTER4
+	appear TRAILWAYPARKGATE_YOUNGSTER4
 .Not6:
 	checkevent EVENT_BUG_CATCHING_CONTESTANT_7A
 	iftrue .Not7
-	appear ROUTE36NATIONALPARKGATE_LASS
+	appear TRAILWAYPARKGATE_LASS
 .Not7:
 	checkevent EVENT_BUG_CATCHING_CONTESTANT_8A
 	iftrue .Not8
-	appear ROUTE36NATIONALPARKGATE_YOUNGSTER5
+	appear TRAILWAYPARKGATE_YOUNGSTER5
 .Not8:
 	checkevent EVENT_BUG_CATCHING_CONTESTANT_9A
 	iftrue .Not9
-	appear ROUTE36NATIONALPARKGATE_YOUNGSTER6
+	appear TRAILWAYPARKGATE_YOUNGSTER6
 .Not9:
 	checkevent EVENT_BUG_CATCHING_CONTESTANT_10A
 	iftrue .Not10
-	appear ROUTE36NATIONALPARKGATE_YOUNGSTER7
+	appear TRAILWAYPARKGATE_YOUNGSTER7
 .Not10:
 	special UpdateSprites
 	end
@@ -174,7 +174,7 @@ Route36OfficerScriptContest:
 	checkflag ENGINE_DAILY_BUG_CONTEST
 	iftrue Route36Officer_ContestHasConcluded
 	scall Route36ParkGate_DayToText
-	writetext Route36NationalParkGateOfficer1AskToParticipateText
+	writetext TrailwayParkGateOfficer1AskToParticipateText
 	yesorno
 	iffalse .DecidedNotToJoinContest
 	readvar VAR_PARTYCOUNT
@@ -184,13 +184,13 @@ Route36OfficerScriptContest:
 .ResumeStartingContest:
 	setflag ENGINE_BUG_CONTEST_TIMER
 	special PlayMapMusic
-	writetext Route36NationalParkGateOfficer1GiveParkBallsText
+	writetext TrailwayParkGateOfficer1GiveParkBallsText
 	promptbutton
 	waitsfx
-	writetext Route36NationalParkGatePlayerReceivedParkBallsText
+	writetext TrailwayParkGatePlayerReceivedParkBallsText
 	playsound SFX_ITEM
 	waitsfx
-	writetext Route36NationalParkGateOfficer1ExplainsRulesText
+	writetext TrailwayParkGateOfficer1ExplainsRulesText
 	waitbutton
 	closetext
 	setflag ENGINE_BUG_CONTEST_TIMER
@@ -211,34 +211,34 @@ Route36OfficerScriptContest:
 .ContinueLeavingMons:
 	special CheckFirstMonIsEgg
 	ifequal TRUE, .FirstMonIsEgg
-	writetext Route36NationalParkGateOfficer1AskToUseFirstMonText
+	writetext TrailwayParkGateOfficer1AskToUseFirstMonText
 	yesorno
 	iffalse .RefusedToLeaveMons
 	special ContestDropOffMons
 	iftrue .FirstMonIsFainted
 	setevent EVENT_LEFT_MONS_WITH_CONTEST_OFFICER
-	writetext Route36NationalParkGateOfficer1WellHoldYourMonText
+	writetext TrailwayParkGateOfficer1WellHoldYourMonText
 	promptbutton
-	writetext Route36NationalParkGatePlayersMonLeftWithHelperText
+	writetext TrailwayParkGatePlayersMonLeftWithHelperText
 	playsound SFX_GOT_SAFARI_BALLS
 	waitsfx
 	promptbutton
 	sjump .ResumeStartingContest
 
 .DecidedNotToJoinContest:
-	writetextend Route36NationalParkGateOfficer1TakePartInFutureText
+	writetextend TrailwayParkGateOfficer1TakePartInFutureText
 
 .RefusedToLeaveMons:
-	writetextend Route36NationalParkGateOfficer1ChooseMonAndComeBackText
+	writetextend TrailwayParkGateOfficer1ChooseMonAndComeBackText
 
 .FirstMonIsFainted:
-	writetextend Route36NationalParkGateOfficer1FirstMonCantBattleText
+	writetextend TrailwayParkGateOfficer1FirstMonCantBattleText
 
 .BoxFull:
-	writetextend Route36NationalParkGateOfficer1MakeRoomText
+	writetextend TrailwayParkGateOfficer1MakeRoomText
 
 .FirstMonIsEgg:
-	writetextend Route36NationalParkGateOfficer1EggAsFirstMonText
+	writetextend TrailwayParkGateOfficer1EggAsFirstMonText
 
 Route36Officer_ContestHasConcluded:
 	checkevent EVENT_CONTEST_OFFICER_HAS_SUN_STONE
@@ -249,10 +249,10 @@ Route36Officer_ContestHasConcluded:
 	iftrue .GoldBerry
 	checkevent EVENT_CONTEST_OFFICER_HAS_BERRY
 	iftrue .Berry
-	writetextend Route36NationalParkGateOfficer1ContestIsOverText
+	writetextend TrailwayParkGateOfficer1ContestIsOverText
 
 .Sunstone:
-	writetext Route36NationalParkGateOfficer1HeresThePrizeText
+	writetext TrailwayParkGateOfficer1HeresThePrizeText
 	promptbutton
 	verbosegiveitem SUN_STONE
 	iffalse .BagFull
@@ -261,7 +261,7 @@ Route36Officer_ContestHasConcluded:
 	end
 
 .Everstone:
-	writetext Route36NationalParkGateOfficer1HeresThePrizeText
+	writetext TrailwayParkGateOfficer1HeresThePrizeText
 	promptbutton
 	verbosegiveitem EVERSTONE
 	iffalse .BagFull
@@ -270,7 +270,7 @@ Route36Officer_ContestHasConcluded:
 	end
 
 .GoldBerry:
-	writetext Route36NationalParkGateOfficer1HeresThePrizeText
+	writetext TrailwayParkGateOfficer1HeresThePrizeText
 	promptbutton
 	verbosegiveitem GOLD_BERRY
 	iffalse .BagFull
@@ -279,7 +279,7 @@ Route36Officer_ContestHasConcluded:
 	end
 
 .Berry:
-	writetext Route36NationalParkGateOfficer1HeresThePrizeText
+	writetext TrailwayParkGateOfficer1HeresThePrizeText
 	promptbutton
 	verbosegiveitem BERRY
 	iffalse .BagFull
@@ -288,17 +288,17 @@ Route36Officer_ContestHasConcluded:
 	end
 
 .BagFull:
-	writetextend Route36NationalParkGateOfficer1WellHoldPrizeText
+	writetextend TrailwayParkGateOfficer1WellHoldPrizeText
 
 _ContestNotOn:
-	jumptextfaceplayer Route36NationalParkGateOfficer1SomeMonOnlySeenInParkText
+	jumptextfaceplayer TrailwayParkGateOfficer1SomeMonOnlySeenInParkText
 
-Route36NationalParkGateOfficerScript:
+TrailwayParkGateOfficerScript:
 	faceplayer
 	opentext
 	checkflag ENGINE_DAILY_BUG_CONTEST
 	iftrue Route36Officer_ContestHasConcluded
-	writetextend Route36NationalParkGateOfficer1SomeMonOnlySeenInParkText
+	writetextend TrailwayParkGateOfficer1SomeMonOnlySeenInParkText
 
 Route36ParkGate_DayToText:
 	jumpstd DayToTextScript
@@ -404,13 +404,13 @@ BugCatchingContestant10BScript:
 .StillCompeting:
 	writetextend BugCatchingContestant10BStillCompetingText
 
-Route36NationalParkGatePlayerWaitWithContestantsMovement:
+TrailwayParkGatePlayerWaitWithContestantsMovement:
 	big_step DOWN
 	big_step RIGHT
 	turn_head UP
 	step_end
 
-Route36NationalParkGateOfficer1AskToParticipateText:
+TrailwayParkGateOfficer1AskToParticipateText:
 	text "Today's @"
 	text_ram wStringBuffer3
 	text "."
@@ -432,18 +432,18 @@ Route36NationalParkGateOfficer1AskToParticipateText:
 	line "give it a try?"
 	done
 
-Route36NationalParkGateOfficer1GiveParkBallsText:
+TrailwayParkGateOfficer1GiveParkBallsText:
 	text "Here are the Park"
 	line "Balls for the"
 	cont "Contest."
 	done
 
-Route36NationalParkGatePlayerReceivedParkBallsText:
+TrailwayParkGatePlayerReceivedParkBallsText:
 	text "<PLAYER> received"
 	line "{d:BUG_CONTEST_BALLS} Park Balls."
 	done
 
-Route36NationalParkGateOfficer1ExplainsRulesText:
+TrailwayParkGateOfficer1ExplainsRulesText:
 	text "The person who"
 	line "gets the strong-"
 	cont "est bug #mon"
@@ -467,7 +467,7 @@ Route36NationalParkGateOfficer1ExplainsRulesText:
 	line "find!"
 	done
 
-Route36NationalParkGateOfficer1AskToUseFirstMonText:
+TrailwayParkGateOfficer1AskToUseFirstMonText:
 	text "Uh-oh…"
 
 	para "You have more than"
@@ -485,19 +485,19 @@ Route36NationalParkGateOfficer1AskToUseFirstMonText:
 	line "you?"
 	done
 
-Route36NationalParkGateOfficer1WellHoldYourMonText:
+TrailwayParkGateOfficer1WellHoldYourMonText:
 	text "Fine, we'll hold"
 	line "your other #mon"
 	cont "while you compete."
 	done
 
-Route36NationalParkGatePlayersMonLeftWithHelperText:
+TrailwayParkGatePlayersMonLeftWithHelperText:
 	text "<PLAYER>'s #mon"
 	line "were left with the"
 	cont "Contest Helper."
 	done
 
-Route36NationalParkGateOfficer1ChooseMonAndComeBackText:
+TrailwayParkGateOfficer1ChooseMonAndComeBackText:
 	text "Please choose the"
 	line "#mon to be used"
 
@@ -505,13 +505,13 @@ Route36NationalParkGateOfficer1ChooseMonAndComeBackText:
 	line "then come see me."
 	done
 
-Route36NationalParkGateOfficer1TakePartInFutureText:
+TrailwayParkGateOfficer1TakePartInFutureText:
 	text "OK. We hope you'll"
 	line "take part in the"
 	cont "future."
 	done
 
-Route36NationalParkGateOfficer1FirstMonCantBattleText:
+TrailwayParkGateOfficer1FirstMonCantBattleText:
 	text "Uh-oh…"
 	line "The first #Mon"
 
@@ -525,7 +525,7 @@ Route36NationalParkGateOfficer1FirstMonCantBattleText:
 	line "then come see me."
 	done
 
-Route36NationalParkGateOfficer1MakeRoomText:
+TrailwayParkGateOfficer1MakeRoomText:
 	text "Uh-oh…"
 	line "Both your party"
 
@@ -543,7 +543,7 @@ Route36NationalParkGateOfficer1MakeRoomText:
 	line "come see me."
 	done
 
-Route36NationalParkGateOfficer1EggAsFirstMonText:
+TrailwayParkGateOfficer1EggAsFirstMonText:
 	text "Uh-oh…"
 	line "You have an Egg as"
 
@@ -557,7 +557,7 @@ Route36NationalParkGateOfficer1EggAsFirstMonText:
 	line "then come see me."
 	done
 
-Route36NationalParkGateOfficer1WantToFinishText:
+TrailwayParkGateOfficer1WantToFinishText:
 	text "You still have @"
 	text_ram wStringBuffer3
 	text_start
@@ -567,7 +567,7 @@ Route36NationalParkGateOfficer1WantToFinishText:
 	line "finish now?"
 	done
 
-Route36NationalParkGateOfficer1WaitHereForAnnouncementText:
+TrailwayParkGateOfficer1WaitHereForAnnouncementText:
 	text "OK. Please wait"
 	line "here for the"
 
@@ -575,13 +575,13 @@ Route36NationalParkGateOfficer1WaitHereForAnnouncementText:
 	line "the winners."
 	done
 
-Route36NationalParkGateOfficer1OkGoFinishText:
+TrailwayParkGateOfficer1OkGoFinishText:
 	text "OK. Please go back"
 	line "outside and finish"
 	cont "up."
 	done
 
-Route36NationalParkGateOfficer1ContestIsOverText:
+TrailwayParkGateOfficer1ContestIsOverText:
 	text "Today's Contest is"
 	line "over. We hope you"
 
@@ -589,7 +589,7 @@ Route36NationalParkGateOfficer1ContestIsOverText:
 	line "in the future."
 	done
 
-Route36NationalParkGateOfficer1SomeMonOnlySeenInParkText:
+TrailwayParkGateOfficer1SomeMonOnlySeenInParkText:
 	text "Some #mon can"
 	line "only be seen in"
 	cont "the Park."
@@ -732,7 +732,7 @@ BugCatchingContestant10BStillCompetingText:
 	line "win."
 	done
 
-Route36NationalParkGateOfficer1WellHoldPrizeText:
+TrailwayParkGateOfficer1WellHoldPrizeText:
 	text "Uh-oh… Your Bag"
 	line "is full."
 
@@ -744,7 +744,7 @@ Route36NationalParkGateOfficer1WellHoldPrizeText:
 	line "then come see me."
 	done
 
-Route36NationalParkGateOfficer1HeresThePrizeText:
+TrailwayParkGateOfficer1HeresThePrizeText:
 	text "<PLAYER>?"
 
 	para "Here's the prize"

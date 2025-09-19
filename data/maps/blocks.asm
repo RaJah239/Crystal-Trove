@@ -509,8 +509,8 @@ GoldenrodGameCorner_Blocks:
 Route35NationalParkGate_Blocks:
 	INCBIN "maps/Route35NationalParkGate.blk"
 
-Route36NationalParkGate_Blocks:
-	INCBIN "maps/Route36NationalParkGate.blk"
+TrailwayParkGate_Blocks:
+	INCBIN "maps_battle_nexus/TrailwayParkGate.blk"
 
 OlivinePort_Blocks:
 	INCBIN "maps/OlivinePort.blk"

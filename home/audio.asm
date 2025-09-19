@@ -411,7 +411,7 @@ SpecialMapMusic::
 	ld a, [wMapNumber]
 	cp MAP_ROUTE_35_NATIONAL_PARK_GATE
 	jr z, .ranking
-	cp MAP_ROUTE_36_NATIONAL_PARK_GATE
+	cp MAP_TRAILWAY_PARK_GATE
 	jr nz, .no
 
 .ranking

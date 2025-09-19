@@ -3184,7 +3184,7 @@ wMrPokemonsHouseSceneID::                         db
 wRoute32SceneID::                                 db
 wRoute35NationalParkGateSceneID::                 db
 wRoute36SceneID::                                 db
-wRoute36NationalParkGateSceneID::                 db
+wTrailwayParkGateSceneID::                 db
 wAzaleaTownSceneID::                              db
 wGoldenrodGymSceneID::                            db
 wGoldenrodMagnetTrainStationSceneID::             db

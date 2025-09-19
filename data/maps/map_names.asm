@@ -249,7 +249,7 @@ Violet_Map_Names: ;newgroup VIOLET
 	dw Violet_Map_Name14 ; map_const ROUTE_35_GOLDENROD_GATE ; 14
 	dw Violet_Map_Name15 ; map_const ROUTE_35_NATIONAL_PARK_GATE ; 15
 	dw Violet_Map_Name16 ; map_const ROUTE_36_RUINS_OF_ALPH_GATE ; 16
-	dw Violet_Map_Name17 ; map_const ROUTE_36_NATIONAL_PARK_GATE ; 17
+	dw Violet_Map_Name17 ; map_const TRAILWAY_PARK_GATE ; 17
 	assert_table_length NUM_VIOLET_MAPS
 
 Goldenrod_Map_Names: ;newgroup GOLDENROD
@@ -733,8 +733,8 @@ Violet_Map_Name15: ; map_const ROUTE_35_NATIONAL_PARK_GATE ; 15
 	db "Route 35-Park Gate@"
 Violet_Map_Name16: ; map_const ROUTE_36_RUINS_OF_ALPH_GATE ; 16
 	db "Route 36-Ruin Gate@"
-Violet_Map_Name17: ; map_const ROUTE_36_NATIONAL_PARK_GATE ; 17
-	db "Route 36-Park Gate@"
+Violet_Map_Name17: ; map_const TRAILWAY_PARK_GATE ; 17
+	db "Park Gate-North@"
 
 Goldenrod_Map_Name1: ; map_const TRAILWAY,;  1
 	db "Day Care@"
