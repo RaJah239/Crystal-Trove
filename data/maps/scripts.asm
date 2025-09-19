@@ -81,7 +81,7 @@ INCLUDE "maps/Route32RuinsOfAlphGate.asm"
 INCLUDE "maps/Route32Pokecenter1F.asm"
 INCLUDE "maps/Route35GoldenrodGate.asm"
 INCLUDE "maps/Route35NationalParkGate.asm"
-INCLUDE "maps/Route36RuinsOfAlphGate.asm"
+INCLUDE "maps_battle_nexus/BattlePlazaRuinsOfAlphGate.asm"
 INCLUDE "maps_battle_nexus/TrailwayParkGate.asm"
 
 

@@ -215,7 +215,7 @@ ENDM
 	map_const ROUTE_32_POKECENTER_1F,                       5,  4 ; 13
 	map_const ROUTE_35_GOLDENROD_GATE,                      5,  4 ; 14
 	map_const ROUTE_35_NATIONAL_PARK_GATE,                  4,  4 ; 15
-	map_const ROUTE_36_RUINS_OF_ALPH_GATE,                  5,  4 ; 16
+	map_const BATTLE_PLAZA_RUINS_OF_ALPH_GATE,              5,  4 ; 16
 	map_const TRAILWAY_PARK_GATE,                           5,  4 ; 17
 	endgroup
 

@@ -2,8 +2,8 @@ BattlePlaza_MapEvents:
 	def_warp_events
 	warp_event  9, 21, PLAYERS_HOUSE_1F, 1
 	warp_event 18,  9, BATTLE_TOWER_1F, 1
-	warp_event 35, 29, ROUTE_36_RUINS_OF_ALPH_GATE, 2
-	warp_event 34, 29, ROUTE_36_RUINS_OF_ALPH_GATE, 1
+	warp_event 35, 29, BATTLE_PLAZA_RUINS_OF_ALPH_GATE, 2
+	warp_event 34, 29, BATTLE_PLAZA_RUINS_OF_ALPH_GATE, 1
 	warp_event 19,  9, BATTLE_TOWER_1F, 2
 	warp_event 44, 21, OAKS_LAB, 1
 	warp_event 26, 23, EARLS_POKEMON_ACADEMY, 1

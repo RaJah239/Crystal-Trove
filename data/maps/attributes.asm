@@ -334,7 +334,7 @@ ENDM
 	map_attributes Route32Pokecenter1F, ROUTE_32_POKECENTER_1F, $00, 0
 	map_attributes Route35GoldenrodGate, ROUTE_35_GOLDENROD_GATE, $00, 0
 	map_attributes Route35NationalParkGate, ROUTE_35_NATIONAL_PARK_GATE, $00, 0
-	map_attributes Route36RuinsOfAlphGate, ROUTE_36_RUINS_OF_ALPH_GATE, $00, 0
+	map_attributes BattlePlazaRuinsOfAlphGate, BATTLE_PLAZA_RUINS_OF_ALPH_GATE, $00, 0
 	map_attributes TrailwayParkGate, TRAILWAY_PARK_GATE, $00, 0
 	map_attributes GoldenrodGym, GOLDENROD_GYM, $00, 0
 	map_attributes GoldenrodBikeShop, GOLDENROD_BIKE_SHOP, $00, 0

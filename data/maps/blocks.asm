@@ -89,12 +89,12 @@ Route30BerryHouse_Blocks:
 Route43MahoganyGate_Blocks:
 Route43Gate_Blocks:
 Route35GoldenrodGate_Blocks:
-Route36RuinsOfAlphGate_Blocks:
 Route40BattleTowerGate_Blocks:
 Route29Route46Gate_Blocks:
 
 ; Battle Nexus maps
 BattlePlazaScaldRiftGate_Blocks:
+BattlePlazaRuinsOfAlphGate_Blocks:
 	INCBIN "maps/NorthSouthGate.blk"
 
 TrailwayDriftseaGate_Blocks:
