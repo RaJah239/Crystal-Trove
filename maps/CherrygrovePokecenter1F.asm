@@ -1,7 +1,7 @@
 CherrygrovePokecenter1F_MapEvents:
 	def_warp_events
-	warp_event  3,  7, ROUTE_40, 1
-	warp_event  4,  7, ROUTE_40, 1
+	warp_event  3,  7, DRIFTSEA, 1
+	warp_event  4,  7, DRIFTSEA, 1
 	warp_event  0,  7, POKECENTER_2F, 1
 
 	def_coord_events

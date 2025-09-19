@@ -426,4 +426,4 @@ ENDM
 	map_attributes Route34, ROUTE_34, $00, 0
 	map_attributes Route42, ROUTE_42, $05, 0
 	map_attributes Route44, ROUTE_44, $71, 0
-	map_attributes Route40, ROUTE_40, $35, 0
+	map_attributes Driftsea, DRIFTSEA, $35, 0

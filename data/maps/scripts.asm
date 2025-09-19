@@ -321,7 +321,7 @@ INCLUDE "maps/BlackthornCity.asm"
 INCLUDE "maps/Route26.asm"
 INCLUDE "maps/Route31.asm"
 INCLUDE "maps/Route39.asm"
-INCLUDE "maps/Route40.asm"
+INCLUDE "maps_battle_nexus/Driftsea.asm"
 INCLUDE "maps/Route41.asm"
 
 

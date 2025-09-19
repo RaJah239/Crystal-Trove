@@ -640,7 +640,7 @@ Fast_Travel_Warp_Locations:
 	table_width 2
 	map_id BATTLE_TOWER_OUTSIDE ; Battle Plaza
 	map_id ROUTE_34 ; The Old Road/ Day Care
-	map_id ROUTE_40 ; Driftsea
+	map_id DRIFTSEA ; Driftsea
 	map_id NATIONAL_PARK ; National Park
 	map_id ILEX_FOREST ; Ilex Forest
 	map_id ROUTE_42 ; Mt. Mortar
@@ -673,7 +673,7 @@ Fast_Travel_Warp_Strings:
 	table_width 3
 	dba Cianwood_Map_Name16 ; Battle Plaza
 	dba Goldenrod_Map_Name1 ; The Old Road/ Day Care
-	dba Cianwood_Map_Name1 ; Driftsea
+	dba Map_Driftsea ; Driftsea
 	dba Dungeons_Map_Name15 ; National Park
 	dba Dungeons_Map_Name52 ; Ilex Forest
 	dba Dungeons_Map_Name57 ; Mt. Mortar

@@ -352,7 +352,7 @@ Celadon_Map_Names: ;newgroup CELADON
 
 Cianwood_Map_Names: ;newgroup CIANWOOD
 	table_width 2, Cianwood_Map_Names                                             ; 22
-	dw Cianwood_Map_Name1 ; map_const ROUTE_40,                                    10, 18 ;  1
+	dw Map_Driftsea ; map_const DRIFTSEA,                                    10, 18 ;  1
 	dw Cianwood_Map_Name2 ; map_const ROUTE_41,                                    25, 27 ;  2
 	dw Cianwood_Map_Name3 ; map_const CIANWOOD_CITY,                               15, 27 ;  3
 	dw Cianwood_Map_Name4 ; map_const MANIAS_HOUSE ;  4
@@ -854,7 +854,7 @@ Celadon_Map_Name16: ; map_const CELADON_MANSION_ROOF_HOUSE ; 16
 	db "Celadon Mansion 4F@"
                                       ; 22
 
-Cianwood_Map_Name1: ; map_const ROUTE_40,  1
+Map_Driftsea: ; map_const ROUTE_40,  1
 	db "Driftsea@"
 Cianwood_Map_Name2: ; map_const ROUTE_41, ;  2
 	db "Route 41@"

@@ -163,7 +163,7 @@ JohtoWaterWildMons:
 	db 20, GOLDUCK
 	end_water_wildmons
 
-	def_water_wildmons ROUTE_40
+	def_water_wildmons DRIFTSEA
 	db 4 percent ; encounter rate
 	db 20, TENTACOOL
 	db 15, TENTACOOL

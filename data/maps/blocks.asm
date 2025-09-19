@@ -3,8 +3,8 @@ SECTION "Map Blocks 1", ROMX
 Route32_Blocks:
 	INCBIN "maps/Route32.blk"
 
-Route40_Blocks:
-	INCBIN "maps/Route40.blk"
+Driftsea_Blocks:
+	INCBIN "maps_battle_nexus/Driftsea.blk"
 
 Route36_Blocks:
 	INCBIN "maps/Route36.blk"
