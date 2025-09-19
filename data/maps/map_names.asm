@@ -65,7 +65,7 @@ Olivine_Map_Names: ;newgroup OLIVINE ;  1
 	dw Olivine_Map_Name6 ; map_const OLIVINE_GOOD_ROD_HOUSE ;  6
 	dw Olivine_Map_Name7 ; map_const OLIVINE_CAFE ;  7
 	dw Olivine_Map_Name8 ; map_const OLIVINE_MART ;  8
-	dw Olivine_Map_Name9 ; map_const ROUTE_38_ECRUTEAK_GATE ;  9
+	dw Olivine_Map_Name9 ; map_const BATTLE_PLAZA_TRAILWAY_GATE ;  9
 	dw Olivine_Map_Name10 ; map_const ROUTE_39_BARN ; 10
 	dw Olivine_Map_Name11 ; map_const ROUTE_39_FARMHOUSE ; 11
 	dw Olivine_Map_Name12 ; map_const ROUTE_38, ; 12
@@ -436,8 +436,8 @@ Olivine_Map_Name7: ; map_const OLIVINE_CAFE ;  7
 	db "Olivine Cafe@"
 Olivine_Map_Name8: ; map_const OLIVINE_MART ;  8
 	db "Olivine #mart@"
-Olivine_Map_Name9: ; map_const ROUTE_38_ECRUTEAK_GATE ;  9
-	db "Route 38 Gate@"
+Olivine_Map_Name9: ; map_const BATTLE_PLAZA_TRAILWAY_GATE ;  9
+	db "Plaza-Trail Gate@"
 Olivine_Map_Name10: ; map_const ROUTE_39_BARN ; 10
 	db "Route 39 Barn@"
 Olivine_Map_Name11: ; map_const ROUTE_39_FARMHOUSE ; 11

@@ -7,8 +7,8 @@ Trailway_MapEvents:
 	warp_event 17, 17, DAY_CARE, 2
 	warp_event 25, 18, HATCH_ROOM, 2
 	warp_event 25, 19, HATCH_ROOM, 2
-	warp_event 21,  8, ROUTE_38_ECRUTEAK_GATE, 1
-	warp_event 21,  9, ROUTE_38_ECRUTEAK_GATE, 2
+	warp_event 21,  8, BATTLE_PLAZA_TRAILWAY_GATE, 1
+	warp_event 21,  9, BATTLE_PLAZA_TRAILWAY_GATE, 2
 	warp_event  6,  8, TRAILWAY_PARK_GATE, 3
 	warp_event  6,  9, TRAILWAY_PARK_GATE, 4
 

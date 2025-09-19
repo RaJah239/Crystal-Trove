@@ -521,8 +521,8 @@ SchoolboyChad_AgainGiveTwistedSpoonAfterBattleText:
 
 Route38_MapEvents:
 	def_warp_events
-	warp_event 35,  8, ROUTE_38_ECRUTEAK_GATE, 1
-	warp_event 35,  9, ROUTE_38_ECRUTEAK_GATE, 2
+	warp_event 35,  8, BATTLE_PLAZA_TRAILWAY_GATE, 1
+	warp_event 35,  9, BATTLE_PLAZA_TRAILWAY_GATE, 2
 
 	def_coord_events
 

@@ -116,12 +116,14 @@ Route39_Blocks:
 PlayersHouse1F_Blocks:
 	INCBIN "maps/PlayersHouse1F.blk"
 
-Route38EcruteakGate_Blocks:
 Route42EcruteakGate_Blocks:
 Route32RuinsOfAlphGate_Blocks:
 IlexForestAzaleaGate_Blocks:
 Route31VioletGate_Blocks:
 	INCBIN "maps/EastWestGate.blk"
+
+BattlePlazaTrailwayGate_Blocks:
+	INCBIN "maps_battle_nexus/EastWestGate.blk"
 
 ElmsLab_Blocks:
 	INCBIN "maps/ElmsLab.blk"
