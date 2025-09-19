@@ -1,4 +1,4 @@
-Route34IlexForestGate_MapEvents:
+TrailwayDriftseaGate_MapEvents:
 	def_warp_events
 	warp_event  4,  0, ROUTE_34, 2
 	warp_event  5,  0, ROUTE_34, 3
@@ -13,7 +13,7 @@ Route34IlexForestGate_MapEvents:
 
 	object_const_def
 
-Route34IlexForestGate_MapScripts:
+TrailwayDriftseaGate_MapScripts:
 	def_scene_scripts
 
 	def_callbacks

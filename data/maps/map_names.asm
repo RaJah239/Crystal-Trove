@@ -276,7 +276,7 @@ Goldenrod_Map_Names: ;newgroup GOLDENROD
 	dw Goldenrod_Map_Name20 ; map_const GOLDENROD_POKECENTER_1F ; 20
 	dw Goldenrod_Map_Name21; map_const POKECOM_CENTER_ADMIN_OFFICE_MOBILE,          16, 16 ; 21
 	dw Goldenrod_Map_Name22 ; map_const ILEX_FOREST_AZALEA_GATE ; 22
-	dw Goldenrod_Map_Name23 ; map_const ROUTE_34_ILEX_FOREST_GATE ; 23
+	dw TrailwayDriftseaGate ; map_const TRAILWAY_DRIFTSEA_GATE ; 23
 	dw Goldenrod_Map_Name24 ; map_const DAY_CARE ; 24
 	dw Goldenrod_Map_Name96 ; map_const DAY_CARE ; 25
 	assert_table_length NUM_GOLDENROD_MAPS
@@ -780,8 +780,8 @@ Goldenrod_Map_Name21: ; map_const POKECOM_CENTER_ADMIN_OFFICE_MOBILE,; 21
 	db "#com Cen Office@"
 Goldenrod_Map_Name22: ; map_const ILEX_FOREST_AZALEA_GATE ; 22
 	db "Azalea - Ilex gate@"
-Goldenrod_Map_Name23: ; map_const ROUTE_34_ILEX_FOREST_GATE ; 23
-	db "Ilex - Rt. 34 Gate@"
+TrailwayDriftseaGate: ; map_const TRAILWAY_DRIFTSEA_GATE ; 23
+	db "Trail-Drift Gate@"
 Goldenrod_Map_Name24: ; map_const DAY_CARE ; 24 ; 12
 	db "Route 34 Day Care@"
 Goldenrod_Map_Name96: ; map_const HATCH_ROOM ; 24 ; 12

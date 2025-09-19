@@ -2,8 +2,8 @@ Route34_MapEvents:
 	def_warp_events
 	warp_event 19, 17, DAY_CARE, 3
 
-	warp_event 13, 29, ROUTE_34_ILEX_FOREST_GATE, 1
-	warp_event 14, 29, ROUTE_34_ILEX_FOREST_GATE, 2
+	warp_event 13, 29, TRAILWAY_DRIFTSEA_GATE, 1
+	warp_event 14, 29, TRAILWAY_DRIFTSEA_GATE, 2
 	warp_event 17, 16, DAY_CARE, 1
 	warp_event 17, 17, DAY_CARE, 2
 
