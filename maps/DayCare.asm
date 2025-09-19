@@ -1,9 +1,9 @@
 DayCare_MapEvents:
 	def_warp_events
-	warp_event  0,  5, ROUTE_34, 4
-	warp_event  0,  6, ROUTE_34, 5
-	warp_event  2,  7, ROUTE_34, 1
-	warp_event  3,  7, ROUTE_34, 1
+	warp_event  0,  5, TRAILWAY, 4
+	warp_event  0,  6, TRAILWAY, 5
+	warp_event  2,  7, TRAILWAY, 1
+	warp_event  3,  7, TRAILWAY, 1
 
 	def_coord_events
 

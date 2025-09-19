@@ -1,7 +1,7 @@
 Route38EcruteakGate_MapEvents:
 	def_warp_events
-	warp_event  0,  4, ROUTE_34, 8
-	warp_event  0,  5, ROUTE_34, 9
+	warp_event  0,  4, TRAILWAY, 8
+	warp_event  0,  5, TRAILWAY, 9
 	warp_event  9,  4, BATTLE_TOWER_OUTSIDE, 10
 	warp_event  9,  5, BATTLE_TOWER_OUTSIDE, 11
 

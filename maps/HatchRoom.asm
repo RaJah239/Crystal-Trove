@@ -67,9 +67,9 @@ DayCareHatchRoomPorygonPCScript:
 
 HatchRoom_MapEvents:
    def_warp_events
-	warp_event  2, 135, ROUTE_34, 6
-	warp_event  3,  2, ROUTE_34, 7
-	warp_event  3, 135, ROUTE_34, 7
+	warp_event  2, 135, TRAILWAY, 6
+	warp_event  3,  2, TRAILWAY, 7
+	warp_event  3, 135, TRAILWAY, 7
 	warp_event  3, 132, HATCH_ROOM, 2 ; looping tile
 
     def_coord_events

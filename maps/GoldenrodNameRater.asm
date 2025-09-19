@@ -93,7 +93,7 @@ SwarmGrampsScript:
 
 .togepi
 	setflag ENGINE_SWARM
-	swarm ROUTE_34
+	swarm TRAILWAY
 	writetext SwarmTogepiText
 	sjump .WrappingUpSwarms
 

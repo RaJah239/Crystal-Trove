@@ -1,7 +1,7 @@
 TrailwayDriftseaGate_MapEvents:
 	def_warp_events
-	warp_event  4,  0, ROUTE_34, 2
-	warp_event  5,  0, ROUTE_34, 3
+	warp_event  4,  0, TRAILWAY, 2
+	warp_event  5,  0, TRAILWAY, 3
 	warp_event  4,  7, DRIFTSEA, 2
 	warp_event  5,  7, DRIFTSEA, 2
 

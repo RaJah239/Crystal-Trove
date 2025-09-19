@@ -23,7 +23,7 @@ Landmarks:
 	landmark  60, 124, AzaleaTownName
 	landmark  62, 122, SlowpokeWellName
 	landmark  44, 124, IlexForestName
-	landmark  44, 108, Route34Name
+	landmark  44, 108, TrailwayName
 	landmark  44,  92, GoldenrodCityName
 	landmark  42,  92, RadioTowerName
 	landmark  44,  76, Route35Name
@@ -101,7 +101,7 @@ Route30Name:         db "Route 30@"
 Route31Name:         db "Route 31@"
 Route32Name:         db "Route 32@"
 Route33Name:         db "Route 33@"
-Route34Name:         db "The Old Road@"
+TrailwayName:        db "Trailway@"
 Route35Name:         db "Route 35@"
 Route36Name:         db "Route 36@"
 Route37Name:         db "Route 37@"

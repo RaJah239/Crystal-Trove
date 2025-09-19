@@ -8,7 +8,7 @@ ToddPhoneCalleeScript:
 	farsjump ToddNoItemScript
 
 .WantsBattle:
-	getlandmarkname STRING_BUFFER_5, LANDMARK_ROUTE_34
+	getlandmarkname STRING_BUFFER_5, LANDMARK_TRAILWAY
 	farsjump ToddForwardScript
 
 .SaleOn:
@@ -27,6 +27,6 @@ ToddPhoneCallerScript:
 	farsjump ToddItemScript
 
 .ToddWantsBattle:
-	getlandmarkname STRING_BUFFER_5, LANDMARK_ROUTE_34
+	getlandmarkname STRING_BUFFER_5, LANDMARK_TRAILWAY
 	setflag ENGINE_TODD_READY_FOR_REMATCH
 	farsjump PhoneScript_WantsToBattle_Male

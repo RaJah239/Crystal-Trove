@@ -1374,7 +1374,7 @@ JohtoGrassWildMons:
 	db 7, RATTATA
 	end_grass_wildmons
 
-	def_grass_wildmons ROUTE_34
+	def_grass_wildmons TRAILWAY
 	db 4 percent, 4 percent, 4 percent ; encounter rates: morn/day/nite
 	; morn
 	db 10, SNUBBULL

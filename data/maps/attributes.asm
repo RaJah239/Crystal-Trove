@@ -423,7 +423,7 @@ ENDM
 	map_attributes PalletTown, PALLET_TOWN, $0f, 0
 	map_attributes CianwoodPort, CIANWOOD_PORT, $0a, 0
 	map_attributes CianwoodPortPassage, CIANWOOD_PORT_PASSAGE, $00, 0
-	map_attributes Route34, ROUTE_34, $00, 0
+	map_attributes Trailway, TRAILWAY, $00, 0
 	map_attributes Route42, ROUTE_42, $05, 0
 	map_attributes Route44, ROUTE_44, $71, 0
 	map_attributes Driftsea, DRIFTSEA, $35, 0

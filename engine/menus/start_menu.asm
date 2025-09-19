@@ -639,7 +639,7 @@ StartMenu_Pokemon:
 Fast_Travel_Warp_Locations:
 	table_width 2
 	map_id BATTLE_TOWER_OUTSIDE ; Battle Plaza
-	map_id ROUTE_34 ; The Old Road/ Day Care
+	map_id TRAILWAY ; Trailway/ Day Care
 	map_id DRIFTSEA ; Driftsea
 	map_id NATIONAL_PARK ; National Park
 	map_id ILEX_FOREST ; Ilex Forest
@@ -672,7 +672,7 @@ DEF NUM_FAST_TRAVEL_WARP_MAPS EQU (@ - {CURRENT_TABLE_START}) / CURRENT_TABLE_WI
 Fast_Travel_Warp_Strings:
 	table_width 3
 	dba Cianwood_Map_Name16 ; Battle Plaza
-	dba Goldenrod_Map_Name1 ; The Old Road/ Day Care
+	dba Goldenrod_Map_Name1 ; Trailway/ Day Care
 	dba Map_Driftsea ; Driftsea
 	dba Dungeons_Map_Name15 ; National Park
 	dba Dungeons_Map_Name52 ; Ilex Forest

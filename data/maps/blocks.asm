@@ -45,8 +45,8 @@ Route26_Blocks:
 Route42_Blocks:
 	INCBIN "maps/Route42.blk"
 
-Route34_Blocks:
-	INCBIN "maps/Route34.blk"
+Trailway_Blocks:
+	INCBIN "maps_battle_nexus/Trailway.blk"
 
 Route46_Blocks:
 	INCBIN "maps/Route46.blk"

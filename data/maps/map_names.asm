@@ -254,7 +254,7 @@ Violet_Map_Names: ;newgroup VIOLET
 
 Goldenrod_Map_Names: ;newgroup GOLDENROD
 	table_width 2, Goldenrod_Map_Names                                            ; 11
-	dw Goldenrod_Map_Name1 ; map_const ROUTE_34,                                    10, 27 ;  1
+	dw Goldenrod_Map_Name1 ; map_const TRAILWAY,                                    10, 27 ;  1
 	dw Goldenrod_Map_Name2 ; map_const GOLDENROD_CITY,;  2
 	dw Goldenrod_Map_Name3 ; map_const GOLDENROD_GYM,                               10,  9 ;  3
 	dw Goldenrod_Map_Name4 ; map_const GOLDENROD_BIKE_SHOP ;  4
@@ -736,7 +736,7 @@ Violet_Map_Name16: ; map_const ROUTE_36_RUINS_OF_ALPH_GATE ; 16
 Violet_Map_Name17: ; map_const ROUTE_36_NATIONAL_PARK_GATE ; 17
 	db "Route 36-Park Gate@"
 
-Goldenrod_Map_Name1: ; map_const ROUTE_34,;  1
+Goldenrod_Map_Name1: ; map_const TRAILWAY,;  1
 	db "Day Care@"
 Goldenrod_Map_Name2: ; map_const GOLDENROD_CITY;  2
 	db "Goldenrod City@"
