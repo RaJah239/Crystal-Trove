@@ -638,7 +638,7 @@ StartMenu_Pokemon:
 ; map_constants.asm
 Fast_Travel_Warp_Locations:
 	table_width 2
-	map_id BATTLE_TOWER_OUTSIDE ; Battle Plaza
+	map_id BATTLE_PLAZA ; Battle Plaza
 	map_id TRAILWAY ; Trailway/ Day Care
 	map_id DRIFTSEA ; Driftsea
 	map_id NATIONAL_PARK ; National Park

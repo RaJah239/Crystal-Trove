@@ -635,8 +635,8 @@ BattleTowerHallway_Blocks:
 BattleTowerElevator_Blocks:
 	INCBIN "maps/BattleTowerElevator.blk"
 
-BattleTowerOutside_Blocks:
-	INCBIN "maps/BattleTowerOutside.blk"
+BattlePlaza_Blocks:
+	INCBIN "maps_battle_nexus/BattlePlaza.blk"
 
 GoldenrodDeptStoreRoof_Blocks:
 	INCBIN "maps/GoldenrodDeptStoreRoof.blk"

@@ -1,7 +1,7 @@
 GoldenrodNameRater_MapEvents:
 	def_warp_events
-	warp_event  2,  7, BATTLE_TOWER_OUTSIDE, 9
-	warp_event  3,  7, BATTLE_TOWER_OUTSIDE, 9
+	warp_event  2,  7, BATTLE_PLAZA, 9
+	warp_event  3,  7, BATTLE_PLAZA, 9
 
 	def_coord_events
 

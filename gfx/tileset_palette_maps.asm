@@ -102,5 +102,5 @@ INCLUDE "gfx/tilesets/pokecom_center_palette_map.asm"
 TilesetBattleTowerInsidePalMap:
 INCLUDE "gfx/tilesets/battle_tower_inside_palette_map.asm"
 
-TilesetBattleTowerOutsidePalMap:
+TilesetBattlePlazaPalMap:
 INCLUDE "gfx/tilesets/battle_tower_outside_palette_map.asm"

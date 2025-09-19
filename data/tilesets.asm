@@ -17,7 +17,7 @@ Tilesets::
 	tileset TilesetJohto
 	tileset TilesetJohtoModern
 	tileset TilesetKanto
-	tileset TilesetBattleTowerOutside
+	tileset TilesetBattlePlaza
 	tileset TilesetHouse
 	tileset TilesetPlayersHouse
 	tileset TilesetPokecenter

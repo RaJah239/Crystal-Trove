@@ -1,4 +1,4 @@
-BattleTowerOutside_MapEvents:
+BattlePlaza_MapEvents:
 	def_warp_events
 	warp_event  9, 21, PLAYERS_HOUSE_1F, 1
 	warp_event 18,  9, BATTLE_TOWER_1F, 1
@@ -22,20 +22,20 @@ BattleTowerOutside_MapEvents:
 	bg_event 41, 21, BGEVENT_READ, OaksLabSign
 	bg_event 30, 23, BGEVENT_READ, EarlsPokemonAcademySign
 	bg_event 62, 21, BGEVENT_READ, GameCornerSign
-	bg_event 24,  8, BGEVENT_READ, BattleTowerOutsideSign
+	bg_event 24,  8, BGEVENT_READ, BattlePlazaSign
 	bg_event 22, 21, BGEVENT_READ, PokeBrosSign
 
 	object_const_def
 
 	def_object_events
 
-BattleTowerOutside_MapScripts:
+BattlePlaza_MapScripts:
 	def_scene_scripts
 
 	def_callbacks
-	callback MAPCALLBACK_NEWMAP, BattleTowerOutsideFlypointCallback
+	callback MAPCALLBACK_NEWMAP, BattlePlazaFlypointCallback
 
-BattleTowerOutsideFlypointCallback:
+BattlePlazaFlypointCallback:
 	setflag ENGINE_FLYPOINT_BATTLE_TOWER
 	endcallback
 
@@ -85,10 +85,10 @@ PokeBrosSignText:
 	line "and your friends!"
 	done
 
-BattleTowerOutsideSign:
-	jumptext BattleTowerOutsideSignText
+BattlePlazaSign:
+	jumptext BattlePlazaSignText
 
-BattleTowerOutsideSignText:
+BattlePlazaSignText:
 	text "Battle Tower"
 
 	para "Take the Ultimate"

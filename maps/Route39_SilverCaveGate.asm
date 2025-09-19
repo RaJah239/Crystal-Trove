@@ -1,7 +1,7 @@
 BattlePlazaScaldRiftGate_MapEvents:
 	def_warp_events
-	warp_event  4,  7, BATTLE_TOWER_OUTSIDE, 14
-	warp_event  5,  7, BATTLE_TOWER_OUTSIDE, 14
+	warp_event  4,  7, BATTLE_PLAZA, 14
+	warp_event  5,  7, BATTLE_PLAZA, 14
 	warp_event  4,  0, SILVER_CAVE_OUTSIDE, 3
 	warp_event  5,  0, SILVER_CAVE_OUTSIDE, 4
 

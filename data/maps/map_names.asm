@@ -367,7 +367,7 @@ Cianwood_Map_Names: ;newgroup CIANWOOD
 	dw Cianwood_Map_Name13 ; map_const BATTLE_TOWER_ELEVATOR ; 13
 	dw Cianwood_Map_Name14 ; map_const BATTLE_TOWER_HALLWAY ; 14
 	dw Cianwood_Map_Name15 ; map_const ROUTE_40_BATTLE_TOWER_GATE ; 15
-	dw Cianwood_Map_Name16 ; map_const BATTLE_TOWER_OUTSIDE ; 16
+	dw Cianwood_Map_Name16 ; map_const BATTLE_PLAZA ; 16
 	dw Cianwood_Map_Name17 ; map_const CIANWOOD_PORT ; 17
 	dw Cianwood_Map_Name18 ; map_const CIANWOOD_PORT_PASSAGE ; 18
 	dw Cianwood_Map_Name19 ; map_const BATTLE_TOWER_MART ; 19
@@ -884,7 +884,7 @@ Cianwood_Map_Name14: ; map_const BATTLE_TOWER_HALLWAY, ; 14
 	db "Battle Tower Hall@"
 Cianwood_Map_Name15: ; map_const ROUTE_40_BATTLE_TOWER_GATE ; 15
 	db "Route 40 Gate@"
-Cianwood_Map_Name16: ; map_const BATTLE_TOWER_OUTSIDE ; 16
+Cianwood_Map_Name16: ; map_const BATTLE_PLAZA ; 16
 	db "Battle Plaza@"
 Cianwood_Map_Name17: ; map_const CIANWOOD_PORT, ; 17
 	db "Cianwood Marina@"

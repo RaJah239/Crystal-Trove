@@ -11,8 +11,8 @@ EXPORT GOLDENRODGAMECORNER_WOBBUFFET_COINS
 
 GoldenrodGameCorner_MapEvents:
 	def_warp_events
-	warp_event  2, 13, BATTLE_TOWER_OUTSIDE, 8
-	warp_event  3, 13, BATTLE_TOWER_OUTSIDE, 8
+	warp_event  2, 13, BATTLE_PLAZA, 8
+	warp_event  3, 13, BATTLE_PLAZA, 8
 
 	def_coord_events
 

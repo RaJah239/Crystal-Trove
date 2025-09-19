@@ -248,8 +248,8 @@ OaksLabChanseyScript:
 
 OaksLab_MapEvents:
 	def_warp_events
-	warp_event  4, 11, BATTLE_TOWER_OUTSIDE, 6
-	warp_event  5, 11, BATTLE_TOWER_OUTSIDE, 6
+	warp_event  4, 11, BATTLE_PLAZA, 6
+	warp_event  5, 11, BATTLE_PLAZA, 6
 
 	def_coord_events
 

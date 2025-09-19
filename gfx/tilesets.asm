@@ -213,7 +213,7 @@ TilesetGateColl::
 INCLUDE "data/tilesets/gate_collision.asm"
 
 TilesetJohtoModernGFX::
-TilesetBattleTowerOutsideGFX::
+TilesetBattlePlazaGFX::
 INCBIN "gfx/tilesets/johto_modern.2bpp.lz"
 
 TilesetJohtoModernMeta::
@@ -273,10 +273,10 @@ INCBIN "data/tilesets/facility_metatiles.bin"
 TilesetFacilityColl::
 INCLUDE "data/tilesets/facility_collision.asm"
 
-TilesetBattleTowerOutsideMeta::
+TilesetBattlePlazaMeta::
 INCBIN "data/tilesets/battle_tower_outside_metatiles.bin"
 
-TilesetBattleTowerOutsideColl::
+TilesetBattlePlazaColl::
 INCLUDE "data/tilesets/battle_tower_outside_collision.asm"
 
 TilesetBetaWordRoomMeta::

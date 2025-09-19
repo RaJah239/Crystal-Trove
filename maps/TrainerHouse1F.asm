@@ -137,8 +137,8 @@ TrainerHouseIllegibleText:
 
 TrainerHouse1F_MapEvents:
 	def_warp_events
-	warp_event  2, 13, BATTLE_TOWER_OUTSIDE, 2
-	warp_event  3, 13, BATTLE_TOWER_OUTSIDE, 2
+	warp_event  2, 13, BATTLE_PLAZA, 2
+	warp_event  3, 13, BATTLE_PLAZA, 2
 	warp_event  8,  2, TRAINER_HOUSE_B1F, 1
 
 	def_coord_events

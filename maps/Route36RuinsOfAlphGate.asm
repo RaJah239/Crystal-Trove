@@ -1,7 +1,7 @@
 Route36RuinsOfAlphGate_MapEvents:
 	def_warp_events
-	warp_event  4,  0, BATTLE_TOWER_OUTSIDE, 4
-	warp_event  5,  0, BATTLE_TOWER_OUTSIDE, 3
+	warp_event  4,  0, BATTLE_PLAZA, 4
+	warp_event  5,  0, BATTLE_PLAZA, 3
 	warp_event  4,  7, RUINS_OF_ALPH_OUTSIDE, 9
 	warp_event  5,  7, RUINS_OF_ALPH_OUTSIDE, 9
 

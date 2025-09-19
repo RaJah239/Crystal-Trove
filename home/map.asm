@@ -1308,7 +1308,7 @@ LoadTilesetGFX::
 	jr z, .load_roof
 	cp TILESET_JOHTO_MODERN
 	jr z, .load_roof
-	cp TILESET_BATTLE_TOWER_OUTSIDE
+	cp TILESET_BATTLE_PLAZA
 	jr z, .load_roof
 	jr .skip_roof
 
