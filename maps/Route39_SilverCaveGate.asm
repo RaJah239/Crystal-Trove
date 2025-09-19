@@ -23,20 +23,6 @@ Route39_SilverCaveGate_MapScripts:
 Route39MtSilverGateOfficerScript:
 	jumptext MtSilverIsOpenedForYouText
 
-LeadsToMtSilverText:
-	text "This way leads to"
-	line "MT.SILVER."
-
-	para "You'll see scary-"
-	line "strong #MON out"
-	cont "there."
-	
-	para "I cannot permit"
-	line "you passage as you"
-	cont "are presently."
-	done
-
 MtSilverIsOpenedForYouText:
-	text "A supreme trainer!"
-	line "Go forth!" 
+	text "Go on through!" 
 	done	
