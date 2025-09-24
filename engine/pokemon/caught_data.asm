@@ -196,12 +196,12 @@ SetBoxmonOrEggmonCaughtData:
 SetBoxMonCaughtData:
 	ld hl, wBufferMonCaughtData
 	call SetBoxmonOrEggmonCaughtData
-	newfarjmp UpdateStorageBoxMonFromTemp
+	farjp UpdateStorageBoxMonFromTemp
 
 SetGiftBoxMonCaughtData:
 	ld hl, wBufferMonCaughtLevel
 	call SetGiftMonCaughtData
-	newfarjmp UpdateStorageBoxMonFromTemp
+	farjp UpdateStorageBoxMonFromTemp
 
 SetGiftPartyMonCaughtData:
 	ld a, [wPartyCount]

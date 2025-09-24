@@ -438,7 +438,7 @@ SafeCopyTilemapAtOnce::
 ;    3 = use whatever was in hCGBPalUpdate
 ; bit 2: if set, clear hOAMUpdate
 ; bit 3: if set, only update tilemap
-	newfarjmp _SafeCopyTilemapAtOnce
+	farjp _SafeCopyTilemapAtOnce
 
 BillsPC_BlankTiles:
 ; Used as input to blank a*4 tiles (mon icons typically use 4 tiles).
@@ -1615,7 +1615,7 @@ BillsPC_SetIcon:
 	call BillsPC_SetPals
 	call DelayFrame
 	pop hl
-	newfarjmp GetStorageIcon
+	farjp GetStorageIcon
 
 BillsPC_MoveIconData:
 ; Copies icon data from slot bc to slot de, then blanks slot bc.
@@ -2943,9 +2943,9 @@ endr
 	cp -1
 	jr z, .current_theme
 	dec a
-	newfarjmp BillsPC_PreviewTheme
+	farjp BillsPC_PreviewTheme
 .current_theme
-	newfarjmp _CGB_BillsPC
+	farjp _CGB_BillsPC
 
 INCLUDE "data/pc/theme_names.asm"
 

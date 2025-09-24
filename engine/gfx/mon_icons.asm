@@ -629,7 +629,7 @@ GetStorageIcon:
 	call _LoadOverworldMonIcon
 	ld c, 4
 	pop hl
-	newfarjmp BillsPC_SafeGet2bpp
+	farjp BillsPC_SafeGet2bpp
 
 FreezeMonIcons:
 	ld hl, wSpriteAnimationStructs
