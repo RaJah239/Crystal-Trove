@@ -1,10 +1,10 @@
 roms := \
-	battlenexus.gbc \
-	battlenexus11.gbc \
-	battlenexus_au.gbc \
-	battlenexus_debug.gbc \
-	battlenexus11_debug.gbc
-patches := battlenexus11.patch
+	johtofrontier.gbc \
+	johtofrontier11.gbc \
+	johtofrontier_au.gbc \
+	johtofrontier_debug.gbc \
+	johtofrontier11_debug.gbc
+patches := johtofrontier11.patch
 
 rom_obj := \
 	audio.o \
@@ -26,12 +26,12 @@ rom_obj := \
 	lib/mobile/main.o \
 	lib/mobile/mail.o
 
-battlenexus_obj         := $(rom_obj:.o=.o)
-battlenexus11_obj       := $(rom_obj:.o=11.o)
-battlenexus_au_obj      := $(rom_obj:.o=_au.o)
-battlenexus_debug_obj   := $(rom_obj:.o=_debug.o)
-battlenexus11_debug_obj := $(rom_obj:.o=11_debug.o)
-battlenexus11_vc_obj    := $(rom_obj:.o=11_vc.o)
+johtofrontier_obj         := $(rom_obj:.o=.o)
+johtofrontier11_obj       := $(rom_obj:.o=11.o)
+johtofrontier_au_obj      := $(rom_obj:.o=_au.o)
+johtofrontier_debug_obj   := $(rom_obj:.o=_debug.o)
+johtofrontier11_debug_obj := $(rom_obj:.o=11_debug.o)
+johtofrontier11_vc_obj    := $(rom_obj:.o=11_vc.o)
 
 
 ### Build tools
@@ -58,12 +58,12 @@ RGBLINK ?= $(RGBDS)rgblink
 .SECONDARY:
 
 all: crystal
-crystal:         battlenexus.gbc
-crystal11:       battlenexus11.gbc
-crystal_au:      battlenexus_au.gbc
-d:               battlenexus_debug.gbc
-crystal11_debug: battlenexus11_debug.gbc
-crystal11_vc:    battlenexus11.patch
+crystal:         johtofrontier.gbc
+crystal11:       johtofrontier11.gbc
+crystal_au:      johtofrontier_au.gbc
+d:               johtofrontier_debug.gbc
+crystal11_debug: johtofrontier11_debug.gbc
+crystal11_vc:    johtofrontier11.patch
 
 clean: tidy
 	find gfx \
@@ -89,12 +89,12 @@ tidy:
 	      $(patches:.patch=_vc.sym) \
 	      $(patches:.patch=_vc.map) \
 	      $(patches:%.patch=vc/%.constants.sym) \
-	      $(battlenexus_obj) \
-	      $(battlenexus11_obj) \
-	      $(battlenexus11_vc_obj) \
-	      $(battlenexus_au_obj) \
-	      $(battlenexus_debug_obj) \
-	      $(battlenexus11_debug_obj) \
+	      $(johtofrontier_obj) \
+	      $(johtofrontier11_obj) \
+	      $(johtofrontier11_vc_obj) \
+	      $(johtofrontier_au_obj) \
+	      $(johtofrontier_debug_obj) \
+	      $(johtofrontier11_debug_obj) \
 	      rgbdscheck.o
 	$(MAKE) clean -C tools/
 
@@ -105,10 +105,10 @@ tools:
 	$(MAKE) -C tools/
 
 all:
-	tools/free_space.awk BANK=all battlenexus.map
+	tools/free_space.awk BANK=all johtofrontier.map
 
 d:
-	tools/free_space.awk BANK=all battlenexus_debug.map
+	tools/free_space.awk BANK=all johtofrontier_debug.map
 
 RGBASMFLAGS = -Q8 -P includes.asm -Weverything -Wnumeric-string=2 -Wtruncation=1
 # Create a sym/map for debug purposes if `make` run with `DEBUG=1`
@@ -116,12 +116,12 @@ ifeq ($(DEBUG),1)
 RGBASMFLAGS += -E
 endif
 
-$(battlenexus_obj):         RGBASMFLAGS +=
-$(battlenexus11_obj):       RGBASMFLAGS += -D _CRYSTAL11
-$(battlenexus_au_obj):      RGBASMFLAGS += -D _CRYSTAL11 -D _CRYSTAL_AU
-$(battlenexus_debug_obj):   RGBASMFLAGS += -D _DEBUG
-$(battlenexus11_debug_obj): RGBASMFLAGS += -D _CRYSTAL11 -D _DEBUG
-$(battlenexus11_vc_obj):    RGBASMFLAGS += -D _CRYSTAL11 -D _CRYSTAL11_VC
+$(johtofrontier_obj):         RGBASMFLAGS +=
+$(johtofrontier11_obj):       RGBASMFLAGS += -D _CRYSTAL11
+$(johtofrontier_au_obj):      RGBASMFLAGS += -D _CRYSTAL11 -D _CRYSTAL_AU
+$(johtofrontier_debug_obj):   RGBASMFLAGS += -D _DEBUG
+$(johtofrontier11_debug_obj): RGBASMFLAGS += -D _CRYSTAL11 -D _DEBUG
+$(johtofrontier11_vc_obj):    RGBASMFLAGS += -D _CRYSTAL11 -D _CRYSTAL11_VC
 
 %.patch: vc/%.constants.sym %_vc.gbc %.gbc vc/%.patch.template
 	tools/make_patch $*_vc.sym $^ $@
@@ -145,12 +145,12 @@ $1: $2 $$(shell tools/scan_includes $2) $(preinclude_deps) | rgbdscheck.o
 endef
 
 # Dependencies for shared objects objects
-$(foreach obj, $(battlenexus_obj), $(eval $(call DEP,$(obj),$(obj:.o=.asm))))
-$(foreach obj, $(battlenexus11_obj), $(eval $(call DEP,$(obj),$(obj:11.o=.asm))))
-$(foreach obj, $(battlenexus_au_obj), $(eval $(call DEP,$(obj),$(obj:_au.o=.asm))))
-$(foreach obj, $(battlenexus_debug_obj), $(eval $(call DEP,$(obj),$(obj:_debug.o=.asm))))
-$(foreach obj, $(battlenexus11_debug_obj), $(eval $(call DEP,$(obj),$(obj:11_debug.o=.asm))))
-$(foreach obj, $(battlenexus11_vc_obj), $(eval $(call DEP,$(obj),$(obj:11_vc.o=.asm))))
+$(foreach obj, $(johtofrontier_obj), $(eval $(call DEP,$(obj),$(obj:.o=.asm))))
+$(foreach obj, $(johtofrontier11_obj), $(eval $(call DEP,$(obj),$(obj:11.o=.asm))))
+$(foreach obj, $(johtofrontier_au_obj), $(eval $(call DEP,$(obj),$(obj:_au.o=.asm))))
+$(foreach obj, $(johtofrontier_debug_obj), $(eval $(call DEP,$(obj),$(obj:_debug.o=.asm))))
+$(foreach obj, $(johtofrontier11_debug_obj), $(eval $(call DEP,$(obj),$(obj:11_debug.o=.asm))))
+$(foreach obj, $(johtofrontier11_vc_obj), $(eval $(call DEP,$(obj),$(obj:11_vc.o=.asm))))
 
 # Dependencies for VC files that need to run scan_includes
 %.constants.sym: %.constants.asm $(shell tools/scan_includes %.constants.asm) $(preinclude_deps) | rgbdscheck.o
@@ -159,12 +159,12 @@ $(foreach obj, $(battlenexus11_vc_obj), $(eval $(call DEP,$(obj),$(obj:11_vc.o=.
 endif
 
 
-battlenexus_opt         = -Cjv -t PM_CRYSTAL -i BYTE -n 0 -k 01 -l 0x33 -m 0x10 -r 3 -p 0
-battlenexus11_opt       = -Cjv -t PM_CRYSTAL -i BYTE -n 1 -k 01 -l 0x33 -m 0x10 -r 3 -p 0
-battlenexus_au_opt      = -Cjv -t PM_CRYSTAL -i BYTU -n 0 -k 01 -l 0x33 -m 0x10 -r 3 -p 0
-battlenexus_debug_opt   = -Cjv -t PM_CRYSTAL -i BYTE -n 0 -k 01 -l 0x33 -m 0x10 -r 3 -p 0
-battlenexus11_debug_opt = -Cjv -t PM_CRYSTAL -i BYTE -n 1 -k 01 -l 0x33 -m 0x10 -r 3 -p 0
-battlenexus11_vc_opt    = -Cjv -t PM_CRYSTAL -i BYTE -n 1 -k 01 -l 0x33 -m 0x10 -r 3 -p 0
+johtofrontier_opt         = -Cjv -t PM_CRYSTAL -i BYTE -n 0 -k 01 -l 0x33 -m 0x10 -r 3 -p 0
+johtofrontier11_opt       = -Cjv -t PM_CRYSTAL -i BYTE -n 1 -k 01 -l 0x33 -m 0x10 -r 3 -p 0
+johtofrontier_au_opt      = -Cjv -t PM_CRYSTAL -i BYTU -n 0 -k 01 -l 0x33 -m 0x10 -r 3 -p 0
+johtofrontier_debug_opt   = -Cjv -t PM_CRYSTAL -i BYTE -n 0 -k 01 -l 0x33 -m 0x10 -r 3 -p 0
+johtofrontier11_debug_opt = -Cjv -t PM_CRYSTAL -i BYTE -n 1 -k 01 -l 0x33 -m 0x10 -r 3 -p 0
+johtofrontier11_vc_opt    = -Cjv -t PM_CRYSTAL -i BYTE -n 1 -k 01 -l 0x33 -m 0x10 -r 3 -p 0
 
 %.gbc: $$(%_obj) layout.link
 	$(RGBLINK) -n $*.sym -m $*.map -l layout.link -o $@ $(filter %.o,$^)
